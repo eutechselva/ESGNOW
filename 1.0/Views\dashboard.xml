@@ -1,0 +1,24 @@
+<Form layout='dashboard' title=''  roles='*'>
+    <Section id='title'>
+        <Field type='html'>
+            <![CDATA[
+            Dashboard
+            ]]>
+        </Field>
+    </Section>
+    <Section id='main'>
+    </Section>
+    <Section id='sidebar'>
+        <Field type='sidebar' header='Actions'>
+            <Field type='searchlink' app='#{app}' text='Search' />
+            <Field type='html'>
+                <![CDATA[
+                <a class='sidebar_link' href='#{appurl}/#{app}/create'  class='edit_action'>Create a new ESGNOW</a>
+                ]]>
+            </Field>
+        </Field>
+        <Field type='sidebar' header='Configuration'>
+            <!-- configuration links go here -->
+        </Field>
+    </Section>
+</Form>

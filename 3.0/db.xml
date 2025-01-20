@@ -1,0 +1,25 @@
+<Data>
+    <Table name='UMSPageConfigs'>
+        <Columns>
+            <Column name='Key' type='pk' nullable='false' />
+            <Column name='Route' type='varchar(255)' />
+            <Column name='Configuration' type='varchar(max)' />
+            <Column name="CreatedDateTime" type="datetime" />
+            <Column name="CreatedUserKey" type="int" />
+            <Column name="ModifiedDateTime" type="datetime" />
+            <Column name="ModifiedUserKey" type="int" />
+        </Columns>
+    </Table>
+
+    <Table name='UMSLayoutConfigurations'>
+        <Columns>
+            <Column name='Key' type='pk' nullable='false' />
+            <Column name='ID' type='varchar(255)' />
+            <Column name='Configuration' type='varchar(max)' />
+            <Column name="CreatedDateTime" type="datetime" />
+            <Column name="CreatedUserKey" type="int" />
+            <Column name="ModifiedDateTime" type="datetime" />
+            <Column name="ModifiedUserKey" type="int" />
+        </Columns>
+    </Table>
+</Data>

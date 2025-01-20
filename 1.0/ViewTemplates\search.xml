@@ -1,0 +1,53 @@
+<View name='search' template='searchpage' browseview='ESGNOW.view.browse' >
+    <SubTitle>ESGNOWs</SubTitle>
+    <ObjectName>ESGNOW</ObjectName>
+    <ObjectNamePlural>ESGNOWs</ObjectNamePlural>
+    <AppUrl>#{appurl}/#{app}/view?key=#{row.ObjectKey}</AppUrl>
+            <Filters>
+                <FieldList layout='vertical'>
+                    <!-- filters go here -->
+                </FieldList>
+            </Filters>
+            <Service  service='ESGNOW.ESGNOW:All' />
+            <Columns>
+                <Mode name='compact'>
+                    <Cell list_key='#{row.ObjectKey}'  class='list clickable'  >
+                        <![CDATA[
+                        <a class='sr_object' href='$APPURL' onclick='$APPCLICK'>
+                            #{row.ObjectID}
+                        </a>
+                        ]]>
+                    </Cell>
+                    <Cell>
+                        <![CDATA[
+                        <div class='sr_sub' style='float:right'>
+                            <span style='margin-left:20px;' href='#' class='showqix quickinfo' ok='#{row.ObjectKey}' ot='#{app}'></span>
+                        </div>
+                        ]]>
+                    </Cell>
+                </Mode>
+                <Mode name='normal'>
+                    <Cell list_key='#{row.ObjectKey}'   class='list clickable'  >
+                        <![CDATA[
+                        <a class='sr_object' href='$APPURL' onclick='$APPCLICK'>
+                            #{row.ObjectID}
+                        </a>
+                        ]]>
+                    </Cell>
+                    <Cell>
+                        <![CDATA[
+                        <div class='sr_sub' style='float:right'>
+                            <span style='margin-left:20px;' href='#' class='showqix quickinfo' ok='#{row.ObjectKey}' ot='#{app}'></span>
+                        </div>
+                        ]]>
+                    </Cell>
+                </Mode>
+                <NoData>
+                    <![CDATA[
+                    <div class='nodata'>
+                        No results found
+                    </div>
+                    ]]>
+                </NoData>
+            </Columns>
+        </View>

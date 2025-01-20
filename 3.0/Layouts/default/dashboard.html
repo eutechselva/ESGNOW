@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    #{if account.settings.favicon? then concat([
+    <link rel="icon" type="image/x-icon" href="],account.settings.favicon,[">]) else [
+    <link rel="icon" href="https://static.iviva.com/lucy/logos/lucy-canvas-square-256.png" type="image/x-icon">]}
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" />
+
+    #{if account.settings.UXP.Designer.UXPStyleSheet? then concat([
+    <link rel="stylesheet" type="text/css" href="],account.settings.UXP.Designer.UXPStyleSheet,[" />
+    ]) else [
+    <link rel="stylesheet" type="text/css" href="https://uxp.iviva.com/dist/experimental/uxp_dashboard.css" />
+    ]}
+
+    <!-- <link rel="stylesheet" type="text/css" href="http://127.0.0.1:5503/assets/styles/css/uxp_dashboard.css" /> -->
+
+
+    <title>ESG NOW</title>
+
+</head>
+
+<body>
+    <input type="hidden" name="__wdscript__" id="__wdscript__"
+        value="#{if account.settings.UXP.Designer.Script then account.settings.UXP.Designer.Script else [https://uxp.iviva.com/widget-designer/dist/main.js] }">
+    #{sections.main}
+
+    <div id="root"></div>
+
+    <script crossorigin src="https://uxp.iviva.com/packages/react-16/react.production.min.js"></script>
+    <script crossorigin src="https://uxp.iviva.com/packages/react-16/react-dom.production.min.js"></script>
+
+    <!-- <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>  -->
+
+    <script crossorigin src="https://uxp.iviva.com/packages/prop-types/prop-types.min.js"></script>
+    <script crossorigin src="https://uxp.iviva.com/packages/recharts/1.8.5/Recharts.min.js"></script>
+
+
+    <script src="https://uxp.iviva.com/font-awesome/dist/main.js"></script>
+
+    #{if account.settings.UXP.Designer.UXPScript? then concat([
+    <script src="],account.settings.UXP.Designer.UXPScript,["></script>
+    ]) else [
+    <script src="https://uxp.iviva.com/dist/experimental/main.js"></script>
+    ]}
+    <!-- <script src="http://127.0.0.1:5503/dist/main.js"></script> -->
+
+    <!-- lucy components  -->
+    <script src="/Resources/Lucy/lucy-components/dist/main.js"></script>
+
+    <!-- Query builder -->
+    <script src="https://uxp.iviva.com/query-engine-ui/dist/main.js"></script>
+
+    #{if account.settings.UXP.Designer.Script? then concat([
+    <script src="],account.settings.UXP.Designer.Script,["></script>
+    ]) else [
+    <script src="https://uxp.iviva.com/widget-designer/dist/main.js"></script>
+    ]}
+
+    <script src="/Resources/ESGNOW/dashboard/dist/main.js"></script>
+
+
+    <script>
+
+        let userKey = document.querySelector("#env_uk").value;
+        let apiKey = document.querySelector("#env_token").value;
+        let language = document.querySelector("#language").value;
+        let userAppRoles = getUserAppRoles()
+
+        function tryParseJSON(x, def = null) {
+            try {
+                return JSON.parse(x);
+            } catch {
+                return def;
+            }
+        }
+
+
+        function getUMSSelectedTheme() {
+            const response = tryParseJSON(document.querySelector("#selected_theme_ums").innerText, [])
+            const config = tryParseJSON(response?.[0]?.Configuration || {})
+            if (!!config && !!config.themeName) return config.themeName
+            return null
+        }
+
+        function getUserAppRoles() {
+            try {
+                const response = tryParseJSON(document.querySelector("#user_app_roles").innerText, [])
+                const userAppRoles = tryParseJSON(response?.[0]?.roles || {})
+                return userAppRoles
+            } catch (e) {
+                return {}
+            }
+        }
+
+        async function getCurrentUserDetails() {
+            let keys = [
+                "id",
+                "key",
+                "email",
+                "name",
+                "phone",
+                "profileImage",
+                "userGroup",
+                "userGroupName",
+            ];
+            let details = {};
+            for (let i in keys) {
+                let k = keys[i];
+                details[k] = document.getElementById("user_" + k)?.value;
+            }
+            return details;
+        }
+
+        /* dummy function for now */
+        function saveCurrentUserDetails(details) {
+            return new Promise((ok, nope) => {
+                setTimeout(() => ok, 300);
+            });
+        }
+
+        let title = "Utility Management System"
+        let moduleId = "iviva-esg-now-application"
+        let uiId = "#{page.ui}"
+
+
+        let customThemes = {}
+        try {
+            const themes = JSON.parse(document.getElementById('custom_themes').innerText)[0]
+            console.log('themes____', themes)
+
+            for (const t of Object.keys(themes)) {
+                const config = tryParseJSON(themes[t], null)
+                if (config) {
+                    customThemes[t] = config
+                }
+            }
+            console.log('themes____parsed', customThemes)
+        } catch (e) {
+            console.log('themes____err', e)
+        }
+
+
+        let widgetSearchAPI = '/api/UXP/search2'
+
+        let contextProviderValue = {
+            language: language,
+            userKey,
+            root: "root",
+            sidebarItems: [],
+            scriptFiles: [], // widget script files
+            apiKey: apiKey || null,
+            lucyUrl: "/",
+            userRoles: [],
+            getUserDetails: getCurrentUserDetails,
+            saveUserDetails: saveCurrentUserDetails,
+            widgetManager: {
+                loadFromMarketPlace: true,
+                url: widgetSearchAPI,
+                getInstalledWidgets: () => [],
+                getDeletedWidgets: () => [],
+                onWidgetsChanged: async (installed, deleted, themeName, configurations) => {
+                }
+            },
+            title: title,
+            logo: "",
+            sidebarLogo: "",
+            onLogout: () => {
+                window.location.replace("/Apps/Auth/userlogout");
+            },
+            trackAnalytics: (event, data = {}) => {
+            },
+            appRoles: userAppRoles,
+            customThemes: customThemes,
+            themeName: getUMSSelectedTheme()
+        };
+
+        let toolbars = [];
+
+        function render() {
+            renderUI(
+                contextProviderValue,
+                toolbars,
+                moduleId + "/ui/" + uiId,
+                title
+            );
+        }
+
+        render()
+
+    </script>
+</body>
+
+</html>

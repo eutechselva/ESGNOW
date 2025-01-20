@@ -1,0 +1,34 @@
+
+.ums_meters__form_modal {
+    &.modal-container {
+
+        .modal-panel {
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+            width: max(50%, 500px);
+            height: max(95%, 500px);
+
+            .modal-header {
+                .modal-title {
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+            }
+
+            .modal-body {
+                width: 100%;
+                height: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 0;
+                margin: 0;
+
+                .uxpcore_dynamicform__footer {
+                    border-top: 1px solid rgba(0,0,0,0.12);
+                }
+            }
+        }
+    }
+}

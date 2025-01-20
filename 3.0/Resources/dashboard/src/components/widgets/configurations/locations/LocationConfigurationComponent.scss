@@ -1,0 +1,40 @@
+.ums_location_config {
+    padding: 20px;
+    &-sidebar {
+        padding: 20px;
+        position: absolute;
+        background-color: var(--primaryBGColor);
+        right: 0px;
+        top: 0px;
+        width: 350px;
+        bottom: 0px;
+        box-shadow: 1px 1px 10px var(--boxShadowColor);
+        &-header {
+            padding:10px;
+            border-bottom: 1px solid var(--borderColor);
+            h3 {
+                
+                font-size:1.2em;
+            }
+            h6 {
+                font-size: 0.8em;
+                opacity: 0.8;
+            }
+        }
+        &-body {
+            padding-top:20px;
+        }
+    }
+    .ums_location_config-sidebar-body {
+        &-utility-type {
+            border-bottom:1px solid #EFEFEF;
+            margin-bottom: 30px;
+            &-header {
+                background-color: #EEE;
+                display: inline-block;
+                border-radius: 10px;
+                padding: 5px 10px;
+            }
+        }
+    }
+}

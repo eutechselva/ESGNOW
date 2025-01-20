@@ -1,0 +1,210 @@
+//*************************** C2OEnergyDashboard Start **************************************
+// EUI Style Starts
+.EUICondition {
+  display: flex;
+  flex-direction: row;
+  .chartContainer {
+    width: 100%;
+    flex-direction: column;
+    .headerPart {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .BuildingDropdown {
+        width: 160px;
+        height: 45px;
+        padding-top: 10px;
+        margin-right: 24px;
+        .uxp-form-select {
+          min-width: 0px;
+          .uxp-select-placeholder {
+            width: 160px;
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .energyTitle,
+    .energyCostTitle {
+      font-size: 11px;
+      font-weight: 600;
+      .txt {
+        font-size: 11px;
+        font-weight: 700;
+      }
+    }
+  }
+  .Container {
+    display: flex;
+    .subHeader {
+      font-weight: bold;
+    }
+    .subContainer {
+      margin-top: 130px;
+      margin-left: -515px;
+    }
+    .platiContainer {
+      margin-top: 130px;
+      margin-left: 20px;
+    }
+    .goldContainer {
+      margin-top: 130px;
+      margin-left: 20px;
+    }
+    .outContainer {
+      margin-top: 130px;
+      margin-left: 20px;
+    }
+  }
+  .valueContainer {
+    display: flex;
+    padding: 10px;
+    flex-direction: row;
+    justify-content: center;
+    .icon {
+      // background-image: url("../images/energy-2.svg");
+      width: 50px;
+      height: 50px;
+      background-repeat: no-repeat;
+      margin: 10px;
+      background-size: 90%;
+    }
+    .value {
+      top: 18%;
+      padding-left: 120px;
+      font-size: 20px;
+      font-weight: bolder;
+      .unit {
+        font-size: 10px;
+      }
+    }
+  }
+  .line {
+    height: 13px;
+    max-width: 800px;
+    background: white;
+    position: absolute;
+    z-index: 100;
+    top: 50px;
+    margin-left: 1px;
+    cursor: pointer;
+  }
+  .block {
+    width: 130px;
+  }
+  h6 {
+    font-size: 0.8em;
+    padding: 0 0 0.5em;
+    color: #919191;
+  }
+  figure {
+    margin: 0 auto;
+    max-width: 600px;
+    position: relative;
+  }
+
+  @keyframes expand {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    @keyframes expand {
+      from {
+        width: 0%;
+      }
+      to {
+        width: calc(100% - 75px);
+      }
+    }
+  }
+  .charts {
+    margin-left: 15px;
+    margin-top: 20px;
+  }
+  .block {
+    display: block;
+    height: 100px;
+    color: #fff;
+    font-size: 0.75em;
+    float: left;
+    background-color: #89b661;
+    position: relative;
+    overflow: hidden;
+    opacity: 1;
+    transition: opacity, 0.3s ease;
+    // cursor: pointer;
+  }
+  .block:nth-of-type(2),
+  .legend li:nth-of-type(2):before {
+    background-color: #f9d047;
+  }
+  .block:nth-of-type(3),
+  .legend li:nth-of-type(3):before {
+    background-color: #fca62f;
+  }
+  .block:nth-of-type(4),
+  .legend li:nth-of-type(4):before {
+    background-color: #fc4d4d;
+  }
+  .block:nth-of-type(5),
+  .legend li:nth-of-type(5):before {
+    background-color: #df5a49;
+  }
+  .block:nth-of-type(6),
+  .legend li:nth-of-type(6):before {
+    background-color: #962d3e;
+  }
+  .block:hover {
+    opacity: 0.65;
+  }
+  .value {
+    display: block;
+    line-height: 1em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%);
+  }
+  .x-axis {
+    text-align: center;
+    padding: 0.5em 0 2em;
+  }
+  .y-axis {
+    height: 20px;
+    transform: translate(-32px, 170px) rotate(270deg);
+    position: absolute;
+    left: 0;
+  }
+  .legend {
+    margin: 0 auto;
+    padding: 0;
+    font-size: 0.9em;
+  }
+  .legend li {
+    display: inline-block;
+    padding: 0.25em 1em;
+    line-height: 1em;
+  }
+  .legend li:before {
+    content: "";
+    margin-right: 0.5em;
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: #334d5c;
+  }
+  .infoIcon{
+    width: 20px;
+    height: 20px;
+    margin-left:20px;
+    // background-image: url(../images/info.svg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+    
+  }
+}
+//EUI Style Ends

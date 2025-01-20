@@ -1,0 +1,19 @@
+.baseline_value_editor {
+    &__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        &__label {
+            width:200px;
+        }
+        &__value {
+            width:100px;
+            display: flex;
+            align-items: center;
+            &__unit {
+                margin-left:5px;
+                opacity:0.8;
+            }
+        }
+    }
+}

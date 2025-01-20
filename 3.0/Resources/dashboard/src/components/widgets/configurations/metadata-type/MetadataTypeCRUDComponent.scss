@@ -1,0 +1,93 @@
+// // MetadataTypeCRUDComponent.scss
+// .ums_metadatacrud {
+//     &__container {
+//         padding: 1rem;
+//         border-radius: 4px;
+//     }
+
+//     &__fields_editor {
+//         &__container {
+//             margin-top: 1rem;
+//         }
+
+//         &__inner_table {
+
+//             td, th {
+//                 text-align: left;
+//             }
+//         }
+//     }
+
+//     &__button {
+//         margin: 0.5rem;
+//         padding: 0.5rem 1rem;
+//         border: none;
+//         background-color: #007acc;
+//         color: #fff;
+//         border-radius: 4px;
+//         cursor: pointer;
+
+//         &:hover {
+//             background-color: #005fa3;
+//         }
+
+//         &:disabled {
+//             background-color: #ddd;
+//             cursor: not-allowed;
+//         }
+//     }
+
+//     &__input {
+//         width: 100%;
+//         padding: 0.5rem;
+//         border: 1px solid #ddd;
+//         border-radius: 4px;
+
+//         &:focus {
+//             border-color: #007acc;
+//             outline: none;
+//             box-shadow: 0 0 5px rgba(0, 122, 204, 0.5);
+//         }
+//     }
+// }
+
+
+.ums_metadatacrud_fields_editor {
+    &__container {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        border: 1px solid var(--borderColor);
+    }
+
+    &__body {
+        overflow-x: auto;
+        width: 100%;
+        padding: 4px;
+
+    }
+
+    &__inner_table {
+        width: 100%;
+        border-collapse: separate;
+
+        th {
+            text-align: left;
+            padding: 8px;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 8px;
+            border-bottom: 1px solid var(--borderColor);
+
+            input {
+                width: 100%;
+                padding: 4px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+
+        }
+    }
+}

@@ -1,0 +1,39 @@
+{
+    "id": "439f305c-becc-44e4-d421-b11f0c3476d7",
+    "author": "",
+    "widgets": [
+        {
+            "id": "dashboard",
+            "name": "dashboard",
+            "description": "A sample widget",
+            "icon": "",
+            "tags":[]
+            "category":"",
+            "isTemplate": true/false // this will mark the widget as a template 
+        }
+    ],
+    "sidebarLinks": [
+        {
+            "id": "dashboardLink",
+            "label": "",
+            "description": "",
+            "target": "",
+            "icon": "",
+            "roles":[]
+        }
+    ],
+    "uis": [
+        {
+            "id": "dashboardLink",
+            "label":"",
+            "description": "",
+            "roles": []
+        }
+    ],
+    "menuItems": [
+        {
+            "id": "dashboardLink",
+            "title": "dashboard"
+        }
+    ]
+}

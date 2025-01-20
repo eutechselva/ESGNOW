@@ -1,0 +1,37 @@
+.ums-tag {
+    &__container {
+        width: auto;
+        height: auto;
+        border-radius: 20px;
+        margin: 4px;
+        flex-shrink: 0;
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        min-width: 120px;
+        background-color: var(--primaryTextColor);
+        padding: 2px;
+    }
+
+    &__label {
+        width: 50%;
+        flex-shrink: 0;
+        background-color: var(--primaryTextColor);
+        color: var(--primaryBGColor);
+        padding: 6px;
+        display: flex;
+        align-items: center;
+    }
+
+    &__value {
+        width: 50%;
+        flex-shrink: 0;
+        background-color: var(--primaryBGColor);
+        color: var(--primaryTextColor);
+        padding: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        border-radius: 0 20px 20px 0;
+    }
+}

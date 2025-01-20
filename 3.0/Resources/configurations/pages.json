@@ -1,0 +1,68 @@
+{
+    "__home__": {
+        "page": "/home"
+    },
+    "/home": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/lca-widget",
+                "name": "LCA Widget",
+                "_id": "173399910764348127",
+                "key": "173399910764348127",
+                "layout": {
+                    "w": 30,
+                    "h": 10,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173399910764348127",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true
+            }
+        ]
+    },
+    "/products": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/product-dashboard",
+                "name": "Product Dashboard",
+                "_id": "173399910764348128",
+                "key": "173399910764348128",
+                "layout": {
+                    "w": 30,
+                    "h": 10,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173399910764348128",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true
+            }
+        ]
+    },
+    "/lca": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/lca-dashboard",
+                "name": "lca dashboard",
+                "_id": "173399910764348129",
+                "key": "173399910764348129",
+                "layout": {
+                    "w": 30,
+                    "h": 10,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173399910764348129",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true
+            }
+        ]
+    }
+}

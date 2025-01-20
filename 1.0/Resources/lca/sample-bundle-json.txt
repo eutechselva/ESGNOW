@@ -1,0 +1,37 @@
+{
+    "id": "84c2fd9b-f5a1-400c-9ab2-15acdfa51ae7",
+    "author": "",
+    "widgets": [
+        {
+            "id": "LCA",
+            "name": "LCA",
+            "description": "A sample widget",
+            "icon": "",
+            "tags":[]
+        }
+    ],
+    "sidebarLinks": [
+        {
+            "id": "LCALink",
+            "label": "",
+            "description": "",
+            "target": "",
+            "icon": "",
+            "roles":[]
+        }
+    ],
+    "uis": [
+        {
+            "id": "LCALink",
+            "label":"",
+            "description": "",
+            "roles": []
+        }
+    ],
+    "menuItems": [
+        {
+            "id": "LCALink",
+            "title": "LCA"
+        }
+    ]
+}

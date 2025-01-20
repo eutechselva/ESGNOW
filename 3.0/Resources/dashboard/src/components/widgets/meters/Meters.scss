@@ -1,0 +1,26 @@
+.baseline-config {
+    background-color: var(--portalBGColor);
+    padding: 15px;
+    &-title {
+        font-weight: 500;
+        margin-bottom: 20px;
+
+    }
+    &-item {
+        font-weight: 600;
+        border-radius: 9px;
+        margin: 5px 0px !important;
+        padding: 4px 12px !important;
+        display:flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        &:hover,&.selected {
+            background: var(--secondaryButtonBGColor);
+            color: var(--secondaryButtonTextColor);
+
+        }
+
+    }
+}
+

@@ -1,0 +1,104 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+body {
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    grid-template-rows: 80px 1fr;
+    grid-template-areas:
+        "sidebar header"
+        "sidebar content";
+    height: 100vh;
+    background-color: #f9f9f9;
+}
+
+/* Sidebar */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #f0f0f0;
+    display: grid;
+    grid-template-rows: min-content repeat(5, min-content);
+    justify-items: center;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+    row-gap: 2rem;
+}
+.sidebar h2 {
+    font-size: 1rem;
+}
+.menu-item {
+    display: grid;
+    grid-template-rows: auto auto; /* Stack icon and text vertically */
+    justify-items: center;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    gap: 0.5rem;
+}
+.menu-item:hover {
+    color: #333;
+}
+.menu-item i { /* Styling for icons */
+    font-size: 1.5rem;
+}
+
+/* Header */
+.header {
+    grid-area: header;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+}
+.header h1 {
+    font-size: 1.5rem;
+}
+.header button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+/* Content Area */
+.content {
+    grid-area: content;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+}
+.search-bar {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
+}
+.search-bar input {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+.filter-icon {
+    cursor: pointer;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 2fr));
+    gap: 1rem;
+}
+.product-tile {
+    background-color: #ddd;
+    height: 200px;
+    border-radius: 5px;
+}

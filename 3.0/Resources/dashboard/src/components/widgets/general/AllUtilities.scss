@@ -1,0 +1,151 @@
+.all-utilities-widget-container {
+    flex: 1 1;
+    display: flex;
+    &-card {
+        flex: 1 1;
+        border-right: 1px solid var(--borderColor);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        &:last-of-type {
+            border-right:none;
+        }
+
+    }
+    &-header {
+
+    }
+    &-body {
+        text-align: center;
+    }
+    &-footer {
+        background-color:#5771F6;// var(--portalSidebarBGColor);
+        color: white;//var(--portalSidebarTextColor);
+        padding: 5px 10px;
+        border-radius: 15px;
+        margin-bottom:20px;
+        // font-size: 2em;
+    }
+    &-icon {
+        width: 20px;
+        height: 20px;
+        display: block;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+    .card {
+        &-electricity,&-energy {
+            $color: #AD5616;
+            .all-utilities-widget-container-icon-container {
+
+                border: 3px solid $color;
+                background-color: white;
+                border-radius: 50%;
+                display: block;
+                aspect-ratio: 1;
+                /* flex: 1 1; */
+                width: 40px;
+                display: flex ;
+                justify-content: center;
+                align-items: center;
+            }
+            .all-utilities-widget-container-footer {
+                background-color: $color;
+            }
+            .all-utilities-widget-container-icon {
+                width: 20px;
+                height: 35px;
+                background-size: 70%;
+                background-repeat: no-repeat;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'%3E%3C!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --%3E%3Cpath d='M296 160H180.6l42.6-129.8C227.2 15 215.7 0 200 0H56C44 0 33.8 8.9 32.2 20.8l-32 240C-1.7 275.2 9.5 288 24 288h118.7L96.6 482.5c-3.6 15.2 8 29.5 23.3 29.5 8.4 0 16.4-4.4 20.8-12l176-304c9.3-15.9-2.2-36-20.7-36z'/%3E%3C/svg%3E");
+                filter: invert(35%) sepia(50%) saturate(1140%) hue-rotate(350deg) brightness(96%) contrast(92%);
+
+            }
+        }
+        &-water {
+            $color: #4C49CA;
+            .all-utilities-widget-container-icon-container {
+
+                border: 3px solid $color;
+                background-color: white;
+                border-radius: 50%;
+                display: block;
+                aspect-ratio: 1;
+                /* flex: 1 1; */
+                width: 40px;
+                display: flex ;
+                justify-content: center;
+                align-items: center;
+            }
+            .all-utilities-widget-container-footer {
+                background-color: $color;
+            }
+            .all-utilities-widget-container-icon {
+                width: 30px;
+                height: 30px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cstyle%3E.a%7Bfill:%2386cde3;%7D.b%7Bopacity:1;%7D%3C/style%3E%3C/defs%3E%3Cg transform='translate(-779 -561)'%3E%3Cpath class='b' d='M13.677,11.445c-.556,4.481-3.4,5.278-3.4,8.394a3.527,3.527,0,0,0,7.053,0c0-3.116-2.842-3.913-3.4-8.394a.132.132,0,0,0-.256,0Zm-6.533-9.8c-.556,4.481-3.4,5.277-3.4,8.394a3.526,3.526,0,0,0,7.052,0c0-3.116-2.842-3.913-3.4-8.394a.131.131,0,0,0-.255,0Zm13.067,0c-.556,4.481-3.4,5.278-3.4,8.394a3.526,3.526,0,0,0,7.052,0c0-3.116-2.842-3.913-3.4-8.394a.131.131,0,0,0-.255,0Z' transform='translate(789.695 573.567)'/%3E%3C/g%3E%3C/svg%3E");
+                filter: invert(28%) sepia(24%) saturate(6843%) hue-rotate(233deg) brightness(83%) contrast(88%);
+
+
+            }
+        }
+        &-chilledwater {
+            $color: #290A6B;
+            .all-utilities-widget-container-icon-container {
+
+                border: 3px solid $color;
+                background-color: white;
+                border-radius: 50%;
+                display: block;
+                aspect-ratio: 1;
+                /* flex: 1 1; */
+                width: 40px;
+                display: flex ;
+                justify-content: center;
+                align-items: center;
+            }
+            .all-utilities-widget-container-footer {
+                background-color: $color;
+            }
+            .all-utilities-widget-container-icon {
+                width: 20px;
+                height: 35px;
+                background-size: 100%;
+                background-repeat: no-repeat;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --%3E%3Cpath d='M440.1 355.2l-39.2-23 34.1-9.3c8.4-2.3 13.4-11.1 11.1-19.6l-4.1-15.5c-2.2-8.5-10.9-13.6-19.3-11.3L343 298.2 271.2 256l71.9-42.2 79.7 21.7c8.4 2.3 17-2.8 19.3-11.3l4.1-15.5c2.2-8.5-2.7-17.3-11.1-19.6l-34.1-9.3 39.2-23c7.5-4.4 10.1-14.2 5.8-21.9l-7.9-13.9c-4.3-7.7-14-10.3-21.5-5.9l-39.2 23 9.1-34.7c2.2-8.5-2.7-17.3-11.1-19.6l-15.2-4.1c-8.4-2.3-17 2.8-19.3 11.3l-21.3 81-71.9 42.2v-84.5L306 70.4c6.1-6.2 6.1-16.4 0-22.6l-11.1-11.3c-6.1-6.2-16.1-6.2-22.2 0l-24.9 25.4V16c0-8.8-7-16-15.7-16h-15.7c-8.7 0-15.7 7.2-15.7 16v46.1l-24.9-25.4c-6.1-6.2-16.1-6.2-22.2 0L142.1 48c-6.1 6.2-6.1 16.4 0 22.6l58.3 59.3v84.5l-71.9-42.2-21.3-81c-2.2-8.5-10.9-13.6-19.3-11.3L72.7 84c-8.4 2.3-13.4 11.1-11.1 19.6l9.1 34.7-39.2-23c-7.5-4.4-17.1-1.8-21.5 5.9l-7.9 13.9c-4.3 7.7-1.8 17.4 5.8 21.9l39.2 23-34.1 9.1c-8.4 2.3-13.4 11.1-11.1 19.6L6 224.2c2.2 8.5 10.9 13.6 19.3 11.3l79.7-21.7 71.9 42.2-71.9 42.2-79.7-21.7c-8.4-2.3-17 2.8-19.3 11.3l-4.1 15.5c-2.2 8.5 2.7 17.3 11.1 19.6l34.1 9.3-39.2 23c-7.5 4.4-10.1 14.2-5.8 21.9L10 391c4.3 7.7 14 10.3 21.5 5.9l39.2-23-9.1 34.7c-2.2 8.5 2.7 17.3 11.1 19.6l15.2 4.1c8.4 2.3 17-2.8 19.3-11.3l21.3-81 71.9-42.2v84.5l-58.3 59.3c-6.1 6.2-6.1 16.4 0 22.6l11.1 11.3c6.1 6.2 16.1 6.2 22.2 0l24.9-25.4V496c0 8.8 7 16 15.7 16h15.7c8.7 0 15.7-7.2 15.7-16v-46.1l24.9 25.4c6.1 6.2 16.1 6.2 22.2 0l11.1-11.3c6.1-6.2 6.1-16.4 0-22.6l-58.3-59.3v-84.5l71.9 42.2 21.3 81c2.2 8.5 10.9 13.6 19.3 11.3L375 428c8.4-2.3 13.4-11.1 11.1-19.6l-9.1-34.7 39.2 23c7.5 4.4 17.1 1.8 21.5-5.9l7.9-13.9c4.6-7.5 2.1-17.3-5.5-21.7z'/%3E%3C/svg%3E");
+                filter: invert(13%) sepia(25%) saturate(5304%) hue-rotate(244deg) brightness(103%) contrast(122%);
+
+            }
+        }
+    }
+   
+    .icon-water{
+        width: 70px;
+        height: 60px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cstyle%3E.a%7Bfill:%2386cde3;%7D.b%7Bopacity:1;%7D%3C/style%3E%3C/defs%3E%3Cg transform='translate(-779 -561)'%3E%3Cpath class='b' d='M13.677,11.445c-.556,4.481-3.4,5.278-3.4,8.394a3.527,3.527,0,0,0,7.053,0c0-3.116-2.842-3.913-3.4-8.394a.132.132,0,0,0-.256,0Zm-6.533-9.8c-.556,4.481-3.4,5.277-3.4,8.394a3.526,3.526,0,0,0,7.052,0c0-3.116-2.842-3.913-3.4-8.394a.131.131,0,0,0-.255,0Zm13.067,0c-.556,4.481-3.4,5.278-3.4,8.394a3.526,3.526,0,0,0,7.052,0c0-3.116-2.842-3.913-3.4-8.394a.131.131,0,0,0-.255,0Z' transform='translate(789.695 573.567)'/%3E%3C/g%3E%3C/svg%3E");
+        filter: invert(28%) sepia(24%) saturate(6843%) hue-rotate(233deg) brightness(83%) contrast(88%);
+    }
+    .icon-chilledwater{
+        width: 25px;
+        height: 30px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 448 512'%3E%3C!-- Font Awesome Pro 5.15.4 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) --%3E%3Cpath d='M440.1 355.2l-39.2-23 34.1-9.3c8.4-2.3 13.4-11.1 11.1-19.6l-4.1-15.5c-2.2-8.5-10.9-13.6-19.3-11.3L343 298.2 271.2 256l71.9-42.2 79.7 21.7c8.4 2.3 17-2.8 19.3-11.3l4.1-15.5c2.2-8.5-2.7-17.3-11.1-19.6l-34.1-9.3 39.2-23c7.5-4.4 10.1-14.2 5.8-21.9l-7.9-13.9c-4.3-7.7-14-10.3-21.5-5.9l-39.2 23 9.1-34.7c2.2-8.5-2.7-17.3-11.1-19.6l-15.2-4.1c-8.4-2.3-17 2.8-19.3 11.3l-21.3 81-71.9 42.2v-84.5L306 70.4c6.1-6.2 6.1-16.4 0-22.6l-11.1-11.3c-6.1-6.2-16.1-6.2-22.2 0l-24.9 25.4V16c0-8.8-7-16-15.7-16h-15.7c-8.7 0-15.7 7.2-15.7 16v46.1l-24.9-25.4c-6.1-6.2-16.1-6.2-22.2 0L142.1 48c-6.1 6.2-6.1 16.4 0 22.6l58.3 59.3v84.5l-71.9-42.2-21.3-81c-2.2-8.5-10.9-13.6-19.3-11.3L72.7 84c-8.4 2.3-13.4 11.1-11.1 19.6l9.1 34.7-39.2-23c-7.5-4.4-17.1-1.8-21.5 5.9l-7.9 13.9c-4.3 7.7-1.8 17.4 5.8 21.9l39.2 23-34.1 9.1c-8.4 2.3-13.4 11.1-11.1 19.6L6 224.2c2.2 8.5 10.9 13.6 19.3 11.3l79.7-21.7 71.9 42.2-71.9 42.2-79.7-21.7c-8.4-2.3-17 2.8-19.3 11.3l-4.1 15.5c-2.2 8.5 2.7 17.3 11.1 19.6l34.1 9.3-39.2 23c-7.5 4.4-10.1 14.2-5.8 21.9L10 391c4.3 7.7 14 10.3 21.5 5.9l39.2-23-9.1 34.7c-2.2 8.5 2.7 17.3 11.1 19.6l15.2 4.1c8.4 2.3 17-2.8 19.3-11.3l21.3-81 71.9-42.2v84.5l-58.3 59.3c-6.1 6.2-6.1 16.4 0 22.6l11.1 11.3c6.1 6.2 16.1 6.2 22.2 0l24.9-25.4V496c0 8.8 7 16 15.7 16h15.7c8.7 0 15.7-7.2 15.7-16v-46.1l24.9 25.4c6.1 6.2 16.1 6.2 22.2 0l11.1-11.3c6.1-6.2 6.1-16.4 0-22.6l-58.3-59.3v-84.5l71.9 42.2 21.3 81c2.2 8.5 10.9 13.6 19.3 11.3L375 428c8.4-2.3 13.4-11.1 11.1-19.6l-9.1-34.7 39.2 23c7.5 4.4 17.1 1.8 21.5-5.9l7.9-13.9c4.6-7.5 2.1-17.3-5.5-21.7z'/%3E%3C/svg%3E");
+        filter: invert(13%) sepia(25%) saturate(5304%) hue-rotate(244deg) brightness(103%) contrast(122%);
+    }
+
+    .icon-gas{
+        width: 55px;
+        height: 55px;
+        background-size: 100%;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%0A%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48' viewBox='0 0 48 48'%3E%3Cdefs%3E%3Cstyle%3E.a%7Bfill:%23f2f2f1;%7D.b%7Bfill:%237e976d;%7D.c,.f%7Bfill:none;%7D.c,.d%7Bstroke:%237e976d;%7D.d%7Bfill:%23fff;%7D.e%7Bstroke:none;%7D%3C/style%3E%3C/defs%3E%3Cg transform='translate(-862 -489)'%3E%3Ccircle class='a' cx='24' cy='24' r='24' transform='translate(862 489)'/%3E%3Cpath class='b' d='M4.839.534A.539.539,0,0,0,3.85.242C1.075,4.3,5.018,4.48,5.018,6.452A1.434,1.434,0,1,1,2.151,6.43V4.515a.538.538,0,0,0-.928-.37A4.479,4.479,0,0,0,0,7.169a4.3,4.3,0,1,0,8.6,0C8.6,3.354,4.839,2.845,4.839.534Z' transform='translate(879.961 507.735)'/%3E%3Cg class='c' transform='translate(878 503)'%3E%3Crect class='e' width='14' height='20' rx='2'/%3E%3Crect class='f' x='0.5' y='0.5' width='13' height='19' rx='1.5'/%3E%3C/g%3E%3Cpath class='b' d='M0,0H14a0,0,0,0,1,0,0V2a2,2,0,0,1-2,2H2A2,2,0,0,1,0,2V0A0,0,0,0,1,0,0Z' transform='translate(878 521)'/%3E%3Cg class='d' transform='translate(880 499)'%3E%3Cpath class='e' d='M1,0H7A1,1,0,0,1,8,1V2A0,0,0,0,1,8,2H0A0,0,0,0,1,0,2V1A1,1,0,0,1,1,0Z'/%3E%3Crect class='f' x='0.5' y='0.5' width='7' height='1' rx='0.5'/%3E%3C/g%3E%3Cg class='d' transform='translate(881 501)'%3E%3Crect class='e' width='1' height='2'/%3E%3Crect class='f' x='0.5' y='0.5' height='1'/%3E%3C/g%3E%3Cg class='d' transform='translate(886 501)'%3E%3Crect class='e' width='1' height='2'/%3E%3Crect class='f' x='0.5' y='0.5' height='1'/%3E%3C/g%3E%3Cg class='d' transform='translate(883 501)'%3E%3Crect class='e' width='2' height='2'/%3E%3Crect class='f' x='0.5' y='0.5' width='1' height='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        //filter: invert(13%) sepia(25%) saturate(5304%) hue-rotate(244deg) brightness(103%) contrast(122%);
+    }
+}

@@ -1,0 +1,199 @@
+.ums {
+    &__container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        background-color: var(--primaryBGColor);
+        color: var(--primaryTextColor);
+        transition: all 300ms ease-in-out;
+        padding: 0;
+        padding-top: 60px;
+    }
+
+    // header 
+    &__header_container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60px;
+    }
+
+    &__header {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 10px;
+        box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.12);
+        position: relative;
+    }
+
+    &__header_left {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    &__header_logo_container {
+        width: 150px;
+        height: 60px;
+        padding: 10px;
+        cursor: pointer;
+    }
+
+    &__header_logo {
+        width: 100%;
+        height: 100%;
+        background-position: left center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    &__title {
+        font-size: 16px;
+        font-weight: 700;
+    }
+
+    &__header_right {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0 8px;
+    }
+
+    // body 
+    &__body_container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        position: relative;
+        padding: 0;
+        padding-left: 70px;
+        transition: all 300ms ease-in-out;
+    }
+
+    &__sidebar_container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 70px;
+        height: 100%;
+        overflow: hidden;
+        transition: all 300ms ease-in-out;
+    }
+
+    &__contnet_container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+    }
+
+    &__edit_toolbar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: transparent;
+        padding: 4px;
+    }
+
+    &__edit_toolbar_content {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-radius: 6px;
+        background-color: var(--primaryTextColor);
+        color: var(--primaryBGColor);
+        padding: 10px;
+    }
+
+    &__dashboard_edit_btn {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: var(--primaryBGColor);
+        color: var(--primaryTextColor);
+        border: 1px solid var(--borderColor);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        svg {
+            width: 95%;
+            height: 95%;
+        }
+
+        &:hover {
+            background-color: var(--primaryTextColor);
+            color: var(--primaryBGColor);
+        }
+    }
+}
+
+.ums__container {
+    .ums__sidebar_container {
+        .sidebar {
+            padding-top: 80px;
+
+            .sidebar_logo_container {
+                height: 80px;
+                padding: 20px 10px;
+            }
+        }
+    }
+}
+
+.ums__container--expanded {
+    .ums__body_container {
+        padding-left: max(14%, 250px);
+    }
+
+    .ums__sidebar_container {
+        width: max(14%, 250px);
+
+        .sidebar {
+            padding-top: 80px;
+
+            .sidebar_logo_container {
+                height: 80px;
+                padding: 20px 10px;
+            }
+        }
+    }
+}
+
+.uxp-light-theme {
+    .ums__header_logo {
+        background-image: url('https://static.iviva.com/iviva-logo-light.png');
+    }
+}
+
+.uxp-dark-theme {
+    .ums__header_logo {
+        background-image: url('https://static.iviva.com/iviva-logo-dark.png');
+    }
+}
+
+.ums_add_widgets_button {
+    background-color: #5752c9;
+    color: white;
+    margin: 0 10px;
+
+    &:hover {
+        background-color: #5752c9;
+        color: white;
+    }
+}

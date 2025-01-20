@@ -1,0 +1,13 @@
+<Roles>
+    <AppRoles>
+        <Role name='canopenapp'>Allow access to App</Role>
+        <Role name='canconfigurepages'>Allow to configure pages</Role>
+    </AppRoles>
+    <UserRoles>
+        <UserRole name='Administrator' roles='canopenapp, canconfigurepages' />
+        <UserRole name='User' roles='canopenapp' />
+    </UserRoles>
+
+    <Default visible='#{authrole.canopenapp?}' />
+
+</Roles>

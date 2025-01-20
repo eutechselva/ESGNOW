@@ -1,0 +1,23 @@
+.more-info {
+    display: flex;
+    flex-wrap: wrap;
+}
+.more-info-scaling-factor {
+    display: inline-block;
+    margin: 4px;
+    color: #424242;
+    display: flex;
+
+    &-label {
+        white-space: nowrap;
+        background-color: #FAFAFA;
+        border-radius: 10px 0px 0px 10px;
+       padding: 5px; 
+    }
+    &-factor {
+        white-space: nowrap;
+        padding: 5px;
+        border-radius: 0px 10px 10px 0px;
+        background-color: #EFEFEF;
+    }
+}

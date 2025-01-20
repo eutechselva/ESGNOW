@@ -1,0 +1,34 @@
+.ums_deviation {
+    &__container {
+        width: auto;
+        height: auto;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+    &__icon {
+        width: 25px;
+        aspect-ratio: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: green;
+
+        svg {
+            width: 90%;
+            height: 90%;
+        }
+    }
+
+    &__value {
+        width: auto;
+        height: auto;
+    }
+}
+
+.ums_deviation__container--above {
+    .ums_deviation__icon {
+        color: red;
+    }
+}

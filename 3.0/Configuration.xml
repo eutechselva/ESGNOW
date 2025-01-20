@@ -1,0 +1,6 @@
+<Object>
+	<ViewMap>
+		<View name="userroles" mapto="System.userroles" />
+	</ViewMap>
+	<Menus label='ESGNOW' dashboard="true" metro="true" />
+</Object>

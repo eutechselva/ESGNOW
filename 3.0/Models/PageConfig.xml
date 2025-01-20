@@ -1,0 +1,7 @@
+<Model name='PageConfig' table='UMSPageConfigs' record_created="true" record_modified="true" activities='true'>
+    <PrimaryAttribute id='Key' />
+    <Attribute id='Route' type='text' />
+    <Attribute id='Configuration' type='text' />
+   
+    <Validator type='unique' attribute='Route' on='create,update' />
+</Model>

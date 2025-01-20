@@ -1,0 +1,54 @@
+{
+    "id": "14533943-a8ce-4ed3-b24a-e68d9e944e53",
+    "author": "selva",
+    "widgets": [
+        {
+            "id": "LCA",
+            "name": "LCA",
+            "description": "A sample widget",
+            "icon": "",
+            "tags": []
+        },
+        {
+            "id": "ProductInformation",
+            "name": "ProductInformation",
+            "description": "A sample widget",
+            "icon": "",
+            "tags": []
+        },
+        {
+            "id": "ProductDashboard",
+            "name": "Product Dashboard",
+            "description": "A dashboard for monitoring product information",
+            "icon": "",
+            "tags": []
+        },
+        {
+            "id": "LCADashboard",
+            "name": "LCA Dashboard",
+            "description": "A dashboard for life cycle assessment",
+            "icon": "",
+            "tags": []
+        }
+    ],
+    "sidebarLinks": [
+        {
+            "id": "product-dashboard",
+           "label": "Products"
+          
+        },
+        {
+            "id": "lca-dashboard",
+            "label": "Impact Analysis"
+        },
+        {
+            "id": "lca-widget",
+           "label": "Home"
+        }
+        
+    ],
+    "uis": [
+       
+    ],
+    "menuItems": []
+}

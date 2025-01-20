@@ -1,0 +1,418 @@
+$filterBarWidth: 400px;
+
+.ums_consumption_chart {
+
+    &__container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        padding-top: 60px;
+
+        &--hide-shadow {
+            box-shadow: none;
+        }
+    }
+
+    &__header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 40px;
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+
+        .report-title {
+            font-size: 24px;
+            text-align: center;
+            width: 100%;
+        }
+
+    }
+
+    &__title {
+        width: auto;
+        height: auto;
+        padding: 15px;
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    &__filters {
+        width: auto;
+        height: auto;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    &__expand_btn {
+        width: 20px;
+        aspect-ratio: 1;
+        background-color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        svg {
+            width: 90% !important;
+            height: 90%;
+        }
+    }
+
+    &__chart_container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__chart_filters {
+        position: relative;
+        width: 100%;
+        height: auto;
+        min-height: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        padding: 4px 10px;
+    }
+
+    &__applied_filters {
+        width: auto;
+        height: auto;
+        padding: 4px 10px;
+        background-color: var(--secondaryBGColor);
+        border-radius: 4px;
+        font-size: 11px;
+        margin: 2px 4px;
+        cursor: pointer;
+    }
+
+    &__zoom_btn {
+        .uxp-button {
+            font-size: 12px;
+            padding: 5px 11px 5px 30px;
+        }
+    }
+
+    &__export_btn {
+        width: auto;
+        height: auto;
+        padding: 5px 10px;
+        margin: auto;
+        margin-right: 0;
+
+        .uxp-button {
+            padding: 4px 10px 4px 36px;
+        }
+
+        & > .more_btn {
+            margin-left: 10px;
+        }
+    }
+
+    &__chart {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+        flex: 1;
+    }
+
+    &__error {
+        padding: 10px;
+        color: red;
+    }
+
+    &__chart_footer {
+        width: 100%;
+        height: auto;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__chart_footer_left {
+        width: auto;
+        font-size: 12px;
+        font-weight: 700;
+    }
+}
+
+.ums_consumption_composed_chart {
+    &__container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between
+    }
+
+    &__chart {
+        width: 100%;
+        height: 100%;
+        flex-grow: 1;
+    }
+
+    &__analytics {
+        width: 100%;
+        height: auto;
+        display: flex;
+        justify-content: center;
+
+
+        &__section {
+            width: auto;
+            height: auto;
+            padding: 10px 15px;
+            background-color: var(--secondaryBGColor);
+            color: var(--secondaryTextColor);
+            border-radius: 10px;
+            margin: 5px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &__title {
+            width: auto;
+            height: auto;
+            padding: 4px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        &__value {
+            font-size: 20px;
+            font-weight: 700;
+            padding: 4px;
+        }
+
+        &__subtitle {
+            width: auto;
+            height: auto;
+            padding: 4px;
+            font-size: 12px;
+        }
+
+    }
+}
+
+.ums_consumption_chart_modal {
+    &.modal-container {
+
+        .modal-panel {
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+            width: 98%;
+            height: 98%;
+
+            .modal-header {
+                .modal-title {
+                    font-size: 14px;
+                    font-weight: 700;
+                }
+            }
+
+            .modal-body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+        }
+
+    }
+}
+
+.ums_consumption_chart_expanded {
+    &__container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        overflow: hidden;
+        padding-right: max(14%, $filterBarWidth);
+    }
+
+    &__filter_container {
+        width: max(14%, $filterBarWidth);
+        height: 100%;
+        overflow: hidden;
+        flex-shrink: 0;
+        padding: 10px;
+    }
+
+    &__chart_container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        flex-shrink: 0;
+        padding: 10px;
+    }
+
+    &__chart_chart {
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 18px 1px rgba(0, 0, 0, 0.12);
+    }
+
+    &__filters {
+        width: 100%;
+        height: 100%;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 0 18px 1px rgba(0, 0, 0, 0.12);
+
+        &--warning {
+            width: 100%;
+            height: auto;
+            padding: 10px;
+            color: orange;
+        }
+    }
+
+}
+
+.ums_visualization_types {
+    padding: 5px;
+    background-color: var(--secondaryBGColor);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 60px;
+
+    &__item {
+        padding: 8px 20px;
+        border-radius: 50px;
+        background-color: transparent;
+        font-size: 11px;
+        cursor: pointer;
+        text-transform: uppercase;
+        margin: 6px;
+        color: var(--primaryTextColor);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &:hover {
+            box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.12);
+        }
+
+        &--selected {
+            box-shadow: 0 2px 6px 2px rgba(0, 0, 0, 0.12);
+            background-color: var(--primaryBGColor);
+            color: var(--primaryTextColor)
+        }
+    }
+}
+
+.simple-select {
+    margin-left: 10px;
+
+    &.uxp-form-select {
+        .uxp-select-placeholder {
+            border-bottom: 1px solid #00000014;
+            background-color: transparent;
+            box-shadow: none;
+            padding: 5px;
+            font-size: 0.9em;
+            border-radius: 0px;
+            width: 150px;
+        }
+    }
+}
+
+
+.consumption-chart-selection {
+    display: flex;
+    align-items: center;
+
+    &-icon {
+        background-size: contain;
+        width: 20px;
+        height: 20px;
+    }
+}
+
+.ums_contributions_chart_modal {
+    &.modal-container {
+
+        .modal-panel {
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+            width: 98%;
+            height: 98%;
+
+            .modal-header {
+                .ums_contributions_chart_modal_header {
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+            }
+
+            .modal-body {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+        }
+
+    }
+}
+
+.ums_report_form_modal {
+    &.modal-container {
+
+        .modal-panel {
+            min-width: unset;
+            min-height: unset;
+            max-width: unset;
+            max-height: unset;
+            width: 20%;
+            height: 30%;
+
+            .modal-header {
+                .ums_report_form_header {
+                    font-weight: 700;
+                    font-size: 14px;
+                }
+            }
+
+            .modal-body {
+                width: 100%;
+                height: 100%;
+                padding: 10px 20px;
+                margin: 0;
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+            }
+        }
+
+    }
+}

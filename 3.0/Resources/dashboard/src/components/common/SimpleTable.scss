@@ -1,0 +1,25 @@
+.ums_simple_table {
+    width: 100%;
+    height: auto;
+    border-collapse: collapse;
+
+    tr,
+    td {
+        vertical-align: middle;
+    }
+
+    td {
+        padding: 5px;
+    }
+
+    &--bordered {
+        tr {
+            border-bottom: 1px solid silver;
+
+            &:last-of-type {
+                border-bottom: none;
+            }
+        }
+    }
+
+}

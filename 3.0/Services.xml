@@ -1,0 +1,4 @@
+<Services>
+    <Service public='true' name='GetAllApps' type='python' function='SystemServices.GetAllApps'  />
+    <Service public='true' name='InitializeDashboardConfigurations' type='python' function='SystemServices.InitializeDashboardConfigurations'  />
+</Services>

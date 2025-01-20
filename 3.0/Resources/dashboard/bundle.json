@@ -1,0 +1,28 @@
+{
+    "id": "iviva-esg-now-application",
+    "author": "selva",
+    "widgets": [
+        {
+            "id": "product-dashboard",
+            "name": "Product Dashboard",
+            "description": "Shows the List of reports"
+        },
+        {
+            "id": "lca-widget",
+            "name": "LCA Widget",
+            "description": "LCA Widget"
+        },
+        {
+            "id": "lca-dashboard",
+            "name": "LCA Dashboard",
+            "description": "LCA Dashboard"
+        }
+    ],
+    "sidebarLinks": [],
+    "uis": [
+        {
+            "id": "esg-now-dashboard"
+        }
+    ],
+    "menuItems": []
+}
