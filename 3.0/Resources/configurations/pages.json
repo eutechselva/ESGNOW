@@ -49,7 +49,7 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/lca-dashboard",
-                "name": "lca dashboard",
+                "name": "LCA Dashboard",
                 "_id": "173399910764348129",
                 "key": "173399910764348129",
                 "layout": {
