@@ -12,17 +12,21 @@ interface ProductManufacturingProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     billMaterials: BillMaterial[];
+    onProductManufacturingChange:(data: { materialClass: string , specificMaterial : String , weight : Number, manufacturingProcesses: ProductManufacturingProcess[]; }[]) => void;
 }
 
 const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     productCategoryData,
     productData,
     billMaterials,
+    onProductManufacturingChange,
+    
 }) => {
-    const [entryType, setEntryType] = useState<"manual" | "ai">("manual");
+    const [entryType, setEntryType] = useState<"manual" | "ai">("ai");
     const [manualProcesses, setManualProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [aiProcesses, setAIProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [showProcessContent, setShowProcessContent] = useState(false);
+    const [aiGeneratingProcess, setAIGeneratingProcess] = useState<boolean>(false);
 
     const entryOptions = [
         { label: "Manual Entry", value: "manual" },
@@ -53,6 +57,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
 
     const handleGenerate = async () => {
         if (entryType === "ai") {
+            setAIGeneratingProcess(true);
             try {
                 const response = await fetch(`${API_BASE_URL}/api/classify-manufacturing-process`, {
                     method: "POST",
@@ -71,7 +76,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                     throw new Error("Failed to fetch manufacturing processes");
                 }
 
-                const apiResults: { materialClass: string; manufacturingProcesses: ProductManufacturingProcess[] }[] =
+                const apiResults: { materialClass: string, specificMaterial : String , weight : Number,  manufacturingProcesses: ProductManufacturingProcess[] }[] =
                     await response.json();
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
@@ -80,6 +85,8 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 });
 
                 setAIProcesses(mappedProcesses);
+                onProductManufacturingChange(apiResults);
+                setAIGeneratingProcess(false);
                 setShowProcessContent(false);
             } catch (error) {
                 console.error("Error fetching AI processes:", error);
@@ -148,6 +155,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         />
                     </div>
                 ))}
+            {aiGeneratingProcess && <div className="ai-generating">Generating AI Processes...</div>}
 
             {Object.keys(selectedProcesses).length > 0 && (
                 <div className="process-summary">

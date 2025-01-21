@@ -3,7 +3,19 @@ import "./assessment.scss";
 import { Button } from "uxp/components";
 
 
-const Assessment: React.FC = () => {
+interface AssessmentProps {
+  newlyCreatedProduct: {
+    code: string ;
+    name: string;
+    co2EmissionRawMaterials :string;
+    co2EmissionFromProcesses :string;
+    co2Emission :string;
+
+  },
+  onClose: () => void;
+}
+
+const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct ,onClose }) => {
 
 return (
     <div className="assessment-container">
@@ -11,9 +23,9 @@ return (
 
       <div className="product-info">
         <p className="product-name">
-          Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino
+       {newlyCreatedProduct.name} 
         </p>
-        <p className="product-code">ECO-WB-001</p>
+        <p className="product-code">{newlyCreatedProduct.code} </p>
 
         <div className="image-container">
           <div className="image-placeholder"></div>
@@ -27,16 +39,16 @@ return (
         <div className="carbon-details">
           <p className="carbon-item">
             <span>Raw Materials</span>
-            <span>10 KgCO₂e</span>
+            <span>{newlyCreatedProduct.co2EmissionRawMaterials} KgCO₂e</span>
           </p>
           <p className="carbon-item">
             <span>Manufacturing</span>
-            <span>10 KgCO₂e</span>
+            <span>{newlyCreatedProduct.co2EmissionFromProcesses} KgCO₂e</span>
           </p>
           <div className="divider"></div>
           <p className="carbon-total">
             <span>Total Carbon Footprint</span>
-            <span>20 KgCO₂e</span>
+            <span>{newlyCreatedProduct.co2Emission} KgCO₂e</span>
           </p>
         </div>
       </div>
@@ -59,7 +71,8 @@ return (
        <Button
           title="Save & Close"
           onClick={() => {
-            alert("Save & Close clicked");
+            //alert("Save & Close clicked");
+            onClose();
           }}
           className="save-close-button"
         />

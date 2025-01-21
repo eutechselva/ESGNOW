@@ -1,9 +1,11 @@
 import { TitleBar, Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
 import * as React from "react";
 import './ProductDashboardWidget.scss';
-
 import ProductInfoSummary from './product-info-summary';
 // import chairImage from './assets/images/chair.jpg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
 
 
@@ -177,6 +179,7 @@ const productData = [
 ];
 
 const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) => {
+    const [productData, setProductData] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState<any | null>(null);
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState("");
@@ -184,6 +187,23 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
+
+    React.useEffect(() => {
+        const fetchProductData = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/products`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProductData(data);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        };
+
+        fetchProductData();
+    }, []);
     const [activeView, setActiveView] = React.useState<'product-info' | 'carbon-impact'>('product-info');
 
     const handleSearchChange = (newValue: string) => {
@@ -304,11 +324,11 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
 
                         {viewMode === 'grid' ? (
                             <DataGrid
-                                data={filteredData}
+                                data={productData}
                                 renderItem={(item) => (
                                     <div className="product-card" onClick={() => setSelectedProduct(item)}>
-                                        <img src={item.icon} alt="Product" className="product-image" />
-                                        <div className="co2-emission">{item.co2Emission}</div>
+                                        <img src={item.images[0]} alt="Product" className="product-image" />
+                                        <div className="co2-emission">{item.co2Emission + ' Kg CO2e'}</div>
                                         <div className="product-details">
                                             <p>{item.title}</p>
                                             <h4>{item.name}</h4>
@@ -323,7 +343,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                             />
                         ) : (
                             <div className="list-view">
-                                {filteredData.map((item, index) => (
+                                {productData.map((item, index) => (
                                     <div key={index} className="product-list-item" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.icon} alt="Product" className="product-image" />
                                         <div className="product-details">
@@ -332,7 +352,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                                             <p>{item.category}</p>
                                             <p>Modified: {item.modifiedDate}</p>
                                             <p>Created: {item.createdDate}</p>
-                                            <p>CO2 Emission: {item.co2Emission}</p>
+                                            <p>CO2 Emission: {item.co2Emission + ' Kg CO2e'}</p>
                                         </div>
                                     </div>
                                 ))}

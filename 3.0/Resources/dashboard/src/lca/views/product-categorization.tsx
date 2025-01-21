@@ -24,12 +24,14 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     const [supplierName, setSupplierName] = useState<string>(productCategoryData.supplierName);
     const [country, setCountry] = useState<string>(productCategoryData.country);
     const [showTooltip, setShowTooltip] = useState(false);
+    const [aiGenerating, setAIGenerating] = useState(false);
 
     const [categoryData, setCategoryData] = useState<{ [key: string]: string[] }>({}); // Store the entire category data
 
     useEffect(() => {
         const fetchCategoryDataAndClassify = async () => {
             try {
+                
                 // Fetch category data
                 const response = await fetch(`${API_BASE_URL}/api/productCategories`, {
                     method: 'GET',
@@ -56,6 +58,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
 
         const classifyProduct = async (data: { [key: string]: string[] }) => {
             try {
+                setAIGenerating(true);
                 const response = await fetch(`${API_BASE_URL}/api/classify-product`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -79,6 +82,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                     label: String(subcategory),
                     value: String(subcategory)
                 })));
+                setAIGenerating(false);
             } catch (error) {
                 console.error("Error classifying product:", error);
             }
@@ -115,49 +119,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     return (
         <div className="modal-content">
 
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <FormField>
-                    <Label><span style={{ fontSize: '12px' }}>Category</span><span
-                        className="info-icon"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
-                    >
-                        {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                        {showTooltip && (
-                            <div className="tooltip">
-                                Category and Sub Category are AI-generated based on your input and can be edited as needed.
-                            </div>
-                        )}
-                    </span></Label>
-                    <Select
-                        options={categoryOptions}
-                        selected={productCategory}
-                        onChange={(value) => handleCategoryChange(value)}
-                    />
-                </FormField>
-
-
-                <FormField>
-                    <Label><span style={{ fontSize: '12px' }}>Sub Category</span><span
-                        className="info-icon"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
-                    >
-                        {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                        {showTooltip && (
-                            <div className="tooltip">
-                                Category and Sub Category are AI-generated based on your input and can be edited as needed.
-                            </div>
-                        )}
-                    </span></Label>
-                    <Select
-                        options={subcategoryOptions}
-                        selected={productSubCategory}
-                        onChange={(value) => setProductSubCategory(value)}
-                    />
-                </FormField>
-
-            </div>
+           {aiGenerating && ( <div className="loading-overlay"></div> )}
 
             <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField>
@@ -181,16 +143,59 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 </FormField>
             </div>
 
+            <div style={{ display: 'flex', gap: '16px' }}>
+                <FormField>
+                    <Label><span style={{ fontSize: '12px' }}>Category</span><span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Category and Sub Category are AI-generated based on your input and can be edited as needed.
+                            </div>
+                        )}
+                    </span></Label>
+                    <Select
+                        options={categoryOptions}
+                        selected={productCategory}
+                        onChange={(value) => handleCategoryChange(value)}
+                    />
+                </FormField>
+
+
+                <FormField>
+                    <Label><span style={{ fontSize: '12px' }}>Sub Category</span><span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Category and Sub Category are AI-generated based on your input and can be edited as needed.
+                            </div>
+                        )}
+                    </span></Label>
+                    <Select
+                        options={subcategoryOptions}
+                        selected={productSubCategory}
+                        onChange={(value) => setProductSubCategory(value)}
+                    />
+                </FormField>
+
+            </div>
+
 
             <FormField>
                 <Label><span style={{ fontSize: '12px' }}>Country of Manufacture</span></Label>
                 <Select
                     options={[
-                        { label: 'United States', value: 'US' },
-                        { label: 'United Kingdom', value: 'UK' },
+                        
                         { label: 'China', value: 'CN' },
-                        { label: 'India', value: 'IN' },
-                        { label: 'Germany', value: 'DE' },
+                        { label: 'Vietnam', value: 'VD' },
+                        { label: 'Global', value: 'GL' },
                         // Add more countries as needed
                     ]}
                     selected={country}

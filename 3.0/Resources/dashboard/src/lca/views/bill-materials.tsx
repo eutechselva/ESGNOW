@@ -22,6 +22,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     const [entryType, setEntryType] = useState<string>("ai");
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
+    const [aiGeneratingBOM, setAIGeneratingBOM] = useState<boolean>(false);
 
     const entryOptions = [
         { label: "AI Generated", value: "ai" },
@@ -29,6 +30,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     ];
 
     const fetchMaterialsFromAPI = async () => {
+        setAIGeneratingBOM(true);
         try {
             const response = await fetch(`${API_BASE_URL}/api/classify-bom`, {
                 method: "POST",
@@ -57,6 +59,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
             }));
 
             setMaterials(apiMaterials);
+            setAIGeneratingBOM(false);
         } catch (error) {
             console.error("Error fetching materials from API:", error);
         }
@@ -116,7 +119,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                         onMouseEnter={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
                     >
-                        {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                        <FontAwesomeIcon icon={faInfoCircle} />
                         {showTooltip && (
                             <div className="tooltip">
                                 Use manual entry or let AI assist you to generate the Bill of Materials
@@ -146,6 +149,8 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 )}
             </div>
 
+            {aiGeneratingBOM && <div className="ai-generating-bom">Generating Bill of Materials...</div>}
+
             {showMaterialEntry && entryType === "manual" && (
                 <MaterialEntry
                     onAddMaterial={handleMaterialAdd}
@@ -154,9 +159,9 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 />
             )}
 
-            {(materials.length > 0 || entryType === "ai") && (
+            {(materials.length > 0 && entryType === "ai") && (
                 <>
-                    <MaterialSummary
+                 <MaterialSummary
                         materials={materials}
                         onEdit={handleMaterialEdit}
                         onDelete={handleMaterialDelete}
