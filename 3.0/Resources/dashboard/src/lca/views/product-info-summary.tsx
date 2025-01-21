@@ -37,7 +37,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
-                                `${totalValue} KgCO₂e`,
+                                `${totalValue} <br> KgCO₂e`,
                                 chart.plotWidth / 2 + chart.plotLeft,
                                 chart.plotHeight / 2 + chart.plotTop
                             )
@@ -192,8 +192,11 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             0
                                         );
 
-                                        // Map through the materials and calculate percentage
-                                        return product.materials.map((item: any) => {
+                                        // Sort the materials by emissionFactor in descending order
+                                        const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedMaterials.map((item: any) => {
                                             const percentage =
                                                 totalEmissionFactor > 0
                                                     ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
@@ -202,13 +205,14 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                                 <tr key={item.materialClass}>
                                                     <td>{item.materialClass}</td>
                                                     <td>{item.specificMaterial}</td>
-                                                    <td>{ parseInt(item.emissionFactor).toFixed(2) } KgCO₂e</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>
                                             );
                                         });
                                     })()}
                                 </tbody>
+
                             </table>
                         </div>
                     </div>
@@ -226,17 +230,38 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {
-                                        product.productManufacturingProcess.map((item: any) => (
-                                            <tr key={item.materialClass}>
-                                                <td>{item.materialClass}</td>
-                                                <td>{item.specificMaterial}</td>
-                                                <td>{item.emissionFactor} </td>
-                                                <td>{25}</td>
-                                            </tr>
-                                        ))}
 
+
+
+                                    {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                            (sum: number, item: any) => sum + item.emissionFactor,
+                                            0
+                                        );
+
+                                        // Sort the productManufacturingProcess by emissionFactor in descending order
+                                        const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedProcess.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.materialClass}>
+                                                    <td>{item.materialClass}</td>
+                                                    <td>{item.specificMaterial}</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+                                    })()}
                                 </tbody>
+
+
                             </table>
                         </div>
                     </div>
