@@ -12,7 +12,7 @@ import "./product-wizard.scss";
 import Assessment from "./assessment";
 
 interface ProductWizardProps {
-    show: boolean;
+    show: boolean; 
     onClose: () => void;
 }
 
@@ -31,6 +31,7 @@ export const ProductWizard = ({ show, onClose }: ProductWizardProps) => {
     const [productInfoData, setProductInfoData] = useState<ProductData>({
         code: "",
         name: "",
+        
         description: "",
         images: [],
         document: null,
