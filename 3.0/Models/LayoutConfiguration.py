@@ -15,7 +15,7 @@ class Model(BaseModel.Model):
     def ExecuteSaveLayoutConfig(self, args, env):
 
         id = xstr(args['ID'])
-        res = self.account.DBService().ExecuteQuery('SELECT * FROM UMSLayoutConfigurations WHERE [ID]=@id',{'id':id})
+        res = self.account.DBService().ExecuteQuery('SELECT * FROM ESGNOWLayoutConfigurations WHERE [ID]=@id',{'id':id})
         if res.Rows.Count == 0:
             return self.dbmodel.Create(self.account,args,env)
         else: 
