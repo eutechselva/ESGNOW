@@ -45,7 +45,7 @@ return (
         Your PCF has been successfully calculated!
       </p> */}
       <p className="calculation-subtext">
-        Continue the steps to assess your impact or save and return later.
+      Complete the analysis by calculating transportation emissions, or save your progress and do it later?
       </p>
 
       <div className="button-group">

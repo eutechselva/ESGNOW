@@ -102,7 +102,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
     return (
         <div className="modal-content">
-            {/* <h3>Product Profile</h3> */}
+             <h3>Fill in the fields below to assist with the analysis. Providing as much detail as possible helps the AI deliver better support for your assessment.</h3> 
 
             <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField>

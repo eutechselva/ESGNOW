@@ -133,6 +133,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={categoryOptions}
                         selected={productCategory}
                         onChange={(value) => handleCategoryChange(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
@@ -154,6 +155,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={subcategoryOptions}
                         selected={productSubCategory}
                         onChange={(value) => setProductSubCategory(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
