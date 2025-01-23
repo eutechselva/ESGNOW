@@ -231,7 +231,6 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
             {selectedProduct ? null : (
                 <>
                     <h1 className="dashboard-title">Products</h1>
-                    <p className="subheading">Monitor your Products' Carbon Footprint across their Lifecycle</p>
 
                     <div className="product-library">
                         {/* <h2>Product Library</h2> */}

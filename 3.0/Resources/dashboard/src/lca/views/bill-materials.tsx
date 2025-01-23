@@ -24,7 +24,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
     const entryOptions = [
-        { label: "AI Generated", value: "ai" },
+        { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
 

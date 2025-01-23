@@ -19,17 +19,18 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     productData,
     billMaterials,
 }) => {
-    const [entryType, setEntryType] = useState<"manual" | "ai">("manual");
+    const [entryType, setEntryType] = useState<"manual" | "ai">("ai");
     const [manualProcesses, setManualProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [aiProcesses, setAIProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [showProcessContent, setShowProcessContent] = useState(false);
 
     const entryOptions = [
+        { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
-        { label: "AI Generated", value: "ai" },
+        
     ];
 
-    const handleEntryTypeChange = (newValue: "manual" | "ai") => {
+    const handleEntryTypeChange = (newValue: "ai" | "manual") => {
         setEntryType(newValue);
         setShowProcessContent(false);
     };
@@ -110,7 +111,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
         });
     };
 
-    const selectedProcesses = entryType === "manual" ? manualProcesses : aiProcesses;
+    const selectedProcesses = entryType === "ai" ? aiProcesses  : manualProcesses ;
 
     return (
         <div className="product-manufacturing">
@@ -123,18 +124,18 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                     selected={entryType}
                     onChange={handleEntryTypeChange}
                 />
-                {entryType === "manual" && (
-                    <Button
-                        title="Add Process"
-                        className="add-process-button"
-                        onClick={handleAddProcess}
-                    />
-                )}
                 {entryType === "ai" && (
                     <Button
                         title="Generate"
                         className="generate-button"
                         onClick={handleGenerate}
+                    />
+                )}
+                 {entryType === "manual" && (
+                    <Button
+                        title="Add Process"
+                        className="add-process-button"
+                        onClick={handleAddProcess}
                     />
                 )}
             </div>

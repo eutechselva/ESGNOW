@@ -278,7 +278,7 @@ const handleSaveProductWeight = () => {
                     checked={!isPackagingManual}
                     onChange={() => setIsPackagingManual(false)}
                 />
-                Assisted
+                AI Assisted
             </label>
             <label className="toggle-option">
                 <input
@@ -336,7 +336,7 @@ const handleSaveProductWeight = () => {
                                         checked={!isPalletManual}
                                         onChange={() => setIsPalletManual(false)}
                                     />
-                                    Assisted
+                                    AI Assisted
                                 </label>
                                 <label className="toggle-option">
                                     <input
@@ -471,9 +471,7 @@ const handleSaveProductWeight = () => {
 
     return (
         <div className="content">
-            <h1 className="dashboard-title">Emission Impact</h1>
-            <p className="subheading">Available Products</p>
-
+            <h1 className="dashboard-title">Impact Analysis</h1>
             <div className="search-filter-section">
                 <div className="uxp-search-box-container">
                     <SearchBox
