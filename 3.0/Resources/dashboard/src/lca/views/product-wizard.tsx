@@ -13,6 +13,7 @@ import API_BASE_URL from "../config";
 import { ProductManufacturingProcess } from "../types/product-manufacturing-process.type";
 import Assessment from "./assessment";
 import { IContextProvider } from "@uxp";
+import { width } from "@fortawesome/free-solid-svg-icons/faInfoCircle";
 
 interface ProductWizardProps {
     show: boolean; 
@@ -125,9 +126,23 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
     };
 
     return (
-        <Modal show={show} onOpen={() => { }} onClose={onClose}  
+        <Modal show={show} onOpen={() => { }} onClose={onClose}   
+        styles={{
+            width: "800px", 
+            maxWidth: "800px",
+            minWidth: "800px", 
+            height: "100%",
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)", 
+            overflow: "hidden", 
+        }}
+        
+        backdropStyles={{ display: "none" }}
+       
         title="Create Product" 
-    className="custom-modal">
+        className="custom-modal">
             <Stepper activeStep={activeStep} onStepChange={handleStepChange} />
 
             {activeStep === 0 && (
