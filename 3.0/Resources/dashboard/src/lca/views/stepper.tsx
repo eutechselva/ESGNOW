@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Modal, FormField, Label, Input } from "uxp/components";
 import "./stepper.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 interface StepperProps {

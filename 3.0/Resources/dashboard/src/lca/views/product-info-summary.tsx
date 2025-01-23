@@ -19,6 +19,11 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
 
     const handleViewToggle = (mode: 'list' | 'tree') => setViewMode(mode);
 
+    const totalValue = parseInt(product.co2Emission).toFixed(2); // Replace with dynamic calculation 
+    const rawMaterialPercentage = parseInt(((parseInt(product.co2EmissionRawMaterials) / parseInt(product.co2Emission)) * 100).toFixed(2));
+    const manufacturingPercentage = parseInt(((parseInt(product.co2EmissionFromProcesses) / parseInt(product.co2Emission)) * 100).toFixed(2));
+
+
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
@@ -28,12 +33,11 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = 60 + 40; // Replace with dynamic calculation 
-    
+
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
-                                `${totalValue} KgCO₂e`,
+                                `${totalValue} <br> KgCO₂e`,
                                 chart.plotWidth / 2 + chart.plotLeft,
                                 chart.plotHeight / 2 + chart.plotTop
                             )
@@ -80,8 +84,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: 60, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: 40, color: '#ffaa00' },
+                    { name: 'Raw Materials', y: rawMaterialPercentage, color: '#78BE7C' },
+                    { name: 'Manufacturing', y: manufacturingPercentage, color: '#ffaa00' },
                 ],
             },
         ],
@@ -105,7 +109,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             enabled: false,
         },
     };
-    
+
     return (
         <>
             <div className="title-container">
@@ -121,17 +125,17 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 <div
                     className="summary-image"
                     style={{
-                        backgroundImage: product.icon ? `url(${product.icon})` : 'none',
+                        backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                     }}
                 >
-                    {!product.icon && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">160.51 Kg CO₂e</div>
+                    {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
+                    <div className="image-label">{`${totalValue}  Kg CO₂e`}</div>
                 </div>
                 <div className="summary-details">
                     <div className="details-left">
                         <div className="detail-item">
                             <strong>Product Code:</strong>
-                            <p>{product.productCode}</p>
+                            <p>{product.code}</p>
                         </div>
 
                         <div className="detail-item">
@@ -146,112 +150,123 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             <strong>SubCategory:</strong>
                             <p>{product.subCategory}</p>
                         </div>
-                        
+
                     </div>
                     <div className="details-right">
-                    <div className="description-field">
+                        <div className="description-field">
                             <strong>Description:</strong>
                             <p>{product.description}</p>
                         </div>
-                   
-                      
-                       
+
+
+
                     </div>
                 </div>
             </div>
 
             <div className="widgets-section">
-    <div className="widget product-footprint">
-        <h3>Product Footprint</h3>
-        <div className="widget-content">
-            <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
-        </div>
-    </div>
-    <div className="widgets-row">
-        <div className="widget contribution-raw-material">
-            <h3>Contribution by Raw Material</h3>
-            <div className="widget-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material Class</th>
-                            <th>Specific Material</th>
-                            <th>Contribution</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div className="widget product-footprint">
+                    <h3>Product Footprint</h3>
+                    <div className="widget-content">
+                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                    </div>
+                </div>
+                <div className="widgets-row">
+                    <div className="widget contribution-raw-material">
+                        <h3>Contribution by Raw Material</h3>
+                        <div className="widget-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Material Class</th>
+                                        <th>Specific Material</th>
+                                        <th>Contribution</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = product.materials.reduce(
+                                            (sum: number, item: any) => sum + item.emissionFactor,
+                                            0
+                                        );
+
+                                        // Sort the materials by emissionFactor in descending order
+                                        const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedMaterials.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.materialClass}>
+                                                    <td>{item.materialClass}</td>
+                                                    <td>{item.specificMaterial}</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+                                    })()}
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+
+                    <div className="widget contribution-manufacturing">
+                        <h3>Contribution by Manufacturing</h3>
+                        <div className="widget-content">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Material Class</th>
+                                        <th>Specific Material</th>
+                                        <th>Contribution</th>
+                                        <th>Percentage</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+
+
+                                    {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                            (sum: number, item: any) => sum + item.emissionFactor,
+                                            0
+                                        );
+
+                                        // Sort the productManufacturingProcess by emissionFactor in descending order
+                                        const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedProcess.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.materialClass}>
+                                                    <td>{item.materialClass}</td>
+                                                    <td>{item.specificMaterial}</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+                                    })()}
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div className="widget contribution-manufacturing">
-            <h3>Contribution by Manufacturing</h3>
-            <div className="widget-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material Class</th>
-                            <th>Specific Material</th>
-                            <th>Contribution</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
 
 
             <div className="inventory-section">
@@ -299,64 +314,19 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Metal</td>
-                                    <td>Steel</td>
-                                    <td>6.5 kg</td>
-                                    <td>MetalProcesssing</td>
-                                    <td>Cutting,Welding</td>
-                                </tr>
-                                <tr>
-                                    <td>Plastic</td>
-                                    <td>Polypropylene</td>
-                                    <td>4 kg</td>
-                                    <td>PlasticProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
+                                {
+                                    // @ts-ignore
+                                    product.productManufacturingProcess.map((item: any) => (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            <td>{item.specificMaterial}</td>
+                                            <td>{item.weight} Kg</td>
+                                            <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{item.manufacturingProcesses[0].processes.join(', ')}</td>
+                                        </tr>
+                                    ))
+                                }
 
-                                <tr>
-                                    <td>Fabric</td>
-                                    <td>Polyester</td>
-                                    <td>2.5 kg</td>
-                                    <td>FabricProcesssing</td>
-                                    <td>Cutting,Sewing</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Leather</td>
-                                    <td>Genuine Leather</td>
-                                    <td>4.5 kg</td>
-                                    <td>LeatherProcesssing</td>
-                                    <td>Cutting,Sewing</td>
-                                </tr>
-                                <tr>
-                                    <td>Plastic</td>
-                                    <td>Polyurethane (PU)</td>
-                                    <td>1.5 kg</td>
-                                    <td>PlastcProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
-                                <tr>
-                                    <td>Nylon (Polyamide)</td>
-                                    <td>Polyurethane (PU)</td>
-                                    <td>1 kg</td>
-                                    <td>PlastcProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
-                                <tr>
-                                    <td>Metal</td>
-                                    <td>Aluminuium (PU)</td>
-                                    <td>2 kg</td>
-                                    <td>MetalProcesssing</td>
-                                    <td>Cutting,Welding </td>
-                                </tr>
-                                <tr>
-                                    <td>Foam</td>
-                                    <td>Polyurethane Foam</td>
-                                    <td>0.5 kg</td>
-                                    <td>FoamProcesssing</td>
-                                    <td>Foam Molding</td>
-                                </tr>
 
 
                             </tbody>

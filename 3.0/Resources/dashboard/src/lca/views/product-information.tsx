@@ -4,20 +4,24 @@ import './product-information.scss';
 import { Button } from 'uxp/components';
 import { ProductInfo } from "../types/product-info.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons/faInfoCircle";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { IContextProvider } from "@uxp";
+
 
 
 
 interface ProductInformationProps {
     productData: ProductInfo;
     onNext: (productData: ProductInfo) => void;
+    uxpContext : IContextProvider;
 }
 
-const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext }) => {
+const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext ,uxpContext}) => {
     const [productCode, setProductCode] = React.useState(productData.code);
     const [productName, setProductName] = React.useState(productData.name);
     const [productDescription, setProductDescription] = React.useState(productData.description);
     const [productImages, setProductImages] = React.useState<File[]>(productData.images);
+    const [productUploadedImages, setProductUploadedImages] = React.useState<string[]>(productData.uploadedImages );
     const [imagePreviews, setImagePreviews] = React.useState<string[]>(
         productData.images.map((file) => URL.createObjectURL(file))
     );
@@ -27,11 +31,75 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
     const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
+    async function uploadFile(url: string, filename: string, apikey: string, buffer: Blob) {
+        const form = new FormData();
+        form.append('file', buffer, filename);
+
+        
+
+        let response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Authorization": `${apikey}`
+            },
+            body: form
+        })
+
+        
+
+        let responseText = await response.text();
+
+        console.log('response: ', response)
+
+        // something went wrong, no point proceeding
+        if (response.status !== 200) {
+            throw responseText;
+        }
+
+        return responseText;
+    }
+
+     function generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
+
+    function addQSToURL(url: string, qs: any) {
+        let result = url.lastIndexOf("?") === -1 ? url + "?" : url;
+        let qsArray = [];
+
+        if (!!url && !!qs) {
+            for (let key in qs) {
+                qsArray.push(`${key}=${qs[key]}`);
+            }
+        }
+        return result + qsArray.join("&");
+    }
+
     // Handler for image upload
     const handleImageUpload = (files: FileList) => {
         const fileArray = Array.from(files);
         if (fileArray.length + productImages.length <= 3) {
-            const newImagePreviews = fileArray.map((file) => URL.createObjectURL(file));
+            const newImagePreviews = fileArray.map((file) => {
+                
+                let name = file.name
+                let ext = name.slice((Math.max(0, name.lastIndexOf(".")) || Infinity) + 1)
+                name = "file-" + generateUUID() + '.' + ext
+                let baseUrl = uxpContext.lucyUrl + 'uploadcontent/notes/uploads/images/' ;
+                let url = addQSToURL(baseUrl, { filename: name })
+
+                let apikey = uxpContext.apiKey
+
+                uploadFile(url, name, apikey, file);
+                let downloadUrl = uxpContext.lucyUrl + 'content/notes/uploads/images/'  + name;
+                setProductUploadedImages([...productUploadedImages, downloadUrl]);
+                return URL.createObjectURL(file);
+            } );
             setProductImages([...productImages, ...fileArray]);
             setImagePreviews([...imagePreviews, ...newImagePreviews]);
         } else {
@@ -95,6 +163,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
             name: productName,
             description: productDescription,
             images: productImages,
+            uploadedImages: productUploadedImages,
             document,
         };
         onNext(productData);
@@ -153,7 +222,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
-                                {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                                <FontAwesomeIcon icon={faInfoCircle} />
                                 {showTooltip && (
                                     <div className="tooltip">
                                        Upload up to 3 images in JPG, PNG, or compatible formats to provide visual details.
@@ -199,7 +268,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
-                                {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                                <FontAwesomeIcon   icon={faInfoCircle} />
                                 {showTooltip && (
                                     <div className="tooltip">
                                        Add any files that substantiate product data, like certification documents or audit reports, in accepted formats: PDF, DOC, JPG, PNG.

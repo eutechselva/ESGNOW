@@ -18,7 +18,7 @@ export const PageContent: React.FC<PageContentProps> = (props) => {
     console.log('___layout___', layout)
 
     if (!layout) return <div className="ums_page_layout_not_configured__container">
-        <div className="ums_page_layout_not_configured__message">Page has not configured xxx</div>
+        <div className="ums_page_layout_not_configured__message">Page has not configured</div>
     </div>
     return <div className={'ums_page_content__container'}>
         {((layout?.type as PageLayoutType) == PageLayoutType.Tabs)

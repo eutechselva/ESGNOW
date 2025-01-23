@@ -1,4 +1,4 @@
-import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, Input} from "uxp/components";
+import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, Input, } from "uxp/components";
 import * as React from "react";
 import './ProductDashboardWidget.scss';
 import Stepper from './stepper-LCA';

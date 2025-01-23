@@ -1,5 +1,6 @@
 
 import * as React from "react";
+
 import './products.scss';
 import { ProductWizard } from "./product-wizard";
 import { IContextProvider } from "@uxp";
@@ -49,8 +50,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
 
             <ProductWizard
                 show={showModal}
-                onClose={() => setShowModal(false)}
-
+                onClose={() => setShowModal(false)} uxpContext={props.uxpContext}
             />
         </div>
     );
