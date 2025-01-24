@@ -328,7 +328,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                                 renderItem={(item) => (
                                     <div className="product-card" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.images[0]} alt="Product" className="product-image" />
-                                        <div className="co2-emission">{item.co2Emission + ' Kg CO2e'}</div>
+                                        <div className="co2-emission">{ parseInt(item.co2Emission).toFixed(2)  + ' Kg CO2e'}</div>
                                         <div className="product-details">
                                             <p>{item.title}</p>
                                             <h4>{item.name}</h4>
