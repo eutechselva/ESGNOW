@@ -127,19 +127,19 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
 
     return (
         <Modal show={show} onOpen={() => { }} onClose={onClose}   
-        styles={{
-            width: "800px", 
-            maxWidth: "800px",
-            minWidth: "800px", 
-            height: "100%",
-            position: "fixed",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)", 
-            overflow: "hidden", 
-        }}
+        // styles={{
+        //     width: "800px", 
+        //     maxWidth: "800px",
+        //     minWidth: "800px", 
+        //     height: "100%",
+        //     position: "fixed",
+        //     top: "50%",
+        //     left: "50%",
+        //     transform: "translate(-50%, -50%)", 
+        //     overflow: "hidden", 
+        // }}
         
-        backdropStyles={{ display: "none" }}
+        //backdropStyles={{ display: "none" }}
        
         title="Create Product" 
         className="custom-modal">
