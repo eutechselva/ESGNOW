@@ -223,8 +223,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Material Class</th>
                                         <th>Specific Material</th>
+                                        <th>Manufacturing Process</th>
                                         <th>Contribution</th>
                                         <th>Percentage</th>
                                     </tr>
@@ -252,7 +252,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             return (
                                                 <tr key={item.materialClass}>
                                                     <td>{item.materialClass}</td>
-                                                    <td>{item.specificMaterial}</td>
+                                                    <td>{item.manufacturingProcesses[0].category}</td>
                                                     <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>

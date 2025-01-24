@@ -137,3 +137,27 @@
 .button:hover {
   opacity: 0.9;
 }
+
+.image-container {
+  display: flex;
+  gap: 10px; /* Spacing between placeholders */
+}
+
+.image-placeholder {
+  width: 150px; /* Fixed width for the placeholder */
+  height: 150px; /* Fixed height for the placeholder */
+  background-color: #f0f0f0; /* Background color for empty placeholders */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the image inside the placeholder */
+  overflow: hidden; /* Ensures the image doesn't overflow the container */
+  border: 1px solid #ddd; /* Optional: adds a border */
+  border-radius: 8px; /* Optional: rounded corners */
+}
+
+.image-placeholder img {
+  max-width: 100%; /* Prevents the image from being wider than the placeholder */
+  max-height: 100%; /* Prevents the image from being taller than the placeholder */
+  object-fit: cover; /* Ensures the image fills the space without distortion */
+  border-radius: 4px; /* Optional: rounded corners for the image */
+}
