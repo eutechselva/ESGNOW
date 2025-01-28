@@ -10,7 +10,7 @@ interface StepperProps {
     onStepChange: (step: number) => void;
 }
 
-const steps = ["Product Information", "Product Categorization", "Bill of Materials", "Product Manufacturing","Assessment"];
+const steps = ["Information", "Categorization", "Materials", "Manufacturing","Assessment"];
 //const steps = ["Product Information", "Product Categorization", "Bill of Materials"];
 // const steps = ["Product Selection", "Transport Selection", "Transport Weight"];
 

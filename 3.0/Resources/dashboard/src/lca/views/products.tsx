@@ -24,7 +24,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
             <div className="title-container">
 
                 <h1 className="heading">Products</h1>
-                <p className="subheading">Monitor your Products' Carbon Footprint across their Lifecycle</p>
+               
 
 
                 {/* <p className="heading">Products</p>

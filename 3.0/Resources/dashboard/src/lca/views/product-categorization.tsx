@@ -121,29 +121,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
 
            {aiGenerating && ( <div className="loading-overlay"></div> )}
 
-            <div style={{ display: 'flex', gap: '16px' }}>
-                <FormField>
-                    <Label><span style={{ fontSize: '12px' }}>Supplier Name</span></Label>
-                    <Input
-                        type="text"
-                        value={supplierName}
-                        onChange={(value) => setSupplierName(value)}
-                        placeholder="Enter supplier name"
-                    />
-                </FormField>
-
-                <FormField>
-                    <Label><span style={{ fontSize: '12px' }}>Total Weight (Kg)</span></Label>
-                    <Input
-                        type="number"
-                        value={totalWeight}
-                        onChange={(value) => setTotalWeight(value)}
-                        placeholder="Enter total weight"
-                    />
-                </FormField>
-            </div>
-
-            <div style={{ display: 'flex', gap: '16px' }}>
+           <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField>
                     <Label><span style={{ fontSize: '12px' }}>Category</span><span
                         className="info-icon"
@@ -161,6 +139,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={categoryOptions}
                         selected={productCategory}
                         onChange={(value) => handleCategoryChange(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
@@ -182,9 +161,32 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={subcategoryOptions}
                         selected={productSubCategory}
                         onChange={(value) => setProductSubCategory(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
+            </div>
+
+            <div style={{ display: 'flex', gap: '16px' }}>
+                <FormField>
+                    <Label><span style={{ fontSize: '12px' }}>Supplier Name</span></Label>
+                    <Input
+                        type="text"
+                        value={supplierName}
+                        onChange={(value) => setSupplierName(value)}
+                        placeholder="Enter supplier name"
+                    />
+                </FormField>
+
+                <FormField>
+                    <Label><span style={{ fontSize: '12px' }}>Total Weight (Kg)</span></Label>
+                    <Input
+                        type="number"
+                        value={totalWeight}
+                        onChange={(value) => setTotalWeight(value)}
+                        placeholder="Enter total weight"
+                    />
+                </FormField>
             </div>
 
 

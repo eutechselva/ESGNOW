@@ -94,8 +94,10 @@ const handleSaveProductWeight = () => {
             id: "step-1",
             title: "PRODUCT SELECTION",
             content: (
+                <div>
+              
                 <div className="product-selection-step">
-                    <h3>Product Selection</h3>
+                    
                     <div className="selected-product-container">
                         <Label><span style={{ fontSize: '12px', marginRight: '10px' }}>Selected Product:</span></Label>
                         <div className="selected-product">
@@ -115,7 +117,7 @@ const handleSaveProductWeight = () => {
                         />
                     </FormField>
 
-                    <FormField className="product-inventory-field">
+                    {/* <FormField className="product-inventory-field">
                         <Label><span style={{ fontSize: '12px', }}> Total Weight Based on Units</span></Label>
 
 
@@ -135,7 +137,8 @@ const handleSaveProductWeight = () => {
                             />
                             <span className="inventory-unit">Kg</span>
                         </div>
-                    </FormField>
+                    </FormField> */}
+                </div>
                 </div>
             ),
         },
@@ -145,7 +148,7 @@ const handleSaveProductWeight = () => {
             title: "TRANSPORT SELECTION",
             content: (
                 <div>
-                    <h3>Transport Selection</h3>
+                   
                     <div className="transport-selection-form">
                         {/* Other Form Fields */}
                         <FormField>
@@ -237,80 +240,79 @@ const handleSaveProductWeight = () => {
             id: "step-3",
             title: "TRANSPORT WEIGHT DETAILS",
             content: (
+<div>
 
                 <div className="transport-weight-details">
-                    <h3 className="title">Transport Weight</h3>
-                    <div className="product-weight-section">
-                        <div className="weight-input">
-                            <label className="label">Product Weight</label>
-                            <div className="input-group">
-                {isProductWeightEditable ? (
-                    <>
-                        <Input
-                            type="number"
-                            value={productWeight.toString()}
-                            onChange={(value) => setProductWeight(parseFloat(value))}
-                        />
-                        <Button 
-                            className="save-weight-button"
-                            title="Save" 
-                            onClick={handleSaveProductWeight}
-                        />
-                    </>
-                ) : (
-                    <>
-                        <span className="weight-display">{productWeight.toFixed(2)} Kg</span>
-                        <Button 
-                            className="edit-weight-button"
-                            title="Edit" 
-                            onClick={handleEditProductWeight}
-                        />
-                    </>
-                )}
-            </div>
+                   
+                <div className="product-weight-section">
+    <div className="input-group-top">
+    <Label><span style={{ fontSize: '12px' }}>Product Weight:</span></Label>
+      
+        {isProductWeightEditable ? (
+            <>
+                {/* <Input
+                    type="number"
+                    value={productWeight.toString()}
+                    onChange={(value) => setProductWeight(parseFloat(value))}
+                /> */}
+                {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
+            </>
+        ) : (
+            <>
+                <span className="weight-display">{productWeight.toFixed(2)} Kg</span>
+                {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
+            </>
+        )}
+    </div>
+</div>
+
+<div className="weight-section">
+<Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
+
+ 
+    <div className="weight-input-row">
+        <div className="toggle-group">
+            <label className="toggle-option">
+                <input
+                    type="radio"
+                    checked={!isPackagingManual}
+                    onChange={() => setIsPackagingManual(false)}
+                />
+                AI Assisted
+            </label>
+            <label className="toggle-option">
+                <input
+                    type="radio"
+                    checked={isPackagingManual}
+                    onChange={() => setIsPackagingManual(true)}
+                />
+                Manual Entry
+            </label>
+        </div>
+        <div className="input-group">
+            {isPackagingManual ? (
+                <Input
+                    type="number"
+                    value={packagingWeight.toString()}
+                    onChange={(value) => setPackagingWeight(parseFloat(value))}
+                />
+            ) : (
+                <Input
+                    type="number"
+                    value={packagingWeight.toString()}
+                    onChange={() => { }}
+                    className="disabled-input"
+                />
+            )}
+            <span className="unit">Kg</span>
         </div>
     </div>
-                    <div className="weight-section">
-                        <label className="label">PACKAGING WEIGHT (CHOOSE BETWEEN ASSISTED OR MANUAL ENTRY)</label>
-                        <div className="toggle-group">
-                            <label className="toggle-option">
-                                <input
-                                    type="radio"
-                                    checked={!isPackagingManual}
-                                    onChange={() => setIsPackagingManual(false)}
-                                />
-                                Assisted
-                            </label>
-                            <label className="toggle-option">
-                                <input
-                                    type="radio"
-                                    checked={isPackagingManual}
-                                    onChange={() => setIsPackagingManual(true)}
-                                />
-                                Manual Entry
-                            </label>
-                        </div>
-                        <div className="input-group">
-                            {isPackagingManual ? (
-                                <Input
-                                    type="number"
-                                    value={packagingWeight.toString()}
-                                    onChange={(value) => setPackagingWeight(parseFloat(value))}
-                                />
-                            ) : (
-                                <Input
-                                    type="number"
-                                    value={packagingWeight.toString()}
-                                    onChange={() => { }}
-                                    className="disabled-input"
-                                />
-                            )}
-                            <span className="unit">Kg</span>
-                        </div>
-                    </div>
+</div>
 
                     <div className="weight-toggle">
-                        <label className="label">Include Pallet Weight?</label>
+<Label><span style={{ fontSize: '12px' }}>Include Pallet Weight?</span></Label>
+
+                     
                         <label className="switch">
                             <input
                                 type="checkbox"
@@ -323,7 +325,10 @@ const handleSaveProductWeight = () => {
 
                     {includePallet && (
                         <div className="weight-section">
-                            <label className="label">PALLET WEIGHT (CHOOSE BETWEEN ASSISTED OR MANUAL ENTRY)</label>
+<Label><span style={{ fontSize: '12px' }}>Pallet Weight</span></Label>
+
+                          
+                            <div className="weight-input-row">
                             <div className="toggle-group">
                                 <label className="toggle-option">
                                     <input
@@ -331,7 +336,7 @@ const handleSaveProductWeight = () => {
                                         checked={!isPalletManual}
                                         onChange={() => setIsPalletManual(false)}
                                     />
-                                    Assisted
+                                    AI Assisted
                                 </label>
                                 <label className="toggle-option">
                                     <input
@@ -360,15 +365,17 @@ const handleSaveProductWeight = () => {
                                 <span className="unit">Kg</span>
                             </div>
                         </div>
+                        </div>
                     )}
 
                     <div className="total-weight">
-                        <label className="label">Total Transport Weight</label>
+<Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
                         <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
+                    </div>
                     </div>
                 </div>
 
-
+             
 
             ),
         },
@@ -464,9 +471,7 @@ const handleSaveProductWeight = () => {
 
     return (
         <div className="content">
-            <h1 className="dashboard-title">Emission Impact</h1>
-            <p className="subheading">Available Products</p>
-
+            <h1 className="dashboard-title">Impact Analysis</h1>
             <div className="search-filter-section">
                 <div className="uxp-search-box-container">
                     <SearchBox
@@ -536,35 +541,42 @@ const handleSaveProductWeight = () => {
                 className="product-data-grid"
             />
 
-            {/* Modal Implementation */}
-            <Modal
-                show={showModal}
-                onClose={() => setShowModal(false)}
-                title="Calculate Impact"
-                className="custom-modal"
-                showCloseButton={true}
-            >
-                <div className="modal-content">
-                    {/* Stepper component */}
-                    <div className="modal-stepper-container">
-                        <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
-                    </div>
+           {/* Modal Implementation */}
+<Modal
+    show={showModal}
+    onClose={() => setShowModal(false)}
+    title="Calculate Impact"
+    className="custom-modal"
+    showCloseButton={true}
+    styles={{
+        width: "50%",
+        height: "100%",
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)", // Centers modal
+    }}
+   backdropStyles={{ display: "none" }} // Removes backdrop
+>
+    <div className="modal-content">
+        {/* Stepper component */}
+        <div className="modal-stepper-container">
+            <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
+        </div>
 
-                    {steps[activeStep].content}
+        {steps[activeStep].content}
 
-                    {activeStep < steps.length - 1 && (
-                        <div className="modal-footer">
-                            <Button
-                                className="button-container"
-                                title="Next"
-                                onClick={handleNext}
-                            />
-                        </div>
-                    )}
-                </div>
-            </Modal>
-
-
+        {activeStep < steps.length - 1 && (
+            <div className="modal-footer">
+                <Button
+                    className="button-container"
+                    title="Next"
+                    onClick={handleNext}
+                />
+            </div>
+        )}
+    </div>
+</Modal>
 
         </div>
     );
