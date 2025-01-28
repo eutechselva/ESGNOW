@@ -546,17 +546,7 @@ const handleSaveProductWeight = () => {
     show={showModal}
     onClose={() => setShowModal(false)}
     title="Calculate Impact"
-    className="custom-modal"
-    showCloseButton={true}
-    styles={{
-        width: "50%",
-        height: "100%",
-        position: "fixed",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)", // Centers modal
-    }}
-   backdropStyles={{ display: "none" }} // Removes backdrop
+    className="lgs-create-product-modal"
 >
     <div className="modal-content">
         {/* Stepper component */}
