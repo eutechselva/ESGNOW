@@ -126,23 +126,9 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
     };
 
     return (
-        <Modal show={show} onOpen={() => { }} onClose={onClose}   
-        // styles={{
-        //     width: "800px", 
-        //     maxWidth: "800px",
-        //     minWidth: "800px", 
-        //     height: "100%",
-        //     position: "fixed",
-        //     top: "50%",
-        //     left: "50%",
-        //     transform: "translate(-50%, -50%)", 
-        //     overflow: "hidden", 
-        // }}
-        
-        //backdropStyles={{ display: "none" }}
-       
+        <Modal className="lgs-create-product-modal" show={show} onOpen={() => { }} onClose={onClose}   
         title="Create Product" 
-        className="custom-modal">
+    >
             <Stepper activeStep={activeStep} onStepChange={handleStepChange} />
 
             {activeStep === 0 && (
@@ -178,6 +164,7 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
                 <div className="done-button-container">
                     <Button title="Create" onClick={handleDone} />
                 </div>
+                
             )}
 
             {activeStep === 4 && <Assessment newlyCreatedProduct={newlyCreatedProduct} onClose={onClose} />}

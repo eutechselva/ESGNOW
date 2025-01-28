@@ -4,8 +4,21 @@
     margin-top: 20px;
 }
 
-.custom-modal {
-    width: 800px !important;
-    max-width: 800px !important;
-    min-width: 800px !important;
+.modal-container {
+    &.lgs-create-product-modal{
+
+       .modal-panel {
+         max-width: 500px !important;
+         height: 100%;
+
+       }
+       .modal-header {
+        background-color: #0066ff;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+    }
 }
