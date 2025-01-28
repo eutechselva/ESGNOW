@@ -21,12 +21,12 @@
         <Field type='hidden' id='user_userGroupName' value='#{auth.UserGroupID}' />
         <Field type='hidden' id='user_userGroup' value='#{auth.UserGroupKey}' />
         <Field type='json' id='custom_themes' source='custom_themes' />
-        <Field type='json' id='selected_theme_ums' source='selected_theme_ums' />
+        <Field type='json' id='selected_theme_esg' source='selected_theme_esg' />
 
         <Field type='json' id='user_app_roles' source='user_app_roles' />
         <Service id='user_app_roles' serialize='true' service='Lucy.GetAllRoles'></Service>
         <Service id='custom_themes' serialize='true' service='UXP.Theme:GetCustomThemes'></Service>
-        <Service id='selected_theme_ums' serialize='true' service='UMS.LayoutConfiguration:GetConfigurationByID'>
+        <Service id='selected_theme_esg' serialize='true' service='ESGNOW.LayoutConfiguration:GetConfigurationByID'>
             <ID>theme</ID>
         </Service>
 
