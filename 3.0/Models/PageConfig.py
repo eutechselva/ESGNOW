@@ -16,7 +16,7 @@ class Model(BaseModel.Model):
 
         route = xstr(args['Route'])
 
-        res = self.account.DBService().ExecuteQuery('SELECT * FROM UMSPageConfigs WHERE [Route]=@route',{'route':route})
+        res = self.account.DBService().ExecuteQuery('SELECT * FROM ESGNOWPageConfigs WHERE [Route]=@route',{'route':route})
         if res.Rows.Count == 0:
             return self.dbmodel.Create(self.account,args,env)
         else: 

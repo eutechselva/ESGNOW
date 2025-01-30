@@ -49,7 +49,7 @@ const WrappedDashboard: React.FC<BaseUXPProps> = (props) => {
     const contextValue: IUMSContext = {
         uxpContext,
         userGroup: user?.userGroup || null,
-        allowToEditPages: !!user && uxpContext.hasAppRole('UMS', 'canconfigurepages'),
+        allowToEditPages: !!user && uxpContext.hasAppRole('ESGNOW', 'canconfigurepages'),
         editPage: editPage || false,
         onToggleEdit: () => { setEditPage(prev => (!prev)) },
         addWidgets: addWidgets,

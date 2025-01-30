@@ -28,7 +28,7 @@ const productData = [
             "Pivoting soft padded arms.",
             "Pocket sprung seat.",
             "The 5-star base with castors allows the chair to easily move to where it is needed."
-            
+
         ],
         weight: "22.5 Kg",
         countryOfOrigin: "USA",
@@ -83,7 +83,7 @@ const productData = [
         co2Emission: "70 Kg CO2e"
     },
 
-    
+
     // {
     //     icon: "",
     //     title: "ECO-WB-001",
@@ -327,13 +327,13 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                                 renderItem={(item) => (
                                     <div className="product-card" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.images[0]} alt="Product" className="product-image" />
-                                        <div className="co2-emission">{ parseInt(item.co2Emission).toFixed(2)  + ' Kg CO2e'}</div>
+                                        <div className="co2-emission">{parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'}</div>
                                         <div className="product-details">
                                             <p>{item.title}</p>
                                             <h4>{item.name}</h4>
                                             <p>{item.category}</p>
-                                            <p>Modified: {item.modifiedDate}</p>
-                                            <p>Created: {item.createdDate}</p>
+                                            <p>Modified: {new Date(item.modifiedDate).toLocaleString()}</p>
+                                            <p>Created: {new Date(item.createdDate).toLocaleString()}</p>
                                         </div>
                                     </div>
                                 )}
