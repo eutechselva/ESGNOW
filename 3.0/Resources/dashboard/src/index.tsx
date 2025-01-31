@@ -9,6 +9,7 @@ import {  saveLayoutConfigurationsById, savePageConfiguration } from '@other-ser
 import ProductDashboardWidget from './lca/views/product-dashboard';
 import LCAWidget from './lca/views/products';
 import LCADashboardWidget from './lca/views/LCA-dashboard';
+import ProjectsWidget from './lca/views/projects';
 
 const WrappedDashboard: React.FC<BaseUXPProps> = (props) => {
 
@@ -97,6 +98,17 @@ registerWidget({
 registerWidget({
     id: 'lca-dashboard',
     widget: LCADashboardWidget,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+})
+
+registerWidget({
+    id: 'projects-widget',
+    widget: ProjectsWidget,
     configs: {
         layout: {
             w: 30,
