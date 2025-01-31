@@ -1,6 +1,8 @@
 import * as React from "react";
 import { Modal, FormField, Label, Input } from "uxp/components";
 import "./stepper.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 interface StepperProps {
@@ -8,7 +10,7 @@ interface StepperProps {
     onStepChange: (step: number) => void;
 }
 
-const steps = ["Product Information", "Product Categorization", "Bill of Materials", "Product Manufacturing","Assessment"];
+const steps = ["Information", "Categorization", "Materials", "Manufacturing","Assessment"];
 //const steps = ["Product Information", "Product Categorization", "Bill of Materials"];
 // const steps = ["Product Selection", "Transport Selection", "Transport Weight"];
 

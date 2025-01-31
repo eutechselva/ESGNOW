@@ -3,22 +3,41 @@ import "./assessment.scss";
 import { Button } from "uxp/components";
 
 
-const Assessment: React.FC = () => {
+interface AssessmentProps {
+  newlyCreatedProduct: {
+    code: string;
+    name: string;
+    co2EmissionRawMaterials: string;
+    co2EmissionFromProcesses: string;
+    co2Emission: string;
+    images: string[];
 
-return (
+  },
+  onClose: () => void;
+}
+
+const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose }) => {
+
+  return (
     <div className="assessment-container">
       <h1 className="assessment-title">Your PCF has been Successfully Calculated!</h1>
 
       <div className="product-info">
         <p className="product-name">
-          Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino
+          {newlyCreatedProduct.name}
         </p>
-        <p className="product-code">ECO-WB-001</p>
+        <p className="product-code">{newlyCreatedProduct.code} </p>
 
         <div className="image-container">
-          <div className="image-placeholder"></div>
-          <div className="image-placeholder"></div>
-          <div className="image-placeholder"></div>
+          {newlyCreatedProduct?.images?.length > 0 ? (
+            newlyCreatedProduct.images.map((image, index) => (
+              <div className="image-placeholder" key={index}>
+                <img src={image} alt={`Product Image ${index + 1}`} />
+              </div>
+            ))
+          ) : (
+            <div className="no-images">No images available</div>
+          )}
         </div>
       </div>
 
@@ -27,16 +46,16 @@ return (
         <div className="carbon-details">
           <p className="carbon-item">
             <span>Raw Materials</span>
-            <span>10 KgCO₂e</span>
+            <span>{parseInt(newlyCreatedProduct.co2EmissionRawMaterials).toFixed(2)} KgCO₂e</span>
           </p>
           <p className="carbon-item">
             <span>Manufacturing</span>
-            <span>10 KgCO₂e</span>
+            <span>{ parseInt(newlyCreatedProduct.co2EmissionFromProcesses).toFixed(2)} KgCO₂e</span>
           </p>
           <div className="divider"></div>
           <p className="carbon-total">
             <span>Total Carbon Footprint</span>
-            <span>20 KgCO₂e</span>
+            <span>{ parseInt(newlyCreatedProduct.co2Emission).toFixed(2) } KgCO₂e</span>
           </p>
         </div>
       </div>
@@ -45,21 +64,22 @@ return (
         Your PCF has been successfully calculated!
       </p> */}
       <p className="calculation-subtext">
-        Continue the steps to assess your impact or save and return later.
+      Complete the analysis by calculating transportation emissions, or save your progress and do it later?
       </p>
 
       <div className="button-group">
-      <Button
+        <Button
           title="Continue"
           onClick={() => {
             alert("Continue clicked");
           }}
           className="continue-button"
         />
-       <Button
+        <Button
           title="Save & Close"
           onClick={() => {
-            alert("Save & Close clicked");
+            //alert("Save & Close clicked");
+            onClose();
           }}
           className="save-close-button"
         />

@@ -3,3 +3,22 @@
     justify-content: center;
     margin-top: 20px;
 }
+
+.modal-container {
+    &.lgs-create-product-modal{
+
+       .modal-panel {
+         max-width: 500px !important;
+         height: 100%;
+
+       }
+       .modal-header {
+        background-color: #0066ff;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+    }
+}

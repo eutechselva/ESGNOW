@@ -101,28 +101,9 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/lca-dashboard",
-                "configs": {
-                    "layout": {
-                        "w": 30,
-                        "h": 20
-                    }
-                },
                 "name": "LCA Dashboard",
-                "description": "LCA Dashboard",
-                "definitionPath": null,
-                "icon": "",
-                "category": "user-defined",
-                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
-                "tags": [],
-                "isTemplate": false,
-                "isDefaultTemplate": false,
-                "usecaseName": null,
-                "installed": false,
-                "props": "{}",
-                "templateKey": "",
-                "usecaseId": null,
-                "_id": "173753056549846364",
-                "key": "173753056549846364",
+                "_id": "173399910764348129",
+                "key": "173399910764348129",
                 "layout": {
                     "w": 30,
                     "h": 20,
