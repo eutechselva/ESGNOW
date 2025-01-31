@@ -1,11 +1,12 @@
-import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, Input} from "uxp/components";
+import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, Input } from "uxp/components";
 import * as React from "react";
 import './ProductDashboardWidget.scss';
 import Stepper from './stepper-LCA';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
+import EmissionSummary from './emission-summary';
+import { set } from "lodash";
 
 const productData = [
     {
@@ -44,15 +45,23 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [palletWeight, setPalletWeight] = useState<number>(0);
     const [isPalletManual, setIsPalletManual] = useState<boolean>(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = useState<boolean>(false);
+    const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = useState<boolean>(false);
 
-const handleEditProductWeight = () => {
-    setIsProductWeightEditable(true);
-};
 
-const handleSaveProductWeight = () => {
-    setIsProductWeightEditable(false);
-};
-    
+
+    const handleConfirmCalculate = () => {
+        setisEmissionSummaryvisible(true);
+        setShowModal(false)
+    }
+
+    const handleEditProductWeight = () => {
+        setIsProductWeightEditable(true);
+    };
+
+    const handleSaveProductWeight = () => {
+        setIsProductWeightEditable(false);
+    };
+
 
     const totalTransportWeight = productWeight +
         (isPackagingManual ? packagingWeight : 0) +
@@ -244,32 +253,32 @@ const handleSaveProductWeight = () => {
                         <div className="weight-input">
                             <label className="label">Product Weight</label>
                             <div className="input-group">
-                {isProductWeightEditable ? (
-                    <>
-                        <Input
-                            type="number"
-                            value={productWeight.toString()}
-                            onChange={(value) => setProductWeight(parseFloat(value))}
-                        />
-                        <Button 
-                            className="save-weight-button"
-                            title="Save" 
-                            onClick={handleSaveProductWeight}
-                        />
-                    </>
-                ) : (
-                    <>
-                        <span className="weight-display">{productWeight.toFixed(2)} Kg</span>
-                        <Button 
-                            className="edit-weight-button"
-                            title="Edit" 
-                            onClick={handleEditProductWeight}
-                        />
-                    </>
-                )}
-            </div>
-        </div>
-    </div>
+                                {isProductWeightEditable ? (
+                                    <>
+                                        <Input
+                                            type="number"
+                                            value={productWeight.toString()}
+                                            onChange={(value) => setProductWeight(parseFloat(value))}
+                                        />
+                                        <Button
+                                            className="save-weight-button"
+                                            title="Save"
+                                            onClick={handleSaveProductWeight}
+                                        />
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="weight-display">{productWeight.toFixed(2)} Kg</span>
+                                        <Button
+                                            className="edit-weight-button"
+                                            title="Edit"
+                                            onClick={handleEditProductWeight}
+                                        />
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </div>
                     <div className="weight-section">
                         <label className="label">PACKAGING WEIGHT (CHOOSE BETWEEN ASSISTED OR MANUAL ENTRY)</label>
                         <div className="toggle-group">
@@ -443,7 +452,7 @@ const handleSaveProductWeight = () => {
                             </div>
                         </div>
                     </div>
-                    <Button title="Confirm & Calculate" className="confirm-button" onClick={() => setShowModal(false)} />
+                    <Button title="Confirm & Calculate" className="confirm-button" onClick={() => handleConfirmCalculate()} />
 
                 </div>
             ),
@@ -461,7 +470,7 @@ const handleSaveProductWeight = () => {
             setActiveStep(activeStep - 1);
         }
     };
-
+    if (isEmissionSummaryVisible) { return <EmissionSummary onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Emission Impact</h1>

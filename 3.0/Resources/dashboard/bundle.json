@@ -16,6 +16,11 @@
             "id": "lca-dashboard",
             "name": "LCA Dashboard",
             "description": "LCA Dashboard"
+        },
+        {
+            "id": "projects-widget",
+            "name": "Projects Widget",
+            "description": "Projects Widget"
         }
     ],
     "sidebarLinks": [],
