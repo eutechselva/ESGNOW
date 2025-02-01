@@ -191,6 +191,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss ***!
+  \**************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".save-go-back-buttons {\n  display: flex;\n}\n\n.save-results-button {\n  background-color: #4CAF50;\n  margin-top: 40px;\n  color: white;\n  font-weight: bold;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;\n  animation: pulse 2s infinite;\n}\n.save-results-button:hover {\n  transform: scale(1.05);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  background-color: #45a049;\n  color: white;\n}\n.save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.save-results-modal .card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.save-results-modal .option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.save-results-modal .option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.save-results-modal .option-card.selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.existing-project-selection {\n  margin-top: 20px;\n}\n\n.save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.save-results {\n  background: #28a745;\n  color: white;\n}\n\n.card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/material-entry.scss":
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/material-entry.scss ***!
@@ -338,6 +355,23 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.id, ".heading {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n.subheading {\n  font-size: 16px;\n}\n\n/* Centered Content */\n.centered-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  height: 420px;\n  text-align: center;\n  gap: 1rem;\n}\n\n.icon-placeholder {\n  width: 80px;\n  height: 80px;\n  border-radius: 8px;\n}\n\n.placeholder-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\n\n.create-product-button {\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.create-your-first-product {\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n\n.description-text {\n  font-size: 16px;\n  color: #424242;\n  margin-bottom: 10px;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss ***!
+  \******************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".projects-container {\n  padding: 20px;\n}\n.projects-container h2 {\n  color: #333;\n  margin-bottom: 20px;\n}\n.projects-container .projects-table {\n  width: 100%;\n  border-collapse: collapse;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n}\n.projects-container .projects-table th,\n.projects-container .projects-table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n.projects-container .projects-table th {\n  background-color: #f8f9fa;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  font-size: 14px;\n}\n.projects-container .projects-table td {\n  color: #555;\n  font-size: 14px;\n}\n.projects-container .projects-table tr:hover {\n  background-color: #f1f1f1;\n}\n.projects-container .projects-table .product-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 4px;\n  object-fit: cover;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -49940,6 +49974,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/emission-summary.scss":
+/*!*********************************************!*\
+  !*** ./src/lca/views/emission-summary.scss ***!
+  \*********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./emission-summary.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/material-entry.scss":
 /*!*******************************************!*\
   !*** ./src/lca/views/material-entry.scss ***!
@@ -50172,6 +50234,34 @@ module.exports = content.locals || {};
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
             var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./products.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/products.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/projects.scss":
+/*!*************************************!*\
+  !*** ./src/lca/views/projects.scss ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./projects.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -53278,6 +53368,7 @@ const _other_services_1 = __webpack_require__(/*! @other-services */ "./src/othe
 const product_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/product-dashboard */ "./src/lca/views/product-dashboard.tsx"));
 const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products */ "./src/lca/views/products.tsx"));
 const LCA_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/LCA-dashboard */ "./src/lca/views/LCA-dashboard.tsx"));
+const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
 const WrappedDashboard = (props) => {
     const { uxpContext } = props;
     const [user, setUser] = (0, react_1.useState)(null);
@@ -53359,6 +53450,16 @@ const WrappedDashboard = (props) => {
         }
     }
 });
+(0, uxp_1.registerWidget)({
+    id: 'projects-widget',
+    widget: projects_1.default,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+});
 (0, uxp_1.enableLocalization)();
 
 
@@ -53429,6 +53530,7 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
 const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ./stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
 const react_1 = __webpack_require__(/*! react */ "react");
+const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const LCADashboardWidget = () => {
     const [products, setProducts] = React.useState([]);
@@ -53460,6 +53562,11 @@ const LCADashboardWidget = () => {
     const [palletWeight, setPalletWeight] = (0, react_1.useState)(0);
     const [isPalletManual, setIsPalletManual] = (0, react_1.useState)(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = (0, react_1.useState)(false);
+    const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = (0, react_1.useState)(false);
+    const handleConfirmCalculate = () => {
+        setisEmissionSummaryvisible(true);
+        setShowModal(false);
+    };
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -53730,7 +53837,7 @@ const LCADashboardWidget = () => {
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Total Weight"),
                             React.createElement("span", null, "27.55 Kg")))),
-                React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => setShowModal(false) }))),
+                React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => handleConfirmCalculate() }))),
         },
     ];
     const handleNext = () => {
@@ -53743,6 +53850,9 @@ const LCADashboardWidget = () => {
             setActiveStep(activeStep - 1);
         }
     };
+    if (isEmissionSummaryVisible) {
+        return React.createElement(emission_summary_1.default, { onBack: () => setisEmissionSummaryvisible(false) });
+    }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
         React.createElement("div", { className: "search-filter-section" },
@@ -53998,6 +54108,297 @@ const BillMaterials = ({ productCategoryData, productData, onNext }) => {
             react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
 };
 exports["default"] = BillMaterials;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/emission-summary.tsx":
+/*!********************************************!*\
+  !*** ./src/lca/views/emission-summary.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+__webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
+const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
+const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
+    const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
+    const [projectName, setProjectName] = (0, react_1.useState)('');
+    const [projectId, setProjectId] = (0, react_1.useState)('');
+    const [selectedProject, setSelectedProject] = (0, react_1.useState)(null);
+    const projectOptions = [
+        { label: "Project Alpha", value: "alpha" },
+        { label: "Project Beta", value: "beta" },
+        { label: "Project Gamma", value: "gamma" },
+    ];
+    return (react_1.default.createElement(components_2.Modal, { show: true, onClose: onClose, title: "Save Emission Results" },
+        react_1.default.createElement("div", { className: "save-results-modal" },
+            hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found.Please create a new project.")),
+            react_1.default.createElement("div", { className: "card-container" },
+                react_1.default.createElement("div", { className: `option-card ${selectedCard === 'new' ? 'selected' : ''}`, onClick: () => setSelectedCard('new') },
+                    react_1.default.createElement("h3", null, "Create New Project"),
+                    react_1.default.createElement("p", null, "Start a fresh project with these results.")),
+                hasExistingProjects && (react_1.default.createElement("div", { className: `option-card ${selectedCard === 'existing' ? 'selected' : ''}`, onClick: () => setSelectedCard('existing') },
+                    react_1.default.createElement("h3", null, "Add to Existing Project"),
+                    react_1.default.createElement("p", null, "Include these results in one of your existing projects.")))),
+            selectedCard === 'new' && (react_1.default.createElement("div", { className: "new-project-inputs" },
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Project Name")),
+                    react_1.default.createElement(components_1.Input, { type: "text", value: projectName, onChange: (value) => setProjectName(value), placeholder: "Enter project name" })),
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Project Code")),
+                    react_1.default.createElement(components_1.Input, { type: "text", value: projectId, onChange: (value) => setProjectId(value), placeholder: "Enter project ID" })))),
+            selectedCard === 'existing' && (react_1.default.createElement("div", { className: "existing-project-selection" },
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Select an existing project")),
+                    react_1.default.createElement(components_1.Select, { options: projectOptions, selected: selectedProject, onChange: (newValue) => setSelectedProject(newValue), placeholder: "Select a project" })))),
+            react_1.default.createElement("div", { className: "save-button-container" },
+                react_1.default.createElement(components_1.Button, { title: "Save results", onClick: onClose, className: "save-results" })))));
+};
+const EmissionSummary = ({ onBack }) => {
+    const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
+    const [viewMode, setViewMode] = (0, react_1.useState)('list');
+    const toggleExpand = () => setIsExpanded(!isExpanded);
+    const handleViewToggle = (mode) => setViewMode(mode);
+    const [showModal, setShowModal] = (0, react_1.useState)(false);
+    const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
+    const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
+    const donutChartOptions = {
+        chart: {
+            type: 'pie',
+            backgroundColor: null,
+            height: 350,
+            width: 600,
+            events: {
+                render() {
+                    const chart = this;
+                    const totalValue = 60 + 40 + 30;
+                    if (!chart.customText) {
+                        chart.customText = chart.renderer
+                            .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
+                            .css({
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Comfortaa',
+                            color: '#424242',
+                            textAlign: 'center',
+                        })
+                            .attr({
+                            align: 'center',
+                            zIndex: 5,
+                        })
+                            .add();
+                    }
+                    else {
+                        chart.customText.attr({
+                            text: `${totalValue} KgCO₂e`,
+                        });
+                    }
+                },
+            },
+        },
+        title: {
+            text: '',
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '60%',
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Comfortaa',
+                        color: '#424242',
+                    },
+                },
+            },
+        },
+        series: [
+            {
+                name: 'Contribution',
+                type: 'pie',
+                data: [
+                    { name: 'Raw Materials', y: 60, color: '#78BE7C' },
+                    { name: 'Manufacturing', y: 40, color: '#ffaa00' },
+                    { name: 'Transportation', y: 30, color: '#2A9D8F' },
+                ],
+            },
+        ],
+        legend: {
+            enabled: true,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            symbolRadius: 5,
+            symbolHeight: 10,
+            symbolWidth: 10,
+            itemMarginTop: 5,
+            itemStyle: {
+                fontFamily: 'Comfortaa',
+                fontWeight: 'bold',
+                fontSize: '12px',
+            },
+        },
+        tooltip: {
+            pointFormat: '<b>{point.name}</b>: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+        },
+        credits: {
+            enabled: false,
+        },
+    };
+    function onSave() {
+        setShowModal(true);
+    }
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement("div", { className: "title-container" },
+            react_1.default.createElement("h1", { className: "dashboard-title" }, "Emission Summary"),
+            react_1.default.createElement("div", { className: "save-go-back-buttons" },
+                react_1.default.createElement(components_1.Button, { title: "Save results & view later", onClick: onSave, className: "save-results-button" }),
+                react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onBack, className: "back-button" }))),
+        react_1.default.createElement("div", { className: "widgets-section" },
+            react_1.default.createElement("div", { className: "widget product-footprint" },
+                react_1.default.createElement("h3", null, "Product Footprint"),
+                react_1.default.createElement("div", { className: "widget-content" },
+                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }))),
+            react_1.default.createElement("div", { className: "widgets-row" },
+                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+                    react_1.default.createElement("h3", null, "Contribution by Raw Material"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Material Class"),
+                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Metal"),
+                                    react_1.default.createElement("td", null, "Aluminum"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Metal"),
+                                    react_1.default.createElement("td", null, "Aluminum"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Metal"),
+                                    react_1.default.createElement("td", null, "Aluminum"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Metal"),
+                                    react_1.default.createElement("td", null, "Aluminum"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")))))),
+                react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
+                    react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Material Class"),
+                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Sawing"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Sawing"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Sawing"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Sawing"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")))))),
+                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+                    react_1.default.createElement("h3", null, "Contribution by Transportation"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Mode"),
+                                    react_1.default.createElement("th", null, "Origin"),
+                                    react_1.default.createElement("th", null, "Destination"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Srilanka"),
+                                    react_1.default.createElement("td", null, "China"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Srilanka"),
+                                    react_1.default.createElement("td", null, "China"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Srilanka"),
+                                    react_1.default.createElement("td", null, "China"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")),
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("td", null, "Wood Working"),
+                                    react_1.default.createElement("td", null, "Srilanka"),
+                                    react_1.default.createElement("td", null, "China"),
+                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
+                                    react_1.default.createElement("td", null, "25%")))))))),
+        showModal && react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects })));
+};
+exports["default"] = EmissionSummary;
 
 
 /***/ }),
@@ -55607,6 +56008,83 @@ const LCAWidget = (props) => {
         React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })));
 };
 exports["default"] = LCAWidget;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/projects.tsx":
+/*!************************************!*\
+  !*** ./src/lca/views/projects.tsx ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
+const Projects = (props) => {
+    const data = [
+        {
+            id: 1,
+            productImage: "image-url",
+            projectCode: "1",
+            projectName: "Project Alpha",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 2,
+            productImage: "image-url",
+            projectCode: "2",
+            projectName: "Project Beta",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 3,
+            productImage: "image-url",
+            projectCode: "3",
+            projectName: "Project Gama",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 4,
+            productImage: "image-url",
+            projectCode: "4",
+            projectName: "Project Gama",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+    ];
+    const columns = [
+        { id: "productImage", label: "Product Image", render: (row) => react_1.default.createElement("img", { src: row.productImage, alt: "Product", style: { width: 50, height: 50, borderRadius: 4 } }) },
+        { id: "projectCode", label: "Project Code" },
+        { id: "projectName", label: "Project Name" },
+        { id: "totalImpact", label: "Total Impact" },
+        { id: "impactMaterials", label: "Impact by Materials" },
+        { id: "impactManufacturing", label: "Impact by Manufacturing" },
+        { id: "impactTransportation", label: "Impact by Transportation" },
+    ];
+    return (react_1.default.createElement(components_1.WidgetWrapper, null,
+        react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
+        react_1.default.createElement("div", null,
+            react_1.default.createElement(components_1.TableComponent, { data: data, columns: columns, pageSize: 10, total: data.length }))));
+};
+exports["default"] = Projects;
 
 
 /***/ }),
@@ -118309,7 +118787,7 @@ module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"f
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
 
 /***/ }),
 
