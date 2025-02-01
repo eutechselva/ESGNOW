@@ -5,6 +5,7 @@ import Stepper from './stepper-LCA';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+import EmissionSummary from './emission-summary';
 import API_BASE_URL from "../config";
 import { set } from "lodash";
 
@@ -39,6 +40,12 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [palletWeight, setPalletWeight] = useState<number>(0);
     const [isPalletManual, setIsPalletManual] = useState<boolean>(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = useState<boolean>(false);
+    const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = useState<boolean>(false);
+
+    const handleConfirmCalculate = () => {
+        setisEmissionSummaryvisible(true);
+        setShowModal(false)
+    }
 
 
     React.useEffect(() => {
@@ -102,9 +109,9 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     }
 
 
-    const handleEditProductWeight = () => {
-        setIsProductWeightEditable(true);
-    };
+        const handleEditProductWeight = () => {
+            setIsProductWeightEditable(true);
+        };
 
     const handleSaveProductWeight = () => {
         setIsProductWeightEditable(false);
@@ -184,11 +191,11 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
                             <textarea
 
-                                value={selectedProduct?.description}
-                                //onChange={(e) => setProductInfo(e.target.value)}
-                                className="product-info-textarea"
-                            />
-                        </FormField>
+                                    value={selectedProduct?.description}
+                                    //onChange={(e) => setProductInfo(e.target.value)}
+                                    className="product-info-textarea"
+                                />
+                            </FormField>
 
                         {/* <FormField className="product-inventory-field">
                         <Label><span style={{ fontSize: '12px', }}> Total Weight Based on Units</span></Label>
@@ -332,19 +339,19 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                     value={productWeight.toString()}
                     onChange={(value) => setProductWeight(parseFloat(value))}
                 /> */}
-                                        {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
-                                    </>
-                                ) : (
-                                    <>
-                                        <span className="weight-display">{ parseInt(selectedProduct?.weight).toFixed(2)} Kg</span>
-                                        {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
-                                    </>
-                                )}
-                            </div>
-                        </div>
+                                                                {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
+                                                            </>
+                                                        ) : (
+                                                            <>
+                                                                <span className="weight-display">{ parseInt(selectedProduct?.weight).toFixed(2)} Kg</span>
+                                                                {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
+                                                            </>
+                                                        )}
+                                                    </div>
+                                                </div>
 
-                        <div className="weight-section">
-                            <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
+                                                <div className="weight-section">
+                                                        <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
 
 
                             <div className="weight-input-row">
@@ -527,7 +534,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             </div>
                         </div>
                     </div>
-                    <Button title="Confirm & Calculate" className="confirm-button" onClick={() => setShowModal(false)} />
+                    <Button title="Confirm & Calculate" className="confirm-button" onClick={() => handleConfirmCalculate()} />
 
                 </div>
             ),
@@ -545,7 +552,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             setActiveStep(activeStep - 1);
         }
     };
-
+    if (isEmissionSummaryVisible) { return <EmissionSummary onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Impact Analysis</h1>
