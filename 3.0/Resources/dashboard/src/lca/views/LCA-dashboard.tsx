@@ -5,35 +5,30 @@ import Stepper from './stepper-LCA';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
-
-
-const productData = [
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001", subTitle: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest - Domino"
-    },
-    // { title: "ECO-TB-002", subTitle: "Bamboo Dining Table" },
-    // { title: "ECO-LP-003", subTitle: "LED Light Panel" },
-    // { title: "ECO-DS-004", subTitle: "Dual Solar Panel" },
-    // { title: "ECO-BM-005", subTitle: "Bamboo Mattress" },
-    // { title: "ECO-CP-006", subTitle: "Compostable Plates" },
-    // { title: "ECO-BL-007", subTitle: "Biodegradable Lunch Box" },
-    // { title: "ECO-ST-008", subTitle: "Steel Water Bottle" },
-    // { title: "ECO-RT-009", subTitle: "Recycled Tire Mat" },
-    // { title: "ECO-SB-010", subTitle: "Solar Powered Backpack" }
-];
+import API_BASE_URL from "../config";
+import { set } from "lodash";
 
 const LCADashboardWidget: React.FunctionComponent = () => {
+    const [products, setProducts] = React.useState([]);
+    const [originCountry, setOriginCountry] = React.useState("");
+    const [destinationCountry, setDestinationCountry] = React.useState("");
+    const [transportDatabase, setTransportDatabase] = React.useState<{ [key: string]: any }>({});
+    const [originCountryPorts, setOriginCountryPorts] = React.useState([]);
+    const [destinationCountryPorts, setDestinationCountryPorts] = React.useState([]);
+    const [originGateway, setOriginGateway] = React.useState("");
+    const [destinationGateway, setDestinationGateway] = React.useState("");
+    const [countries, setCountries] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedProduct, setSelectedProduct] = React.useState<any>(null);
     const [quantity, setQuantity] = React.useState("");
     const [weight, setWeight] = React.useState("");
-    const [productInfo, setProductInfo] = React.useState("");
     const [activeStep, setActiveStep] = React.useState(0);
     const [searchValue, setSearchValue] = React.useState("");
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
+    const [transportMode, setTransportMode] = React.useState("");
+    const [transportDistance, setTransportDistance] = React.useState(0);
 
-    const [filteredData, setFilteredData] = React.useState(productData);
+    const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [showTooltip, setShowTooltip] = React.useState(false);
@@ -45,14 +40,83 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [isPalletManual, setIsPalletManual] = useState<boolean>(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = useState<boolean>(false);
 
-const handleEditProductWeight = () => {
-    setIsProductWeightEditable(true);
-};
 
-const handleSaveProductWeight = () => {
-    setIsProductWeightEditable(false);
-};
-    
+    React.useEffect(() => {
+        const fetchProductData = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/products`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setProducts(data);
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        };
+
+        fetchProductData();
+    }, []);
+
+    React.useEffect(() => {
+        const fetchCountries = async () => {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/transportDB`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                setTransportDatabase(data);
+                const formattedOptions = Object.keys(data).map((country: string) => ({
+                    label: country, // Replace `name` with the appropriate field
+                    value: country // Replace `code` with the appropriate field
+                }));
+                setCountries(formattedOptions);
+                console.log("Countries:", countries);
+
+                
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        };
+
+        fetchCountries();
+    }, []);
+
+    const calculateTransportDistance = () => {
+        // Call API to calculate transport distance
+        let url = `${API_BASE_URL}/api/distance?origin=${originGateway}&destination=${destinationGateway}`;
+        fetch(url, {
+            method: 'GET',
+
+           
+        })
+            .then(response => response.json())
+            .then(data => {
+                debugger;
+                setTransportDistance(data.distance_in_km);
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+    }
+
+
+    const handleEditProductWeight = () => {
+        setIsProductWeightEditable(true);
+    };
+
+    const handleSaveProductWeight = () => {
+        setIsProductWeightEditable(false);
+    };
+
+    React.useEffect(() => {
+        // Only calculate distance if both gateways are selected
+        if (originGateway && destinationGateway) {
+            calculateTransportDistance();
+        }
+    }, [originGateway, destinationGateway]);
+
 
     const totalTransportWeight = productWeight +
         (isPackagingManual ? packagingWeight : 0) +
@@ -64,7 +128,7 @@ const handleSaveProductWeight = () => {
     };
 
     const applyFilters = (searchText: string, category: string | null) => {
-        const filtered = productData.filter(item => {
+        const filtered = products.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.subTitle.toLowerCase().includes(searchText.toLowerCase());
 
@@ -80,14 +144,23 @@ const handleSaveProductWeight = () => {
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
-        setFilteredData(productData);
+        setFilteredData(products);
     };
 
-    const handleCalculateImpact = (product: any) => {
+    const selectProduct = (product: any) => {
         setSelectedProduct(product);
+        debugger;
         setShowModal(true);
         setActiveStep(0);
     };
+
+    const [originGateways, setOriginGateways] = React.useState([]);
+
+    const onOriginCountryChange = (value: string) => {
+        console.log("Origin Country:", value);
+        console.log("Transport Database:", transportDatabase[value]);
+        setOriginCountry(value);
+    }
 
     const steps = [
         {
@@ -95,29 +168,29 @@ const handleSaveProductWeight = () => {
             title: "PRODUCT SELECTION",
             content: (
                 <div>
-              
-                <div className="product-selection-step">
-                    
-                    <div className="selected-product-container">
-                        <Label><span style={{ fontSize: '12px', marginRight: '10px' }}>Selected Product:</span></Label>
-                        <div className="selected-product">
-                            <span className="product-code">{selectedProduct?.title}</span>
-                            <span className="product-name">{selectedProduct?.subTitle}</span>
+
+                    <div className="product-selection-step">
+
+                        <div className="selected-product-container">
+                            <Label><span style={{ fontSize: '12px', marginRight: '10px' }}>Selected Product:</span></Label>
+                            <div className="selected-product">
+                                <span className="product-code">{selectedProduct?.code}</span>
+                                <span className="product-name">{selectedProduct?.name}</span>
+                            </div>
                         </div>
-                    </div>
 
-                    <FormField className="product-info-field">
-                        <Label><span style={{ fontSize: '12px' }}>Product Information</span></Label>
+                        <FormField className="product-info-field">
+                            <Label><span style={{ fontSize: '12px' }}>Product Information</span></Label>
 
-                        <textarea
+                            <textarea
 
-                            value={productInfo}
-                            onChange={(e) => setProductInfo(e.target.value)}
-                            className="product-info-textarea"
-                        />
-                    </FormField>
+                                value={selectedProduct?.description}
+                                //onChange={(e) => setProductInfo(e.target.value)}
+                                className="product-info-textarea"
+                            />
+                        </FormField>
 
-                    {/* <FormField className="product-inventory-field">
+                        {/* <FormField className="product-inventory-field">
                         <Label><span style={{ fontSize: '12px', }}> Total Weight Based on Units</span></Label>
 
 
@@ -138,7 +211,7 @@ const handleSaveProductWeight = () => {
                             <span className="inventory-unit">Kg</span>
                         </div>
                     </FormField> */}
-                </div>
+                    </div>
                 </div>
             ),
         },
@@ -148,20 +221,23 @@ const handleSaveProductWeight = () => {
             title: "TRANSPORT SELECTION",
             content: (
                 <div>
-                   
+
                     <div className="transport-selection-form">
                         {/* Other Form Fields */}
                         <FormField>
                             <Label><span style={{ fontSize: '12px' }}>Origin Country</span></Label>
                             <Select
                                 className="highlighted-select"
-                                options={[
-                                    { label: "Country 1", value: "country1" },
-                                    { label: "Country 2", value: "country2" },
-                                ]}
+                                options={countries}
                                 placeholder="Select Origin Country"
-                                selected={""}
-                                onChange={(value, option) => { /* Handle change */ }}
+                                selected={originCountry}
+                                onChange={(value, option) => { 
+                                    onOriginCountryChange(value); 
+                                    setOriginCountryPorts(transportDatabase[value].map((port: string) => ({
+                                        label: port,
+                                        value: port
+                                    })) || []); 
+                                }} // Ensure you handle null/undefined
                             />
                         </FormField>
 
@@ -169,13 +245,16 @@ const handleSaveProductWeight = () => {
                             <Label><span style={{ fontSize: '12px' }}>Destination Country</span></Label>
                             <Select
                                 className="highlighted-select"
-                                options={[
-                                    { label: "Country 1", value: "country1" },
-                                    { label: "Country 2", value: "country2" },
-                                ]}
+                                options={countries}
                                 placeholder="Select Destination Country"
-                                selected={""}
-                                onChange={(value, option) => { /* Handle change */ }}
+                                selected={destinationCountry} // Corrected from "selected"
+                                onChange={(value, option) => { setDestinationCountry(value); 
+
+                                setDestinationCountryPorts(transportDatabase[value].map((port: string) => ({
+                                    label: port,
+                                    value: port
+                                })) || []);
+                                }} // Ensure you handle null/undefined
                             />
                         </FormField>
 
@@ -183,13 +262,13 @@ const handleSaveProductWeight = () => {
                             <Label><span style={{ fontSize: '12px' }}>Origin Gateway</span></Label>
                             <Select
                                 className="highlighted-select"
-                                options={[
-                                    { label: "Gateway 1", value: "gateway1" },
-                                    { label: "Gateway 2", value: "gateway2" },
-                                ]}
+                                options={originCountryPorts}
                                 placeholder="Select Origin Gateway"
-                                selected={""}
-                                onChange={(value, option) => { /* Handle change */ }}
+                                selected={originGateway}
+                                onChange={(value, option) => {
+                                    
+                                    setOriginGateway(value);
+                                 }}
                             />
                         </FormField>
 
@@ -197,13 +276,10 @@ const handleSaveProductWeight = () => {
                             <Label><span style={{ fontSize: '12px' }}>Destination Gateway</span></Label>
                             <Select
                                 className="highlighted-select"
-                                options={[
-                                    { label: "Gateway 1", value: "gateway1" },
-                                    { label: "Gateway 2", value: "gateway2" },
-                                ]}
+                                options={destinationCountryPorts}
                                 placeholder="Select Destination Gateway"
-                                selected={""}
-                                onChange={(value, option) => { /* Handle change */ }}
+                                selected={destinationGateway}
+                                onChange={(value, option) => {setDestinationGateway(value);  }}
                             />
                         </FormField>
 
@@ -212,13 +288,14 @@ const handleSaveProductWeight = () => {
                             <Select
                                 className="highlighted-select"
                                 options={[
-                                    { label: "Air", value: "air" },
-                                    { label: "Sea", value: "sea" },
-                                    { label: "Land", value: "land" },
+                                    { label: "SeaFreight", value: "SeaFreight" },
+                                    { label: "RoadFreight", value: "RoadFreight" },
+                                    { label: "RailFreight", value: "RailFreight" },
+                                    { label: "AirFreight", value: "AirFreight" },
                                 ]}
                                 placeholder="Select Transport Mode"
-                                selected={""}
-                                onChange={(value, option) => { /* Handle change */ }}
+                                selected={transportMode}
+                                onChange={(value, option) => { setTransportMode(value); }}
                             />
                         </FormField>
 
@@ -240,142 +317,142 @@ const handleSaveProductWeight = () => {
             id: "step-3",
             title: "TRANSPORT WEIGHT DETAILS",
             content: (
-<div>
+                <div>
 
-                <div className="transport-weight-details">
-                   
-                <div className="product-weight-section">
-    <div className="input-group-top">
-    <Label><span style={{ fontSize: '12px' }}>Product Weight:</span></Label>
-      
-        {isProductWeightEditable ? (
-            <>
-                {/* <Input
+                    <div className="transport-weight-details">
+
+                        <div className="product-weight-section">
+                            <div className="input-group-top">
+                                <Label><span style={{ fontSize: '12px' }}>Product Weight:</span></Label>
+
+                                {isProductWeightEditable ? (
+                                    <>
+                                        {/* <Input
                     type="number"
                     value={productWeight.toString()}
                     onChange={(value) => setProductWeight(parseFloat(value))}
                 /> */}
-                {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
-            </>
-        ) : (
-            <>
-                <span className="weight-display">{productWeight.toFixed(2)} Kg</span>
-                {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
-            </>
-        )}
-    </div>
-</div>
-
-<div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
-
- 
-    <div className="weight-input-row">
-        <div className="toggle-group">
-            <label className="toggle-option">
-                <input
-                    type="radio"
-                    checked={!isPackagingManual}
-                    onChange={() => setIsPackagingManual(false)}
-                />
-                AI Assisted
-            </label>
-            <label className="toggle-option">
-                <input
-                    type="radio"
-                    checked={isPackagingManual}
-                    onChange={() => setIsPackagingManual(true)}
-                />
-                Manual Entry
-            </label>
-        </div>
-        <div className="input-group">
-            {isPackagingManual ? (
-                <Input
-                    type="number"
-                    value={packagingWeight.toString()}
-                    onChange={(value) => setPackagingWeight(parseFloat(value))}
-                />
-            ) : (
-                <Input
-                    type="number"
-                    value={packagingWeight.toString()}
-                    onChange={() => { }}
-                    className="disabled-input"
-                />
-            )}
-            <span className="unit">Kg</span>
-        </div>
-    </div>
-</div>
-
-                    <div className="weight-toggle">
-<Label><span style={{ fontSize: '12px' }}>Include Pallet Weight?</span></Label>
-
-                     
-                        <label className="switch">
-                            <input
-                                type="checkbox"
-                                checked={includePallet}
-                                onChange={(e) => setIncludePallet(e.target.checked)}
-                            />
-                            <span className="slider"></span>
-                        </label>
-                    </div>
-
-                    {includePallet && (
-                        <div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Pallet Weight</span></Label>
-
-                          
-                            <div className="weight-input-row">
-                            <div className="toggle-group">
-                                <label className="toggle-option">
-                                    <input
-                                        type="radio"
-                                        checked={!isPalletManual}
-                                        onChange={() => setIsPalletManual(false)}
-                                    />
-                                    AI Assisted
-                                </label>
-                                <label className="toggle-option">
-                                    <input
-                                        type="radio"
-                                        checked={isPalletManual}
-                                        onChange={() => setIsPalletManual(true)}
-                                    />
-                                    Manual Entry
-                                </label>
-                            </div>
-                            <div className="input-group">
-                                {isPalletManual ? (
-                                    <Input
-                                        type="number"
-                                        value={palletWeight.toString()}
-                                        onChange={(value) => setPalletWeight(parseFloat(value))}
-                                    />
+                                        {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
+                                    </>
                                 ) : (
-                                    <Input
-                                        type="number"
-                                        value={palletWeight.toString()}
-                                        onChange={() => { }}
-                                        className="disabled-input"
-                                    />
+                                    <>
+                                        <span className="weight-display">{ parseInt(selectedProduct?.weight).toFixed(2)} Kg</span>
+                                        {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
+                                    </>
                                 )}
-                                <span className="unit">Kg</span>
                             </div>
                         </div>
-                        </div>
-                    )}
 
-                    <div className="total-weight">
-<Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
-                        <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
-                    </div>
+                        <div className="weight-section">
+                            <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
+
+
+                            <div className="weight-input-row">
+                                <div className="toggle-group">
+                                    <label className="toggle-option">
+                                        <input
+                                            type="radio"
+                                            checked={!isPackagingManual}
+                                            onChange={() => setIsPackagingManual(false)}
+                                        />
+                                        AI Assisted
+                                    </label>
+                                    <label className="toggle-option">
+                                        <input
+                                            type="radio"
+                                            checked={isPackagingManual}
+                                            onChange={() => setIsPackagingManual(true)}
+                                        />
+                                        Manual Entry
+                                    </label>
+                                </div>
+                                <div className="input-group">
+                                    {isPackagingManual ? (
+                                        <Input
+                                            type="number"
+                                            value={packagingWeight.toString()}
+                                            onChange={(value) => setPackagingWeight(parseFloat(value))}
+                                        />
+                                    ) : (
+                                        <Input
+                                            type="number"
+                                            value={packagingWeight.toString()}
+                                            onChange={() => { }}
+                                            className="disabled-input"
+                                        />
+                                    )}
+                                    <span className="unit">Kg</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="weight-toggle">
+                            <Label><span style={{ fontSize: '12px' }}>Include Pallet Weight?</span></Label>
+
+
+                            <label className="switch">
+                                <input
+                                    type="checkbox"
+                                    checked={includePallet}
+                                    onChange={(e) => setIncludePallet(e.target.checked)}
+                                />
+                                <span className="slider"></span>
+                            </label>
+                        </div>
+
+                        {includePallet && (
+                            <div className="weight-section">
+                                <Label><span style={{ fontSize: '12px' }}>Pallet Weight</span></Label>
+
+
+                                <div className="weight-input-row">
+                                    <div className="toggle-group">
+                                        <label className="toggle-option">
+                                            <input
+                                                type="radio"
+                                                checked={!isPalletManual}
+                                                onChange={() => setIsPalletManual(false)}
+                                            />
+                                            AI Assisted
+                                        </label>
+                                        <label className="toggle-option">
+                                            <input
+                                                type="radio"
+                                                checked={isPalletManual}
+                                                onChange={() => setIsPalletManual(true)}
+                                            />
+                                            Manual Entry
+                                        </label>
+                                    </div>
+                                    <div className="input-group">
+                                        {isPalletManual ? (
+                                            <Input
+                                                type="number"
+                                                value={palletWeight.toString()}
+                                                onChange={(value) => setPalletWeight(parseFloat(value))}
+                                            />
+                                        ) : (
+                                            <Input
+                                                type="number"
+                                                value={palletWeight.toString()}
+                                                onChange={() => { }}
+                                                className="disabled-input"
+                                            />
+                                        )}
+                                        <span className="unit">Kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        <div className="total-weight">
+                            <Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
+                            <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
+                        </div>
                     </div>
                 </div>
 
-             
+
 
             ),
         },
@@ -392,11 +469,11 @@ const handleSaveProductWeight = () => {
                         <div className="summary-box">
                             <div className="summary-row">
                                 <span>Product Code</span>
-                                <span>ECO-WB-001</span>
+                                <span>{selectedProduct?.code}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Product Name</span>
-                                <span>Aluminum Window</span>
+                                <span>{selectedProduct?.name }</span>
                             </div>
                             <div className="summary-row">
                                 <span>Inventory</span>
@@ -411,19 +488,19 @@ const handleSaveProductWeight = () => {
                         <div className="summary-box">
                             <div className="summary-row">
                                 <span>Origin</span>
-                                <span>China - Shanghai Port</span>
+                                <span>{originGateway}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Destination</span>
-                                <span>United States - Los Angeles Port</span>
+                                <span>{destinationGateway}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Transport Mode</span>
-                                <span>Sea Freight</span>
+                                <span>{transportMode}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Distance</span>
-                                <span>10,000 Km</span>
+                                <span> { transportDistance} Km </span>
                             </div>
                         </div>
                     </div>
@@ -434,7 +511,7 @@ const handleSaveProductWeight = () => {
                         <div className="summary-box">
                             <div className="summary-row">
                                 <span>Product Weight</span>
-                                <span>25.00 Kg</span>
+                                <span>{selectedProduct?.weight}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Packaging Weight</span>
@@ -526,47 +603,47 @@ const handleSaveProductWeight = () => {
             </div>
 
             <DataGrid
-                data={productData}
+                data={products}
                 renderItem={(item) => (
                     <div className="product-card">
-                        <img src={item.icon} alt="Product" className="product-image" />
+                        <img src={item.images[0]} alt="Product" className="product-image" />
                         <div className="product-details">
-                            <p>{item.title}</p>
-                            <h4>{item.subTitle}</h4>
+                            <p>{item.code}</p>
+                            <h4>{item.name}</h4>
                         </div>
-                        <Button title="Calculate Impact" className="calculate-impact-button" onClick={() => handleCalculateImpact(item)} />
+                        <Button title="Calculate Impact" className="calculate-impact-button" onClick={() => selectProduct(item)} />
                     </div>
                 )}
                 columns={3}
                 className="product-data-grid"
             />
 
-           {/* Modal Implementation */}
-<Modal
-    show={showModal}
-    onClose={() => setShowModal(false)}
-    title="Calculate Impact"
-    className="lgs-create-product-modal"
->
-    <div className="modal-content">
-        {/* Stepper component */}
-        <div className="modal-stepper-container">
-            <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
-        </div>
+            {/* Modal Implementation */}
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                title="Calculate Impact"
+                className="lgs-create-product-modal"
+            >
+                <div className="modal-content">
+                    {/* Stepper component */}
+                    <div className="modal-stepper-container">
+                        <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
+                    </div>
 
-        {steps[activeStep].content}
+                    {steps[activeStep].content}
 
-        {activeStep < steps.length - 1 && (
-            <div className="modal-footer">
-                <Button
-                    className="button-container"
-                    title="Next"
-                    onClick={handleNext}
-                />
-            </div>
-        )}
-    </div>
-</Modal>
+                    {activeStep < steps.length - 1 && (
+                        <div className="modal-footer">
+                            <Button
+                                className="button-container"
+                                title="Next"
+                                onClick={handleNext}
+                            />
+                        </div>
+                    )}
+                </div>
+            </Modal>
 
         </div>
     );

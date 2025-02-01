@@ -53411,6 +53411,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -53420,31 +53429,27 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
 const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ./stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
 const react_1 = __webpack_require__(/*! react */ "react");
-const productData = [
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001", subTitle: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest - Domino"
-    },
-    // { title: "ECO-TB-002", subTitle: "Bamboo Dining Table" },
-    // { title: "ECO-LP-003", subTitle: "LED Light Panel" },
-    // { title: "ECO-DS-004", subTitle: "Dual Solar Panel" },
-    // { title: "ECO-BM-005", subTitle: "Bamboo Mattress" },
-    // { title: "ECO-CP-006", subTitle: "Compostable Plates" },
-    // { title: "ECO-BL-007", subTitle: "Biodegradable Lunch Box" },
-    // { title: "ECO-ST-008", subTitle: "Steel Water Bottle" },
-    // { title: "ECO-RT-009", subTitle: "Recycled Tire Mat" },
-    // { title: "ECO-SB-010", subTitle: "Solar Powered Backpack" }
-];
+const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const LCADashboardWidget = () => {
+    const [products, setProducts] = React.useState([]);
+    const [originCountry, setOriginCountry] = React.useState("");
+    const [destinationCountry, setDestinationCountry] = React.useState("");
+    const [transportDatabase, setTransportDatabase] = React.useState({});
+    const [originCountryPorts, setOriginCountryPorts] = React.useState([]);
+    const [destinationCountryPorts, setDestinationCountryPorts] = React.useState([]);
+    const [originGateway, setOriginGateway] = React.useState("");
+    const [destinationGateway, setDestinationGateway] = React.useState("");
+    const [countries, setCountries] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
     const [quantity, setQuantity] = React.useState("");
     const [weight, setWeight] = React.useState("");
-    const [productInfo, setProductInfo] = React.useState("");
     const [activeStep, setActiveStep] = React.useState(0);
     const [searchValue, setSearchValue] = React.useState("");
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
-    const [filteredData, setFilteredData] = React.useState(productData);
+    const [transportMode, setTransportMode] = React.useState("");
+    const [transportDistance, setTransportDistance] = React.useState(0);
+    const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [showTooltip, setShowTooltip] = React.useState(false);
@@ -53455,12 +53460,71 @@ const LCADashboardWidget = () => {
     const [palletWeight, setPalletWeight] = (0, react_1.useState)(0);
     const [isPalletManual, setIsPalletManual] = (0, react_1.useState)(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = (0, react_1.useState)(false);
+    React.useEffect(() => {
+        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config_1.default}/api/products`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.json();
+                setProducts(data);
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchProductData();
+    }, []);
+    React.useEffect(() => {
+        const fetchCountries = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config_1.default}/api/transportDB`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.json();
+                setTransportDatabase(data);
+                const formattedOptions = Object.keys(data).map((country) => ({
+                    label: country,
+                    value: country // Replace `code` with the appropriate field
+                }));
+                setCountries(formattedOptions);
+                console.log("Countries:", countries);
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchCountries();
+    }, []);
+    const calculateTransportDistance = () => {
+        // Call API to calculate transport distance
+        let url = `${config_1.default}/api/distance?origin=${originGateway}&destination=${destinationGateway}`;
+        fetch(url, {
+            method: 'GET',
+        })
+            .then(response => response.json())
+            .then(data => {
+            debugger;
+            setTransportDistance(data.distance_in_km);
+        })
+            .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    };
     const handleEditProductWeight = () => {
         setIsProductWeightEditable(true);
     };
     const handleSaveProductWeight = () => {
         setIsProductWeightEditable(false);
     };
+    React.useEffect(() => {
+        // Only calculate distance if both gateways are selected
+        if (originGateway && destinationGateway) {
+            calculateTransportDistance();
+        }
+    }, [originGateway, destinationGateway]);
     const totalTransportWeight = productWeight +
         (isPackagingManual ? packagingWeight : 0) +
         (includePallet && isPalletManual ? palletWeight : 0);
@@ -53469,7 +53533,7 @@ const LCADashboardWidget = () => {
         applyFilters(newValue, selectedCategory);
     };
     const applyFilters = (searchText, category) => {
-        const filtered = productData.filter(item => {
+        const filtered = products.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.subTitle.toLowerCase().includes(searchText.toLowerCase());
             const matchesCategory = category ? item.subTitle.toLowerCase().includes(category.toLowerCase()) : true;
@@ -53480,12 +53544,19 @@ const LCADashboardWidget = () => {
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
-        setFilteredData(productData);
+        setFilteredData(products);
     };
-    const handleCalculateImpact = (product) => {
+    const selectProduct = (product) => {
         setSelectedProduct(product);
+        debugger;
         setShowModal(true);
         setActiveStep(0);
+    };
+    const [originGateways, setOriginGateways] = React.useState([]);
+    const onOriginCountryChange = (value) => {
+        console.log("Origin Country:", value);
+        console.log("Transport Database:", transportDatabase[value]);
+        setOriginCountry(value);
     };
     const steps = [
         {
@@ -53497,12 +53568,14 @@ const LCADashboardWidget = () => {
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px', marginRight: '10px' } }, "Selected Product:")),
                         React.createElement("div", { className: "selected-product" },
-                            React.createElement("span", { className: "product-code" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.title),
-                            React.createElement("span", { className: "product-name" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.subTitle))),
+                            React.createElement("span", { className: "product-code" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code),
+                            React.createElement("span", { className: "product-name" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name))),
                     React.createElement(components_1.FormField, { className: "product-info-field" },
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Product Information")),
-                        React.createElement("textarea", { value: productInfo, onChange: (e) => setProductInfo(e.target.value), className: "product-info-textarea" }))))),
+                        React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, 
+                            //onChange={(e) => setProductInfo(e.target.value)}
+                            className: "product-info-textarea" }))))),
         },
         {
             id: "step-2",
@@ -53512,39 +53585,42 @@ const LCADashboardWidget = () => {
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Country 1", value: "country1" },
-                                { label: "Country 2", value: "country2" },
-                            ], placeholder: "Select Origin Country", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: originCountry, onChange: (value, option) => {
+                                onOriginCountryChange(value);
+                                setOriginCountryPorts(transportDatabase[value].map((port) => ({
+                                    label: port,
+                                    value: port
+                                })) || []);
+                            } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Country 1", value: "country1" },
-                                { label: "Country 2", value: "country2" },
-                            ], placeholder: "Select Destination Country", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: destinationCountry, onChange: (value, option) => {
+                                setDestinationCountry(value);
+                                setDestinationCountryPorts(transportDatabase[value].map((port) => ({
+                                    label: port,
+                                    value: port
+                                })) || []);
+                            } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Gateway 1", value: "gateway1" },
-                                { label: "Gateway 2", value: "gateway2" },
-                            ], placeholder: "Select Origin Gateway", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: originCountryPorts, placeholder: "Select Origin Gateway", selected: originGateway, onChange: (value, option) => {
+                                setOriginGateway(value);
+                            } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Gateway 1", value: "gateway1" },
-                                { label: "Gateway 2", value: "gateway2" },
-                            ], placeholder: "Select Destination Gateway", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: destinationCountryPorts, placeholder: "Select Destination Gateway", selected: destinationGateway, onChange: (value, option) => { setDestinationGateway(value); } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
                         React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Air", value: "air" },
-                                { label: "Sea", value: "sea" },
-                                { label: "Land", value: "land" },
-                            ], placeholder: "Select Transport Mode", selected: "", onChange: (value, option) => { } })),
+                                { label: "SeaFreight", value: "SeaFreight" },
+                                { label: "RoadFreight", value: "RoadFreight" },
+                                { label: "RailFreight", value: "RailFreight" },
+                                { label: "AirFreight", value: "AirFreight" },
+                            ], placeholder: "Select Transport Mode", selected: transportMode, onChange: (value, option) => { setTransportMode(value); } })),
                     React.createElement("div", { className: "save-button-container" },
                         React.createElement(components_1.Button, { title: "Save", className: "save-button", onClick: () => { } }))),
                 React.createElement("div", { className: "add-transport-leg-container" },
@@ -53561,7 +53637,7 @@ const LCADashboardWidget = () => {
                                 React.createElement("span", { style: { fontSize: '12px' } }, "Product Weight:")),
                             isProductWeightEditable ? (React.createElement(React.Fragment, null)) : (React.createElement(React.Fragment, null,
                                 React.createElement("span", { className: "weight-display" },
-                                    productWeight.toFixed(2),
+                                    parseInt(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
                                     " Kg"))))),
                     React.createElement("div", { className: "weight-section" },
                         React.createElement(components_1.Label, null,
@@ -53614,10 +53690,10 @@ const LCADashboardWidget = () => {
                     React.createElement("div", { className: "summary-box" },
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Code"),
-                            React.createElement("span", null, "ECO-WB-001")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Name"),
-                            React.createElement("span", null, "Aluminum Window")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Inventory"),
                             React.createElement("span", null, "150 pcs")))),
@@ -53626,22 +53702,25 @@ const LCADashboardWidget = () => {
                     React.createElement("div", { className: "summary-box" },
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Origin"),
-                            React.createElement("span", null, "China - Shanghai Port")),
+                            React.createElement("span", null, originGateway)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Destination"),
-                            React.createElement("span", null, "United States - Los Angeles Port")),
+                            React.createElement("span", null, destinationGateway)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Transport Mode"),
-                            React.createElement("span", null, "Sea Freight")),
+                            React.createElement("span", null, transportMode)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Distance"),
-                            React.createElement("span", null, "10,000 Km")))),
+                            React.createElement("span", null,
+                                " ",
+                                transportDistance,
+                                " Km ")))),
                 React.createElement("div", { className: "summary-section" },
                     React.createElement("h3", null, "WEIGHT DETAILS"),
                     React.createElement("div", { className: "summary-box" },
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Weight"),
-                            React.createElement("span", null, "25.00 Kg")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Packaging Weight"),
                             React.createElement("span", null, "0.55 Kg")),
@@ -53690,12 +53769,12 @@ const LCADashboardWidget = () => {
                                 setMaxCO2(value);
                                 applyFilters(searchValue, selectedCategory);
                             }, placeholder: "Set maximum CO2" }))))),
-        React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card" },
-                React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
+        React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card" },
+                React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
                 React.createElement("div", { className: "product-details" },
-                    React.createElement("p", null, item.title),
-                    React.createElement("h4", null, item.subTitle)),
-                React.createElement(components_1.Button, { title: "Calculate Impact", className: "calculate-impact-button", onClick: () => handleCalculateImpact(item) }))), columns: 3, className: "product-data-grid" }),
+                    React.createElement("p", null, item.code),
+                    React.createElement("h4", null, item.name)),
+                React.createElement(components_1.Button, { title: "Calculate Impact", className: "calculate-impact-button", onClick: () => selectProduct(item) }))), columns: 3, className: "product-data-grid" }),
         React.createElement(components_1.Modal, { show: showModal, onClose: () => setShowModal(false), title: "Calculate Impact", className: "lgs-create-product-modal" },
             React.createElement("div", { className: "modal-content" },
                 React.createElement("div", { className: "modal-stepper-container" },
