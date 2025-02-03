@@ -267,7 +267,19 @@ const handleSaveProductWeight = () => {
 </div>
 
 <div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
+<Label><span style={{ fontSize: '12px' }}>Packaging Weight</span>
+<span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Select Assistance to estimate packaging weight (10% of product weight), or enter the weight manually if known
+                            </div>
+                        )}
+                    </span></Label>
 
  
     <div className="weight-input-row">
@@ -278,7 +290,7 @@ const handleSaveProductWeight = () => {
                     checked={!isPackagingManual}
                     onChange={() => setIsPackagingManual(false)}
                 />
-                AI Assisted
+                AI Assistance
             </label>
             <label className="toggle-option">
                 <input
@@ -325,7 +337,19 @@ const handleSaveProductWeight = () => {
 
                     {includePallet && (
                         <div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Pallet Weight</span></Label>
+<Label><span style={{ fontSize: '12px' }}>Pallet Weight</span>
+<span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Select Assistance to apply an industry-standard pallet weight (typically 13.6 kg to 21.8 kg), or enter the weight manually if known
+                            </div>
+                        )}
+                    </span></Label>
 
                           
                             <div className="weight-input-row">
@@ -336,7 +360,7 @@ const handleSaveProductWeight = () => {
                                         checked={!isPalletManual}
                                         onChange={() => setIsPalletManual(false)}
                                     />
-                                    AI Assisted
+                                    AI Assistance
                                 </label>
                                 <label className="toggle-option">
                                     <input

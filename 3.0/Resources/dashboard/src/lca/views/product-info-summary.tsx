@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import './product-info-summary.scss';
-import { Button } from 'uxp/components';
+import { Button, Modal } from 'uxp/components';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+
 
 interface ProductInfoSummaryProps {
     product: ProductInfoSummary
     ;
     onClose: () => void;
+    onDelete: () => void;
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose }) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose,onDelete }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+        const [showModal, setShowModal] = React.useState(false);
+    
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
 
@@ -120,6 +125,25 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     onClick={onClose}
                     className="back-button"
                 />
+                   {/* <Button title="Delete" onClick={() => setShowDeleteConfirm(true)} className="delete-button">
+                       Delete
+                    </Button> */}
+
+                    {showDeleteConfirm && (
+    <Modal
+    show={showModal}
+        title="Confirm Deletion"
+        onClose={() => setShowDeleteConfirm(false)}
+        className="delete-modal"
+    >
+        <p>Are you sure you want to delete this product?</p>
+        <div className="modal-actions">
+            <Button title="Yes" onClick={() => { onDelete(); setShowDeleteConfirm(false); }} className="confirm-button">Yes</Button>
+            <Button title="No" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">No</Button>
+        </div>
+    </Modal>
+)}
+
             </div>
             <div className="product-info-summary">
                 <div

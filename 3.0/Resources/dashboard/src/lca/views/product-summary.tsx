@@ -66,7 +66,7 @@ const ProductSummary: React.FC<ProductSummaryProps> = ({ productCode, productNam
             </div>
 
             <Button title="Back" className="back-button" onClick={onBack} />
-          
+                      
         </div>
         
     );
