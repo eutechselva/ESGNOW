@@ -8,8 +8,10 @@
     &.lgs-create-product-modal{
 
        .modal-panel {
-         max-width: 500px !important;
-         height: 100%;
+        width: 50% ;
+        min-width: 50% ;
+        max-width: 50% ;
+        height: 80%;
 
        }
        .modal-header {

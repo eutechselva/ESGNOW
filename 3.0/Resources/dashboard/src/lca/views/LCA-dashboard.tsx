@@ -546,7 +546,7 @@ const handleSaveProductWeight = () => {
     show={showModal}
     onClose={() => setShowModal(false)}
     title="Calculate Impact"
-    className="lgs-create-product-modal"
+    className="lgs-calculate-impact-modal"
 >
     <div className="modal-content">
         {/* Stepper component */}

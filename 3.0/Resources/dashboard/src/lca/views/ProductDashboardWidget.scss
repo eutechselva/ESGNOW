@@ -245,27 +245,28 @@ h3,
 .modal-content {
   display: flex;
   flex-direction: column;
-  height: 100%;
+
 }
 
 .modal-container {
-  &.lgs-create-product-modal{
+  &.lgs-calculate-impact-modal {
+    .modal-panel {
+      width: 40% ;
+      min-width: 40% ;
+      max-width: 40% ;
+      height: 80%;
+    }
 
-     .modal-panel {
-      max-width: 500px !important;
-      height: 100%;
-
-     }
-     .modal-header {
+    .modal-header {
       background-color: #0066ff;
       color: white;
       text-align: center;
       font-size: 16px;
       font-weight: bold;
     }
-
   }
 }
+
 .modal-footer {
   display: flex;
   justify-content: flex-end;
