@@ -113,5 +113,48 @@
                 }
             }
         ]
+    },
+    "/projects": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/projects-widget",
+                "configs": {
+                    "layout": {
+                        "w": 30,
+                        "h": 20
+                    }
+                },
+                "name": "Projects Widget",
+                "description": "Projects Widget",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753055493181332",
+                "key": "173753055493181332",
+                "layout": {
+                    "w": 30,
+                    "h": 20,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173753055493181332",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true,
+                "configurations": {
+                    
+                }
+            }
+        ]
     }
 }
