@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
+import { ProductWizard } from "./product-wizard";
 
 
 interface IWidgetProps {
@@ -25,6 +26,8 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
+    const [showModal, setShowModal] = React.useState(false);
+    
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
@@ -227,20 +230,23 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                         )}
                     </div>
 
-                    <Button
-                        title="+ Add Product"
-                        onClick={() => console.log("Open Add Product form")}
-                        className="add-product-button"
-                    />
+                    <button className="add-product-button" onClick={() => setShowModal(true)}>
+                    + Add Product
+                </button>
                 </>
             )}
+             <ProductWizard
+                            show={showModal}
+                            onClose={() => setShowModal(false)} uxpContext={props.uxpContext}
+                        />
 
             {/* Product summary screen */}
             {selectedProduct && (
                 <ProductInfoSummary
                     product={selectedProduct}
-                    onClose={() => setSelectedProduct(null)}
-                />
+                    onClose={() => setSelectedProduct(null)} onDelete={function (): void {
+                        throw new Error("Function not implemented.");
+                    } }                />
             )}
         </div>
     );
