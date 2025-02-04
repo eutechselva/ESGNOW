@@ -2,39 +2,44 @@ import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Mod
 import * as React from "react";
 import './ProductDashboardWidget.scss';
 import Stepper from './stepper-LCA';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import EmissionSummary from './emission-summary';
 import API_BASE_URL from "../config";
-import { set } from "lodash";
+
+interface TransportLeg {
+    id: number;
+    originCountry: string;
+    destinationCountry: string;
+    originGateway: string;
+    destinationGateway: string;
+    transportMode: string;
+    transportDistance: number;
+    transportEmission: number; // Added new field
+    originGateways: any[];
+    destinationGateways: any[];
+}
+
+interface DistanceResponse {
+    origin : string;
+    destination: string;
+    distance_in_km: number;
+}
+
 
 const LCADashboardWidget: React.FunctionComponent = () => {
     const [products, setProducts] = React.useState([]);
-    const [originCountry, setOriginCountry] = React.useState("");
-    const [destinationCountry, setDestinationCountry] = React.useState("");
     const [transportDatabase, setTransportDatabase] = React.useState<{ [key: string]: any }>({});
-    const [originCountryPorts, setOriginCountryPorts] = React.useState([]);
-    const [destinationCountryPorts, setDestinationCountryPorts] = React.useState([]);
-    const [originGateway, setOriginGateway] = React.useState("");
-    const [destinationGateway, setDestinationGateway] = React.useState("");
+
     const [countries, setCountries] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedProduct, setSelectedProduct] = React.useState<any>(null);
-    const [quantity, setQuantity] = React.useState("");
-    const [weight, setWeight] = React.useState("");
     const [activeStep, setActiveStep] = React.useState(0);
     const [searchValue, setSearchValue] = React.useState("");
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
-    const [transportMode, setTransportMode] = React.useState("");
-    const [transportDistance, setTransportDistance] = React.useState(0);
-
     const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
-    const [showTooltip, setShowTooltip] = React.useState(false);
-    
-    const [packagingWeight, setPackagingWeight] = useState<number>( 0);
+    const [packagingWeight, setPackagingWeight] = useState<number>(0);
     const [isPackagingManual, setIsPackagingManual] = useState<boolean>(false);
     const [includePallet, setIncludePallet] = useState<boolean>(false);
     const [palletWeight, setPalletWeight] = useState<number>(20);
@@ -45,33 +50,23 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [totalTransportWeight, setTotalTransportWeight] = useState<number>(0);
 
     const handleConfirmCalculate = async () => {
-        await calculateTransportationEmission();
+        
         setisEmissionSummaryvisible(true);
-        setShowModal(false)
-    }
+        setShowModal(false);
+    };
 
     const calculateTransportationEmission = async () => {
-        await fetch(`${API_BASE_URL}/api/calculate-transport-emission`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                weightKg: selectedProduct?.weight,
-                transportMode: transportMode,
-                transportKm: transportDistance,
+        const emission = await Promise.all(
+            transportLegs.map(async (leg) => {
+                const emission = await calculateSingleLegEmission(leg);
+                return { ...leg, transportEmission: emission };
             })
-        })
-        .then(response => response.json())
-        .then(data => {
-            debugger;
-            setTransportationEmission(data.transportEmissions);
-        })
-        .catch(error => {
-            console.error('Error calculating transport emission:', error);
-        });
-     };
+        );
+        setTransportLegs(emission);
+        const totalEmission = emission.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toString());
         
+    }
 
 
     React.useEffect(() => {
@@ -107,7 +102,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                 setCountries(formattedOptions);
                 console.log("Countries:", countries);
 
-                
+
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -116,49 +111,31 @@ const LCADashboardWidget: React.FunctionComponent = () => {
         fetchCountries();
     }, []);
 
-    const calculateTransportDistance = () => {
-        // Call API to calculate transport distance
-        let url = `${API_BASE_URL}/api/distance?origin=${originGateway}&destination=${destinationGateway}`;
-        fetch(url, {
-            method: 'GET',
-
-           
-        })
-            .then(response => response.json())
-            .then(data => {
-                debugger;
-                setTransportDistance(data.distance_in_km);
-            })
-            .catch(error => {
-                console.error('There was a problem with the fetch operation:', error);
+    const calculateTransportDistance = async (origin: string, destination: string): Promise<number> => {
+        try {
+            const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
+            const response = await fetch(url, {
+                method: 'GET',
             });
-    }
-
-
-        const handleEditProductWeight = () => {
-            setIsProductWeightEditable(true);
-        };
-
-    const handleSaveProductWeight = () => {
-        setIsProductWeightEditable(false);
+            const data: DistanceResponse = await response.json();
+            return data.distance_in_km;
+        } catch (error) {
+            console.error('Error calculating transport distance:', error);
+            return 0;
+        }
     };
 
-    React.useEffect(() => {
-        // Only calculate distance if both gateways are selected
-        if (originGateway && destinationGateway) {
-            calculateTransportDistance();
-        }
-    }, [originGateway, destinationGateway]);
+
 
     React.useEffect(() => {
-        debugger;
-        if(includePallet){
+
+        if (includePallet) {
             setTotalTransportWeight(parseFloat((selectedProduct?.weight || 0)) + packagingWeight + palletWeight);
         }
-        else{
-            setTotalTransportWeight( parseFloat((selectedProduct?.weight || 0))  + packagingWeight);
+        else {
+            setTotalTransportWeight(parseFloat((selectedProduct?.weight || 0)) + packagingWeight);
         }
-    }, [packagingWeight,palletWeight,includePallet,selectedProduct?.weight]);
+    }, [packagingWeight, palletWeight, includePallet, selectedProduct?.weight]);
 
 
 
@@ -179,7 +156,26 @@ const LCADashboardWidget: React.FunctionComponent = () => {
         setFilteredData(filtered);
     };
 
-
+    const calculateSingleLegEmission = async (leg: TransportLeg): Promise<number> => {
+        try {
+            const response = await fetch(`${API_BASE_URL}/api/calculate-transport-emission`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    weightKg: totalTransportWeight,
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance,
+                })
+            });
+            const data = await response.json();
+            return parseFloat(data.transportEmissions);
+        } catch (error) {
+            console.error('Error calculating transport emission:', error);
+            return 0;
+        }
+    };
 
     const handleClearFilters = () => {
         setSelectedCategory(null);
@@ -189,24 +185,117 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
     const selectProduct = (product: any) => {
         setSelectedProduct(product);
-        debugger;
+
         setShowModal(true);
         setActiveStep(0);
     };
 
     React.useEffect(() => {
         setPackagingWeight((((selectedProduct?.weight || 0)) / 100) * 10);
-         
-    }
-        , [selectProduct]);
+    }, [selectProduct]);
 
+
+    const [transportLegs, setTransportLegs] = useState<TransportLeg[]>([{
+        id: 1,
+        originCountry: "",
+        destinationCountry: "",
+        originGateway: "",
+        destinationGateway: "",
+        transportMode: "",
+        transportDistance: 0,
+        transportEmission: 0, // Added new field initialization
+        originGateways: [],
+        destinationGateways: []
+    }]);
+
+    const addTransportLeg = () => {
+        setTransportLegs([...transportLegs, {
+            id: transportLegs.length + 1,
+            originCountry: "",
+            destinationCountry: "",
+            originGateway: "",
+            destinationGateway: "",
+            transportMode: "",
+            transportDistance: 0,
+            transportEmission: 0, 
+            originGateways: [],
+            destinationGateways: []
+        }]);
+    };
+
+    const updateTransportLeg = async (legId: number, field: keyof TransportLeg, value: any) => {
+        setTransportLegs(prevLegs => {
+            const updatedLegs = prevLegs.map(leg => {
+                if (leg.id === legId) {
+                    let updatedLeg = { ...leg };
     
+                    if (field === 'originCountry') {
+                        updatedLeg = {
+                            ...updatedLeg,
+                            originCountry: value,
+                            originGateways: transportDatabase[value]?.map((gateway: any) => ({ 
+                                label: gateway, 
+                                value: gateway 
+                            })) || [],
+                            originGateway: '',
+                            transportEmission: 0 // Reset emission when changing route
+                        };
+                    }
+                    else if (field === 'destinationCountry') {
+                        updatedLeg = {
+                            ...updatedLeg,
+                            destinationCountry: value,
+                            destinationGateways: transportDatabase[value]?.map((gateway: any) => ({ 
+                                label: gateway, 
+                                value: gateway 
+                            })) || [],
+                            destinationGateway: '',
+                            transportEmission: 0 // Reset emission when changing route
+                        };
+                    }
+                    else {
+                        updatedLeg = {
+                            ...updatedLeg,
+                            [field]: value,
+                            ...(field === 'transportMode' && { transportEmission: 0 }) // Reset emission when changing mode
+                        };
+                    }
+    
+                    if (field === 'transportMode' && 
+                        updatedLeg.originGateway && 
+                        updatedLeg.destinationGateway) {
+                        setTimeout(() => {
+                            calculateTransportDistance(
+                                updatedLeg.originGateway,
+                                updatedLeg.destinationGateway
+                            ).then((distance: number) => {
+                                setTransportLegs(currentLegs => 
+                                    currentLegs.map(currentLeg => 
+                                        currentLeg.id === legId 
+                                            ? { ...currentLeg, transportDistance: distance, transportEmission: 0 }
+                                            : currentLeg
+                                    )
+                                );
+                            }).catch((error: Error) => {
+                                console.error('Failed to calculate transport distance:', error);
+                            });
+                        }, 0);
+                    }
+    
+                    return updatedLeg;
+                }
+                return leg;
+            });
+    
+            return updatedLegs;
+        });
+    };
 
-    const onOriginCountryChange = (value: string) => {
-        console.log("Origin Country:", value);
-        console.log("Transport Database:", transportDatabase[value]);
-        setOriginCountry(value);
-    }
+    const removeTransportLeg = (legId: number) => {
+        if (transportLegs.length > 1) {
+            setTransportLegs(transportLegs.filter(leg => leg.id !== legId));
+        }
+    };
 
     const steps = [
         {
@@ -230,11 +319,11 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
                             <textarea
 
-                                    value={selectedProduct?.description}
-                                    //onChange={(e) => setProductInfo(e.target.value)}
-                                    className="product-info-textarea"
-                                />
-                            </FormField>
+                                value={selectedProduct?.description}
+                                //onChange={(e) => setProductInfo(e.target.value)}
+                                className="product-info-textarea"
+                            />
+                        </FormField>
 
                         {/* <FormField className="product-inventory-field">
                         <Label><span style={{ fontSize: '12px', }}> Total Weight Based on Units</span></Label>
@@ -267,96 +356,99 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             title: "TRANSPORT SELECTION",
             content: (
                 <div>
+                    {transportLegs.map((leg, index) => (
+                        <div key={leg.id} className="transport-selection-form">
+                            <div className="transport-leg-header">
+                                <h3>Transport Leg {index + 1}</h3>
 
-                    <div className="transport-selection-form">
-                        {/* Other Form Fields */}
-                        <FormField>
-                            <Label><span style={{ fontSize: '12px' }}>Origin Country</span></Label>
-                            <Select
-                                className="highlighted-select"
-                                options={countries}
-                                placeholder="Select Origin Country"
-                                selected={originCountry}
-                                onChange={(value, option) => { 
-                                    onOriginCountryChange(value); 
-                                    setOriginCountryPorts(transportDatabase[value].map((port: string) => ({
-                                        label: port,
-                                        value: port
-                                    })) || []); 
-                                }} // Ensure you handle null/undefined
-                            />
-                        </FormField>
-
-                        <FormField>
-                            <Label><span style={{ fontSize: '12px' }}>Destination Country</span></Label>
-                            <Select
-                                className="highlighted-select"
-                                options={countries}
-                                placeholder="Select Destination Country"
-                                selected={destinationCountry} // Corrected from "selected"
-                                onChange={(value, option) => { setDestinationCountry(value); 
-
-                                setDestinationCountryPorts(transportDatabase[value].map((port: string) => ({
-                                    label: port,
-                                    value: port
-                                })) || []);
-                                }} // Ensure you handle null/undefined
-                            />
-                        </FormField>
-
-                        <FormField>
-                            <Label><span style={{ fontSize: '12px' }}>Origin Gateway</span></Label>
-                            <Select
-                                className="highlighted-select"
-                                options={originCountryPorts}
-                                placeholder="Select Origin Gateway"
-                                selected={originGateway}
-                                onChange={(value, option) => {
-                                    
-                                    setOriginGateway(value);
-                                 }}
-                            />
-                        </FormField>
-
-                        <FormField>
-                            <Label><span style={{ fontSize: '12px' }}>Destination Gateway</span></Label>
-                            <Select
-                                className="highlighted-select"
-                                options={destinationCountryPorts}
-                                placeholder="Select Destination Gateway"
-                                selected={destinationGateway}
-                                onChange={(value, option) => {setDestinationGateway(value);  }}
-                            />
-                        </FormField>
-
-                        <FormField>
-                            <Label><span style={{ fontSize: '12px' }}>Transport Mode</span></Label>
-                            <Select
-                                className="highlighted-select"
-                                options={[
-                                    { label: "SeaFreight", value: "SeaFreight" },
-                                    { label: "RoadFreight", value: "RoadFreight" },
-                                    { label: "RailFreight", value: "RailFreight" },
-                                    { label: "AirFreight", value: "AirFreight" },
-                                ]}
-                                placeholder="Select Transport Mode"
-                                selected={transportMode}
-                                onChange={(value, option) => { setTransportMode(value); }}
-                            />
-                        </FormField>
+                            </div>
+                            <div>
+                                {transportLegs.length > 1 && (
+                                    <Button
+                                        title="Remove"
+                                        className="remove-leg-button"
+                                        onClick={() => removeTransportLeg(leg.id)}
+                                    />
+                                )}
+                            </div>
 
 
-                        {/* <div className="save-button-container">
-                            <Button title="Save" className="save-button" onClick={() => {  }} />
-                        </div> */}
-                    </div>
+                            <FormField>
+                                <Label><span style={{ fontSize: '12px' }}>Origin Country</span></Label>
+                                <Select
+                                    className="highlighted-select"
+                                    options={countries}
+                                    placeholder="Select Origin Country"
+                                    selected={leg.originCountry}
+                                    onChange={(value) => {
+                                        updateTransportLeg(leg.id, 'originCountry', value);
+
+                                    }}
+                                />
+                            </FormField>
+
+                            <FormField>
+                                <Label><span style={{ fontSize: '12px' }}>Destination Country</span></Label>
+                                <Select
+                                    className="highlighted-select"
+                                    options={countries}
+                                    placeholder="Select Destination Country"
+                                    selected={leg.destinationCountry}
+                                    onChange={(value) => {
+                                        updateTransportLeg(leg.id, 'destinationCountry', value);
+
+                                    }}
+                                />
+                            </FormField>
+
+                            <FormField>
+                                <Label><span style={{ fontSize: '12px' }}>Origin Gateway</span></Label>
+                                <Select
+                                    className="highlighted-select"
+                                    options={leg.originGateways}
+                                    placeholder="Select Origin Gateway"
+                                    selected={leg.originGateway}
+                                    onChange={(value) => updateTransportLeg(leg.id, 'originGateway', value)}
+                                />
+                            </FormField>
+
+                            <FormField>
+                                <Label><span style={{ fontSize: '12px' }}>Destination Gateway</span></Label>
+                                <Select
+                                    className="highlighted-select"
+                                    options={leg.destinationGateways}
+                                    placeholder="Select Destination Gateway"
+                                    selected={leg.destinationGateway}
+                                    onChange={(value) => updateTransportLeg(leg.id, 'destinationGateway', value)}
+                                />
+                            </FormField>
+
+                            <FormField>
+                                <Label><span style={{ fontSize: '12px' }}>Transport Mode</span></Label>
+                                <Select
+                                    className="highlighted-select"
+                                    options={[
+                                        { label: "SeaFreight", value: "SeaFreight" },
+                                        { label: "RoadFreight", value: "RoadFreight" },
+                                        { label: "RailFreight", value: "RailFreight" },
+                                        { label: "AirFreight", value: "AirFreight" },
+                                    ]}
+                                    placeholder="Select Transport Mode"
+                                    selected={leg.transportMode}
+                                    onChange={(value) => updateTransportLeg(leg.id, 'transportMode', value)}
+                                />
+                            </FormField>
+                        </div>
+                    ))}
 
                     <div className="add-transport-leg-container">
-                        <Button title="Add Transport Leg" className="add-transport-leg-button" onClick={() => { /* Handle add transport leg action */ }} />
+                        <Button
+                            title="Add Transport Leg"
+                            className="add-transport-leg-button"
+                            onClick={addTransportLeg}
+                        />
                     </div>
                 </div>
-
-
             ),
         },
         {
@@ -378,19 +470,19 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                     value={productWeight.toString()}
                     onChange={(value) => setProductWeight(parseFloat(value))}
                 /> */}
-                                                                {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <span className="weight-display">{ parseFloat(selectedProduct?.weight).toFixed(2)} Kg</span>
-                                                                {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
-                                                            </>
-                                                        )}
-                                                    </div>
-                                                </div>
+                                        {/* <Button className="save-weight-button" title="Save" onClick={handleSaveProductWeight} /> */}
+                                    </>
+                                ) : (
+                                    <>
+                                        <span className="weight-display">{parseFloat(selectedProduct?.weight).toFixed(2)} Kg</span>
+                                        {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
+                                    </>
+                                )}
+                            </div>
+                        </div>
 
-                                                <div className="weight-section">
-                                                        <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
+                        <div className="weight-section">
+                            <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span></Label>
 
 
                             <div className="weight-input-row">
@@ -519,7 +611,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Product Name</span>
-                                <span>{selectedProduct?.name }</span>
+                                <span>{selectedProduct?.name}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Inventory</span>
@@ -531,24 +623,40 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                     {/* Transport Details */}
                     <div className="summary-section">
                         <h3>TRANSPORT DETAILS</h3>
-                        <div className="summary-box">
-                            <div className="summary-row">
-                                <span>Origin</span>
-                                <span>{originGateway}</span>
+                        {transportLegs.map((leg, index) => (
+                            <div key={leg.id} className="summary-box">
+                                <h4>Transport Leg {index + 1}</h4>
+                                <div className="summary-row">
+                                    <span>Origin Country</span>
+                                    <span>{leg.originCountry}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Destination Country</span>
+                                    <span>{leg.destinationCountry}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Origin Gateway</span>
+                                    <span>{leg.originGateway}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Destination Gateway</span>
+                                    <span>{leg.destinationGateway}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Transport Mode</span>
+                                    <span>{leg.transportMode}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Distance</span>
+                                    <span>{leg.transportDistance} Km</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Estimated Emissions</span>
+                                    <span>{leg.transportEmission.toFixed(2)} Kg CO2e</span>
+                                </div>
                             </div>
-                            <div className="summary-row">
-                                <span>Destination</span>
-                                <span>{destinationGateway}</span>
-                            </div>
-                            <div className="summary-row">
-                                <span>Transport Mode</span>
-                                <span>{transportMode}</span>
-                            </div>
-                            <div className="summary-row">
-                                <span>Distance</span>
-                                <span> { transportDistance} Km </span>
-                            </div>
-                        </div>
+                        ))}
+
                     </div>
 
                     {/* Weight Details */}
@@ -569,7 +677,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Total Weight</span>
-                                <span>{ parseFloat(selectedProduct?.weight)  + packagingWeight+palletWeight}</span>
+                                <span>{parseFloat(selectedProduct?.weight) + packagingWeight + palletWeight}</span>
                             </div>
                         </div>
                     </div>
@@ -584,6 +692,10 @@ const LCADashboardWidget: React.FunctionComponent = () => {
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
+        if(activeStep === 1){
+            debugger;
+            calculateTransportationEmission();
+        }
     };
 
     const handlePrevious = () => {
@@ -591,7 +703,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             setActiveStep(activeStep - 1);
         }
     };
-    if (isEmissionSummaryVisible) { return <EmissionSummary  transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
+    if (isEmissionSummaryVisible) { return <EmissionSummary transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Impact Analysis</h1>

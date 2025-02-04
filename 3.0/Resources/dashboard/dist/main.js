@@ -53534,27 +53534,16 @@ const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-su
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const LCADashboardWidget = () => {
     const [products, setProducts] = React.useState([]);
-    const [originCountry, setOriginCountry] = React.useState("");
-    const [destinationCountry, setDestinationCountry] = React.useState("");
     const [transportDatabase, setTransportDatabase] = React.useState({});
-    const [originCountryPorts, setOriginCountryPorts] = React.useState([]);
-    const [destinationCountryPorts, setDestinationCountryPorts] = React.useState([]);
-    const [originGateway, setOriginGateway] = React.useState("");
-    const [destinationGateway, setDestinationGateway] = React.useState("");
     const [countries, setCountries] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
-    const [quantity, setQuantity] = React.useState("");
-    const [weight, setWeight] = React.useState("");
     const [activeStep, setActiveStep] = React.useState(0);
     const [searchValue, setSearchValue] = React.useState("");
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
-    const [transportMode, setTransportMode] = React.useState("");
-    const [transportDistance, setTransportDistance] = React.useState(0);
     const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
-    const [showTooltip, setShowTooltip] = React.useState(false);
     const [packagingWeight, setPackagingWeight] = (0, react_1.useState)(0);
     const [isPackagingManual, setIsPackagingManual] = (0, react_1.useState)(false);
     const [includePallet, setIncludePallet] = (0, react_1.useState)(false);
@@ -53565,30 +53554,17 @@ const LCADashboardWidget = () => {
     const [transportationEmission, setTransportationEmission] = (0, react_1.useState)("");
     const [totalTransportWeight, setTotalTransportWeight] = (0, react_1.useState)(0);
     const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield calculateTransportationEmission();
         setisEmissionSummaryvisible(true);
         setShowModal(false);
     });
     const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
-        yield fetch(`${config_1.default}/api/calculate-transport-emission`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                weightKg: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight,
-                transportMode: transportMode,
-                transportKm: transportDistance,
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-            debugger;
-            setTransportationEmission(data.transportEmissions);
-        })
-            .catch(error => {
-            console.error('Error calculating transport emission:', error);
-        });
+        const emission = yield Promise.all(transportLegs.map((leg) => __awaiter(void 0, void 0, void 0, function* () {
+            const emission = yield calculateSingleLegEmission(leg);
+            return Object.assign(Object.assign({}, leg), { transportEmission: emission });
+        })));
+        setTransportLegs(emission);
+        const totalEmission = emission.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toString());
     });
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -53628,35 +53604,21 @@ const LCADashboardWidget = () => {
         });
         fetchCountries();
     }, []);
-    const calculateTransportDistance = () => {
-        // Call API to calculate transport distance
-        let url = `${config_1.default}/api/distance?origin=${originGateway}&destination=${destinationGateway}`;
-        fetch(url, {
-            method: 'GET',
-        })
-            .then(response => response.json())
-            .then(data => {
-            debugger;
-            setTransportDistance(data.distance_in_km);
-        })
-            .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
-    };
-    const handleEditProductWeight = () => {
-        setIsProductWeightEditable(true);
-    };
-    const handleSaveProductWeight = () => {
-        setIsProductWeightEditable(false);
-    };
-    React.useEffect(() => {
-        // Only calculate distance if both gateways are selected
-        if (originGateway && destinationGateway) {
-            calculateTransportDistance();
+    const calculateTransportDistance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const url = `${config_1.default}/api/distance?origin=${origin}&destination=${destination}`;
+            const response = yield fetch(url, {
+                method: 'GET',
+            });
+            const data = yield response.json();
+            return data.distance_in_km;
         }
-    }, [originGateway, destinationGateway]);
+        catch (error) {
+            console.error('Error calculating transport distance:', error);
+            return 0;
+        }
+    });
     React.useEffect(() => {
-        debugger;
         if (includePallet) {
             setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight + palletWeight);
         }
@@ -53677,6 +53639,27 @@ const LCADashboardWidget = () => {
         });
         setFilteredData(filtered);
     };
+    const calculateSingleLegEmission = (leg) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(`${config_1.default}/api/calculate-transport-emission`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    weightKg: totalTransportWeight,
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance,
+                })
+            });
+            const data = yield response.json();
+            return parseFloat(data.transportEmissions);
+        }
+        catch (error) {
+            console.error('Error calculating transport emission:', error);
+            return 0;
+        }
+    });
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
@@ -53684,17 +53667,85 @@ const LCADashboardWidget = () => {
     };
     const selectProduct = (product) => {
         setSelectedProduct(product);
-        debugger;
         setShowModal(true);
         setActiveStep(0);
     };
     React.useEffect(() => {
         setPackagingWeight(((((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) / 100) * 10);
     }, [selectProduct]);
-    const onOriginCountryChange = (value) => {
-        console.log("Origin Country:", value);
-        console.log("Transport Database:", transportDatabase[value]);
-        setOriginCountry(value);
+    const [transportLegs, setTransportLegs] = (0, react_1.useState)([{
+            id: 1,
+            originCountry: "",
+            destinationCountry: "",
+            originGateway: "",
+            destinationGateway: "",
+            transportMode: "",
+            transportDistance: 0,
+            transportEmission: 0,
+            originGateways: [],
+            destinationGateways: []
+        }]);
+    const addTransportLeg = () => {
+        setTransportLegs([...transportLegs, {
+                id: transportLegs.length + 1,
+                originCountry: "",
+                destinationCountry: "",
+                originGateway: "",
+                destinationGateway: "",
+                transportMode: "",
+                transportDistance: 0,
+                transportEmission: 0,
+                originGateways: [],
+                destinationGateways: []
+            }]);
+    };
+    const updateTransportLeg = (legId, field, value) => __awaiter(void 0, void 0, void 0, function* () {
+        setTransportLegs(prevLegs => {
+            const updatedLegs = prevLegs.map(leg => {
+                var _a, _b;
+                if (leg.id === legId) {
+                    let updatedLeg = Object.assign({}, leg);
+                    if (field === 'originCountry') {
+                        updatedLeg = Object.assign(Object.assign({}, updatedLeg), { originCountry: value, originGateways: ((_a = transportDatabase[value]) === null || _a === void 0 ? void 0 : _a.map((gateway) => ({
+                                label: gateway,
+                                value: gateway
+                            }))) || [], originGateway: '', transportEmission: 0 // Reset emission when changing route
+                         });
+                    }
+                    else if (field === 'destinationCountry') {
+                        updatedLeg = Object.assign(Object.assign({}, updatedLeg), { destinationCountry: value, destinationGateways: ((_b = transportDatabase[value]) === null || _b === void 0 ? void 0 : _b.map((gateway) => ({
+                                label: gateway,
+                                value: gateway
+                            }))) || [], destinationGateway: '', transportEmission: 0 // Reset emission when changing route
+                         });
+                    }
+                    else {
+                        updatedLeg = Object.assign(Object.assign(Object.assign({}, updatedLeg), { [field]: value }), (field === 'transportMode' && { transportEmission: 0 }) // Reset emission when changing mode
+                        );
+                    }
+                    if (field === 'transportMode' &&
+                        updatedLeg.originGateway &&
+                        updatedLeg.destinationGateway) {
+                        setTimeout(() => {
+                            calculateTransportDistance(updatedLeg.originGateway, updatedLeg.destinationGateway).then((distance) => {
+                                setTransportLegs(currentLegs => currentLegs.map(currentLeg => currentLeg.id === legId
+                                    ? Object.assign(Object.assign({}, currentLeg), { transportDistance: distance, transportEmission: 0 }) : currentLeg));
+                            }).catch((error) => {
+                                console.error('Failed to calculate transport distance:', error);
+                            });
+                        }, 0);
+                    }
+                    return updatedLeg;
+                }
+                return leg;
+            });
+            return updatedLegs;
+        });
+    });
+    const removeTransportLeg = (legId) => {
+        if (transportLegs.length > 1) {
+            setTransportLegs(transportLegs.filter(leg => leg.id !== legId));
+        }
     };
     const steps = [
         {
@@ -53719,37 +53770,32 @@ const LCADashboardWidget = () => {
             id: "step-2",
             title: "TRANSPORT SELECTION",
             content: (React.createElement("div", null,
-                React.createElement("div", { className: "transport-selection-form" },
+                transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
+                    React.createElement("div", { className: "transport-leg-header" },
+                        React.createElement("h3", null,
+                            "Transport Leg ",
+                            index + 1)),
+                    React.createElement("div", null, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: originCountry, onChange: (value, option) => {
-                                onOriginCountryChange(value);
-                                setOriginCountryPorts(transportDatabase[value].map((port) => ({
-                                    label: port,
-                                    value: port
-                                })) || []);
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => {
+                                updateTransportLeg(leg.id, 'originCountry', value);
                             } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: destinationCountry, onChange: (value, option) => {
-                                setDestinationCountry(value);
-                                setDestinationCountryPorts(transportDatabase[value].map((port) => ({
-                                    label: port,
-                                    value: port
-                                })) || []);
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => {
+                                updateTransportLeg(leg.id, 'destinationCountry', value);
                             } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: originCountryPorts, placeholder: "Select Origin Gateway", selected: originGateway, onChange: (value, option) => {
-                                setOriginGateway(value);
-                            } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: destinationCountryPorts, placeholder: "Select Destination Gateway", selected: destinationGateway, onChange: (value, option) => { setDestinationGateway(value); } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
@@ -53758,9 +53804,9 @@ const LCADashboardWidget = () => {
                                 { label: "RoadFreight", value: "RoadFreight" },
                                 { label: "RailFreight", value: "RailFreight" },
                                 { label: "AirFreight", value: "AirFreight" },
-                            ], placeholder: "Select Transport Mode", selected: transportMode, onChange: (value, option) => { setTransportMode(value); } }))),
+                            ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
                 React.createElement("div", { className: "add-transport-leg-container" },
-                    React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: () => { } })))),
+                    React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg })))),
         },
         {
             id: "step-3",
@@ -53835,22 +53881,35 @@ const LCADashboardWidget = () => {
                             React.createElement("span", null, "150 pcs")))),
                 React.createElement("div", { className: "summary-section" },
                     React.createElement("h3", null, "TRANSPORT DETAILS"),
-                    React.createElement("div", { className: "summary-box" },
+                    transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "summary-box" },
+                        React.createElement("h4", null,
+                            "Transport Leg ",
+                            index + 1),
                         React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Origin"),
-                            React.createElement("span", null, originGateway)),
+                            React.createElement("span", null, "Origin Country"),
+                            React.createElement("span", null, leg.originCountry)),
                         React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Destination"),
-                            React.createElement("span", null, destinationGateway)),
+                            React.createElement("span", null, "Destination Country"),
+                            React.createElement("span", null, leg.destinationCountry)),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Origin Gateway"),
+                            React.createElement("span", null, leg.originGateway)),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Destination Gateway"),
+                            React.createElement("span", null, leg.destinationGateway)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Transport Mode"),
-                            React.createElement("span", null, transportMode)),
+                            React.createElement("span", null, leg.transportMode)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Distance"),
                             React.createElement("span", null,
-                                " ",
-                                transportDistance,
-                                " Km ")))),
+                                leg.transportDistance,
+                                " Km")),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Estimated Emissions"),
+                            React.createElement("span", null,
+                                leg.transportEmission.toFixed(2),
+                                " Kg CO2e")))))),
                 React.createElement("div", { className: "summary-section" },
                     React.createElement("h3", null, "WEIGHT DETAILS"),
                     React.createElement("div", { className: "summary-box" },
@@ -53873,6 +53932,10 @@ const LCADashboardWidget = () => {
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
+        if (activeStep === 1) {
+            debugger;
+            calculateTransportationEmission();
+        }
     };
     const handlePrevious = () => {
         if (activeStep > 0) {
@@ -53880,7 +53943,7 @@ const LCADashboardWidget = () => {
         }
     };
     if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false) });
+        return React.createElement(emission_summary_1.default, { transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false) });
     }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
@@ -54219,7 +54282,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: "Save results", onClick: onClose, className: "save-results" })))));
 };
-const EmissionSummary = ({ product, onBack, transportationEmission }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
@@ -54402,31 +54465,28 @@ const EmissionSummary = ({ product, onBack, transportationEmission }) => {
                                     react_1.default.createElement("th", null, "Destination"),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Srilanka"),
-                                    react_1.default.createElement("td", null, "China"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Srilanka"),
-                                    react_1.default.createElement("td", null, "China"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Srilanka"),
-                                    react_1.default.createElement("td", null, "China"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Srilanka"),
-                                    react_1.default.createElement("td", null, "China"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")))))))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = transportLegs.reduce((sum, item) => sum + item.transportDistance, 0);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = transportLegs.sort((a, b) => b.transportDistance - a.transportDistance);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.transportDistance / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.id },
+                                        react_1.default.createElement("td", null, item.transportMode),
+                                        react_1.default.createElement("td", null, item.originGateway),
+                                        react_1.default.createElement("td", null, item.destinationGateway),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.transportDistance).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))))),
         showModal && react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects })));
 };
 exports["default"] = EmissionSummary;

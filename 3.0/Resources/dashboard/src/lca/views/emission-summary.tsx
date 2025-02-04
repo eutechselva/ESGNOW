@@ -7,6 +7,18 @@ import { Modal } from 'uxp/components';
 import Projects from './projects';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 
+interface TransportLeg {
+    id: number;
+    originCountry: string;
+    destinationCountry: string;
+    originGateway: string;
+    destinationGateway: string;
+    transportMode: string;
+    transportDistance: number;
+    originGateways: any[];
+    destinationGateways: any[];
+}
+
 const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boolean }> = ({
     onClose,
     hasExistingProjects,
@@ -99,7 +111,8 @@ const EmissionSummary: React.FC<{
     product: ProductInfoSummary;
     transportationEmission : string;
     onBack: () => void;
-}> = ({ product, onBack ,transportationEmission }) => {
+    transportLegs: TransportLeg[];
+}> = ({ product, onBack ,transportationEmission ,transportLegs }) => {
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -336,34 +349,34 @@ const EmissionSummary: React.FC<{
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Srilanka</td>
-                                        <td>China</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Srilanka</td>
-                                        <td>China</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Srilanka</td>
-                                        <td>China</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Srilanka</td>
-                                        <td>China</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
+                                     {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = transportLegs.reduce(
+                                            (sum: number, item: any) => sum + item.transportDistance,
+                                            0
+                                        );
+
+                                        // Sort the materials by emissionFactor in descending order
+                                        const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportDistance - a.transportDistance);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedMaterials.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.transportDistance / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.id}>
+                                                    <td>{item.transportMode}</td>
+                                                    <td>{item.originGateway}</td>
+                                                    <td>{item.destinationGateway}</td>
+                                                    <td>{parseFloat(item.transportDistance).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+ })()}
+
                                 </tbody>
                             </table>
                         </div>
