@@ -5,6 +5,8 @@ import Stepper from './stepper-LCA';
 import { useState } from "react";
 import EmissionSummary from './emission-summary';
 import API_BASE_URL from "../config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 interface TransportLeg {
     id: number;
@@ -48,6 +50,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = useState<boolean>(false);
     const [transportationEmission, setTransportationEmission] = useState<string>("");
     const [totalTransportWeight, setTotalTransportWeight] = useState<number>(0);
+    const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
     const handleConfirmCalculate = async () => {
         
@@ -717,7 +720,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             setActiveStep(activeStep + 1);
         }
         if(activeStep === 1){
-            debugger;
+           
             calculateTransportationEmission();
         }
     };
