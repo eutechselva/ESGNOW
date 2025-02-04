@@ -700,11 +700,11 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Pallet Weight</span>
-                                <span>{palletWeight}</span>
+                                <span>{ includePallet ?  palletWeight : 0}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Total Weight</span>
-                                <span>{parseFloat(selectedProduct?.weight) + packagingWeight + palletWeight}</span>
+                                <span>{parseFloat(selectedProduct?.weight) + packagingWeight + (includePallet ?  palletWeight : 0)}</span>
                             </div>
                         </div>
                     </div>

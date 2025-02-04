@@ -53930,10 +53930,10 @@ const LCADashboardWidget = () => {
                             React.createElement("span", null, packagingWeight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Pallet Weight"),
-                            React.createElement("span", null, palletWeight)),
+                            React.createElement("span", null, includePallet ? palletWeight : 0)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Total Weight"),
-                            React.createElement("span", null, parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight + palletWeight)))),
+                            React.createElement("span", null, parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight + (includePallet ? palletWeight : 0))))),
                 React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => handleConfirmCalculate() }))),
         },
     ];
@@ -54299,7 +54299,6 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
     const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
-    debugger;
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -54341,7 +54340,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
             pie: {
                 innerSize: '60%',
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                     format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
                     style: {
                         fontSize: '12px',

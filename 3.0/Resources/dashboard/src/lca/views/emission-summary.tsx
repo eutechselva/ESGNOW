@@ -125,7 +125,7 @@ const EmissionSummary: React.FC<{
     const [hasExistingProjects, setHasExistingProjects] = useState(true);
     const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
 
-    debugger;
+  
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
@@ -170,7 +170,7 @@ const EmissionSummary: React.FC<{
             pie: {
                 innerSize: '60%',
                 dataLabels: {
-                    enabled: false,
+                    enabled: true,
                     format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
                     style: {
                         fontSize: '12px',
