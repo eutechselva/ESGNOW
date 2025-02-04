@@ -42,10 +42,7 @@
                 "hasConfigured": true,
                 "isNotAvalable": false,
                 "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
+                    
                 }
             }
         ]
@@ -88,10 +85,7 @@
                 },
                 "hasConfigured": true,
                 "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
+                    
                 }
             }
         ]
@@ -106,7 +100,7 @@
                 "key": "173399910764348129",
                 "layout": {
                     "w": 30,
-                    "h": 20,
+                    "h": 100,
                     "x": 0,
                     "y": 0,
                     "i": "173753056549846364",
@@ -115,10 +109,7 @@
                 },
                 "hasConfigured": true,
                 "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
+                    
                 }
             }
         ]

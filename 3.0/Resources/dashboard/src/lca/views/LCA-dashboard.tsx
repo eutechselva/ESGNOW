@@ -33,19 +33,45 @@ const LCADashboardWidget: React.FunctionComponent = () => {
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [showTooltip, setShowTooltip] = React.useState(false);
-    const [productWeight, setProductWeight] = useState<number>(25.00);
-    const [packagingWeight, setPackagingWeight] = useState<number>(0);
+    
+    const [packagingWeight, setPackagingWeight] = useState<number>( 0);
     const [isPackagingManual, setIsPackagingManual] = useState<boolean>(false);
     const [includePallet, setIncludePallet] = useState<boolean>(false);
-    const [palletWeight, setPalletWeight] = useState<number>(0);
+    const [palletWeight, setPalletWeight] = useState<number>(20);
     const [isPalletManual, setIsPalletManual] = useState<boolean>(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = useState<boolean>(false);
     const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = useState<boolean>(false);
+    const [transportationEmission, setTransportationEmission] = useState<string>("");
+    const [totalTransportWeight, setTotalTransportWeight] = useState<number>(0);
 
-    const handleConfirmCalculate = () => {
+    const handleConfirmCalculate = async () => {
+        await calculateTransportationEmission();
         setisEmissionSummaryvisible(true);
         setShowModal(false)
     }
+
+    const calculateTransportationEmission = async () => {
+        await fetch(`${API_BASE_URL}/api/calculate-transport-emission`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                weightKg: selectedProduct?.weight,
+                transportMode: transportMode,
+                transportKm: transportDistance,
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            debugger;
+            setTransportationEmission(data.transportEmissions);
+        })
+        .catch(error => {
+            console.error('Error calculating transport emission:', error);
+        });
+     };
+        
 
 
     React.useEffect(() => {
@@ -124,10 +150,17 @@ const LCADashboardWidget: React.FunctionComponent = () => {
         }
     }, [originGateway, destinationGateway]);
 
+    React.useEffect(() => {
+        debugger;
+        if(includePallet){
+            setTotalTransportWeight(parseFloat((selectedProduct?.weight || 0)) + packagingWeight + palletWeight);
+        }
+        else{
+            setTotalTransportWeight( parseFloat((selectedProduct?.weight || 0))  + packagingWeight);
+        }
+    }, [packagingWeight,palletWeight,includePallet,selectedProduct?.weight]);
 
-    const totalTransportWeight = productWeight +
-        (isPackagingManual ? packagingWeight : 0) +
-        (includePallet && isPalletManual ? palletWeight : 0);
+
 
     const handleSearchChange = (newValue: string) => {
         setSearchValue(newValue);
@@ -161,7 +194,13 @@ const LCADashboardWidget: React.FunctionComponent = () => {
         setActiveStep(0);
     };
 
-    const [originGateways, setOriginGateways] = React.useState([]);
+    React.useEffect(() => {
+        setPackagingWeight((((selectedProduct?.weight || 0)) / 100) * 10);
+         
+    }
+        , [selectProduct]);
+
+    
 
     const onOriginCountryChange = (value: string) => {
         console.log("Origin Country:", value);
@@ -307,9 +346,9 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                         </FormField>
 
 
-                        <div className="save-button-container">
-                            <Button title="Save" className="save-button" onClick={() => { /* Handle save action */ }} />
-                        </div>
+                        {/* <div className="save-button-container">
+                            <Button title="Save" className="save-button" onClick={() => {  }} />
+                        </div> */}
                     </div>
 
                     <div className="add-transport-leg-container">
@@ -343,7 +382,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                                                             </>
                                                         ) : (
                                                             <>
-                                                                <span className="weight-display">{ parseInt(selectedProduct?.weight).toFixed(2)} Kg</span>
+                                                                <span className="weight-display">{ parseFloat(selectedProduct?.weight).toFixed(2)} Kg</span>
                                                                 {/* <Button className="edit-weight-button" title="Edit" onClick={handleEditProductWeight} /> */}
                                                             </>
                                                         )}
@@ -454,7 +493,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
                         <div className="total-weight">
                             <Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
-                            <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
+                            <div className="weight-display">{totalTransportWeight} Kg</div>
                         </div>
                     </div>
                 </div>
@@ -522,15 +561,15 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             </div>
                             <div className="summary-row">
                                 <span>Packaging Weight</span>
-                                <span>0.55 Kg</span>
+                                <span>{packagingWeight}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Pallet Weight</span>
-                                <span>2.00 Kg</span>
+                                <span>{palletWeight}</span>
                             </div>
                             <div className="summary-row">
                                 <span>Total Weight</span>
-                                <span>27.55 Kg</span>
+                                <span>{ parseFloat(selectedProduct?.weight)  + packagingWeight+palletWeight}</span>
                             </div>
                         </div>
                     </div>
@@ -552,7 +591,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             setActiveStep(activeStep - 1);
         }
     };
-    if (isEmissionSummaryVisible) { return <EmissionSummary onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
+    if (isEmissionSummaryVisible) { return <EmissionSummary  transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Impact Analysis</h1>

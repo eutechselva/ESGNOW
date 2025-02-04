@@ -53446,7 +53446,7 @@ const WrappedDashboard = (props) => {
     configs: {
         layout: {
             w: 30,
-            h: 20,
+            h: 40,
         }
     }
 });
@@ -53473,9 +53473,9 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "https://lca-microservice.onrender.com";
-//const API_BASE_URL = "http://localhost:5009";
+const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
@@ -53555,18 +53555,41 @@ const LCADashboardWidget = () => {
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [showTooltip, setShowTooltip] = React.useState(false);
-    const [productWeight, setProductWeight] = (0, react_1.useState)(25.00);
     const [packagingWeight, setPackagingWeight] = (0, react_1.useState)(0);
     const [isPackagingManual, setIsPackagingManual] = (0, react_1.useState)(false);
     const [includePallet, setIncludePallet] = (0, react_1.useState)(false);
-    const [palletWeight, setPalletWeight] = (0, react_1.useState)(0);
+    const [palletWeight, setPalletWeight] = (0, react_1.useState)(20);
     const [isPalletManual, setIsPalletManual] = (0, react_1.useState)(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = (0, react_1.useState)(false);
     const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = (0, react_1.useState)(false);
-    const handleConfirmCalculate = () => {
+    const [transportationEmission, setTransportationEmission] = (0, react_1.useState)("");
+    const [totalTransportWeight, setTotalTransportWeight] = (0, react_1.useState)(0);
+    const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
+        yield calculateTransportationEmission();
         setisEmissionSummaryvisible(true);
         setShowModal(false);
-    };
+    });
+    const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
+        yield fetch(`${config_1.default}/api/calculate-transport-emission`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                weightKg: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight,
+                transportMode: transportMode,
+                transportKm: transportDistance,
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+            debugger;
+            setTransportationEmission(data.transportEmissions);
+        })
+            .catch(error => {
+            console.error('Error calculating transport emission:', error);
+        });
+    });
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -53632,9 +53655,15 @@ const LCADashboardWidget = () => {
             calculateTransportDistance();
         }
     }, [originGateway, destinationGateway]);
-    const totalTransportWeight = productWeight +
-        (isPackagingManual ? packagingWeight : 0) +
-        (includePallet && isPalletManual ? palletWeight : 0);
+    React.useEffect(() => {
+        debugger;
+        if (includePallet) {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight + palletWeight);
+        }
+        else {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight);
+        }
+    }, [packagingWeight, palletWeight, includePallet, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight]);
     const handleSearchChange = (newValue) => {
         setSearchValue(newValue);
         applyFilters(newValue, selectedCategory);
@@ -53659,7 +53688,9 @@ const LCADashboardWidget = () => {
         setShowModal(true);
         setActiveStep(0);
     };
-    const [originGateways, setOriginGateways] = React.useState([]);
+    React.useEffect(() => {
+        setPackagingWeight(((((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) / 100) * 10);
+    }, [selectProduct]);
     const onOriginCountryChange = (value) => {
         console.log("Origin Country:", value);
         console.log("Transport Database:", transportDatabase[value]);
@@ -53727,9 +53758,7 @@ const LCADashboardWidget = () => {
                                 { label: "RoadFreight", value: "RoadFreight" },
                                 { label: "RailFreight", value: "RailFreight" },
                                 { label: "AirFreight", value: "AirFreight" },
-                            ], placeholder: "Select Transport Mode", selected: transportMode, onChange: (value, option) => { setTransportMode(value); } })),
-                    React.createElement("div", { className: "save-button-container" },
-                        React.createElement(components_1.Button, { title: "Save", className: "save-button", onClick: () => { } }))),
+                            ], placeholder: "Select Transport Mode", selected: transportMode, onChange: (value, option) => { setTransportMode(value); } }))),
                 React.createElement("div", { className: "add-transport-leg-container" },
                     React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: () => { } })))),
         },
@@ -53744,7 +53773,7 @@ const LCADashboardWidget = () => {
                                 React.createElement("span", { style: { fontSize: '12px' } }, "Product Weight:")),
                             isProductWeightEditable ? (React.createElement(React.Fragment, null)) : (React.createElement(React.Fragment, null,
                                 React.createElement("span", { className: "weight-display" },
-                                    parseInt(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
                                     " Kg"))))),
                     React.createElement("div", { className: "weight-section" },
                         React.createElement(components_1.Label, null,
@@ -53784,7 +53813,7 @@ const LCADashboardWidget = () => {
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Total Transport Weight")),
                         React.createElement("div", { className: "weight-display" },
-                            totalTransportWeight.toFixed(2),
+                            totalTransportWeight,
                             " Kg"))))),
         },
         {
@@ -53830,13 +53859,13 @@ const LCADashboardWidget = () => {
                             React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Packaging Weight"),
-                            React.createElement("span", null, "0.55 Kg")),
+                            React.createElement("span", null, packagingWeight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Pallet Weight"),
-                            React.createElement("span", null, "2.00 Kg")),
+                            React.createElement("span", null, palletWeight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Total Weight"),
-                            React.createElement("span", null, "27.55 Kg")))),
+                            React.createElement("span", null, parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight + palletWeight)))),
                 React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => handleConfirmCalculate() }))),
         },
     ];
@@ -53851,7 +53880,7 @@ const LCADashboardWidget = () => {
         }
     };
     if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { onBack: () => setisEmissionSummaryvisible(false) });
+        return React.createElement(emission_summary_1.default, { transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false) });
     }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
@@ -54190,7 +54219,8 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: "Save results", onClick: onClose, className: "save-results" })))));
 };
-const EmissionSummary = ({ onBack }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission }) => {
+    const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
     const toggleExpand = () => setIsExpanded(!isExpanded);
@@ -54198,6 +54228,7 @@ const EmissionSummary = ({ onBack }) => {
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
     const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
+    debugger;
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -54207,7 +54238,7 @@ const EmissionSummary = ({ onBack }) => {
             events: {
                 render() {
                     const chart = this;
-                    const totalValue = 60 + 40 + 30;
+                    const totalValue = (parseFloat(product.co2EmissionRawMaterials) + parseFloat(product.co2EmissionFromProcesses) + parseFloat(transportationEmission)).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
@@ -54255,9 +54286,9 @@ const EmissionSummary = ({ onBack }) => {
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: 60, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: 40, color: '#ffaa00' },
-                    { name: 'Transportation', y: 30, color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: parseFloat(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: parseFloat(product.co2EmissionFromProcesses), color: '#ffaa00' },
+                    { name: 'Transportation', y: parseFloat(transportationEmission), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -54308,58 +54339,58 @@ const EmissionSummary = ({ onBack }) => {
                                     react_1.default.createElement("th", null, "Specific Material"),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Metal"),
-                                    react_1.default.createElement("td", null, "Aluminum"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Metal"),
-                                    react_1.default.createElement("td", null, "Aluminum"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Metal"),
-                                    react_1.default.createElement("td", null, "Aluminum"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Metal"),
-                                    react_1.default.createElement("td", null, "Aluminum"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")))))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.materialClass },
+                                        react_1.default.createElement("td", null, item.materialClass),
+                                        react_1.default.createElement("td", null, item.specificMaterial),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.emissionFactor).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))),
                 react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
                     react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
                     react_1.default.createElement("div", { className: "widget-content" },
                         react_1.default.createElement("table", null,
                             react_1.default.createElement("thead", null,
                                 react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Material Class"),
                                     react_1.default.createElement("th", null, "Specific Material"),
+                                    react_1.default.createElement("th", null, "Manufacturing Process"),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Sawing"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Sawing"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Sawing"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")),
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("td", null, "Wood Working"),
-                                    react_1.default.createElement("td", null, "Sawing"),
-                                    react_1.default.createElement("td", null, "20 KgCO\u2082e"),
-                                    react_1.default.createElement("td", null, "25%")))))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
+                                // Sort the productManufacturingProcess by emissionFactor in descending order
+                                const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedProcess.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.materialClass },
+                                        react_1.default.createElement("td", null, item.materialClass),
+                                        react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.emissionFactor).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))),
                 react_1.default.createElement("div", { className: "widget contribution-raw-material" },
                     react_1.default.createElement("h3", null, "Contribution by Transportation"),
                     react_1.default.createElement("div", { className: "widget-content" },
@@ -54880,163 +54911,6 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const productData = [
-    // Sample data of products
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001",
-        productCode: "ECO-WB-001",
-        name: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "20/11/2024",
-        createdDate: "20/11/2024",
-        co2Emission: "160 Kg CO2e"
-    },
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGjHq510rVZW1lf-59Gdui7zbS8RKcBnFHIABazdQtEGNBTMSw",
-        title: "ECO-WB-002",
-        productCode: "ECO-WB-002",
-        name: "Chiro Medium Back Posture Chair ",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "22/11/2024",
-        createdDate: "22/11/2024",
-        co2Emission: "150 Kg CO2e"
-    },
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR66LKJ5XWKSoHwz9Vxmc3vTVEtAhpRkuPO5j7VoINiIck_XUkR",
-        title: "ECO-WB-003",
-        productCode: "ECO-WB-003",
-        name: "Bay Offer - Rapid Folding Shelving",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Shelving & Racking ",
-        subCategory: "Chairs",
-        modifiedDate: "24/11/2024",
-        createdDate: "24/11/2024",
-        co2Emission: "70 Kg CO2e"
-    },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    //  {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-];
 const ProductDashboardWidget = (props) => {
     const [productData, setProductData] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -55046,6 +54920,21 @@ const ProductDashboardWidget = (props) => {
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
+    // Calculate pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(productData.length / itemsPerPage);
+    const Pagination = () => (React.createElement("div", { className: "flex justify-center items-center gap-2 mt-4" },
+        React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }),
+        React.createElement("span", { className: "mx-2" },
+            "Page ",
+            currentPage,
+            " of ",
+            totalPages),
+        React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages })));
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -55114,19 +55003,21 @@ const ProductDashboardWidget = (props) => {
                                         setMaxCO2(value);
                                         applyFilters(searchValue, selectedCategory, value);
                                     }, placeholder: "Set maximum CO2" }))))),
-                viewMode === 'grid' ? (React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
-                        React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
-                        React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
-                        React.createElement("div", { className: "product-details" },
-                            React.createElement("p", null, item.title),
-                            React.createElement("h4", null, item.name),
-                            React.createElement("p", null, item.category),
-                            React.createElement("p", null,
-                                "Modified: ",
-                                new Date(item.modifiedDate).toLocaleString()),
-                            React.createElement("p", null,
-                                "Created: ",
-                                new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" })) : (React.createElement("div", { className: "list-view" }, productData.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
+                viewMode === 'grid' ? (React.createElement(React.Fragment, null,
+                    React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
+                            React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
+                            React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
+                            React.createElement("div", { className: "product-details" },
+                                React.createElement("p", null, item.title),
+                                React.createElement("h4", null, item.name),
+                                React.createElement("p", null, item.category),
+                                React.createElement("p", null,
+                                    "Modified: ",
+                                    new Date(item.modifiedDate).toLocaleString()),
+                                React.createElement("p", null,
+                                    "Created: ",
+                                    new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" }),
+                    React.createElement(Pagination, null))) : (React.createElement("div", { className: "list-view" }, productData.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
                     React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
                     React.createElement("div", { className: "product-details" },
                         React.createElement("p", null, item.title),
@@ -57297,7 +57188,7 @@ exports.registerCustomWidgetTemplate = registerCustomWidgetTemplate;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGRlZnM+DQogICAgICAgIDxyZWN0IGlkPSJhIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHJ4PSI4IiAvPg0KICAgIDwvZGVmcz4NCiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IDUpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8IS0tIDxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmZmZmIj4NCiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4NCiAgICAgICAgPC9tYXNrPiAtLT4NCiAgICAgICAgPCEtLSA8dXNlIGZpbGw9IiNFN0VBRjAiIHg6aHJlZj0iI2EiIC8+IC0tPg0KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiINCiAgICAgICAgICAgIGZpbGw9IiNFQTQzMzUiIG1hc2s9InVybCgjYikiIC8+DQogICAgICAgIDxwYXRoIGQ9Ik0zMCAyNmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptMC0xMWE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptLTExIDBhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6Ig0KICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPHBhdGggZD0iTTE5IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek04IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIgZmlsbD0iIzM0QTg1MyIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPGNpcmNsZSBmaWxsPSIjRkJCQzA1IiBtYXNrPSJ1cmwoI2IpIiBjeD0iOCIgY3k9IjE5IiByPSI0IiAvPg0KICAgIDwvZz4NCjwvc3ZnPg==";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cmVjdCBpZD0iYSIgeD0iMCIgeT0iMCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiByeD0iOCIgLz4KICAgIDwvZGVmcz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgNSkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPCEtLSA8bWFzayBpZD0iYiIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4KICAgICAgICA8L21hc2s+IC0tPgogICAgICAgIDwhLS0gPHVzZSBmaWxsPSIjRTdFQUYwIiB4OmhyZWY9IiNhIiAvPiAtLT4KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iI0VBNDMzNSIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMzAgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bTAtMTFhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bS0xMSAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMTkgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6TTggMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6IiBmaWxsPSIjMzRBODUzIiBtYXNrPSJ1cmwoI2IpIiAvPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0ZCQkMwNSIgbWFzaz0idXJsKCNiKSIgY3g9IjgiIGN5PSIxOSIgcj0iNCIgLz4KICAgIDwvZz4KPC9zdmc+";
 
 /***/ }),
 
@@ -73838,384 +73729,6 @@ function cleanEscapedString(input) {
 
 /***/ }),
 
-/***/ "./node_modules/date-fns/parseISO.cjs":
-/*!********************************************!*\
-  !*** ./node_modules/date-fns/parseISO.cjs ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseISO = parseISO;
-var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
-
-var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
-var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseISO} function options.
- */
-
-/**
- * @name parseISO
- * @category Common Helpers
- * @summary Parse ISO string
- *
- * @description
- * Parse the given string in ISO 8601 format and return an instance of Date.
- *
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- *
- * If the argument isn't a string, the function cannot parse the string or
- * the values are invalid, it returns Invalid Date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param argument - The value to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * const result = parseISO('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * const result = parseISO('+02014101', { additionalDigits: 1 })
- * //=> Fri Apr 11 2014 00:00:00
- */
-function parseISO(argument, options) {
-  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
-
-  const additionalDigits = options?.additionalDigits ?? 2;
-  const dateStrings = splitDateString(argument);
-
-  let date;
-  if (dateStrings.date) {
-    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
-    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
-  }
-
-  if (!date || isNaN(+date)) return invalidDate();
-
-  const timestamp = +date;
-  let time = 0;
-  let offset;
-
-  if (dateStrings.time) {
-    time = parseTime(dateStrings.time);
-    if (isNaN(time)) return invalidDate();
-  }
-
-  if (dateStrings.timezone) {
-    offset = parseTimezone(dateStrings.timezone);
-    if (isNaN(offset)) return invalidDate();
-  } else {
-    const tmpDate = new Date(timestamp + time);
-    const result = (0, _index3.toDate)(0, options?.in);
-    result.setFullYear(
-      tmpDate.getUTCFullYear(),
-      tmpDate.getUTCMonth(),
-      tmpDate.getUTCDate(),
-    );
-    result.setHours(
-      tmpDate.getUTCHours(),
-      tmpDate.getUTCMinutes(),
-      tmpDate.getUTCSeconds(),
-      tmpDate.getUTCMilliseconds(),
-    );
-    return result;
-  }
-
-  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
-}
-
-const patterns = {
-  dateTimeDelimiter: /[T ]/,
-  timeZoneDelimiter: /[Z ]/i,
-  timezone: /([Z+-].*)$/,
-};
-
-const dateRegex =
-  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-const timeRegex =
-  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
-const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-
-function splitDateString(dateString) {
-  const dateStrings = {};
-  const array = dateString.split(patterns.dateTimeDelimiter);
-  let timeString;
-
-  // The regex match should only return at maximum two array elements.
-  // [date], [time], or [date, time].
-  if (array.length > 2) {
-    return dateStrings;
-  }
-
-  if (/:/.test(array[0])) {
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
-      timeString = dateString.substr(
-        dateStrings.date.length,
-        dateString.length,
-      );
-    }
-  }
-
-  if (timeString) {
-    const token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], "");
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings;
-}
-
-function parseYear(dateString, additionalDigits) {
-  const regex = new RegExp(
-    "^(?:(\\d{4}|[+-]\\d{" +
-      (4 + additionalDigits) +
-      "})|(\\d{2}|[+-]\\d{" +
-      (2 + additionalDigits) +
-      "})$)",
-  );
-
-  const captures = dateString.match(regex);
-  // Invalid ISO-formatted year
-  if (!captures) return { year: NaN, restDateString: "" };
-
-  const year = captures[1] ? parseInt(captures[1]) : null;
-  const century = captures[2] ? parseInt(captures[2]) : null;
-
-  // either year or century is null, not both
-  return {
-    year: century === null ? year : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length),
-  };
-}
-
-function parseDate(dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) return new Date(NaN);
-
-  const captures = dateString.match(dateRegex);
-  // Invalid ISO-formatted string
-  if (!captures) return new Date(NaN);
-
-  const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]);
-  const month = parseDateUnit(captures[2]) - 1;
-  const day = parseDateUnit(captures[3]);
-  const week = parseDateUnit(captures[4]);
-  const dayOfWeek = parseDateUnit(captures[5]) - 1;
-
-  if (isWeekDate) {
-    if (!validateWeekDate(year, week, dayOfWeek)) {
-      return new Date(NaN);
-    }
-    return dayOfISOWeekYear(year, week, dayOfWeek);
-  } else {
-    const date = new Date(0);
-    if (
-      !validateDate(year, month, day) ||
-      !validateDayOfYearDate(year, dayOfYear)
-    ) {
-      return new Date(NaN);
-    }
-    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
-    return date;
-  }
-}
-
-function parseDateUnit(value) {
-  return value ? parseInt(value) : 1;
-}
-
-function parseTime(timeString) {
-  const captures = timeString.match(timeRegex);
-  if (!captures) return NaN; // Invalid ISO-formatted time
-
-  const hours = parseTimeUnit(captures[1]);
-  const minutes = parseTimeUnit(captures[2]);
-  const seconds = parseTimeUnit(captures[3]);
-
-  if (!validateTime(hours, minutes, seconds)) {
-    return NaN;
-  }
-
-  return (
-    hours * _index.millisecondsInHour +
-    minutes * _index.millisecondsInMinute +
-    seconds * 1000
-  );
-}
-
-function parseTimeUnit(value) {
-  return (value && parseFloat(value.replace(",", "."))) || 0;
-}
-
-function parseTimezone(timezoneString) {
-  if (timezoneString === "Z") return 0;
-
-  const captures = timezoneString.match(timezoneRegex);
-  if (!captures) return 0;
-
-  const sign = captures[1] === "+" ? -1 : 1;
-  const hours = parseInt(captures[2]);
-  const minutes = (captures[3] && parseInt(captures[3])) || 0;
-
-  if (!validateTimezone(hours, minutes)) {
-    return NaN;
-  }
-
-  return (
-    sign *
-    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
-  );
-}
-
-function dayOfISOWeekYear(isoWeekYear, week, day) {
-  const date = new Date(0);
-  date.setUTCFullYear(isoWeekYear, 0, 4);
-  const fourthOfJanuaryDay = date.getUTCDay() || 7;
-  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date;
-}
-
-// Validation functions
-
-// February is null to handle the leap year (using ||)
-const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
-
-function validateDate(year, month, date) {
-  return (
-    month >= 0 &&
-    month <= 11 &&
-    date >= 1 &&
-    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
-  );
-}
-
-function validateDayOfYearDate(year, dayOfYear) {
-  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
-}
-
-function validateWeekDate(_year, week, day) {
-  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
-}
-
-function validateTime(hours, minutes, seconds) {
-  if (hours === 24) {
-    return minutes === 0 && seconds === 0;
-  }
-
-  return (
-    seconds >= 0 &&
-    seconds < 60 &&
-    minutes >= 0 &&
-    minutes < 60 &&
-    hours >= 0 &&
-    hours < 25
-  );
-}
-
-function validateTimezone(_hours, minutes) {
-  return minutes >= 0 && minutes <= 59;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/date-fns/parseJSON.cjs":
-/*!*********************************************!*\
-  !*** ./node_modules/date-fns/parseJSON.cjs ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseJSON = parseJSON;
-var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseJSON} function options.
- */
-
-/**
- * Converts a complete ISO date string in UTC time, the typical format for transmitting
- * a date in JSON, to a JavaScript `Date` instance.
- *
- * This is a minimal implementation for converting dates retrieved from a JSON API to
- * a `Date` instance which can be used with other functions in the `date-fns` library.
- * The following formats are supported:
- *
- * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
- * - `2000-03-15T05:20:10Z`: Without milliseconds
- * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
- * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
- * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
- * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
- *
- * For convenience and ease of use these other input types are also supported
- * via [toDate](https://date-fns.org/docs/toDate):
- *
- * - A `Date` instance will be cloned
- * - A `number` will be treated as a timestamp
- *
- * Any other input type or invalid date strings will return an `Invalid Date`.
- *
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dateStr - A fully formed ISO8601 date string to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- */
-function parseJSON(dateStr, options) {
-  const parts = dateStr.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
-  );
-
-  if (!parts) return (0, _index.toDate)(NaN, options?.in);
-
-  return (0, _index.toDate)(
-    Date.UTC(
-      +parts[1],
-      +parts[2] - 1,
-      +parts[3],
-      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[6],
-      +((parts[7] || "0") + "00").substring(0, 3),
-    ),
-    options?.in,
-  );
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/date-fns/parse/_lib/Parser.cjs":
 /*!*****************************************************!*\
   !*** ./node_modules/date-fns/parse/_lib/Parser.cjs ***!
@@ -76851,6 +76364,384 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
 
 function isLeapYearIndex(year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseISO.cjs":
+/*!********************************************!*\
+  !*** ./node_modules/date-fns/parseISO.cjs ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseISO = parseISO;
+var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
+
+var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
+var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseISO} function options.
+ */
+
+/**
+ * @name parseISO
+ * @category Common Helpers
+ * @summary Parse ISO string
+ *
+ * @description
+ * Parse the given string in ISO 8601 format and return an instance of Date.
+ *
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If the argument isn't a string, the function cannot parse the string or
+ * the values are invalid, it returns Invalid Date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param argument - The value to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * const result = parseISO('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert string '+02014101' to date,
+ * // if the additional number of digits in the extended year format is 1:
+ * const result = parseISO('+02014101', { additionalDigits: 1 })
+ * //=> Fri Apr 11 2014 00:00:00
+ */
+function parseISO(argument, options) {
+  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
+
+  const additionalDigits = options?.additionalDigits ?? 2;
+  const dateStrings = splitDateString(argument);
+
+  let date;
+  if (dateStrings.date) {
+    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
+    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
+  }
+
+  if (!date || isNaN(+date)) return invalidDate();
+
+  const timestamp = +date;
+  let time = 0;
+  let offset;
+
+  if (dateStrings.time) {
+    time = parseTime(dateStrings.time);
+    if (isNaN(time)) return invalidDate();
+  }
+
+  if (dateStrings.timezone) {
+    offset = parseTimezone(dateStrings.timezone);
+    if (isNaN(offset)) return invalidDate();
+  } else {
+    const tmpDate = new Date(timestamp + time);
+    const result = (0, _index3.toDate)(0, options?.in);
+    result.setFullYear(
+      tmpDate.getUTCFullYear(),
+      tmpDate.getUTCMonth(),
+      tmpDate.getUTCDate(),
+    );
+    result.setHours(
+      tmpDate.getUTCHours(),
+      tmpDate.getUTCMinutes(),
+      tmpDate.getUTCSeconds(),
+      tmpDate.getUTCMilliseconds(),
+    );
+    return result;
+  }
+
+  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
+}
+
+const patterns = {
+  dateTimeDelimiter: /[T ]/,
+  timeZoneDelimiter: /[Z ]/i,
+  timezone: /([Z+-].*)$/,
+};
+
+const dateRegex =
+  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+const timeRegex =
+  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+
+function splitDateString(dateString) {
+  const dateStrings = {};
+  const array = dateString.split(patterns.dateTimeDelimiter);
+  let timeString;
+
+  // The regex match should only return at maximum two array elements.
+  // [date], [time], or [date, time].
+  if (array.length > 2) {
+    return dateStrings;
+  }
+
+  if (/:/.test(array[0])) {
+    timeString = array[0];
+  } else {
+    dateStrings.date = array[0];
+    timeString = array[1];
+    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      timeString = dateString.substr(
+        dateStrings.date.length,
+        dateString.length,
+      );
+    }
+  }
+
+  if (timeString) {
+    const token = patterns.timezone.exec(timeString);
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], "");
+      dateStrings.timezone = token[1];
+    } else {
+      dateStrings.time = timeString;
+    }
+  }
+
+  return dateStrings;
+}
+
+function parseYear(dateString, additionalDigits) {
+  const regex = new RegExp(
+    "^(?:(\\d{4}|[+-]\\d{" +
+      (4 + additionalDigits) +
+      "})|(\\d{2}|[+-]\\d{" +
+      (2 + additionalDigits) +
+      "})$)",
+  );
+
+  const captures = dateString.match(regex);
+  // Invalid ISO-formatted year
+  if (!captures) return { year: NaN, restDateString: "" };
+
+  const year = captures[1] ? parseInt(captures[1]) : null;
+  const century = captures[2] ? parseInt(captures[2]) : null;
+
+  // either year or century is null, not both
+  return {
+    year: century === null ? year : century * 100,
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
+  };
+}
+
+function parseDate(dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) return new Date(NaN);
+
+  const captures = dateString.match(dateRegex);
+  // Invalid ISO-formatted string
+  if (!captures) return new Date(NaN);
+
+  const isWeekDate = !!captures[4];
+  const dayOfYear = parseDateUnit(captures[1]);
+  const month = parseDateUnit(captures[2]) - 1;
+  const day = parseDateUnit(captures[3]);
+  const week = parseDateUnit(captures[4]);
+  const dayOfWeek = parseDateUnit(captures[5]) - 1;
+
+  if (isWeekDate) {
+    if (!validateWeekDate(year, week, dayOfWeek)) {
+      return new Date(NaN);
+    }
+    return dayOfISOWeekYear(year, week, dayOfWeek);
+  } else {
+    const date = new Date(0);
+    if (
+      !validateDate(year, month, day) ||
+      !validateDayOfYearDate(year, dayOfYear)
+    ) {
+      return new Date(NaN);
+    }
+    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
+    return date;
+  }
+}
+
+function parseDateUnit(value) {
+  return value ? parseInt(value) : 1;
+}
+
+function parseTime(timeString) {
+  const captures = timeString.match(timeRegex);
+  if (!captures) return NaN; // Invalid ISO-formatted time
+
+  const hours = parseTimeUnit(captures[1]);
+  const minutes = parseTimeUnit(captures[2]);
+  const seconds = parseTimeUnit(captures[3]);
+
+  if (!validateTime(hours, minutes, seconds)) {
+    return NaN;
+  }
+
+  return (
+    hours * _index.millisecondsInHour +
+    minutes * _index.millisecondsInMinute +
+    seconds * 1000
+  );
+}
+
+function parseTimeUnit(value) {
+  return (value && parseFloat(value.replace(",", "."))) || 0;
+}
+
+function parseTimezone(timezoneString) {
+  if (timezoneString === "Z") return 0;
+
+  const captures = timezoneString.match(timezoneRegex);
+  if (!captures) return 0;
+
+  const sign = captures[1] === "+" ? -1 : 1;
+  const hours = parseInt(captures[2]);
+  const minutes = (captures[3] && parseInt(captures[3])) || 0;
+
+  if (!validateTimezone(hours, minutes)) {
+    return NaN;
+  }
+
+  return (
+    sign *
+    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
+  );
+}
+
+function dayOfISOWeekYear(isoWeekYear, week, day) {
+  const date = new Date(0);
+  date.setUTCFullYear(isoWeekYear, 0, 4);
+  const fourthOfJanuaryDay = date.getUTCDay() || 7;
+  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
+  date.setUTCDate(date.getUTCDate() + diff);
+  return date;
+}
+
+// Validation functions
+
+// February is null to handle the leap year (using ||)
+const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function isLeapYearIndex(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+function validateDate(year, month, date) {
+  return (
+    month >= 0 &&
+    month <= 11 &&
+    date >= 1 &&
+    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
+  );
+}
+
+function validateDayOfYearDate(year, dayOfYear) {
+  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
+}
+
+function validateWeekDate(_year, week, day) {
+  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
+}
+
+function validateTime(hours, minutes, seconds) {
+  if (hours === 24) {
+    return minutes === 0 && seconds === 0;
+  }
+
+  return (
+    seconds >= 0 &&
+    seconds < 60 &&
+    minutes >= 0 &&
+    minutes < 60 &&
+    hours >= 0 &&
+    hours < 25
+  );
+}
+
+function validateTimezone(_hours, minutes) {
+  return minutes >= 0 && minutes <= 59;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseJSON.cjs":
+/*!*********************************************!*\
+  !*** ./node_modules/date-fns/parseJSON.cjs ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseJSON = parseJSON;
+var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseJSON} function options.
+ */
+
+/**
+ * Converts a complete ISO date string in UTC time, the typical format for transmitting
+ * a date in JSON, to a JavaScript `Date` instance.
+ *
+ * This is a minimal implementation for converting dates retrieved from a JSON API to
+ * a `Date` instance which can be used with other functions in the `date-fns` library.
+ * The following formats are supported:
+ *
+ * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
+ * - `2000-03-15T05:20:10Z`: Without milliseconds
+ * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
+ * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
+ * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
+ * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
+ *
+ * For convenience and ease of use these other input types are also supported
+ * via [toDate](https://date-fns.org/docs/toDate):
+ *
+ * - A `Date` instance will be cloned
+ * - A `number` will be treated as a timestamp
+ *
+ * Any other input type or invalid date strings will return an `Invalid Date`.
+ *
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dateStr - A fully formed ISO8601 date string to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ */
+function parseJSON(dateStr, options) {
+  const parts = dateStr.match(
+    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
+  );
+
+  if (!parts) return (0, _index.toDate)(NaN, options?.in);
+
+  return (0, _index.toDate)(
+    Date.UTC(
+      +parts[1],
+      +parts[2] - 1,
+      +parts[3],
+      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[6],
+      +((parts[7] || "0") + "00").substring(0, 3),
+    ),
+    options?.in,
+  );
 }
 
 
@@ -118765,7 +118656,7 @@ const version = XLSX.version;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
 
 /***/ }),
 

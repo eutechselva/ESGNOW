@@ -5,6 +5,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Modal } from 'uxp/components';
 import Projects from './projects';
+import { ProductInfoSummary } from '../types/product-info-summary.type';
 
 const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boolean }> = ({
     onClose,
@@ -94,7 +95,13 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
 };
 
 
-const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
+const EmissionSummary: React.FC<{
+    product: ProductInfoSummary;
+    transportationEmission : string;
+    onBack: () => void;
+}> = ({ product, onBack ,transportationEmission }) => {
+
+    const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
 
@@ -105,6 +112,7 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
     const [hasExistingProjects, setHasExistingProjects] = useState(true);
     const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
 
+    debugger;
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
@@ -114,7 +122,7 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = 60 + 40 + 30; 
+                    const totalValue = (parseFloat(product.co2EmissionRawMaterials) + parseFloat(product.co2EmissionFromProcesses) + parseFloat(transportationEmission)).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
@@ -165,9 +173,9 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: 60, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: 40, color: '#ffaa00' },
-                    { name: 'Transportation', y: 30, color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: parseFloat(product.co2EmissionRawMaterials) , color: '#78BE7C' },
+                    { name: 'Manufacturing', y: parseFloat(product.co2EmissionFromProcesses), color: '#ffaa00' },
+                    { name: 'Transportation', y: parseFloat(transportationEmission), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -176,7 +184,7 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'bottom',
-            symbolRadius: 5, 
+            symbolRadius: 5,
             symbolHeight: 10,
             symbolWidth: 10,
             itemMarginTop: 5,
@@ -237,30 +245,32 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Metal</td>
-                                        <td>Aluminum</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Metal</td>
-                                        <td>Aluminum</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Metal</td>
-                                        <td>Aluminum</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Metal</td>
-                                        <td>Aluminum</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
+                                    {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = product.materials.reduce(
+                                            (sum: number, item: any) => sum + item.emissionFactor,
+                                            0
+                                        );
+
+                                        // Sort the materials by emissionFactor in descending order
+                                        const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedMaterials.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.materialClass}>
+                                                    <td>{item.materialClass}</td>
+                                                    <td>{item.specificMaterial}</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+                                    })()}
                                 </tbody>
                             </table>
                         </div>
@@ -271,37 +281,42 @@ const EmissionSummary: React.FC<{ onBack: () => void }> = ({ onBack }) => {
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Material Class</th>
                                         <th>Specific Material</th>
+                                        <th>Manufacturing Process</th>
                                         <th>Contribution</th>
                                         <th>Percentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Sawing</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Sawing</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Sawing</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Wood Working</td>
-                                        <td>Sawing</td>
-                                        <td>20 KgCO₂e</td>
-                                        <td>25%</td>
-                                    </tr>
+
+
+
+                                    {(() => {
+                                        // Calculate the total emission factor
+                                        const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                            (sum: number, item: any) => sum + item.emissionFactor,
+                                            0
+                                        );
+
+                                        // Sort the productManufacturingProcess by emissionFactor in descending order
+                                        const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                        // Map through the sorted materials and calculate percentage
+                                        return sortedProcess.map((item: any) => {
+                                            const percentage =
+                                                totalEmissionFactor > 0
+                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                                    : 0;
+                                            return (
+                                                <tr key={item.materialClass}>
+                                                    <td>{item.materialClass}</td>
+                                                    <td>{item.manufacturingProcesses[0].category}</td>
+                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{percentage} %</td>
+                                                </tr>
+                                            );
+                                        });
+                                    })()}
                                 </tbody>
                             </table>
                         </div>

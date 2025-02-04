@@ -14,169 +14,7 @@ interface IWidgetProps {
     instanceId?: string;
 }
 
-const productData = [
-    // Sample data of products
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001",
-        productCode: "ECO-WB-001",
-        name: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
 
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "20/11/2024",
-        createdDate: "20/11/2024",
-        co2Emission: "160 Kg CO2e"
-    },
-
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGjHq510rVZW1lf-59Gdui7zbS8RKcBnFHIABazdQtEGNBTMSw",
-        title: "ECO-WB-002",
-        productCode: "ECO-WB-002",
-        name: "Chiro Medium Back Posture Chair ",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "22/11/2024",
-        createdDate: "22/11/2024",
-        co2Emission: "150 Kg CO2e"
-    },
-
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR66LKJ5XWKSoHwz9Vxmc3vTVEtAhpRkuPO5j7VoINiIck_XUkR",
-        title: "ECO-WB-003",
-        productCode: "ECO-WB-003",
-        name: "Bay Offer - Rapid Folding Shelving",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Shelving & Racking ",
-        subCategory: "Chairs",
-        modifiedDate: "24/11/2024",
-        createdDate: "24/11/2024",
-        co2Emission: "70 Kg CO2e"
-    },
-
-
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    //  {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-
-];
 
 const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) => {
     const [productData, setProductData] = React.useState([]);
@@ -187,6 +25,33 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
+
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
+
+    // Calculate pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(productData.length / itemsPerPage);
+
+    const Pagination = () => (
+        <div className="flex justify-center items-center gap-2 mt-4">
+            <Button
+                title="Previous"
+                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                disabled={currentPage === 1}
+            />
+            <span className="mx-2">
+                Page {currentPage} of {totalPages}
+            </span>
+            <Button
+                title="Next"
+                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                disabled={currentPage === totalPages}
+            />
+        </div>
+    );
 
     React.useEffect(() => {
         const fetchProductData = async () => {
@@ -322,6 +187,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                         </div>
 
                         {viewMode === 'grid' ? (
+                            <>
                             <DataGrid
                                 data={productData}
                                 renderItem={(item) => (
@@ -340,6 +206,8 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                                 columns={3}
                                 className="product-data-grid"
                             />
+                            <Pagination />
+                            </>
                         ) : (
                             <div className="list-view">
                                 {productData.map((item, index) => (
