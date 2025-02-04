@@ -186,9 +186,9 @@ const EmissionSummary: React.FC<{
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: parseFloat(product.co2EmissionRawMaterials) , color: '#78BE7C' },
-                    { name: 'Manufacturing', y: parseFloat(product.co2EmissionFromProcesses), color: '#ffaa00' },
-                    { name: 'Transportation', y: parseFloat(transportationEmission), color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: parseFloat(parseFloat(product.co2EmissionRawMaterials).toFixed(2))  , color: '#78BE7C' },
+                    { name: 'Manufacturing', y:  parseFloat(parseFloat(product.co2EmissionFromProcesses).toFixed(2)) , color: '#ffaa00' },
+                    { name: 'Transportation', y:  parseFloat(parseFloat(transportationEmission).toFixed(2)) , color: '#2A9D8F' },
                 ],
             },
         ],
@@ -352,25 +352,25 @@ const EmissionSummary: React.FC<{
                                      {(() => {
                                         // Calculate the total emission factor
                                         const totalEmissionFactor = transportLegs.reduce(
-                                            (sum: number, item: any) => sum + item.transportDistance,
+                                            (sum: number, item: any) => sum + item.transportEmission,
                                             0
                                         );
 
                                         // Sort the materials by emissionFactor in descending order
-                                        const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportDistance - a.transportDistance);
+                                        const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportEmission - a.transportEmission);
 
                                         // Map through the sorted materials and calculate percentage
                                         return sortedMaterials.map((item: any) => {
                                             const percentage =
                                                 totalEmissionFactor > 0
-                                                    ? ((item.transportDistance / totalEmissionFactor) * 100).toFixed(2)
+                                                    ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
                                                     : 0;
                                             return (
                                                 <tr key={item.id}>
                                                     <td>{item.transportMode}</td>
                                                     <td>{item.originGateway}</td>
                                                     <td>{item.destinationGateway}</td>
-                                                    <td>{parseFloat(item.transportDistance).toFixed(2)} KgCO₂e</td>
+                                                    <td>{parseFloat(item.transportEmission).toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>
                                             );
