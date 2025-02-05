@@ -19,5 +19,11 @@
         "icon": "fad chart-bar",
         "dashboardKey": "lca",
         "userRoles": []
+    },{
+        "id": "projects",
+        "label": "Projects",
+        "icon": "fad folder-open",
+        "dashboardKey": "projects",
+        "userRoles": []
     }
 ]

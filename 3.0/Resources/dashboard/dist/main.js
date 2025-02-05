@@ -150,7 +150,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 10px;\n}\n.product-selection-step h2 {\n  font-size: 1.8em;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.product-selection-step .selected-product-container {\n  display: flex;\n  align-items: center;\n  margin-bottom: 5px;\n}\n.product-selection-step .selected-product-container .selected-product {\n  display: flex;\n  align-items: center;\n  background-color: #f0f0f0;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-code {\n  padding: 5px 10px;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-name {\n  color: #333;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 10px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 80px;\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n}\n.product-selection-step .product-inventory-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-inventory-field .product-inventory {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-input {\n  width: 20%;\n  padding: 8px;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-unit {\n  font-weight: bold;\n  margin-left: 5px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 40%;\n  min-width: 40%;\n  max-width: 40%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 12px 24px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 16px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  width: 17%;\n  text-align: center;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 10px;\n}\n.product-selection-step h2 {\n  font-size: 1.8em;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.product-selection-step .selected-product-container {\n  display: flex;\n  align-items: center;\n  margin-bottom: 5px;\n}\n.product-selection-step .selected-product-container .selected-product {\n  display: flex;\n  align-items: center;\n  background-color: #f0f0f0;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-code {\n  padding: 5px 10px;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-name {\n  color: #333;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 10px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 80px;\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n}\n.product-selection-step .product-inventory-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-inventory-field .product-inventory {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-input {\n  width: 20%;\n  padding: 8px;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-unit {\n  font-weight: bold;\n  margin-left: 5px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 40%;\n  min-width: 40%;\n  max-width: 40%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 12px 24px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 16px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  width: 38%;\n  text-align: center;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -185,6 +185,23 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.id, ".bill-materials {\n  padding: 16px;\n}\n\n.material-composition-heading {\n  font-size: 14px;\n  text-align: left;\n  display: flex;\n  margin-bottom: 26px;\n  gap: 8px;\n  position: relative;\n}\n\n.info-icon {\n  position: relative;\n  cursor: pointer;\n  color: #007bff;\n  font-size: 16px;\n}\n\n.tooltip {\n  position: absolute;\n  top: 50%;\n  left: 100%;\n  transform: translateY(-50%);\n  background-color: #fff;\n  color: #333;\n  padding: 10px 12px;\n  border-radius: 8px;\n  font-size: 11px;\n  min-width: 300px;\n  text-align: left;\n  z-index: 1000;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);\n  opacity: 0;\n  transition: opacity 0.3s ease;\n  line-height: 1.4;\n}\n\n.info-icon:hover .tooltip {\n  opacity: 1;\n}\n\n.tooltip::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: -6px;\n  transform: translateY(-50%);\n  border-width: 6px;\n  border-style: solid;\n  border-color: transparent #333 transparent transparent;\n}\n\n.entry-type-select {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  margin-bottom: 16px;\n}\n\n.select-method-label {\n  font-size: 12px;\n  text-align: left;\n}\n\n.add-materials-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.add-materials-button:hover {\n  background-color: #1e88e5;\n}\n\n.generate-materials-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss":
+/*!**************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss ***!
+  \**************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".save-go-back-buttons {\n  display: flex;\n}\n\n.save-results-button {\n  background-color: #4CAF50;\n  margin-top: 40px;\n  color: white;\n  font-weight: bold;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;\n  animation: pulse 2s infinite;\n}\n.save-results-button:hover {\n  transform: scale(1.05);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  background-color: #45a049;\n  color: white;\n}\n.save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.save-results-modal .card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.save-results-modal .option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.save-results-modal .option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.save-results-modal .option-card.selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.existing-project-selection {\n  margin-top: 20px;\n}\n\n.save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.save-results {\n  background: #28a745;\n  color: white;\n}\n\n.card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -338,6 +355,23 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.id, ".heading {\n  font-size: 24px;\n  font-weight: 700;\n}\n\n.subheading {\n  font-size: 16px;\n}\n\n/* Centered Content */\n.centered-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  height: 420px;\n  text-align: center;\n  gap: 1rem;\n}\n\n.icon-placeholder {\n  width: 80px;\n  height: 80px;\n  border-radius: 8px;\n}\n\n.placeholder-image {\n  max-width: 100%;\n  max-height: 100%;\n  object-fit: cover;\n}\n\n.create-product-button {\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.create-your-first-product {\n  margin-bottom: 10px;\n  font-weight: bold;\n}\n\n.description-text {\n  font-size: 16px;\n  color: #424242;\n  margin-bottom: 10px;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss ***!
+  \******************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".projects-container {\n  padding: 20px;\n}\n.projects-container h2 {\n  color: #333;\n  margin-bottom: 20px;\n}\n.projects-container .projects-table {\n  width: 100%;\n  border-collapse: collapse;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n}\n.projects-container .projects-table th,\n.projects-container .projects-table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n.projects-container .projects-table th {\n  background-color: #f8f9fa;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  font-size: 14px;\n}\n.projects-container .projects-table td {\n  color: #555;\n  font-size: 14px;\n}\n.projects-container .projects-table tr:hover {\n  background-color: #f1f1f1;\n}\n.projects-container .projects-table .product-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 4px;\n  object-fit: cover;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -49940,6 +49974,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/emission-summary.scss":
+/*!*********************************************!*\
+  !*** ./src/lca/views/emission-summary.scss ***!
+  \*********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./emission-summary.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/material-entry.scss":
 /*!*******************************************!*\
   !*** ./src/lca/views/material-entry.scss ***!
@@ -50172,6 +50234,34 @@ module.exports = content.locals || {};
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
             var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./products.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/products.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/projects.scss":
+/*!*************************************!*\
+  !*** ./src/lca/views/projects.scss ***!
+  \*************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./projects.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -53278,6 +53368,7 @@ const _other_services_1 = __webpack_require__(/*! @other-services */ "./src/othe
 const product_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/product-dashboard */ "./src/lca/views/product-dashboard.tsx"));
 const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products */ "./src/lca/views/products.tsx"));
 const LCA_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/LCA-dashboard */ "./src/lca/views/LCA-dashboard.tsx"));
+const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
 const WrappedDashboard = (props) => {
     const { uxpContext } = props;
     const [user, setUser] = (0, react_1.useState)(null);
@@ -53355,6 +53446,16 @@ const WrappedDashboard = (props) => {
     configs: {
         layout: {
             w: 30,
+            h: 40,
+        }
+    }
+});
+(0, uxp_1.registerWidget)({
+    id: 'projects-widget',
+    widget: projects_1.default,
+    configs: {
+        layout: {
+            w: 30,
             h: 20,
         }
     }
@@ -53411,6 +53512,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -53419,59 +53529,112 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
 const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ./stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
+const react_1 = __webpack_require__(/*! react */ "react");
+const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
+const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
-const react_1 = __webpack_require__(/*! react */ "react");
-const productData = [
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001", subTitle: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest - Domino"
-    },
-    // { title: "ECO-TB-002", subTitle: "Bamboo Dining Table" },
-    // { title: "ECO-LP-003", subTitle: "LED Light Panel" },
-    // { title: "ECO-DS-004", subTitle: "Dual Solar Panel" },
-    // { title: "ECO-BM-005", subTitle: "Bamboo Mattress" },
-    // { title: "ECO-CP-006", subTitle: "Compostable Plates" },
-    // { title: "ECO-BL-007", subTitle: "Biodegradable Lunch Box" },
-    // { title: "ECO-ST-008", subTitle: "Steel Water Bottle" },
-    // { title: "ECO-RT-009", subTitle: "Recycled Tire Mat" },
-    // { title: "ECO-SB-010", subTitle: "Solar Powered Backpack" }
-];
 const LCADashboardWidget = () => {
+    const [products, setProducts] = React.useState([]);
+    const [transportDatabase, setTransportDatabase] = React.useState({});
+    const [countries, setCountries] = React.useState([]);
     const [showModal, setShowModal] = React.useState(false);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
-    const [quantity, setQuantity] = React.useState("");
-    const [weight, setWeight] = React.useState("");
-    const [productInfo, setProductInfo] = React.useState("");
     const [activeStep, setActiveStep] = React.useState(0);
     const [searchValue, setSearchValue] = React.useState("");
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
-    const [filteredData, setFilteredData] = React.useState(productData);
+    const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
-    const [showTooltip, setShowTooltip] = React.useState(false);
-    const [productWeight, setProductWeight] = (0, react_1.useState)(25.00);
     const [packagingWeight, setPackagingWeight] = (0, react_1.useState)(0);
     const [isPackagingManual, setIsPackagingManual] = (0, react_1.useState)(false);
     const [includePallet, setIncludePallet] = (0, react_1.useState)(false);
-    const [palletWeight, setPalletWeight] = (0, react_1.useState)(0);
+    const [palletWeight, setPalletWeight] = (0, react_1.useState)(20);
     const [isPalletManual, setIsPalletManual] = (0, react_1.useState)(false);
     const [isProductWeightEditable, setIsProductWeightEditable] = (0, react_1.useState)(false);
-    const handleEditProductWeight = () => {
-        setIsProductWeightEditable(true);
-    };
-    const handleSaveProductWeight = () => {
-        setIsProductWeightEditable(false);
-    };
-    const totalTransportWeight = productWeight +
-        (isPackagingManual ? packagingWeight : 0) +
-        (includePallet && isPalletManual ? palletWeight : 0);
+    const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = (0, react_1.useState)(false);
+    const [transportationEmission, setTransportationEmission] = (0, react_1.useState)("");
+    const [totalTransportWeight, setTotalTransportWeight] = (0, react_1.useState)(0);
+    const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
+    const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
+        setisEmissionSummaryvisible(true);
+        setShowModal(false);
+    });
+    const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
+        const emission = yield Promise.all(transportLegs.map((leg) => __awaiter(void 0, void 0, void 0, function* () {
+            const emission = yield calculateSingleLegEmission(leg);
+            return Object.assign(Object.assign({}, leg), { transportEmission: emission });
+        })));
+        setTransportLegs(emission);
+        const totalEmission = emission.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toString());
+    });
+    React.useEffect(() => {
+        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config_1.default}/api/products`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.json();
+                setProducts(data);
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchProductData();
+    }, []);
+    React.useEffect(() => {
+        const fetchCountries = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield fetch(`${config_1.default}/api/transportDB`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.json();
+                setTransportDatabase(data);
+                const formattedOptions = Object.keys(data).map((country) => ({
+                    label: country,
+                    value: country // Replace `code` with the appropriate field
+                }));
+                setCountries(formattedOptions);
+                console.log("Countries:", countries);
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchCountries();
+    }, []);
+    const calculateTransportDistance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const url = `${config_1.default}/api/distance?origin=${origin}&destination=${destination}`;
+            const response = yield fetch(url, {
+                method: 'GET',
+            });
+            const data = yield response.json();
+            return data.distance_in_km;
+        }
+        catch (error) {
+            console.error('Error calculating transport distance:', error);
+            return 0;
+        }
+    });
+    React.useEffect(() => {
+        if (includePallet) {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight + palletWeight);
+        }
+        else {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight);
+        }
+    }, [packagingWeight, palletWeight, includePallet, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight]);
     const handleSearchChange = (newValue) => {
         setSearchValue(newValue);
         applyFilters(newValue, selectedCategory);
     };
     const applyFilters = (searchText, category) => {
-        const filtered = productData.filter(item => {
+        const filtered = products.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.subTitle.toLowerCase().includes(searchText.toLowerCase());
             const matchesCategory = category ? item.subTitle.toLowerCase().includes(category.toLowerCase()) : true;
@@ -53479,15 +53642,113 @@ const LCADashboardWidget = () => {
         });
         setFilteredData(filtered);
     };
+    const calculateSingleLegEmission = (leg) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(`${config_1.default}/api/calculate-transport-emission`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    weightKg: totalTransportWeight,
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance,
+                })
+            });
+            const data = yield response.json();
+            return parseFloat(data.transportEmissions);
+        }
+        catch (error) {
+            console.error('Error calculating transport emission:', error);
+            return 0;
+        }
+    });
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
-        setFilteredData(productData);
+        setFilteredData(products);
     };
-    const handleCalculateImpact = (product) => {
+    const selectProduct = (product) => {
         setSelectedProduct(product);
         setShowModal(true);
         setActiveStep(0);
+    };
+    React.useEffect(() => {
+        setPackagingWeight(((((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) / 100) * 10);
+    }, [selectProduct]);
+    const [transportLegs, setTransportLegs] = (0, react_1.useState)([{
+            id: 1,
+            originCountry: "",
+            destinationCountry: "",
+            originGateway: "",
+            destinationGateway: "",
+            transportMode: "",
+            transportDistance: 0,
+            transportEmission: 0,
+            originGateways: [],
+            destinationGateways: []
+        }]);
+    const addTransportLeg = () => {
+        setTransportLegs([...transportLegs, {
+                id: transportLegs.length + 1,
+                originCountry: "",
+                destinationCountry: "",
+                originGateway: "",
+                destinationGateway: "",
+                transportMode: "",
+                transportDistance: 0,
+                transportEmission: 0,
+                originGateways: [],
+                destinationGateways: []
+            }]);
+    };
+    const updateTransportLeg = (legId, field, value) => __awaiter(void 0, void 0, void 0, function* () {
+        setTransportLegs(prevLegs => {
+            const updatedLegs = prevLegs.map(leg => {
+                var _a, _b;
+                if (leg.id === legId) {
+                    let updatedLeg = Object.assign({}, leg);
+                    if (field === 'originCountry') {
+                        updatedLeg = Object.assign(Object.assign({}, updatedLeg), { originCountry: value, originGateways: ((_a = transportDatabase[value]) === null || _a === void 0 ? void 0 : _a.map((gateway) => ({
+                                label: gateway,
+                                value: gateway
+                            }))) || [], originGateway: '', transportEmission: 0 // Reset emission when changing route
+                         });
+                    }
+                    else if (field === 'destinationCountry') {
+                        updatedLeg = Object.assign(Object.assign({}, updatedLeg), { destinationCountry: value, destinationGateways: ((_b = transportDatabase[value]) === null || _b === void 0 ? void 0 : _b.map((gateway) => ({
+                                label: gateway,
+                                value: gateway
+                            }))) || [], destinationGateway: '', transportEmission: 0 // Reset emission when changing route
+                         });
+                    }
+                    else {
+                        updatedLeg = Object.assign(Object.assign(Object.assign({}, updatedLeg), { [field]: value }), (field === 'transportMode' && { transportEmission: 0 }) // Reset emission when changing mode
+                        );
+                    }
+                    if (field === 'transportMode' &&
+                        updatedLeg.originGateway &&
+                        updatedLeg.destinationGateway) {
+                        setTimeout(() => {
+                            calculateTransportDistance(updatedLeg.originGateway, updatedLeg.destinationGateway).then((distance) => {
+                                setTransportLegs(currentLegs => currentLegs.map(currentLeg => currentLeg.id === legId
+                                    ? Object.assign(Object.assign({}, currentLeg), { transportDistance: distance, transportEmission: 0 }) : currentLeg));
+                            }).catch((error) => {
+                                console.error('Failed to calculate transport distance:', error);
+                            });
+                        }, 0);
+                    }
+                    return updatedLeg;
+                }
+                return leg;
+            });
+            return updatedLegs;
+        });
+    });
+    const removeTransportLeg = (legId) => {
+        if (transportLegs.length > 1) {
+            setTransportLegs(transportLegs.filter(leg => leg.id !== legId));
+        }
     };
     const steps = [
         {
@@ -53499,58 +53760,56 @@ const LCADashboardWidget = () => {
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px', marginRight: '10px' } }, "Selected Product:")),
                         React.createElement("div", { className: "selected-product" },
-                            React.createElement("span", { className: "product-code" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.title),
-                            React.createElement("span", { className: "product-name" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.subTitle))),
+                            React.createElement("span", { className: "product-code" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code),
+                            React.createElement("span", { className: "product-name" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name))),
                     React.createElement(components_1.FormField, { className: "product-info-field" },
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Product Information")),
-                        React.createElement("textarea", { value: productInfo, onChange: (e) => setProductInfo(e.target.value), className: "product-info-textarea" }))))),
+                        React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, 
+                            //onChange={(e) => setProductInfo(e.target.value)}
+                            className: "product-info-textarea" }))))),
         },
         {
             id: "step-2",
             title: "TRANSPORT SELECTION",
             content: (React.createElement("div", null,
-                React.createElement("div", { className: "transport-selection-form" },
+                transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
+                    React.createElement("div", { className: "transport-leg-header" },
+                        React.createElement("h3", null,
+                            "Transport Leg ",
+                            index + 1)),
+                    React.createElement("div", null, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Country 1", value: "country1" },
-                                { label: "Country 2", value: "country2" },
-                            ], placeholder: "Select Origin Country", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => {
+                                updateTransportLeg(leg.id, 'originCountry', value);
+                            } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Country 1", value: "country1" },
-                                { label: "Country 2", value: "country2" },
-                            ], placeholder: "Select Destination Country", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => {
+                                updateTransportLeg(leg.id, 'destinationCountry', value);
+                            } })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Gateway 1", value: "gateway1" },
-                                { label: "Gateway 2", value: "gateway2" },
-                            ], placeholder: "Select Origin Gateway", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Gateway 1", value: "gateway1" },
-                                { label: "Gateway 2", value: "gateway2" },
-                            ], placeholder: "Select Destination Gateway", selected: "", onChange: (value, option) => { } })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) })),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
                         React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "Air", value: "air" },
-                                { label: "Sea", value: "sea" },
-                                { label: "Land", value: "land" },
-                            ], placeholder: "Select Transport Mode", selected: "", onChange: (value, option) => { } })),
-                    React.createElement("div", { className: "save-button-container" },
-                        React.createElement(components_1.Button, { title: "Save", className: "save-button", onClick: () => { } }))),
+                                { label: "SeaFreight", value: "SeaFreight" },
+                                { label: "RoadFreight", value: "RoadFreight" },
+                                { label: "RailFreight", value: "RailFreight" },
+                                { label: "AirFreight", value: "AirFreight" },
+                            ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
                 React.createElement("div", { className: "add-transport-leg-container" },
-                    React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: () => { } })))),
+                    React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg })))),
         },
         {
             id: "step-3",
@@ -53563,7 +53822,7 @@ const LCADashboardWidget = () => {
                                 React.createElement("span", { style: { fontSize: '12px' } }, "Product Weight:")),
                             isProductWeightEditable ? (React.createElement(React.Fragment, null)) : (React.createElement(React.Fragment, null,
                                 React.createElement("span", { className: "weight-display" },
-                                    productWeight.toFixed(2),
+                                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
                                     " Kg"))))),
                     React.createElement("div", { className: "weight-section" },
                         React.createElement(components_1.Label, null,
@@ -53609,7 +53868,7 @@ const LCADashboardWidget = () => {
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Total Transport Weight")),
                         React.createElement("div", { className: "weight-display" },
-                            totalTransportWeight.toFixed(2),
+                            totalTransportWeight,
                             " Kg"))))),
         },
         {
@@ -53622,49 +53881,68 @@ const LCADashboardWidget = () => {
                     React.createElement("div", { className: "summary-box" },
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Code"),
-                            React.createElement("span", null, "ECO-WB-001")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Name"),
-                            React.createElement("span", null, "Aluminum Window")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Inventory"),
                             React.createElement("span", null, "150 pcs")))),
                 React.createElement("div", { className: "summary-section" },
                     React.createElement("h3", null, "TRANSPORT DETAILS"),
-                    React.createElement("div", { className: "summary-box" },
+                    transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "summary-box" },
+                        React.createElement("h4", null,
+                            "Transport Leg ",
+                            index + 1),
                         React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Origin"),
-                            React.createElement("span", null, "China - Shanghai Port")),
+                            React.createElement("span", null, "Origin Country"),
+                            React.createElement("span", null, leg.originCountry)),
                         React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Destination"),
-                            React.createElement("span", null, "United States - Los Angeles Port")),
+                            React.createElement("span", null, "Destination Country"),
+                            React.createElement("span", null, leg.destinationCountry)),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Origin Gateway"),
+                            React.createElement("span", null, leg.originGateway)),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Destination Gateway"),
+                            React.createElement("span", null, leg.destinationGateway)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Transport Mode"),
-                            React.createElement("span", null, "Sea Freight")),
+                            React.createElement("span", null, leg.transportMode)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Distance"),
-                            React.createElement("span", null, "10,000 Km")))),
+                            React.createElement("span", null,
+                                leg.transportDistance,
+                                " Km")),
+                        React.createElement("div", { className: "summary-row" },
+                            React.createElement("span", null, "Estimated Emissions"),
+                            React.createElement("span", null,
+                                leg.transportEmission.toFixed(2),
+                                " Kg CO2e")))))),
                 React.createElement("div", { className: "summary-section" },
                     React.createElement("h3", null, "WEIGHT DETAILS"),
                     React.createElement("div", { className: "summary-box" },
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Product Weight"),
-                            React.createElement("span", null, "25.00 Kg")),
+                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Packaging Weight"),
-                            React.createElement("span", null, "0.55 Kg")),
+                            React.createElement("span", null, packagingWeight)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Pallet Weight"),
-                            React.createElement("span", null, "2.00 Kg")),
+                            React.createElement("span", null, includePallet ? palletWeight : 0)),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Total Weight"),
-                            React.createElement("span", null, "27.55 Kg")))),
-                React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => setShowModal(false) }))),
+                            React.createElement("span", null, parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight + (includePallet ? palletWeight : 0))))),
+                React.createElement(components_1.Button, { title: "Confirm & Calculate", className: "confirm-button", onClick: () => handleConfirmCalculate() }))),
         },
     ];
     const handleNext = () => {
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
+        }
+        if (activeStep === 1) {
+            calculateTransportationEmission();
         }
     };
     const handlePrevious = () => {
@@ -53672,6 +53950,9 @@ const LCADashboardWidget = () => {
             setActiveStep(activeStep - 1);
         }
     };
+    if (isEmissionSummaryVisible) {
+        return React.createElement(emission_summary_1.default, { transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false) });
+    }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
         React.createElement("div", { className: "search-filter-section" },
@@ -53698,12 +53979,12 @@ const LCADashboardWidget = () => {
                                 setMaxCO2(value);
                                 applyFilters(searchValue, selectedCategory);
                             }, placeholder: "Set maximum CO2" }))))),
-        React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card" },
-                React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
+        React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card" },
+                React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
                 React.createElement("div", { className: "product-details" },
-                    React.createElement("p", null, item.title),
-                    React.createElement("h4", null, item.subTitle)),
-                React.createElement(components_1.Button, { title: "Calculate Impact", className: "calculate-impact-button", onClick: () => handleCalculateImpact(item) }))), columns: 3, className: "product-data-grid" }),
+                    React.createElement("p", null, item.code),
+                    React.createElement("h4", null, item.name)),
+                React.createElement(components_1.Button, { title: "Calculate Impact", className: "calculate-impact-button", onClick: () => selectProduct(item) }))), columns: 3, className: "product-data-grid" }),
         React.createElement(components_1.Modal, { show: showModal, onClose: () => setShowModal(false), title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
             React.createElement("div", { className: "modal-content" },
                 React.createElement("div", { className: "modal-stepper-container" },
@@ -53927,6 +54208,295 @@ const BillMaterials = ({ productCategoryData, productData, onNext }) => {
             react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
 };
 exports["default"] = BillMaterials;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/emission-summary.tsx":
+/*!********************************************!*\
+  !*** ./src/lca/views/emission-summary.tsx ***!
+  \********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+__webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
+const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
+const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
+    const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
+    const [projectName, setProjectName] = (0, react_1.useState)('');
+    const [projectId, setProjectId] = (0, react_1.useState)('');
+    const [selectedProject, setSelectedProject] = (0, react_1.useState)(null);
+    const projectOptions = [
+        { label: "Project Alpha", value: "alpha" },
+        { label: "Project Beta", value: "beta" },
+        { label: "Project Gamma", value: "gamma" },
+    ];
+    return (react_1.default.createElement(components_2.Modal, { show: true, onClose: onClose, title: "Save Emission Results" },
+        react_1.default.createElement("div", { className: "save-results-modal" },
+            hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found.Please create a new project.")),
+            react_1.default.createElement("div", { className: "card-container" },
+                react_1.default.createElement("div", { className: `option-card ${selectedCard === 'new' ? 'selected' : ''}`, onClick: () => setSelectedCard('new') },
+                    react_1.default.createElement("h3", null, "Create New Project"),
+                    react_1.default.createElement("p", null, "Start a fresh project with these results.")),
+                hasExistingProjects && (react_1.default.createElement("div", { className: `option-card ${selectedCard === 'existing' ? 'selected' : ''}`, onClick: () => setSelectedCard('existing') },
+                    react_1.default.createElement("h3", null, "Add to Existing Project"),
+                    react_1.default.createElement("p", null, "Include these results in one of your existing projects.")))),
+            selectedCard === 'new' && (react_1.default.createElement("div", { className: "new-project-inputs" },
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Project Name")),
+                    react_1.default.createElement(components_1.Input, { type: "text", value: projectName, onChange: (value) => setProjectName(value), placeholder: "Enter project name" })),
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Project Code")),
+                    react_1.default.createElement(components_1.Input, { type: "text", value: projectId, onChange: (value) => setProjectId(value), placeholder: "Enter project ID" })))),
+            selectedCard === 'existing' && (react_1.default.createElement("div", { className: "existing-project-selection" },
+                react_1.default.createElement(components_1.FormField, null,
+                    react_1.default.createElement(components_1.Label, null,
+                        react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Select an existing project")),
+                    react_1.default.createElement(components_1.Select, { options: projectOptions, selected: selectedProject, onChange: (newValue) => setSelectedProject(newValue), placeholder: "Select a project" })))),
+            react_1.default.createElement("div", { className: "save-button-container" },
+                react_1.default.createElement(components_1.Button, { title: "Save results", onClick: onClose, className: "save-results" })))));
+};
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs }) => {
+    const transportationEmissionEx = parseFloat(transportationEmission);
+    const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
+    const [viewMode, setViewMode] = (0, react_1.useState)('list');
+    const toggleExpand = () => setIsExpanded(!isExpanded);
+    const handleViewToggle = (mode) => setViewMode(mode);
+    const [showModal, setShowModal] = (0, react_1.useState)(false);
+    const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
+    const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
+    const donutChartOptions = {
+        chart: {
+            type: 'pie',
+            backgroundColor: null,
+            height: 350,
+            width: 600,
+            events: {
+                render() {
+                    const chart = this;
+                    const totalValue = (parseFloat(product.co2EmissionRawMaterials) + parseFloat(product.co2EmissionFromProcesses) + parseFloat(transportationEmission)).toFixed(2);
+                    if (!chart.customText) {
+                        chart.customText = chart.renderer
+                            .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
+                            .css({
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Comfortaa',
+                            color: '#424242',
+                            textAlign: 'center',
+                        })
+                            .attr({
+                            align: 'center',
+                            zIndex: 5,
+                        })
+                            .add();
+                    }
+                    else {
+                        chart.customText.attr({
+                            text: `${totalValue} KgCO₂e`,
+                        });
+                    }
+                },
+            },
+        },
+        title: {
+            text: '',
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '60%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Comfortaa',
+                        color: '#424242',
+                    },
+                },
+            },
+        },
+        series: [
+            {
+                name: 'Contribution',
+                type: 'pie',
+                data: [
+                    { name: 'Raw Materials', y: parseFloat(parseFloat(product.co2EmissionRawMaterials).toFixed(2)), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: parseFloat(parseFloat(product.co2EmissionFromProcesses).toFixed(2)), color: '#ffaa00' },
+                    { name: 'Transportation', y: parseFloat(parseFloat(transportationEmission).toFixed(2)), color: '#2A9D8F' },
+                ],
+            },
+        ],
+        legend: {
+            enabled: true,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            symbolRadius: 5,
+            symbolHeight: 10,
+            symbolWidth: 10,
+            itemMarginTop: 5,
+            itemStyle: {
+                fontFamily: 'Comfortaa',
+                fontWeight: 'bold',
+                fontSize: '12px',
+            },
+        },
+        tooltip: {
+            pointFormat: '<b>{point.name}</b>: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+        },
+        credits: {
+            enabled: false,
+        },
+    };
+    function onSave() {
+        setShowModal(true);
+    }
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement("div", { className: "title-container" },
+            react_1.default.createElement("h1", { className: "dashboard-title" }, "Emission Summary"),
+            react_1.default.createElement("div", { className: "save-go-back-buttons" },
+                react_1.default.createElement(components_1.Button, { title: "Save results & view later", onClick: onSave, className: "save-results-button" }),
+                react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onBack, className: "back-button" }))),
+        react_1.default.createElement("div", { className: "widgets-section" },
+            react_1.default.createElement("div", { className: "widget product-footprint" },
+                react_1.default.createElement("h3", null, "Product Footprint"),
+                react_1.default.createElement("div", { className: "widget-content" },
+                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }))),
+            react_1.default.createElement("div", { className: "widgets-row" },
+                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+                    react_1.default.createElement("h3", null, "Contribution by Raw Material"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Material Class"),
+                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.materialClass },
+                                        react_1.default.createElement("td", null, item.materialClass),
+                                        react_1.default.createElement("td", null, item.specificMaterial),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.emissionFactor).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))),
+                react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
+                    react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    react_1.default.createElement("th", null, "Manufacturing Process"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
+                                // Sort the productManufacturingProcess by emissionFactor in descending order
+                                const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedProcess.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.materialClass },
+                                        react_1.default.createElement("td", null, item.materialClass),
+                                        react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.emissionFactor).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))),
+                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+                    react_1.default.createElement("h3", null, "Contribution by Transportation"),
+                    react_1.default.createElement("div", { className: "widget-content" },
+                        react_1.default.createElement("table", null,
+                            react_1.default.createElement("thead", null,
+                                react_1.default.createElement("tr", null,
+                                    react_1.default.createElement("th", null, "Mode"),
+                                    react_1.default.createElement("th", null, "Origin"),
+                                    react_1.default.createElement("th", null, "Destination"),
+                                    react_1.default.createElement("th", null, "Contribution"),
+                                    react_1.default.createElement("th", null, "Percentage"))),
+                            react_1.default.createElement("tbody", null, (() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = transportLegs.reduce((sum, item) => sum + item.transportEmission, 0);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = transportLegs.sort((a, b) => b.transportEmission - a.transportEmission);
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item) => {
+                                    const percentage = totalEmissionFactor > 0
+                                        ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                        : 0;
+                                    return (react_1.default.createElement("tr", { key: item.id },
+                                        react_1.default.createElement("td", null, item.transportMode),
+                                        react_1.default.createElement("td", null, item.originGateway),
+                                        react_1.default.createElement("td", null, item.destinationGateway),
+                                        react_1.default.createElement("td", null,
+                                            parseFloat(item.transportEmission).toFixed(2),
+                                            " KgCO\u2082e"),
+                                        react_1.default.createElement("td", null,
+                                            percentage,
+                                            " %")));
+                                });
+                            })())))))),
+        showModal && react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects })));
+};
+exports["default"] = EmissionSummary;
 
 
 /***/ }),
@@ -54409,163 +54979,6 @@ __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/Produc
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx");
-const productData = [
-    // Sample data of products
-    {
-        icon: "https://static.viking-direct.co.uk/is/image/odeu13/1222167?wid=400&hei=400&fmt=jpg&qlt=75&resMode=sharp2&op_usm=1.2,0.3,10,0",
-        title: "ECO-WB-001",
-        productCode: "ECO-WB-001",
-        name: "Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "20/11/2024",
-        createdDate: "20/11/2024",
-        co2Emission: "160 Kg CO2e"
-    },
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTGjHq510rVZW1lf-59Gdui7zbS8RKcBnFHIABazdQtEGNBTMSw",
-        title: "ECO-WB-002",
-        productCode: "ECO-WB-002",
-        name: "Chiro Medium Back Posture Chair ",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Office Furniture ",
-        subCategory: "Chairs",
-        modifiedDate: "22/11/2024",
-        createdDate: "22/11/2024",
-        co2Emission: "150 Kg CO2e"
-    },
-    {
-        icon: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcR66LKJ5XWKSoHwz9Vxmc3vTVEtAhpRkuPO5j7VoINiIck_XUkR",
-        title: "ECO-WB-003",
-        productCode: "ECO-WB-003",
-        name: "Bay Offer - Rapid Folding Shelving",
-        description: [
-            "Adjustable lumbar support mechanism with inflating bulb.",
-            "Multi-functional, synchronised seat action.",
-            "Ratchet adjustable arms and backrest.",
-            "Pivoting soft padded arms.",
-            "Pocket sprung seat.",
-            "The 5-star base with castors allows the chair to easily move to where it is needed."
-        ],
-        weight: "22.5 Kg",
-        countryOfOrigin: "USA",
-        category: "Shelving & Racking ",
-        subCategory: "Chairs",
-        modifiedDate: "24/11/2024",
-        createdDate: "24/11/2024",
-        co2Emission: "70 Kg CO2e"
-    },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    //  {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-    // {
-    //     icon: "",
-    //     title: "ECO-WB-001",
-    //     productCode: "ECO-WB-001",
-    //     name: "Single Pane Aluminum Window",
-    //     description: "An eco-friendly single pane aluminum window.",
-    //     countryOfOrigin: "USA",
-    //     category: "Furniture | Windows",
-    //     subCategory: "Windows",
-    //     modifiedDate: "2024-10-15",
-    //     createdDate: "2024-09-01",
-    //     co2Emission: "2.5 Kg CO2e"
-    // },
-];
 const ProductDashboardWidget = (props) => {
     const [productData, setProductData] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -54576,6 +54989,21 @@ const ProductDashboardWidget = (props) => {
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
+    const [currentPage, setCurrentPage] = React.useState(1);
+    const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
+    // Calculate pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(productData.length / itemsPerPage);
+    const Pagination = () => (React.createElement("div", { className: "flex justify-center items-center gap-2 mt-4" },
+        React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }),
+        React.createElement("span", { className: "mx-2" },
+            "Page ",
+            currentPage,
+            " of ",
+            totalPages),
+        React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages })));
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -54644,19 +55072,21 @@ const ProductDashboardWidget = (props) => {
                                         setMaxCO2(value);
                                         applyFilters(searchValue, selectedCategory, value);
                                     }, placeholder: "Set maximum CO2" }))))),
-                viewMode === 'grid' ? (React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
-                        React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
-                        React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
-                        React.createElement("div", { className: "product-details" },
-                            React.createElement("p", null, item.title),
-                            React.createElement("h4", null, item.name),
-                            React.createElement("p", null, item.category),
-                            React.createElement("p", null,
-                                "Modified: ",
-                                new Date(item.modifiedDate).toLocaleString()),
-                            React.createElement("p", null,
-                                "Created: ",
-                                new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" })) : (React.createElement("div", { className: "list-view" }, productData.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
+                viewMode === 'grid' ? (React.createElement(React.Fragment, null,
+                    React.createElement(components_1.DataGrid, { data: productData, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
+                            React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
+                            React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
+                            React.createElement("div", { className: "product-details" },
+                                React.createElement("p", null, item.title),
+                                React.createElement("h4", null, item.name),
+                                React.createElement("p", null, item.category),
+                                React.createElement("p", null,
+                                    "Modified: ",
+                                    new Date(item.modifiedDate).toLocaleString()),
+                                React.createElement("p", null,
+                                    "Created: ",
+                                    new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" }),
+                    React.createElement(Pagination, null))) : (React.createElement("div", { className: "list-view" }, productData.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
                     React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
                     React.createElement("div", { className: "product-details" },
                         React.createElement("p", null, item.title),
@@ -55548,6 +55978,83 @@ const LCAWidget = (props) => {
         React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })));
 };
 exports["default"] = LCAWidget;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/projects.tsx":
+/*!************************************!*\
+  !*** ./src/lca/views/projects.tsx ***!
+  \************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
+const Projects = (props) => {
+    const data = [
+        {
+            id: 1,
+            productImage: "image-url",
+            projectCode: "1",
+            projectName: "Project Alpha",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 2,
+            productImage: "image-url",
+            projectCode: "2",
+            projectName: "Project Beta",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 3,
+            productImage: "image-url",
+            projectCode: "3",
+            projectName: "Project Gama",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+        {
+            id: 4,
+            productImage: "image-url",
+            projectCode: "4",
+            projectName: "Project Gama",
+            totalImpact: "60 KgCO2e",
+            impactMaterials: "20 KgCO2e",
+            impactManufacturing: "20 KgCO2e",
+            impactTransportation: "20 KgCO2e",
+        },
+    ];
+    const columns = [
+        { id: "productImage", label: "Product Image", render: (row) => react_1.default.createElement("img", { src: row.productImage, alt: "Product", style: { width: 50, height: 50, borderRadius: 4 } }) },
+        { id: "projectCode", label: "Project Code" },
+        { id: "projectName", label: "Project Name" },
+        { id: "totalImpact", label: "Total Impact" },
+        { id: "impactMaterials", label: "Impact by Materials" },
+        { id: "impactManufacturing", label: "Impact by Manufacturing" },
+        { id: "impactTransportation", label: "Impact by Transportation" },
+    ];
+    return (react_1.default.createElement(components_1.WidgetWrapper, null,
+        react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
+        react_1.default.createElement("div", null,
+            react_1.default.createElement(components_1.TableComponent, { data: data, columns: columns, pageSize: 10, total: data.length }))));
+};
+exports["default"] = Projects;
 
 
 /***/ }),
@@ -56760,7 +57267,7 @@ exports.registerCustomWidgetTemplate = registerCustomWidgetTemplate;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGRlZnM+DQogICAgICAgIDxyZWN0IGlkPSJhIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHJ4PSI4IiAvPg0KICAgIDwvZGVmcz4NCiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IDUpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8IS0tIDxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmZmZmIj4NCiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4NCiAgICAgICAgPC9tYXNrPiAtLT4NCiAgICAgICAgPCEtLSA8dXNlIGZpbGw9IiNFN0VBRjAiIHg6aHJlZj0iI2EiIC8+IC0tPg0KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiINCiAgICAgICAgICAgIGZpbGw9IiNFQTQzMzUiIG1hc2s9InVybCgjYikiIC8+DQogICAgICAgIDxwYXRoIGQ9Ik0zMCAyNmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptMC0xMWE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptLTExIDBhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6Ig0KICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPHBhdGggZD0iTTE5IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek04IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIgZmlsbD0iIzM0QTg1MyIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPGNpcmNsZSBmaWxsPSIjRkJCQzA1IiBtYXNrPSJ1cmwoI2IpIiBjeD0iOCIgY3k9IjE5IiByPSI0IiAvPg0KICAgIDwvZz4NCjwvc3ZnPg==";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cmVjdCBpZD0iYSIgeD0iMCIgeT0iMCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiByeD0iOCIgLz4KICAgIDwvZGVmcz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgNSkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPCEtLSA8bWFzayBpZD0iYiIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4KICAgICAgICA8L21hc2s+IC0tPgogICAgICAgIDwhLS0gPHVzZSBmaWxsPSIjRTdFQUYwIiB4OmhyZWY9IiNhIiAvPiAtLT4KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iI0VBNDMzNSIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMzAgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bTAtMTFhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bS0xMSAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMTkgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6TTggMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6IiBmaWxsPSIjMzRBODUzIiBtYXNrPSJ1cmwoI2IpIiAvPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0ZCQkMwNSIgbWFzaz0idXJsKCNiKSIgY3g9IjgiIGN5PSIxOSIgcj0iNCIgLz4KICAgIDwvZz4KPC9zdmc+";
 
 /***/ }),
 
@@ -73301,384 +73808,6 @@ function cleanEscapedString(input) {
 
 /***/ }),
 
-/***/ "./node_modules/date-fns/parseISO.cjs":
-/*!********************************************!*\
-  !*** ./node_modules/date-fns/parseISO.cjs ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseISO = parseISO;
-var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
-
-var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
-var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseISO} function options.
- */
-
-/**
- * @name parseISO
- * @category Common Helpers
- * @summary Parse ISO string
- *
- * @description
- * Parse the given string in ISO 8601 format and return an instance of Date.
- *
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- *
- * If the argument isn't a string, the function cannot parse the string or
- * the values are invalid, it returns Invalid Date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param argument - The value to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * const result = parseISO('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * const result = parseISO('+02014101', { additionalDigits: 1 })
- * //=> Fri Apr 11 2014 00:00:00
- */
-function parseISO(argument, options) {
-  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
-
-  const additionalDigits = options?.additionalDigits ?? 2;
-  const dateStrings = splitDateString(argument);
-
-  let date;
-  if (dateStrings.date) {
-    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
-    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
-  }
-
-  if (!date || isNaN(+date)) return invalidDate();
-
-  const timestamp = +date;
-  let time = 0;
-  let offset;
-
-  if (dateStrings.time) {
-    time = parseTime(dateStrings.time);
-    if (isNaN(time)) return invalidDate();
-  }
-
-  if (dateStrings.timezone) {
-    offset = parseTimezone(dateStrings.timezone);
-    if (isNaN(offset)) return invalidDate();
-  } else {
-    const tmpDate = new Date(timestamp + time);
-    const result = (0, _index3.toDate)(0, options?.in);
-    result.setFullYear(
-      tmpDate.getUTCFullYear(),
-      tmpDate.getUTCMonth(),
-      tmpDate.getUTCDate(),
-    );
-    result.setHours(
-      tmpDate.getUTCHours(),
-      tmpDate.getUTCMinutes(),
-      tmpDate.getUTCSeconds(),
-      tmpDate.getUTCMilliseconds(),
-    );
-    return result;
-  }
-
-  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
-}
-
-const patterns = {
-  dateTimeDelimiter: /[T ]/,
-  timeZoneDelimiter: /[Z ]/i,
-  timezone: /([Z+-].*)$/,
-};
-
-const dateRegex =
-  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-const timeRegex =
-  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
-const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-
-function splitDateString(dateString) {
-  const dateStrings = {};
-  const array = dateString.split(patterns.dateTimeDelimiter);
-  let timeString;
-
-  // The regex match should only return at maximum two array elements.
-  // [date], [time], or [date, time].
-  if (array.length > 2) {
-    return dateStrings;
-  }
-
-  if (/:/.test(array[0])) {
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
-      timeString = dateString.substr(
-        dateStrings.date.length,
-        dateString.length,
-      );
-    }
-  }
-
-  if (timeString) {
-    const token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], "");
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings;
-}
-
-function parseYear(dateString, additionalDigits) {
-  const regex = new RegExp(
-    "^(?:(\\d{4}|[+-]\\d{" +
-      (4 + additionalDigits) +
-      "})|(\\d{2}|[+-]\\d{" +
-      (2 + additionalDigits) +
-      "})$)",
-  );
-
-  const captures = dateString.match(regex);
-  // Invalid ISO-formatted year
-  if (!captures) return { year: NaN, restDateString: "" };
-
-  const year = captures[1] ? parseInt(captures[1]) : null;
-  const century = captures[2] ? parseInt(captures[2]) : null;
-
-  // either year or century is null, not both
-  return {
-    year: century === null ? year : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length),
-  };
-}
-
-function parseDate(dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) return new Date(NaN);
-
-  const captures = dateString.match(dateRegex);
-  // Invalid ISO-formatted string
-  if (!captures) return new Date(NaN);
-
-  const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]);
-  const month = parseDateUnit(captures[2]) - 1;
-  const day = parseDateUnit(captures[3]);
-  const week = parseDateUnit(captures[4]);
-  const dayOfWeek = parseDateUnit(captures[5]) - 1;
-
-  if (isWeekDate) {
-    if (!validateWeekDate(year, week, dayOfWeek)) {
-      return new Date(NaN);
-    }
-    return dayOfISOWeekYear(year, week, dayOfWeek);
-  } else {
-    const date = new Date(0);
-    if (
-      !validateDate(year, month, day) ||
-      !validateDayOfYearDate(year, dayOfYear)
-    ) {
-      return new Date(NaN);
-    }
-    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
-    return date;
-  }
-}
-
-function parseDateUnit(value) {
-  return value ? parseInt(value) : 1;
-}
-
-function parseTime(timeString) {
-  const captures = timeString.match(timeRegex);
-  if (!captures) return NaN; // Invalid ISO-formatted time
-
-  const hours = parseTimeUnit(captures[1]);
-  const minutes = parseTimeUnit(captures[2]);
-  const seconds = parseTimeUnit(captures[3]);
-
-  if (!validateTime(hours, minutes, seconds)) {
-    return NaN;
-  }
-
-  return (
-    hours * _index.millisecondsInHour +
-    minutes * _index.millisecondsInMinute +
-    seconds * 1000
-  );
-}
-
-function parseTimeUnit(value) {
-  return (value && parseFloat(value.replace(",", "."))) || 0;
-}
-
-function parseTimezone(timezoneString) {
-  if (timezoneString === "Z") return 0;
-
-  const captures = timezoneString.match(timezoneRegex);
-  if (!captures) return 0;
-
-  const sign = captures[1] === "+" ? -1 : 1;
-  const hours = parseInt(captures[2]);
-  const minutes = (captures[3] && parseInt(captures[3])) || 0;
-
-  if (!validateTimezone(hours, minutes)) {
-    return NaN;
-  }
-
-  return (
-    sign *
-    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
-  );
-}
-
-function dayOfISOWeekYear(isoWeekYear, week, day) {
-  const date = new Date(0);
-  date.setUTCFullYear(isoWeekYear, 0, 4);
-  const fourthOfJanuaryDay = date.getUTCDay() || 7;
-  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date;
-}
-
-// Validation functions
-
-// February is null to handle the leap year (using ||)
-const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
-
-function validateDate(year, month, date) {
-  return (
-    month >= 0 &&
-    month <= 11 &&
-    date >= 1 &&
-    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
-  );
-}
-
-function validateDayOfYearDate(year, dayOfYear) {
-  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
-}
-
-function validateWeekDate(_year, week, day) {
-  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
-}
-
-function validateTime(hours, minutes, seconds) {
-  if (hours === 24) {
-    return minutes === 0 && seconds === 0;
-  }
-
-  return (
-    seconds >= 0 &&
-    seconds < 60 &&
-    minutes >= 0 &&
-    minutes < 60 &&
-    hours >= 0 &&
-    hours < 25
-  );
-}
-
-function validateTimezone(_hours, minutes) {
-  return minutes >= 0 && minutes <= 59;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/date-fns/parseJSON.cjs":
-/*!*********************************************!*\
-  !*** ./node_modules/date-fns/parseJSON.cjs ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseJSON = parseJSON;
-var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseJSON} function options.
- */
-
-/**
- * Converts a complete ISO date string in UTC time, the typical format for transmitting
- * a date in JSON, to a JavaScript `Date` instance.
- *
- * This is a minimal implementation for converting dates retrieved from a JSON API to
- * a `Date` instance which can be used with other functions in the `date-fns` library.
- * The following formats are supported:
- *
- * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
- * - `2000-03-15T05:20:10Z`: Without milliseconds
- * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
- * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
- * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
- * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
- *
- * For convenience and ease of use these other input types are also supported
- * via [toDate](https://date-fns.org/docs/toDate):
- *
- * - A `Date` instance will be cloned
- * - A `number` will be treated as a timestamp
- *
- * Any other input type or invalid date strings will return an `Invalid Date`.
- *
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dateStr - A fully formed ISO8601 date string to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- */
-function parseJSON(dateStr, options) {
-  const parts = dateStr.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
-  );
-
-  if (!parts) return (0, _index.toDate)(NaN, options?.in);
-
-  return (0, _index.toDate)(
-    Date.UTC(
-      +parts[1],
-      +parts[2] - 1,
-      +parts[3],
-      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[6],
-      +((parts[7] || "0") + "00").substring(0, 3),
-    ),
-    options?.in,
-  );
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/date-fns/parse/_lib/Parser.cjs":
 /*!*****************************************************!*\
   !*** ./node_modules/date-fns/parse/_lib/Parser.cjs ***!
@@ -76314,6 +76443,384 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
 
 function isLeapYearIndex(year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseISO.cjs":
+/*!********************************************!*\
+  !*** ./node_modules/date-fns/parseISO.cjs ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseISO = parseISO;
+var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
+
+var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
+var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseISO} function options.
+ */
+
+/**
+ * @name parseISO
+ * @category Common Helpers
+ * @summary Parse ISO string
+ *
+ * @description
+ * Parse the given string in ISO 8601 format and return an instance of Date.
+ *
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If the argument isn't a string, the function cannot parse the string or
+ * the values are invalid, it returns Invalid Date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param argument - The value to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * const result = parseISO('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert string '+02014101' to date,
+ * // if the additional number of digits in the extended year format is 1:
+ * const result = parseISO('+02014101', { additionalDigits: 1 })
+ * //=> Fri Apr 11 2014 00:00:00
+ */
+function parseISO(argument, options) {
+  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
+
+  const additionalDigits = options?.additionalDigits ?? 2;
+  const dateStrings = splitDateString(argument);
+
+  let date;
+  if (dateStrings.date) {
+    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
+    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
+  }
+
+  if (!date || isNaN(+date)) return invalidDate();
+
+  const timestamp = +date;
+  let time = 0;
+  let offset;
+
+  if (dateStrings.time) {
+    time = parseTime(dateStrings.time);
+    if (isNaN(time)) return invalidDate();
+  }
+
+  if (dateStrings.timezone) {
+    offset = parseTimezone(dateStrings.timezone);
+    if (isNaN(offset)) return invalidDate();
+  } else {
+    const tmpDate = new Date(timestamp + time);
+    const result = (0, _index3.toDate)(0, options?.in);
+    result.setFullYear(
+      tmpDate.getUTCFullYear(),
+      tmpDate.getUTCMonth(),
+      tmpDate.getUTCDate(),
+    );
+    result.setHours(
+      tmpDate.getUTCHours(),
+      tmpDate.getUTCMinutes(),
+      tmpDate.getUTCSeconds(),
+      tmpDate.getUTCMilliseconds(),
+    );
+    return result;
+  }
+
+  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
+}
+
+const patterns = {
+  dateTimeDelimiter: /[T ]/,
+  timeZoneDelimiter: /[Z ]/i,
+  timezone: /([Z+-].*)$/,
+};
+
+const dateRegex =
+  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+const timeRegex =
+  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+
+function splitDateString(dateString) {
+  const dateStrings = {};
+  const array = dateString.split(patterns.dateTimeDelimiter);
+  let timeString;
+
+  // The regex match should only return at maximum two array elements.
+  // [date], [time], or [date, time].
+  if (array.length > 2) {
+    return dateStrings;
+  }
+
+  if (/:/.test(array[0])) {
+    timeString = array[0];
+  } else {
+    dateStrings.date = array[0];
+    timeString = array[1];
+    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      timeString = dateString.substr(
+        dateStrings.date.length,
+        dateString.length,
+      );
+    }
+  }
+
+  if (timeString) {
+    const token = patterns.timezone.exec(timeString);
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], "");
+      dateStrings.timezone = token[1];
+    } else {
+      dateStrings.time = timeString;
+    }
+  }
+
+  return dateStrings;
+}
+
+function parseYear(dateString, additionalDigits) {
+  const regex = new RegExp(
+    "^(?:(\\d{4}|[+-]\\d{" +
+      (4 + additionalDigits) +
+      "})|(\\d{2}|[+-]\\d{" +
+      (2 + additionalDigits) +
+      "})$)",
+  );
+
+  const captures = dateString.match(regex);
+  // Invalid ISO-formatted year
+  if (!captures) return { year: NaN, restDateString: "" };
+
+  const year = captures[1] ? parseInt(captures[1]) : null;
+  const century = captures[2] ? parseInt(captures[2]) : null;
+
+  // either year or century is null, not both
+  return {
+    year: century === null ? year : century * 100,
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
+  };
+}
+
+function parseDate(dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) return new Date(NaN);
+
+  const captures = dateString.match(dateRegex);
+  // Invalid ISO-formatted string
+  if (!captures) return new Date(NaN);
+
+  const isWeekDate = !!captures[4];
+  const dayOfYear = parseDateUnit(captures[1]);
+  const month = parseDateUnit(captures[2]) - 1;
+  const day = parseDateUnit(captures[3]);
+  const week = parseDateUnit(captures[4]);
+  const dayOfWeek = parseDateUnit(captures[5]) - 1;
+
+  if (isWeekDate) {
+    if (!validateWeekDate(year, week, dayOfWeek)) {
+      return new Date(NaN);
+    }
+    return dayOfISOWeekYear(year, week, dayOfWeek);
+  } else {
+    const date = new Date(0);
+    if (
+      !validateDate(year, month, day) ||
+      !validateDayOfYearDate(year, dayOfYear)
+    ) {
+      return new Date(NaN);
+    }
+    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
+    return date;
+  }
+}
+
+function parseDateUnit(value) {
+  return value ? parseInt(value) : 1;
+}
+
+function parseTime(timeString) {
+  const captures = timeString.match(timeRegex);
+  if (!captures) return NaN; // Invalid ISO-formatted time
+
+  const hours = parseTimeUnit(captures[1]);
+  const minutes = parseTimeUnit(captures[2]);
+  const seconds = parseTimeUnit(captures[3]);
+
+  if (!validateTime(hours, minutes, seconds)) {
+    return NaN;
+  }
+
+  return (
+    hours * _index.millisecondsInHour +
+    minutes * _index.millisecondsInMinute +
+    seconds * 1000
+  );
+}
+
+function parseTimeUnit(value) {
+  return (value && parseFloat(value.replace(",", "."))) || 0;
+}
+
+function parseTimezone(timezoneString) {
+  if (timezoneString === "Z") return 0;
+
+  const captures = timezoneString.match(timezoneRegex);
+  if (!captures) return 0;
+
+  const sign = captures[1] === "+" ? -1 : 1;
+  const hours = parseInt(captures[2]);
+  const minutes = (captures[3] && parseInt(captures[3])) || 0;
+
+  if (!validateTimezone(hours, minutes)) {
+    return NaN;
+  }
+
+  return (
+    sign *
+    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
+  );
+}
+
+function dayOfISOWeekYear(isoWeekYear, week, day) {
+  const date = new Date(0);
+  date.setUTCFullYear(isoWeekYear, 0, 4);
+  const fourthOfJanuaryDay = date.getUTCDay() || 7;
+  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
+  date.setUTCDate(date.getUTCDate() + diff);
+  return date;
+}
+
+// Validation functions
+
+// February is null to handle the leap year (using ||)
+const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function isLeapYearIndex(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+function validateDate(year, month, date) {
+  return (
+    month >= 0 &&
+    month <= 11 &&
+    date >= 1 &&
+    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
+  );
+}
+
+function validateDayOfYearDate(year, dayOfYear) {
+  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
+}
+
+function validateWeekDate(_year, week, day) {
+  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
+}
+
+function validateTime(hours, minutes, seconds) {
+  if (hours === 24) {
+    return minutes === 0 && seconds === 0;
+  }
+
+  return (
+    seconds >= 0 &&
+    seconds < 60 &&
+    minutes >= 0 &&
+    minutes < 60 &&
+    hours >= 0 &&
+    hours < 25
+  );
+}
+
+function validateTimezone(_hours, minutes) {
+  return minutes >= 0 && minutes <= 59;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseJSON.cjs":
+/*!*********************************************!*\
+  !*** ./node_modules/date-fns/parseJSON.cjs ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseJSON = parseJSON;
+var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseJSON} function options.
+ */
+
+/**
+ * Converts a complete ISO date string in UTC time, the typical format for transmitting
+ * a date in JSON, to a JavaScript `Date` instance.
+ *
+ * This is a minimal implementation for converting dates retrieved from a JSON API to
+ * a `Date` instance which can be used with other functions in the `date-fns` library.
+ * The following formats are supported:
+ *
+ * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
+ * - `2000-03-15T05:20:10Z`: Without milliseconds
+ * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
+ * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
+ * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
+ * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
+ *
+ * For convenience and ease of use these other input types are also supported
+ * via [toDate](https://date-fns.org/docs/toDate):
+ *
+ * - A `Date` instance will be cloned
+ * - A `number` will be treated as a timestamp
+ *
+ * Any other input type or invalid date strings will return an `Invalid Date`.
+ *
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dateStr - A fully formed ISO8601 date string to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ */
+function parseJSON(dateStr, options) {
+  const parts = dateStr.match(
+    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
+  );
+
+  if (!parts) return (0, _index.toDate)(NaN, options?.in);
+
+  return (0, _index.toDate)(
+    Date.UTC(
+      +parts[1],
+      +parts[2] - 1,
+      +parts[3],
+      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[6],
+      +((parts[7] || "0") + "00").substring(0, 3),
+    ),
+    options?.in,
+  );
 }
 
 
@@ -118228,7 +118735,7 @@ const version = XLSX.version;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
 
 /***/ }),
 
@@ -118239,7 +118746,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Impact Analysis","icon":"fad chart-bar","dashboardKey":"lca","userRoles":[]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Impact Analysis","icon":"fad chart-bar","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]}]');
 
 /***/ }),
 
@@ -118250,7 +118757,7 @@ module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"f
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
 
 /***/ }),
 

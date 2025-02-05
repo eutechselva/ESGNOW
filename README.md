@@ -1,0 +1,1 @@
+npx lucy-xp upload dist/main.js bundle.json --lucy-apikey "SC:esgnow:08dc24f079a2524b" --lucy-url "https://esgnow.lucyday.io/"
