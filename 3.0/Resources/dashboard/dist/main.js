@@ -53372,9 +53372,9 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "https://lca-microservice.onrender.com";
-//const API_BASE_URL = "http://localhost:5009";
+const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
