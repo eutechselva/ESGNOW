@@ -323,7 +323,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                             <textarea
 
                                 value={selectedProduct?.description}
-                                //onChange={(e) => setProductInfo(e.target.value)}
+                                
                                 className="product-info-textarea"
                             />
                         </FormField>

@@ -150,7 +150,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 10px;\n}\n.product-selection-step h2 {\n  font-size: 1.8em;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.product-selection-step .selected-product-container {\n  display: flex;\n  align-items: center;\n  margin-bottom: 5px;\n}\n.product-selection-step .selected-product-container .selected-product {\n  display: flex;\n  align-items: center;\n  background-color: #f0f0f0;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-code {\n  padding: 5px 10px;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-name {\n  color: #333;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 10px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 80px;\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n}\n.product-selection-step .product-inventory-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-inventory-field .product-inventory {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-input {\n  width: 20%;\n  padding: 8px;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-unit {\n  font-weight: bold;\n  margin-left: 5px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 40%;\n  min-width: 40%;\n  max-width: 40%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 12px 24px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 16px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  width: 38%;\n  text-align: center;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 10px;\n}\n.product-selection-step h2 {\n  font-size: 1.8em;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n.product-selection-step .selected-product-container {\n  display: flex;\n  align-items: center;\n  margin-bottom: 5px;\n}\n.product-selection-step .selected-product-container .selected-product {\n  display: flex;\n  align-items: center;\n  background-color: #f0f0f0;\n  padding: 4px;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-code {\n  padding: 5px 10px;\n  border-radius: 4px;\n  font-weight: bold;\n}\n.product-selection-step .selected-product-container .selected-product .product-name {\n  color: #333;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 10px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 80px;\n  padding: 10px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n}\n.product-selection-step .product-inventory-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-inventory-field .product-inventory {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-input {\n  width: 20%;\n  padding: 8px;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.product-selection-step .product-inventory-field .product-inventory .inventory-unit {\n  font-weight: bold;\n  margin-left: 5px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 16px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  width: 22%;\n  text-align: center;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -53765,9 +53765,7 @@ const LCADashboardWidget = () => {
                     React.createElement(components_1.FormField, { className: "product-info-field" },
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Product Information")),
-                        React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, 
-                            //onChange={(e) => setProductInfo(e.target.value)}
-                            className: "product-info-textarea" }))))),
+                        React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, className: "product-info-textarea" }))))),
         },
         {
             id: "step-2",
@@ -56093,7 +56091,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./stepper.scss */ "./src/lca/views/stepper.scss");
-const steps = ["Product Selection", "Transport Selection", "Transport Weight"];
+const steps = ["Product Selection", "Transport Selection", "Transport Weight", "Summary"];
 const Stepper = ({ activeStep, onStepChange }) => {
     return (React.createElement("div", { className: "stepper" }, steps.map((label, index) => (React.createElement("div", { key: index, className: `step ${index === activeStep ? "active" : ""} ${index < activeStep ? "completed" : ""}`, onClick: () => onStepChange(index) },
         React.createElement("div", { className: "step-number" }, index + 1),
@@ -57267,7 +57265,7 @@ exports.registerCustomWidgetTemplate = registerCustomWidgetTemplate;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cmVjdCBpZD0iYSIgeD0iMCIgeT0iMCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiByeD0iOCIgLz4KICAgIDwvZGVmcz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgNSkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPCEtLSA8bWFzayBpZD0iYiIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4KICAgICAgICA8L21hc2s+IC0tPgogICAgICAgIDwhLS0gPHVzZSBmaWxsPSIjRTdFQUYwIiB4OmhyZWY9IiNhIiAvPiAtLT4KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iI0VBNDMzNSIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMzAgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bTAtMTFhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bS0xMSAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMTkgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6TTggMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6IiBmaWxsPSIjMzRBODUzIiBtYXNrPSJ1cmwoI2IpIiAvPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0ZCQkMwNSIgbWFzaz0idXJsKCNiKSIgY3g9IjgiIGN5PSIxOSIgcj0iNCIgLz4KICAgIDwvZz4KPC9zdmc+";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGRlZnM+DQogICAgICAgIDxyZWN0IGlkPSJhIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHJ4PSI4IiAvPg0KICAgIDwvZGVmcz4NCiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IDUpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8IS0tIDxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmZmZmIj4NCiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4NCiAgICAgICAgPC9tYXNrPiAtLT4NCiAgICAgICAgPCEtLSA8dXNlIGZpbGw9IiNFN0VBRjAiIHg6aHJlZj0iI2EiIC8+IC0tPg0KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiINCiAgICAgICAgICAgIGZpbGw9IiNFQTQzMzUiIG1hc2s9InVybCgjYikiIC8+DQogICAgICAgIDxwYXRoIGQ9Ik0zMCAyNmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptMC0xMWE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptLTExIDBhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6Ig0KICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPHBhdGggZD0iTTE5IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek04IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIgZmlsbD0iIzM0QTg1MyIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPGNpcmNsZSBmaWxsPSIjRkJCQzA1IiBtYXNrPSJ1cmwoI2IpIiBjeD0iOCIgY3k9IjE5IiByPSI0IiAvPg0KICAgIDwvZz4NCjwvc3ZnPg==";
 
 /***/ }),
 
@@ -73808,6 +73806,384 @@ function cleanEscapedString(input) {
 
 /***/ }),
 
+/***/ "./node_modules/date-fns/parseISO.cjs":
+/*!********************************************!*\
+  !*** ./node_modules/date-fns/parseISO.cjs ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseISO = parseISO;
+var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
+
+var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
+var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseISO} function options.
+ */
+
+/**
+ * @name parseISO
+ * @category Common Helpers
+ * @summary Parse ISO string
+ *
+ * @description
+ * Parse the given string in ISO 8601 format and return an instance of Date.
+ *
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If the argument isn't a string, the function cannot parse the string or
+ * the values are invalid, it returns Invalid Date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param argument - The value to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * const result = parseISO('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert string '+02014101' to date,
+ * // if the additional number of digits in the extended year format is 1:
+ * const result = parseISO('+02014101', { additionalDigits: 1 })
+ * //=> Fri Apr 11 2014 00:00:00
+ */
+function parseISO(argument, options) {
+  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
+
+  const additionalDigits = options?.additionalDigits ?? 2;
+  const dateStrings = splitDateString(argument);
+
+  let date;
+  if (dateStrings.date) {
+    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
+    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
+  }
+
+  if (!date || isNaN(+date)) return invalidDate();
+
+  const timestamp = +date;
+  let time = 0;
+  let offset;
+
+  if (dateStrings.time) {
+    time = parseTime(dateStrings.time);
+    if (isNaN(time)) return invalidDate();
+  }
+
+  if (dateStrings.timezone) {
+    offset = parseTimezone(dateStrings.timezone);
+    if (isNaN(offset)) return invalidDate();
+  } else {
+    const tmpDate = new Date(timestamp + time);
+    const result = (0, _index3.toDate)(0, options?.in);
+    result.setFullYear(
+      tmpDate.getUTCFullYear(),
+      tmpDate.getUTCMonth(),
+      tmpDate.getUTCDate(),
+    );
+    result.setHours(
+      tmpDate.getUTCHours(),
+      tmpDate.getUTCMinutes(),
+      tmpDate.getUTCSeconds(),
+      tmpDate.getUTCMilliseconds(),
+    );
+    return result;
+  }
+
+  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
+}
+
+const patterns = {
+  dateTimeDelimiter: /[T ]/,
+  timeZoneDelimiter: /[Z ]/i,
+  timezone: /([Z+-].*)$/,
+};
+
+const dateRegex =
+  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+const timeRegex =
+  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+
+function splitDateString(dateString) {
+  const dateStrings = {};
+  const array = dateString.split(patterns.dateTimeDelimiter);
+  let timeString;
+
+  // The regex match should only return at maximum two array elements.
+  // [date], [time], or [date, time].
+  if (array.length > 2) {
+    return dateStrings;
+  }
+
+  if (/:/.test(array[0])) {
+    timeString = array[0];
+  } else {
+    dateStrings.date = array[0];
+    timeString = array[1];
+    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      timeString = dateString.substr(
+        dateStrings.date.length,
+        dateString.length,
+      );
+    }
+  }
+
+  if (timeString) {
+    const token = patterns.timezone.exec(timeString);
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], "");
+      dateStrings.timezone = token[1];
+    } else {
+      dateStrings.time = timeString;
+    }
+  }
+
+  return dateStrings;
+}
+
+function parseYear(dateString, additionalDigits) {
+  const regex = new RegExp(
+    "^(?:(\\d{4}|[+-]\\d{" +
+      (4 + additionalDigits) +
+      "})|(\\d{2}|[+-]\\d{" +
+      (2 + additionalDigits) +
+      "})$)",
+  );
+
+  const captures = dateString.match(regex);
+  // Invalid ISO-formatted year
+  if (!captures) return { year: NaN, restDateString: "" };
+
+  const year = captures[1] ? parseInt(captures[1]) : null;
+  const century = captures[2] ? parseInt(captures[2]) : null;
+
+  // either year or century is null, not both
+  return {
+    year: century === null ? year : century * 100,
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
+  };
+}
+
+function parseDate(dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) return new Date(NaN);
+
+  const captures = dateString.match(dateRegex);
+  // Invalid ISO-formatted string
+  if (!captures) return new Date(NaN);
+
+  const isWeekDate = !!captures[4];
+  const dayOfYear = parseDateUnit(captures[1]);
+  const month = parseDateUnit(captures[2]) - 1;
+  const day = parseDateUnit(captures[3]);
+  const week = parseDateUnit(captures[4]);
+  const dayOfWeek = parseDateUnit(captures[5]) - 1;
+
+  if (isWeekDate) {
+    if (!validateWeekDate(year, week, dayOfWeek)) {
+      return new Date(NaN);
+    }
+    return dayOfISOWeekYear(year, week, dayOfWeek);
+  } else {
+    const date = new Date(0);
+    if (
+      !validateDate(year, month, day) ||
+      !validateDayOfYearDate(year, dayOfYear)
+    ) {
+      return new Date(NaN);
+    }
+    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
+    return date;
+  }
+}
+
+function parseDateUnit(value) {
+  return value ? parseInt(value) : 1;
+}
+
+function parseTime(timeString) {
+  const captures = timeString.match(timeRegex);
+  if (!captures) return NaN; // Invalid ISO-formatted time
+
+  const hours = parseTimeUnit(captures[1]);
+  const minutes = parseTimeUnit(captures[2]);
+  const seconds = parseTimeUnit(captures[3]);
+
+  if (!validateTime(hours, minutes, seconds)) {
+    return NaN;
+  }
+
+  return (
+    hours * _index.millisecondsInHour +
+    minutes * _index.millisecondsInMinute +
+    seconds * 1000
+  );
+}
+
+function parseTimeUnit(value) {
+  return (value && parseFloat(value.replace(",", "."))) || 0;
+}
+
+function parseTimezone(timezoneString) {
+  if (timezoneString === "Z") return 0;
+
+  const captures = timezoneString.match(timezoneRegex);
+  if (!captures) return 0;
+
+  const sign = captures[1] === "+" ? -1 : 1;
+  const hours = parseInt(captures[2]);
+  const minutes = (captures[3] && parseInt(captures[3])) || 0;
+
+  if (!validateTimezone(hours, minutes)) {
+    return NaN;
+  }
+
+  return (
+    sign *
+    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
+  );
+}
+
+function dayOfISOWeekYear(isoWeekYear, week, day) {
+  const date = new Date(0);
+  date.setUTCFullYear(isoWeekYear, 0, 4);
+  const fourthOfJanuaryDay = date.getUTCDay() || 7;
+  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
+  date.setUTCDate(date.getUTCDate() + diff);
+  return date;
+}
+
+// Validation functions
+
+// February is null to handle the leap year (using ||)
+const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function isLeapYearIndex(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+function validateDate(year, month, date) {
+  return (
+    month >= 0 &&
+    month <= 11 &&
+    date >= 1 &&
+    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
+  );
+}
+
+function validateDayOfYearDate(year, dayOfYear) {
+  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
+}
+
+function validateWeekDate(_year, week, day) {
+  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
+}
+
+function validateTime(hours, minutes, seconds) {
+  if (hours === 24) {
+    return minutes === 0 && seconds === 0;
+  }
+
+  return (
+    seconds >= 0 &&
+    seconds < 60 &&
+    minutes >= 0 &&
+    minutes < 60 &&
+    hours >= 0 &&
+    hours < 25
+  );
+}
+
+function validateTimezone(_hours, minutes) {
+  return minutes >= 0 && minutes <= 59;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseJSON.cjs":
+/*!*********************************************!*\
+  !*** ./node_modules/date-fns/parseJSON.cjs ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseJSON = parseJSON;
+var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseJSON} function options.
+ */
+
+/**
+ * Converts a complete ISO date string in UTC time, the typical format for transmitting
+ * a date in JSON, to a JavaScript `Date` instance.
+ *
+ * This is a minimal implementation for converting dates retrieved from a JSON API to
+ * a `Date` instance which can be used with other functions in the `date-fns` library.
+ * The following formats are supported:
+ *
+ * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
+ * - `2000-03-15T05:20:10Z`: Without milliseconds
+ * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
+ * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
+ * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
+ * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
+ *
+ * For convenience and ease of use these other input types are also supported
+ * via [toDate](https://date-fns.org/docs/toDate):
+ *
+ * - A `Date` instance will be cloned
+ * - A `number` will be treated as a timestamp
+ *
+ * Any other input type or invalid date strings will return an `Invalid Date`.
+ *
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dateStr - A fully formed ISO8601 date string to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ */
+function parseJSON(dateStr, options) {
+  const parts = dateStr.match(
+    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
+  );
+
+  if (!parts) return (0, _index.toDate)(NaN, options?.in);
+
+  return (0, _index.toDate)(
+    Date.UTC(
+      +parts[1],
+      +parts[2] - 1,
+      +parts[3],
+      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[6],
+      +((parts[7] || "0") + "00").substring(0, 3),
+    ),
+    options?.in,
+  );
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/date-fns/parse/_lib/Parser.cjs":
 /*!*****************************************************!*\
   !*** ./node_modules/date-fns/parse/_lib/Parser.cjs ***!
@@ -76443,384 +76819,6 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
 
 function isLeapYearIndex(year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/date-fns/parseISO.cjs":
-/*!********************************************!*\
-  !*** ./node_modules/date-fns/parseISO.cjs ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseISO = parseISO;
-var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
-
-var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
-var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseISO} function options.
- */
-
-/**
- * @name parseISO
- * @category Common Helpers
- * @summary Parse ISO string
- *
- * @description
- * Parse the given string in ISO 8601 format and return an instance of Date.
- *
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- *
- * If the argument isn't a string, the function cannot parse the string or
- * the values are invalid, it returns Invalid Date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param argument - The value to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * const result = parseISO('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * const result = parseISO('+02014101', { additionalDigits: 1 })
- * //=> Fri Apr 11 2014 00:00:00
- */
-function parseISO(argument, options) {
-  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
-
-  const additionalDigits = options?.additionalDigits ?? 2;
-  const dateStrings = splitDateString(argument);
-
-  let date;
-  if (dateStrings.date) {
-    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
-    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
-  }
-
-  if (!date || isNaN(+date)) return invalidDate();
-
-  const timestamp = +date;
-  let time = 0;
-  let offset;
-
-  if (dateStrings.time) {
-    time = parseTime(dateStrings.time);
-    if (isNaN(time)) return invalidDate();
-  }
-
-  if (dateStrings.timezone) {
-    offset = parseTimezone(dateStrings.timezone);
-    if (isNaN(offset)) return invalidDate();
-  } else {
-    const tmpDate = new Date(timestamp + time);
-    const result = (0, _index3.toDate)(0, options?.in);
-    result.setFullYear(
-      tmpDate.getUTCFullYear(),
-      tmpDate.getUTCMonth(),
-      tmpDate.getUTCDate(),
-    );
-    result.setHours(
-      tmpDate.getUTCHours(),
-      tmpDate.getUTCMinutes(),
-      tmpDate.getUTCSeconds(),
-      tmpDate.getUTCMilliseconds(),
-    );
-    return result;
-  }
-
-  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
-}
-
-const patterns = {
-  dateTimeDelimiter: /[T ]/,
-  timeZoneDelimiter: /[Z ]/i,
-  timezone: /([Z+-].*)$/,
-};
-
-const dateRegex =
-  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-const timeRegex =
-  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
-const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-
-function splitDateString(dateString) {
-  const dateStrings = {};
-  const array = dateString.split(patterns.dateTimeDelimiter);
-  let timeString;
-
-  // The regex match should only return at maximum two array elements.
-  // [date], [time], or [date, time].
-  if (array.length > 2) {
-    return dateStrings;
-  }
-
-  if (/:/.test(array[0])) {
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
-      timeString = dateString.substr(
-        dateStrings.date.length,
-        dateString.length,
-      );
-    }
-  }
-
-  if (timeString) {
-    const token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], "");
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings;
-}
-
-function parseYear(dateString, additionalDigits) {
-  const regex = new RegExp(
-    "^(?:(\\d{4}|[+-]\\d{" +
-      (4 + additionalDigits) +
-      "})|(\\d{2}|[+-]\\d{" +
-      (2 + additionalDigits) +
-      "})$)",
-  );
-
-  const captures = dateString.match(regex);
-  // Invalid ISO-formatted year
-  if (!captures) return { year: NaN, restDateString: "" };
-
-  const year = captures[1] ? parseInt(captures[1]) : null;
-  const century = captures[2] ? parseInt(captures[2]) : null;
-
-  // either year or century is null, not both
-  return {
-    year: century === null ? year : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length),
-  };
-}
-
-function parseDate(dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) return new Date(NaN);
-
-  const captures = dateString.match(dateRegex);
-  // Invalid ISO-formatted string
-  if (!captures) return new Date(NaN);
-
-  const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]);
-  const month = parseDateUnit(captures[2]) - 1;
-  const day = parseDateUnit(captures[3]);
-  const week = parseDateUnit(captures[4]);
-  const dayOfWeek = parseDateUnit(captures[5]) - 1;
-
-  if (isWeekDate) {
-    if (!validateWeekDate(year, week, dayOfWeek)) {
-      return new Date(NaN);
-    }
-    return dayOfISOWeekYear(year, week, dayOfWeek);
-  } else {
-    const date = new Date(0);
-    if (
-      !validateDate(year, month, day) ||
-      !validateDayOfYearDate(year, dayOfYear)
-    ) {
-      return new Date(NaN);
-    }
-    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
-    return date;
-  }
-}
-
-function parseDateUnit(value) {
-  return value ? parseInt(value) : 1;
-}
-
-function parseTime(timeString) {
-  const captures = timeString.match(timeRegex);
-  if (!captures) return NaN; // Invalid ISO-formatted time
-
-  const hours = parseTimeUnit(captures[1]);
-  const minutes = parseTimeUnit(captures[2]);
-  const seconds = parseTimeUnit(captures[3]);
-
-  if (!validateTime(hours, minutes, seconds)) {
-    return NaN;
-  }
-
-  return (
-    hours * _index.millisecondsInHour +
-    minutes * _index.millisecondsInMinute +
-    seconds * 1000
-  );
-}
-
-function parseTimeUnit(value) {
-  return (value && parseFloat(value.replace(",", "."))) || 0;
-}
-
-function parseTimezone(timezoneString) {
-  if (timezoneString === "Z") return 0;
-
-  const captures = timezoneString.match(timezoneRegex);
-  if (!captures) return 0;
-
-  const sign = captures[1] === "+" ? -1 : 1;
-  const hours = parseInt(captures[2]);
-  const minutes = (captures[3] && parseInt(captures[3])) || 0;
-
-  if (!validateTimezone(hours, minutes)) {
-    return NaN;
-  }
-
-  return (
-    sign *
-    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
-  );
-}
-
-function dayOfISOWeekYear(isoWeekYear, week, day) {
-  const date = new Date(0);
-  date.setUTCFullYear(isoWeekYear, 0, 4);
-  const fourthOfJanuaryDay = date.getUTCDay() || 7;
-  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date;
-}
-
-// Validation functions
-
-// February is null to handle the leap year (using ||)
-const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
-
-function validateDate(year, month, date) {
-  return (
-    month >= 0 &&
-    month <= 11 &&
-    date >= 1 &&
-    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
-  );
-}
-
-function validateDayOfYearDate(year, dayOfYear) {
-  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
-}
-
-function validateWeekDate(_year, week, day) {
-  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
-}
-
-function validateTime(hours, minutes, seconds) {
-  if (hours === 24) {
-    return minutes === 0 && seconds === 0;
-  }
-
-  return (
-    seconds >= 0 &&
-    seconds < 60 &&
-    minutes >= 0 &&
-    minutes < 60 &&
-    hours >= 0 &&
-    hours < 25
-  );
-}
-
-function validateTimezone(_hours, minutes) {
-  return minutes >= 0 && minutes <= 59;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/date-fns/parseJSON.cjs":
-/*!*********************************************!*\
-  !*** ./node_modules/date-fns/parseJSON.cjs ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseJSON = parseJSON;
-var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseJSON} function options.
- */
-
-/**
- * Converts a complete ISO date string in UTC time, the typical format for transmitting
- * a date in JSON, to a JavaScript `Date` instance.
- *
- * This is a minimal implementation for converting dates retrieved from a JSON API to
- * a `Date` instance which can be used with other functions in the `date-fns` library.
- * The following formats are supported:
- *
- * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
- * - `2000-03-15T05:20:10Z`: Without milliseconds
- * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
- * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
- * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
- * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
- *
- * For convenience and ease of use these other input types are also supported
- * via [toDate](https://date-fns.org/docs/toDate):
- *
- * - A `Date` instance will be cloned
- * - A `number` will be treated as a timestamp
- *
- * Any other input type or invalid date strings will return an `Invalid Date`.
- *
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dateStr - A fully formed ISO8601 date string to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- */
-function parseJSON(dateStr, options) {
-  const parts = dateStr.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
-  );
-
-  if (!parts) return (0, _index.toDate)(NaN, options?.in);
-
-  return (0, _index.toDate)(
-    Date.UTC(
-      +parts[1],
-      +parts[2] - 1,
-      +parts[3],
-      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[6],
-      +((parts[7] || "0") + "00").substring(0, 3),
-    ),
-    options?.in,
-  );
 }
 
 

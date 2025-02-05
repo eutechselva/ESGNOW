@@ -195,7 +195,7 @@ h3,
       display: flex;
       align-items: center;
       background-color: #f0f0f0;
-     // padding: 5px 10px;
+      padding: 4px;
       border-radius: 4px;
       font-weight: bold;
 
@@ -261,9 +261,9 @@ h3,
 .modal-container {
   &.lgs-calculate-impact-modal {
     .modal-panel {
-      width: 40% ;
-      min-width: 40% ;
-      max-width: 40% ;
+      width: 50% ;
+      min-width: 50% ;
+      max-width: 50% ;
       height: 80%;
     }
 
@@ -631,14 +631,14 @@ input:checked + .slider:before {
 
 .confirm-button {
   margin-top: 30px;
-  padding: 12px 24px;
+  padding: 8px 6px;
   background-color: #4caf50;
   color: white;
   font-size: 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  width: 38%;
+  width: 22%;
   text-align: center;
 }
 
