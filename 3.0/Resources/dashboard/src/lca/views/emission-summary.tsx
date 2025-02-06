@@ -4,7 +4,7 @@ import { Button, Input, FormField, Label, Select } from 'uxp/components';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
 import { Modal } from 'uxp/components';
-import Projects from './projects';
+import API_BASE_URL from "../config";
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 
 interface TransportLeg {
@@ -27,12 +27,56 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
     const [projectName, setProjectName] = useState('');
     const [projectId, setProjectId] = useState('');
     const [selectedProject, setSelectedProject] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
 
     const projectOptions = [
         { label: "Project Alpha", value: "alpha" },
         { label: "Project Beta", value: "beta" },
         { label: "Project Gamma", value: "gamma" },
     ];
+
+    const handleSave = async () => {
+        if (selectedCard === 'new') {
+            if (!projectName || !projectId) {
+                setError('Please fill in both project name and code');
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/projects`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+
+                    },
+                    body: JSON.stringify({
+                        code: projectId,
+                        name: projectName,
+                    }),
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to save project');
+                }
+
+                const savedProject = await response.json();
+                console.log('Project saved successfully:', savedProject);
+                onClose();
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save project');
+            } finally {
+                setIsLoading(false);
+            }
+        } else {
+            // Handle existing project selection
+            onClose();
+        }
+    };
+
     return (
         <Modal show={true} onClose={onClose} title="Save Emission Results">
             <div className="save-results-modal">
@@ -98,8 +142,18 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
                         </FormField>
                     </div>
                 )}
+                {error && (
+                    <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+                        {error}
+                    </div>
+                )}
                 <div className="save-button-container">
-                    <Button title="Save results" onClick={onClose} className="save-results" />
+                    <Button 
+                        title={isLoading ? "Saving..." : "Save results"} 
+                        onClick={handleSave} 
+                        className="save-results"
+                        disabled={isLoading} 
+                    />
                 </div>
             </div>
         </Modal>

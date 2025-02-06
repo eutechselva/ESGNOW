@@ -54241,6 +54241,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -54251,16 +54260,57 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
     const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
     const [projectName, setProjectName] = (0, react_1.useState)('');
     const [projectId, setProjectId] = (0, react_1.useState)('');
     const [selectedProject, setSelectedProject] = (0, react_1.useState)(null);
+    const [isLoading, setIsLoading] = (0, react_1.useState)(false);
+    const [error, setError] = (0, react_1.useState)(null);
     const projectOptions = [
         { label: "Project Alpha", value: "alpha" },
         { label: "Project Beta", value: "beta" },
         { label: "Project Gamma", value: "gamma" },
     ];
+    const handleSave = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (selectedCard === 'new') {
+            if (!projectName || !projectId) {
+                setError('Please fill in both project name and code');
+                return;
+            }
+            setIsLoading(true);
+            setError(null);
+            try {
+                const response = yield fetch(`${config_1.default}/api/projects`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code: projectId,
+                        name: projectName,
+                    }),
+                });
+                if (!response.ok) {
+                    throw new Error('Failed to save project');
+                }
+                const savedProject = yield response.json();
+                console.log('Project saved successfully:', savedProject);
+                onClose();
+            }
+            catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save project');
+            }
+            finally {
+                setIsLoading(false);
+            }
+        }
+        else {
+            // Handle existing project selection
+            onClose();
+        }
+    });
     return (react_1.default.createElement(components_2.Modal, { show: true, onClose: onClose, title: "Save Emission Results" },
         react_1.default.createElement("div", { className: "save-results-modal" },
             hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found.Please create a new project.")),
@@ -54285,8 +54335,9 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
                     react_1.default.createElement(components_1.Label, null,
                         react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Select an existing project")),
                     react_1.default.createElement(components_1.Select, { options: projectOptions, selected: selectedProject, onChange: (newValue) => setSelectedProject(newValue), placeholder: "Select a project" })))),
+            error && (react_1.default.createElement("div", { className: "error-message", style: { color: 'red', marginBottom: '10px' } }, error)),
             react_1.default.createElement("div", { className: "save-button-container" },
-                react_1.default.createElement(components_1.Button, { title: "Save results", onClick: onClose, className: "save-results" })))));
+                react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save results", onClick: handleSave, className: "save-results", disabled: isLoading })))));
 };
 const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
