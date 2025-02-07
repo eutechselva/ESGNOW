@@ -32,6 +32,7 @@ type ProductData = {
 
 export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps) => {
     const [activeStep, setActiveStep] = useState(0);
+    
 
     const [newlyCreatedProduct, setNewlyCreatedProduct] = useState<any>();
 
@@ -81,10 +82,6 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
     };
 
     const handleDone = async () =>  {
-      
-       
-        
-
         const payload = {
             code: productInfoData.code,
             name: productInfoData.name,
@@ -141,6 +138,7 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
                     productCategoryData={productCategoryData}
                     productData={productInfoData}
                     onNext={handleProductCategoryChange}
+                    uxpContext={uxpContext}
                 />
             )}
             {activeStep === 2 && (

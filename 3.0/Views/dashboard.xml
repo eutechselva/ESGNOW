@@ -11,7 +11,7 @@
         <Field type='hidden' id='env_uk' value='#{auth.UserKey}' />
         <Field type='hidden' id='env_token' value='#{auth.Token}' />
         <Field type='hidden' id='language' value='#{lang}' />
-        <Field type='hidden' id='accountid' value='#{fullaccounturl}' />
+        <Field type='hidden' id='fullaccounturl' value='#{fullaccounturl}' />
         <Field type='hidden' id='user_id' value='#{auth.LoginID}' />
         <Field type='hidden' id='user_key' value='#{auth.UserKey}' />
         <Field type='hidden' id='user_name' value='#{auth.FullName}' />

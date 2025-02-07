@@ -10,7 +10,6 @@ import { useSidebarLinks } from './sidebar-utils';
 import { usePageConfiguration } from './page-utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
 export const UMSDashboard: React.FC<UMSDashboardProps> = (props) => {
 
     const context = useContext(UMSContext)

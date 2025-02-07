@@ -95,6 +95,7 @@ interface IPartialContextProvider {
     lucyUrl: string;
     apiKey: string;
     userKey: string;
+    fullaccounturl : string;
 }
 
 /**

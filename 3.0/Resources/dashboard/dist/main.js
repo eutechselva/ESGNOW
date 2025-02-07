@@ -53473,9 +53473,9 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "https://lca-microservice.onrender.com";
-//const API_BASE_URL = "http://localhost:5009";
+const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
@@ -54798,7 +54798,7 @@ const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontaweso
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 __webpack_require__(/*! ./product-categorization.scss */ "./src/lca/views/product-categorization.scss");
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const ProductCategorization = ({ productCategoryData, productData, onNext }) => {
+const ProductCategorization = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [productCategory, setProductCategory] = (0, react_1.useState)("");
     const [productSubCategory, setProductSubCategory] = (0, react_1.useState)("");
     const [categoryOptions, setCategoryOptions] = (0, react_1.useState)([]);
@@ -54837,13 +54837,15 @@ const ProductCategorization = ({ productCategoryData, productData, onNext }) => 
         const classifyProduct = (data) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 setAIGenerating(true);
+                debugger;
                 const response = yield fetch(`${config_1.default}/api/classify-product`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name: productData.name,
                         description: productData.description,
-                        productCode: productData.code
+                        productCode: productData.code,
+                        images: productData.uploadedImages.map((image) => uxpContext.fullaccounturl + image),
                     })
                 });
                 const classificationData = yield response.json();
@@ -55451,6 +55453,7 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
                 body: form
             });
             let responseText = yield response.text();
+            debugger;
             console.log('response: ', response);
             // something went wrong, no point proceeding
             if (response.status !== 200) {
@@ -55912,7 +55915,7 @@ const ProductWizard = ({ show, onClose, uxpContext }) => {
     return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { }, onClose: onClose, title: "Create Product" },
         react_1.default.createElement(stepper_1.default, { activeStep: activeStep, onStepChange: handleStepChange }),
         activeStep === 0 && (react_1.default.createElement(product_information_1.default, { productData: productInfoData, onNext: handleProductInfoChange, uxpContext: uxpContext })),
-        activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange })),
+        activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange, uxpContext: uxpContext })),
         activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange })),
         activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess })),
         activeStep === 3 && (react_1.default.createElement("div", { className: "done-button-container" },

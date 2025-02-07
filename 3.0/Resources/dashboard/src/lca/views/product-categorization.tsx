@@ -6,14 +6,16 @@ import './product-categorization.scss';
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
+import { IContextProvider } from "@uxp";
 
 interface ProductCategorizationProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     onNext?: (productCategory: ProductCategoryInfo) => void;
+    uxpContext : IContextProvider;
 }
 
-const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext }) => {
+const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext , uxpContext }) => {
     const [productCategory, setProductCategory] = useState<string>("");
     const [productSubCategory, setProductSubCategory] = useState<string>("");
     const [categoryOptions, setCategoryOptions] = useState<{ label: string, value: string }[]>([]);
@@ -59,13 +61,15 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
         const classifyProduct = async (data: { [key: string]: string[] }) => {
             try {
                 setAIGenerating(true);
+                debugger;
                 const response = await fetch(`${API_BASE_URL}/api/classify-product`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         name: productData.name,
                         description: productData.description,
-                        productCode: productData.code
+                        productCode: productData.code,
+                        images : productData.uploadedImages.map((image) => uxpContext.fullaccounturl  + image),
                     })
                 });
 

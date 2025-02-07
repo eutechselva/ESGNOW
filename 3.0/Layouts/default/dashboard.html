@@ -68,7 +68,9 @@
         let userKey = document.querySelector("#env_uk").value;
         let apiKey = document.querySelector("#env_token").value;
         let language = document.querySelector("#language").value;
-        let userAppRoles = getUserAppRoles()
+        let userAppRoles = getUserAppRoles();
+        let fullaccounturl = document.querySelector("#fullaccounturl")?.value || '';
+        
 
         function tryParseJSON(x, def = null) {
             try {
@@ -122,7 +124,7 @@
             });
         }
 
-        let title = "Utility Management System"
+        let title = "ESG NOW";
         let moduleId = "iviva-esg-now-application"
         let uiId = "#{page.ui}"
 
@@ -153,7 +155,8 @@
             sidebarItems: [],
             scriptFiles: [], // widget script files
             apiKey: apiKey || null,
-            lucyUrl: "/",
+            lucyUrl: '/',
+            fullaccounturl: fullaccounturl,
             userRoles: [],
             getUserDetails: getCurrentUserDetails,
             saveUserDetails: saveCurrentUserDetails,

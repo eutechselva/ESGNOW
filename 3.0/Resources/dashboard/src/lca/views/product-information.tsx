@@ -35,8 +35,6 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
         const form = new FormData();
         form.append('file', buffer, filename);
 
-        
-
         let response = await fetch(url, {
             method: "POST",
             headers: {
@@ -45,11 +43,11 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
             body: form
         })
 
-        
-
         let responseText = await response.text();
 
-        console.log('response: ', response)
+        debugger;
+
+        console.log('response: ', response);
 
         // something went wrong, no point proceeding
         if (response.status !== 200) {
