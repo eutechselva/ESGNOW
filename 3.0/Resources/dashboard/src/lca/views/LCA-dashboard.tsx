@@ -306,49 +306,29 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             title: "PRODUCT SELECTION",
             content: (
                 <div>
-
                     <div className="product-selection-step">
+                        <div className="product-info-row">
+                            <div className="label-value-pair">
+                                <Label><span style={{ fontSize: '12px' }}>Product Code:</span></Label>
+                                <span className="product-value">{selectedProduct?.code}</span>
+                            </div>
+                        </div>
 
-                        <div className="selected-product-container">
-                            <Label><span style={{ fontSize: '12px', marginRight: '10px' }}>Selected Product:</span></Label>
-                            <div className="selected-product">
-                                <span className="product-code">{selectedProduct?.code}</span>
-                                <span className="product-name">{selectedProduct?.name}</span>
+                        <div className="product-info-row">
+                            <div className="label-value-pair">
+                                <Label><span style={{ fontSize: '12px' }}>Product Name:</span></Label>
+                                <span className="product-value">{selectedProduct?.name}</span>
                             </div>
                         </div>
 
                         <FormField className="product-info-field">
-                            <Label><span style={{ fontSize: '12px' }}>Product Information</span></Label>
-
+                            <Label><span style={{ fontSize: '12px' }}>Product Description:</span></Label>
                             <textarea
-
                                 value={selectedProduct?.description}
-                                
                                 className="product-info-textarea"
+                                readOnly
                             />
                         </FormField>
-
-                        {/* <FormField className="product-inventory-field">
-                        <Label><span style={{ fontSize: '12px', }}> Total Weight Based on Units</span></Label>
-
-
-                        <div className="product-inventory">
-                            <Input
-                                placeholder="Enter Quantity"
-                                value={quantity}
-                                onChange={(value: string) => setQuantity(value)}
-                                className="inventory-input"
-                            />
-                            <span className="inventory-unit">Units</span>
-                            <Input
-                                placeholder="Enter Weight"
-                                value={weight}
-                                onChange={(value: string) => setWeight(value)}
-                                className="inventory-input"
-                            />
-                            <span className="inventory-unit">Kg</span>
-                        </div>
-                    </FormField> */}
                     </div>
                 </div>
             ),
@@ -523,14 +503,16 @@ const LCADashboardWidget: React.FunctionComponent = () => {
             {isPackagingManual ? (
                 <Input
                     type="number"
-                    value={packagingWeight.toString()}
+                    value={packagingWeight.toFixed(2)}
                     onChange={(value) => setPackagingWeight(parseFloat(value))}
+                    inputAttr={{ step: "0.01" }}
                 />
             ) : (
                 <Input
                     type="number"
-                    value={packagingWeight.toString()}
+                    value={packagingWeight.toFixed(2)}
                     onChange={() => { }}
+                    inputAttr={{ step: "0.01" }}
                     className="disabled-input"
                 />
             )}
@@ -593,14 +575,16 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                                 {isPalletManual ? (
                                     <Input
                                         type="number"
-                                        value={palletWeight.toString()}
+                                        value={palletWeight.toFixed(2)}
                                         onChange={(value) => setPalletWeight(parseFloat(value))}
+                                        inputAttr={{ step: "0.01" }}
                                     />
                                 ) : (
                                     <Input
                                         type="number"
-                                        value={palletWeight.toString()}
+                                        value={palletWeight.toFixed(2)}
                                         onChange={() => { }}
+                                        inputAttr={{ step: "0.01" }}
                                         className="disabled-input"
                                     />
                                 )}
@@ -612,7 +596,7 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
                         <div className="total-weight">
                             <Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
-                            <div className="weight-display">{totalTransportWeight} Kg</div>
+                            <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
                         </div>
                     </div>
                 </div>
@@ -692,23 +676,23 @@ const LCADashboardWidget: React.FunctionComponent = () => {
                         <div className="summary-box">
                             <div className="summary-row">
                                 <span>Product Weight</span>
-                                <span>{selectedProduct?.weight}</span>
+                                <span>{parseFloat(selectedProduct?.weight).toFixed(2)} Kg</span>
                             </div>
                             <div className="summary-row">
                                 <span>Packaging Weight</span>
-                                <span>{packagingWeight}</span>
+                                <span>{packagingWeight.toFixed(2)} Kg</span>
                             </div>
                             <div className="summary-row">
                                 <span>Pallet Weight</span>
-                                <span>{ includePallet ?  palletWeight : 0}</span>
+                                <span>{(includePallet ? palletWeight : 0).toFixed(2)} Kg</span>
                             </div>
                             <div className="summary-row">
                                 <span>Total Weight</span>
-                                <span>{parseFloat(selectedProduct?.weight) + packagingWeight + (includePallet ?  palletWeight : 0)}</span>
+                                <span>{(parseFloat(selectedProduct?.weight) + packagingWeight + (includePallet ? palletWeight : 0)).toFixed(2)} Kg</span>
                             </div>
                         </div>
                     </div>
-                    <Button title="Confirm & Calculate" className="confirm-button" onClick={() => handleConfirmCalculate()} />
+                    <Button title="Calculate" className="confirm-button" onClick={() => handleConfirmCalculate()} />
 
                 </div>
             ),
