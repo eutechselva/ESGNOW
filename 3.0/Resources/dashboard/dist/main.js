@@ -208,6 +208,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss":
+/*!**************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss ***!
+  \**************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".summary-card-container {\n  display: flex;\n  gap: 20px;\n  align-items: flex-start;\n  justify-content: space-between;\n}\n\n.summary {\n  display: flex;\n  gap: 20px;\n  flex-wrap: wrap;\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n.card {\n  background: #fff;\n  padding: 20px;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  min-width: 200px;\n  min-height: 200px;\n  flex: 1;\n}\n\n.number {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.getting-started {\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n  flex: 1;\n  min-width: 300px;\n}\n.getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.recent-projects-container {\n  padding: 20px;\n  background: #f5f5f5;\n  border-radius: 8px;\n  margin-top: 20px;\n}\n\n.recent-projects-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.search-box-filter-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/material-entry.scss":
 /*!************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/material-entry.scss ***!
@@ -50002,6 +50019,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/home.scss":
+/*!*********************************!*\
+  !*** ./src/lca/views/home.scss ***!
+  \*********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./home.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/material-entry.scss":
 /*!*******************************************!*\
   !*** ./src/lca/views/material-entry.scss ***!
@@ -53473,9 +53518,9 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
-//const API_BASE_URL = "https://lca-microservice.onrender.com";
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "http://localhost:5009";
+const API_BASE_URL = "https://lca-microservice.onrender.com";
+//const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
@@ -54546,6 +54591,107 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
         showModal && react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects })));
 };
 exports["default"] = EmissionSummary;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/home.tsx":
+/*!********************************!*\
+  !*** ./src/lca/views/home.tsx ***!
+  \********************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./home.scss */ "./src/lca/views/home.scss");
+const HomeDashboard = () => {
+    const data = [
+        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P12345', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 15.2, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-05' },
+        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
+        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
+        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
+        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
+    ];
+    const [searchValue, setSearchValue] = (0, react_1.useState)('');
+    const [inputValue, setInputValue] = (0, react_1.useState)('');
+    const [selected, setSelected] = (0, react_1.useState)(null);
+    const handleSearchChange = (value) => {
+        setSearchValue(value);
+    };
+    return (react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
+        react_1.default.createElement("div", { className: "title-container" },
+            react_1.default.createElement("h1", { className: "heading" }, "Welcome to ESG NOW!")),
+        react_1.default.createElement("div", { className: "summary-card-container" },
+            react_1.default.createElement("section", { className: "summary" },
+                react_1.default.createElement("div", { className: "card" },
+                    react_1.default.createElement("h2", null, "No. of Products Created"),
+                    react_1.default.createElement("p", { className: "number" }, "245"),
+                    react_1.default.createElement("span", null, "Products")),
+                react_1.default.createElement("div", { className: "card" },
+                    react_1.default.createElement("h2", null, "No. of Impacts Calculated"),
+                    react_1.default.createElement("p", { className: "number" }, "245"),
+                    react_1.default.createElement("span", null, "Emission Impact")),
+                react_1.default.createElement("div", { className: "card" },
+                    react_1.default.createElement("h2", null, "No. of Projects Created"),
+                    react_1.default.createElement("p", { className: "number" }, "10"),
+                    react_1.default.createElement("span", null, "Projects")),
+                react_1.default.createElement("div", { className: "card" },
+                    react_1.default.createElement("h2", null, "No. of AI Credits Consumed"),
+                    react_1.default.createElement("p", { className: "number" }, "1000"),
+                    react_1.default.createElement("span", null, "Credits"))),
+            react_1.default.createElement("section", { className: "getting-started" },
+                react_1.default.createElement("iframe", { width: "100%", height: "200", src: "https://www.youtube.com/embed/YOUR_VIDEO_ID", title: "Getting Started Video", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }))),
+        react_1.default.createElement("div", { className: "recent-projects-container" },
+            react_1.default.createElement("div", { className: "recent-projects" },
+                react_1.default.createElement("div", { className: "recent-projects-header" },
+                    react_1.default.createElement("h2", null, "Recent Products"),
+                    react_1.default.createElement("div", { className: "search-box-filter-container" },
+                        react_1.default.createElement("div", { className: "uxp-search-box-container" },
+                            react_1.default.createElement(components_1.SearchBox, { placeholder: "Search products...", value: searchValue, onChange: handleSearchChange })),
+                        react_1.default.createElement(components_1.FilterPanel, { enableClear: (inputValue === null || inputValue === void 0 ? void 0 : inputValue.length) > 0 || selected != null, onClear: () => { setInputValue(""); setSelected(null); } },
+                            react_1.default.createElement(components_1.FormField, { className: "no-padding mb-only" },
+                                react_1.default.createElement(components_1.Label, null, "Sort By"),
+                                react_1.default.createElement(components_1.Select, { selected: selected, options: [
+                                        { label: "Name", value: "op-1" },
+                                        { label: "Date", value: "op-2" },
+                                    ], onChange: (value) => { setSelected(value); }, placeholder: " -- select --", isValid: selected ? (selected === null || selected === void 0 ? void 0 : selected.length) > 0 : null }))))),
+                react_1.default.createElement(components_1.TableComponent, { data: data, columns: [
+                        { id: 'ProductImage', label: 'Product Image' },
+                        { id: 'ProductCode', label: 'Product Code' },
+                        { id: 'ProductName', label: 'Product Name' },
+                        { id: 'TotalImpact', label: 'Total Impact' },
+                        { id: 'MainCategory', label: 'Main Category' },
+                        { id: 'SubCategory', label: 'Sub Category' },
+                        { id: 'Date', label: 'Date Created/Modified' }
+                    ], pageSize: 10, total: 25 })))));
+};
+exports["default"] = HomeDashboard;
 
 
 /***/ }),
@@ -56005,26 +56151,32 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./products.scss */ "./src/lca/views/products.scss");
 const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx");
+const home_1 = __importDefault(__webpack_require__(/*! ./home */ "./src/lca/views/home.tsx"));
 const LCAWidget = (props) => {
     const [showModal, setShowModal] = React.useState(false);
+    const [hasProducts, setHasProducts] = React.useState(true); // Track if products exist
     // Handler to process product information when modal is submitted
     const handleProductInfoChange = (productData) => {
         console.log("Product Data:", productData); // Handle the product data here (e.g., send to an API)
     };
-    return (React.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
+    return (React.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } }, hasProducts ? (React.createElement(home_1.default, null) // Display the HomeDashboard if products exist
+    ) : (React.createElement("div", null,
         React.createElement("div", { className: "title-container" },
             React.createElement("h1", { className: "heading" }, "Products")),
         React.createElement("div", { className: "centered-content" },
             React.createElement("div", { className: "icon-placeholder" },
                 React.createElement("img", { src: "https://icons.veryicon.com/png/o/miscellaneous/fu-jia-intranet/product-29.png", alt: "Product Icon", className: "placeholder-image" })),
-            React.createElement("h2", { className: "create-your-first-product" }, " Create your first product"),
+            React.createElement("h2", { className: "create-your-first-product" }, "Create your first product"),
             React.createElement("p", { className: "description-text" }, "Start by creating a product to begin tracking its environmental impact and lifecycle analysis."),
             React.createElement("button", { className: "create-product-button", onClick: () => setShowModal(true) }, "+ Create Product")),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })));
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })))));
 };
 exports["default"] = LCAWidget;
 
@@ -57316,7 +57468,7 @@ exports.registerCustomWidgetTemplate = registerCustomWidgetTemplate;
 /***/ ((module) => {
 
 "use strict";
-module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGRlZnM+DQogICAgICAgIDxyZWN0IGlkPSJhIiB4PSIwIiB5PSIwIiB3aWR0aD0iMzgiIGhlaWdodD0iMzgiIHJ4PSI4IiAvPg0KICAgIDwvZGVmcz4NCiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IDUpIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPg0KICAgICAgICA8IS0tIDxtYXNrIGlkPSJiIiBmaWxsPSIjZmZmZmZmIj4NCiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4NCiAgICAgICAgPC9tYXNrPiAtLT4NCiAgICAgICAgPCEtLSA8dXNlIGZpbGw9IiNFN0VBRjAiIHg6aHJlZj0iI2EiIC8+IC0tPg0KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiINCiAgICAgICAgICAgIGZpbGw9IiNFQTQzMzUiIG1hc2s9InVybCgjYikiIC8+DQogICAgICAgIDxwYXRoIGQ9Ik0zMCAyNmE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptMC0xMWE0IDQgMCAxMTAgOCA0IDQgMCAwMTAtOHptLTExIDBhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6Ig0KICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPHBhdGggZD0iTTE5IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek04IDI2YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIgZmlsbD0iIzM0QTg1MyIgbWFzaz0idXJsKCNiKSIgLz4NCiAgICAgICAgPGNpcmNsZSBmaWxsPSIjRkJCQzA1IiBtYXNrPSJ1cmwoI2IpIiBjeD0iOCIgY3k9IjE5IiByPSI0IiAvPg0KICAgIDwvZz4NCjwvc3ZnPg==";
+module.exports = "data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgNDggNDgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eD0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz4KICAgICAgICA8cmVjdCBpZD0iYSIgeD0iMCIgeT0iMCIgd2lkdGg9IjM4IiBoZWlnaHQ9IjM4IiByeD0iOCIgLz4KICAgIDwvZGVmcz4KICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgNSkiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPCEtLSA8bWFzayBpZD0iYiIgZmlsbD0iI2ZmZmZmZiI+CiAgICAgICAgICAgIDx1c2UgeDpocmVmPSIjYSIgLz4KICAgICAgICA8L21hc2s+IC0tPgogICAgICAgIDwhLS0gPHVzZSBmaWxsPSIjRTdFQUYwIiB4OmhyZWY9IiNhIiAvPiAtLT4KICAgICAgICA8cGF0aCBkPSJNOCA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04em0yMiAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04ek0xOSA0YTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iI0VBNDMzNSIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMzAgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bTAtMTFhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6bS0xMSAwYTQgNCAwIDExMCA4IDQgNCAwIDAxMC04eiIKICAgICAgICAgICAgZmlsbD0iIzQyODVGNCIgbWFzaz0idXJsKCNiKSIgLz4KICAgICAgICA8cGF0aCBkPSJNMTkgMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6TTggMjZhNCA0IDAgMTEwIDggNCA0IDAgMDEwLTh6IiBmaWxsPSIjMzRBODUzIiBtYXNrPSJ1cmwoI2IpIiAvPgogICAgICAgIDxjaXJjbGUgZmlsbD0iI0ZCQkMwNSIgbWFzaz0idXJsKCNiKSIgY3g9IjgiIGN5PSIxOSIgcj0iNCIgLz4KICAgIDwvZz4KPC9zdmc+";
 
 /***/ }),
 
@@ -73857,384 +74009,6 @@ function cleanEscapedString(input) {
 
 /***/ }),
 
-/***/ "./node_modules/date-fns/parseISO.cjs":
-/*!********************************************!*\
-  !*** ./node_modules/date-fns/parseISO.cjs ***!
-  \********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseISO = parseISO;
-var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
-
-var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
-var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseISO} function options.
- */
-
-/**
- * @name parseISO
- * @category Common Helpers
- * @summary Parse ISO string
- *
- * @description
- * Parse the given string in ISO 8601 format and return an instance of Date.
- *
- * Function accepts complete ISO 8601 formats as well as partial implementations.
- * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
- *
- * If the argument isn't a string, the function cannot parse the string or
- * the values are invalid, it returns Invalid Date.
- *
- * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param argument - The value to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- *
- * @example
- * // Convert string '2014-02-11T11:30:30' to date:
- * const result = parseISO('2014-02-11T11:30:30')
- * //=> Tue Feb 11 2014 11:30:30
- *
- * @example
- * // Convert string '+02014101' to date,
- * // if the additional number of digits in the extended year format is 1:
- * const result = parseISO('+02014101', { additionalDigits: 1 })
- * //=> Fri Apr 11 2014 00:00:00
- */
-function parseISO(argument, options) {
-  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
-
-  const additionalDigits = options?.additionalDigits ?? 2;
-  const dateStrings = splitDateString(argument);
-
-  let date;
-  if (dateStrings.date) {
-    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
-    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
-  }
-
-  if (!date || isNaN(+date)) return invalidDate();
-
-  const timestamp = +date;
-  let time = 0;
-  let offset;
-
-  if (dateStrings.time) {
-    time = parseTime(dateStrings.time);
-    if (isNaN(time)) return invalidDate();
-  }
-
-  if (dateStrings.timezone) {
-    offset = parseTimezone(dateStrings.timezone);
-    if (isNaN(offset)) return invalidDate();
-  } else {
-    const tmpDate = new Date(timestamp + time);
-    const result = (0, _index3.toDate)(0, options?.in);
-    result.setFullYear(
-      tmpDate.getUTCFullYear(),
-      tmpDate.getUTCMonth(),
-      tmpDate.getUTCDate(),
-    );
-    result.setHours(
-      tmpDate.getUTCHours(),
-      tmpDate.getUTCMinutes(),
-      tmpDate.getUTCSeconds(),
-      tmpDate.getUTCMilliseconds(),
-    );
-    return result;
-  }
-
-  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
-}
-
-const patterns = {
-  dateTimeDelimiter: /[T ]/,
-  timeZoneDelimiter: /[Z ]/i,
-  timezone: /([Z+-].*)$/,
-};
-
-const dateRegex =
-  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
-const timeRegex =
-  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
-const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
-
-function splitDateString(dateString) {
-  const dateStrings = {};
-  const array = dateString.split(patterns.dateTimeDelimiter);
-  let timeString;
-
-  // The regex match should only return at maximum two array elements.
-  // [date], [time], or [date, time].
-  if (array.length > 2) {
-    return dateStrings;
-  }
-
-  if (/:/.test(array[0])) {
-    timeString = array[0];
-  } else {
-    dateStrings.date = array[0];
-    timeString = array[1];
-    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
-      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
-      timeString = dateString.substr(
-        dateStrings.date.length,
-        dateString.length,
-      );
-    }
-  }
-
-  if (timeString) {
-    const token = patterns.timezone.exec(timeString);
-    if (token) {
-      dateStrings.time = timeString.replace(token[1], "");
-      dateStrings.timezone = token[1];
-    } else {
-      dateStrings.time = timeString;
-    }
-  }
-
-  return dateStrings;
-}
-
-function parseYear(dateString, additionalDigits) {
-  const regex = new RegExp(
-    "^(?:(\\d{4}|[+-]\\d{" +
-      (4 + additionalDigits) +
-      "})|(\\d{2}|[+-]\\d{" +
-      (2 + additionalDigits) +
-      "})$)",
-  );
-
-  const captures = dateString.match(regex);
-  // Invalid ISO-formatted year
-  if (!captures) return { year: NaN, restDateString: "" };
-
-  const year = captures[1] ? parseInt(captures[1]) : null;
-  const century = captures[2] ? parseInt(captures[2]) : null;
-
-  // either year or century is null, not both
-  return {
-    year: century === null ? year : century * 100,
-    restDateString: dateString.slice((captures[1] || captures[2]).length),
-  };
-}
-
-function parseDate(dateString, year) {
-  // Invalid ISO-formatted year
-  if (year === null) return new Date(NaN);
-
-  const captures = dateString.match(dateRegex);
-  // Invalid ISO-formatted string
-  if (!captures) return new Date(NaN);
-
-  const isWeekDate = !!captures[4];
-  const dayOfYear = parseDateUnit(captures[1]);
-  const month = parseDateUnit(captures[2]) - 1;
-  const day = parseDateUnit(captures[3]);
-  const week = parseDateUnit(captures[4]);
-  const dayOfWeek = parseDateUnit(captures[5]) - 1;
-
-  if (isWeekDate) {
-    if (!validateWeekDate(year, week, dayOfWeek)) {
-      return new Date(NaN);
-    }
-    return dayOfISOWeekYear(year, week, dayOfWeek);
-  } else {
-    const date = new Date(0);
-    if (
-      !validateDate(year, month, day) ||
-      !validateDayOfYearDate(year, dayOfYear)
-    ) {
-      return new Date(NaN);
-    }
-    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
-    return date;
-  }
-}
-
-function parseDateUnit(value) {
-  return value ? parseInt(value) : 1;
-}
-
-function parseTime(timeString) {
-  const captures = timeString.match(timeRegex);
-  if (!captures) return NaN; // Invalid ISO-formatted time
-
-  const hours = parseTimeUnit(captures[1]);
-  const minutes = parseTimeUnit(captures[2]);
-  const seconds = parseTimeUnit(captures[3]);
-
-  if (!validateTime(hours, minutes, seconds)) {
-    return NaN;
-  }
-
-  return (
-    hours * _index.millisecondsInHour +
-    minutes * _index.millisecondsInMinute +
-    seconds * 1000
-  );
-}
-
-function parseTimeUnit(value) {
-  return (value && parseFloat(value.replace(",", "."))) || 0;
-}
-
-function parseTimezone(timezoneString) {
-  if (timezoneString === "Z") return 0;
-
-  const captures = timezoneString.match(timezoneRegex);
-  if (!captures) return 0;
-
-  const sign = captures[1] === "+" ? -1 : 1;
-  const hours = parseInt(captures[2]);
-  const minutes = (captures[3] && parseInt(captures[3])) || 0;
-
-  if (!validateTimezone(hours, minutes)) {
-    return NaN;
-  }
-
-  return (
-    sign *
-    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
-  );
-}
-
-function dayOfISOWeekYear(isoWeekYear, week, day) {
-  const date = new Date(0);
-  date.setUTCFullYear(isoWeekYear, 0, 4);
-  const fourthOfJanuaryDay = date.getUTCDay() || 7;
-  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
-  date.setUTCDate(date.getUTCDate() + diff);
-  return date;
-}
-
-// Validation functions
-
-// February is null to handle the leap year (using ||)
-const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
-
-function isLeapYearIndex(year) {
-  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
-}
-
-function validateDate(year, month, date) {
-  return (
-    month >= 0 &&
-    month <= 11 &&
-    date >= 1 &&
-    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
-  );
-}
-
-function validateDayOfYearDate(year, dayOfYear) {
-  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
-}
-
-function validateWeekDate(_year, week, day) {
-  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
-}
-
-function validateTime(hours, minutes, seconds) {
-  if (hours === 24) {
-    return minutes === 0 && seconds === 0;
-  }
-
-  return (
-    seconds >= 0 &&
-    seconds < 60 &&
-    minutes >= 0 &&
-    minutes < 60 &&
-    hours >= 0 &&
-    hours < 25
-  );
-}
-
-function validateTimezone(_hours, minutes) {
-  return minutes >= 0 && minutes <= 59;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/date-fns/parseJSON.cjs":
-/*!*********************************************!*\
-  !*** ./node_modules/date-fns/parseJSON.cjs ***!
-  \*********************************************/
-/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
-
-"use strict";
-
-exports.parseJSON = parseJSON;
-var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
-
-/**
- * The {@link parseJSON} function options.
- */
-
-/**
- * Converts a complete ISO date string in UTC time, the typical format for transmitting
- * a date in JSON, to a JavaScript `Date` instance.
- *
- * This is a minimal implementation for converting dates retrieved from a JSON API to
- * a `Date` instance which can be used with other functions in the `date-fns` library.
- * The following formats are supported:
- *
- * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
- * - `2000-03-15T05:20:10Z`: Without milliseconds
- * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
- * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
- * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
- * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
- * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
- *
- * For convenience and ease of use these other input types are also supported
- * via [toDate](https://date-fns.org/docs/toDate):
- *
- * - A `Date` instance will be cloned
- * - A `number` will be treated as a timestamp
- *
- * Any other input type or invalid date strings will return an `Invalid Date`.
- *
- * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
- *
- * @param dateStr - A fully formed ISO8601 date string to convert
- * @param options - An object with options
- *
- * @returns The parsed date in the local time zone
- */
-function parseJSON(dateStr, options) {
-  const parts = dateStr.match(
-    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
-  );
-
-  if (!parts) return (0, _index.toDate)(NaN, options?.in);
-
-  return (0, _index.toDate)(
-    Date.UTC(
-      +parts[1],
-      +parts[2] - 1,
-      +parts[3],
-      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
-      +parts[6],
-      +((parts[7] || "0") + "00").substring(0, 3),
-    ),
-    options?.in,
-  );
-}
-
-
-/***/ }),
-
 /***/ "./node_modules/date-fns/parse/_lib/Parser.cjs":
 /*!*****************************************************!*\
   !*** ./node_modules/date-fns/parse/_lib/Parser.cjs ***!
@@ -76870,6 +76644,384 @@ function normalizeTwoDigitYear(twoDigitYear, currentYear) {
 
 function isLeapYearIndex(year) {
   return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseISO.cjs":
+/*!********************************************!*\
+  !*** ./node_modules/date-fns/parseISO.cjs ***!
+  \********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseISO = parseISO;
+var _index = __webpack_require__(/*! ./constants.cjs */ "./node_modules/date-fns/constants.cjs");
+
+var _index2 = __webpack_require__(/*! ./constructFrom.cjs */ "./node_modules/date-fns/constructFrom.cjs");
+var _index3 = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseISO} function options.
+ */
+
+/**
+ * @name parseISO
+ * @category Common Helpers
+ * @summary Parse ISO string
+ *
+ * @description
+ * Parse the given string in ISO 8601 format and return an instance of Date.
+ *
+ * Function accepts complete ISO 8601 formats as well as partial implementations.
+ * ISO 8601: http://en.wikipedia.org/wiki/ISO_8601
+ *
+ * If the argument isn't a string, the function cannot parse the string or
+ * the values are invalid, it returns Invalid Date.
+ *
+ * @typeParam DateType - The `Date` type, the function operates on. Gets inferred from passed arguments. Allows to use extensions like [`UTCDate`](https://github.com/date-fns/utc).
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param argument - The value to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ *
+ * @example
+ * // Convert string '2014-02-11T11:30:30' to date:
+ * const result = parseISO('2014-02-11T11:30:30')
+ * //=> Tue Feb 11 2014 11:30:30
+ *
+ * @example
+ * // Convert string '+02014101' to date,
+ * // if the additional number of digits in the extended year format is 1:
+ * const result = parseISO('+02014101', { additionalDigits: 1 })
+ * //=> Fri Apr 11 2014 00:00:00
+ */
+function parseISO(argument, options) {
+  const invalidDate = () => (0, _index2.constructFrom)(options?.in, NaN);
+
+  const additionalDigits = options?.additionalDigits ?? 2;
+  const dateStrings = splitDateString(argument);
+
+  let date;
+  if (dateStrings.date) {
+    const parseYearResult = parseYear(dateStrings.date, additionalDigits);
+    date = parseDate(parseYearResult.restDateString, parseYearResult.year);
+  }
+
+  if (!date || isNaN(+date)) return invalidDate();
+
+  const timestamp = +date;
+  let time = 0;
+  let offset;
+
+  if (dateStrings.time) {
+    time = parseTime(dateStrings.time);
+    if (isNaN(time)) return invalidDate();
+  }
+
+  if (dateStrings.timezone) {
+    offset = parseTimezone(dateStrings.timezone);
+    if (isNaN(offset)) return invalidDate();
+  } else {
+    const tmpDate = new Date(timestamp + time);
+    const result = (0, _index3.toDate)(0, options?.in);
+    result.setFullYear(
+      tmpDate.getUTCFullYear(),
+      tmpDate.getUTCMonth(),
+      tmpDate.getUTCDate(),
+    );
+    result.setHours(
+      tmpDate.getUTCHours(),
+      tmpDate.getUTCMinutes(),
+      tmpDate.getUTCSeconds(),
+      tmpDate.getUTCMilliseconds(),
+    );
+    return result;
+  }
+
+  return (0, _index3.toDate)(timestamp + time + offset, options?.in);
+}
+
+const patterns = {
+  dateTimeDelimiter: /[T ]/,
+  timeZoneDelimiter: /[Z ]/i,
+  timezone: /([Z+-].*)$/,
+};
+
+const dateRegex =
+  /^-?(?:(\d{3})|(\d{2})(?:-?(\d{2}))?|W(\d{2})(?:-?(\d{1}))?|)$/;
+const timeRegex =
+  /^(\d{2}(?:[.,]\d*)?)(?::?(\d{2}(?:[.,]\d*)?))?(?::?(\d{2}(?:[.,]\d*)?))?$/;
+const timezoneRegex = /^([+-])(\d{2})(?::?(\d{2}))?$/;
+
+function splitDateString(dateString) {
+  const dateStrings = {};
+  const array = dateString.split(patterns.dateTimeDelimiter);
+  let timeString;
+
+  // The regex match should only return at maximum two array elements.
+  // [date], [time], or [date, time].
+  if (array.length > 2) {
+    return dateStrings;
+  }
+
+  if (/:/.test(array[0])) {
+    timeString = array[0];
+  } else {
+    dateStrings.date = array[0];
+    timeString = array[1];
+    if (patterns.timeZoneDelimiter.test(dateStrings.date)) {
+      dateStrings.date = dateString.split(patterns.timeZoneDelimiter)[0];
+      timeString = dateString.substr(
+        dateStrings.date.length,
+        dateString.length,
+      );
+    }
+  }
+
+  if (timeString) {
+    const token = patterns.timezone.exec(timeString);
+    if (token) {
+      dateStrings.time = timeString.replace(token[1], "");
+      dateStrings.timezone = token[1];
+    } else {
+      dateStrings.time = timeString;
+    }
+  }
+
+  return dateStrings;
+}
+
+function parseYear(dateString, additionalDigits) {
+  const regex = new RegExp(
+    "^(?:(\\d{4}|[+-]\\d{" +
+      (4 + additionalDigits) +
+      "})|(\\d{2}|[+-]\\d{" +
+      (2 + additionalDigits) +
+      "})$)",
+  );
+
+  const captures = dateString.match(regex);
+  // Invalid ISO-formatted year
+  if (!captures) return { year: NaN, restDateString: "" };
+
+  const year = captures[1] ? parseInt(captures[1]) : null;
+  const century = captures[2] ? parseInt(captures[2]) : null;
+
+  // either year or century is null, not both
+  return {
+    year: century === null ? year : century * 100,
+    restDateString: dateString.slice((captures[1] || captures[2]).length),
+  };
+}
+
+function parseDate(dateString, year) {
+  // Invalid ISO-formatted year
+  if (year === null) return new Date(NaN);
+
+  const captures = dateString.match(dateRegex);
+  // Invalid ISO-formatted string
+  if (!captures) return new Date(NaN);
+
+  const isWeekDate = !!captures[4];
+  const dayOfYear = parseDateUnit(captures[1]);
+  const month = parseDateUnit(captures[2]) - 1;
+  const day = parseDateUnit(captures[3]);
+  const week = parseDateUnit(captures[4]);
+  const dayOfWeek = parseDateUnit(captures[5]) - 1;
+
+  if (isWeekDate) {
+    if (!validateWeekDate(year, week, dayOfWeek)) {
+      return new Date(NaN);
+    }
+    return dayOfISOWeekYear(year, week, dayOfWeek);
+  } else {
+    const date = new Date(0);
+    if (
+      !validateDate(year, month, day) ||
+      !validateDayOfYearDate(year, dayOfYear)
+    ) {
+      return new Date(NaN);
+    }
+    date.setUTCFullYear(year, month, Math.max(dayOfYear, day));
+    return date;
+  }
+}
+
+function parseDateUnit(value) {
+  return value ? parseInt(value) : 1;
+}
+
+function parseTime(timeString) {
+  const captures = timeString.match(timeRegex);
+  if (!captures) return NaN; // Invalid ISO-formatted time
+
+  const hours = parseTimeUnit(captures[1]);
+  const minutes = parseTimeUnit(captures[2]);
+  const seconds = parseTimeUnit(captures[3]);
+
+  if (!validateTime(hours, minutes, seconds)) {
+    return NaN;
+  }
+
+  return (
+    hours * _index.millisecondsInHour +
+    minutes * _index.millisecondsInMinute +
+    seconds * 1000
+  );
+}
+
+function parseTimeUnit(value) {
+  return (value && parseFloat(value.replace(",", "."))) || 0;
+}
+
+function parseTimezone(timezoneString) {
+  if (timezoneString === "Z") return 0;
+
+  const captures = timezoneString.match(timezoneRegex);
+  if (!captures) return 0;
+
+  const sign = captures[1] === "+" ? -1 : 1;
+  const hours = parseInt(captures[2]);
+  const minutes = (captures[3] && parseInt(captures[3])) || 0;
+
+  if (!validateTimezone(hours, minutes)) {
+    return NaN;
+  }
+
+  return (
+    sign *
+    (hours * _index.millisecondsInHour + minutes * _index.millisecondsInMinute)
+  );
+}
+
+function dayOfISOWeekYear(isoWeekYear, week, day) {
+  const date = new Date(0);
+  date.setUTCFullYear(isoWeekYear, 0, 4);
+  const fourthOfJanuaryDay = date.getUTCDay() || 7;
+  const diff = (week - 1) * 7 + day + 1 - fourthOfJanuaryDay;
+  date.setUTCDate(date.getUTCDate() + diff);
+  return date;
+}
+
+// Validation functions
+
+// February is null to handle the leap year (using ||)
+const daysInMonths = [31, null, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+
+function isLeapYearIndex(year) {
+  return year % 400 === 0 || (year % 4 === 0 && year % 100 !== 0);
+}
+
+function validateDate(year, month, date) {
+  return (
+    month >= 0 &&
+    month <= 11 &&
+    date >= 1 &&
+    date <= (daysInMonths[month] || (isLeapYearIndex(year) ? 29 : 28))
+  );
+}
+
+function validateDayOfYearDate(year, dayOfYear) {
+  return dayOfYear >= 1 && dayOfYear <= (isLeapYearIndex(year) ? 366 : 365);
+}
+
+function validateWeekDate(_year, week, day) {
+  return week >= 1 && week <= 53 && day >= 0 && day <= 6;
+}
+
+function validateTime(hours, minutes, seconds) {
+  if (hours === 24) {
+    return minutes === 0 && seconds === 0;
+  }
+
+  return (
+    seconds >= 0 &&
+    seconds < 60 &&
+    minutes >= 0 &&
+    minutes < 60 &&
+    hours >= 0 &&
+    hours < 25
+  );
+}
+
+function validateTimezone(_hours, minutes) {
+  return minutes >= 0 && minutes <= 59;
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/date-fns/parseJSON.cjs":
+/*!*********************************************!*\
+  !*** ./node_modules/date-fns/parseJSON.cjs ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+exports.parseJSON = parseJSON;
+var _index = __webpack_require__(/*! ./toDate.cjs */ "./node_modules/date-fns/toDate.cjs");
+
+/**
+ * The {@link parseJSON} function options.
+ */
+
+/**
+ * Converts a complete ISO date string in UTC time, the typical format for transmitting
+ * a date in JSON, to a JavaScript `Date` instance.
+ *
+ * This is a minimal implementation for converting dates retrieved from a JSON API to
+ * a `Date` instance which can be used with other functions in the `date-fns` library.
+ * The following formats are supported:
+ *
+ * - `2000-03-15T05:20:10.123Z`: The output of `.toISOString()` and `JSON.stringify(new Date())`
+ * - `2000-03-15T05:20:10Z`: Without milliseconds
+ * - `2000-03-15T05:20:10+00:00`: With a zero offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+05:45`: With a positive or negative offset, the default JSON encoded format in some other languages
+ * - `2000-03-15T05:20:10+0000`: With a zero offset without a colon
+ * - `2000-03-15T05:20:10`: Without a trailing 'Z' symbol
+ * - `2000-03-15T05:20:10.1234567`: Up to 7 digits in milliseconds field. Only first 3 are taken into account since JS does not allow fractional milliseconds
+ * - `2000-03-15 05:20:10`: With a space instead of a 'T' separator for APIs returning a SQL date without reformatting
+ *
+ * For convenience and ease of use these other input types are also supported
+ * via [toDate](https://date-fns.org/docs/toDate):
+ *
+ * - A `Date` instance will be cloned
+ * - A `number` will be treated as a timestamp
+ *
+ * Any other input type or invalid date strings will return an `Invalid Date`.
+ *
+ * @typeParam ResultDate - The result `Date` type, it is the type returned from the context function if it is passed, or inferred from the arguments.
+ *
+ * @param dateStr - A fully formed ISO8601 date string to convert
+ * @param options - An object with options
+ *
+ * @returns The parsed date in the local time zone
+ */
+function parseJSON(dateStr, options) {
+  const parts = dateStr.match(
+    /(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2}):(\d{2})(?:\.(\d{0,7}))?(?:Z|(.)(\d{2}):?(\d{2})?)?/,
+  );
+
+  if (!parts) return (0, _index.toDate)(NaN, options?.in);
+
+  return (0, _index.toDate)(
+    Date.UTC(
+      +parts[1],
+      +parts[2] - 1,
+      +parts[3],
+      +parts[4] - (+parts[9] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[5] - (+parts[10] || 0) * (parts[8] == "-" ? -1 : 1),
+      +parts[6],
+      +((parts[7] || "0") + "00").substring(0, 3),
+    ),
+    options?.in,
+  );
 }
 
 
