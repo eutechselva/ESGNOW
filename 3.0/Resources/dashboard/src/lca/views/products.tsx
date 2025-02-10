@@ -50,7 +50,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
                     <ProductWizard 
                         show={showModal} 
                         onClose={() => setShowModal(false)} 
-                        uxpContext={props.uxpContext} 
+                        context={props.uxpContext} 
                     />
                 </div>
             )}

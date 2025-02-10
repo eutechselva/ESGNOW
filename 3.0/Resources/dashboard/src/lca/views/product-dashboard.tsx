@@ -1,28 +1,21 @@
-import { TitleBar, Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
 import * as React from "react";
+import {  Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
 import './ProductDashboardWidget.scss';
 import ProductInfoSummary from './product-info-summary';
-// import chairImage from './assets/images/chair.jpg';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
 import { ProductWizard } from "./product-wizard";
-
+import { getAllProducts } from "../../esgnow-service";
 
 interface IWidgetProps {
-    uxpContext?: IContextProvider;
-    instanceId?: string;
+    uxpContext: IContextProvider
 }
 
-
-
-const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) => {
-    const [productData, setProductData] = React.useState([]);
+const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
+    const [products, setProducts] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState<any | null>(null);
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState("");
-    const [filteredData, setFilteredData] = React.useState(productData);
+    const [filteredData, setFilteredData] = React.useState(products);
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
@@ -35,8 +28,8 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = productData.slice(indexOfFirstItem, indexOfLastItem);
-    const totalPages = Math.ceil(productData.length / itemsPerPage);
+    
+    const totalPages = Math.ceil(products.length / itemsPerPage);
 
     const Pagination = () => (
         <div className="flex justify-center items-center gap-2 mt-4">
@@ -57,14 +50,15 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     );
 
     React.useEffect(() => {
+        
         const fetchProductData = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/products`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setProductData(data);
+                debugger;
+                const response = await getAllProducts(uxpContext);
+
+                let data = response.data;
+                
+                setProducts(data);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -72,7 +66,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
 
         fetchProductData();
     }, []);
-    const [activeView, setActiveView] = React.useState<'product-info' | 'carbon-impact'>('product-info');
+    
 
     const handleSearchChange = (newValue: string) => {
         setSearchValue(newValue);
@@ -80,7 +74,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     };
 
     const applyFilters = (searchText: string, category: string | null, co2Limit: number | null) => {
-        const filtered = productData.filter(item => {
+        const filtered = products.filter(item => {
             const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.name.toLowerCase().includes(searchText.toLowerCase()) ||
                 item.category.toLowerCase().includes(searchText.toLowerCase());
@@ -94,12 +88,10 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
-        setFilteredData(productData);
+        setFilteredData(products);
     };
 
-    const toggleViewMode = (mode: 'grid' | 'list') => {
-        setViewMode(mode);
-    };
+    
 
     return (
         <div className="content">
@@ -192,7 +184,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                         {viewMode === 'grid' ? (
                             <>
                             <DataGrid
-                                data={productData}
+                                data={products}
                                 renderItem={(item) => (
                                     <div className="product-card" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.images[0]} alt="Product" className="product-image" />
@@ -213,7 +205,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
                             </>
                         ) : (
                             <div className="list-view">
-                                {productData.map((item, index) => (
+                                {products.map((item, index) => (
                                     <div key={index} className="product-list-item" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.icon} alt="Product" className="product-image" />
                                         <div className="product-details">
@@ -237,7 +229,7 @@ const ProductDashboardWidget: React.FunctionComponent<IWidgetProps> = (props) =>
             )}
              <ProductWizard
                             show={showModal}
-                            onClose={() => setShowModal(false)} uxpContext={props.uxpContext}
+                            onClose={() => setShowModal(false)} context={uxpContext}
                         />
 
             {/* Product summary screen */}

@@ -7,6 +7,10 @@ import EmissionSummary from './emission-summary';
 import API_BASE_URL from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { executeComponent } from "@utils";
+import { Icon } from "@fortawesome/fontawesome-svg-core";
+import { IContextProvider } from "@uxp";
+import { getAllProducts } from "../../esgnow-service";
 
 interface TransportLeg {
     id: number;
@@ -27,8 +31,12 @@ interface DistanceResponse {
     distance_in_km: number;
 }
 
+interface ILCADashboardWidgetProps {
+   context: IContextProvider;
+}
 
-const LCADashboardWidget: React.FunctionComponent = () => {
+
+const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({context}) => {
     const [products, setProducts] = React.useState([]);
     const [transportDatabase, setTransportDatabase] = React.useState<{ [key: string]: any }>({});
 
@@ -74,17 +82,11 @@ const LCADashboardWidget: React.FunctionComponent = () => {
 
     React.useEffect(() => {
         const fetchProductData = async () => {
-            try {
-                const response = await fetch(`${API_BASE_URL}/api/products`);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = await response.json();
-                setProducts(data);
-            } catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        };
+
+            const data =  await getAllProducts(context);
+            setProducts(data.data);
+
+            };
 
         fetchProductData();
     }, []);

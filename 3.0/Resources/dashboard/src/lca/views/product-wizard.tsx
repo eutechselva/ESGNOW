@@ -9,16 +9,15 @@ import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { BillMaterial } from "../types/bill-material-type";
 import "./product-wizard.scss";
-import API_BASE_URL from "../config";
 import { ProductManufacturingProcess } from "../types/product-manufacturing-process.type";
 import Assessment from "./assessment";
 import { IContextProvider } from "@uxp";
-import { width } from "@fortawesome/free-solid-svg-icons/faInfoCircle";
+import { createProduct, getAllProducts } from "../../esgnow-service";
 
 interface ProductWizardProps {
     show: boolean; 
     onClose: () => void;
-    uxpContext : IContextProvider;
+    context : IContextProvider;
 }
 
 type ProductData = {
@@ -30,7 +29,7 @@ type ProductData = {
     uploadedImages: string[];
 };
 
-export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps) => {
+export const ProductWizard = ({ show, onClose ,context }: ProductWizardProps) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const [newlyCreatedProduct, setNewlyCreatedProduct] = useState<any>();
@@ -102,19 +101,11 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
         };
     
         try {
-            const response = await fetch(`${API_BASE_URL}/api/products`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(payload),
-            });
-    
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-    
-            const data = await response.json();
+
+             const data =  await createProduct(context,payload);
+             debugger;
+             
+            
             setNewlyCreatedProduct(data);
             console.log('Product creation complete', data);
             setActiveStep(activeStep + 1);
@@ -134,7 +125,7 @@ export const ProductWizard = ({ show, onClose ,uxpContext }: ProductWizardProps)
             {activeStep === 0 && (
                 <ProductInformation
                     productData={productInfoData}
-                    onNext={handleProductInfoChange} uxpContext={uxpContext}                />
+                    onNext={handleProductInfoChange} uxpContext={context}                />
             )}
             {activeStep === 1 && (
                 <ProductCategorization

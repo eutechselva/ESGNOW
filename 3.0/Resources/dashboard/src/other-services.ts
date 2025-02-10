@@ -1,7 +1,7 @@
 
 import { App, ILocation, IUMSContext, PageLayout } from '@types'
-import { getLocationData } from '@ums-service'
 import { IContextProvider } from '@uxp'
+import { getLocationData } from './esgnow-service'
 
 export async function getAllLocations(uxpContext: IContextProvider): Promise<{ data: any, error?: string }> {
     try {
