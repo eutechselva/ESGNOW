@@ -7,16 +7,26 @@ import { Modal } from 'uxp/components';
 import API_BASE_URL from "../config";
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 
+interface Material {
+    materialClass: string;
+    specificMaterial: string;
+    emissionFactor: number;
+}
+
+interface ManufacturingProcess {
+    materialClass: string;
+    manufacturingProcesses: [{
+        category: string;
+    }];
+    emissionFactor: number;
+}
+
 interface TransportLeg {
     id: number;
-    originCountry: string;
-    destinationCountry: string;
+    transportMode: string;
     originGateway: string;
     destinationGateway: string;
-    transportMode: string;
-    transportDistance: number;
-    originGateways: any[];
-    destinationGateways: any[];
+    transportEmission: number;
 }
 
 const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boolean }> = ({
