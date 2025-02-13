@@ -38995,7 +38995,7 @@ const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const LCADashboardWidget = ({ context }) => {
+const LCADashboardWidget = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [transportDatabase, setTransportDatabase] = React.useState({});
     const [countries, setCountries] = React.useState([]);
@@ -39032,7 +39032,7 @@ const LCADashboardWidget = ({ context }) => {
     });
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
-            const data = yield (0, esgnow_service_1.getAllProducts)(context);
+            const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
             setProducts(data.data);
         });
         fetchProductData();
@@ -41594,69 +41594,127 @@ exports["default"] = LCAWidget;
 
 "use strict";
 
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
+const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const Projects = (props) => {
-    const data = [
-        {
-            id: 1,
-            productImage: "image-url",
-            projectCode: "1",
-            projectName: "Project Alpha",
-            totalImpact: "60 KgCO2e",
-            impactMaterials: "20 KgCO2e",
-            impactManufacturing: "20 KgCO2e",
-            impactTransportation: "20 KgCO2e",
-        },
-        {
-            id: 2,
-            productImage: "image-url",
-            projectCode: "2",
-            projectName: "Project Beta",
-            totalImpact: "60 KgCO2e",
-            impactMaterials: "20 KgCO2e",
-            impactManufacturing: "20 KgCO2e",
-            impactTransportation: "20 KgCO2e",
-        },
-        {
-            id: 3,
-            productImage: "image-url",
-            projectCode: "3",
-            projectName: "Project Gama",
-            totalImpact: "60 KgCO2e",
-            impactMaterials: "20 KgCO2e",
-            impactManufacturing: "20 KgCO2e",
-            impactTransportation: "20 KgCO2e",
-        },
-        {
-            id: 4,
-            productImage: "image-url",
-            projectCode: "4",
-            projectName: "Project Gama",
-            totalImpact: "60 KgCO2e",
-            impactMaterials: "20 KgCO2e",
-            impactManufacturing: "20 KgCO2e",
-            impactTransportation: "20 KgCO2e",
-        },
-    ];
+    const [projects, setProjects] = (0, react_1.useState)([]);
+    const [isLoading, setIsLoading] = (0, react_1.useState)(true);
+    const [error, setError] = (0, react_1.useState)(null);
+    (0, react_1.useEffect)(() => {
+        fetchProjects();
+    }, []);
+    const fetchProjects = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            // First get all projects
+            const response = yield fetch(`${config_1.default}/api/projects`);
+            if (!response.ok) {
+                const errorData = yield response.json();
+                console.error('Server response:', errorData);
+                throw new Error(`Failed to fetch projects: ${response.statusText}`);
+            }
+            const projectsData = yield response.json();
+            // Then fetch impact data for each project
+            const projectsWithImpacts = yield Promise.all(projectsData.map((project) => __awaiter(void 0, void 0, void 0, function* () {
+                const impactResponse = yield fetch(`${config_1.default}/api/projects/${project._id}/impacts`);
+                if (!impactResponse.ok) {
+                    throw new Error(`Failed to fetch impacts for project ${project.code}`);
+                }
+                return yield impactResponse.json();
+            })));
+            setProjects(projectsWithImpacts);
+        }
+        catch (err) {
+            console.error('Error details:', err);
+            setError(err instanceof Error ? err.message : 'An error occurred');
+        }
+        finally {
+            setIsLoading(false);
+        }
+    });
     const columns = [
-        { id: "productImage", label: "Product Image", render: (row) => react_1.default.createElement("img", { src: row.productImage, alt: "Product", style: { width: 50, height: 50, borderRadius: 4 } }) },
+        {
+            id: "productImage",
+            label: "Product Image",
+            render: (row) => {
+                var _a;
+                return (react_1.default.createElement("img", { src: ((_a = row.products[0]) === null || _a === void 0 ? void 0 : _a.productImage) || 'default-image-url', alt: "Product", style: { width: 50, height: 50, borderRadius: 4 } }));
+            }
+        },
         { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
-        { id: "totalImpact", label: "Total Impact" },
-        { id: "impactMaterials", label: "Impact by Materials" },
-        { id: "impactManufacturing", label: "Impact by Manufacturing" },
-        { id: "impactTransportation", label: "Impact by Transportation" },
+        {
+            id: "totalProjectImpact",
+            label: "Total Impact",
+            render: (row) => `${row.totalProjectImpact.toFixed(2)} KgCO2e`
+        },
+        {
+            id: "totalMaterialsImpact",
+            label: "Impact by Materials",
+            render: (row) => `${row.totalMaterialsImpact.toFixed(2)} KgCO2e`
+        },
+        {
+            id: "totalManufacturingImpact",
+            label: "Impact by Manufacturing",
+            render: (row) => `${row.totalManufacturingImpact.toFixed(2)} KgCO2e`
+        },
+        {
+            id: "totalTransportationImpact",
+            label: "Impact by Transportation",
+            render: (row) => `${row.totalTransportationImpact.toFixed(2)} KgCO2e`
+        },
     ];
+    if (isLoading) {
+        return (react_1.default.createElement(components_1.WidgetWrapper, null,
+            react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
+            react_1.default.createElement("div", null, "Loading...")));
+    }
+    if (error) {
+        return (react_1.default.createElement(components_1.WidgetWrapper, null,
+            react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
+            react_1.default.createElement("div", { style: { color: 'red' } }, error)));
+    }
     return (react_1.default.createElement(components_1.WidgetWrapper, null,
         react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
         react_1.default.createElement("div", null,
-            react_1.default.createElement(components_1.TableComponent, { data: data, columns: columns, pageSize: 10, total: data.length }))));
+            react_1.default.createElement(components_1.TableComponent, { data: projects, columns: columns, pageSize: 10, total: projects.length }))));
 };
 exports["default"] = Projects;
 
