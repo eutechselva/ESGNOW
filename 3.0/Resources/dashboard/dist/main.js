@@ -39728,61 +39728,109 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const BulkUploadWidget = ({ uxpContext }) => {
-    const [file, setFile] = (0, react_1.useState)(null);
-    const [uploading, setUploading] = (0, react_1.useState)(false);
+    const [excelFile, setExcelFile] = (0, react_1.useState)(null);
+    const [zipFile, setZipFile] = (0, react_1.useState)(null);
+    const [uploadingExcel, setUploadingExcel] = (0, react_1.useState)(false);
+    const [uploadingZip, setUploadingZip] = (0, react_1.useState)(false);
     const [message, setMessage] = (0, react_1.useState)(null);
-    // Handle file selection
-    const handleFileChange = (event) => {
+    // Handle file selection for Excel
+    const handleExcelFileChange = (event) => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedFile = event.target.files[0];
-            const allowedTypes = [".xlsx", ".rar"];
-            if (!allowedTypes.some(ext => selectedFile.name.toLowerCase().endsWith(ext))) {
-                setMessage("Unsupported file type. Please upload a ZIP or RAR file.");
+            if (!selectedFile.name.toLowerCase().endsWith(".xlsx")) {
+                setMessage("Unsupported file type. Please upload an Excel (.xlsx) file.");
                 return;
             }
-            setFile(selectedFile);
+            setExcelFile(selectedFile);
             setMessage(null);
         }
     };
-    // Handle file upload
-    const handleUpload = () => __awaiter(void 0, void 0, void 0, function* () {
-        if (!file) {
-            setMessage("Please select a file to upload.");
+    // Handle file selection for ZIP
+    const handleZipFileChange = (event) => {
+        if (event.target.files && event.target.files.length > 0) {
+            const selectedFile = event.target.files[0];
+            if (!selectedFile.name.toLowerCase().endsWith(".zip")) {
+                setMessage("Unsupported file type. Please upload a ZIP file.");
+                return;
+            }
+            setZipFile(selectedFile);
+            setMessage(null);
+        }
+    };
+    // Handle Excel Upload
+    const handleExcelUpload = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!excelFile) {
+            setMessage("Please select an Excel file to upload.");
             return;
         }
-        setUploading(true);
+        setUploadingExcel(true);
         setMessage(null);
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("file", excelFile);
         try {
             const requestOptions = {
                 method: "POST",
                 body: formData,
-                headers: {
-                    "x-iviva-account": "lucy1",
-                },
+                headers: { "x-iviva-account": "lucy1" },
             };
             let response = yield fetch("http://localhost:5009/api/products/bulk-upload", requestOptions);
-            debugger;
             if (response.ok) {
-                setMessage("Upload successful!");
+                setMessage("Excel upload successful!");
             }
             else {
-                setMessage("Upload failed. Please try again.");
+                setMessage("Excel upload failed. Please try again.");
             }
         }
         catch (error) {
-            console.error("Upload Error:", error);
-            setMessage("An error occurred during upload.");
+            console.error("Excel Upload Error:", error);
+            setMessage("An error occurred during Excel upload.");
         }
         finally {
-            setUploading(false);
+            setUploadingExcel(false);
+        }
+    });
+    // Handle ZIP Upload
+    const handleZipUpload = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!zipFile) {
+            setMessage("Please select a ZIP file to upload.");
+            return;
+        }
+        setUploadingZip(true);
+        setMessage(null);
+        const formData = new FormData();
+        formData.append("file", zipFile);
+        try {
+            const requestOptions = {
+                method: "POST",
+                body: formData,
+                headers: { "x-iviva-account": "lucy1" },
+            };
+            let response = yield fetch("http://localhost:5009/api/products/bulk-image-upload", requestOptions);
+            if (response.ok) {
+                setMessage("ZIP upload successful!");
+            }
+            else {
+                setMessage("ZIP upload failed. Please try again.");
+            }
+        }
+        catch (error) {
+            console.error("ZIP Upload Error:", error);
+            setMessage("An error occurred during ZIP upload.");
+        }
+        finally {
+            setUploadingZip(false);
         }
     });
     return (react_1.default.createElement("div", null,
         react_1.default.createElement("h1", null, "Bulk Upload"),
-        react_1.default.createElement("input", { type: "file", accept: ".xlsx", onChange: handleFileChange }),
-        react_1.default.createElement("button", { onClick: handleUpload, disabled: uploading }, uploading ? "Uploading..." : "Upload"),
+        react_1.default.createElement("div", null,
+            react_1.default.createElement("h2", null, "Upload Product Data (Excel)"),
+            react_1.default.createElement("input", { type: "file", accept: ".xlsx", onChange: handleExcelFileChange }),
+            react_1.default.createElement("button", { onClick: handleExcelUpload, disabled: uploadingExcel }, uploadingExcel ? "Uploading..." : "Upload Excel")),
+        react_1.default.createElement("div", { style: { marginTop: "20px" } },
+            react_1.default.createElement("h2", null, "Upload Product Images (ZIP)"),
+            react_1.default.createElement("input", { type: "file", accept: ".zip", onChange: handleZipFileChange }),
+            react_1.default.createElement("button", { onClick: handleZipUpload, disabled: uploadingZip }, uploadingZip ? "Uploading..." : "Upload ZIP")),
         message && react_1.default.createElement("p", null, message)));
 };
 exports["default"] = BulkUploadWidget;
