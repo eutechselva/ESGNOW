@@ -1,4 +1,3 @@
-import { BaseTag, Tag, UtilityMeterType } from '@types'
 import { AdditionalConfigurations, IContextProvider, RequestMethod } from '@uxp'
 import qs from 'qs'
 

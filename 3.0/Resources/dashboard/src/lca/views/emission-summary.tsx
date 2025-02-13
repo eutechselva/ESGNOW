@@ -189,7 +189,7 @@ const EmissionSummary: React.FC<{
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = (parseFloat(product.co2EmissionRawMaterials) + parseFloat(product.co2EmissionFromProcesses) + parseFloat(transportationEmission)).toFixed(2);
+                    const totalValue = (Number(product.co2EmissionRawMaterials) + Number(product.co2EmissionFromProcesses) + Number(transportationEmission)).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
@@ -240,9 +240,9 @@ const EmissionSummary: React.FC<{
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: parseFloat(parseFloat(product.co2EmissionRawMaterials).toFixed(2))  , color: '#78BE7C' },
-                    { name: 'Manufacturing', y:  parseFloat(parseFloat(product.co2EmissionFromProcesses).toFixed(2)) , color: '#ffaa00' },
-                    { name: 'Transportation', y:  parseFloat(parseFloat(transportationEmission).toFixed(2)) , color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials) , color: '#78BE7C' },
+                    { name: 'Manufacturing', y:  Number(product.co2EmissionFromProcesses) , color: '#ffaa00' },
+                    { name: 'Transportation', y:  Number(transportationEmission), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -332,7 +332,7 @@ const EmissionSummary: React.FC<{
                                                 <tr key={item.materialClass}>
                                                     <td>{item.materialClass}</td>
                                                     <td>{item.specificMaterial}</td>
-                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                                    <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>
                                             );

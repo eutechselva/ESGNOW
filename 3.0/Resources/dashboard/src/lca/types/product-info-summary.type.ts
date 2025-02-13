@@ -6,11 +6,11 @@ export type ProductInfoSummary = {
     countryOfOrigin: string;
     category: string;
     subCategory: string;
-    weight:string;
+    weight:Number;
     images: string[];
-    co2Emission : string;
-    co2EmissionRawMaterials : string;
-    co2EmissionFromProcesses : string;
+    co2Emission : Number;
+    co2EmissionRawMaterials : Number;
+    co2EmissionFromProcesses : Number;
     productManufacturingProcess : [];
     materials : [];
 }

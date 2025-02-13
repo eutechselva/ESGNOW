@@ -156,5 +156,47 @@
                 }
             }
         ]
+    },"/bulkupload": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/bulk-upload-widget",
+                "configs": {
+                    "layout": {
+                        "w": 30,
+                        "h": 20
+                    }
+                },
+                "name": "Bulk Upload Widget",
+                "description": "Bulk Upload Widget",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753055493181547",
+                "key": "173753055493181547",
+                "layout": {
+                    "w": 30,
+                    "h": 20,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173753055493181547",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true,
+                "configurations": {
+                    
+                }
+            }
+        ]
     }
 }

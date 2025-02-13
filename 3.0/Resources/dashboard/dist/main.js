@@ -38829,6 +38829,7 @@ const product_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/
 const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products */ "./src/lca/views/products.tsx"));
 const LCA_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/LCA-dashboard */ "./src/lca/views/LCA-dashboard.tsx"));
 const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
+const bulk_upload_1 = __importDefault(__webpack_require__(/*! ./lca/views/bulk-upload */ "./src/lca/views/bulk-upload.tsx"));
 const WrappedDashboard = (props) => {
     const { uxpContext } = props;
     const [user, setUser] = (0, react_1.useState)(null);
@@ -38920,6 +38921,16 @@ const WrappedDashboard = (props) => {
         }
     }
 });
+(0, uxp_1.registerWidget)({
+    id: 'bulk-upload-widget',
+    widget: bulk_upload_1.default,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+});
 (0, uxp_1.enableLocalization)();
 
 
@@ -38995,7 +39006,7 @@ const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const LCADashboardWidget = ({ context }) => {
+const LCADashboardWidget = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [transportDatabase, setTransportDatabase] = React.useState({});
     const [countries, setCountries] = React.useState([]);
@@ -39032,7 +39043,7 @@ const LCADashboardWidget = ({ context }) => {
     });
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
-            const data = yield (0, esgnow_service_1.getAllProducts)(context);
+            const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
             setProducts(data.data);
         });
         fetchProductData();
@@ -39674,6 +39685,111 @@ exports["default"] = BillMaterials;
 
 /***/ }),
 
+/***/ "./src/lca/views/bulk-upload.tsx":
+/*!***************************************!*\
+  !*** ./src/lca/views/bulk-upload.tsx ***!
+  \***************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+const BulkUploadWidget = ({ uxpContext }) => {
+    const [file, setFile] = (0, react_1.useState)(null);
+    const [uploading, setUploading] = (0, react_1.useState)(false);
+    const [message, setMessage] = (0, react_1.useState)(null);
+    // Handle file selection
+    const handleFileChange = (event) => {
+        if (event.target.files && event.target.files.length > 0) {
+            const selectedFile = event.target.files[0];
+            const allowedTypes = [".xlsx", ".rar"];
+            if (!allowedTypes.some(ext => selectedFile.name.toLowerCase().endsWith(ext))) {
+                setMessage("Unsupported file type. Please upload a ZIP or RAR file.");
+                return;
+            }
+            setFile(selectedFile);
+            setMessage(null);
+        }
+    };
+    // Handle file upload
+    const handleUpload = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!file) {
+            setMessage("Please select a file to upload.");
+            return;
+        }
+        setUploading(true);
+        setMessage(null);
+        const formData = new FormData();
+        formData.append("file", file);
+        try {
+            const requestOptions = {
+                method: "POST",
+                body: formData,
+                headers: {
+                    "x-iviva-account": "lucy1",
+                },
+            };
+            let response = yield fetch("http://localhost:5009/api/products/bulk-upload", requestOptions);
+            debugger;
+            if (response.ok) {
+                setMessage("Upload successful!");
+            }
+            else {
+                setMessage("Upload failed. Please try again.");
+            }
+        }
+        catch (error) {
+            console.error("Upload Error:", error);
+            setMessage("An error occurred during upload.");
+        }
+        finally {
+            setUploading(false);
+        }
+    });
+    return (react_1.default.createElement("div", null,
+        react_1.default.createElement("h1", null, "Bulk Upload"),
+        react_1.default.createElement("input", { type: "file", accept: ".xlsx", onChange: handleFileChange }),
+        react_1.default.createElement("button", { onClick: handleUpload, disabled: uploading }, uploading ? "Uploading..." : "Upload"),
+        message && react_1.default.createElement("p", null, message)));
+};
+exports["default"] = BulkUploadWidget;
+
+
+/***/ }),
+
 /***/ "./src/lca/views/emission-summary.tsx":
 /*!********************************************!*\
   !*** ./src/lca/views/emission-summary.tsx ***!
@@ -39821,7 +39937,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
             events: {
                 render() {
                     const chart = this;
-                    const totalValue = (parseFloat(product.co2EmissionRawMaterials) + parseFloat(product.co2EmissionFromProcesses) + parseFloat(transportationEmission)).toFixed(2);
+                    const totalValue = (Number(product.co2EmissionRawMaterials) + Number(product.co2EmissionFromProcesses) + Number(transportationEmission)).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
@@ -39869,9 +39985,9 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: parseFloat(parseFloat(product.co2EmissionRawMaterials).toFixed(2)), color: '#78BE7C' },
-                    { name: 'Manufacturing', y: parseFloat(parseFloat(product.co2EmissionFromProcesses).toFixed(2)), color: '#ffaa00' },
-                    { name: 'Transportation', y: parseFloat(parseFloat(transportationEmission).toFixed(2)), color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
+                    { name: 'Transportation', y: Number(transportationEmission), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -39936,7 +40052,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                         react_1.default.createElement("td", null, item.materialClass),
                                         react_1.default.createElement("td", null, item.specificMaterial),
                                         react_1.default.createElement("td", null,
-                                            parseFloat(item.emissionFactor).toFixed(2),
+                                            item.emissionFactor.toFixed(2),
                                             " KgCO\u2082e"),
                                         react_1.default.createElement("td", null,
                                             percentage,
@@ -40765,10 +40881,6 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
     const [showDeleteConfirm, setShowDeleteConfirm] = (0, react_1.useState)(false);
     const [showModal, setShowModal] = react_1.default.useState(false);
     const toggleExpand = () => setIsExpanded(!isExpanded);
-    const handleViewToggle = (mode) => setViewMode(mode);
-    const totalValue = parseInt(product.co2Emission).toFixed(2); // Replace with dynamic calculation 
-    const rawMaterialPercentage = parseInt(((parseInt(product.co2EmissionRawMaterials) / parseInt(product.co2Emission)) * 100).toFixed(2));
-    const manufacturingPercentage = parseInt(((parseInt(product.co2EmissionFromProcesses) / parseInt(product.co2Emission)) * 100).toFixed(2));
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -40780,7 +40892,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
                     const chart = this;
                     if (!chart.customText) {
                         chart.customText = chart.renderer
-                            .text(`${totalValue} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
+                            .text(`${product.co2Emission} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
                             .css({
                             fontSize: '16px',
                             fontWeight: 'bold',
@@ -40796,7 +40908,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
                     }
                     else {
                         chart.customText.attr({
-                            text: `${totalValue} KgCO₂e`,
+                            text: `${product.co2Emission}} KgCO₂e`,
                         });
                     }
                 },
@@ -40825,8 +40937,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: rawMaterialPercentage, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: manufacturingPercentage, color: '#ffaa00' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
                 ],
             },
         ],
@@ -40853,7 +40965,9 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: "title-container" },
             react_1.default.createElement("h1", { className: "dashboard-title" }, "Product Summary"),
-            react_1.default.createElement("p", { className: "subheading" }, product.name),
+            react_1.default.createElement("p", { className: "subheading" },
+                "Product Code : ",
+                product.code),
             react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onClose, className: "back-button" }),
             showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showModal, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
                 react_1.default.createElement("p", null, "Are you sure you want to delete this product?"),
@@ -40865,15 +40979,17 @@ const ProductInfoSummary = ({ product, onClose, onDelete }) => {
                     backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                 } },
                 !product.images[0] && react_1.default.createElement("div", { className: "image-placeholder" }, "Image Unavailable"),
-                react_1.default.createElement("div", { className: "image-label" }, `${totalValue}  Kg CO₂e`)),
+                react_1.default.createElement("div", { className: "image-label" }, `${product.co2Emission}  Kg CO₂e`)),
             react_1.default.createElement("div", { className: "summary-details" },
                 react_1.default.createElement("div", { className: "details-left" },
                     react_1.default.createElement("div", { className: "detail-item" },
-                        react_1.default.createElement("strong", null, "Product Code:"),
-                        react_1.default.createElement("p", null, product.code)),
+                        react_1.default.createElement("strong", null, "Product Name:"),
+                        react_1.default.createElement("p", null, product.name)),
                     react_1.default.createElement("div", { className: "detail-item" },
                         react_1.default.createElement("strong", null, "Weight:"),
-                        react_1.default.createElement("p", null, product.weight)),
+                        react_1.default.createElement("p", null,
+                            product.weight,
+                            " Kg")),
                     react_1.default.createElement("div", { className: "detail-item" },
                         react_1.default.createElement("strong", null, "Category:"),
                         react_1.default.createElement("p", null, product.category)),
@@ -72148,7 +72264,7 @@ function invariant(condition, message) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/bulkupload":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/bulk-upload-widget","configs":{"layout":{"w":30,"h":20}},"name":"Bulk Upload Widget","description":"Bulk Upload Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181547","key":"173753055493181547","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181547","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
 
 /***/ }),
 
@@ -72159,7 +72275,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Impact Analysis","icon":"fad chart-bar","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Impact Analysis","icon":"fad chart-bar","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad folder-open","dashboardKey":"bulkupload","userRoles":[]}]');
 
 /***/ }),
 
@@ -72170,7 +72286,7 @@ module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"f
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"},{"id":"bulk-upload-widget","name":"Bulk Upload Widget","description":"Bulk Upload Widget"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
 
 /***/ }),
 
@@ -72181,7 +72297,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","aut
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"ums.title":{"en":"Utility Management System"},"ums.sidebarlink.heatmap":{"en":"Energy Heatmap"},"ums.sidebarlink.building-performance":{"en":"Building Wise Utility Performance"},"ums.sidebarlink.electricity":{"en":"Electricity"},"ums.sidebarlink.water":{"en":"Water"},"ums.sidebarlink.chilled-water":{"en":"Chilled Water"},"ums.sidebarlink.gas":{"en":"Gas"},"ums.sidebarlink.portfolio-performance":{"en":"Portfolio Performance"},"ums.sidebarlink.reporting":{"en":"Utility Reporting"},"ums.sidebarlink.configurations":{"en":"Configuration"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"esgnow.title":{"en":"ESG NOW"}}');
 
 /***/ })
 

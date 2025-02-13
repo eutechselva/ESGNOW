@@ -32,11 +32,11 @@ interface DistanceResponse {
 }
 
 interface ILCADashboardWidgetProps {
-   context: IContextProvider;
+   uxpContext: IContextProvider;
 }
 
 
-const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({context}) => {
+const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) => {
     const [products, setProducts] = React.useState([]);
     const [transportDatabase, setTransportDatabase] = React.useState<{ [key: string]: any }>({});
 
@@ -83,7 +83,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({context}) => {
     React.useEffect(() => {
         const fetchProductData = async () => {
 
-            const data =  await getAllProducts(context);
+            const data =  await getAllProducts(uxpContext);
             setProducts(data.data);
 
             };

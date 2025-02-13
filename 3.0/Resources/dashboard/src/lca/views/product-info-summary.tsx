@@ -21,12 +21,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
-
-    const handleViewToggle = (mode: 'list' | 'tree') => setViewMode(mode);
-
-    const totalValue = parseInt(product.co2Emission).toFixed(2); // Replace with dynamic calculation 
-    const rawMaterialPercentage = parseInt(((parseInt(product.co2EmissionRawMaterials) / parseInt(product.co2Emission)) * 100).toFixed(2));
-    const manufacturingPercentage = parseInt(((parseInt(product.co2EmissionFromProcesses) / parseInt(product.co2Emission)) * 100).toFixed(2));
+  
 
 
     const donutChartOptions: Highcharts.Options = {
@@ -42,7 +37,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
-                                `${totalValue} <br> KgCO₂e`,
+                                `${product.co2Emission} <br> KgCO₂e`,
                                 chart.plotWidth / 2 + chart.plotLeft,
                                 chart.plotHeight / 2 + chart.plotTop
                             )
@@ -60,7 +55,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             .add();
                     } else {
                         chart.customText.attr({
-                            text: `${totalValue} KgCO₂e`,
+                            text: `${product.co2Emission}} KgCO₂e`,
                         });
                     }
                 },
@@ -89,8 +84,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: rawMaterialPercentage, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: manufacturingPercentage, color: '#ffaa00' },
+                    { name: 'Raw Materials', y:Number(product.co2EmissionRawMaterials)  , color: '#78BE7C' },
+                    { name: 'Manufacturing', y:Number(product.co2EmissionFromProcesses) , color: '#ffaa00' },
                 ],
             },
         ],
@@ -119,7 +114,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
         <>
             <div className="title-container">
                 <h1 className="dashboard-title">Product Summary</h1>
-                <p className="subheading">{product.name}</p>
+                <p className="subheading">Product Code : {product.code}</p>
                 <Button
                     title="Go back"
                     onClick={onClose}
@@ -153,18 +148,18 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     }}
                 >
                     {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">{`${totalValue}  Kg CO₂e`}</div>
+                    <div className="image-label">{`${product.co2Emission}  Kg CO₂e`}</div>
                 </div>
                 <div className="summary-details">
                     <div className="details-left">
                         <div className="detail-item">
-                            <strong>Product Code:</strong>
-                            <p>{product.code}</p>
+                            <strong>Product Name:</strong>
+                            <p>{product.name}</p>
                         </div>
 
                         <div className="detail-item">
                             <strong>Weight:</strong>
-                            <p>{product.weight}</p>
+                            <p>{product.weight} Kg</p>
                         </div>
                         <div className="detail-item">
                             <strong>Category:</strong>

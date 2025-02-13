@@ -1,29 +1,36 @@
 [
-    {
-        "id": "home",
-        "label": "Home",
-        "icon": "fas home",
-        "dashboardKey": "home",
-        "userRoles": []
-    },
-    {
-        "id": "products",
-        "label": "products",
-        "icon": "fad box",
-        "dashboardKey": "products",
-        "userRoles": []
-    },
-    {
-        "id": "lca",
-        "label": "Impact Analysis",
-        "icon": "fad chart-bar",
-        "dashboardKey": "lca",
-        "userRoles": []
-    },{
-        "id": "projects",
-        "label": "Projects",
-        "icon": "fad folder-open",
-        "dashboardKey": "projects",
-        "userRoles": []
-    }
+  {
+    "id": "home",
+    "label": "Home",
+    "icon": "fas home",
+    "dashboardKey": "home",
+    "userRoles": []
+  },
+  {
+    "id": "products",
+    "label": "products",
+    "icon": "fad box",
+    "dashboardKey": "products",
+    "userRoles": []
+  },
+  {
+    "id": "lca",
+    "label": "Impact Analysis",
+    "icon": "fad chart-bar",
+    "dashboardKey": "lca",
+    "userRoles": []
+  },
+  {
+    "id": "projects",
+    "label": "Projects",
+    "icon": "fad folder-open",
+    "dashboardKey": "projects",
+    "userRoles": []
+  }, {
+    "id": "bulkupload",
+    "label": "Bulk Upload",
+    "icon": "fad folder-open",
+    "dashboardKey": "bulkupload",
+    "userRoles": []
+  }
 ]
