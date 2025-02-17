@@ -106,23 +106,6 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss":
-/*!**************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss ***!
-  \**************************************************************************************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.id, ".save-go-back-buttons {\n  display: flex;\n}\n\n.save-results-button {\n  background-color: #4CAF50;\n  margin-top: 40px;\n  color: white;\n  font-weight: bold;\n  border: none;\n  padding: 10px 20px;\n  border-radius: 8px;\n  cursor: pointer;\n  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;\n  animation: pulse 2s infinite;\n}\n.save-results-button:hover {\n  transform: scale(1.05);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  background-color: #45a049;\n  color: white;\n}\n.save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.save-results-modal .card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.save-results-modal .option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.save-results-modal .option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.save-results-modal .option-card.selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.existing-project-selection {\n  margin-top: 20px;\n}\n\n.save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.save-results {\n  background: #28a745;\n  color: white;\n}\n\n.card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss":
 /*!**************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss ***!
@@ -37488,34 +37471,6 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ "./src/lca/views/emission-summary.scss":
-/*!*********************************************!*\
-  !*** ./src/lca/views/emission-summary.scss ***!
-  \*********************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./emission-summary.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/emission-summary.scss");
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.id, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
 /***/ "./src/lca/views/home.scss":
 /*!*********************************!*\
   !*** ./src/lca/views/home.scss ***!
@@ -39719,13 +39674,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
-__webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
-const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
+const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
+const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
+const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportationEmission, transportLegs }) => {
     const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
     const [projectName, setProjectName] = (0, react_1.useState)('');
     const [projectId, setProjectId] = (0, react_1.useState)('');
@@ -39746,7 +39700,8 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
             setIsLoading(true);
             setError(null);
             try {
-                const response = yield fetch(`${config_1.default}/api/projects`, {
+                // First create the project
+                const projectResponse = yield fetch(`${config_1.default}/api/projects`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -39756,28 +39711,75 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, }) => {
                         name: projectName,
                     }),
                 });
-                if (!response.ok) {
+                if (!projectResponse.ok) {
                     throw new Error('Failed to save project');
                 }
-                const savedProject = yield response.json();
-                console.log('Project saved successfully:', savedProject);
+                const savedProject = yield projectResponse.json();
+                // Then create the project-product mapping
+                const mappingResponse = yield fetch(`${config_1.default}/api/project-product-mapping`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        projectCode: projectId,
+                        product,
+                        transportationEmission,
+                        transportLegs
+                    }),
+                });
+                if (!mappingResponse.ok) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+                const savedMapping = yield mappingResponse.json();
+                console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             }
             catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to save project');
+                setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
             }
             finally {
                 setIsLoading(false);
             }
         }
-        else {
-            // Handle existing project selection
-            onClose();
+        else if (selectedCard === 'existing') {
+            if (!selectedProject) {
+                setError('Please select a project');
+                return;
+            }
+            setIsLoading(true);
+            setError(null);
+            try {
+                const mappingResponse = yield fetch(`${config_1.default}/api/project-product-mapping`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        projectCode: selectedProject,
+                        product,
+                        transportationEmission,
+                        transportLegs
+                    }),
+                });
+                if (!mappingResponse.ok) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+                const savedMapping = yield mappingResponse.json();
+                console.log('Mapping saved successfully:', savedMapping);
+                onClose();
+            }
+            catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save mapping');
+            }
+            finally {
+                setIsLoading(false);
+            }
         }
     });
     return (react_1.default.createElement(components_2.Modal, { show: true, onClose: onClose, title: "Save Emission Results" },
         react_1.default.createElement("div", { className: "save-results-modal" },
-            hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found.Please create a new project.")),
+            hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found. Please create a new project.")),
             react_1.default.createElement("div", { className: "card-container" },
                 react_1.default.createElement("div", { className: `option-card ${selectedCard === 'new' ? 'selected' : ''}`, onClick: () => setSelectedCard('new') },
                     react_1.default.createElement("h3", null, "Create New Project"),
@@ -40007,7 +40009,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                             " %")));
                                 });
                             })())))))),
-        showModal && react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects })));
+        showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs }))));
 };
 exports["default"] = EmissionSummary;
 
