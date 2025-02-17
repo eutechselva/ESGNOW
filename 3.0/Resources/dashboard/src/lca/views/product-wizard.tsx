@@ -104,11 +104,15 @@ export const ProductWizard = ({ show, onClose ,context ,onProductCreated}: Produ
         try {
 
              const data =  await createProduct(context,payload);
+
+             debugger;
+
+             console.log('Product creation complete', data);
             
              
             
-            setNewlyCreatedProduct(data);
-            console.log('Product creation complete', data);
+            setNewlyCreatedProduct(data.data);
+            
             setActiveStep(activeStep + 1);
 
             // Call the callback to trigger reload in parent component

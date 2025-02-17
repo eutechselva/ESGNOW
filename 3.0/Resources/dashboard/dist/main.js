@@ -39488,6 +39488,7 @@ __webpack_require__(/*! ./assessment.scss */ "./src/lca/views/assessment.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const Assessment = ({ newlyCreatedProduct, onClose }) => {
     var _a;
+    debugger;
     return (react_1.default.createElement("div", { className: "assessment-container" },
         react_1.default.createElement("h1", { className: "assessment-title" }, "Your PCF has been Successfully Calculated!"),
         react_1.default.createElement("div", { className: "product-info" },
@@ -39503,18 +39504,18 @@ const Assessment = ({ newlyCreatedProduct, onClose }) => {
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Raw Materials"),
                     react_1.default.createElement("span", null,
-                        parseInt(newlyCreatedProduct.co2EmissionRawMaterials).toFixed(2),
+                        newlyCreatedProduct.co2EmissionRawMaterials.toFixed(2),
                         " KgCO\u2082e")),
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Manufacturing"),
                     react_1.default.createElement("span", null,
-                        parseInt(newlyCreatedProduct.co2EmissionFromProcesses).toFixed(2),
+                        newlyCreatedProduct.co2EmissionFromProcesses.toFixed(2),
                         " KgCO\u2082e")),
                 react_1.default.createElement("div", { className: "divider" }),
                 react_1.default.createElement("p", { className: "carbon-total" },
                     react_1.default.createElement("span", null, "Total Carbon Footprint"),
                     react_1.default.createElement("span", null,
-                        parseInt(newlyCreatedProduct.co2Emission).toFixed(2),
+                        newlyCreatedProduct.co2Emission.toFixed(2),
                         " KgCO\u2082e")))),
         react_1.default.createElement("p", { className: "calculation-subtext" }, "Complete the analysis by calculating transportation emissions, or save your progress and do it later?"),
         react_1.default.createElement("div", { className: "button-group" },
@@ -41665,8 +41666,9 @@ const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
         };
         try {
             const data = yield (0, esgnow_service_1.createProduct)(context, payload);
-            setNewlyCreatedProduct(data);
+            debugger;
             console.log('Product creation complete', data);
+            setNewlyCreatedProduct(data.data);
             setActiveStep(activeStep + 1);
             // Call the callback to trigger reload in parent component
             if (onProductCreated) {
