@@ -53,7 +53,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
         
         const fetchProductData = async () => {
             try {
-                debugger;
+            
                 const response = await getAllProducts(uxpContext);
 
                 let data = response.data;
@@ -230,6 +230,12 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
              <ProductWizard
                             show={showModal}
                             onClose={() => setShowModal(false)} context={uxpContext}
+                            onProductCreated={() => {
+                                // Refresh the product list after a new product is created
+                                getAllProducts(uxpContext).then(response => {
+                                    setProducts(response.data);
+                                });
+                            }}
                         />
 
             {/* Product summary screen */}

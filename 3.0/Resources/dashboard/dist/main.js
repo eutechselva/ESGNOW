@@ -40784,7 +40784,6 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                debugger;
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
                 let data = response.data;
                 setProducts(data);
@@ -40873,7 +40872,12 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                             "CO2 Emission: ",
                             item.co2Emission + ' Kg CO2e')))))))),
             React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), context: uxpContext }),
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), context: uxpContext, onProductCreated: () => {
+                // Refresh the product list after a new product is created
+                (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
+                    setProducts(response.data);
+                });
+            } }),
         selectedProduct && (React.createElement(product_info_summary_1.default, { product: selectedProduct, onClose: () => setSelectedProduct(null), onDelete: function () {
                 throw new Error("Function not implemented.");
             } }))));
@@ -41603,7 +41607,7 @@ const product_manufacturing_1 = __importDefault(__webpack_require__(/*! ./produc
 __webpack_require__(/*! ./product-wizard.scss */ "./src/lca/views/product-wizard.scss");
 const assessment_1 = __importDefault(__webpack_require__(/*! ./assessment */ "./src/lca/views/assessment.tsx"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const ProductWizard = ({ show, onClose, context }) => {
+const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
     const [activeStep, setActiveStep] = (0, react_1.useState)(0);
     const [newlyCreatedProduct, setNewlyCreatedProduct] = (0, react_1.useState)();
     // State to hold product information data
@@ -41661,10 +41665,13 @@ const ProductWizard = ({ show, onClose, context }) => {
         };
         try {
             const data = yield (0, esgnow_service_1.createProduct)(context, payload);
-            debugger;
             setNewlyCreatedProduct(data);
             console.log('Product creation complete', data);
             setActiveStep(activeStep + 1);
+            // Call the callback to trigger reload in parent component
+            if (onProductCreated) {
+                onProductCreated();
+            }
         }
         catch (error) {
             console.error('There was a problem with the fetch operation:', error);

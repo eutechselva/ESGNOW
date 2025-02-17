@@ -18,6 +18,7 @@ interface ProductWizardProps {
     show: boolean; 
     onClose: () => void;
     context : IContextProvider;
+    onProductCreated?: () => void;
 }
 
 type ProductData = {
@@ -29,7 +30,7 @@ type ProductData = {
     uploadedImages: string[];
 };
 
-export const ProductWizard = ({ show, onClose ,context }: ProductWizardProps) => {
+export const ProductWizard = ({ show, onClose ,context ,onProductCreated}: ProductWizardProps) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const [newlyCreatedProduct, setNewlyCreatedProduct] = useState<any>();
@@ -103,12 +104,17 @@ export const ProductWizard = ({ show, onClose ,context }: ProductWizardProps) =>
         try {
 
              const data =  await createProduct(context,payload);
-             debugger;
+            
              
             
             setNewlyCreatedProduct(data);
             console.log('Product creation complete', data);
             setActiveStep(activeStep + 1);
+
+            // Call the callback to trigger reload in parent component
+        if (onProductCreated) {
+            onProductCreated();
+        }
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
