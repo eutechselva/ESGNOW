@@ -38945,8 +38945,8 @@ const WrappedDashboard = (props) => {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "https://lca-microservice.onrender.com";
-//const API_BASE_URL = "http://localhost:5009";
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
+const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
@@ -39726,7 +39726,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
+const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const BulkUploadWidget = ({ uxpContext }) => {
     const [excelFile, setExcelFile] = (0, react_1.useState)(null);
@@ -39774,7 +39778,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 body: formData,
                 headers: { "x-iviva-account": "lucy1" },
             };
-            let response = yield fetch("http://localhost:5009/api/products/bulk-upload", requestOptions);
+            let response = yield fetch(`${config_1.default}/api/products/bulk-upload`, requestOptions);
             if (response.ok) {
                 setMessage("Excel upload successful!");
             }
@@ -39806,7 +39810,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 body: formData,
                 headers: { "x-iviva-account": "lucy1" },
             };
-            let response = yield fetch("http://localhost:5009/api/products/bulk-image-upload", requestOptions);
+            let response = yield fetch(`${config_1.default}/api/products/bulk-image-upload`, requestOptions);
             if (response.ok) {
                 setMessage("ZIP upload successful!");
             }

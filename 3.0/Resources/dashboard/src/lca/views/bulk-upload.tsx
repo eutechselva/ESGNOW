@@ -1,4 +1,5 @@
 import { IContextProvider } from "@uxp";
+import API_BASE_URL from "../config";
 import React, { useState } from "react";
 
 interface IBulkUploadWidgetProps {
@@ -62,7 +63,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 headers: { "x-iviva-account": "lucy1" },
             };
 
-            let response = await fetch("http://localhost:5009/api/products/bulk-upload", requestOptions);
+            let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
 
             if (response.ok) {
                 setMessage("Excel upload successful!");
@@ -97,7 +98,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 headers: { "x-iviva-account": "lucy1" },
             };
 
-            let response = await fetch("http://localhost:5009/api/products/bulk-image-upload", requestOptions);
+            let response = await fetch(`${API_BASE_URL}/api/products/bulk-image-upload`, requestOptions);
 
             if (response.ok) {
                 setMessage("ZIP upload successful!");
