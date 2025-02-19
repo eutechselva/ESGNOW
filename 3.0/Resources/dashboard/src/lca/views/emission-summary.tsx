@@ -1,37 +1,31 @@
 import React, { useState } from 'react';
-import './emission-summary.scss';
 import { Button, Input, FormField, Label, Select } from 'uxp/components';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
 import { Modal } from 'uxp/components';
-import API_BASE_URL from "../config";
 import { ProductInfoSummary } from '../types/product-info-summary.type';
+import { TransportLeg } from '../types/transport-leg.type';
+import API_BASE_URL from "../config";
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official'
 
-interface Material {
-    materialClass: string;
-    specificMaterial: string;
-    emissionFactor: number;
+interface SaveResultsModalProps {
+    onClose: () => void;
+    hasExistingProjects: boolean;
+    product: ProductInfoSummary;
+    transportationEmission: string;
+    transportLegs: TransportLeg[];
 }
 
-interface ManufacturingProcess {
-    materialClass: string;
-    manufacturingProcesses: [{
-        category: string;
-    }];
-    emissionFactor: number;
+interface ProjectOption {
+    label: string;
+    value: string;
 }
 
-interface TransportLeg {
-    id: number;
-    transportMode: string;
-    originGateway: string;
-    destinationGateway: string;
-    transportEmission: number;
-}
-
-const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boolean }> = ({
+const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     onClose,
     hasExistingProjects,
+    product,
+    transportationEmission,
+    transportLegs
 }) => {
     const [selectedCard, setSelectedCard] = useState<string | null>(null);
     const [projectName, setProjectName] = useState('');
@@ -40,7 +34,7 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
 
-    const projectOptions = [
+    const projectOptions: ProjectOption[] = [
         { label: "Project Alpha", value: "alpha" },
         { label: "Project Beta", value: "beta" },
         { label: "Project Gamma", value: "gamma" },
@@ -57,11 +51,11 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
             setError(null);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/projects`, {
+                // First create the project
+                const projectResponse = await fetch(`${API_BASE_URL}/api/projects`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-
                     },
                     body: JSON.stringify({
                         code: projectId,
@@ -69,34 +63,83 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
                     }),
                 });
 
-                if (!response.ok) {
+                if (!projectResponse.ok) {
                     throw new Error('Failed to save project');
                 }
 
-                const savedProject = await response.json();
-                console.log('Project saved successfully:', savedProject);
+                const savedProject = await projectResponse.json();
+
+                // Then create the project-product mapping
+                const mappingResponse = await fetch(`${API_BASE_URL}/api/project-product-mapping`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        projectCode: projectId,
+                        product,
+                        transportationEmission,
+                        transportLegs
+                    }),
+                });
+
+                if (!mappingResponse.ok) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+
+                const savedMapping = await mappingResponse.json();
+                console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to save project');
+                setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
             } finally {
                 setIsLoading(false);
             }
-        } else {
-            // Handle existing project selection
-            onClose();
+        } else if (selectedCard === 'existing') {
+            if (!selectedProject) {
+                setError('Please select a project');
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                const mappingResponse = await fetch(`${API_BASE_URL}/api/project-product-mapping`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        projectCode: selectedProject,
+                        product,
+                        transportationEmission,
+                        transportLegs
+                    }),
+                });
+
+                if (!mappingResponse.ok) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+
+                const savedMapping = await mappingResponse.json();
+                console.log('Mapping saved successfully:', savedMapping);
+                onClose();
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save mapping');
+            } finally {
+                setIsLoading(false);
+            }
         }
     };
 
     return (
         <Modal show={true} onClose={onClose} title="Save Emission Results">
             <div className="save-results-modal">
-
                 {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
                 ) : (
-                    <p>
-                        No existing projects found.Please create a new project.
-                    </p>
+                    <p>No existing projects found. Please create a new project.</p>
                 )}
 
                 <div className="card-container">
@@ -117,6 +160,7 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
                         </div>
                     )}
                 </div>
+
                 {selectedCard === 'new' && (
                     <div className="new-project-inputs">
                         <FormField>
@@ -139,6 +183,7 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
                         </FormField>
                     </div>
                 )}
+
                 {selectedCard === 'existing' && (
                     <div className="existing-project-selection">
                         <FormField>
@@ -152,11 +197,13 @@ const SaveResultsModal: React.FC<{ onClose: () => void; hasExistingProjects: boo
                         </FormField>
                     </div>
                 )}
+
                 {error && (
                     <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
                         {error}
                     </div>
                 )}
+
                 <div className="save-button-container">
                     <Button 
                         title={isLoading ? "Saving..." : "Save results"} 
@@ -447,7 +494,15 @@ const EmissionSummary: React.FC<{
                     </div>
                 </div>
             </div>
-            {showModal && <SaveResultsModal onClose={() => setShowModal(false)} hasExistingProjects={hasExistingProjects} />}
+            {showModal && (
+    <SaveResultsModal 
+        onClose={() => setShowModal(false)} 
+        hasExistingProjects={hasExistingProjects}
+        product={product}
+        transportationEmission={transportationEmission}
+        transportLegs={transportLegs}
+    />
+)}
         </>
     );
 };
