@@ -716,7 +716,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
             setActiveStep(activeStep - 1);
         }
     };
-    if (isEmissionSummaryVisible) { return <EmissionSummary transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)}></EmissionSummary> }
+    if (isEmissionSummaryVisible) { return <EmissionSummary transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext}  ></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Impact Analysis</h1>

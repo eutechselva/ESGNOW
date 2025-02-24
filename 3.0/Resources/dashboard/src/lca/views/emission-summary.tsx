@@ -6,6 +6,8 @@ import { TransportLeg } from '../types/transport-leg.type';
 import API_BASE_URL from "../config";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
+import { createProject } from "../../esgnow-service";
+import { IContextProvider } from '@uxp';
 
 interface SaveResultsModalProps {
     onClose: () => void;
@@ -13,6 +15,7 @@ interface SaveResultsModalProps {
     product: ProductInfoSummary;
     transportationEmission: string;
     transportLegs: TransportLeg[];
+    uxpContext : IContextProvider;
 }
 
 interface ProjectOption {
@@ -25,7 +28,8 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     hasExistingProjects,
     product,
     transportationEmission,
-    transportLegs
+    transportLegs,
+    uxpContext
 }) => {
     const [selectedCard, setSelectedCard] = useState<string | null>(null);
     const [projectName, setProjectName] = useState('');
@@ -51,23 +55,15 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
             setError(null);
 
             try {
-                // First create the project
-                const projectResponse = await fetch(`${API_BASE_URL}/api/projects`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        code: projectId,
-                        name: projectName,
-                    }),
-                });
+                const payload = {
+                    code: projectId,
+                    name: projectName,
+                };
 
-                if (!projectResponse.ok) {
-                    throw new Error('Failed to save project');
-                }
+                const projectResponse =  await createProject(uxpContext,payload);
+                
 
-                const savedProject = await projectResponse.json();
+                debugger;
 
                 // Then create the project-product mapping
                 const mappingResponse = await fetch(`${API_BASE_URL}/api/project-product-mapping`, {
@@ -88,7 +84,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 }
 
                 const savedMapping = await mappingResponse.json();
-                console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
+                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
@@ -223,7 +219,8 @@ const EmissionSummary: React.FC<{
     transportationEmission : string;
     onBack: () => void;
     transportLegs: TransportLeg[];
-}> = ({ product, onBack ,transportationEmission ,transportLegs }) => {
+    uxContext: IContextProvider;
+}> = ({ product, onBack ,transportationEmission ,transportLegs, uxContext }) => {
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -501,6 +498,7 @@ const EmissionSummary: React.FC<{
         product={product}
         transportationEmission={transportationEmission}
         transportLegs={transportLegs}
+        uxpContext={uxContext}
     />
 )}
         </>

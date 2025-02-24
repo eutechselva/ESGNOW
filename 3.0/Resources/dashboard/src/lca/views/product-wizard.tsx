@@ -105,8 +105,6 @@ export const ProductWizard = ({ show, onClose ,context ,onProductCreated}: Produ
 
              const data =  await createProduct(context,payload);
 
-             debugger;
-
              console.log('Product creation complete', data);
             
              

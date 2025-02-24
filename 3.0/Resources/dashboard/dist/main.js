@@ -38670,7 +38670,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.createProduct = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.createProject = exports.createProduct = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38708,6 +38708,12 @@ function createProduct(uxpContext, payload) {
     });
 }
 exports.createProduct = createProduct;
+function createProject(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/projects`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.createProject = createProject;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39379,7 +39385,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         }
     };
     if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false) });
+        return React.createElement(emission_summary_1.default, { transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext });
     }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
@@ -39848,7 +39854,8 @@ const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
-const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportationEmission, transportLegs }) => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportationEmission, transportLegs, uxpContext }) => {
     const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
     const [projectName, setProjectName] = (0, react_1.useState)('');
     const [projectId, setProjectId] = (0, react_1.useState)('');
@@ -39869,21 +39876,12 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportatio
             setIsLoading(true);
             setError(null);
             try {
-                // First create the project
-                const projectResponse = yield fetch(`${config_1.default}/api/projects`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        code: projectId,
-                        name: projectName,
-                    }),
-                });
-                if (!projectResponse.ok) {
-                    throw new Error('Failed to save project');
-                }
-                const savedProject = yield projectResponse.json();
+                const payload = {
+                    code: projectId,
+                    name: projectName,
+                };
+                const projectResponse = yield (0, esgnow_service_1.createProject)(uxpContext, payload);
+                debugger;
                 // Then create the project-product mapping
                 const mappingResponse = yield fetch(`${config_1.default}/api/project-product-mapping`, {
                     method: 'POST',
@@ -39901,7 +39899,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportatio
                     throw new Error('Failed to save project-product mapping');
                 }
                 const savedMapping = yield mappingResponse.json();
-                console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
+                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             }
             catch (err) {
@@ -39974,7 +39972,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportatio
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save results", onClick: handleSave, className: "save-results", disabled: isLoading })))));
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
@@ -40178,7 +40176,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                             " %")));
                                 });
                             })())))))),
-        showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs }))));
+        showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, uxpContext: uxContext }))));
 };
 exports["default"] = EmissionSummary;
 
@@ -41672,7 +41670,6 @@ const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
         };
         try {
             const data = yield (0, esgnow_service_1.createProduct)(context, payload);
-            debugger;
             console.log('Product creation complete', data);
             setNewlyCreatedProduct(data.data);
             setActiveStep(activeStep + 1);
