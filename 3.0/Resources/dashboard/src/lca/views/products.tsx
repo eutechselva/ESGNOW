@@ -13,7 +13,7 @@ interface IWidgetProps {
 
 const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
     const [showModal, setShowModal] = React.useState(false);
-    const [hasProducts, setHasProducts] = React.useState(true); // Track if products exist
+    const [hasProducts, setHasProducts] = React.useState(false); // Track if products exist
 
 
     // Handler to process product information when modal is submitted

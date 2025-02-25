@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Select } from "uxp/components";
+import { Button, Select, Input } from "uxp/components";
 import ProcessEntry from "./process-entry";
 import "./product-manufacturing.scss";
 import { BillMaterial } from "../types/bill-material-type";
@@ -12,7 +12,7 @@ interface ProductManufacturingProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     billMaterials: BillMaterial[];
-    onProductManufacturingChange:(data: { materialClass: string , specificMaterial : String , weight : Number, manufacturingProcesses: ProductManufacturingProcess[]; }[]) => void;
+    onProductManufacturingChange: (data: { materialClass: string, specificMaterial: string, weight: number, manufacturingProcesses: ProductManufacturingProcess[]; }[]) => void;
 }
 
 const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
@@ -20,18 +20,18 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     productData,
     billMaterials,
     onProductManufacturingChange,
-    
 }) => {
     const [entryType, setEntryType] = useState<"manual" | "ai">("ai");
     const [manualProcesses, setManualProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [aiProcesses, setAIProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [showProcessContent, setShowProcessContent] = useState(false);
     const [aiGeneratingProcess, setAIGeneratingProcess] = useState<boolean>(false);
+    const [editingProcess, setEditingProcess] = useState<{ materialClass: string, processIndex: number } | null>(null);
+    const [editedProcess, setEditedProcess] = useState<ProductManufacturingProcess | null>(null);
 
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
-        
     ];
 
     const handleEntryTypeChange = (newValue: "ai" | "manual") => {
@@ -41,16 +41,15 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
 
     const handleProcessAdd = (materialId: string, process: { manufacturingProcess: string; subProcesses: string[] }) => {
         const newProcess: ProductManufacturingProcess = {
-            category: process.manufacturingProcess, // Map manufacturingProcess to category
-            processes: process.subProcesses, // Map subProcesses to processes
+            category: process.manufacturingProcess,
+            processes: process.subProcesses,
         };
-    
+
         setManualProcesses((prev) => ({
             ...prev,
             [materialId]: [...(prev[materialId] || []), newProcess],
         }));
     };
-    
 
     const handleAddProcess = () => {
         setShowProcessContent(true);
@@ -59,6 +58,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     const handleGenerate = async () => {
         if (entryType === "ai") {
             setAIGeneratingProcess(true);
+
             try {
                 const response = await fetch(`${API_BASE_URL}/api/classify-manufacturing-process`, {
                     method: "POST",
@@ -77,7 +77,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                     throw new Error("Failed to fetch manufacturing processes");
                 }
 
-                const apiResults: { materialClass: string, specificMaterial : String , weight : Number,  manufacturingProcesses: ProductManufacturingProcess[] }[] =
+                const apiResults: { materialClass: string, specificMaterial : string , weight : number,  manufacturingProcesses: ProductManufacturingProcess[] }[] =
                     await response.json();
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
@@ -96,7 +96,33 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     };
 
     const handleEditProcess = (materialClass: string, processIndex: number) => {
-        console.log(`Editing process at index ${processIndex} for material class ${materialClass}`);
+        const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
+        setEditingProcess({ materialClass, processIndex });
+        setEditedProcess(processes[processIndex]);
+    };
+
+    const handleSaveProcess = () => {
+        if (editingProcess && editedProcess) {
+            const { materialClass, processIndex } = editingProcess;
+            const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
+            const updatedProcesses = [...processes];
+            updatedProcesses[processIndex] = editedProcess;
+
+            if (entryType === "ai") {
+                setAIProcesses((prev) => ({
+                    ...prev,
+                    [materialClass]: updatedProcesses,
+                }));
+            } else {
+                setManualProcesses((prev) => ({
+                    ...prev,
+                    [materialClass]: updatedProcesses,
+                }));
+            }
+
+            setEditingProcess(null);
+            setEditedProcess(null);
+        }
     };
 
     const handleDeleteProcess = (materialClass: string, processIndex: number) => {
@@ -118,7 +144,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
         });
     };
 
-    const selectedProcesses = entryType === "ai" ? aiProcesses  : manualProcesses ;
+    const selectedProcesses = entryType === "ai" ? aiProcesses : manualProcesses;
 
     return (
         <div className="product-manufacturing">
@@ -138,7 +164,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         onClick={handleGenerate}
                     />
                 )}
-                 {entryType === "manual" && (
+                {entryType === "manual" && (
                     <Button
                         title="Add Process"
                         className="add-process-button"
@@ -156,6 +182,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         />
                     </div>
                 ))}
+
             {aiGeneratingProcess && <div className="ai-generating">Generating AI Processes...</div>}
 
             {Object.keys(selectedProcesses).length > 0 && (
@@ -180,23 +207,56 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                                     <td>
                                         {selectedProcesses[item.materialClass]?.map((process, index) => (
                                             <div key={index} className="process-item">
-                                                <strong>{process.category}</strong>
-                                                <ul>
-                                                    {process.processes.map((subProcess, subIndex) => (
-                                                        <li key={subIndex}>{subProcess}</li>
-                                                    ))}
-                                                </ul>
+                                                {editingProcess?.materialClass === item.materialClass && editingProcess.processIndex === index ? (
+                                                    <>
+                                                        <Input
+                                                            value={editedProcess?.category || ""}
+                                                            onChange={(val) => setEditedProcess((prev) => prev ? { ...prev, category: val } : null)}
+                                                        />
+                                                        <ul>
+                                                            {editedProcess?.processes.map((subProcess, subIndex) => (
+                                                                <li key={subIndex}>
+                                                                    <Input
+                                                                        value={subProcess}
+                                                                        onChange={(val) => {
+                                                                            const updatedProcesses = [...(editedProcess.processes || [])];
+                                                                            updatedProcesses[subIndex] = val;
+                                                                            setEditedProcess((prev) => prev ? { ...prev, processes: updatedProcesses } : null);
+                                                                        }}
+                                                                    />
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </>
+                                                ) : (
+                                                    <>
+                                                        <strong>{process.category}</strong>
+                                                        <ul>
+                                                            {process.processes.map((subProcess, subIndex) => (
+                                                                <li key={subIndex}>{subProcess}</li>
+                                                            ))}
+                                                        </ul>
+                                                    </>
+                                                )}
                                             </div>
                                         ))}
                                     </td>
                                     <td>
                                         {selectedProcesses[item.materialClass]?.map((_, index) => (
                                             <div key={index} className="action-buttons">
-                                                <Button
-                                                    title="Edit"
-                                                    className="edit-button"
-                                                    onClick={() => handleEditProcess(item.materialClass, index)}
-                                                />
+                                                {editingProcess?.materialClass === item.materialClass && editingProcess.processIndex === index ? (
+                                                    <Button
+                                                        title="Save"
+                                                        className="save-button"
+                                                        onClick={handleSaveProcess}
+                                                    />
+                                                ) : (
+                                                    <Button
+                                                        title="Edit"
+                                                        className="edit-button"
+                                                        onClick={() => handleEditProcess(item.materialClass, index)}
+                                                    />
+                                                )}
                                                 <Button
                                                     title="Delete"
                                                     className="delete-button"

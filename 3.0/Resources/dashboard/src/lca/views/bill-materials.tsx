@@ -89,9 +89,12 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
         setShowMaterialEntry(false);
     };
 
-    const handleMaterialEdit = (index: number) => {
+    const handleMaterialEdit = (index: number, material: BillMaterial) => {
         setEditIndex(index);
         setShowMaterialEntry(true);
+        const materialData = [...materials]
+        materialData[index] = {...material}
+        setMaterials(materialData)
     };
 
     const handleMaterialDelete = (index: number) => {
