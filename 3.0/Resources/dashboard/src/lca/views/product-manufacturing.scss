@@ -42,9 +42,9 @@
             }
 
             th {
-                background-color: #013862;
-                color: #fff;
-                font-weight: 600;
+                background-color: #ffffff;
+                color: #424242;
+                font-weight: bold;
             }
 
             td {
@@ -115,4 +115,11 @@
 .entry-type-select{
     margin-top: 32px !important;
     
+}
+
+
+.action-buttons{
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
 }

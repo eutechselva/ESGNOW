@@ -1,18 +1,55 @@
-
-import React from "react";
+import React, { useState } from "react";
 import "./material-summary.scss";
-import {Button } from "uxp/components";
+import { Button, Input, Select } from "uxp/components";
+
+type Material = {
+    materialClass: string;
+    specificMaterial: string;
+    weight: string;
+    unit: string;
+};
 
 interface MaterialSummaryProps {
-    materials: { materialClass: string, specificMaterial: string, weight: string, unit: string }[];
-    onEdit: (index: number) => void;
+    materials: Array<Material>;
+    onEdit: (index: number, updatedMaterial: Material) => void;
     onDelete: (index: number) => void;
 }
 
 const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, onDelete }) => {
+    const [editingIndex, setEditingIndex] = useState<number | null>(null);
+    const [editedData, setEditedData] = useState<Material | null>(null);
+
+    const specificMaterialOptions = [
+        { label: "Oak", value: "Oak" },
+        { label: "Maple", value: "Maple" },
+    ];
+
+    const unitOptions = [
+        { label: "kg", value: "kg" },
+        { label: "lbs", value: "lbs" },
+    ];
+
+    const handleEditClick = (index: number, material: Material) => {
+        setEditingIndex(index);
+        setEditedData(material);
+    };
+
+    const handleSaveClick = (index: number) => {
+        if (editedData) {
+            onEdit(index, editedData);
+            setEditingIndex(null);
+        }
+    };
+
+    const handleChange = (field: string, value: string) => {
+        if (editedData) {
+            setEditedData({ ...editedData, [field]: value });
+        }
+    };
+
     return (
         <div className="material-summary">
-            <table>
+            <table className="material-summary-table">
                 <thead>
                     <tr>
                         <th>Material Class</th>
@@ -24,12 +61,48 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                 <tbody>
                     {materials.map((material, index) => (
                         <tr key={index}>
-                            <td>{material.materialClass}</td>
-                            <td>{material.specificMaterial}</td>
-                            <td>{material.weight} {material.unit}</td>
                             <td>
-                            <Button title="Edit" onClick={() => onEdit(index)} className="edit-button" />
-                            <Button title="Delete" onClick={() => onDelete(index)} className="delete-button" />
+                                {editingIndex === index ? (
+                                    <Input
+                                        value={editedData?.materialClass || ""}
+                                        onChange={(val) => handleChange("materialClass", val)}
+                                    />
+                                ) : (
+                                    material.materialClass
+                                )}
+                            </td>
+                            <td>
+                                {editingIndex === index ? (
+                                    <Select
+                                        options={specificMaterialOptions}
+                                        selected={editedData?.specificMaterial || specificMaterialOptions[0].value}
+                                        onChange={(newValue) => handleChange("specificMaterial", newValue)}
+                                    />
+                                ) : (
+                                    material.specificMaterial
+                                )}
+                            </td>
+                            <td>
+                                {editingIndex === index ? (
+                                    <div className="weight-unit-input">
+                                        <Input className="weight-input-field" value={editedData?.weight || ""} onChange={(val) => handleChange("weight", val)} />
+                                        <Select
+                                            options={unitOptions}
+                                            selected={editedData?.unit || unitOptions[0].value}
+                                            onChange={(newValue) => handleChange("unit", newValue)}
+                                        />
+                                    </div>
+                                ) : (
+                                    `${material.weight} ${material.unit}`
+                                )}
+                            </td>
+                            <td>
+                                {editingIndex === index ? (
+                                    <Button title="Save" onClick={() => handleSaveClick(index)} className="save-materials-button" />
+                                ) : (
+                                    <Button title="Edit" onClick={() => handleEditClick(index, material)} className="edit-button" />
+                                )}
+                                <Button title="Delete" onClick={() => onDelete(index)} className="delete-button" />
                             </td>
                         </tr>
                     ))}
@@ -40,6 +113,3 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
 };
 
 export default MaterialSummary;
-
-
-
