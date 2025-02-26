@@ -3,6 +3,7 @@ import { TableComponent, TitleBar, WidgetWrapper } from 'uxp/components';
 import './projects.scss';
 import { IContextProvider } from "@uxp";
 import API_BASE_URL from "../config";
+import { getAllProjects } from "../../esgnow-service";
 
 interface IProjectProps {
     uxpContext?: IContextProvider;
@@ -40,13 +41,9 @@ const Projects: React.FC<IProjectProps> = (props) => {
     const fetchProjects = async () => {
         try {
             // First get all projects
-            const response = await fetch(`${API_BASE_URL}/api/projects`);
-            if (!response.ok) {
-                const errorData = await response.json();
-                console.error('Server response:', errorData);
-                throw new Error(`Failed to fetch projects: ${response.statusText}`);
-            }
-            const projectsData = await response.json();
+            const response = await getAllProjects( props.uxpContext );
+            
+            const projectsData = await response.data;
             
             // Then fetch impact data for each project
             const projectsWithImpacts = await Promise.all(

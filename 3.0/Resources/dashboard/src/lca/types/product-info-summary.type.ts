@@ -1,4 +1,5 @@
 export type ProductInfoSummary = {
+    _id: string;
     icon: string;
     code: string;
     name: string;

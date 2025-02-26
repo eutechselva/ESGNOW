@@ -26,17 +26,17 @@ interface TransportLeg {
 }
 
 interface DistanceResponse {
-    origin : string;
+    origin: string;
     destination: string;
     distance_in_km: number;
 }
 
 interface ILCADashboardWidgetProps {
-   uxpContext: IContextProvider;
+    uxpContext: IContextProvider;
 }
 
 
-const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) => {
+const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [transportDatabase, setTransportDatabase] = React.useState<{ [key: string]: any }>({});
 
@@ -61,7 +61,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
     const handleConfirmCalculate = async () => {
-        
+
         setisEmissionSummaryvisible(true);
         setShowModal(false);
     };
@@ -76,17 +76,17 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
         setTransportLegs(emission);
         const totalEmission = emission.reduce((sum, leg) => sum + leg.transportEmission, 0);
         setTransportationEmission(totalEmission.toString());
-        
+
     }
 
 
     React.useEffect(() => {
         const fetchProductData = async () => {
 
-            const data =  await getAllProducts(uxpContext);
+            const data = await getAllProducts(uxpContext);
             setProducts(data.data);
 
-            };
+        };
 
         fetchProductData();
     }, []);
@@ -222,7 +222,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
             destinationGateway: "",
             transportMode: "",
             transportDistance: 0,
-            transportEmission: 0, 
+            transportEmission: 0,
             originGateways: [],
             destinationGateways: []
         }]);
@@ -233,14 +233,14 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
             const updatedLegs = prevLegs.map(leg => {
                 if (leg.id === legId) {
                     let updatedLeg = { ...leg };
-    
+
                     if (field === 'originCountry') {
                         updatedLeg = {
                             ...updatedLeg,
                             originCountry: value,
-                            originGateways: transportDatabase[value]?.map((gateway: any) => ({ 
-                                label: gateway, 
-                                value: gateway 
+                            originGateways: transportDatabase[value]?.map((gateway: any) => ({
+                                label: gateway,
+                                value: gateway
                             })) || [],
                             originGateway: '',
                             transportEmission: 0 // Reset emission when changing route
@@ -250,9 +250,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                         updatedLeg = {
                             ...updatedLeg,
                             destinationCountry: value,
-                            destinationGateways: transportDatabase[value]?.map((gateway: any) => ({ 
-                                label: gateway, 
-                                value: gateway 
+                            destinationGateways: transportDatabase[value]?.map((gateway: any) => ({
+                                label: gateway,
+                                value: gateway
                             })) || [],
                             destinationGateway: '',
                             transportEmission: 0 // Reset emission when changing route
@@ -265,18 +265,18 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                             ...(field === 'transportMode' && { transportEmission: 0 }) // Reset emission when changing mode
                         };
                     }
-    
-                    if (field === 'transportMode' && 
-                        updatedLeg.originGateway && 
+
+                    if (field === 'transportMode' &&
+                        updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
                         setTimeout(() => {
                             calculateTransportDistance(
                                 updatedLeg.originGateway,
                                 updatedLeg.destinationGateway
                             ).then((distance: number) => {
-                                setTransportLegs(currentLegs => 
-                                    currentLegs.map(currentLeg => 
-                                        currentLeg.id === legId 
+                                setTransportLegs(currentLegs =>
+                                    currentLegs.map(currentLeg =>
+                                        currentLeg.id === legId
                                             ? { ...currentLeg, transportDistance: distance, transportEmission: 0 }
                                             : currentLeg
                                     )
@@ -286,12 +286,12 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                             });
                         }, 0);
                     }
-    
+
                     return updatedLeg;
                 }
                 return leg;
             });
-    
+
             return updatedLegs;
         });
     };
@@ -466,62 +466,62 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                             </div>
                         </div>
 
-<div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Packaging Weight</span>
-<span
-                        className="info-icon"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
-                    >
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                        {showTooltip && (
-                            <div className="tooltip">
-                                Select Assistance to estimate packaging weight (10% of product weight), or enter the weight manually if known
-                            </div>
-                        )}
-                    </span></Label>
+                        <div className="weight-section">
+                            <Label><span style={{ fontSize: '12px' }}>Packaging Weight</span>
+                                <span
+                                    className="info-icon"
+                                    onMouseEnter={() => setShowTooltip(true)}
+                                    onMouseLeave={() => setShowTooltip(false)}
+                                >
+                                    <FontAwesomeIcon icon={faInfoCircle} />
+                                    {showTooltip && (
+                                        <div className="tooltip">
+                                            Select Assistance to estimate packaging weight (10% of product weight), or enter the weight manually if known
+                                        </div>
+                                    )}
+                                </span></Label>
 
- 
-    <div className="weight-input-row">
-        <div className="toggle-group">
-            <label className="toggle-option">
-                <input
-                    type="radio"
-                    checked={!isPackagingManual}
-                    onChange={() => setIsPackagingManual(false)}
-                />
-                AI Assistance
-            </label>
-            <label className="toggle-option">
-                <input
-                    type="radio"
-                    checked={isPackagingManual}
-                    onChange={() => setIsPackagingManual(true)}
-                />
-                Manual Entry
-            </label>
-        </div>
-        <div className="input-group">
-            {isPackagingManual ? (
-                <Input
-                    type="number"
-                    value={packagingWeight.toFixed(2)}
-                    onChange={(value) => setPackagingWeight(parseFloat(value))}
-                    inputAttr={{ step: "0.01" }}
-                />
-            ) : (
-                <Input
-                    type="number"
-                    value={packagingWeight.toFixed(2)}
-                    onChange={() => { }}
-                    inputAttr={{ step: "0.01" }}
-                    className="disabled-input"
-                />
-            )}
-            <span className="unit">Kg</span>
-        </div>
-    </div>
-</div>
+
+                            <div className="weight-input-row">
+                                <div className="toggle-group">
+                                    <label className="toggle-option">
+                                        <input
+                                            type="radio"
+                                            checked={!isPackagingManual}
+                                            onChange={() => setIsPackagingManual(false)}
+                                        />
+                                        AI Assistance
+                                    </label>
+                                    <label className="toggle-option">
+                                        <input
+                                            type="radio"
+                                            checked={isPackagingManual}
+                                            onChange={() => setIsPackagingManual(true)}
+                                        />
+                                        Manual Entry
+                                    </label>
+                                </div>
+                                <div className="input-group">
+                                    {isPackagingManual ? (
+                                        <Input
+                                            type="number"
+                                            value={packagingWeight.toFixed(2)}
+                                            onChange={(value) => setPackagingWeight(parseFloat(value))}
+                                            inputAttr={{ step: "0.01" }}
+                                        />
+                                    ) : (
+                                        <Input
+                                            type="number"
+                                            value={packagingWeight.toFixed(2)}
+                                            onChange={() => { }}
+                                            inputAttr={{ step: "0.01" }}
+                                            className="disabled-input"
+                                        />
+                                    )}
+                                    <span className="unit">Kg</span>
+                                </div>
+                            </div>
+                        </div>
 
                         <div className="weight-toggle">
                             <Label><span style={{ fontSize: '12px' }}>Include Pallet Weight?</span></Label>
@@ -537,64 +537,64 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                             </label>
                         </div>
 
-                    {includePallet && (
-                        <div className="weight-section">
-<Label><span style={{ fontSize: '12px' }}>Pallet Weight</span>
-<span
-                        className="info-icon"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
-                    >
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                        {showTooltip && (
-                            <div className="tooltip">
-                                Select Assistance to apply an industry-standard pallet weight (typically 13.6 kg to 21.8 kg), or enter the weight manually if known
+                        {includePallet && (
+                            <div className="weight-section">
+                                <Label><span style={{ fontSize: '12px' }}>Pallet Weight</span>
+                                    <span
+                                        className="info-icon"
+                                        onMouseEnter={() => setShowTooltip(true)}
+                                        onMouseLeave={() => setShowTooltip(false)}
+                                    >
+                                        <FontAwesomeIcon icon={faInfoCircle} />
+                                        {showTooltip && (
+                                            <div className="tooltip">
+                                                Select Assistance to apply an industry-standard pallet weight (typically 13.6 kg to 21.8 kg), or enter the weight manually if known
+                                            </div>
+                                        )}
+                                    </span></Label>
+
+
+                                <div className="weight-input-row">
+                                    <div className="toggle-group">
+                                        <label className="toggle-option">
+                                            <input
+                                                type="radio"
+                                                checked={!isPalletManual}
+                                                onChange={() => setIsPalletManual(false)}
+                                            />
+                                            AI Assistance
+                                        </label>
+                                        <label className="toggle-option">
+                                            <input
+                                                type="radio"
+                                                checked={isPalletManual}
+                                                onChange={() => setIsPalletManual(true)}
+                                            />
+                                            Manual Entry
+                                        </label>
+                                    </div>
+                                    <div className="input-group">
+                                        {isPalletManual ? (
+                                            <Input
+                                                type="number"
+                                                value={palletWeight.toFixed(2)}
+                                                onChange={(value) => setPalletWeight(parseFloat(value))}
+                                                inputAttr={{ step: "0.01" }}
+                                            />
+                                        ) : (
+                                            <Input
+                                                type="number"
+                                                value={palletWeight.toFixed(2)}
+                                                onChange={() => { }}
+                                                inputAttr={{ step: "0.01" }}
+                                                className="disabled-input"
+                                            />
+                                        )}
+                                        <span className="unit">Kg</span>
+                                    </div>
+                                </div>
                             </div>
                         )}
-                    </span></Label>
-
-                          
-                            <div className="weight-input-row">
-                            <div className="toggle-group">
-                                <label className="toggle-option">
-                                    <input
-                                        type="radio"
-                                        checked={!isPalletManual}
-                                        onChange={() => setIsPalletManual(false)}
-                                    />
-                                    AI Assistance
-                                </label>
-                                <label className="toggle-option">
-                                    <input
-                                        type="radio"
-                                        checked={isPalletManual}
-                                        onChange={() => setIsPalletManual(true)}
-                                    />
-                                    Manual Entry
-                                </label>
-                            </div>
-                            <div className="input-group">
-                                {isPalletManual ? (
-                                    <Input
-                                        type="number"
-                                        value={palletWeight.toFixed(2)}
-                                        onChange={(value) => setPalletWeight(parseFloat(value))}
-                                        inputAttr={{ step: "0.01" }}
-                                    />
-                                ) : (
-                                    <Input
-                                        type="number"
-                                        value={palletWeight.toFixed(2)}
-                                        onChange={() => { }}
-                                        inputAttr={{ step: "0.01" }}
-                                        className="disabled-input"
-                                    />
-                                )}
-                                <span className="unit">Kg</span>
-                            </div>
-                        </div>
-                        </div>
-                    )}
 
                         <div className="total-weight">
                             <Label><span style={{ fontSize: '12px' }}>Total Transport Weight</span></Label>
@@ -705,8 +705,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
-        if(activeStep === 1){
-           
+        if (activeStep === 1) {
+
             calculateTransportationEmission();
         }
     };
@@ -716,7 +716,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
             setActiveStep(activeStep - 1);
         }
     };
-    if (isEmissionSummaryVisible) { return <EmissionSummary transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext}  ></EmissionSummary> }
+    if (isEmissionSummaryVisible) { return <EmissionSummary  packageWeight={packagingWeight} palletWeight={palletWeight} transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext}  ></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Impact Analysis</h1>
@@ -789,18 +789,18 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({uxpContext}) =>
                 className="product-data-grid"
             />
 
-           {/* Modal Implementation */}
-<Modal
-    show={showModal}
-    onClose={() => setShowModal(false)}
-    title="Calculate Impact"
-    className="lgs-calculate-impact-modal"
->
-    <div className="modal-content">
-        {/* Stepper component */}
-        <div className="modal-stepper-container">
-            <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
-        </div>
+            {/* Modal Implementation */}
+            <Modal
+                show={showModal}
+                onClose={() => setShowModal(false)}
+                title="Calculate Impact"
+                className="lgs-calculate-impact-modal"
+            >
+                <div className="modal-content">
+                    {/* Stepper component */}
+                    <div className="modal-stepper-container">
+                        <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
+                    </div>
 
                     {steps[activeStep].content}
 

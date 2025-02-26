@@ -6,16 +6,19 @@ import { TransportLeg } from '../types/transport-leg.type';
 import API_BASE_URL from "../config";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
-import { createProject } from "../../esgnow-service";
+import { createProject, createProjectProductMap } from "../../esgnow-service";
 import { IContextProvider } from '@uxp';
 
 interface SaveResultsModalProps {
     onClose: () => void;
     hasExistingProjects: boolean;
     product: ProductInfoSummary;
+    packageWeight: Number;
+    palletWeight: Number;
+
     transportationEmission: string;
     transportLegs: TransportLeg[];
-    uxpContext : IContextProvider;
+    uxpContext: IContextProvider;
 }
 
 interface ProjectOption {
@@ -27,6 +30,8 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     onClose,
     hasExistingProjects,
     product,
+    packageWeight,
+    palletWeight,
     transportationEmission,
     transportLegs,
     uxpContext
@@ -55,35 +60,32 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
             setError(null);
 
             try {
-                const payload = {
+                const createProjectPayload = {
                     code: projectId,
                     name: projectName,
                 };
 
-                const projectResponse =  await createProject(uxpContext,payload);
-                
+                const projectResponse = await createProject(uxpContext, createProjectPayload);
+
 
                 debugger;
+                const createProjectProductMapPayload = {
+                    projectID: projectResponse.data._id,
+                    productID: product._id,
+                    packagingWeight : packageWeight,
+                    palletWeight : palletWeight,
+                    transportationLegs: transportLegs,
+                    totalTransportationEmission: transportationEmission
+                };
 
                 // Then create the project-product mapping
-                const mappingResponse = await fetch(`${API_BASE_URL}/api/project-product-mapping`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        projectCode: projectId,
-                        product,
-                        transportationEmission,
-                        transportLegs
-                    }),
-                });
+                const mappingResponse = await createProjectProductMap(uxpContext, createProjectProductMapPayload);
 
-                if (!mappingResponse.ok) {
+                if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
 
-                const savedMapping = await mappingResponse.json();
+                const savedMapping = await mappingResponse.data;
                 //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             } catch (err) {
@@ -201,11 +203,11 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 )}
 
                 <div className="save-button-container">
-                    <Button 
-                        title={isLoading ? "Saving..." : "Save results"} 
-                        onClick={handleSave} 
+                    <Button
+                        title={isLoading ? "Saving..." : "Save results"}
+                        onClick={handleSave}
                         className="save-results"
-                        disabled={isLoading} 
+                        disabled={isLoading}
                     />
                 </div>
             </div>
@@ -216,11 +218,13 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
 
 const EmissionSummary: React.FC<{
     product: ProductInfoSummary;
-    transportationEmission : string;
+    transportationEmission: string;
     onBack: () => void;
     transportLegs: TransportLeg[];
     uxContext: IContextProvider;
-}> = ({ product, onBack ,transportationEmission ,transportLegs, uxContext }) => {
+    packageWeight: Number;
+    palletWeight: Number;
+}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight }) => {
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -233,7 +237,7 @@ const EmissionSummary: React.FC<{
     const [hasExistingProjects, setHasExistingProjects] = useState(true);
     const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
 
-  
+
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
@@ -294,9 +298,9 @@ const EmissionSummary: React.FC<{
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials) , color: '#78BE7C' },
-                    { name: 'Manufacturing', y:  Number(product.co2EmissionFromProcesses) , color: '#ffaa00' },
-                    { name: 'Transportation', y:  Number(transportationEmission), color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
+                    { name: 'Transportation', y: Number(transportationEmission), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -457,7 +461,7 @@ const EmissionSummary: React.FC<{
                                     </tr>
                                 </thead>
                                 <tbody>
-                                     {(() => {
+                                    {(() => {
                                         // Calculate the total emission factor
                                         const totalEmissionFactor = transportLegs.reduce(
                                             (sum: number, item: any) => sum + item.transportEmission,
@@ -483,7 +487,7 @@ const EmissionSummary: React.FC<{
                                                 </tr>
                                             );
                                         });
- })()}
+                                    })()}
 
                                 </tbody>
                             </table>
@@ -492,15 +496,17 @@ const EmissionSummary: React.FC<{
                 </div>
             </div>
             {showModal && (
-    <SaveResultsModal 
-        onClose={() => setShowModal(false)} 
-        hasExistingProjects={hasExistingProjects}
-        product={product}
-        transportationEmission={transportationEmission}
-        transportLegs={transportLegs}
-        uxpContext={uxContext}
-    />
-)}
+                <SaveResultsModal
+                    onClose={() => setShowModal(false)}
+                    hasExistingProjects={hasExistingProjects}
+                    product={product}
+                    transportationEmission={transportationEmission}
+                    transportLegs={transportLegs}
+                    packageWeight={packageWeight}
+                    palletWeight={packageWeight}
+                    uxpContext={uxContext}
+                />
+            )}
         </>
     );
 };

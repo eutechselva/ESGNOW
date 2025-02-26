@@ -34,12 +34,20 @@ export async function getAllProducts(uxpContext: IContextProvider) {
     return executeRequest(uxpContext, `${BaseEndPoint}/products`, RequestMethod.GET, {});
 }
 
+export async function getAllProjects(uxpContext: IContextProvider) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.GET, {});
+}
+
 export async function  createProduct(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/products`, RequestMethod.POST, {},payload);
 }
 
 export async function  createProject(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.POST, {},payload);
+}
+
+export async function  createProjectProductMap(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, RequestMethod.POST, {},payload);
 }
 // Baselines for locations
 export async function getLocationData(uxpContext: IContextProvider, location?: string) {

@@ -116,7 +116,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".summary-card-container {\n  display: flex;\n  gap: 20px;\n  align-items: flex-start;\n  justify-content: space-between;\n}\n\n.summary {\n  display: flex;\n  gap: 20px;\n  flex-wrap: wrap;\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n.card {\n  background: #fff;\n  padding: 20px;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  min-width: 200px;\n  min-height: 200px;\n  flex: 1;\n}\n\n.number {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.getting-started {\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n  flex: 1;\n  min-width: 300px;\n}\n.getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.recent-projects-container {\n  padding: 20px;\n  background: #f5f5f5;\n  border-radius: 8px;\n  margin-top: 20px;\n}\n\n.recent-projects-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.search-box-filter-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n}", ""]);
+exports.push([module.id, ".summary-card-container {\n  display: flex;\n  gap: 20px;\n  align-items: flex-start;\n  justify-content: space-between;\n}\n\n.summary {\n  display: flex;\n  gap: 20px;\n  flex-wrap: wrap;\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n.card {\n  background: #fff;\n  padding: 20px;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  min-width: 200px;\n  min-height: 200px;\n  flex: 1;\n}\n\n.number {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.getting-started {\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n  flex: 1;\n  min-width: 300px;\n}\n.getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.recent-projects-container {\n  padding: 20px;\n  background: #f5f5f5;\n  border-radius: 8px;\n  margin: 20px;\n}\n\n.recent-projects-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.search-box-filter-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -150,7 +150,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  margin: 20px;\n  width: 100%;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n.material-summary table th {\n  background-color: #013862;\n  color: white;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #e0f7fa;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}", ""]);
+exports.push([module.id, ".material-summary {\n  margin: 20px;\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -235,7 +235,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 16px;\n  background-color: #f7f7f7;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary h3 {\n  margin-bottom: 12px;\n  color: #424242;\n  font-weight: 700;\n  font-size: 16px;\n}\n.product-manufacturing .process-summary .summary-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.product-manufacturing .process-summary .summary-table th, .product-manufacturing .process-summary .summary-table td {\n  padding: 12px;\n  text-align: left;\n  border: 1px solid #ddd;\n}\n.product-manufacturing .process-summary .summary-table th {\n  background-color: #013862;\n  color: #fff;\n  font-weight: 600;\n}\n.product-manufacturing .process-summary .summary-table td {\n  background-color: #f9f9f9;\n  vertical-align: top;\n}\n.product-manufacturing .process-summary .summary-table td .process-item {\n  margin-top: 4px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item strong {\n  color: #333;\n  font-weight: 600;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul {\n  padding-left: 16px;\n  margin: 4px 0;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul li {\n  color: #555;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-type-toggle {\n  display: flex;\n  gap: 1rem;\n}\n\n.add-process-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.generate-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.entry-type-select {\n  margin-top: 32px !important;\n}", ""]);
+exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 16px;\n  background-color: #f7f7f7;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary h3 {\n  margin-bottom: 12px;\n  color: #424242;\n  font-weight: 700;\n  font-size: 16px;\n}\n.product-manufacturing .process-summary .summary-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.product-manufacturing .process-summary .summary-table th, .product-manufacturing .process-summary .summary-table td {\n  padding: 12px;\n  text-align: left;\n  border: 1px solid #ddd;\n}\n.product-manufacturing .process-summary .summary-table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.product-manufacturing .process-summary .summary-table td {\n  background-color: #f9f9f9;\n  vertical-align: top;\n}\n.product-manufacturing .process-summary .summary-table td .process-item {\n  margin-top: 4px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item strong {\n  color: #333;\n  font-weight: 600;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul {\n  padding-left: 16px;\n  margin: 4px 0;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul li {\n  color: #555;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-type-toggle {\n  display: flex;\n  gap: 1rem;\n}\n\n.add-process-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.generate-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.entry-type-select {\n  margin-top: 32px !important;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 8px;\n  margin-top: 10px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38670,7 +38670,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.createProject = exports.createProduct = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.createProjectProductMap = exports.createProject = exports.createProduct = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38702,6 +38702,12 @@ function getAllProducts(uxpContext) {
     });
 }
 exports.getAllProducts = getAllProducts;
+function getAllProjects(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/projects`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.getAllProjects = getAllProjects;
 function createProduct(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/products`, _uxp_1.RequestMethod.POST, {}, payload);
@@ -38714,6 +38720,12 @@ function createProject(uxpContext, payload) {
     });
 }
 exports.createProject = createProject;
+function createProjectProductMap(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.createProjectProductMap = createProjectProductMap;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39385,7 +39397,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         }
     };
     if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext });
+        return React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext });
     }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
@@ -39610,9 +39622,12 @@ const BillMaterials = ({ productCategoryData, productData, onNext }) => {
         }
         setShowMaterialEntry(false);
     };
-    const handleMaterialEdit = (index) => {
+    const handleMaterialEdit = (index, material) => {
         setEditIndex(index);
         setShowMaterialEntry(true);
+        const materialData = [...materials];
+        materialData[index] = Object.assign({}, material);
+        setMaterials(materialData);
     };
     const handleMaterialDelete = (index) => {
         setMaterials(materials.filter((_, i) => i !== index));
@@ -39855,7 +39870,7 @@ const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportationEmission, transportLegs, uxpContext }) => {
+const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
     const [selectedCard, setSelectedCard] = (0, react_1.useState)(null);
     const [projectName, setProjectName] = (0, react_1.useState)('');
     const [projectId, setProjectId] = (0, react_1.useState)('');
@@ -39876,29 +39891,26 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportatio
             setIsLoading(true);
             setError(null);
             try {
-                const payload = {
+                const createProjectPayload = {
                     code: projectId,
                     name: projectName,
                 };
-                const projectResponse = yield (0, esgnow_service_1.createProject)(uxpContext, payload);
+                const projectResponse = yield (0, esgnow_service_1.createProject)(uxpContext, createProjectPayload);
                 debugger;
+                const createProjectProductMapPayload = {
+                    projectID: projectResponse.data._id,
+                    productID: product._id,
+                    packagingWeight: packageWeight,
+                    palletWeight: palletWeight,
+                    transportationLegs: transportLegs,
+                    totalTransportationEmission: transportationEmission
+                };
                 // Then create the project-product mapping
-                const mappingResponse = yield fetch(`${config_1.default}/api/project-product-mapping`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        projectCode: projectId,
-                        product,
-                        transportationEmission,
-                        transportLegs
-                    }),
-                });
-                if (!mappingResponse.ok) {
+                const mappingResponse = yield (0, esgnow_service_1.createProjectProductMap)(uxpContext, createProjectProductMapPayload);
+                if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
-                const savedMapping = yield mappingResponse.json();
+                const savedMapping = yield mappingResponse.data;
                 //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
             }
@@ -39972,7 +39984,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, transportatio
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save results", onClick: handleSave, className: "save-results", disabled: isLoading })))));
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext, packageWeight, palletWeight }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
@@ -40176,7 +40188,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                             " %")));
                                 });
                             })())))))),
-        showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, uxpContext: uxContext }))));
+        showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: packageWeight, uxpContext: uxContext }))));
 };
 exports["default"] = EmissionSummary;
 
@@ -40393,16 +40405,61 @@ exports["default"] = MaterialEntry;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const MaterialSummary = ({ materials, onEdit, onDelete }) => {
+    const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
+    const [editedData, setEditedData] = (0, react_1.useState)(null);
+    const specificMaterialOptions = [
+        { label: "Oak", value: "Oak" },
+        { label: "Maple", value: "Maple" },
+    ];
+    const unitOptions = [
+        { label: "kg", value: "kg" },
+        { label: "lbs", value: "lbs" },
+    ];
+    const handleEditClick = (index, material) => {
+        setEditingIndex(index);
+        setEditedData(material);
+    };
+    const handleSaveClick = (index) => {
+        if (editedData) {
+            onEdit(index, editedData);
+            setEditingIndex(null);
+        }
+    };
+    const handleChange = (field, value) => {
+        if (editedData) {
+            setEditedData(Object.assign(Object.assign({}, editedData), { [field]: value }));
+        }
+    };
     return (react_1.default.createElement("div", { className: "material-summary" },
-        react_1.default.createElement("table", null,
+        react_1.default.createElement("table", { className: "material-summary-table" },
             react_1.default.createElement("thead", null,
                 react_1.default.createElement("tr", null,
                     react_1.default.createElement("th", null, "Material Class"),
@@ -40410,14 +40467,13 @@ const MaterialSummary = ({ materials, onEdit, onDelete }) => {
                     react_1.default.createElement("th", null, "Material Weight"),
                     react_1.default.createElement("th", null, "Actions"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
-                react_1.default.createElement("td", null, material.materialClass),
-                react_1.default.createElement("td", null, material.specificMaterial),
+                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Input, { value: (editedData === null || editedData === void 0 ? void 0 : editedData.materialClass) || "", onChange: (val) => handleChange("materialClass", val) })) : (material.materialClass)),
+                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial)),
+                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement("div", { className: "weight-unit-input" },
+                    react_1.default.createElement(components_1.Input, { className: "weight-input-field", value: (editedData === null || editedData === void 0 ? void 0 : editedData.weight) || "", onChange: (val) => handleChange("weight", val) }),
+                    react_1.default.createElement(components_1.Select, { options: unitOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.unit) || unitOptions[0].value, onChange: (newValue) => handleChange("unit", newValue) }))) : (`${material.weight} ${material.unit}`)),
                 react_1.default.createElement("td", null,
-                    material.weight,
-                    " ",
-                    material.unit),
-                react_1.default.createElement("td", null,
-                    react_1.default.createElement(components_1.Button, { title: "Edit", onClick: () => onEdit(index), className: "edit-button" }),
+                    editingIndex === index ? (react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => handleSaveClick(index), className: "save-materials-button" })) : (react_1.default.createElement(components_1.Button, { title: "Edit", onClick: () => handleEditClick(index, material), className: "edit-button" })),
                     react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => onDelete(index), className: "delete-button" })))))))));
 };
 exports["default"] = MaterialSummary;
@@ -41444,6 +41500,8 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
     const [aiProcesses, setAIProcesses] = (0, react_1.useState)({});
     const [showProcessContent, setShowProcessContent] = (0, react_1.useState)(false);
     const [aiGeneratingProcess, setAIGeneratingProcess] = (0, react_1.useState)(false);
+    const [editingProcess, setEditingProcess] = (0, react_1.useState)(null);
+    const [editedProcess, setEditedProcess] = (0, react_1.useState)(null);
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
@@ -41455,7 +41513,7 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
     const handleProcessAdd = (materialId, process) => {
         const newProcess = {
             category: process.manufacturingProcess,
-            processes: process.subProcesses, // Map subProcesses to processes
+            processes: process.subProcesses,
         };
         setManualProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialId]: [...(prev[materialId] || []), newProcess] })));
     };
@@ -41497,7 +41555,25 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
         }
     });
     const handleEditProcess = (materialClass, processIndex) => {
-        console.log(`Editing process at index ${processIndex} for material class ${materialClass}`);
+        const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
+        setEditingProcess({ materialClass, processIndex });
+        setEditedProcess(processes[processIndex]);
+    };
+    const handleSaveProcess = () => {
+        if (editingProcess && editedProcess) {
+            const { materialClass, processIndex } = editingProcess;
+            const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
+            const updatedProcesses = [...processes];
+            updatedProcesses[processIndex] = editedProcess;
+            if (entryType === "ai") {
+                setAIProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses })));
+            }
+            else {
+                setManualProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses })));
+            }
+            setEditingProcess(null);
+            setEditedProcess(null);
+        }
     };
     const handleDeleteProcess = (materialClass, processIndex) => {
         setManualProcesses((prev) => {
@@ -41544,11 +41620,18 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                             item.weight,
                             " ",
                             item.unit),
-                        react_1.default.createElement("td", null, (_a = selectedProcesses[item.materialClass]) === null || _a === void 0 ? void 0 : _a.map((process, index) => (react_1.default.createElement("div", { key: index, className: "process-item" },
+                        react_1.default.createElement("td", null, (_a = selectedProcesses[item.materialClass]) === null || _a === void 0 ? void 0 : _a.map((process, index) => (react_1.default.createElement("div", { key: index, className: "process-item" }, (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass && editingProcess.processIndex === index ? (react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement(components_1.Input, { value: (editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.category) || "", onChange: (val) => setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { category: val }) : null) }),
+                            react_1.default.createElement("ul", null, editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex },
+                                react_1.default.createElement(components_1.Input, { value: subProcess, onChange: (val) => {
+                                        const updatedProcesses = [...(editedProcess.processes || [])];
+                                        updatedProcesses[subIndex] = val;
+                                        setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { processes: updatedProcesses }) : null);
+                                    } }))))))) : (react_1.default.createElement(react_1.default.Fragment, null,
                             react_1.default.createElement("strong", null, process.category),
-                            react_1.default.createElement("ul", null, process.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex }, subProcess)))))))),
+                            react_1.default.createElement("ul", null, process.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex }, subProcess)))))))))),
                         react_1.default.createElement("td", null, (_b = selectedProcesses[item.materialClass]) === null || _b === void 0 ? void 0 : _b.map((_, index) => (react_1.default.createElement("div", { key: index, className: "action-buttons" },
-                            react_1.default.createElement(components_1.Button, { title: "Edit", className: "edit-button", onClick: () => handleEditProcess(item.materialClass, index) }),
+                            (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass && editingProcess.processIndex === index ? (react_1.default.createElement(components_1.Button, { title: "Save", className: "save-button", onClick: handleSaveProcess })) : (react_1.default.createElement(components_1.Button, { title: "Edit", className: "edit-button", onClick: () => handleEditProcess(item.materialClass, index) })),
                             react_1.default.createElement(components_1.Button, { title: "Delete", className: "delete-button", onClick: () => handleDeleteProcess(item.materialClass, index) })))))));
                 })))))));
 };
@@ -41740,7 +41823,7 @@ const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/
 const home_1 = __importDefault(__webpack_require__(/*! ./home */ "./src/lca/views/home.tsx"));
 const LCAWidget = (props) => {
     const [showModal, setShowModal] = React.useState(false);
-    const [hasProducts, setHasProducts] = React.useState(true); // Track if products exist
+    const [hasProducts, setHasProducts] = React.useState(false); // Track if products exist
     // Handler to process product information when modal is submitted
     const handleProductInfoChange = (productData) => {
         console.log("Product Data:", productData); // Handle the product data here (e.g., send to an API)
@@ -41810,6 +41893,7 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const Projects = (props) => {
     const [projects, setProjects] = (0, react_1.useState)([]);
     const [isLoading, setIsLoading] = (0, react_1.useState)(true);
@@ -41820,13 +41904,8 @@ const Projects = (props) => {
     const fetchProjects = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             // First get all projects
-            const response = yield fetch(`${config_1.default}/api/projects`);
-            if (!response.ok) {
-                const errorData = yield response.json();
-                console.error('Server response:', errorData);
-                throw new Error(`Failed to fetch projects: ${response.statusText}`);
-            }
-            const projectsData = yield response.json();
+            const response = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext);
+            const projectsData = yield response.data;
             // Then fetch impact data for each project
             const projectsWithImpacts = yield Promise.all(projectsData.map((project) => __awaiter(void 0, void 0, void 0, function* () {
                 const impactResponse = yield fetch(`${config_1.default}/api/projects/${project._id}/impacts`);
