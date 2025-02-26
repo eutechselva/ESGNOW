@@ -1,38 +1,44 @@
 {
-    "id": "iviva-esg-now-application",
-    "author": "selva",
-    "widgets": [
-        {
-            "id": "product-dashboard",
-            "name": "Product Dashboard",
-            "description": "Shows the List of reports"
-        },
-        {
-            "id": "lca-widget",
-            "name": "LCA Widget",
-            "description": "LCA Widget"
-        },
-        {
-            "id": "lca-dashboard",
-            "name": "LCA Dashboard",
-            "description": "LCA Dashboard"
-        
+  "id": "iviva-esg-now-application",
+  "author": "selva",
+  "widgets": [
+    {
+      "id": "product-dashboard",
+      "name": "Product Dashboard",
+      "description": "Shows the List of reports"
     },
     {
-        "id": "projects-widget",
-        "name": "Projects Widget",
-        "description": "Projects Widget"
-    },{
-        "id": "bulk-upload-widget",
-        "name": "Bulk Upload Widget",
-        "description": "Bulk Upload Widget"
+      "id": "lca-widget",
+      "name": "LCA Widget",
+      "description": "LCA Widget"
+    },
+    {
+      "id": "lca-dashboard",
+      "name": "LCA Dashboard",
+      "description": "LCA Dashboard"
+    },
+    {
+      "id": "projects-widget",
+      "name": "Projects Widget",
+      "description": "Projects Widget"
+    },
+    {
+      "id": "bulk-upload-widget",
+      "name": "Bulk Upload Widget",
+      "description": "Bulk Upload Widget"
+    },
+    {
+        "id": "home-dashboard",
+        "name": "Home Dashboard",
+        "description": "Home Dashboard"
+        
+      }
+  ],
+  "sidebarLinks": [],
+  "uis": [
+    {
+      "id": "esg-now-dashboard"
     }
-    ],
-    "sidebarLinks": [],
-    "uis": [
-        {
-            "id": "esg-now-dashboard"
-        }
-    ],
-    "menuItems": []
+  ],
+  "menuItems": []
 }

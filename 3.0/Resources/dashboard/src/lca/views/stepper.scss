@@ -51,6 +51,18 @@
 //     background-color: #bbb;
 // }
 
+.step {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.step.disabled {
+    cursor: not-allowed;
+    opacity: 0.5; // Visually indicate non-clickable steps
+    pointer-events: none; // Prevent clicking
+}
+
+
 .modal-stepper-container {
     display: flex;
     justify-content: center;

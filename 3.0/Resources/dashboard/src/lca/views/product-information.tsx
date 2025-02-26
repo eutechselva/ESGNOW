@@ -28,6 +28,16 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
     const [document, setDocument] = React.useState<File | null>(productData.document);
     const [showTooltip, setShowTooltip] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
+    const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+
+    const validate = () => {
+        let tempErrors: { [key: string]: string } = {};
+        if (!productCode.trim()) tempErrors.productCode = "Product Code is required";
+        if (!productName.trim()) tempErrors.productName = "Product Name is required";
+        if (!productDescription.trim()) tempErrors.productDescription = "Product Description is required";
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
 
     const fileInputRef = React.useRef<HTMLInputElement | null>(null);
 
@@ -49,7 +59,6 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
         let responseText = await response.text();
 
-        console.log('response: ', response)
 
         // something went wrong, no point proceeding
         if (response.status !== 200) {
@@ -158,6 +167,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
 
     const handleNext = () => {
+        if (validate()) {
         const productData = {
             code: productCode,
             name: productName,
@@ -167,6 +177,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
             document,
         };
         onNext(productData);
+    }
     };
 
     return (
@@ -182,6 +193,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         onChange={(value) => setProductCode(value)}
                         placeholder="Enter product code"
                     />
+                    {errors.productCode && <span className="error-text">{errors.productCode}</span>}
                 </FormField>
 
                 <FormField>
@@ -192,6 +204,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         onChange={(value) => setProductName(value)}
                         placeholder="Enter product name"
                     />
+                    {errors.productName && <span className="error-text">{errors.productName}</span>}
                 </FormField>
             </div>
 
@@ -211,6 +224,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         fontFamily:'comfortaa'
                     }}
                 />
+                {errors.productDescription && <span className="error-text">{errors.productDescription}</span>}
             </FormField>
 
 

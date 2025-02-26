@@ -218,7 +218,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "h3,\n.h3 {\n  font-size: 14px;\n}\n\n.Product-Code-field {\n  flex: 1;\n}\n\n.Product-Name-field {\n  flex: 2;\n}\n\n.uploaded-images {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  margin-top: 10px;\n}\n\n.image-preview {\n  position: relative;\n  width: 80px;\n  height: 80px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #fff;\n}\n\n.image-preview img {\n  width: 100%;\n  height: auto;\n  object-fit: cover;\n}\n\n.image-preview p {\n  position: absolute;\n  bottom: 2px;\n  left: 2px;\n  font-size: 0.7rem;\n  color: #666;\n  background: rgba(255, 255, 255, 0.7);\n  padding: 2px;\n  border-radius: 2px;\n}\n\n.dotted-container {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n  padding: 10px;\n  border: 2px dashed #aaa;\n  border-radius: 4px;\n  cursor: pointer;\n  margin-top: 10px;\n  text-align: center;\n  font-size: 0.9rem;\n  color: #777;\n  background-color: #f2f2f2;\n}\n\n.dotted-container p {\n  margin: 0;\n  color: #555;\n}\n\n.document-upload-input {\n  position: absolute;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  cursor: pointer;\n}\n\n.remove-document-button {\n  margin-top: 5px;\n  font-size: 0.85rem;\n  background: transparent;\n  border: none;\n  color: #d9534f;\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n.remove-document-button:hover {\n  color: #c9302c;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.drop-zone {\n  border: 2px dashed #ccc;\n  padding: 20px;\n  text-align: center;\n  cursor: pointer;\n  transition: background-color 0.3s;\n  background-color: #f2f2f2;\n}\n\n.file-input {\n  display: none;\n  background-color: #f2f2f2;\n}\n\n.drop-zone {\n  border: 2px dashed #aaa;\n  padding: 20px;\n  text-align: center;\n  cursor: pointer;\n  transition: background-color 0.3s;\n  position: relative;\n}\n\n.drop-zone.drag-over {\n  background-color: #e6f7ff;\n}\n\n.file-input {\n  display: none;\n}\n\n.uploaded-images {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-top: 10px;\n  justify-content: center;\n}\n\n.image-preview {\n  width: 250px;\n  height: 180px;\n  text-align: center;\n  position: relative;\n  display: inline-block;\n  margin: 8px;\n}\n\n.image-preview img {\n  width: 100%;\n  height: auto;\n  border-radius: 4px;\n}\n\n.remove-image-button {\n  position: absolute;\n  top: 4px;\n  right: 4px;\n  background-color: rgba(255, 0, 0, 0.8);\n  color: white;\n  border: none;\n  border-radius: 50%;\n  width: 24px;\n  height: 24px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  font-size: 14px;\n}\n\n.remove-image-button:hover {\n  background-color: rgb(255, 0, 0);\n}", ""]);
+exports.push([module.id, "h3,\n.h3 {\n  font-size: 14px;\n}\n\n.Product-Code-field {\n  flex: 1;\n}\n\n.Product-Name-field {\n  flex: 2;\n}\n\n.uploaded-images {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 10px;\n  margin-top: 10px;\n}\n\n.image-preview {\n  position: relative;\n  width: 80px;\n  height: 80px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  background-color: #fff;\n}\n\n.image-preview img {\n  width: 100%;\n  height: auto;\n  object-fit: cover;\n}\n\n.image-preview p {\n  position: absolute;\n  bottom: 2px;\n  left: 2px;\n  font-size: 0.7rem;\n  color: #666;\n  background: rgba(255, 255, 255, 0.7);\n  padding: 2px;\n  border-radius: 2px;\n}\n\n.dotted-container {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 60px;\n  padding: 10px;\n  border: 2px dashed #aaa;\n  border-radius: 4px;\n  cursor: pointer;\n  margin-top: 10px;\n  text-align: center;\n  font-size: 0.9rem;\n  color: #777;\n  background-color: #f2f2f2;\n}\n\n.dotted-container p {\n  margin: 0;\n  color: #555;\n}\n\n.document-upload-input {\n  position: absolute;\n  opacity: 0;\n  width: 100%;\n  height: 100%;\n  cursor: pointer;\n}\n\n.remove-document-button {\n  margin-top: 5px;\n  font-size: 0.85rem;\n  background: transparent;\n  border: none;\n  color: #d9534f;\n  cursor: pointer;\n  text-decoration: underline;\n}\n\n.remove-document-button:hover {\n  color: #c9302c;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.drop-zone {\n  border: 2px dashed #ccc;\n  padding: 20px;\n  text-align: center;\n  cursor: pointer;\n  transition: background-color 0.3s;\n  background-color: #f2f2f2;\n}\n\n.file-input {\n  display: none;\n  background-color: #f2f2f2;\n}\n\n.drop-zone {\n  border: 2px dashed #aaa;\n  padding: 20px;\n  text-align: center;\n  cursor: pointer;\n  transition: background-color 0.3s;\n  position: relative;\n}\n\n.drop-zone.drag-over {\n  background-color: #e6f7ff;\n}\n\n.file-input {\n  display: none;\n}\n\n.uploaded-images {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n  margin-top: 10px;\n  justify-content: center;\n}\n\n.image-preview {\n  width: 250px;\n  height: 180px;\n  text-align: center;\n  position: relative;\n  display: inline-block;\n  margin: 8px;\n}\n\n.image-preview img {\n  width: 100%;\n  height: auto;\n  border-radius: 4px;\n}\n\n.remove-image-button {\n  position: absolute;\n  top: 4px;\n  right: 4px;\n  background-color: rgba(255, 0, 0, 0.8);\n  color: white;\n  border: none;\n  border-radius: 50%;\n  width: 24px;\n  height: 24px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  font-size: 14px;\n}\n\n.remove-image-button:hover {\n  background-color: rgb(255, 0, 0);\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -303,7 +303,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".modal-stepper-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 20px;\n}\n\n.stepper {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  padding: 10px 0;\n}\n\n.step {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  cursor: pointer;\n}\n\n.step-number {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background-color: #ddd;\n  color: #333;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 5px;\n  transition: background-color 0.3s ease;\n}\n\n.step.active .step-number {\n  background-color: #4CAF50;\n  color: white;\n}\n\n.step.completed .step-number {\n  background-color: #2196F3;\n  color: white;\n}\n\n.step-label {\n  font-size: 14px;\n  color: #666;\n}\n\n.step.active .step-label,\n.step.completed .step-label {\n  color: #333;\n}", ""]);
+exports.push([module.id, ".step {\n  cursor: pointer;\n  transition: opacity 0.3s;\n}\n\n.step.disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n  pointer-events: none;\n}\n\n.modal-stepper-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 20px;\n}\n\n.stepper {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  padding: 10px 0;\n}\n\n.step {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  cursor: pointer;\n}\n\n.step-number {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background-color: #ddd;\n  color: #333;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 5px;\n  transition: background-color 0.3s ease;\n}\n\n.step.active .step-number {\n  background-color: #4CAF50;\n  color: white;\n}\n\n.step.completed .step-number {\n  background-color: #2196F3;\n  color: white;\n}\n\n.step-label {\n  font-size: 14px;\n  color: #666;\n}\n\n.step.active .step-label,\n.step.completed .step-label {\n  color: #333;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38809,6 +38809,7 @@ const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products 
 const LCA_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/LCA-dashboard */ "./src/lca/views/LCA-dashboard.tsx"));
 const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
 const bulk_upload_1 = __importDefault(__webpack_require__(/*! ./lca/views/bulk-upload */ "./src/lca/views/bulk-upload.tsx"));
+const home_1 = __importDefault(__webpack_require__(/*! ./lca/views/home */ "./src/lca/views/home.tsx"));
 const WrappedDashboard = (props) => {
     const { uxpContext } = props;
     const [user, setUser] = (0, react_1.useState)(null);
@@ -38903,6 +38904,16 @@ const WrappedDashboard = (props) => {
 (0, uxp_1.registerWidget)({
     id: 'bulk-upload-widget',
     widget: bulk_upload_1.default,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+});
+(0, uxp_1.registerWidget)({
+    id: 'home-dashboard',
+    widget: home_1.default,
     configs: {
         layout: {
             w: 30,
@@ -41280,6 +41291,18 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
     const [document, setDocument] = React.useState(productData.document);
     const [showTooltip, setShowTooltip] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
+    const [errors, setErrors] = React.useState({});
+    const validate = () => {
+        let tempErrors = {};
+        if (!productCode.trim())
+            tempErrors.productCode = "Product Code is required";
+        if (!productName.trim())
+            tempErrors.productName = "Product Name is required";
+        if (!productDescription.trim())
+            tempErrors.productDescription = "Product Description is required";
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
     const fileInputRef = React.useRef(null);
     function uploadFile(url, filename, apikey, buffer) {
         return __awaiter(this, void 0, void 0, function* () {
@@ -41293,7 +41316,6 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
                 body: form
             });
             let responseText = yield response.text();
-            console.log('response: ', response);
             // something went wrong, no point proceeding
             if (response.status !== 200) {
                 throw responseText;
@@ -41385,15 +41407,17 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
         setDocument(null);
     };
     const handleNext = () => {
-        const productData = {
-            code: productCode,
-            name: productName,
-            description: productDescription,
-            images: productImages,
-            uploadedImages: productUploadedImages,
-            document,
-        };
-        onNext(productData);
+        if (validate()) {
+            const productData = {
+                code: productCode,
+                name: productName,
+                description: productDescription,
+                images: productImages,
+                uploadedImages: productUploadedImages,
+                document,
+            };
+            onNext(productData);
+        }
     };
     return (React.createElement("div", { className: "modal-content" },
         React.createElement("h3", null, "Fill in the fields below to assist with the analysis. Providing as much detail as possible helps the AI deliver better support for your assessment."),
@@ -41401,11 +41425,13 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
             React.createElement(components_1.FormField, null,
                 React.createElement(components_1.Label, null,
                     React.createElement("span", { style: { fontSize: '12px' } }, "Product Code")),
-                React.createElement(components_1.Input, { type: "text", value: productCode, onChange: (value) => setProductCode(value), placeholder: "Enter product code" })),
+                React.createElement(components_1.Input, { type: "text", value: productCode, onChange: (value) => setProductCode(value), placeholder: "Enter product code" }),
+                errors.productCode && React.createElement("span", { className: "error-text" }, errors.productCode)),
             React.createElement(components_1.FormField, null,
                 React.createElement(components_1.Label, null,
                     React.createElement("span", { style: { fontSize: '12px' } }, "Product Name")),
-                React.createElement(components_1.Input, { type: "text", value: productName, onChange: (value) => setProductName(value), placeholder: "Enter product name" }))),
+                React.createElement(components_1.Input, { type: "text", value: productName, onChange: (value) => setProductName(value), placeholder: "Enter product name" }),
+                errors.productName && React.createElement("span", { className: "error-text" }, errors.productName))),
         React.createElement(components_1.FormField, null,
             React.createElement(components_1.Label, null,
                 React.createElement("span", { style: { fontSize: '12px' } }, "Product Description")),
@@ -41417,7 +41443,8 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
                     borderRadius: '4px',
                     border: '1px solid #ccc',
                     fontFamily: 'comfortaa'
-                } })),
+                } }),
+            errors.productDescription && React.createElement("span", { className: "error-text" }, errors.productDescription)),
         React.createElement(components_1.FormField, null,
             React.createElement(components_1.Label, null,
                 React.createElement("span", { style: { fontSize: '12px' } }, "Product Images"),
@@ -42051,11 +42078,13 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./stepper.scss */ "./src/lca/views/stepper.scss");
 const react_1 = __webpack_require__(/*! react */ "react");
 const steps = ["Information", "Categorization", "Materials", "Manufacturing", "Assessment"];
-//const steps = ["Product Information", "Product Categorization", "Bill of Materials"];
-// const steps = ["Product Selection", "Transport Selection", "Transport Weight"];
 const Stepper = ({ activeStep, onStepChange }) => {
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
-    return (React.createElement("div", { className: "stepper" }, steps.map((label, index) => (React.createElement("div", { key: index, className: `step ${index === activeStep ? "active" : ""} ${index < activeStep ? "completed" : ""}`, onClick: () => onStepChange(index) },
+    return (React.createElement("div", { className: "stepper" }, steps.map((label, index) => (React.createElement("div", { key: index, className: `step ${index === activeStep ? "active" : ""} ${index < activeStep ? "completed" : ""} ${index > activeStep ? "disabled" : ""}`, onClick: () => {
+            if (index <= activeStep) {
+                onStepChange(index);
+            }
+        } },
         React.createElement("div", { className: "step-number" }, index + 1),
         React.createElement("div", { className: "step-label" }, label))))));
 };
@@ -72455,7 +72484,7 @@ function invariant(condition, message) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/bulkupload":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/bulk-upload-widget","configs":{"layout":{"w":30,"h":20}},"name":"Bulk Upload Widget","description":"Bulk Upload Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181547","key":"173753055493181547","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181547","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/home-dashboard","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"Home Dashboard","description":"Home Dashboard","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/bulkupload":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/bulk-upload-widget","configs":{"layout":{"w":30,"h":20}},"name":"Bulk Upload Widget","description":"Bulk Upload Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181547","key":"173753055493181547","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181547","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
 
 /***/ }),
 
@@ -72477,7 +72506,7 @@ module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"f
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"},{"id":"bulk-upload-widget","name":"Bulk Upload Widget","description":"Bulk Upload Widget"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"},{"id":"bulk-upload-widget","name":"Bulk Upload Widget","description":"Bulk Upload Widget"},{"id":"home-dashboard","name":"Home Dashboard","description":"Home Dashboard"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
 
 /***/ }),
 

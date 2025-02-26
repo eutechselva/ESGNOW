@@ -6,7 +6,7 @@
         "type": "widgets",
         "widgets": [
             {
-                "id": "iviva-esg-now-application/widget/lca-widget",
+                "id": "iviva-esg-now-application/widget/home-dashboard",
                 "configs": {
                     "layout": {
                         "w": 30,
@@ -14,8 +14,8 @@
                     },
                     "configPanel": null
                 },
-                "name": "LCA Widget",
-                "description": "LCA Widget",
+                "name": "Home Dashboard",
+                "description": "Home Dashboard",
                 "definitionPath": null,
                 "icon": "",
                 "category": "user-defined",
