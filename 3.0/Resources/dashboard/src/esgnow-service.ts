@@ -49,6 +49,10 @@ export async function  createProject(uxpContext: IContextProvider , payload: any
 export async function  createProjectProductMap(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, RequestMethod.POST, {},payload);
 }
+export async function getProjectImpacts(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/projects/impacts`, RequestMethod.POST, {}, payload);
+}
+
 // Baselines for locations
 export async function getLocationData(uxpContext: IContextProvider, location?: string) {
     let { data, error } = await executeRequest(uxpContext, `${BaseEndPoint}/locationdata${location ? '/' + location : ''}`, RequestMethod.GET, {});

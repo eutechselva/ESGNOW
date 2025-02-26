@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import { TableComponent, TitleBar, WidgetWrapper } from 'uxp/components';
 import './projects.scss';
 import { IContextProvider } from "@uxp";
-import API_BASE_URL from "../config";
-import { getAllProjects } from "../../esgnow-service";
+import { getAllProjects, getProjectImpacts } from "../../esgnow-service";
 
 interface IProjectProps {
     uxpContext?: IContextProvider;
@@ -48,11 +47,11 @@ const Projects: React.FC<IProjectProps> = (props) => {
             // Then fetch impact data for each project
             const projectsWithImpacts = await Promise.all(
                 projectsData.map(async (project: { _id: string, code: string }) => {
-                    const impactResponse = await fetch(`${API_BASE_URL}/api/projects/${project._id}/impacts`);
-                    if (!impactResponse.ok) {
+                    const impactResponse = await getProjectImpacts( props.uxpContext,{projectId : project._id } );
+                    if (!impactResponse.data) {
                         throw new Error(`Failed to fetch impacts for project ${project.code}`);
                     }
-                    return await impactResponse.json();
+                    return await impactResponse.data;
                 })
             );
 
@@ -66,17 +65,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
     };
 
     const columns = [
-        {
-            id: "productImage",
-            label: "Product Image",
-            render: (row: ProjectImpact) => (
-                <img
-                    src={row.products[0]?.productImage || 'default-image-url'}
-                    alt="Product"
-                    style={{ width: 50, height: 50, borderRadius: 4 }}
-                />
-            )
-        },
+        
         { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
         {

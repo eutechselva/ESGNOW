@@ -38670,7 +38670,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.createProjectProductMap = exports.createProject = exports.createProduct = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.createProduct = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38726,6 +38726,12 @@ function createProjectProductMap(uxpContext, payload) {
     });
 }
 exports.createProjectProductMap = createProjectProductMap;
+function getProjectImpacts(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/projects/impacts`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.getProjectImpacts = getProjectImpacts;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -41885,14 +41891,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const Projects = (props) => {
     const [projects, setProjects] = (0, react_1.useState)([]);
@@ -41908,11 +41910,11 @@ const Projects = (props) => {
             const projectsData = yield response.data;
             // Then fetch impact data for each project
             const projectsWithImpacts = yield Promise.all(projectsData.map((project) => __awaiter(void 0, void 0, void 0, function* () {
-                const impactResponse = yield fetch(`${config_1.default}/api/projects/${project._id}/impacts`);
-                if (!impactResponse.ok) {
+                const impactResponse = yield (0, esgnow_service_1.getProjectImpacts)(props.uxpContext, { projectId: project._id });
+                if (!impactResponse.data) {
                     throw new Error(`Failed to fetch impacts for project ${project.code}`);
                 }
-                return yield impactResponse.json();
+                return yield impactResponse.data;
             })));
             setProjects(projectsWithImpacts);
         }
@@ -41925,14 +41927,6 @@ const Projects = (props) => {
         }
     });
     const columns = [
-        {
-            id: "productImage",
-            label: "Product Image",
-            render: (row) => {
-                var _a;
-                return (react_1.default.createElement("img", { src: ((_a = row.products[0]) === null || _a === void 0 ? void 0 : _a.productImage) || 'default-image-url', alt: "Product", style: { width: 50, height: 50, borderRadius: 4 } }));
-            }
-        },
         { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
         {
