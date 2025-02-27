@@ -38,8 +38,16 @@ export async function getAllProjects(uxpContext: IContextProvider) {
     return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.GET, {});
 }
 
+export async function productCategories(uxpContext: IContextProvider) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/productCategories`, RequestMethod.GET, {});
+}
+
 export async function  createProduct(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/products`, RequestMethod.POST, {},payload);
+}
+
+export async function  classifyProduct(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/classify-product`, RequestMethod.POST, {},payload);
 }
 
 export async function  createProject(uxpContext: IContextProvider , payload: any) {

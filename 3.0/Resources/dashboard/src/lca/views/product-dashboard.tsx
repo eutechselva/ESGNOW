@@ -229,7 +229,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
             )}
              <ProductWizard
                             show={showModal}
-                            onClose={() => setShowModal(false)} context={uxpContext}
+                            onClose={() => setShowModal(false)} uxpContext={uxpContext}
                             onProductCreated={() => {
                                 // Refresh the product list after a new product is created
                                 getAllProducts(uxpContext).then(response => {

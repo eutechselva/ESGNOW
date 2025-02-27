@@ -7,11 +7,13 @@ import { ProductManufacturingProcess } from "../types/product-manufacturing-proc
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
+import { IContextProvider } from "@uxp";
 
 interface ProductManufacturingProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     billMaterials: BillMaterial[];
+    uxpContext: IContextProvider;
     onProductManufacturingChange: (data: { materialClass: string, specificMaterial: string, weight: number, manufacturingProcesses: ProductManufacturingProcess[]; }[]) => void;
 }
 
@@ -20,6 +22,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     productData,
     billMaterials,
     onProductManufacturingChange,
+    uxpContext,
 }) => {
     const [entryType, setEntryType] = useState<"manual" | "ai">("ai");
     const [manualProcesses, setManualProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});

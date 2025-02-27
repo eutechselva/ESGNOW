@@ -9,14 +9,16 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
+import { IContextProvider } from "@uxp";
 
 interface BillMaterialProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     onNext: (productData: BillMaterial[]) => void;
+    uxpContext: IContextProvider;
 }
 
-const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, productData, onNext }) => {
+const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, productData, onNext ,uxpContext }) => {
     const [showMaterialEntry, setShowMaterialEntry] = useState(false);
     const [materials, setMaterials] = useState<BillMaterial[]>([]);
     const [entryType, setEntryType] = useState<string>("ai");

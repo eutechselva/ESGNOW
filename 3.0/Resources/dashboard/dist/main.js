@@ -38670,7 +38670,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.createProduct = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.productCategories = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38708,12 +38708,24 @@ function getAllProjects(uxpContext) {
     });
 }
 exports.getAllProjects = getAllProjects;
+function productCategories(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/productCategories`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.productCategories = productCategories;
 function createProduct(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/products`, _uxp_1.RequestMethod.POST, {}, payload);
     });
 }
 exports.createProduct = createProduct;
+function classifyProduct(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/classify-product`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.classifyProduct = classifyProduct;
 function createProject(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/projects`, _uxp_1.RequestMethod.POST, {}, payload);
@@ -39574,7 +39586,7 @@ __webpack_require__(/*! ./bill-materials.scss */ "./src/lca/views/bill-materials
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const BillMaterials = ({ productCategoryData, productData, onNext }) => {
+const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [showMaterialEntry, setShowMaterialEntry] = (0, react_1.useState)(false);
     const [materials, setMaterials] = (0, react_1.useState)([]);
     const [entryType, setEntryType] = (0, react_1.useState)("ai");
@@ -40644,17 +40656,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 __webpack_require__(/*! ./product-categorization.scss */ "./src/lca/views/product-categorization.scss");
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const ProductCategorization = ({ productCategoryData, productData, onNext }) => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const ProductCategorization = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [productCategory, setProductCategory] = (0, react_1.useState)("");
     const [productSubCategory, setProductSubCategory] = (0, react_1.useState)("");
     const [categoryOptions, setCategoryOptions] = (0, react_1.useState)([]);
@@ -40671,11 +40680,8 @@ const ProductCategorization = ({ productCategoryData, productData, onNext }) => 
         const fetchCategoryDataAndClassify = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 // Fetch category data
-                const response = yield fetch(`${config_1.default}/api/productCategories`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                const data = yield response.json();
+                const response = yield (0, esgnow_service_1.productCategories)(uxpContext);
+                const data = yield response.data;
                 console.log("Fetched Category Data:", data);
                 setCategoryData(data); // Store the full category data
                 const formattedCategories = Object.keys(data).map(category => ({
@@ -40684,25 +40690,22 @@ const ProductCategorization = ({ productCategoryData, productData, onNext }) => 
                 }));
                 setCategoryOptions(formattedCategories);
                 // Call classifyProduct after setting options
-                yield classifyProduct(data);
+                yield fetchClassifyProduct(data);
             }
             catch (error) {
                 console.error("Error fetching category data:", error);
             }
         });
-        const classifyProduct = (data) => __awaiter(void 0, void 0, void 0, function* () {
+        const fetchClassifyProduct = (data) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 setAIGenerating(true);
-                const response = yield fetch(`${config_1.default}/api/classify-product`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: productData.name,
-                        description: productData.description,
-                        productCode: productData.code
-                    })
-                });
-                const classificationData = yield response.json();
+                const classifyProductPayload = {
+                    name: productData.name,
+                    description: productData.description,
+                    productCode: productData.code
+                };
+                const response = yield (0, esgnow_service_1.classifyProduct)(uxpContext, classifyProductPayload);
+                const classificationData = yield response.data;
                 console.log("Classified Product Data:", classificationData);
                 // Set default category and subcategory
                 setProductCategory(classificationData.category || "");
@@ -40950,7 +40953,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                             "CO2 Emission: ",
                             item.co2Emission + ' Kg CO2e')))))))),
             React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), context: uxpContext, onProductCreated: () => {
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: uxpContext, onProductCreated: () => {
                 // Refresh the product list after a new product is created
                 (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
                     setProducts(response.data);
@@ -41527,7 +41530,7 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const process_entry_1 = __importDefault(__webpack_require__(/*! ./process-entry */ "./src/lca/views/process-entry.tsx"));
 __webpack_require__(/*! ./product-manufacturing.scss */ "./src/lca/views/product-manufacturing.scss");
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
-const ProductManufacturing = ({ productCategoryData, productData, billMaterials, onProductManufacturingChange, }) => {
+const ProductManufacturing = ({ productCategoryData, productData, billMaterials, onProductManufacturingChange, uxpContext, }) => {
     const [entryType, setEntryType] = (0, react_1.useState)("ai");
     const [manualProcesses, setManualProcesses] = (0, react_1.useState)({});
     const [aiProcesses, setAIProcesses] = (0, react_1.useState)({});
@@ -41728,7 +41731,7 @@ const product_manufacturing_1 = __importDefault(__webpack_require__(/*! ./produc
 __webpack_require__(/*! ./product-wizard.scss */ "./src/lca/views/product-wizard.scss");
 const assessment_1 = __importDefault(__webpack_require__(/*! ./assessment */ "./src/lca/views/assessment.tsx"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
+const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }) => {
     const [activeStep, setActiveStep] = (0, react_1.useState)(0);
     const [newlyCreatedProduct, setNewlyCreatedProduct] = (0, react_1.useState)();
     // State to hold product information data
@@ -41785,7 +41788,7 @@ const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
             productManufacturingProcess: productManufacturingProcess,
         };
         try {
-            const data = yield (0, esgnow_service_1.createProduct)(context, payload);
+            const data = yield (0, esgnow_service_1.createProduct)(uxpContext, payload);
             console.log('Product creation complete', data);
             setNewlyCreatedProduct(data.data);
             setActiveStep(activeStep + 1);
@@ -41801,10 +41804,10 @@ const ProductWizard = ({ show, onClose, context, onProductCreated }) => {
     });
     return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { }, onClose: onClose, title: "Create Product" },
         react_1.default.createElement(stepper_1.default, { activeStep: activeStep, onStepChange: handleStepChange }),
-        activeStep === 0 && (react_1.default.createElement(product_information_1.default, { productData: productInfoData, onNext: handleProductInfoChange, uxpContext: context })),
-        activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange })),
-        activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange })),
-        activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess })),
+        activeStep === 0 && (react_1.default.createElement(product_information_1.default, { productData: productInfoData, onNext: handleProductInfoChange, uxpContext: uxpContext })),
+        activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange, uxpContext: uxpContext })),
+        activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange, uxpContext: uxpContext })),
+        activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess, uxpContext: uxpContext })),
         activeStep === 3 && (react_1.default.createElement("div", { className: "done-button-container" },
             react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone }))),
         activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onClose })));
@@ -41871,7 +41874,7 @@ const LCAWidget = (props) => {
             React.createElement("h2", { className: "create-your-first-product" }, "Create your first product"),
             React.createElement("p", { className: "description-text" }, "Start by creating a product to begin tracking its environmental impact and lifecycle analysis."),
             React.createElement("button", { className: "create-product-button", onClick: () => setShowModal(true) }, "+ Create Product")),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), context: props.uxpContext })))));
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })))));
 };
 exports["default"] = LCAWidget;
 

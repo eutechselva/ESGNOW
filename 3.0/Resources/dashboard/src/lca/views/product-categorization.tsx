@@ -6,14 +6,17 @@ import './product-categorization.scss';
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
+import { classifyProduct, productCategories } from "../../esgnow-service";
+import { IContextProvider } from "@uxp";
 
 interface ProductCategorizationProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     onNext?: (productCategory: ProductCategoryInfo) => void;
+    uxpContext: IContextProvider;
 }
 
-const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext }) => {
+const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext ,uxpContext }) => {
     const [productCategory, setProductCategory] = useState<string>("");
     const [productSubCategory, setProductSubCategory] = useState<string>("");
     const [categoryOptions, setCategoryOptions] = useState<{ label: string, value: string }[]>([]);
@@ -33,12 +36,9 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
             try {
                 
                 // Fetch category data
-                const response = await fetch(`${API_BASE_URL}/api/productCategories`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
+                const response = await productCategories(uxpContext);
 
-                const data = await response.json();
+                const data = await response.data;
                 console.log("Fetched Category Data:", data);
 
                 setCategoryData(data); // Store the full category data
@@ -50,26 +50,24 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 setCategoryOptions(formattedCategories);
 
                 // Call classifyProduct after setting options
-                await classifyProduct(data);
+                await fetchClassifyProduct(data);
             } catch (error) {
                 console.error("Error fetching category data:", error);
             }
         };
 
-        const classifyProduct = async (data: { [key: string]: string[] }) => {
+        const fetchClassifyProduct = async (data: { [key: string]: string[] }) => {
             try {
                 setAIGenerating(true);
-                const response = await fetch(`${API_BASE_URL}/api/classify-product`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: productData.name,
-                        description: productData.description,
-                        productCode: productData.code
-                    })
-                });
+                const classifyProductPayload = {
+                    name: productData.name,
+                    description: productData.description,
+                    productCode: productData.code
+                };
 
-                const classificationData = await response.json();
+                const response = await classifyProduct(uxpContext, classifyProductPayload);
+
+                const classificationData = await response.data;
                 console.log("Classified Product Data:", classificationData);
 
                 // Set default category and subcategory
