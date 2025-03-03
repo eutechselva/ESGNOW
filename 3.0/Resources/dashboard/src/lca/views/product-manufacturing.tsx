@@ -8,6 +8,7 @@ import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
+import { classifyManufacturingProcess } from "../../esgnow-service";
 
 interface ProductManufacturingProps {
     productCategoryData: ProductCategoryInfo;
@@ -63,25 +64,21 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             setAIGeneratingProcess(true);
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/classify-manufacturing-process`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        productCode: productData.code,
-                        name: productData.name,
-                        description: productData.description,
-                        bom: billMaterials,
-                    }),
-                });
+                const classifyManufacturingProcessPayLoad  = {
+                    productCode: productData.code,
+                    name: productData.name,
+                    description: productData.description,
+                    bom: billMaterials,
+                };
+                const response = await classifyManufacturingProcess(uxpContext, classifyManufacturingProcessPayLoad);
+                
 
-                if (!response.ok) {
+                if (!response.data) {
                     throw new Error("Failed to fetch manufacturing processes");
                 }
 
                 const apiResults: { materialClass: string, specificMaterial : string , weight : number,  manufacturingProcesses: ProductManufacturingProcess[] }[] =
-                    await response.json();
+                    await response.data;
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
                 apiResults.forEach((item) => {

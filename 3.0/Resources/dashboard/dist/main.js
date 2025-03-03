@@ -65,7 +65,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}", ""]);
+exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #000;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #fafafa;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.product-image-no-image {\n  width: 100%;\n  height: 150px;\n  background-color: #f4f4f4; /* Light gray for better visibility */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: #888; /* Soft gray text */\n  font-weight: bold;\n  border: 1px dashed #ccc; /* Dashed border for a placeholder effect */\n  border-radius: 8px;\n}\n\n.no-image-text {\n  font-size: 14px;\n  opacity: 0.8;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 14px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding: 12px 24px;\n  background-color: #0066ff;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #0066ff;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0; /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px; /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block; /* Ensures inline display */\n  vertical-align: middle; /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px; /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}\n\n.pagination-wrapper {\n  margin-top: 30px; /* Adjust spacing as needed */\n}\n\n.pagination-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 16px; /* Space between buttons and text */\n  margin-top: 24px; /* Space above pagination */\n}\n\n.pagination-button {\n  padding: 10px 16px;\n  border: 1px solid #ccc;\n  background-color: #f8f8f8;\n  cursor: pointer;\n  border-radius: 6px;\n  font-size: 14px;\n  transition: background 0.2s ease-in-out;\n}\n\n.pagination-button:hover {\n  background-color: #e0e0e0;\n}\n\n.pagination-button:disabled {\n  background-color: #ddd;\n  cursor: not-allowed;\n}\n\n.pagination-info {\n  font-size: 16px;\n  font-weight: bold;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38670,7 +38670,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.productCategories = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.classifyManufacturingProcess = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38708,12 +38708,24 @@ function getAllProjects(uxpContext) {
     });
 }
 exports.getAllProjects = getAllProjects;
+function home(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/home`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.home = home;
 function productCategories(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/productCategories`, _uxp_1.RequestMethod.GET, {});
     });
 }
 exports.productCategories = productCategories;
+function transportDB(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/transportDB`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.transportDB = transportDB;
 function createProduct(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/products`, _uxp_1.RequestMethod.POST, {}, payload);
@@ -38744,6 +38756,18 @@ function getProjectImpacts(uxpContext, payload) {
     });
 }
 exports.getProjectImpacts = getProjectImpacts;
+function classifyBOM(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/classify-bom`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.classifyBOM = classifyBOM;
+function classifyManufacturingProcess(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/classify-manufacturing-process`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.classifyManufacturingProcess = classifyManufacturingProcess;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39053,11 +39077,11 @@ const LCADashboardWidget = ({ uxpContext }) => {
     React.useEffect(() => {
         const fetchCountries = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                const response = yield fetch(`${config_1.default}/api/transportDB`);
-                if (!response.ok) {
+                const response = yield (0, esgnow_service_1.transportDB)(uxpContext);
+                if (!response.data) {
                     throw new Error('Network response was not ok');
                 }
-                const data = yield response.json();
+                const data = yield response.data;
                 setTransportDatabase(data);
                 const formattedOptions = Object.keys(data).map((country) => ({
                     label: country,
@@ -39079,7 +39103,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 method: 'GET',
             });
             const data = yield response.json();
-            return data.distance_in_km;
+            return data.data.distance_in_km;
         }
         catch (error) {
             console.error('Error calculating transport distance:', error);
@@ -39121,7 +39145,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 })
             });
             const data = yield response.json();
-            return parseFloat(data.transportEmissions);
+            return parseFloat(data.data.transportEmissions);
         }
         catch (error) {
             console.error('Error calculating transport emission:', error);
@@ -39455,7 +39479,8 @@ const LCADashboardWidget = ({ uxpContext }) => {
                                 applyFilters(searchValue, selectedCategory);
                             }, placeholder: "Set maximum CO2" }))))),
         React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card" },
-                React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
+                item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
+                    React.createElement("span", { className: "no-image-text" }, "No Image Available"))),
                 React.createElement("div", { className: "product-details" },
                     React.createElement("p", null, item.code),
                     React.createElement("h4", null, item.name)),
@@ -39585,7 +39610,7 @@ const material_summary_1 = __importDefault(__webpack_require__(/*! ./material-su
 __webpack_require__(/*! ./bill-materials.scss */ "./src/lca/views/bill-materials.scss");
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [showMaterialEntry, setShowMaterialEntry] = (0, react_1.useState)(false);
     const [materials, setMaterials] = (0, react_1.useState)([]);
@@ -39600,22 +39625,17 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
     const fetchMaterialsFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
         setAIGeneratingBOM(true);
         try {
-            const response = yield fetch(`${config_1.default}/api/classify-bom`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: productData.name,
-                    description: productData.description,
-                    productCode: productData.code,
-                    weight: productCategoryData.totalWeight,
-                }),
-            });
-            if (!response.ok) {
+            const classifyBOMPayload = {
+                name: productData.name,
+                description: productData.description,
+                productCode: productData.code,
+                weight: productCategoryData.totalWeight,
+            };
+            const response = yield (0, esgnow_service_1.classifyBOM)(uxpContext, classifyBOMPayload);
+            if (!response.data) {
                 throw new Error("Failed to fetch materials from API");
             }
-            const data = yield response.json();
+            const data = yield response.data;
             const apiMaterials = data.map((material) => ({
                 materialClass: material.materialClass,
                 specificMaterial: material.specificMaterial,
@@ -40255,11 +40275,21 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./home.scss */ "./src/lca/views/home.scss");
-const HomeDashboard = () => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const HomeDashboard = ({ uxpContext }) => {
     const data = [
         { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P12345', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 15.2, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-05' },
         { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
@@ -40270,9 +40300,37 @@ const HomeDashboard = () => {
     const [searchValue, setSearchValue] = (0, react_1.useState)('');
     const [inputValue, setInputValue] = (0, react_1.useState)('');
     const [selected, setSelected] = (0, react_1.useState)(null);
+    const [totalProducts, setTotalProducts] = (0, react_1.useState)([]);
+    const [totalImpact, setTotalImpact] = (0, react_1.useState)([]);
+    const [totalProjects, setTotalProjects] = (0, react_1.useState)([]);
+    const [totalCredits, setTotalCredits] = (0, react_1.useState)([]);
+    const [products, setProducts] = react_1.default.useState([]);
     const handleSearchChange = (value) => {
         setSearchValue(value);
     };
+    react_1.default.useEffect(() => {
+        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+                let data = response.data;
+                setProducts(data);
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchProductData();
+    }, []);
+    react_1.default.useEffect(() => {
+        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            const data = yield (0, esgnow_service_1.home)(uxpContext);
+            setTotalProducts(data.data.totalProducts);
+            setTotalImpact(data.data.totalImpact);
+            setTotalProjects(data.data.totalProjects);
+            setTotalCredits(data.data.totalCredits);
+        });
+        fetchProductData();
+    }, []);
     return (react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
         react_1.default.createElement("div", { className: "title-container" },
             react_1.default.createElement("h1", { className: "heading" }, "Welcome to ESG NOW!")),
@@ -40280,19 +40338,19 @@ const HomeDashboard = () => {
             react_1.default.createElement("section", { className: "summary" },
                 react_1.default.createElement("div", { className: "card" },
                     react_1.default.createElement("h2", null, "No. of Products Created"),
-                    react_1.default.createElement("p", { className: "number" }, "245"),
+                    react_1.default.createElement("p", { className: "number" }, totalProducts),
                     react_1.default.createElement("span", null, "Products")),
                 react_1.default.createElement("div", { className: "card" },
                     react_1.default.createElement("h2", null, "No. of Impacts Calculated"),
-                    react_1.default.createElement("p", { className: "number" }, "245"),
+                    react_1.default.createElement("p", { className: "number" }, totalImpact),
                     react_1.default.createElement("span", null, "Emission Impact")),
                 react_1.default.createElement("div", { className: "card" },
                     react_1.default.createElement("h2", null, "No. of Projects Created"),
-                    react_1.default.createElement("p", { className: "number" }, "10"),
+                    react_1.default.createElement("p", { className: "number" }, totalProjects),
                     react_1.default.createElement("span", null, "Projects")),
                 react_1.default.createElement("div", { className: "card" },
                     react_1.default.createElement("h2", null, "No. of AI Credits Consumed"),
-                    react_1.default.createElement("p", { className: "number" }, "1000"),
+                    react_1.default.createElement("p", { className: "number" }, totalCredits),
                     react_1.default.createElement("span", null, "Credits"))),
             react_1.default.createElement("section", { className: "getting-started" },
                 react_1.default.createElement("iframe", { width: "100%", height: "200", src: "https://www.youtube.com/embed/YOUR_VIDEO_ID", title: "Getting Started Video", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }))),
@@ -40675,7 +40733,17 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
     const [country, setCountry] = (0, react_1.useState)(productCategoryData.country);
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
     const [aiGenerating, setAIGenerating] = (0, react_1.useState)(false);
+    const [errorTotalWeight, setErrorTotalWeight] = (0, react_1.useState)("");
     const [categoryData, setCategoryData] = (0, react_1.useState)({}); // Store the entire category data
+    const handleTotalWeightChange = (value) => {
+        setTotalWeight(value);
+        if (parseFloat(value) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+        }
+        else {
+            setErrorTotalWeight("");
+        }
+    };
     (0, react_1.useEffect)(() => {
         const fetchCategoryDataAndClassify = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -40735,6 +40803,10 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
         setProductSubCategory(""); // Reset subcategory selection
     };
     const handleNext = () => {
+        if (totalWeight === "" || parseFloat(totalWeight) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+            return;
+        }
         const productData = {
             category: productCategory,
             subCategory: productSubCategory,
@@ -40771,7 +40843,8 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
             react_1.default.createElement(components_1.FormField, null,
                 react_1.default.createElement(components_1.Label, null,
                     react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Total Weight (Kg)")),
-                react_1.default.createElement(components_1.Input, { type: "number", value: totalWeight, onChange: (value) => setTotalWeight(value), placeholder: "Enter total weight" }))),
+                react_1.default.createElement(components_1.Input, { type: "number", value: totalWeight, onChange: (value) => handleTotalWeightChange(value), placeholder: "Enter total weight" }),
+                errorTotalWeight && react_1.default.createElement("div", { className: "error-text" }, errorTotalWeight))),
         react_1.default.createElement(components_1.FormField, null,
             react_1.default.createElement(components_1.Label, null,
                 react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Country of Manufacture")),
@@ -40854,14 +40927,14 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const totalPages = Math.ceil(products.length / itemsPerPage);
-    const Pagination = () => (React.createElement("div", { className: "flex justify-center items-center gap-2 mt-4" },
-        React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }),
-        React.createElement("span", { className: "mx-2" },
+    const Pagination = () => (React.createElement("div", { className: "pagination-container" },
+        React.createElement("button", { className: "pagination-button", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }, "Previous"),
+        React.createElement("span", { className: "pagination-info" },
             "Page ",
             currentPage,
             " of ",
             totalPages),
-        React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages })));
+        React.createElement("button", { className: "pagination-button", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages }, "Next")));
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -40925,7 +40998,8 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                     }, placeholder: "Set maximum CO2" }))))),
                 viewMode === 'grid' ? (React.createElement(React.Fragment, null,
                     React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
-                            React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" }),
+                            item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
+                                React.createElement("span", { className: "no-image-text" }, "No Image Available"))),
                             React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
                             React.createElement("div", { className: "product-details" },
                                 React.createElement("p", null, item.title),
@@ -40937,7 +41011,8 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                 React.createElement("p", null,
                                     "Created: ",
                                     new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" }),
-                    React.createElement(Pagination, null))) : (React.createElement("div", { className: "list-view" }, products.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
+                    React.createElement("div", { className: "pagination-wrapper" },
+                        React.createElement(Pagination, null)))) : (React.createElement("div", { className: "list-view" }, products.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
                     React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
                     React.createElement("div", { className: "product-details" },
                         React.createElement("p", null, item.title),
@@ -41529,7 +41604,7 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const process_entry_1 = __importDefault(__webpack_require__(/*! ./process-entry */ "./src/lca/views/process-entry.tsx"));
 __webpack_require__(/*! ./product-manufacturing.scss */ "./src/lca/views/product-manufacturing.scss");
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const ProductManufacturing = ({ productCategoryData, productData, billMaterials, onProductManufacturingChange, uxpContext, }) => {
     const [entryType, setEntryType] = (0, react_1.useState)("ai");
     const [manualProcesses, setManualProcesses] = (0, react_1.useState)({});
@@ -41560,22 +41635,17 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
         if (entryType === "ai") {
             setAIGeneratingProcess(true);
             try {
-                const response = yield fetch(`${config_1.default}/api/classify-manufacturing-process`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        productCode: productData.code,
-                        name: productData.name,
-                        description: productData.description,
-                        bom: billMaterials,
-                    }),
-                });
-                if (!response.ok) {
+                const classifyManufacturingProcessPayLoad = {
+                    productCode: productData.code,
+                    name: productData.name,
+                    description: productData.description,
+                    bom: billMaterials,
+                };
+                const response = yield (0, esgnow_service_1.classifyManufacturingProcess)(uxpContext, classifyManufacturingProcessPayLoad);
+                if (!response.data) {
                     throw new Error("Failed to fetch manufacturing processes");
                 }
-                const apiResults = yield response.json();
+                const apiResults = yield response.data;
                 const mappedProcesses = {};
                 apiResults.forEach((item) => {
                     mappedProcesses[item.materialClass] = item.manufacturingProcesses;
@@ -41864,7 +41934,7 @@ const LCAWidget = (props) => {
     const handleProductInfoChange = (productData) => {
         console.log("Product Data:", productData); // Handle the product data here (e.g., send to an API)
     };
-    return (React.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } }, hasProducts ? (React.createElement(home_1.default, null) // Display the HomeDashboard if products exist
+    return (React.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } }, hasProducts ? (React.createElement(home_1.default, { uxpContext: props.uxpContext }) // Display the HomeDashboard if products exist
     ) : (React.createElement("div", null,
         React.createElement("div", { className: "title-container" },
             React.createElement("h1", { className: "heading" }, "Products")),

@@ -29,7 +29,18 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     const [showTooltip, setShowTooltip] = useState(false);
     const [aiGenerating, setAIGenerating] = useState(false);
 
+    const [errorTotalWeight, setErrorTotalWeight] = useState<string>("");
+
     const [categoryData, setCategoryData] = useState<{ [key: string]: string[] }>({}); // Store the entire category data
+
+    const handleTotalWeightChange = (value: string) => {
+        setTotalWeight(value);
+        if (parseFloat(value) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+        } else {
+            setErrorTotalWeight("");
+        }
+    };
 
     useEffect(() => {
         const fetchCategoryDataAndClassify = async () => {
@@ -102,6 +113,12 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     };
 
     const handleNext = () => {
+        if (totalWeight === "" || parseFloat(totalWeight) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+            return
+            
+        }
+        
         const productData: ProductCategoryInfo = {
             category: productCategory,
             subCategory: productSubCategory,
@@ -181,10 +198,12 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                     <Input
                         type="number"
                         value={totalWeight}
-                        onChange={(value) => setTotalWeight(value)}
+                        onChange={(value) => handleTotalWeightChange(value)}
                         placeholder="Enter total weight"
                     />
+                    {errorTotalWeight && <div className="error-text">{errorTotalWeight}</div>}
                 </FormField>
+                
             </div>
 
 

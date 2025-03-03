@@ -10,6 +10,7 @@ import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
+import { classifyBOM } from "../../esgnow-service";
 
 interface BillMaterialProps {
     productCategoryData: ProductCategoryInfo;
@@ -34,24 +35,20 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     const fetchMaterialsFromAPI = async () => {
         setAIGeneratingBOM(true);
         try {
-            const response = await fetch(`${API_BASE_URL}/api/classify-bom`, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    name: productData.name,
-                    description: productData.description,
-                    productCode: productData.code,
-                    weight: productCategoryData.totalWeight,
-                }),
-            });
+            const classifyBOMPayload = {
+                name: productData.name,
+                description: productData.description,
+                productCode: productData.code,
+                weight: productCategoryData.totalWeight,
+            };
+            const response = await  classifyBOM( uxpContext, classifyBOMPayload);
+            
 
-            if (!response.ok) {
+            if (!response.data) {
                 throw new Error("Failed to fetch materials from API");
             }
 
-            const data = await response.json();
+            const data = await response.data;
 
             const apiMaterials = data.map((material: any) => ({
                 materialClass: material.materialClass,

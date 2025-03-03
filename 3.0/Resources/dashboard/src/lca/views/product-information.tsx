@@ -7,9 +7,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { IContextProvider } from "@uxp";
 
-
-
-
 interface ProductInformationProps {
     productData: ProductInfo;
     onNext: (productData: ProductInfo) => void;
@@ -45,8 +42,6 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
         const form = new FormData();
         form.append('file', buffer, filename);
 
-        
-
         let response = await fetch(url, {
             method: "POST",
             headers: {
@@ -55,10 +50,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
             body: form
         })
 
-        
-
         let responseText = await response.text();
-
 
         // something went wrong, no point proceeding
         if (response.status !== 200) {

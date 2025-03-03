@@ -1,5 +1,5 @@
 import * as React from "react";
-import {  Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
+import { Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
 import './ProductDashboardWidget.scss';
 import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
@@ -10,7 +10,7 @@ interface IWidgetProps {
     uxpContext: IContextProvider
 }
 
-const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
+const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState<any | null>(null);
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
@@ -20,7 +20,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
-    
+
 
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
@@ -28,36 +28,41 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    
+
     const totalPages = Math.ceil(products.length / itemsPerPage);
 
     const Pagination = () => (
-        <div className="flex justify-center items-center gap-2 mt-4">
-            <Button
-                title="Previous"
+        <div className="pagination-container">
+            <button
+                className="pagination-button"
                 onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                 disabled={currentPage === 1}
-            />
-            <span className="mx-2">
+            >
+                Previous
+            </button>
+            <span className="pagination-info">
                 Page {currentPage} of {totalPages}
             </span>
-            <Button
-                title="Next"
+            <button
+                className="pagination-button"
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
-            />
+            >
+                Next
+            </button>
         </div>
     );
+    
 
     React.useEffect(() => {
-        
+
         const fetchProductData = async () => {
             try {
-            
+
                 const response = await getAllProducts(uxpContext);
 
                 let data = response.data;
-                
+
                 setProducts(data);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -66,7 +71,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
 
         fetchProductData();
     }, []);
-    
+
 
     const handleSearchChange = (newValue: string) => {
         setSearchValue(newValue);
@@ -91,7 +96,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
         setFilteredData(products);
     };
 
-    
+
 
     return (
         <div className="content">
@@ -183,25 +188,35 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
 
                         {viewMode === 'grid' ? (
                             <>
-                            <DataGrid
-                                data={products}
-                                renderItem={(item) => (
-                                    <div className="product-card" onClick={() => setSelectedProduct(item)}>
-                                        <img src={item.images[0]} alt="Product" className="product-image" />
-                                        <div className="co2-emission">{parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'}</div>
-                                        <div className="product-details">
-                                            <p>{item.title}</p>
-                                            <h4>{item.name}</h4>
-                                            <p>{item.category}</p>
-                                            <p>Modified: {new Date(item.modifiedDate).toLocaleString()}</p>
-                                            <p>Created: {new Date(item.createdDate).toLocaleString()}</p>
+                                <DataGrid
+                                    data={products}
+                                    renderItem={(item) => (
+                                        <div className="product-card" onClick={() => setSelectedProduct(item)}>
+                                            {item.images.length > 0 ? (
+                                                <img src={item.images[0]} alt="Product" className="product-image" />
+                                            ) : (
+                                                <div className="product-image-no-image">
+                                                    <span className="no-image-text">No Image Available</span>
+                                                </div>
+                                            )}
+
+                                            <div className="co2-emission">{parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'}</div>
+                                            <div className="product-details">
+                                                <p>{item.title}</p>
+                                                <h4>{item.name}</h4>
+                                                <p>{item.category}</p>
+                                                <p>Modified: {new Date(item.modifiedDate).toLocaleString()}</p>
+                                                <p>Created: {new Date(item.createdDate).toLocaleString()}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
-                                columns={3}
-                                className="product-data-grid"
-                            />
-                            <Pagination />
+                                    )}
+                                    columns={3}
+                                    className="product-data-grid"
+                                />
+
+                                <div className="pagination-wrapper">
+                                    <Pagination />
+                                </div>
                             </>
                         ) : (
                             <div className="list-view">
@@ -223,20 +238,20 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
                     </div>
 
                     <button className="add-product-button" onClick={() => setShowModal(true)}>
-                    + Add Product
-                </button>
+                        + Add Product
+                    </button>
                 </>
             )}
-             <ProductWizard
-                            show={showModal}
-                            onClose={() => setShowModal(false)} uxpContext={uxpContext}
-                            onProductCreated={() => {
-                                // Refresh the product list after a new product is created
-                                getAllProducts(uxpContext).then(response => {
-                                    setProducts(response.data);
-                                });
-                            }}
-                        />
+            <ProductWizard
+                show={showModal}
+                onClose={() => setShowModal(false)} uxpContext={uxpContext}
+                onProductCreated={() => {
+                    // Refresh the product list after a new product is created
+                    getAllProducts(uxpContext).then(response => {
+                        setProducts(response.data);
+                    });
+                }}
+            />
 
             {/* Product summary screen */}
             {selectedProduct && (
@@ -244,7 +259,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
                     product={selectedProduct}
                     onClose={() => setSelectedProduct(null)} onDelete={function (): void {
                         throw new Error("Function not implemented.");
-                    } }                />
+                    }} />
             )}
         </div>
     );

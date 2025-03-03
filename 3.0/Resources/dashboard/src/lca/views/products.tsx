@@ -24,7 +24,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
     return (
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
             {hasProducts ? (
-                <HomeDashboard /> // Display the HomeDashboard if products exist
+                <HomeDashboard uxpContext={props.uxpContext} /> // Display the HomeDashboard if products exist
             ) : (
                 <div>
                     <div className="title-container">

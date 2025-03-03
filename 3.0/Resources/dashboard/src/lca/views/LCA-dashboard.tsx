@@ -7,10 +7,9 @@ import EmissionSummary from './emission-summary';
 import API_BASE_URL from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { executeComponent } from "@utils";
-import { Icon } from "@fortawesome/fontawesome-svg-core";
+
 import { IContextProvider } from "@uxp";
-import { getAllProducts } from "../../esgnow-service";
+import { getAllProducts, transportDB } from "../../esgnow-service";
 
 interface TransportLeg {
     id: number;
@@ -26,9 +25,12 @@ interface TransportLeg {
 }
 
 interface DistanceResponse {
-    origin: string;
-    destination: string;
-    distance_in_km: number;
+    data : {
+        origin: string;
+        destination: string;
+        distance_in_km: number;
+    }
+   
 }
 
 interface ILCADashboardWidgetProps {
@@ -94,11 +96,11 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     React.useEffect(() => {
         const fetchCountries = async () => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/transportDB`);
-                if (!response.ok) {
+                const response = await transportDB(uxpContext);
+                if (!response.data) {
                     throw new Error('Network response was not ok');
                 }
-                const data = await response.json();
+                const data = await response.data;
                 setTransportDatabase(data);
                 const formattedOptions = Object.keys(data).map((country: string) => ({
                     label: country, // Replace `name` with the appropriate field
@@ -123,7 +125,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 method: 'GET',
             });
             const data: DistanceResponse = await response.json();
-            return data.distance_in_km;
+            return data.data.distance_in_km;
         } catch (error) {
             console.error('Error calculating transport distance:', error);
             return 0;
@@ -175,7 +177,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 })
             });
             const data = await response.json();
-            return parseFloat(data.transportEmissions);
+            return parseFloat(data.data.transportEmissions);
         } catch (error) {
             console.error('Error calculating transport emission:', error);
             return 0;
@@ -777,7 +779,13 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 data={products}
                 renderItem={(item) => (
                     <div className="product-card">
-                        <img src={item.images[0]} alt="Product" className="product-image" />
+                        {item.images.length > 0 ? (
+                                                <img src={item.images[0]} alt="Product" className="product-image" />
+                                            ) : (
+                                                <div className="product-image-no-image">
+                                                    <span className="no-image-text">No Image Available</span>
+                                                </div>
+                                            )}
                         <div className="product-details">
                             <p>{item.code}</p>
                             <h4>{item.name}</h4>

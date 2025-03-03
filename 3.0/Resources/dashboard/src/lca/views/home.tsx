@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel } from 'uxp/components';
 import './home.scss';
+import { getAllProducts, home } from '../../esgnow-service';
+import { IContextProvider } from '@uxp';
 
-const HomeDashboard = () => {
+interface IHomeDashboardWidgetProps {
+    uxpContext: IContextProvider;
+}
+
+const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const data = [
         { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P12345', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 15.2, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-05' },
         { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
@@ -14,10 +20,46 @@ const HomeDashboard = () => {
     const [searchValue, setSearchValue] = useState('');
     const [inputValue, setInputValue] = useState('');
     const [selected, setSelected] = useState<string | null>(null);
+    const [totalProducts, setTotalProducts] = useState<any[]>([]);
+    const[totalImpact, setTotalImpact] = useState<any[]>([]);
+    const[totalProjects, setTotalProjects] = useState<any[]>([]);
+    const[totalCredits, setTotalCredits] = useState<any[]>([]);
+    const [products, setProducts] = React.useState([]);
 
     const handleSearchChange = (value: string) => {
         setSearchValue(value);
     };
+     React.useEffect(() => {
+    
+            const fetchProductData = async () => {
+                try {
+    
+                    const response = await getAllProducts(uxpContext);
+    
+                    let data = response.data;
+    
+                    setProducts(data);
+                } catch (error) {
+                    console.error('There was a problem with the fetch operation:', error);
+                }
+            };
+    
+            fetchProductData();
+        }, []);
+
+    React.useEffect(() => {
+            const fetchProductData = async () => {
+    
+                const data = await home(uxpContext);
+                setTotalProducts(data.data.totalProducts);
+                setTotalImpact(data.data.totalImpact);
+                setTotalProjects(data.data.totalProjects);
+                setTotalCredits(data.data.totalCredits);
+    
+            };
+    
+            fetchProductData();
+        }, []);
 
     return (
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -29,22 +71,22 @@ const HomeDashboard = () => {
                 <section className="summary">
                     <div className="card">
                         <h2>No. of Products Created</h2>
-                        <p className="number">245</p>
+                        <p className="number">{totalProducts}</p>
                         <span>Products</span>
                     </div>
                     <div className="card">
                         <h2>No. of Impacts Calculated</h2>
-                        <p className="number">245</p>
+                        <p className="number">{totalImpact}</p>
                         <span>Emission Impact</span>
                     </div>
                     <div className="card">
                         <h2>No. of Projects Created</h2>
-                        <p className="number">10</p>
+                        <p className="number">{totalProjects}</p>
                         <span>Projects</span>
                     </div>
                     <div className="card">
                         <h2>No. of AI Credits Consumed</h2>
-                        <p className="number">1000</p>
+                        <p className="number">{totalCredits}</p>
                         <span>Credits</span>
                     </div>
                 </section>

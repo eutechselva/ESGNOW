@@ -111,6 +111,25 @@ h3,
   background-color: white;
 }
 
+.product-image-no-image {
+  width: 100%;
+  height: 150px;
+  background-color: #f4f4f4; /* Light gray for better visibility */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #888; /* Soft gray text */
+  font-weight: bold;
+  border: 1px dashed #ccc; /* Dashed border for a placeholder effect */
+  border-radius: 8px;
+}
+
+.no-image-text {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
 .co2-emission {
   background-color: #e6f7ff;
   color: #007acc;
@@ -634,3 +653,41 @@ padding-left: 20px;
   width: 200px !important;
   margin-bottom: 20px;
 }
+
+.pagination-wrapper {
+  margin-top: 30px; /* Adjust spacing as needed */
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px; /* Space between buttons and text */
+  margin-top: 24px; /* Space above pagination */
+}
+
+.pagination-button {
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 0.2s ease-in-out;
+}
+
+.pagination-button:hover {
+  background-color: #e0e0e0;
+}
+
+.pagination-button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
+.pagination-info {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+

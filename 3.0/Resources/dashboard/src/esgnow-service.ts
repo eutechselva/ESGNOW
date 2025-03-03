@@ -38,8 +38,16 @@ export async function getAllProjects(uxpContext: IContextProvider) {
     return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.GET, {});
 }
 
+export async function home(uxpContext: IContextProvider) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/home`, RequestMethod.GET, {});
+}
+
 export async function productCategories(uxpContext: IContextProvider) {
     return executeRequest(uxpContext, `${BaseEndPoint}/productCategories`, RequestMethod.GET, {});
+}
+
+export async function transportDB(uxpContext: IContextProvider) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/transportDB`, RequestMethod.GET, {});
 }
 
 export async function  createProduct(uxpContext: IContextProvider , payload: any) {
@@ -59,6 +67,14 @@ export async function  createProjectProductMap(uxpContext: IContextProvider , pa
 }
 export async function getProjectImpacts(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/projects/impacts`, RequestMethod.POST, {}, payload);
+}
+
+export async function  classifyBOM(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/classify-bom`, RequestMethod.POST, {},payload);
+}
+
+export async function  classifyManufacturingProcess(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/classify-manufacturing-process`, RequestMethod.POST, {},payload);
 }
 
 // Baselines for locations
