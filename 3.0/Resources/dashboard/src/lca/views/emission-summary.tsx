@@ -15,7 +15,7 @@ interface SaveResultsModalProps {
     product: ProductInfoSummary;
     packageWeight: Number;
     palletWeight: Number;
-
+    
     transportationEmission: string;
     transportLegs: TransportLeg[];
     uxpContext: IContextProvider;
@@ -224,7 +224,8 @@ const EmissionSummary: React.FC<{
     uxContext: IContextProvider;
     packageWeight: Number;
     palletWeight: Number;
-}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight }) => {
+    hideHeader?: boolean;
+}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight ,hideHeader }) => {
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -333,7 +334,7 @@ const EmissionSummary: React.FC<{
 
     return (
         <>
-            <div className="title-container">
+        { !hideHeader ? <div className="title-container">
                 <h1 className="dashboard-title">Emission Summary</h1>
 
                 <div className="save-go-back-buttons">
@@ -348,7 +349,8 @@ const EmissionSummary: React.FC<{
                         className="back-button"
                     />
                 </div>
-            </div>
+            </div> : null }
+            
             <div className="widgets-section">
                 <div className="widget product-footprint">
                     <h3>Product Footprint</h3>

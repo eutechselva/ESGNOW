@@ -38702,9 +38702,9 @@ function getAllProducts(uxpContext) {
     });
 }
 exports.getAllProducts = getAllProducts;
-function getAllProjects(uxpContext) {
+function getAllProjects(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
-        return executeRequest(uxpContext, `${BaseEndPoint}/projects`, _uxp_1.RequestMethod.GET, {});
+        return executeRequest(uxpContext, `${BaseEndPoint}/projects`, _uxp_1.RequestMethod.GET, {}, payload);
     });
 }
 exports.getAllProjects = getAllProjects;
@@ -40033,7 +40033,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save results", onClick: handleSave, className: "save-results", disabled: isLoading })))));
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext, packageWeight, palletWeight }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext, packageWeight, palletWeight, hideHeader }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
@@ -40131,11 +40131,11 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
         setShowModal(true);
     }
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("div", { className: "title-container" },
+        !hideHeader ? react_1.default.createElement("div", { className: "title-container" },
             react_1.default.createElement("h1", { className: "dashboard-title" }, "Emission Summary"),
             react_1.default.createElement("div", { className: "save-go-back-buttons" },
                 react_1.default.createElement(components_1.Button, { title: "Save results & view later", onClick: onSave, className: "save-results-button" }),
-                react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onBack, className: "back-button" }))),
+                react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onBack, className: "back-button" }))) : null,
         react_1.default.createElement("div", { className: "widgets-section" },
             react_1.default.createElement("div", { className: "widget product-footprint" },
                 react_1.default.createElement("h3", null, "Product Footprint"),
@@ -41991,22 +41991,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
 const Projects = (props) => {
+    var _a, _b, _c, _d, _e;
     const [projects, setProjects] = (0, react_1.useState)([]);
     const [isLoading, setIsLoading] = (0, react_1.useState)(true);
     const [error, setError] = (0, react_1.useState)(null);
+    const [showModal, setShowModal] = (0, react_1.useState)(false);
+    const [item, setItem] = (0, react_1.useState)();
+    const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
     (0, react_1.useEffect)(() => {
         fetchProjects();
     }, []);
     const fetchProjects = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             // First get all projects
-            const response = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext);
+            const response = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext, {});
             const projectsData = yield response.data;
             // Then fetch impact data for each project
             const projectsWithImpacts = yield Promise.all(projectsData.map((project) => __awaiter(void 0, void 0, void 0, function* () {
@@ -42026,16 +42034,22 @@ const Projects = (props) => {
             setIsLoading(false);
         }
     });
-    const handleClick = (value) => {
-        console.log(`Clicked value: ${value} KgCO2e`);
-        // Perform any action you need here
-    };
-    const columns = [
-        {
-            id: "projectCode", label: "Project Code", render: (row) => {
-                return (react_1.default.createElement("span", { onClick: () => handleClick(row.projectCode), style: { cursor: 'pointer', color: 'blue' } }, `${row.totalProjectImpact} KgCO2e`));
+    const getProjects = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
+        const { data, error } = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext, {});
+        // Then fetch impact data for each project
+        const projectsWithImpacts = yield Promise.all(data.map((project) => __awaiter(void 0, void 0, void 0, function* () {
+            const impactResponse = yield (0, esgnow_service_1.getProjectImpacts)(props.uxpContext, { projectId: project._id });
+            if (!impactResponse.data) {
+                throw new Error(`Failed to fetch impacts for project ${project.code}`);
             }
-        },
+            return yield impactResponse.data;
+        })));
+        if (!!error)
+            return { items: [] };
+        return { items: projectsWithImpacts };
+    }), []);
+    const columns = [
+        { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
@@ -42068,10 +42082,21 @@ const Projects = (props) => {
             react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
             react_1.default.createElement("div", { style: { color: 'red' } }, error)));
     }
-    return (react_1.default.createElement(components_1.WidgetWrapper, null,
-        react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
-        react_1.default.createElement("div", null,
-            react_1.default.createElement(components_1.TableComponent, { data: projects, columns: columns, pageSize: 10, total: projects.length }))));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement(components_1.Modal, { title: "Emission Summary", show: showModal, onClose: () => setShowModal(false) },
+            react_1.default.createElement(emission_summary_1.default, { product: ((_a = item === null || item === void 0 ? void 0 : item.products) === null || _a === void 0 ? void 0 : _a.length) > 0 ? item.products[0] : undefined, transportationEmission: ((_b = item === null || item === void 0 ? void 0 : item.products) === null || _b === void 0 ? void 0 : _b.length) > 0 ? item.products[0].transportationEmission : undefined, onBack: () => {
+                    throw new Error("Function not implemented.");
+                }, transportLegs: ((_c = item === null || item === void 0 ? void 0 : item.products) === null || _c === void 0 ? void 0 : _c.length) > 0 ? item.products[0].transportationLegs : undefined, uxContext: props.uxpContext, packageWeight: ((_d = item === null || item === void 0 ? void 0 : item.products) === null || _d === void 0 ? void 0 : _d.length) > 0 ? item.products[0].packagingWeight : undefined, palletWeight: ((_e = item === null || item === void 0 ? void 0 : item.products) === null || _e === void 0 ? void 0 : _e.length) > 0 ? item.products[0].palletWeight : undefined, hideHeader: true })),
+        react_1.default.createElement(components_1.CRUDComponent, { list: {
+                title: 'My Projects',
+                columns: columns,
+                defaultPageSize: 10,
+                data: {
+                    getData: getProjects
+                },
+                search: memorizedSearch,
+                onClickRow: (e, item) => { setItem(item); setShowModal(true); }
+            } })));
 };
 exports["default"] = Projects;
 

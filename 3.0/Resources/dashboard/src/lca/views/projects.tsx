@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { TableComponent, TitleBar, WidgetWrapper } from 'uxp/components';
+import React, { useCallback, useEffect, useMemo, useState } from "react";
+import { CRUDComponent, Modal, TableComponent, TitleBar, WidgetWrapper } from 'uxp/components';
 import './projects.scss';
 import { IContextProvider } from "@uxp";
 import { getAllProjects, getProjectImpacts } from "../../esgnow-service";
+import EmissionSummary from "./emission-summary";
 
 interface IProjectProps {
     uxpContext?: IContextProvider;
@@ -32,6 +33,10 @@ const Projects: React.FC<IProjectProps> = (props) => {
     const [projects, setProjects] = useState<ProjectImpact[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const [showModal, setShowModal] = useState(false);
+    const [item, setItem] = useState<any>();
+
+    const memorizedSearch = useMemo(() => ({ enabled: true }), [])
 
     useEffect(() => {
         fetchProjects();
@@ -40,7 +45,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
     const fetchProjects = async () => {
         try {
             // First get all projects
-            const response = await getAllProjects(props.uxpContext);
+            const response = await getAllProjects(props.uxpContext, {});
 
             const projectsData = await response.data;
 
@@ -63,22 +68,28 @@ const Projects: React.FC<IProjectProps> = (props) => {
             setIsLoading(false);
         }
     };
-    const handleClick = (value: string) => {
-        console.log(`Clicked value: ${value} KgCO2e`);
-        // Perform any action you need here
-    };
+
+    const getProjects = useCallback(async (page?: number, pageSize?: number, query?: string, filters?: any): Promise<{ items: any[] }> => {
+        const { data, error } = await getAllProjects(props.uxpContext, {});
+
+
+        // Then fetch impact data for each project
+        const projectsWithImpacts = await Promise.all(
+            data.map(async (project: { _id: string, code: string }) => {
+                const impactResponse = await getProjectImpacts(props.uxpContext, { projectId: project._id });
+                if (!impactResponse.data) {
+                    throw new Error(`Failed to fetch impacts for project ${project.code}`);
+                }
+                return await impactResponse.data;
+            })
+        );
+        if (!!error) return { items: [] };
+        return { items: projectsWithImpacts };
+    }, [])
 
     const columns = [
 
-        {
-            id: "projectCode", label: "Project Code", render: (row: ProjectImpact) => {
-                return (
-                    <span onClick={() => handleClick(row.projectCode)} style={{ cursor: 'pointer', color: 'blue' }}>
-                        {`${row.totalProjectImpact} KgCO2e`}
-                    </span>
-                );
-            }
-        },
+        { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
@@ -121,17 +132,35 @@ const Projects: React.FC<IProjectProps> = (props) => {
     }
 
     return (
-        <WidgetWrapper>
-            <TitleBar title='My Projects' />
-            <div>
-                <TableComponent
-                    data={projects}
-                    columns={columns}
-                    pageSize={10}
-                    total={projects.length}
+        <>
+            <Modal title="Emission Summary"  show={showModal} onClose={() => setShowModal(false)}>
+                <EmissionSummary
+                    product={item?.products?.length > 0 ? item.products[0] : undefined}
+                    transportationEmission={item?.products?.length > 0 ? item.products[0].transportationEmission : undefined}
+                    onBack={() => {
+                        throw new Error("Function not implemented.");
+                    }}
+                    transportLegs={item?.products?.length > 0 ? item.products[0].transportationLegs : undefined}
+                    uxContext={props.uxpContext}
+                    packageWeight={item?.products?.length > 0 ? item.products[0].packagingWeight : undefined}
+                    palletWeight={item?.products?.length > 0 ? item.products[0].palletWeight : undefined}
+                    hideHeader={true}
                 />
-            </div>
-        </WidgetWrapper>
+            </Modal>
+            <CRUDComponent
+                list={{
+                    title: 'My Projects',
+                    columns: columns,
+                    defaultPageSize: 10,
+                    data: {
+                        getData: getProjects
+                    },
+                    search: memorizedSearch,
+                    onClickRow: (e, item: any) => { setItem(item); setShowModal(true) }
+                }
+                }
+            />
+        </>
     );
 };
 

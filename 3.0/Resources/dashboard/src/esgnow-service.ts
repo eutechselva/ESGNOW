@@ -34,8 +34,8 @@ export async function getAllProducts(uxpContext: IContextProvider) {
     return executeRequest(uxpContext, `${BaseEndPoint}/products`, RequestMethod.GET, {});
 }
 
-export async function getAllProjects(uxpContext: IContextProvider) {
-    return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.GET, {});
+export async function getAllProjects(uxpContext: IContextProvider,payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/projects`, RequestMethod.GET, {},payload);
 }
 
 export async function home(uxpContext: IContextProvider) {
