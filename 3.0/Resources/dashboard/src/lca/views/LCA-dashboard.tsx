@@ -628,10 +628,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                 <span>Product Name</span>
                                 <span>{selectedProduct?.name}</span>
                             </div>
-                            <div className="summary-row">
-                                <span>Inventory</span>
-                                <span>150 pcs</span>
-                            </div>
+                            
                         </div>
                     </div>
 
