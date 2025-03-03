@@ -159,11 +159,10 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }: P
             )}
 
             {/* Rendering the "Done" button on the last step */}
-            {activeStep === 3 && (
+            {activeStep === 3 && productManufacturingProcess.length > 0 && (
                 <div className="done-button-container">
                     <Button title="Create" onClick={handleDone} />
                 </div>
-
             )}
 
             {activeStep === 4 && <Assessment newlyCreatedProduct={newlyCreatedProduct} onClose={onClose} />}

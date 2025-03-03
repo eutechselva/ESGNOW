@@ -40,14 +40,14 @@ const Projects: React.FC<IProjectProps> = (props) => {
     const fetchProjects = async () => {
         try {
             // First get all projects
-            const response = await getAllProjects( props.uxpContext );
-            
+            const response = await getAllProjects(props.uxpContext);
+
             const projectsData = await response.data;
-            
+
             // Then fetch impact data for each project
             const projectsWithImpacts = await Promise.all(
                 projectsData.map(async (project: { _id: string, code: string }) => {
-                    const impactResponse = await getProjectImpacts( props.uxpContext,{projectId : project._id } );
+                    const impactResponse = await getProjectImpacts(props.uxpContext, { projectId: project._id });
                     if (!impactResponse.data) {
                         throw new Error(`Failed to fetch impacts for project ${project.code}`);
                     }
@@ -63,10 +63,22 @@ const Projects: React.FC<IProjectProps> = (props) => {
             setIsLoading(false);
         }
     };
+    const handleClick = (value: string) => {
+        console.log(`Clicked value: ${value} KgCO2e`);
+        // Perform any action you need here
+    };
 
     const columns = [
-        
-        { id: "projectCode", label: "Project Code" },
+
+        {
+            id: "projectCode", label: "Project Code", render: (row: ProjectImpact) => {
+                return (
+                    <span onClick={() => handleClick(row.projectCode)} style={{ cursor: 'pointer', color: 'blue' }}>
+                        {`${row.totalProjectImpact} KgCO2e`}
+                    </span>
+                );
+            }
+        },
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",

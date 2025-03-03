@@ -41878,7 +41878,7 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }) => {
         activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange, uxpContext: uxpContext })),
         activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange, uxpContext: uxpContext })),
         activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess, uxpContext: uxpContext })),
-        activeStep === 3 && (react_1.default.createElement("div", { className: "done-button-container" },
+        activeStep === 3 && productManufacturingProcess.length > 0 && (react_1.default.createElement("div", { className: "done-button-container" },
             react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone }))),
         activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onClose })));
 };
@@ -42026,8 +42026,16 @@ const Projects = (props) => {
             setIsLoading(false);
         }
     });
+    const handleClick = (value) => {
+        console.log(`Clicked value: ${value} KgCO2e`);
+        // Perform any action you need here
+    };
     const columns = [
-        { id: "projectCode", label: "Project Code" },
+        {
+            id: "projectCode", label: "Project Code", render: (row) => {
+                return (react_1.default.createElement("span", { onClick: () => handleClick(row.projectCode), style: { cursor: 'pointer', color: 'blue' } }, `${row.totalProjectImpact} KgCO2e`));
+            }
+        },
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
