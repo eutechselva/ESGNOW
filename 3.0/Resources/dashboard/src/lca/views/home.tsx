@@ -32,11 +32,11 @@ const HomeDashboard = () => {
                         <p className="number">245</p>
                         <span>Products</span>
                     </div>
-                    <div className="card">
+                    {/* <div className="card">
                         <h2>No. of Impacts Calculated</h2>
                         <p className="number">245</p>
                         <span>Emission Impact</span>
-                    </div>
+                    </div> */}
                     <div className="card">
                         <h2>No. of Projects Created</h2>
                         <p className="number">10</p>

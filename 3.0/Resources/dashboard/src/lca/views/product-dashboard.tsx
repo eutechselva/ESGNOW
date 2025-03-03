@@ -5,7 +5,7 @@ import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
 import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface IWidgetProps {
     uxpContext: IContextProvider
 }
@@ -32,6 +32,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
     const totalPages = Math.ceil(products.length / itemsPerPage);
 
     const Pagination = () => (
+        <div className="pagination-container">
         <div className="flex justify-center items-center gap-2 mt-4">
             <Button
                 title="Previous"
@@ -46,6 +47,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({uxpContext}) => {
                 onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                 disabled={currentPage === totalPages}
             />
+        </div>
         </div>
     );
 
