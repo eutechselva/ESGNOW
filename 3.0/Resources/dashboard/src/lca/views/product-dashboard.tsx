@@ -5,7 +5,7 @@ import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
 import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface IWidgetProps {
     uxpContext: IContextProvider
 }
@@ -33,26 +33,30 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
     const Pagination = () => (
         <div className="pagination-container">
-            <button
-                className="pagination-button"
-                onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                disabled={currentPage === 1}
-            >
-                Previous
-            </button>
-            <span className="pagination-info">
-                Page {currentPage} of {totalPages}
-            </span>
-            <button
-                className="pagination-button"
-                onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                disabled={currentPage === totalPages}
-            >
-                Next
-            </button>
+            <div className="flex justify-center items-center gap-2 mt-4">
+                <Button
+                    title="Previous"
+                    onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </Button>
+                <span className="pagination-info">
+                    Page {currentPage} of {totalPages}
+                </span>
+                <Button
+                    title="Next"
+                    className="pagination-button"
+                    onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    disabled={currentPage === totalPages}
+                >
+
+                </Button>
+            </div>
         </div>
     );
-    
+
+
 
     React.useEffect(() => {
 

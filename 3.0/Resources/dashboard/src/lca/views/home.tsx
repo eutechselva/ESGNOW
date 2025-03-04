@@ -85,11 +85,11 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <p className="number">{totalProducts}</p>
                         <span>Products</span>
                     </div>
-                    <div className="card">
+                    {/* <div className="card">
                         <h2>No. of Impacts Calculated</h2>
                         <p className="number">{totalImpact}</p>
                         <span>Emission Impact</span>
-                    </div>
+                    </div> */}
                     <div className="card">
                         <h2>No. of Projects Created</h2>
                         <p className="number">{totalProjects}</p>

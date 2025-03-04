@@ -177,7 +177,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
              <h3>Fill in the fields below to assist with the analysis. Providing as much detail as possible helps the AI deliver better support for your assessment.</h3> 
 
             <div style={{ display: 'flex', gap: '16px' }}>
-                <FormField>
+                <FormField className="form-field">
                     <Label><span style={{ fontSize: '12px' }}>Product Code</span></Label>
                     <Input
                         type="text"
@@ -188,7 +188,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                     {errors.productCode && <span className="error-text">{errors.productCode}</span>}
                 </FormField>
 
-                <FormField>
+                <FormField className="form-field">
                     <Label><span style={{ fontSize: '12px' }}>Product Name</span></Label>
                     <Input
                         type="text"
@@ -200,7 +200,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                 </FormField>
             </div>
 
-            <FormField>
+            <FormField className="form-field">
                 <Label><span style={{ fontSize: '12px' }}>Product Description</span></Label>
                 <textarea
                     value={productDescription}
@@ -221,8 +221,8 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
 
             {/* Drag and Drop Area for Images */}
-            <FormField>
-                <Label><span style={{ fontSize: '12px' }}>Product Images</span>
+            <FormField className="form-field">
+                <Label><span style ={{ fontSize: '12px' }}>Product Images</span>
                 <span
                                 className="info-icon"
                                 onMouseEnter={() => setShowTooltip(true)}
@@ -267,7 +267,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                 </div>
             </FormField>
 
-            <FormField>
+            {/* <FormField className="form-field">
                 <Label><span style={{ fontSize: '12px' }}>Evidence Document</span>
                 <span
                                 className="info-icon"
@@ -296,7 +296,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         </button>
                     )}
                 </div>
-            </FormField>
+            </FormField> */}
 
             {/* Next Button */}
             <Button

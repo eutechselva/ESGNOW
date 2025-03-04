@@ -154,7 +154,7 @@ h3,
 
 .product-details h4 {
   margin: 0 0 8px 0;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
   color: #333;
   text-align: left;
@@ -654,40 +654,8 @@ padding-left: 20px;
   margin-bottom: 20px;
 }
 
-.pagination-wrapper {
-  margin-top: 30px; /* Adjust spacing as needed */
+.pagination-container{
+  float: right;
+  margin-top: 20px;
+
 }
-
-.pagination-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 16px; /* Space between buttons and text */
-  margin-top: 24px; /* Space above pagination */
-}
-
-.pagination-button {
-  padding: 10px 16px;
-  border: 1px solid #ccc;
-  background-color: #f8f8f8;
-  cursor: pointer;
-  border-radius: 6px;
-  font-size: 14px;
-  transition: background 0.2s ease-in-out;
-}
-
-.pagination-button:hover {
-  background-color: #e0e0e0;
-}
-
-.pagination-button:disabled {
-  background-color: #ddd;
-  cursor: not-allowed;
-}
-
-.pagination-info {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-
