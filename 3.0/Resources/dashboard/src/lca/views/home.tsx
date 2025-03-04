@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel } from 'uxp/components';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel, CRUDComponent } from 'uxp/components';
 import './home.scss';
 import { getAllProducts, home } from '../../esgnow-service';
 import { IContextProvider } from '@uxp';
@@ -25,6 +25,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const[totalProjects, setTotalProjects] = useState<any[]>([]);
     const[totalCredits, setTotalCredits] = useState<any[]>([]);
     const [products, setProducts] = React.useState([]);
+
+    const memorizedSearch = useMemo(() => ({ enabled: true }), [])
 
     const handleSearchChange = (value: string) => {
         setSearchValue(value);
@@ -60,6 +62,15 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     
             fetchProductData();
         }, []);
+
+        const getProducts = useCallback(async (page?: number, pageSize?: number, query?: string, filters?: any): Promise<{ items: any[] }> => {
+                const { data, error } = await getAllProducts(uxpContext);
+        
+        
+                
+                if (!!error) return { items: [] };
+                return { items: data };
+            }, [])
 
     return (
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
@@ -105,49 +116,29 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
             <div className="recent-projects-container">
                 <div className="recent-projects">
-                    <div className="recent-projects-header">
-                        <h2>Recent Products</h2>
-                        <div className="search-box-filter-container">
-                            <div className="uxp-search-box-container">
-                                <SearchBox
-                                    placeholder="Search products..."
-                                    value={searchValue}
-                                    onChange={handleSearchChange}
+                    
+                    
+                    <CRUDComponent
+                                    list={{
+                                        title: 'Recent Products',
+                                        columns: [
+                                            
+                                            { id: 'productCode', label: 'Product Code' },
+                                            { id: 'productName', label: 'Product Name' },
+                                            { id: 'TotalImpact', label: 'Total Impact' },
+                                            { id: 'MainCategory', label: 'Main Category' },
+                                            { id: 'SubCategory', label: 'Sub Category' },
+                                            { id: 'Date', label: 'Date Created/Modified' }
+                                        ],
+                                        defaultPageSize: 10,
+                                        data: {
+                                            getData: getProducts
+                                        },
+                                        search: memorizedSearch,
+                                       
+                                    }
+                                    }
                                 />
-                            </div>
-                            <FilterPanel
-                                enableClear={inputValue?.length > 0 || selected != null}
-                                onClear={() => { setInputValue(""); setSelected(null) }} >
-                                <FormField className="no-padding mb-only">
-                                    <Label>Sort By</Label>
-                                    <Select
-                                        selected={selected}
-                                        options={[
-                                            { label: "Name", value: "op-1" },
-                                            { label: "Date", value: "op-2" },
-                                        ]}
-                                        onChange={(value) => { setSelected(value) }}
-                                        placeholder=" -- select --"
-                                        isValid={selected ? selected?.length > 0 : null}
-                                    />
-                                </FormField>
-                            </FilterPanel>
-                        </div>
-                    </div>
-                    <TableComponent
-                        data={data}
-                        columns={[
-                            { id: 'ProductImage', label: 'Product Image' },
-                            { id: 'ProductCode', label: 'Product Code' },
-                            { id: 'ProductName', label: 'Product Name' },
-                            { id: 'TotalImpact', label: 'Total Impact' },
-                            { id: 'MainCategory', label: 'Main Category' },
-                            { id: 'SubCategory', label: 'Sub Category' },
-                            { id: 'Date', label: 'Date Created/Modified' }
-                        ]}
-                        pageSize={10}
-                        total={25}
-                    />
                 </div>
             </div>
         </div>

@@ -40302,6 +40302,7 @@ const HomeDashboard = ({ uxpContext }) => {
     const [totalProjects, setTotalProjects] = (0, react_1.useState)([]);
     const [totalCredits, setTotalCredits] = (0, react_1.useState)([]);
     const [products, setProducts] = react_1.default.useState([]);
+    const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
     const handleSearchChange = (value) => {
         setSearchValue(value);
     };
@@ -40328,6 +40329,12 @@ const HomeDashboard = ({ uxpContext }) => {
         });
         fetchProductData();
     }, []);
+    const getProducts = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
+        const { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+        if (!!error)
+            return { items: [] };
+        return { items: data };
+    }), []);
     return (react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
         react_1.default.createElement("div", { className: "title-container" },
             react_1.default.createElement("h1", { className: "heading" }, "Welcome to ESG NOW!")),
@@ -40353,27 +40360,22 @@ const HomeDashboard = ({ uxpContext }) => {
                 react_1.default.createElement("iframe", { width: "100%", height: "200", src: "https://www.youtube.com/embed/YOUR_VIDEO_ID", title: "Getting Started Video", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }))),
         react_1.default.createElement("div", { className: "recent-projects-container" },
             react_1.default.createElement("div", { className: "recent-projects" },
-                react_1.default.createElement("div", { className: "recent-projects-header" },
-                    react_1.default.createElement("h2", null, "Recent Products"),
-                    react_1.default.createElement("div", { className: "search-box-filter-container" },
-                        react_1.default.createElement("div", { className: "uxp-search-box-container" },
-                            react_1.default.createElement(components_1.SearchBox, { placeholder: "Search products...", value: searchValue, onChange: handleSearchChange })),
-                        react_1.default.createElement(components_1.FilterPanel, { enableClear: (inputValue === null || inputValue === void 0 ? void 0 : inputValue.length) > 0 || selected != null, onClear: () => { setInputValue(""); setSelected(null); } },
-                            react_1.default.createElement(components_1.FormField, { className: "no-padding mb-only" },
-                                react_1.default.createElement(components_1.Label, null, "Sort By"),
-                                react_1.default.createElement(components_1.Select, { selected: selected, options: [
-                                        { label: "Name", value: "op-1" },
-                                        { label: "Date", value: "op-2" },
-                                    ], onChange: (value) => { setSelected(value); }, placeholder: " -- select --", isValid: selected ? (selected === null || selected === void 0 ? void 0 : selected.length) > 0 : null }))))),
-                react_1.default.createElement(components_1.TableComponent, { data: data, columns: [
-                        { id: 'ProductImage', label: 'Product Image' },
-                        { id: 'ProductCode', label: 'Product Code' },
-                        { id: 'ProductName', label: 'Product Name' },
-                        { id: 'TotalImpact', label: 'Total Impact' },
-                        { id: 'MainCategory', label: 'Main Category' },
-                        { id: 'SubCategory', label: 'Sub Category' },
-                        { id: 'Date', label: 'Date Created/Modified' }
-                    ], pageSize: 10, total: 25 })))));
+                react_1.default.createElement(components_1.CRUDComponent, { list: {
+                        title: 'Recent Products',
+                        columns: [
+                            { id: 'productCode', label: 'Product Code' },
+                            { id: 'productName', label: 'Product Name' },
+                            { id: 'TotalImpact', label: 'Total Impact' },
+                            { id: 'MainCategory', label: 'Main Category' },
+                            { id: 'SubCategory', label: 'Sub Category' },
+                            { id: 'Date', label: 'Date Created/Modified' }
+                        ],
+                        defaultPageSize: 10,
+                        data: {
+                            getData: getProducts
+                        },
+                        search: memorizedSearch,
+                    } })))));
 };
 exports["default"] = HomeDashboard;
 
