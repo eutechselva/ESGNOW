@@ -39459,7 +39459,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         return React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext });
     }
     return (React.createElement("div", { className: "content" },
-        React.createElement("h1", { className: "dashboard-title" }, "Impact Analysis"),
+        React.createElement("h1", { className: "dashboard-title" }, "Transportation"),
         React.createElement("div", { className: "search-filter-section" },
             React.createElement("div", { className: "uxp-search-box-container" },
                 React.createElement(components_1.SearchBox, { placeholder: "Search Placeholder", value: searchValue, onChange: handleSearchChange }),
@@ -72640,7 +72640,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Impact Analysis","icon":"fad chart-bar","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad folder-open","dashboardKey":"bulkupload","userRoles":[]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","userRoles":[]}]');
 
 /***/ }),
 

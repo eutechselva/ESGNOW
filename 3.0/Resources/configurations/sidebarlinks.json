@@ -15,8 +15,8 @@
   },
   {
     "id": "lca",
-    "label": "Impact Analysis",
-    "icon": "fad chart-bar",
+    "label": "Transportation",
+    "icon": "fad ship" ,
     "dashboardKey": "lca",
     "userRoles": []
   },
@@ -29,7 +29,7 @@
   }, {
     "id": "bulkupload",
     "label": "Bulk Upload",
-    "icon": "fad folder-open",
+    "icon": "fad upload",
     "dashboardKey": "bulkupload",
     "userRoles": []
   }

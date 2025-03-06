@@ -718,7 +718,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     if (isEmissionSummaryVisible) { return <EmissionSummary  packageWeight={packagingWeight} palletWeight={palletWeight} transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext}  ></EmissionSummary> }
     return (
         <div className="content">
-            <h1 className="dashboard-title">Impact Analysis</h1>
+            <h1 className="dashboard-title">Transportation</h1>
             <div className="search-filter-section">
                 <div className="uxp-search-box-container">
                     <SearchBox
