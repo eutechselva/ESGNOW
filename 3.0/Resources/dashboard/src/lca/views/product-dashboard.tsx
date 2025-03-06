@@ -261,6 +261,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             {selectedProduct && (
                 <ProductInfoSummary
                     product={selectedProduct}
+                    hideHeader={false}
                     onClose={() => setSelectedProduct(null)} onDelete={function (): void {
                         throw new Error("Function not implemented.");
                     }} />

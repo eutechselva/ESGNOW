@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel, CRUDComponent } from 'uxp/components';
+import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel, CRUDComponent, Modal } from 'uxp/components';
 import './home.scss';
 import { getAllProducts, home } from '../../esgnow-service';
 import { IContextProvider } from '@uxp';
+import ProductInfoSummary from './product-info-summary';
 
 interface IHomeDashboardWidgetProps {
     uxpContext: IContextProvider;
@@ -25,6 +26,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const[totalProjects, setTotalProjects] = useState<any[]>([]);
     const[totalCredits, setTotalCredits] = useState<any[]>([]);
     const [products, setProducts] = React.useState([]);
+     const [showModal, setShowModal] = useState(false);
+        const [item, setItem] = useState<any>();
 
     const memorizedSearch = useMemo(() => ({ enabled: true }), [])
 
@@ -73,6 +76,17 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
             }, [])
 
     return (
+        <>
+        <Modal title={`Product Code : ${item?.code || 'N/A'}`}  show={showModal} onClose={() => setShowModal(false)}>
+                <ProductInfoSummary
+                    product={item}
+                    onClose={() => setShowModal(false)} 
+                    onDelete={function (): void {
+                        throw new Error('Function not implemented.');
+                    } }
+                    hideHeader={true}   
+                />
+            </Modal>
         <div style={{ width: "100%", height: "100%", position: "relative" }}>
             <div className="title-container">
                 <h1 className="heading">Welcome to ESG NOW!</h1>
@@ -123,25 +137,26 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                                         title: 'Recent Products',
                                         columns: [
                                             
-                                            { id: 'productCode', label: 'Product Code' },
-                                            { id: 'productName', label: 'Product Name' },
-                                            { id: 'TotalImpact', label: 'Total Impact' },
-                                            { id: 'MainCategory', label: 'Main Category' },
-                                            { id: 'SubCategory', label: 'Sub Category' },
-                                            { id: 'Date', label: 'Date Created/Modified' }
+                                            { id: 'code', label: 'Product Code' },
+                                            { id: 'name', label: 'Product Name' },
+                                            { id: 'co2Emission', label: 'Total Impact' },
+                                            { id: 'category', label: 'Main Category' },
+                                            { id: 'subCategory', label: 'Sub Category' },
+                                            { id: 'modifiedDate', label: 'Date Created/Modified' }
                                         ],
                                         defaultPageSize: 10,
                                         data: {
                                             getData: getProducts
                                         },
                                         search: memorizedSearch,
-                                       
+                                        onClickRow: (e, item: any) => { setItem(item); setShowModal(true) }
                                     }
                                     }
                                 />
                 </div>
             </div>
         </div>
+        </>
     );
 };
 

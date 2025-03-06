@@ -11,18 +11,17 @@ interface ProductInfoSummaryProps {
     ;
     onClose: () => void;
     onDelete: () => void;
+    hideHeader?: boolean;
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose,onDelete }) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-        const [showModal, setShowModal] = React.useState(false);
-    
+    const [showModal, setShowModal] = React.useState(false);
+
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
-  
-
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
@@ -84,8 +83,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y:Number(product.co2EmissionRawMaterials)  , color: '#78BE7C' },
-                    { name: 'Manufacturing', y:Number(product.co2EmissionFromProcesses) , color: '#ffaa00' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
                 ],
             },
         ],
@@ -113,31 +112,34 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     return (
         <>
             <div className="title-container">
+            {!hideHeader && (
+                <>
                 <h1 className="dashboard-title">Product Summary</h1>
                 <p className="subheading">Product Code : {product.code}</p>
                 <Button
                     title="Go back"
                     onClick={onClose}
                     className="back-button"
-                />
-                   {/* <Button title="Delete" onClick={() => setShowDeleteConfirm(true)} className="delete-button">
+                /></>
+                )}
+                {/* <Button title="Delete" onClick={() => setShowDeleteConfirm(true)} className="delete-button">
                        Delete
                     </Button> */}
 
-                    {showDeleteConfirm && (
-    <Modal
-    show={showModal}
-        title="Confirm Deletion"
-        onClose={() => setShowDeleteConfirm(false)}
-        className="delete-modal"
-    >
-        <p>Are you sure you want to delete this product?</p>
-        <div className="modal-actions">
-            <Button title="Yes" onClick={() => { onDelete(); setShowDeleteConfirm(false); }} className="confirm-button">Yes</Button>
-            <Button title="No" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">No</Button>
-        </div>
-    </Modal>
-)}
+                {showDeleteConfirm && (
+                    <Modal
+                        show={showModal}
+                        title="Confirm Deletion"
+                        onClose={() => setShowDeleteConfirm(false)}
+                        className="delete-modal"
+                    >
+                        <p>Are you sure you want to delete this product?</p>
+                        <div className="modal-actions">
+                            <Button title="Yes" onClick={() => { onDelete(); setShowDeleteConfirm(false); }} className="confirm-button">Yes</Button>
+                            <Button title="No" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">No</Button>
+                        </div>
+                    </Modal>
+                )}
 
             </div>
             <div className="product-info-summary">
