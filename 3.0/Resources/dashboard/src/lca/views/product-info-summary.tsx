@@ -4,17 +4,19 @@ import { Button, Modal } from 'uxp/components';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { deleteProductByID } from "../../esgnow-service";
+import { IContextProvider } from '@uxp';
 
 
 interface ProductInfoSummaryProps {
-    product: ProductInfoSummary
-    ;
+    product: ProductInfoSummary;
     onClose: () => void;
     onDelete: () => void;
     hideHeader?: boolean;
+    uxpContext: IContextProvider;
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader }) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader ,uxpContext }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -22,6 +24,12 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
 
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
+
+    const deleteProduct = async () => {
+        await deleteProductByID( uxpContext, {_id :product._id});
+        onClose();
+        
+    }
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
@@ -112,19 +120,21 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     return (
         <>
             <div className="title-container">
-            {!hideHeader && (
-                <>
-                <h1 className="dashboard-title">Product Summary</h1>
-                <p className="subheading">Product Code : {product.code}</p>
-                <Button
-                    title="Go back"
-                    onClick={onClose}
-                    className="back-button"
-                /></>
+                {!hideHeader && (
+                    <>
+                        <h1 className="dashboard-title">Product Summary</h1>
+                        <p className="subheading">Product Code : {product.code}</p>
+                       
+
+                        <Button
+                            title="Go back"
+                            onClick={onClose}
+                            className="back-button"
+                        /></>
                 )}
-                {/* <Button title="Delete" onClick={() => setShowDeleteConfirm(true)} className="delete-button">
+                 <Button title="Delete" onClick={() => deleteProduct()} className="delete-button">
                        Delete
-                    </Button> */}
+                    </Button> 
 
                 {showDeleteConfirm && (
                     <Modal

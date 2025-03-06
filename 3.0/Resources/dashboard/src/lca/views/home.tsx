@@ -84,7 +84,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     onDelete={function (): void {
                         throw new Error('Function not implemented.');
                     } }
-                    hideHeader={true}   
+                    hideHeader={true}
+                    uxpContext={uxpContext}   
                 />
             </Modal>
         <div style={{ width: "100%", height: "100%", position: "relative" }}>

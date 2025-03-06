@@ -204,7 +204,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-info-summary {\n  display: flex;\n  align-items: flex-start;\n  padding: 20px;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  background-color: #f3f3f3;\n  width: auto;\n  margin: 0 auto;\n  height: 250px;\n}\n.product-info-summary .summary-image {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 8px;\n  background-color: #ffffff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  margin-right: 20px;\n  font-size: 16px;\n}\n.product-info-summary .summary-image .image-label {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 5px 10px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: bold;\n}\n.product-info-summary .summary-details {\n  display: flex;\n  font-size: 12px;\n  width: 80%;\n  gap: 20px;\n}\n.product-info-summary .summary-details .details-left {\n  width: 250px;\n}\n.product-info-summary .summary-details .details-right {\n  flex: 1;\n}\n.product-info-summary .summary-details .detail-item {\n  width: 200px;\n}\n.product-info-summary .summary-details .close-button {\n  margin-top: 60px;\n  padding: 8px 16px;\n  font-size: 14px;\n  color: #fff;\n  background-color: #007bff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.product-info-summary .summary-details .close-button:hover {\n  background-color: #0056b3;\n}\n\n.inventory-section {\n  margin-top: 20px;\n  background-color: #f3f3f3;\n  border: 1px solid #ccc;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.view-toggle {\n  display: flex;\n}\n\n.inventory-tree, .inventory-list {\n  font-size: 16px;\n  color: #333;\n}\n\n.tree-item {\n  cursor: pointer;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n}\n\n.tree-children {\n  padding-left: 20px;\n}\n\n.tree-sub-item, .inventory-list li {\n  margin: 8px 0;\n  color: #424242;\n}\n\n.inventory-list {\n  margin-top: 1rem;\n  overflow-x: auto;\n}\n.inventory-list table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 0.9rem;\n}\n.inventory-list table th, .inventory-list table td {\n  padding: 0.8rem;\n  text-align: left;\n  border: 1px solid #ddd;\n}\n.inventory-list table th {\n  background-color: #f5f5f5;\n  color: #333;\n  font-weight: bold;\n}\n.inventory-list table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.inventory-list table tr:nth-child(odd) {\n  background-color: #fff;\n}\n.inventory-list table tbody tr:hover {\n  background-color: #e6f7ff;\n}\n\n.view-toggle {\n  display: flex;\n  gap: 0.5rem;\n  margin-bottom: 1rem;\n}\n.view-toggle .toggle-button {\n  padding: 0.5rem 1rem;\n  border: 1px solid #000000;\n  background-color: white;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  border-radius: 4px;\n}\n.view-toggle .toggle-button.active {\n  background-color: #000000;\n  color: white;\n}\n.view-toggle .toggle-button:hover:not(.active) {\n  background-color: #e6f7ff;\n}\n\n.title-container {\n  position: relative;\n  padding: 1rem 0;\n}\n.title-container .dashboard-title {\n  font-size: 18px;\n  font-weight: bold;\n  margin: 0;\n}\n.title-container .subheading {\n  font-size: 14 px;\n  color: #424242;\n}\n.title-container .back-button {\n  position: absolute;\n  background-color: #000000;\n  color: white;\n  top: 0;\n  right: 0;\n  cursor: pointer;\n}\n\n.widgets-row {\n  display: flex;\n  justify-content: space-between;\n  gap: 1rem;\n  margin: 2rem 0;\n  background-color: #ffffff;\n  border-radius: 8px;\n}\n\n.product-footprint {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.widget {\n  flex: 1;\n  padding: 1rem;\n  background-color: #ffffff;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: column;\n}\n\n.widget h3 {\n  font-size: 14px;\n  font-weight: 600;\n  color: #424242;\n  margin-bottom: 1rem;\n  text-align: left !important;\n}\n\n.widget-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n}\n\n.widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n\n.widget table th,\n.widget table td {\n  text-align: left;\n  padding: 0.5rem;\n  font-size: 12px;\n  color: #424242;\n}\n\n.widget table th {\n  font-weight: 600;\n  background-color: #0066ff;\n  color: white;\n}\n\n.widget table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n\n/* Responsiveness */\n@media (max-width: 768px) {\n  .widgets-row {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  .widget {\n    width: 100%;\n  }\n  .circle-chart {\n    width: 100px;\n    height: 100px;\n  }\n  .circle-chart .circle-value {\n    font-size: 1rem;\n  }\n}", ""]);
+exports.push([module.id, ".product-info-summary {\n  display: flex;\n  align-items: flex-start;\n  padding: 20px;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  background-color: #f3f3f3;\n  width: auto;\n  margin: 0 auto;\n  height: 250px;\n}\n.product-info-summary .summary-image {\n  position: relative;\n  width: 200px;\n  height: 200px;\n  border-radius: 8px;\n  background-color: #ffffff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  margin-right: 20px;\n  font-size: 16px;\n}\n.product-info-summary .summary-image .image-label {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 5px 10px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: bold;\n}\n.product-info-summary .summary-details {\n  display: flex;\n  font-size: 12px;\n  width: 80%;\n  gap: 20px;\n}\n.product-info-summary .summary-details .details-left {\n  width: 250px;\n}\n.product-info-summary .summary-details .details-right {\n  flex: 1;\n}\n.product-info-summary .summary-details .detail-item {\n  width: 200px;\n}\n.product-info-summary .summary-details .close-button {\n  margin-top: 60px;\n  padding: 8px 16px;\n  font-size: 14px;\n  color: #fff;\n  background-color: #007bff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.product-info-summary .summary-details .close-button:hover {\n  background-color: #0056b3;\n}\n\n.inventory-section {\n  margin-top: 20px;\n  background-color: #f3f3f3;\n  border: 1px solid #ccc;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.view-toggle {\n  display: flex;\n}\n\n.inventory-tree, .inventory-list {\n  font-size: 16px;\n  color: #333;\n}\n\n.tree-item {\n  cursor: pointer;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n}\n\n.tree-children {\n  padding-left: 20px;\n}\n\n.tree-sub-item, .inventory-list li {\n  margin: 8px 0;\n  color: #424242;\n}\n\n.inventory-list {\n  margin-top: 1rem;\n  overflow-x: auto;\n}\n.inventory-list table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 0.9rem;\n}\n.inventory-list table th, .inventory-list table td {\n  padding: 0.8rem;\n  text-align: left;\n  border: 1px solid #ddd;\n}\n.inventory-list table th {\n  background-color: #f5f5f5;\n  color: #333;\n  font-weight: bold;\n}\n.inventory-list table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.inventory-list table tr:nth-child(odd) {\n  background-color: #fff;\n}\n.inventory-list table tbody tr:hover {\n  background-color: #e6f7ff;\n}\n\n.view-toggle {\n  display: flex;\n  gap: 0.5rem;\n  margin-bottom: 1rem;\n}\n.view-toggle .toggle-button {\n  padding: 0.5rem 1rem;\n  border: 1px solid #000000;\n  background-color: white;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  border-radius: 4px;\n}\n.view-toggle .toggle-button.active {\n  background-color: #000000;\n  color: white;\n}\n.view-toggle .toggle-button:hover:not(.active) {\n  background-color: #e6f7ff;\n}\n\n.title-container {\n  position: relative;\n  padding: 1rem 0;\n}\n.title-container .dashboard-title {\n  font-size: 18px;\n  font-weight: bold;\n  margin: 0;\n}\n.title-container .subheading {\n  font-size: 14 px;\n  color: #424242;\n}\n.title-container .back-button {\n  position: absolute;\n  background-color: #000000;\n  color: white;\n  top: 0;\n  right: 0;\n  cursor: pointer;\n}\n.title-container .delete-button {\n  position: absolute;\n  background-color: #ee0808;\n  color: white;\n  top: 0;\n  right: 120px;\n  cursor: pointer;\n}\n\n.widgets-row {\n  display: flex;\n  justify-content: space-between;\n  gap: 1rem;\n  margin: 2rem 0;\n  background-color: #ffffff;\n  border-radius: 8px;\n}\n\n.product-footprint {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.widget {\n  flex: 1;\n  padding: 1rem;\n  background-color: #ffffff;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: column;\n}\n\n.widget h3 {\n  font-size: 14px;\n  font-weight: 600;\n  color: #424242;\n  margin-bottom: 1rem;\n  text-align: left !important;\n}\n\n.widget-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n}\n\n.widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n\n.widget table th,\n.widget table td {\n  text-align: left;\n  padding: 0.5rem;\n  font-size: 12px;\n  color: #424242;\n}\n\n.widget table th {\n  font-weight: 600;\n  background-color: #0066ff;\n  color: white;\n}\n\n.widget table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n\n/* Responsiveness */\n@media (max-width: 768px) {\n  .widgets-row {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  .widget {\n    width: 100%;\n  }\n  .circle-chart {\n    width: 100px;\n    height: 100px;\n  }\n  .circle-chart .circle-value {\n    font-size: 1rem;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38673,7 +38673,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.classifyManufacturingProcess = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38765,6 +38765,12 @@ function classifyBOM(uxpContext, payload) {
     });
 }
 exports.classifyBOM = classifyBOM;
+function deleteProductByID(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/delete-product-by-id`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.deleteProductByID = deleteProductByID;
 function classifyManufacturingProcess(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/classify-manufacturing-process`, _uxp_1.RequestMethod.POST, {}, payload);
@@ -40348,7 +40354,7 @@ const HomeDashboard = ({ uxpContext }) => {
         react_1.default.createElement(components_1.Modal, { title: `Product Code : ${(item === null || item === void 0 ? void 0 : item.code) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) },
             react_1.default.createElement(product_info_summary_1.default, { product: item, onClose: () => setShowModal(false), onDelete: function () {
                     throw new Error('Function not implemented.');
-                }, hideHeader: true })),
+                }, hideHeader: true, uxpContext: uxpContext })),
         react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
             react_1.default.createElement("div", { className: "title-container" },
                 react_1.default.createElement("h1", { className: "heading" }, "Welcome to ESG NOW!")),
@@ -41045,7 +41051,12 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     setProducts(response.data);
                 });
             } }),
-        selectedProduct && (React.createElement(product_info_summary_1.default, { product: selectedProduct, hideHeader: false, onClose: () => setSelectedProduct(null), onDelete: function () {
+        selectedProduct && (React.createElement(product_info_summary_1.default, { uxpContext: uxpContext, product: selectedProduct, hideHeader: false, onClose: () => {
+                setSelectedProduct(null);
+                (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
+                    setProducts(response.data);
+                });
+            }, onDelete: function () {
                 throw new Error("Function not implemented.");
             } }))));
 };
@@ -41085,6 +41096,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -41094,12 +41114,17 @@ __webpack_require__(/*! ./product-info-summary.scss */ "./src/lca/views/product-
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
-const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader }) => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext }) => {
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = (0, react_1.useState)(false);
     const [showModal, setShowModal] = react_1.default.useState(false);
     const toggleExpand = () => setIsExpanded(!isExpanded);
+    const deleteProduct = () => __awaiter(void 0, void 0, void 0, function* () {
+        yield (0, esgnow_service_1.deleteProductByID)(uxpContext, { _id: product._id });
+        onClose();
+    });
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -41189,6 +41214,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader }) => {
                     "Product Code : ",
                     product.code),
                 react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onClose, className: "back-button" }))),
+            react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => deleteProduct(), className: "delete-button" }, "Delete"),
             showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showModal, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
                 react_1.default.createElement("p", null, "Are you sure you want to delete this product?"),
                 react_1.default.createElement("div", { className: "modal-actions" },

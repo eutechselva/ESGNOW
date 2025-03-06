@@ -208,6 +208,15 @@
         right: 0;
         cursor: pointer;
     }
+
+    .delete-button {
+        position: absolute;
+        background-color: #ee0808;
+        color: white;
+        top: 0;
+        right: 120px;
+        cursor: pointer;
+    }
 }
 
 

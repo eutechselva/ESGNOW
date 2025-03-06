@@ -73,6 +73,10 @@ export async function  classifyBOM(uxpContext: IContextProvider , payload: any) 
     return executeRequest(uxpContext, `${BaseEndPoint}/classify-bom`, RequestMethod.POST, {},payload);
 }
 
+export async function  deleteProductByID(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/products/delete-product-by-id`, RequestMethod.POST, {},payload);
+}
+
 export async function  classifyManufacturingProcess(uxpContext: IContextProvider , payload: any) {
     return executeRequest(uxpContext, `${BaseEndPoint}/classify-manufacturing-process`, RequestMethod.POST, {},payload);
 }
