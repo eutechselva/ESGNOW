@@ -10,6 +10,7 @@ import { IContextProvider } from "@uxp";
 
 
 
+
 interface ProductInformationProps {
     productData: ProductInfo;
     onNext: (productData: ProductInfo) => void;

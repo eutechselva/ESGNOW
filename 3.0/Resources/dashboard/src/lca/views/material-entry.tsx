@@ -26,14 +26,46 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
         Wood: [
             { label: "Oak", value: "Oak" },
             { label: "Maple", value: "Maple" },
+            { label: "Cherry", value: "Cherry" },
+            { label: "Walnut", value: "Walnut" },
+            { label: "Beech", value: "Beech" },
+            { label: "Mahogany", value: "Mahogany" },
+            { label: "Pine", value: "Pine" },
+            { label: "Birch", value: "Birch" },
+            { label: "Teak", value: "Teak" },
+            { label: "Ash", value: "Ash" },
+            { label: "Alder", value: "Alder" },
+            { label: "Rubberwood", value: "Rubberwood" },
+            { label: "Rosewood", value: "Rosewood" },
+            { label: "Poplar", value: "Poplar" },
+            { label: "Bamboo", value: "Bamboo" },
+            { label: "MDF (Medium Density Fiberboard)", value: "MDF" },
+
+
         ],
         Metal: [
-            { label: "Stainless Steel", value: "Stainless Steel" },
+            { label: "Stainless Steel", value: "stainless-steel" },
             { label: "Aluminium", value: "Aluminium" },
+            { label: "Steel", value: "Steel" },
+            { label: "Chromed steel", value: "chromed-steel" },
+            { label: "Wroght iron", value: "wroght-iron" },
+            { label: "Cast iron", value: "cast-iron" },
+            { label: "Brass", value: "Brass" },
+            { label: "Copper", value: "Copper" },
+            { label: "Zinc", value: "Zinc" },
+            { label: "Titanium", value: "Titanium" },
+            { label: "Mild steel (Carbon steel)", value: "mild-steel"},
+            { label: "Galvanized steel", value: "galvanized-steel" },
+            { label: "Nickel", value: "Nickel" },
+
         ],
         Plastic: [
             { label: "Polypropylene", value: "Polypropylene" },
-            { label: "Polyvinyl Chloride", value: "Polyvinyl Chloride" },
+            { label: "Polyvinyl Chloride", value: "polyvinyl-chloride" },
+            { label: "Acrylonitrile Butadiene Styrene (ABS)", value: "ABS" },
+            { label: "Polycarbonate (PC)", value: "polycarbonate"},
+            { label: "High-Density Polyethylene (HDPE)", value: "HDPE"},
+            { label: "Polyurethane (PU)", value: "pu"},
         ],
     };
 

@@ -145,7 +145,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 )}
                 {entryType === "ai" && (
                     <Button
-                        title="Generate Materials"
+                        title="Generate"
                         className="generate-materials-button"
                         onClick={handleGenerateMaterials}
                     />
