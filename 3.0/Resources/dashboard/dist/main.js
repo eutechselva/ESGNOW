@@ -38980,8 +38980,8 @@ const WrappedDashboard = (props) => {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-//const API_BASE_URL = "https://lca-microservice.onrender.com";
-const API_BASE_URL = "http://localhost:5009";
+const API_BASE_URL = "https://lca-microservice.onrender.com";
+//const API_BASE_URL = "http://localhost:5009";
 exports["default"] = API_BASE_URL;
 
 
@@ -40345,7 +40345,8 @@ const HomeDashboard = ({ uxpContext }) => {
         fetchProductData();
     }, []);
     const getProducts = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
-        const { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+        let { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+        data = data.map((d) => (Object.assign(Object.assign({}, d), { modifiedDate: d.modifiedDate ? new Date(d.modifiedDate).toLocaleDateString() : 'N/A' })));
         if (!!error)
             return { items: [] };
         return { items: data };
