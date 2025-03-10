@@ -40384,7 +40384,7 @@ const HomeDashboard = ({ uxpContext }) => {
                             columns: [
                                 { id: 'code', label: 'Product Code' },
                                 { id: 'name', label: 'Product Name' },
-                                { id: 'co2Emission', label: 'Total Impact' },
+                                { id: 'co2Emission', label: 'Carbon Footprint (KgCO2e)' },
                                 { id: 'category', label: 'Main Category' },
                                 { id: 'subCategory', label: 'Sub Category' },
                                 { id: 'modifiedDate', label: 'Date Created/Modified' }
