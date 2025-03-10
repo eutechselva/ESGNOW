@@ -125,7 +125,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 {!hideHeader && (
                     <>
                         <h1 className="dashboard-title">Product Summary</h1>
-                        <p className="subheading">Product Code : {product.code}</p>
+                        <p className="subheading">Product : {product.name}</p>
 
 
                         <Button
@@ -168,8 +168,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 <div className="summary-details">
                     <div className="details-left">
                         <div className="detail-item">
-                            <strong>Product Name:</strong>
-                            <p>{product.name}</p>
+                            <strong>Product Code:</strong>
+                            <p>{product.code}</p>
                         </div>
 
                         <div className="detail-item">

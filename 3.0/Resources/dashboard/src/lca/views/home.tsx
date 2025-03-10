@@ -81,7 +81,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
     return (
         <>
-        <Modal title={`Product Code : ${item?.code || 'N/A'}`}  show={showModal} onClose={() => setShowModal(false)}>
+        <Modal title={`Product : ${item?.name || 'N/A'}`}  show={showModal} onClose={() => setShowModal(false)}>
                 <ProductInfoSummary
                     product={item}
                     onClose={() => setShowModal(false)} 

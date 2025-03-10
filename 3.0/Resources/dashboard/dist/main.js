@@ -40352,7 +40352,7 @@ const HomeDashboard = ({ uxpContext }) => {
         return { items: data };
     }), []);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(components_1.Modal, { title: `Product Code : ${(item === null || item === void 0 ? void 0 : item.code) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) },
+        react_1.default.createElement(components_1.Modal, { title: `Product : ${(item === null || item === void 0 ? void 0 : item.name) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) },
             react_1.default.createElement(product_info_summary_1.default, { product: item, onClose: () => setShowModal(false), onDelete: function () {
                     throw new Error('Function not implemented.');
                 }, hideHeader: true, hideDelete: true, uxpContext: uxpContext })),
@@ -41241,8 +41241,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
             !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
                 react_1.default.createElement("h1", { className: "dashboard-title" }, "Product Summary"),
                 react_1.default.createElement("p", { className: "subheading" },
-                    "Product Code : ",
-                    product.code),
+                    "Product : ",
+                    product.name),
                 react_1.default.createElement(components_1.Button, { title: "Go back", onClick: onClose, className: "back-button" }))),
             !hideDelete && (react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => deleteProduct(), className: "delete-button" }, "Delete")),
             showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showModal, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
@@ -41259,8 +41259,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
             react_1.default.createElement("div", { className: "summary-details" },
                 react_1.default.createElement("div", { className: "details-left" },
                     react_1.default.createElement("div", { className: "detail-item" },
-                        react_1.default.createElement("strong", null, "Product Name:"),
-                        react_1.default.createElement("p", null, product.name)),
+                        react_1.default.createElement("strong", null, "Product Code:"),
+                        react_1.default.createElement("p", null, product.code)),
                     react_1.default.createElement("div", { className: "detail-item" },
                         react_1.default.createElement("strong", null, "Weight:"),
                         react_1.default.createElement("p", null,
