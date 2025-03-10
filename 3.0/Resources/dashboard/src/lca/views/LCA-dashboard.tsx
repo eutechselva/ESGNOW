@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { IContextProvider } from "@uxp";
-import { getAllProducts, transportDB } from "../../esgnow-service";
+import { calculateTransportDistance, calculateTransportEmission, getAllProducts, transportDB } from "../../esgnow-service";
 
 interface TransportLeg {
     id: number;
@@ -25,11 +25,11 @@ interface TransportLeg {
 }
 
 interface DistanceResponse {
-    data : {
+    
         origin: string;
         destination: string;
         distance_in_km: number;
-    }
+    
    
 }
 
@@ -118,14 +118,16 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         fetchCountries();
     }, []);
 
-    const calculateTransportDistance = async (origin: string, destination: string): Promise<number> => {
+    const distance = async (origin: string, destination: string): Promise<number> => {
         try {
-            const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
-            const response = await fetch(url, {
-                method: 'GET',
-            });
-            const data: DistanceResponse = await response.json();
-            return data.data.distance_in_km;
+            // const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
+            // const response = await fetch(url, {
+            //     method: 'GET',
+            // });
+
+            const response = await calculateTransportDistance(uxpContext, { origin: origin, destination: destination });
+            const data: DistanceResponse = response.data;
+            return data.distance_in_km;
         } catch (error) {
             console.error('Error calculating transport distance:', error);
             return 0;
@@ -165,19 +167,10 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     const calculateSingleLegEmission = async (leg: TransportLeg): Promise<number> => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/calculate-transport-emission`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    weightKg: totalTransportWeight,
-                    transportMode: leg.transportMode,
-                    transportKm: leg.transportDistance,
-                })
-            });
-            const data = await response.json();
-            return parseFloat(data.data.transportEmissions);
+            
+            const response = await calculateTransportEmission(uxpContext, { weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance });
+            const data = await response.data;
+            return parseFloat(data.transportEmissions);
         } catch (error) {
             console.error('Error calculating transport emission:', error);
             return 0;
@@ -272,7 +265,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
                         setTimeout(() => {
-                            calculateTransportDistance(
+                            distance(
                                 updatedLeg.originGateway,
                                 updatedLeg.destinationGateway
                             ).then((distance: number) => {

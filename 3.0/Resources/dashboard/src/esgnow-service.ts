@@ -81,6 +81,14 @@ export async function  classifyManufacturingProcess(uxpContext: IContextProvider
     return executeRequest(uxpContext, `${BaseEndPoint}/classify-manufacturing-process`, RequestMethod.POST, {},payload);
 }
 
+export async function  calculateTransportDistance(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/distance`, RequestMethod.POST, {},payload);
+}
+
+export async function  calculateTransportEmission(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/calculate-transport-emission`, RequestMethod.POST, {},payload);
+}
+
 // Baselines for locations
 export async function getLocationData(uxpContext: IContextProvider, location?: string) {
     let { data, error } = await executeRequest(uxpContext, `${BaseEndPoint}/locationdata${location ? '/' + location : ''}`, RequestMethod.GET, {});

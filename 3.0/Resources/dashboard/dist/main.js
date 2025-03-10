@@ -38673,7 +38673,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38777,6 +38777,18 @@ function classifyManufacturingProcess(uxpContext, payload) {
     });
 }
 exports.classifyManufacturingProcess = classifyManufacturingProcess;
+function calculateTransportDistance(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/distance`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.calculateTransportDistance = calculateTransportDistance;
+function calculateTransportEmission(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/calculate-transport-emission`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.calculateTransportEmission = calculateTransportEmission;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39037,7 +39049,6 @@ __webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/Produc
 const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ./stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
 const react_1 = __webpack_require__(/*! react */ "react");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
@@ -39105,14 +39116,15 @@ const LCADashboardWidget = ({ uxpContext }) => {
         });
         fetchCountries();
     }, []);
-    const calculateTransportDistance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
+    const distance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const url = `${config_1.default}/api/distance?origin=${origin}&destination=${destination}`;
-            const response = yield fetch(url, {
-                method: 'GET',
-            });
-            const data = yield response.json();
-            return data.data.distance_in_km;
+            // const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
+            // const response = await fetch(url, {
+            //     method: 'GET',
+            // });
+            const response = yield (0, esgnow_service_1.calculateTransportDistance)(uxpContext, { origin: origin, destination: destination });
+            const data = response.data;
+            return data.distance_in_km;
         }
         catch (error) {
             console.error('Error calculating transport distance:', error);
@@ -39142,19 +39154,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
     };
     const calculateSingleLegEmission = (leg) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            const response = yield fetch(`${config_1.default}/api/calculate-transport-emission`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    weightKg: totalTransportWeight,
-                    transportMode: leg.transportMode,
-                    transportKm: leg.transportDistance,
-                })
-            });
-            const data = yield response.json();
-            return parseFloat(data.data.transportEmissions);
+            const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, { weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance });
+            const data = yield response.data;
+            return parseFloat(data.transportEmissions);
         }
         catch (error) {
             console.error('Error calculating transport emission:', error);
@@ -39228,7 +39230,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
                         setTimeout(() => {
-                            calculateTransportDistance(updatedLeg.originGateway, updatedLeg.destinationGateway).then((distance) => {
+                            distance(updatedLeg.originGateway, updatedLeg.destinationGateway).then((distance) => {
                                 setTransportLegs(currentLegs => currentLegs.map(currentLeg => currentLeg.id === legId
                                     ? Object.assign(Object.assign({}, currentLeg), { transportDistance: distance, transportEmission: 0 }) : currentLeg));
                             }).catch((error) => {
