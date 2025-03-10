@@ -6,7 +6,6 @@ import { BillMaterial } from "../types/bill-material-type";
 import { ProductManufacturingProcess } from "../types/product-manufacturing-process.type";
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
-import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
 import { classifyManufacturingProcess } from "../../esgnow-service";
 

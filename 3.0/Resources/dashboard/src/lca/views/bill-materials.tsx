@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
-import API_BASE_URL from "../config";
 import { IContextProvider } from "@uxp";
 import { classifyBOM } from "../../esgnow-service";
 

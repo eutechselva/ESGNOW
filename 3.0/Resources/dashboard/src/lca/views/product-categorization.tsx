@@ -5,7 +5,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './product-categorization.scss';
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
-import API_BASE_URL from "../config";
 import { classifyProduct, productCategories } from "../../esgnow-service";
 import { IContextProvider } from "@uxp";
 
