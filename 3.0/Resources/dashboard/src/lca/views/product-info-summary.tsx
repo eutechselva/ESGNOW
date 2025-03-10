@@ -13,22 +13,24 @@ interface ProductInfoSummaryProps {
     onClose: () => void;
     onDelete: () => void;
     hideHeader?: boolean;
+    hideDelete?: boolean;
     uxpContext: IContextProvider;
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader ,uxpContext }) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showModal, setShowModal] = React.useState(false);
 
 
+
     const toggleExpand = () => setIsExpanded(!isExpanded);
 
     const deleteProduct = async () => {
-        await deleteProductByID( uxpContext, {_id :product._id});
+        await deleteProductByID(uxpContext, { _id: product._id });
         onClose();
-        
+
     }
 
     const donutChartOptions: Highcharts.Options = {
@@ -124,7 +126,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     <>
                         <h1 className="dashboard-title">Product Summary</h1>
                         <p className="subheading">Product Code : {product.code}</p>
-                       
+
 
                         <Button
                             title="Go back"
@@ -132,10 +134,11 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             className="back-button"
                         /></>
                 )}
-                 <Button title="Delete" onClick={() => deleteProduct()} className="delete-button">
-                       Delete
-                    </Button> 
-
+                {!hideDelete && (
+                    <Button title="Delete" onClick={() => deleteProduct()} className="delete-button">
+                        Delete
+                    </Button>
+                )}
                 {showDeleteConfirm && (
                     <Modal
                         show={showModal}
