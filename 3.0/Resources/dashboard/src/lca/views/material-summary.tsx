@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./material-summary.scss";
-import { Button, Input, Select } from "uxp/components";
+import { Button, Input, Select,IconButton } from "uxp/components";
 
 type Material = {
     materialClass: string;
@@ -22,6 +22,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
     const specificMaterialOptions = [
         { label: "Oak", value: "Oak" },
         { label: "Maple", value: "Maple" },
+        
     ];
 
     const unitOptions = [
@@ -100,9 +101,17 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                                 {editingIndex === index ? (
                                     <Button title="Save" onClick={() => handleSaveClick(index)} className="save-materials-button" />
                                 ) : (
-                                    <Button title="Edit" onClick={() => handleEditClick(index, material)} className="edit-button" />
+                                    <IconButton
+                                        type="edit"
+                                        onClick={() => handleEditClick(index, material)}
+                                        className="edit-button"
+                                    />
                                 )}
-                                <Button title="Delete" onClick={() => onDelete(index)} className="delete-button" />
+                              <IconButton
+                                        type="delete"
+                                        onClick={() => onDelete(index)}
+                                        className="delete-button"
+                                    />
                             </td>
                         </tr>
                     ))}
