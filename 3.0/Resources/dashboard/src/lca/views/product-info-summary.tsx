@@ -165,36 +165,42 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
                     <div className="image-label">{`${product.co2Emission}  Kg CO₂e`}</div>
                 </div>
+
                 <div className="summary-details">
-                    <div className="details-left">
-                        <div className="detail-item">
-                            <strong>Product Code:</strong>
-                            <p>{product.code}</p>
-                        </div>
-
-                        <div className="detail-item">
-                            <strong>Weight:</strong>
-                            <p>{product.weight} Kg</p>
-                        </div>
-                        <div className="detail-item">
-                            <strong>Category:</strong>
-                            <p>{product.category}</p>
-                        </div>
-                        <div className="detail-item">
-                            <strong>SubCategory:</strong>
-                            <p>{product.subCategory}</p>
-                        </div>
-
+                    {/* First row - 3 items */}
+                    <div className="detail-item">
+                        <strong>Project Code</strong>
+                        <p>{product.code}</p>
                     </div>
-                    <div className="details-right">
-                        <div className="description-field">
-                            <strong>Description:</strong>
-                            <p>{product.description}</p>
-                        </div>
-
-
-
+                    <div className="detail-item">
+                        <strong>Product Category:</strong>
+                        <p>{product.category}</p>
                     </div>
+                    <div className="detail-item">
+                        <strong>Sub Category:</strong>
+                        <p>{product.subCategory}</p>
+                    </div>
+                    
+                    {/* Second row - 2 items */}
+                    <div className="detail-item">
+                        <strong>Weight</strong>
+                        <p>{product.weight} Kg</p>
+                    </div>
+                    <div className="detail-item">
+                    <strong>Country of Manufacture</strong>
+                    <p>
+                        {product.countryOfOrigin === "CN" ? "China" : 
+                        product.countryOfOrigin === "VN" ? "Vietnam" : 
+                        product.countryOfOrigin}
+                    </p>
+                </div>
+                    
+                    {/* Last row - description */}
+                    <div className="description-field">
+                        <strong>Product Description:</strong>
+                        <p>{product.description}</p>
+                    </div>
+                    <div className="expandable-icon"></div>
                 </div>
             </div>
 

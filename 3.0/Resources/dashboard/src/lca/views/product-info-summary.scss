@@ -4,20 +4,18 @@
     display: flex;
     align-items: flex-start;
     padding: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #e0e0e0;
     border-radius: 8px;
-    background-color: #f3f3f3;
+    background-color: #f2f2f2;
     width: auto;
-    // margin-top: 20px;
-    // max-width: 800px;
     margin: 0 auto;
-    height: 250px;
+    height: auto;
 
     .summary-image {
         position: relative;
-        width: 200px;
-        height: 200px;
-        border-radius: 8px;
+        width: 220px;
+        height: 220px;
+        border-radius: 0;
         background-color: #ffffff; 
         display: flex;
         align-items: center;
@@ -26,37 +24,77 @@
         background-position: center;
         margin-right: 20px;
         font-size: 16px;
-    
+        border: 1px solid #e0e0e0;
         .image-label {
             position: absolute;
             top: 10px; 
             right: 10px; 
-            background-color:#e6f7ff; 
+            background-color: #e6f7ff; 
             color: #007acc; 
             padding: 5px 10px; 
             border-radius: 6px; 
             font-size: 14px; 
-            font-weight: bold; 
+            font-weight: bold;
         }
     }
 
     .summary-details {
         display: flex;
-        font-size: 12px;
-        width: 80%;
-        gap: 20px;
+        font-size: 14px;
+        width: calc(100% - 240px);
+        flex-wrap: wrap;
 
-        .details-left{
-            width: 250px;
-        }
-        .details-right {
-            flex: 1;
+        .details-left, .details-right {
+            width: 50%;
+            padding-right: 20px;
         }
         
-        .detail-item{
-            width: 200px;
+        .detail-item {
+            margin-bottom: 15px;
+            width: 33.33%;
+            padding-right: 15px;
+            box-sizing: border-box;
+            
+            strong {
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 5px;
+                display: block;
+                font-size: 15px;
+            }
+            
+            p {
+                margin: 0;
+                color: #666;
+                font-weight: 400;
+                font-size: 15px;
+            }
         }
-        
+        .description-field {
+            margin-top: 10px;
+            width: 100%;
+            
+            strong {
+                display: block;
+                font-weight: 600;
+                color: #333;
+                margin-bottom: 5px;
+                font-size: 15px;
+            }
+            
+            p {
+                margin: 0;
+                color: #666;
+                line-height: 1.5;
+                font-size: 15px;
+                background-color: #fff;
+                padding: 10px;
+                border-radius: 4px;
+                height: auto;
+                max-height: 100px;
+                overflow-y: auto;
+            }
+        }
 
         .close-button {
             margin-top: 60px;
@@ -76,7 +114,17 @@
 }
 
 
-
+.expandable-icon {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #333;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
 
 .inventory-section {
     margin-top: 20px;

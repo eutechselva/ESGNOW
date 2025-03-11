@@ -8,6 +8,8 @@ import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { IContextProvider } from "@uxp";
 import { classifyManufacturingProcess } from "../../esgnow-service";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ProductManufacturingProps {
     productCategoryData: ProductCategoryInfo;
@@ -31,6 +33,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     const [aiGeneratingProcess, setAIGeneratingProcess] = useState<boolean>(false);
     const [editingProcess, setEditingProcess] = useState<{ materialClass: string, processIndex: number } | null>(null);
     const [editedProcess, setEditedProcess] = useState<ProductManufacturingProcess | null>(null);
+    const [showTooltip, setShowTooltip] = useState<boolean>(false);
 
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
@@ -150,6 +153,19 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             <div className="entry-type-select">
                 <label htmlFor="entryType" className="select-method-label">
                     Select Method
+                <span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                    Use AI Assist to suggest processes based on product details provided, 
+                                    or manually choose them if the information is available.
+                            </div>
+                        )}
+                    </span>
                 </label>
                 <Select
                     options={entryOptions}
@@ -186,7 +202,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
 
             {Object.keys(selectedProcesses).length > 0 && (
                 <div className="process-summary">
-                    <h3>Manufacturing Processes Summary ({entryType === "manual" ? "Manual" : "AI"})</h3>
+                    {/* <h3>Manufacturing Processes Summary ({entryType === "manual" ? "Manual" : "AI"})</h3> */}
                     <table className="summary-table">
                         <thead>
                             <tr>
