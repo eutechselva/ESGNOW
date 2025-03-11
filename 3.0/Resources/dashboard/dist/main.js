@@ -39156,6 +39156,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
     };
     const calculateSingleLegEmission = (leg) => __awaiter(void 0, void 0, void 0, function* () {
         try {
+            debugger;
             const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, { weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance });
             const data = yield response.data;
             return parseFloat(data.transportEmissions);
@@ -39450,7 +39451,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
-        if (activeStep === 1) {
+        if (activeStep === 2) {
             calculateTransportationEmission();
         }
     };

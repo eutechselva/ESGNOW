@@ -163,7 +163,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     const calculateSingleLegEmission = async (leg: TransportLeg): Promise<number> => {
         try {
-            
+            debugger;
             const response = await calculateTransportEmission(uxpContext, { weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance });
             const data = await response.data;
             return parseFloat(data.transportEmissions);
@@ -693,7 +693,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
-        if (activeStep === 1) {
+        if (activeStep === 2) {
 
             calculateTransportationEmission();
         }
