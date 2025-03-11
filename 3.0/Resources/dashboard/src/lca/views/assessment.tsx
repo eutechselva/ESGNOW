@@ -18,8 +18,6 @@ interface AssessmentProps {
 
 const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose }) => {
 
-  debugger;
-
   return (
     <div className="assessment-container">
       <h1 className="assessment-title">Your PCF has been Successfully Calculated!</h1>

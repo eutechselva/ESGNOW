@@ -38673,7 +38673,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -38789,6 +38789,12 @@ function calculateTransportEmission(uxpContext, payload) {
     });
 }
 exports.calculateTransportEmission = calculateTransportEmission;
+function projectProductMapping(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.projectProductMapping = projectProductMapping;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -39118,10 +39124,6 @@ const LCADashboardWidget = ({ uxpContext }) => {
     }, []);
     const distance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            // const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
-            // const response = await fetch(url, {
-            //     method: 'GET',
-            // });
             const response = yield (0, esgnow_service_1.calculateTransportDistance)(uxpContext, { origin: origin, destination: destination });
             const data = response.data;
             return data.distance_in_km;
@@ -39523,7 +39525,6 @@ __webpack_require__(/*! ./assessment.scss */ "./src/lca/views/assessment.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const Assessment = ({ newlyCreatedProduct, onClose }) => {
     var _a;
-    debugger;
     return (react_1.default.createElement("div", { className: "assessment-container" },
         react_1.default.createElement("h1", { className: "assessment-title" }, "Your PCF has been Successfully Calculated!"),
         react_1.default.createElement("div", { className: "product-info" },
@@ -39923,7 +39924,6 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const components_2 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
@@ -39953,7 +39953,6 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                     name: projectName,
                 };
                 const projectResponse = yield (0, esgnow_service_1.createProject)(uxpContext, createProjectPayload);
-                debugger;
                 const createProjectProductMapPayload = {
                     projectID: projectResponse.data._id,
                     productID: product._id,
@@ -39986,22 +39985,16 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             setIsLoading(true);
             setError(null);
             try {
-                const mappingResponse = yield fetch(`${config_1.default}/api/project-product-mapping`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        projectCode: selectedProject,
-                        product,
-                        transportationEmission,
-                        transportLegs
-                    }),
+                const mappingResponse = yield (0, esgnow_service_1.projectProductMapping)(uxpContext, {
+                    projectCode: selectedProject,
+                    product,
+                    transportationEmission,
+                    transportLegs
                 });
-                if (!mappingResponse.ok) {
+                if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
-                const savedMapping = yield mappingResponse.json();
+                const savedMapping = yield mappingResponse.data;
                 console.log('Mapping saved successfully:', savedMapping);
                 onClose();
             }
@@ -42113,22 +42106,22 @@ const Projects = (props) => {
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
-            label: "Total Impact",
+            label: "Carbon Footprint (KgCO2e)",
             render: (row) => `${row.totalProjectImpact.toFixed(2)} KgCO2e`
         },
         {
             id: "totalMaterialsImpact",
-            label: "Impact by Materials",
+            label: "Materials (KgCO2e)",
             render: (row) => `${row.totalMaterialsImpact.toFixed(2)} KgCO2e`
         },
         {
             id: "totalManufacturingImpact",
-            label: "Impact by Manufacturing",
+            label: "Manufacturing (KgCO2e)",
             render: (row) => `${row.totalManufacturingImpact.toFixed(2)} KgCO2e`
         },
         {
             id: "totalTransportationImpact",
-            label: "Impact by Transportation",
+            label: "Transportation (KgCO2e)",
             render: (row) => `${row.totalTransportationImpact.toFixed(2)} KgCO2e`
         },
     ];

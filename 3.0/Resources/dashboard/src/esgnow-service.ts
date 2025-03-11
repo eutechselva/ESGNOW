@@ -89,6 +89,10 @@ export async function  calculateTransportEmission(uxpContext: IContextProvider ,
     return executeRequest(uxpContext, `${BaseEndPoint}/calculate-transport-emission`, RequestMethod.POST, {},payload);
 }
 
+export async function  projectProductMapping(uxpContext: IContextProvider , payload: any) {
+    return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, RequestMethod.POST, {},payload);
+}
+
 // Baselines for locations
 export async function getLocationData(uxpContext: IContextProvider, location?: string) {
     let { data, error } = await executeRequest(uxpContext, `${BaseEndPoint}/locationdata${location ? '/' + location : ''}`, RequestMethod.GET, {});

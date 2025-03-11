@@ -6,7 +6,7 @@ import { TransportLeg } from '../types/transport-leg.type';
 import API_BASE_URL from "../config";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
-import { createProject, createProjectProductMap } from "../../esgnow-service";
+import { createProject, createProjectProductMap, projectProductMapping } from "../../esgnow-service";
 import { IContextProvider } from '@uxp';
 
 interface SaveResultsModalProps {
@@ -67,8 +67,6 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
 
                 const projectResponse = await createProject(uxpContext, createProjectPayload);
 
-
-                debugger;
                 const createProjectProductMapPayload = {
                     projectID: projectResponse.data._id,
                     productID: product._id,
@@ -103,24 +101,19 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
             setError(null);
 
             try {
-                const mappingResponse = await fetch(`${API_BASE_URL}/api/project-product-mapping`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        projectCode: selectedProject,
-                        product,
-                        transportationEmission,
-                        transportLegs
-                    }),
+                
+                const mappingResponse = await projectProductMapping(uxpContext, {
+                    projectCode: selectedProject,
+                    product,
+                    transportationEmission,
+                    transportLegs
                 });
 
-                if (!mappingResponse.ok) {
+                if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
 
-                const savedMapping = await mappingResponse.json();
+                const savedMapping = await mappingResponse.data;
                 console.log('Mapping saved successfully:', savedMapping);
                 onClose();
             } catch (err) {

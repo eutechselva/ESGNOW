@@ -120,10 +120,6 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     const distance = async (origin: string, destination: string): Promise<number> => {
         try {
-            // const url = `${API_BASE_URL}/api/distance?origin=${origin}&destination=${destination}`;
-            // const response = await fetch(url, {
-            //     method: 'GET',
-            // });
 
             const response = await calculateTransportDistance(uxpContext, { origin: origin, destination: destination });
             const data: DistanceResponse = response.data;
