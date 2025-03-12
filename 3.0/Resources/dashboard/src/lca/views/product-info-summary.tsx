@@ -194,13 +194,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         product.countryOfOrigin}
                     </p>
                 </div>
-                    
-                    {/* Last row - description */}
                     <div className="description-field">
                         <strong>Product Description:</strong>
                         <p>{product.description}</p>
                     </div>
-                    <div className="expandable-icon"></div>
                 </div>
             </div>
 
