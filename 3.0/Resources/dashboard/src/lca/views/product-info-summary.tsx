@@ -194,13 +194,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         product.countryOfOrigin}
                     </p>
                 </div>
-                    
-                    {/* Last row - description */}
                     <div className="description-field">
                         <strong>Product Description:</strong>
                         <p>{product.description}</p>
                     </div>
-                    <div className="expandable-icon"></div>
                 </div>
             </div>
 
@@ -309,8 +306,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             </div>
 
 
-            <div className="inventory-section">
-                <div className="inventory-header">
+            <div className="widget contribution-manufacturing">
+                <div>
                     <h3>Inventory Information</h3>
                     {/* <div className="view-toggle">
                         <button
@@ -342,7 +339,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         )}
                     </div>
                 ) : (
-                    <div className="inventory-list">
+                    <div className="widget-content">
                         <table>
                             <thead>
                                 <tr>

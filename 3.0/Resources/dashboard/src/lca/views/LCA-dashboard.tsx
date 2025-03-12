@@ -405,9 +405,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     className="highlighted-select"
                                     options={[
                                         { label: "SeaFreight", value: "SeaFreight" },
-                                        { label: "RoadFreight", value: "RoadFreight" },
-                                        { label: "RailFreight", value: "RailFreight" },
-                                        { label: "AirFreight", value: "AirFreight" },
+                                        // { label: "RoadFreight", value: "RoadFreight" },
+                                        // { label: "RailFreight", value: "RailFreight" },
+                                        // { label: "AirFreight", value: "AirFreight" },
                                     ]}
                                     placeholder="Select Transport Mode"
                                     selected={leg.transportMode}
@@ -603,7 +603,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             title: "SUMMARY",
             content: (
                 <div>
-                    <h2>SUMMARY</h2>
+                    {/* <h2>SUMMARY</h2> */}
 
                     {/* Product Details */}
                     <div className="summary-section">
@@ -632,12 +632,12 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     <span>{leg.originCountry}</span>
                                 </div>
                                 <div className="summary-row">
-                                    <span>Destination Country</span>
-                                    <span>{leg.destinationCountry}</span>
-                                </div>
-                                <div className="summary-row">
                                     <span>Origin Gateway</span>
                                     <span>{leg.originGateway}</span>
+                                </div>
+                                <div className="summary-row">
+                                    <span>Destination Country</span>
+                                    <span>{leg.destinationCountry}</span>
                                 </div>
                                 <div className="summary-row">
                                     <span>Destination Gateway</span>
@@ -652,7 +652,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     <span>{leg.transportDistance} Km</span>
                                 </div>
                                 <div className="summary-row">
-                                    <span>Estimated Emissions</span>
+                                    <span>Carbon Footprint - Transportation</span>
                                     <span>{leg.transportEmission.toFixed(2)} Kg CO2e</span>
                                 </div>
                             </div>
