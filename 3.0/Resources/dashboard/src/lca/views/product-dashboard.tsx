@@ -1,11 +1,10 @@
 import * as React from "react";
-import { Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select } from "uxp/components";
+import { Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select, useAlert } from "uxp/components";
 import './ProductDashboardWidget.scss';
 import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
 import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 interface IWidgetProps {
     uxpContext: IContextProvider
 }
@@ -20,6 +19,8 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
+
+    const alerts = useAlert();
 
 
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -248,7 +249,22 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             )}
             <ProductWizard
                 show={showModal}
-                onClose={() => setShowModal(false)} uxpContext={uxpContext}
+                onClose={async () =>  {
+                    if(showModal){
+                        const confirmed = await alerts.confirm({
+                            title: 'Are you sure?',
+                            content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                        })
+                        confirmed ? setShowModal(false) : null
+                    }
+                    else{
+                        setShowModal(false)
+                    }
+                    
+    
+                } 
+                } 
+                uxpContext={uxpContext}
                 onProductCreated={() => {
                     // Refresh the product list after a new product is created
                     getAllProducts(uxpContext).then(response => {

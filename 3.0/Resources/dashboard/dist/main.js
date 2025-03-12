@@ -40962,6 +40962,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
+    const alerts = (0, components_1.useAlert)();
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
     // Calculate pagination
@@ -41070,7 +41071,18 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                             "CO2 Emission: ",
                             item.co2Emission + ' Kg CO2e')))))))),
             React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: uxpContext, onProductCreated: () => {
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
+                if (showModal) {
+                    const confirmed = yield alerts.confirm({
+                        title: 'Are you sure?',
+                        content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                    });
+                    confirmed ? setShowModal(false) : null;
+                }
+                else {
+                    setShowModal(false);
+                }
+            }), uxpContext: uxpContext, onProductCreated: () => {
                 // Refresh the product list after a new product is created
                 (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
                     setProducts(response.data);
