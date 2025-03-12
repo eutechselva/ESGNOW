@@ -39308,9 +39308,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
                             React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
                         React.createElement(components_1.Select, { className: "highlighted-select", options: [
                                 { label: "SeaFreight", value: "SeaFreight" },
-                                { label: "RoadFreight", value: "RoadFreight" },
-                                { label: "RailFreight", value: "RailFreight" },
-                                { label: "AirFreight", value: "AirFreight" },
+                                // { label: "RoadFreight", value: "RoadFreight" },
+                                // { label: "RailFreight", value: "RailFreight" },
+                                // { label: "AirFreight", value: "AirFreight" },
                             ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
                 React.createElement("div", { className: "add-transport-leg-container" },
                     React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg })))),
@@ -41342,8 +41342,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                             " %")));
                                 });
                             })())))))),
-        react_1.default.createElement("div", { className: "inventory-section" },
-            react_1.default.createElement("div", { className: "inventory-header" },
+        react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
+            react_1.default.createElement("div", null,
                 react_1.default.createElement("h3", null, "Inventory Information")),
             viewMode === 'tree' ? (react_1.default.createElement("div", { className: "inventory-tree" },
                 react_1.default.createElement("div", { className: "tree-item", onClick: toggleExpand },
@@ -41353,7 +41353,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                 isExpanded && (react_1.default.createElement("div", { className: "tree-children" },
                     react_1.default.createElement("div", { className: "tree-sub-item" }, "Aluminium Frame"),
                     react_1.default.createElement("div", { className: "tree-sub-item" }, "Glass pane"),
-                    react_1.default.createElement("div", { className: "tree-sub-item" }, "Latch"))))) : (react_1.default.createElement("div", { className: "inventory-list" },
+                    react_1.default.createElement("div", { className: "tree-sub-item" }, "Latch"))))) : (react_1.default.createElement("div", { className: "widget-content" },
                 react_1.default.createElement("table", null,
                     react_1.default.createElement("thead", null,
                         react_1.default.createElement("tr", null,

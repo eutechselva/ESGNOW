@@ -309,8 +309,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             </div>
 
 
-            <div className="inventory-section">
-                <div className="inventory-header">
+            <div className="widget contribution-manufacturing">
+                <div>
                     <h3>Inventory Information</h3>
                     {/* <div className="view-toggle">
                         <button
@@ -342,7 +342,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         )}
                     </div>
                 ) : (
-                    <div className="inventory-list">
+                    <div className="widget-content">
                         <table>
                             <thead>
                                 <tr>

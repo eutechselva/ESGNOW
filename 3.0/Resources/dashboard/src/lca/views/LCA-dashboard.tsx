@@ -405,9 +405,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     className="highlighted-select"
                                     options={[
                                         { label: "SeaFreight", value: "SeaFreight" },
-                                        { label: "RoadFreight", value: "RoadFreight" },
-                                        { label: "RailFreight", value: "RailFreight" },
-                                        { label: "AirFreight", value: "AirFreight" },
+                                        // { label: "RoadFreight", value: "RoadFreight" },
+                                        // { label: "RailFreight", value: "RailFreight" },
+                                        // { label: "AirFreight", value: "AirFreight" },
                                     ]}
                                     placeholder="Select Transport Mode"
                                     selected={leg.transportMode}
