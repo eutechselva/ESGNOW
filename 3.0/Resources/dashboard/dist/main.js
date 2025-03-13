@@ -40295,16 +40295,8 @@ __webpack_require__(/*! ./home.scss */ "./src/lca/views/home.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const HomeDashboard = ({ uxpContext }) => {
-    const data = [
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P12345', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 15.2, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-05' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-    ];
     const [searchValue, setSearchValue] = (0, react_1.useState)('');
     const [inputValue, setInputValue] = (0, react_1.useState)('');
-    const [selected, setSelected] = (0, react_1.useState)(null);
     const [totalProducts, setTotalProducts] = (0, react_1.useState)([]);
     const [totalImpact, setTotalImpact] = (0, react_1.useState)([]);
     const [totalProjects, setTotalProjects] = (0, react_1.useState)([]);

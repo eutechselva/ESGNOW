@@ -105,6 +105,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
     return (
         <div className="content">
+            
             {/* <div className="toggle-buttons">
                 <Button
                     title="Product Info"

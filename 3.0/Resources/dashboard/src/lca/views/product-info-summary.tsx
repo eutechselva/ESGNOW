@@ -23,14 +23,11 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
     const [showModal, setShowModal] = React.useState(false);
 
-
-
     const toggleExpand = () => setIsExpanded(!isExpanded);
 
     const deleteProduct = async () => {
         await deleteProductByID(uxpContext, { _id: product._id });
         onClose();
-
     }
 
     const donutChartOptions: Highcharts.Options = {

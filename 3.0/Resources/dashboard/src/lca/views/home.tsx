@@ -1,5 +1,5 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Input, FormField, Label, Select, TableComponent, SearchBox, FilterPanel, CRUDComponent, Modal } from 'uxp/components';
+import React, { useCallback, useMemo, useState } from 'react';
+import {  CRUDComponent, Modal } from 'uxp/components';
 import './home.scss';
 import { getAllProducts, home } from '../../esgnow-service';
 import { IContextProvider } from '@uxp';
@@ -10,17 +10,10 @@ interface IHomeDashboardWidgetProps {
 }
 
 const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
-    const data = [
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P12345', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 15.2, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-05' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-        { ProductImage: 'https://via.placeholder.com/50', ProductCode: 'P67890', ProductName: 'Black Executive Office Chair - Leather/Fabric - Arm & Headrest -Domino', TotalImpact: 20.5, MainCategory: 'Furniture', SubCategory: 'Chair', Date: '2025-02-04' },
-    ];
 
     const [searchValue, setSearchValue] = useState('');
     const [inputValue, setInputValue] = useState('');
-    const [selected, setSelected] = useState<string | null>(null);
+   
     const [totalProducts, setTotalProducts] = useState<any[]>([]);
     const[totalImpact, setTotalImpact] = useState<any[]>([]);
     const[totalProjects, setTotalProjects] = useState<any[]>([]);
@@ -35,10 +28,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
         setSearchValue(value);
     };
      React.useEffect(() => {
-    
             const fetchProductData = async () => {
                 try {
-    
                     const response = await getAllProducts(uxpContext);
     
                     let data = response.data;
@@ -136,8 +127,6 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
             <div className="recent-projects-container">
                 <div className="recent-projects">
-                    
-                    
                     <CRUDComponent
                                     list={{
                                         title: 'Recent Products',
