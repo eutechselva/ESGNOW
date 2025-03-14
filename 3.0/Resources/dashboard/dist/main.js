@@ -39627,6 +39627,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
     const [editIndex, setEditIndex] = (0, react_1.useState)(null);
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
     const [aiGeneratingBOM, setAIGeneratingBOM] = (0, react_1.useState)(false);
+    const [plan, setPlan] = (0, react_1.useState)(null);
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
@@ -39644,7 +39645,8 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             if (!response.data) {
                 throw new Error("Failed to fetch materials from API");
             }
-            const data = yield response.data;
+            const data = yield response.data.bom;
+            setPlan(response.data.plan);
             const apiMaterials = data.map((material) => ({
                 materialClass: material.materialClass,
                 specificMaterial: material.specificMaterial,
@@ -39712,7 +39714,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
         aiGeneratingBOM && react_1.default.createElement("div", { className: "ai-generating-bom" }, "Generating Bill of Materials..."),
         showMaterialEntry && entryType === "manual" && (react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined })),
         (materials.length > 0 && entryType === "ai") && (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(material_summary_1.default, { materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete }),
+            react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete }),
             react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
 };
 exports["default"] = BillMaterials;
@@ -40302,6 +40304,7 @@ const HomeDashboard = ({ uxpContext }) => {
     const [totalProjects, setTotalProjects] = (0, react_1.useState)([]);
     const [totalCredits, setTotalCredits] = (0, react_1.useState)([]);
     const [products, setProducts] = react_1.default.useState([]);
+    const [plan, setPlan] = (0, react_1.useState)(null);
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     const [item, setItem] = (0, react_1.useState)();
     const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
@@ -40312,7 +40315,8 @@ const HomeDashboard = ({ uxpContext }) => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-                let data = response.data;
+                let data = response.data.products;
+                setPlan(response.data.plan);
                 setProducts(data);
             }
             catch (error) {
@@ -40340,7 +40344,7 @@ const HomeDashboard = ({ uxpContext }) => {
     }), []);
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(components_1.Modal, { title: `Product : ${(item === null || item === void 0 ? void 0 : item.name) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) },
-            react_1.default.createElement(product_info_summary_1.default, { product: item, onClose: () => setShowModal(false), onDelete: function () {
+            react_1.default.createElement(product_info_summary_1.default, { plan: plan, product: item, onClose: () => setShowModal(false), onDelete: function () {
                     throw new Error('Function not implemented.');
                 }, hideHeader: true, hideDelete: true, uxpContext: uxpContext })),
         react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
@@ -40552,7 +40556,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const MaterialSummary = ({ materials, onEdit, onDelete }) => {
+const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
     const [editedData, setEditedData] = (0, react_1.useState)(null);
     const specificMaterialOptions = [
@@ -40583,12 +40587,12 @@ const MaterialSummary = ({ materials, onEdit, onDelete }) => {
             react_1.default.createElement("thead", null,
                 react_1.default.createElement("tr", null,
                     react_1.default.createElement("th", null, "Material Class"),
-                    react_1.default.createElement("th", null, "Specific Material"),
+                    plan !== "basic" && (react_1.default.createElement("th", null, "Specific Material")),
                     react_1.default.createElement("th", null, "Material Weight"),
                     react_1.default.createElement("th", null, "Actions"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
                 react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Input, { value: (editedData === null || editedData === void 0 ? void 0 : editedData.materialClass) || "", onChange: (val) => handleChange("materialClass", val) })) : (material.materialClass)),
-                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial)),
+                plan !== "basic" && (react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial))),
                 react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement("div", { className: "weight-unit-input" },
                     react_1.default.createElement(components_1.Input, { className: "weight-input-field", value: (editedData === null || editedData === void 0 ? void 0 : editedData.weight) || "", onChange: (val) => handleChange("weight", val) }),
                     react_1.default.createElement(components_1.Select, { options: unitOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.unit) || unitOptions[0].value, onChange: (newValue) => handleChange("unit", newValue) }))) : (`${material.weight} ${material.unit}`)),
@@ -40954,6 +40958,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
+    const [plan, setPlan] = React.useState(null);
     const alerts = (0, components_1.useAlert)();
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
@@ -41077,10 +41082,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
             }), uxpContext: uxpContext, onProductCreated: () => {
                 // Refresh the product list after a new product is created
                 (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
-                    setProducts(response.data);
+                    setProducts(response.data.products);
                 });
             } }),
-        selectedProduct && (React.createElement(product_info_summary_1.default, { uxpContext: uxpContext, product: selectedProduct, hideHeader: false, onClose: () => {
+        selectedProduct && (React.createElement(product_info_summary_1.default, { plan: plan, uxpContext: uxpContext, product: selectedProduct, hideHeader: false, onClose: () => {
                 setSelectedProduct(null);
                 (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
                     setProducts(response.data);
@@ -41144,7 +41149,7 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete }) => {
+const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete, plan }) => {
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = (0, react_1.useState)(false);
@@ -41291,7 +41296,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                             react_1.default.createElement("thead", null,
                                 react_1.default.createElement("tr", null,
                                     react_1.default.createElement("th", null, "Material Class"),
-                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    plan == 'basic' && (react_1.default.createElement("th", null, "Specific Material")),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
                             react_1.default.createElement("tbody", null, (() => {
@@ -41306,7 +41311,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                         : 0;
                                     return (react_1.default.createElement("tr", { key: item.materialClass },
                                         react_1.default.createElement("td", null, item.materialClass),
-                                        react_1.default.createElement("td", null, item.specificMaterial),
+                                        plan == 'basic' && (react_1.default.createElement("td", null, item.specificMaterial)),
                                         react_1.default.createElement("td", null,
                                             parseFloat(item.emissionFactor).toFixed(2),
                                             " KgCO\u2082e"),
@@ -41362,7 +41367,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     react_1.default.createElement("thead", null,
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, "Material Class"),
-                            react_1.default.createElement("th", null, "Specific Material"),
+                            plan == 'basic' && (react_1.default.createElement("th", null, "Specific Material")),
                             react_1.default.createElement("th", null, "Weight"),
                             react_1.default.createElement("th", null, "Manufacturing Process"),
                             react_1.default.createElement("th", null, "Sub Process"))),
@@ -41370,7 +41375,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     // @ts-ignore
                     product.productManufacturingProcess.map((item) => (react_1.default.createElement("tr", { key: item.materialClass },
                         react_1.default.createElement("td", null, item.materialClass),
-                        react_1.default.createElement("td", null, item.specificMaterial),
+                        plan == 'basic' && (react_1.default.createElement("td", null, item.specificMaterial)),
                         react_1.default.createElement("td", null,
                             item.weight,
                             " Kg"),

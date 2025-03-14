@@ -7,6 +7,7 @@ import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
 interface IWidgetProps {
     uxpContext: IContextProvider
+    plan : string;
 }
 
 const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
@@ -19,6 +20,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
+    const [plan, setPlan] = React.useState<string>(null);
 
     const alerts = useAlert();
 
@@ -269,7 +271,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 onProductCreated={() => {
                     // Refresh the product list after a new product is created
                     getAllProducts(uxpContext).then(response => {
-                        setProducts(response.data);
+                        setProducts(response.data.products);
                     });
                 }}
             />
@@ -277,6 +279,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             {/* Product summary screen */}
             {selectedProduct && (
                 <ProductInfoSummary
+                    plan={plan}
                     uxpContext={uxpContext}
                     product={selectedProduct}
                     hideHeader={false}

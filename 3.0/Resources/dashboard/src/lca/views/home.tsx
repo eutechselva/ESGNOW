@@ -19,6 +19,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const[totalProjects, setTotalProjects] = useState<any[]>([]);
     const[totalCredits, setTotalCredits] = useState<any[]>([]);
     const [products, setProducts] = React.useState([]);
+    const [plan, setPlan] = useState<string>(null);
      const [showModal, setShowModal] = useState(false);
         const [item, setItem] = useState<any>();
 
@@ -32,7 +33,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 try {
                     const response = await getAllProducts(uxpContext);
     
-                    let data = response.data;
+                    let data = response.data.products;
+                    setPlan(response.data.plan);
     
                     setProducts(data);
                 } catch (error) {
@@ -74,6 +76,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
         <>
         <Modal title={`Product : ${item?.name || 'N/A'}`}  show={showModal} onClose={() => setShowModal(false)}>
                 <ProductInfoSummary
+                    plan={plan}
                     product={item}
                     onClose={() => setShowModal(false)} 
                     onDelete={function (): void {

@@ -10,6 +10,7 @@ import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { IContextProvider } from "@uxp";
 import { classifyBOM } from "../../esgnow-service";
+import { set } from "lodash";
 
 interface BillMaterialProps {
     productCategoryData: ProductCategoryInfo;
@@ -25,6 +26,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     const [editIndex, setEditIndex] = useState<number | null>(null);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
     const [aiGeneratingBOM, setAIGeneratingBOM] = useState<boolean>(false);
+    const [plan, setPlan] = useState<string>(null);
 
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
@@ -47,7 +49,8 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 throw new Error("Failed to fetch materials from API");
             }
 
-            const data = await response.data;
+            const data = await response.data.bom;
+            setPlan(response.data.plan);
 
             const apiMaterials = data.map((material: any) => ({
                 materialClass: material.materialClass,
@@ -163,6 +166,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
             {(materials.length > 0 && entryType === "ai") && (
                 <>
                  <MaterialSummary
+                 plan={plan}
                         materials={materials}
                         onEdit={handleMaterialEdit}
                         onDelete={handleMaterialDelete}
