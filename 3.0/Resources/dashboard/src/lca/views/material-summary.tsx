@@ -28,7 +28,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
 
     const unitOptions = [
         { label: "kg", value: "kg" },
-        { label: "lbs", value: "lbs" },
+        // { label: "lbs", value: "lbs" },
     ];
 
     const handleEditClick = (index: number, material: Material) => {
@@ -65,7 +65,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                         <tr key={index}>
                             <td>
                                 {editingIndex === index ? (
-                                    <Input
+                                    <Input className="material-class-input"
                                         value={editedData?.materialClass || ""}
                                         onChange={(val) => handleChange("materialClass", val)}
                                     />
@@ -89,20 +89,18 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                             )}
                             
                             <td>
-                                
-                                    {editingIndex === index ? (
-                                        <div className="weight-unit-input">
-                                            <Input className="weight-input-field" value={editedData?.weight || ""} onChange={(val) => handleChange("weight", val)} />
-                                            <Select
-                                                options={unitOptions}
-                                                selected={editedData?.unit || unitOptions[0].value}
-                                                onChange={(newValue) => handleChange("unit", newValue)}
-                                            />
-                                        </div>
-                                    ) : (
-                                        `${material.weight} ${material.unit}`
-                                    )}
-                                
+                                {editingIndex === index ? (
+                                    <div className="weight-unit-input">
+                                        <Input className="weight-input-field" value={editedData?.weight || ""} onChange={(val) => handleChange("weight", val)} />
+                                        <Select className="unit-select-field"
+                                            options={unitOptions}
+                                            selected={editedData?.unit || unitOptions[0].value}
+                                            onChange={(newValue) => handleChange("unit", newValue)}
+                                        />
+                                    </div>
+                                ) : (
+                                    `${material.weight} ${material.unit}`
+                                )}
                             </td>
                             <td>
                                 {editingIndex === index ? (

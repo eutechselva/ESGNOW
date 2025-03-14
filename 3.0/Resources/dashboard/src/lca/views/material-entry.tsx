@@ -20,6 +20,16 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
         { label: "Wood", value: "Wood" },
         { label: "Metal", value: "Metal" },
         { label: "Plastic", value: "Plastic" },
+        { label: "Glass", value: "Glass" },
+        { label: "Fabric", value: "Fabric" },
+        { label: "Leather", value: "Leather" },
+        { label: "Laminate", value: "Laminate" },
+        { label: "Mesh", value: "Mesh" },
+        { label: "Foam", value: "Foam" },
+        { label: "Stone", value: "Stone" },
+        { label: "Bamboo", value: "Bamboo" },
+        
+        
     ];
 
     const materialOptions: Record<string, { label: string; value: string }[]> = {
@@ -115,7 +125,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                </FormField>
    
                <FormField className="material-weight-field">
-                   <Label>Material Weight</Label>
+                   <Label>Material Weight (Kg)</Label>
                    <Input
                        type="number"
                        value={material.weight}

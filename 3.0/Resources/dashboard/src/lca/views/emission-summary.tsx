@@ -125,7 +125,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     };
 
     return (
-        <Modal show={true} onClose={onClose} title="Save Emission Results">
+        <Modal show={true} onClose={onClose} title="Save Transportation-Footprint Results"> 
             <div className="save-results-modal">
                 {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
