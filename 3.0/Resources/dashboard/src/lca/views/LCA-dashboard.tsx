@@ -86,7 +86,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         const fetchProductData = async () => {
 
             const data = await getAllProducts(uxpContext);
-            setProducts(data.data);
+            setProducts(data.data.products);
 
         };
 

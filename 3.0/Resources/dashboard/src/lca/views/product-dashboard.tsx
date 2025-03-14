@@ -70,7 +70,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
                 let data = response.data;
 
-                setProducts(data);
+                setProducts(data.products);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }
@@ -285,7 +285,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     hideHeader={false}
                     onClose={() => {
                         setSelectedProduct(null); getAllProducts(uxpContext).then(response => {
-                            setProducts(response.data);
+                            setProducts(response.data.products);
                         });
                     }}
                     onDelete={function (): void {

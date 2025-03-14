@@ -12,7 +12,7 @@ import "./product-wizard.scss";
 import { ProductManufacturingProcess } from "../types/product-manufacturing-process.type";
 import Assessment from "./assessment";
 import { IContextProvider } from "@uxp";
-import { createProduct, getAllProducts } from "../../esgnow-service";
+import { createProduct } from "../../esgnow-service";
 
 interface ProductWizardProps {
     show: boolean;

@@ -62,7 +62,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const getProducts = useCallback(async (page?: number, pageSize?: number, query?: string, filters?: any): Promise<{ items: any[] }> => {
         let { data, error } = await getAllProducts(uxpContext);
 
-        data = data.map((d: any) => ({
+        data = data.products.map((d: any) => ({
             ...d,
             modifiedDate: d.modifiedDate ? new Date(d.modifiedDate).toLocaleDateString() : 'N/A',
 

@@ -39096,7 +39096,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-            setProducts(data.data);
+            setProducts(data.data.products);
         });
         fetchProductData();
     }, []);
@@ -40337,7 +40337,7 @@ const HomeDashboard = ({ uxpContext }) => {
     }, []);
     const getProducts = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
         let { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-        data = data.map((d) => (Object.assign(Object.assign({}, d), { modifiedDate: d.modifiedDate ? new Date(d.modifiedDate).toLocaleDateString() : 'N/A' })));
+        data = data.products.map((d) => (Object.assign(Object.assign({}, d), { modifiedDate: d.modifiedDate ? new Date(d.modifiedDate).toLocaleDateString() : 'N/A' })));
         if (!!error)
             return { items: [] };
         return { items: data };
@@ -40988,7 +40988,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
             try {
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
                 let data = response.data;
-                setProducts(data);
+                setProducts(data.products);
             }
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -41096,7 +41096,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
         selectedProduct && (React.createElement(product_info_summary_1.default, { plan: plan, uxpContext: uxpContext, product: selectedProduct, hideHeader: false, onClose: () => {
                 setSelectedProduct(null);
                 (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
-                    setProducts(response.data);
+                    setProducts(response.data.products);
                 });
             }, onDelete: function () {
                 throw new Error("Function not implemented.");
