@@ -43,7 +43,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
                             Start by creating a product to begin tracking its environmental impact and lifecycle analysis.
                         </p>
                         <button className="create-product-button" onClick={() => setShowModal(true)}>
-                            + Create Product
+                            Create Product
                         </button>
                     </div>
 

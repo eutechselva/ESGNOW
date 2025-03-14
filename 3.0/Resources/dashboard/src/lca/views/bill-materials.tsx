@@ -136,7 +136,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 />
                 {entryType === "manual" && (
                     <Button
-                        title="Add Materials"
+                        title="Add "
                         className="add-materials-button"
                         onClick={handleAddMaterials}
                     />

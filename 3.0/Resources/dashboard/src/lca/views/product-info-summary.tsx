@@ -129,7 +129,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
 
 
                         <Button
-                            title="Go back"
+                            title=" < Back  "
                             onClick={onClose}
                             className="back-button"
                         /></>
