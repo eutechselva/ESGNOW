@@ -40340,7 +40340,7 @@ const HomeDashboard = ({ uxpContext }) => {
             try {
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
                 let data = response.data.products;
-                setPlan(response.data.plan);
+                setPlan(response.data.plan.plan);
                 setProducts(data);
             }
             catch (error) {
@@ -40619,12 +40619,12 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
             react_1.default.createElement("thead", null,
                 react_1.default.createElement("tr", null,
                     react_1.default.createElement("th", null, "Material Class"),
-                    plan !== "basic" && (react_1.default.createElement("th", null, "Specific Material")),
+                    plan == "professional" && (react_1.default.createElement("th", null, "Specific Material")),
                     react_1.default.createElement("th", null, "Material Weight"),
                     react_1.default.createElement("th", null, "Actions"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
                 react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Input, { className: "material-class-input", value: (editedData === null || editedData === void 0 ? void 0 : editedData.materialClass) || "", onChange: (val) => handleChange("materialClass", val) })) : (material.materialClass)),
-                plan !== "basic" && (react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial))),
+                plan == "professional" && (react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial))),
                 react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement("div", { className: "weight-unit-input" },
                     react_1.default.createElement(components_1.Input, { className: "weight-input-field", value: (editedData === null || editedData === void 0 ? void 0 : editedData.weight) || "", onChange: (val) => handleChange("weight", val) }),
                     react_1.default.createElement(components_1.Select, { className: "unit-select-field", options: unitOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.unit) || unitOptions[0].value, onChange: (newValue) => handleChange("unit", newValue) }))) : (`${material.weight} ${material.unit}`)),
@@ -41024,6 +41024,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
                 let data = response.data;
                 setProducts(data.products);
+                setPlan(data.plan.plan);
             }
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -41763,7 +41764,7 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                     throw new Error("Failed to fetch manufacturing processes");
                 }
                 const apiResults = yield response.data.manufacturingProcess;
-                setPlan(response.data.plan);
+                setPlan(response.data.plan.plan);
                 const mappedProcesses = {};
                 apiResults.forEach((item) => {
                     mappedProcesses[item.materialClass] = item.manufacturingProcesses;

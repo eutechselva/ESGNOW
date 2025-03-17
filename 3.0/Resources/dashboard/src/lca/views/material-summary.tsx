@@ -55,7 +55,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                 <thead>
                     <tr>
                         <th>Material Class</th>
-                        {plan !== "basic" && (<th>Specific Material</th>)}
+                        {plan == "professional" && (<th>Specific Material</th>)}
                         <th>Material Weight</th>
                         <th>Actions</th>
                     </tr>
@@ -74,7 +74,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                                 )}
                             </td>
 
-                            {plan !== "basic" && (
+                            {plan == "professional" && (
                                 <td>
                                     {editingIndex === index ? (
                                         <Select

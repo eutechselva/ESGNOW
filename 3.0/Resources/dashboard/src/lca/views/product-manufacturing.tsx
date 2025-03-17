@@ -83,7 +83,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 const apiResults: { materialClass: string, specificMaterial: string, weight: number, manufacturingProcesses: ProductManufacturingProcess[] }[] =
                     await response.data.manufacturingProcess;
 
-                setPlan(response.data.plan);
+                setPlan(response.data.plan.plan);
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
                 apiResults.forEach((item) => {

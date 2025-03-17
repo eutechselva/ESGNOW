@@ -77,6 +77,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 const response = await getAllProducts(uxpContext);
                 let data = response.data;
                 setProducts(data.products);
+                setPlan(data.plan.plan);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
             }

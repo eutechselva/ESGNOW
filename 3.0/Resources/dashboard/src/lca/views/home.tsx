@@ -34,7 +34,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     const response = await getAllProducts(uxpContext);
     
                     let data = response.data.products;
-                    setPlan(response.data.plan);
+                    setPlan(response.data.plan.plan);
     
                     setProducts(data);
                 } catch (error) {
