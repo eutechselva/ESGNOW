@@ -218,7 +218,8 @@ const EmissionSummary: React.FC<{
     packageWeight: Number;
     palletWeight: Number;
     hideHeader?: boolean;
-}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight ,hideHeader }) => {
+    plan :string;
+}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -359,7 +360,7 @@ const EmissionSummary: React.FC<{
                                 <thead>
                                     <tr>
                                         <th>Material Class</th>
-                                        <th>Specific Material</th>
+                                        { (plan == 'professional' &&  <th>Specific Material</th>)  }
                                         <th>Contribution</th>
                                         <th>Percentage</th>
                                     </tr>
@@ -384,7 +385,7 @@ const EmissionSummary: React.FC<{
                                             return (
                                                 <tr key={item.materialClass}>
                                                     <td>{item.materialClass}</td>
-                                                    <td>{item.specificMaterial}</td>
+                                                    { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
                                                     <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>
@@ -401,7 +402,7 @@ const EmissionSummary: React.FC<{
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>Specific Material</th>
+                                         { plan == 'basic' ? <th> Material</th> : <th>Specific Material</th>  }
                                         <th>Manufacturing Process</th>
                                         <th>Contribution</th>
                                         <th>Percentage</th>
@@ -475,8 +476,8 @@ const EmissionSummary: React.FC<{
                                             return (
                                                 <tr key={item.id}>
                                                     <td>{item.transportMode}</td>
-                                                    <td>{item.originGateway}</td>
-                                                    <td>{item.destinationGateway}</td>
+                                                    { plan == 'professional' ?  <td>{item.originCountry }</td> : <td>{item.originGateway}</td>} 
+                                                    { plan == 'professional' ?  <td>{item.destinationCountry }</td> : <td>{item.destinationGateway}</td>} 
                                                     <td>{parseFloat(item.transportEmission).toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>

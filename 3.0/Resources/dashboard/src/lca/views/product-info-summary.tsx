@@ -214,7 +214,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 <thead>
                                     <tr>
                                         <th>Material Class</th>
-                                         { plan == 'basic' && ( <th>Specific Material</th>) } 
+                                         { plan == 'professional' && ( <th>Specific Material</th>) } 
                                         <th>Contribution</th>
                                         <th>Percentage</th>
                                     </tr>
@@ -239,7 +239,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             return (
                                                 <tr key={item.materialClass}>
                                                     <td>{item.materialClass}</td>
-                                                    { plan == 'basic' && ( <td>{item.specificMaterial}</td> )}
+                                                    { plan == 'professional' && ( <td>{item.specificMaterial}</td> )}
                                                     <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                                     <td>{percentage} %</td>
                                                 </tr>
@@ -342,7 +342,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             <thead>
                                 <tr>
                                     <th>Material Class</th>
-                                    { plan == 'basic' && ( <th>Specific Material</th> )}
+                                    { plan == 'professional' && ( <th>Specific Material</th> )}
                                     <th>Weight</th>
                                     <th>Manufacturing Process</th>
                                     <th>Sub Process</th>
@@ -354,7 +354,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     product.productManufacturingProcess.map((item: any) => (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
-                                            { plan == 'basic' && (<td>{item.specificMaterial}</td>)}
+                                            { plan == 'professional' && (<td>{item.specificMaterial}</td>)}
                                             <td>{item.weight} Kg</td>
                                             <td>{item.manufacturingProcesses[0].category}</td>
                                             <td>{item.manufacturingProcesses[0].processes.join(', ')}</td>

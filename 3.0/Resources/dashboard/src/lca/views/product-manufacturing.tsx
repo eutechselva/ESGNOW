@@ -34,6 +34,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     const [editingProcess, setEditingProcess] = useState<{ materialClass: string, processIndex: number } | null>(null);
     const [editedProcess, setEditedProcess] = useState<ProductManufacturingProcess | null>(null);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
+    const [plan, setPlan] = useState<string>();
 
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
@@ -66,21 +67,23 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             setAIGeneratingProcess(true);
 
             try {
-                const classifyManufacturingProcessPayLoad  = {
+                const classifyManufacturingProcessPayLoad = {
                     productCode: productData.code,
                     name: productData.name,
                     description: productData.description,
                     bom: billMaterials,
                 };
                 const response = await classifyManufacturingProcess(uxpContext, classifyManufacturingProcessPayLoad);
-                
+
 
                 if (!response.data) {
                     throw new Error("Failed to fetch manufacturing processes");
                 }
 
-                const apiResults: { materialClass: string, specificMaterial : string , weight : number,  manufacturingProcesses: ProductManufacturingProcess[] }[] =
-                    await response.data;
+                const apiResults: { materialClass: string, specificMaterial: string, weight: number, manufacturingProcesses: ProductManufacturingProcess[] }[] =
+                    await response.data.manufacturingProcess;
+
+                setPlan(response.data.plan);
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
                 apiResults.forEach((item) => {
@@ -153,7 +156,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             <div className="entry-type-select">
                 <label htmlFor="entryType" className="select-method-label">
                     Select Method
-                <span
+                    <span
                         className="info-icon"
                         onMouseEnter={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
@@ -161,8 +164,8 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         <FontAwesomeIcon icon={faInfoCircle} />
                         {showTooltip && (
                             <div className="tooltip">
-                                    Use AI Assist to suggest processes based on product details provided, 
-                                    or manually choose them if the information is available.
+                                Use AI Assist to suggest processes based on product details provided,
+                                or manually choose them if the information is available.
                             </div>
                         )}
                     </span>
@@ -207,7 +210,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         <thead>
                             <tr>
                                 <th>Material Class</th>
-                                <th>Specific Material</th>
+                                {( plan == 'professional' && <th>Specific Material</th> )} 
                                 <th>Weight</th>
                                 <th>Processes</th>
                                 <th>Actions</th>
@@ -217,7 +220,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                             {billMaterials.map((item) => (
                                 <tr key={item.materialClass}>
                                     <td>{item.materialClass}</td>
-                                    <td>{item.specificMaterial}</td>
+                                    {( plan == 'professional' && <td>{item.specificMaterial}</td> )}
                                     <td>{item.weight} {item.unit}</td>
                                     <td>
                                         {selectedProcesses[item.materialClass]?.map((process, index) => (

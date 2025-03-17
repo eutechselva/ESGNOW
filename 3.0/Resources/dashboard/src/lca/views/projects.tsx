@@ -35,6 +35,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
     const [item, setItem] = useState<any>();
+    const [plan,setPlan] =  useState<string | null>(null);
 
     const memorizedSearch = useMemo(() => ({ enabled: true }), [])
 
@@ -47,7 +48,8 @@ const Projects: React.FC<IProjectProps> = (props) => {
             // First get all projects
             const response = await getAllProjects(props.uxpContext, {});
 
-            const projectsData = await response.data;
+            const projectsData = await response.data.projects;
+            setPlan(response.data.plan.plan);
 
             // Then fetch impact data for each project
             const projectsWithImpacts = await Promise.all(
@@ -75,7 +77,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
 
         // Then fetch impact data for each project
         const projectsWithImpacts = await Promise.all(
-            data.map(async (project: { _id: string, code: string }) => {
+            data.projects.map(async (project: { _id: string, code: string }) => {
                 const impactResponse = await getProjectImpacts(props.uxpContext, { projectId: project._id });
                 if (!impactResponse.data) {
                     throw new Error(`Failed to fetch impacts for project ${project.code}`);
@@ -135,6 +137,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
         <>
             <Modal title="Emission Summary"  show={showModal} onClose={() => setShowModal(false)}>
                 <EmissionSummary
+                    plan={plan}
                     product={item?.products?.length > 0 ? item.products[0] : undefined}
                     transportationEmission={item?.products?.length > 0 ? item.products[0].transportationEmission : undefined}
                     onBack={() => {

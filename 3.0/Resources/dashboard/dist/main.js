@@ -39080,6 +39080,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
     const [transportationEmission, setTransportationEmission] = (0, react_1.useState)("");
     const [totalTransportWeight, setTotalTransportWeight] = (0, react_1.useState)(0);
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
+    const [plan, setPlan] = (0, react_1.useState)("");
     const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
         setisEmissionSummaryvisible(true);
         setShowModal(false);
@@ -39097,6 +39098,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
             setProducts(data.data.products);
+            setPlan(data.data.plan.plan);
         });
         fetchProductData();
     }, []);
@@ -39108,13 +39110,23 @@ const LCADashboardWidget = ({ uxpContext }) => {
                     throw new Error('Network response was not ok');
                 }
                 const data = yield response.data;
-                setTransportDatabase(data);
-                const formattedOptions = Object.keys(data).map((country) => ({
-                    label: country,
-                    value: country // Replace `code` with the appropriate field
-                }));
-                setCountries(formattedOptions);
-                console.log("Countries:", countries);
+                if (data.plan.plan == 'basic') {
+                    const formattedOptions = data.transportDatabase.map((country) => ({
+                        label: country,
+                        value: country // Replace `code` with the appropriate field
+                    }));
+                    setCountries(formattedOptions);
+                    console.log("Countries:", countries);
+                }
+                else {
+                    setTransportDatabase(data.transportDatabase);
+                    const formattedOptions = Object.keys(data.transportDatabase).map((country) => ({
+                        label: country,
+                        value: country // Replace `code` with the appropriate field
+                    }));
+                    setCountries(formattedOptions);
+                    console.log("Countries:", countries);
+                }
             }
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -39241,6 +39253,18 @@ const LCADashboardWidget = ({ uxpContext }) => {
                             });
                         }, 0);
                     }
+                    else if (field === 'transportMode' &&
+                        updatedLeg.originCountry &&
+                        updatedLeg.destinationCountry) {
+                        setTimeout(() => {
+                            distance(updatedLeg.originCountry, updatedLeg.destinationCountry).then((distance) => {
+                                setTransportLegs(currentLegs => currentLegs.map(currentLeg => currentLeg.id === legId
+                                    ? Object.assign(Object.assign({}, currentLeg), { transportDistance: distance, transportEmission: 0 }) : currentLeg));
+                            }).catch((error) => {
+                                console.error('Failed to calculate transport distance:', error);
+                            });
+                        }, 0);
+                    }
                     return updatedLeg;
                 }
                 return leg;
@@ -39296,14 +39320,14 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => {
                                 updateTransportLeg(leg.id, 'destinationCountry', value);
                             } })),
-                    React.createElement(components_1.FormField, null,
+                    (plan == 'professional' && (React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Origin Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) })),
-                    React.createElement(components_1.FormField, null,
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) })))),
+                    (plan == 'professional' && (React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Destination Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) })),
+                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) })))),
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
                             React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
@@ -39398,15 +39422,15 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Origin Country"),
                             React.createElement("span", null, leg.originCountry)),
-                        React.createElement("div", { className: "summary-row" },
+                        (plan == 'professional' && (React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Origin Gateway"),
-                            React.createElement("span", null, leg.originGateway)),
+                            React.createElement("span", null, leg.originGateway)))),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Destination Country"),
                             React.createElement("span", null, leg.destinationCountry)),
-                        React.createElement("div", { className: "summary-row" },
+                        (plan == 'professional' && (React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Destination Gateway"),
-                            React.createElement("span", null, leg.destinationGateway)),
+                            React.createElement("span", null, leg.destinationGateway)))),
                         React.createElement("div", { className: "summary-row" },
                             React.createElement("span", null, "Transport Mode"),
                             React.createElement("span", null, leg.transportMode)),
@@ -39460,7 +39484,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         }
     };
     if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext });
+        return React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext, plan: plan });
     }
     return (React.createElement("div", { className: "content" },
         React.createElement("h1", { className: "dashboard-title" }, "Transportation"),
@@ -40036,7 +40060,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             react_1.default.createElement("div", { className: "save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save results", onClick: handleSave, className: "save-results", disabled: isLoading })))));
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext, packageWeight, palletWeight, hideHeader }) => {
+const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxContext, packageWeight, palletWeight, hideHeader, plan }) => {
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
@@ -40152,7 +40176,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                             react_1.default.createElement("thead", null,
                                 react_1.default.createElement("tr", null,
                                     react_1.default.createElement("th", null, "Material Class"),
-                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    (plan == 'professional' && react_1.default.createElement("th", null, "Specific Material")),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
                             react_1.default.createElement("tbody", null, (() => {
@@ -40167,7 +40191,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                         : 0;
                                     return (react_1.default.createElement("tr", { key: item.materialClass },
                                         react_1.default.createElement("td", null, item.materialClass),
-                                        react_1.default.createElement("td", null, item.specificMaterial),
+                                        (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
                                         react_1.default.createElement("td", null,
                                             item.emissionFactor.toFixed(2),
                                             " KgCO\u2082e"),
@@ -40182,7 +40206,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         react_1.default.createElement("table", null,
                             react_1.default.createElement("thead", null,
                                 react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Specific Material"),
+                                    plan == 'basic' ? react_1.default.createElement("th", null, " Material") : react_1.default.createElement("th", null, "Specific Material"),
                                     react_1.default.createElement("th", null, "Manufacturing Process"),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
@@ -40230,8 +40254,8 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                         : 0;
                                     return (react_1.default.createElement("tr", { key: item.id },
                                         react_1.default.createElement("td", null, item.transportMode),
-                                        react_1.default.createElement("td", null, item.originGateway),
-                                        react_1.default.createElement("td", null, item.destinationGateway),
+                                        plan == 'professional' ? react_1.default.createElement("td", null, item.originCountry) : react_1.default.createElement("td", null, item.originGateway),
+                                        plan == 'professional' ? react_1.default.createElement("td", null, item.destinationCountry) : react_1.default.createElement("td", null, item.destinationGateway),
                                         react_1.default.createElement("td", null,
                                             parseFloat(item.transportEmission).toFixed(2),
                                             " KgCO\u2082e"),
@@ -41304,7 +41328,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                             react_1.default.createElement("thead", null,
                                 react_1.default.createElement("tr", null,
                                     react_1.default.createElement("th", null, "Material Class"),
-                                    plan == 'basic' && (react_1.default.createElement("th", null, "Specific Material")),
+                                    plan == 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
                                     react_1.default.createElement("th", null, "Contribution"),
                                     react_1.default.createElement("th", null, "Percentage"))),
                             react_1.default.createElement("tbody", null, (() => {
@@ -41319,7 +41343,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                         : 0;
                                     return (react_1.default.createElement("tr", { key: item.materialClass },
                                         react_1.default.createElement("td", null, item.materialClass),
-                                        plan == 'basic' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                                        plan == 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
                                         react_1.default.createElement("td", null,
                                             parseFloat(item.emissionFactor).toFixed(2),
                                             " KgCO\u2082e"),
@@ -41375,7 +41399,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     react_1.default.createElement("thead", null,
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, "Material Class"),
-                            plan == 'basic' && (react_1.default.createElement("th", null, "Specific Material")),
+                            plan == 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
                             react_1.default.createElement("th", null, "Weight"),
                             react_1.default.createElement("th", null, "Manufacturing Process"),
                             react_1.default.createElement("th", null, "Sub Process"))),
@@ -41383,7 +41407,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     // @ts-ignore
                     product.productManufacturingProcess.map((item) => (react_1.default.createElement("tr", { key: item.materialClass },
                         react_1.default.createElement("td", null, item.materialClass),
-                        plan == 'basic' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                        plan == 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
                         react_1.default.createElement("td", null,
                             item.weight,
                             " Kg"),
@@ -41689,6 +41713,7 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
     const [editingProcess, setEditingProcess] = (0, react_1.useState)(null);
     const [editedProcess, setEditedProcess] = (0, react_1.useState)(null);
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
+    const [plan, setPlan] = (0, react_1.useState)();
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
@@ -41721,7 +41746,8 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                 if (!response.data) {
                     throw new Error("Failed to fetch manufacturing processes");
                 }
-                const apiResults = yield response.data;
+                const apiResults = yield response.data.manufacturingProcess;
+                setPlan(response.data.plan);
                 const mappedProcesses = {};
                 apiResults.forEach((item) => {
                     mappedProcesses[item.materialClass] = item.manufacturingProcesses;
@@ -41789,7 +41815,7 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                 react_1.default.createElement("thead", null,
                     react_1.default.createElement("tr", null,
                         react_1.default.createElement("th", null, "Material Class"),
-                        react_1.default.createElement("th", null, "Specific Material"),
+                        (plan == 'professional' && react_1.default.createElement("th", null, "Specific Material")),
                         react_1.default.createElement("th", null, "Weight"),
                         react_1.default.createElement("th", null, "Processes"),
                         react_1.default.createElement("th", null, "Actions"))),
@@ -41797,7 +41823,7 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                     var _a, _b;
                     return (react_1.default.createElement("tr", { key: item.materialClass },
                         react_1.default.createElement("td", null, item.materialClass),
-                        react_1.default.createElement("td", null, item.specificMaterial),
+                        (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
                         react_1.default.createElement("td", null,
                             item.weight,
                             " ",
@@ -42083,6 +42109,7 @@ const Projects = (props) => {
     const [error, setError] = (0, react_1.useState)(null);
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     const [item, setItem] = (0, react_1.useState)();
+    const [plan, setPlan] = (0, react_1.useState)(null);
     const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
     (0, react_1.useEffect)(() => {
         fetchProjects();
@@ -42091,7 +42118,8 @@ const Projects = (props) => {
         try {
             // First get all projects
             const response = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext, {});
-            const projectsData = yield response.data;
+            const projectsData = yield response.data.projects;
+            setPlan(response.data.plan.plan);
             // Then fetch impact data for each project
             const projectsWithImpacts = yield Promise.all(projectsData.map((project) => __awaiter(void 0, void 0, void 0, function* () {
                 const impactResponse = yield (0, esgnow_service_1.getProjectImpacts)(props.uxpContext, { projectId: project._id });
@@ -42113,7 +42141,7 @@ const Projects = (props) => {
     const getProjects = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
         const { data, error } = yield (0, esgnow_service_1.getAllProjects)(props.uxpContext, {});
         // Then fetch impact data for each project
-        const projectsWithImpacts = yield Promise.all(data.map((project) => __awaiter(void 0, void 0, void 0, function* () {
+        const projectsWithImpacts = yield Promise.all(data.projects.map((project) => __awaiter(void 0, void 0, void 0, function* () {
             const impactResponse = yield (0, esgnow_service_1.getProjectImpacts)(props.uxpContext, { projectId: project._id });
             if (!impactResponse.data) {
                 throw new Error(`Failed to fetch impacts for project ${project.code}`);
@@ -42160,7 +42188,7 @@ const Projects = (props) => {
     }
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement(components_1.Modal, { title: "Emission Summary", show: showModal, onClose: () => setShowModal(false) },
-            react_1.default.createElement(emission_summary_1.default, { product: ((_a = item === null || item === void 0 ? void 0 : item.products) === null || _a === void 0 ? void 0 : _a.length) > 0 ? item.products[0] : undefined, transportationEmission: ((_b = item === null || item === void 0 ? void 0 : item.products) === null || _b === void 0 ? void 0 : _b.length) > 0 ? item.products[0].transportationEmission : undefined, onBack: () => {
+            react_1.default.createElement(emission_summary_1.default, { plan: plan, product: ((_a = item === null || item === void 0 ? void 0 : item.products) === null || _a === void 0 ? void 0 : _a.length) > 0 ? item.products[0] : undefined, transportationEmission: ((_b = item === null || item === void 0 ? void 0 : item.products) === null || _b === void 0 ? void 0 : _b.length) > 0 ? item.products[0].transportationEmission : undefined, onBack: () => {
                     throw new Error("Function not implemented.");
                 }, transportLegs: ((_c = item === null || item === void 0 ? void 0 : item.products) === null || _c === void 0 ? void 0 : _c.length) > 0 ? item.products[0].transportationLegs : undefined, uxContext: props.uxpContext, packageWeight: ((_d = item === null || item === void 0 ? void 0 : item.products) === null || _d === void 0 ? void 0 : _d.length) > 0 ? item.products[0].packagingWeight : undefined, palletWeight: ((_e = item === null || item === void 0 ? void 0 : item.products) === null || _e === void 0 ? void 0 : _e.length) > 0 ? item.products[0].palletWeight : undefined, hideHeader: true })),
         react_1.default.createElement(components_1.CRUDComponent, { list: {

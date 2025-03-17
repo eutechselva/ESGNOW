@@ -4,7 +4,6 @@ import './ProductDashboardWidget.scss';
 import Stepper from './stepper-LCA';
 import { useState } from "react";
 import EmissionSummary from './emission-summary';
-import API_BASE_URL from "../config";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
@@ -25,12 +24,12 @@ interface TransportLeg {
 }
 
 interface DistanceResponse {
-    
-        origin: string;
-        destination: string;
-        distance_in_km: number;
-    
-   
+
+    origin: string;
+    destination: string;
+    distance_in_km: number;
+
+
 }
 
 interface ILCADashboardWidgetProps {
@@ -61,6 +60,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     const [transportationEmission, setTransportationEmission] = useState<string>("");
     const [totalTransportWeight, setTotalTransportWeight] = useState<number>(0);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
+    const [plan, setPlan] = useState<string>("");
 
     const handleConfirmCalculate = async () => {
 
@@ -87,6 +87,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
             const data = await getAllProducts(uxpContext);
             setProducts(data.data.products);
+            setPlan(data.data.plan.plan);
 
         };
 
@@ -101,14 +102,24 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.data;
-                setTransportDatabase(data);
-                const formattedOptions = Object.keys(data).map((country: string) => ({
-                    label: country, // Replace `name` with the appropriate field
-                    value: country // Replace `code` with the appropriate field
-                }));
-                setCountries(formattedOptions);
-                console.log("Countries:", countries);
+                if (data.plan.plan == 'basic') {
 
+                    const formattedOptions = data.transportDatabase.map((country: string) => ({
+                        label: country, // Replace `name` with the appropriate field
+                        value: country // Replace `code` with the appropriate field
+                    }));
+                    setCountries(formattedOptions);
+                    console.log("Countries:", countries);
+                }
+                else {
+                    setTransportDatabase(data.transportDatabase);
+                    const formattedOptions = Object.keys(data.transportDatabase).map((country: string) => ({
+                        label: country, // Replace `name` with the appropriate field
+                        value: country // Replace `code` with the appropriate field
+                    }));
+                    setCountries(formattedOptions);
+                    console.log("Countries:", countries);
+                }
 
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -276,6 +287,25 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                 console.error('Failed to calculate transport distance:', error);
                             });
                         }, 0);
+                    }else if (field === 'transportMode' &&
+                        updatedLeg.originCountry &&
+                        updatedLeg.destinationCountry) {
+                        setTimeout(() => {
+                            distance(
+                                updatedLeg.originCountry,
+                                updatedLeg.destinationCountry
+                            ).then((distance: number) => {
+                                setTransportLegs(currentLegs =>
+                                    currentLegs.map(currentLeg =>
+                                        currentLeg.id === legId
+                                            ? { ...currentLeg, transportDistance: distance, transportEmission: 0 }
+                                            : currentLeg
+                                    )
+                                );
+                            }).catch((error: Error) => {
+                                console.error('Failed to calculate transport distance:', error);
+                            });
+                        }, 0);
                     }
 
                     return updatedLeg;
@@ -377,7 +407,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                 />
                             </FormField>
 
-                            <FormField>
+                            {(plan == 'professional' && (<FormField>
                                 <Label><span style={{ fontSize: '12px' }}>Origin Gateway</span></Label>
                                 <Select
                                     className="highlighted-select"
@@ -386,9 +416,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     selected={leg.originGateway}
                                     onChange={(value) => updateTransportLeg(leg.id, 'originGateway', value)}
                                 />
-                            </FormField>
+                            </FormField>))}
 
-                            <FormField>
+                            {(plan == 'professional' && (<FormField>
                                 <Label><span style={{ fontSize: '12px' }}>Destination Gateway</span></Label>
                                 <Select
                                     className="highlighted-select"
@@ -397,7 +427,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     selected={leg.destinationGateway}
                                     onChange={(value) => updateTransportLeg(leg.id, 'destinationGateway', value)}
                                 />
-                            </FormField>
+                            </FormField>))}
 
                             <FormField>
                                 <Label><span style={{ fontSize: '12px' }}>Transport Mode</span></Label>
@@ -617,7 +647,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                 <span>Product Name</span>
                                 <span>{selectedProduct?.name}</span>
                             </div>
-                            
+
                         </div>
                     </div>
 
@@ -631,18 +661,18 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                     <span>Origin Country</span>
                                     <span>{leg.originCountry}</span>
                                 </div>
-                                <div className="summary-row">
+                                {(plan == 'professional' && ( <div className="summary-row">
                                     <span>Origin Gateway</span>
                                     <span>{leg.originGateway}</span>
-                                </div>
+                                </div> ))}
                                 <div className="summary-row">
                                     <span>Destination Country</span>
                                     <span>{leg.destinationCountry}</span>
                                 </div>
-                                <div className="summary-row">
+                                {(plan == 'professional' && ( <div className="summary-row">
                                     <span>Destination Gateway</span>
                                     <span>{leg.destinationGateway}</span>
-                                </div>
+                                </div> ))}
                                 <div className="summary-row">
                                     <span>Transport Mode</span>
                                     <span>{leg.transportMode}</span>
@@ -704,7 +734,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             setActiveStep(activeStep - 1);
         }
     };
-    if (isEmissionSummaryVisible) { return <EmissionSummary  packageWeight={packagingWeight} palletWeight={palletWeight} transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext}  ></EmissionSummary> }
+    if (isEmissionSummaryVisible) { return <EmissionSummary packageWeight={packagingWeight} palletWeight={palletWeight} transportLegs={transportLegs} transportationEmission={transportationEmission} product={selectedProduct} onBack={() => setisEmissionSummaryvisible(false)} uxContext={uxpContext} plan={plan} ></EmissionSummary> }
     return (
         <div className="content">
             <h1 className="dashboard-title">Transportation</h1>
@@ -766,12 +796,12 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 renderItem={(item) => (
                     <div className="product-card">
                         {item.images.length > 0 ? (
-                                                <img src={item.images[0]} alt="Product" className="product-image" />
-                                            ) : (
-                                                <div className="product-image-no-image">
-                                                    <span className="no-image-text">No Image Available</span>
-                                                </div>
-                                            )}
+                            <img src={item.images[0]} alt="Product" className="product-image" />
+                        ) : (
+                            <div className="product-image-no-image">
+                                <span className="no-image-text">No Image Available</span>
+                            </div>
+                        )}
                         <div className="product-details">
                             <p>{item.code}</p>
                             <h4>{item.name}</h4>
