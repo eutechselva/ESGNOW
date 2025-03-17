@@ -15,7 +15,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = React.useState<any | null>(null);
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState("");
-    const [filteredData, setFilteredData] = React.useState(products);
+    const [filteredData, setFilteredData] = React.useState([]);
     const [selectedCategory, setSelectedCategory] = React.useState<string | null>(null);
     const [maxCO2, setMaxCO2] = React.useState<number | null>(null);
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
@@ -24,15 +24,18 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
     const alerts = useAlert();
 
-
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
 
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    
+    // Get current items for pagination
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    
+    // Calculate total pages based on filtered data
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
     const Pagination = () => (
         <div className="pagination-container">
@@ -45,31 +48,34 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     Previous
                 </Button>
                 <span className="pagination-info">
-                    Page {currentPage} of {totalPages}
+                    Page {currentPage} of {totalPages || 1}
                 </span>
                 <Button
                     title="Next"
-                    className="pagination-button"
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                    disabled={currentPage === totalPages}
+                    disabled={currentPage === totalPages || totalPages === 0}
                 >
-
+                    Next
                 </Button>
             </div>
         </div>
     );
 
+    // Reset to first page when filters change
+    React.useEffect(() => {
+        setCurrentPage(1);
+    }, [searchValue, selectedCategory, maxCO2]);
 
+    // Initialize filteredData with products when products change
+    React.useEffect(() => {
+        setFilteredData(products);
+    }, [products]);
 
     React.useEffect(() => {
-
         const fetchProductData = async () => {
             try {
-
                 const response = await getAllProducts(uxpContext);
-
                 let data = response.data;
-
                 setProducts(data.products);
             } catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
@@ -78,7 +84,6 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
         fetchProductData();
     }, []);
-
 
     const handleSearchChange = (newValue: string) => {
         setSearchValue(newValue);
@@ -100,33 +105,17 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
+        setSearchValue("");
         setFilteredData(products);
     };
 
-
-
     return (
         <div className="content">
-            
-            {/* <div className="toggle-buttons">
-                <Button
-                    title="Product Info"
-                    className={`product-info-btn ${activeView === 'product-info' ? 'active' : ''}`}
-                    onClick={() => setActiveView('product-info')}
-                />
-                <Button
-                    title="Carbon Impact"
-                    className={`carbon-impact-btn ${activeView === 'carbon-impact' ? 'active' : ''}`}
-                    onClick={() => setActiveView('carbon-impact')}
-                />
-            </div> */}
-            {/* Only show dashboard title if no product is selected */}
             {selectedProduct ? null : (
                 <>
                     <h1 className="dashboard-title">Products</h1>
 
                     <div className="product-library">
-                        {/* <h2>Product Library</h2> */}
                         <div className="search-filter-section">
                             <div className="uxp-search-box-container">
                                 <SearchBox
@@ -178,29 +167,15 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     </FormField>
                                 </FilterPanel>
                             </div>
-                            {/* <div className="view-toggle-section">
-                                <Button 
-                                    title="Grid View" 
-                                    icon="faInfoCircle" 
-                                    onClick={() => toggleViewMode('grid')} 
-                                    className={viewMode === 'grid' ? 'active' : ''}
-                                />
-                                <Button 
-                                    title="List View" 
-                                    icon="list" 
-                                    onClick={() => toggleViewMode('list')} 
-                                    className={viewMode === 'list' ? 'active' : ''}
-                                />
-                            </div> */}
                         </div>
 
                         {viewMode === 'grid' ? (
                             <>
                                 <DataGrid
-                                    data={products}
+                                    data={currentItems} // Use currentItems instead of all products
                                     renderItem={(item) => (
                                         <div className="product-card" onClick={() => setSelectedProduct(item)}>
-                                            {item.images.length > 0 ? (
+                                            {item.images && item.images.length > 0 ? (
                                                 <img src={item.images[0]} alt="Product" className="product-image" />
                                             ) : (
                                                 <div className="product-image-no-image">
@@ -208,7 +183,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                                 </div>
                                             )}
 
-                                            <div className="co2-emission">{parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'}</div>
+                                            <div className="co2-emission">{parseFloat(item.co2Emission).toFixed(2) + ' Kg CO2e'}</div>
                                             <div className="product-details">
                                                 <p>{item.title}</p>
                                                 <h4>{item.name}</h4>
@@ -228,7 +203,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             </>
                         ) : (
                             <div className="list-view">
-                                {products.map((item, index) => (
+                                {currentItems.map((item, index) => ( // Use currentItems here too
                                     <div key={index} className="product-list-item" onClick={() => setSelectedProduct(item)}>
                                         <img src={item.icon} alt="Product" className="product-image" />
                                         <div className="product-details">
@@ -241,6 +216,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                         </div>
                                     </div>
                                 ))}
+                                
+                                <div className="pagination-wrapper">
+                                    <Pagination />
+                                </div>
                             </div>
                         )}
                     </div>
@@ -263,10 +242,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     else{
                         setShowModal(false)
                     }
-                    
-    
-                } 
-                } 
+                }} 
                 uxpContext={uxpContext}
                 onProductCreated={() => {
                     // Refresh the product list after a new product is created
@@ -284,13 +260,15 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     product={selectedProduct}
                     hideHeader={false}
                     onClose={() => {
-                        setSelectedProduct(null); getAllProducts(uxpContext).then(response => {
+                        setSelectedProduct(null); 
+                        getAllProducts(uxpContext).then(response => {
                             setProducts(response.data.products);
                         });
                     }}
                     onDelete={function (): void {
                         throw new Error("Function not implemented.");
-                    }} />
+                    }} 
+                />
             )}
         </div>
     );

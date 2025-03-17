@@ -40985,7 +40985,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = React.useState(null);
     const [showFilterPanel, setShowFilterPanel] = React.useState(false);
     const [searchValue, setSearchValue] = React.useState("");
-    const [filteredData, setFilteredData] = React.useState(products);
+    const [filteredData, setFilteredData] = React.useState([]);
     const [selectedCategory, setSelectedCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
@@ -40997,7 +40997,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const totalPages = Math.ceil(products.length / itemsPerPage);
+    // Get current items for pagination
+    const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
+    // Calculate total pages based on filtered data
+    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
     const Pagination = () => (React.createElement("div", { className: "pagination-container" },
         React.createElement("div", { className: "flex justify-center items-center gap-2 mt-4" },
             React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }, "Previous"),
@@ -41005,8 +41008,16 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 "Page ",
                 currentPage,
                 " of ",
-                totalPages),
-            React.createElement(components_1.Button, { title: "Next", className: "pagination-button", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages }))));
+                totalPages || 1),
+            React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0 }, "Next"))));
+    // Reset to first page when filters change
+    React.useEffect(() => {
+        setCurrentPage(1);
+    }, [searchValue, selectedCategory, maxCO2]);
+    // Initialize filteredData with products when products change
+    React.useEffect(() => {
+        setFilteredData(products);
+    }, [products]);
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -41038,6 +41049,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const handleClearFilters = () => {
         setSelectedCategory(null);
         setMaxCO2(null);
+        setSearchValue("");
         setFilteredData(products);
     };
     return (React.createElement("div", { className: "content" },
@@ -41069,10 +41081,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                         applyFilters(searchValue, selectedCategory, value);
                                     }, placeholder: "Set maximum CO2" }))))),
                 viewMode === 'grid' ? (React.createElement(React.Fragment, null,
-                    React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
-                            item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
+                    React.createElement(components_1.DataGrid, { data: currentItems, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
+                            item.images && item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
                                 React.createElement("span", { className: "no-image-text" }, "No Image Available"))),
-                            React.createElement("div", { className: "co2-emission" }, parseInt(item.co2Emission).toFixed(2) + ' Kg CO2e'),
+                            React.createElement("div", { className: "co2-emission" }, parseFloat(item.co2Emission).toFixed(2) + ' Kg CO2e'),
                             React.createElement("div", { className: "product-details" },
                                 React.createElement("p", null, item.title),
                                 React.createElement("h4", null, item.name),
@@ -41084,21 +41096,25 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                     "Created: ",
                                     new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" }),
                     React.createElement("div", { className: "pagination-wrapper" },
-                        React.createElement(Pagination, null)))) : (React.createElement("div", { className: "list-view" }, products.map((item, index) => (React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
-                    React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
-                    React.createElement("div", { className: "product-details" },
-                        React.createElement("p", null, item.title),
-                        React.createElement("h4", null, item.name),
-                        React.createElement("p", null, item.category),
-                        React.createElement("p", null,
-                            "Modified: ",
-                            item.modifiedDate),
-                        React.createElement("p", null,
-                            "Created: ",
-                            item.createdDate),
-                        React.createElement("p", null,
-                            "CO2 Emission: ",
-                            item.co2Emission + ' Kg CO2e')))))))),
+                        React.createElement(Pagination, null)))) : (React.createElement("div", { className: "list-view" },
+                    currentItems.map((item, index) => ( // Use currentItems here too
+                    React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
+                        React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
+                        React.createElement("div", { className: "product-details" },
+                            React.createElement("p", null, item.title),
+                            React.createElement("h4", null, item.name),
+                            React.createElement("p", null, item.category),
+                            React.createElement("p", null,
+                                "Modified: ",
+                                item.modifiedDate),
+                            React.createElement("p", null,
+                                "Created: ",
+                                item.createdDate),
+                            React.createElement("p", null,
+                                "CO2 Emission: ",
+                                item.co2Emission + ' Kg CO2e'))))),
+                    React.createElement("div", { className: "pagination-wrapper" },
+                        React.createElement(Pagination, null))))),
             React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
         React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
                 if (showModal) {
