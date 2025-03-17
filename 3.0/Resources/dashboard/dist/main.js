@@ -42044,6 +42044,8 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
             supplierName: "",
             country: "",
         });
+        setBillMaterialsData([]);
+        setProductManufacturingProcess([]);
     };
     return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { setShowCloseWarning(true); }, onClose: onCloseEx, title: "Create Product" },
         react_1.default.createElement(stepper_1.default, { activeStep: activeStep, onStepChange: handleStepChange }),

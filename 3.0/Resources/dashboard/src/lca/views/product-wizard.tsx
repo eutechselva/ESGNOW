@@ -142,7 +142,8 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
             supplierName: "",
             country: "",
         });
-        
+        setBillMaterialsData([]);
+        setProductManufacturingProcess([]);
     }
 
     return (
