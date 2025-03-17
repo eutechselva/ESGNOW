@@ -51,6 +51,7 @@ const LCAWidget: React.FunctionComponent<IWidgetProps> = (props) => {
                         show={showModal} 
                         onClose={() => setShowModal(false)} 
                         uxpContext={props.uxpContext} 
+                        setShowCloseWarning={null}
                     />
                 </div>
             )}

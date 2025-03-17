@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./assessment.scss";
 import { Button } from "uxp/components";
 
@@ -14,9 +14,19 @@ interface AssessmentProps {
 
   },
   onClose: () => void;
+  setShowCloseWarning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose }) => {
+const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,setShowCloseWarning}) => {
+
+  const [pendingClose, setPendingClose] = useState(false);
+
+  useEffect(() => {
+    if (pendingClose) {
+      onClose(); // Only call onClose after state update
+      setPendingClose(false); // Reset the flag
+    }
+  }, [pendingClose]); // Triggered when `pendingClose` is updated
 
   return (
     <div className="assessment-container">
@@ -78,8 +88,8 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose })
         <Button
           title="Save & Close"
           onClick={() => {
-            //alert("Save & Close clicked");
-            onClose();
+            setShowCloseWarning(false);
+            setPendingClose(true);
           }}
           className="save-close-button"
         />

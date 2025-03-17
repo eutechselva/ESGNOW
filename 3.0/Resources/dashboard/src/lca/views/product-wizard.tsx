@@ -19,6 +19,7 @@ interface ProductWizardProps {
     onClose: () => void;
     uxpContext: IContextProvider;
     onProductCreated?: () => void;
+    setShowCloseWarning: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 type ProductData = {
@@ -30,7 +31,7 @@ type ProductData = {
     uploadedImages: string[];
 };
 
-export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }: ProductWizardProps) => {
+export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,setShowCloseWarning}: ProductWizardProps) => {
     const [activeStep, setActiveStep] = useState(0);
 
     const [newlyCreatedProduct, setNewlyCreatedProduct] = useState<any>();
@@ -119,8 +120,33 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }: P
         //onClose();
     };
 
+    const onCloseEx = () =>{
+        
+        onClose();
+        setActiveStep(0);
+        setProductInfoData({
+            code: "",
+            name: "",
+    
+            description: "",
+            images: [],
+            document: null,
+            uploadedImages: [],
+        });
+        setProductCategoryData({
+            category: "",
+            subCategory: "",
+            numberOfUnits: "",
+            totalWeight: "",
+            brandName: "",
+            supplierName: "",
+            country: "",
+        });
+        
+    }
+
     return (
-        <Modal className="lgs-create-product-modal" show={show} onOpen={() => { }} onClose={onClose}
+        <Modal className="lgs-create-product-modal" show={show} onOpen={() => {  setShowCloseWarning(true); }} onClose={onCloseEx}
             title="Create Product"
         >
             <Stepper activeStep={activeStep} onStepChange={handleStepChange} />
@@ -165,7 +191,7 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }: P
                 </div>
             )}
 
-            {activeStep === 4 && <Assessment newlyCreatedProduct={newlyCreatedProduct} onClose={onClose} />}
+            {activeStep === 4 && <Assessment newlyCreatedProduct={newlyCreatedProduct} onClose={onCloseEx} setShowCloseWarning={setShowCloseWarning}/>}
 
         </Modal>
     );

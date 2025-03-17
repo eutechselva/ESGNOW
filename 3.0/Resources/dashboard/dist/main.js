@@ -39540,15 +39540,42 @@ exports["default"] = LCADashboardWidget;
 
 "use strict";
 
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./assessment.scss */ "./src/lca/views/assessment.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const Assessment = ({ newlyCreatedProduct, onClose }) => {
+const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
     var _a;
+    const [pendingClose, setPendingClose] = (0, react_1.useState)(false);
+    (0, react_1.useEffect)(() => {
+        if (pendingClose) {
+            onClose(); // Only call onClose after state update
+            setPendingClose(false); // Reset the flag
+        }
+    }, [pendingClose]); // Triggered when `pendingClose` is updated
     return (react_1.default.createElement("div", { className: "assessment-container" },
         react_1.default.createElement("h1", { className: "assessment-title" }, "Your PCF has been Successfully Calculated!"),
         react_1.default.createElement("div", { className: "product-info" },
@@ -39583,8 +39610,8 @@ const Assessment = ({ newlyCreatedProduct, onClose }) => {
                     alert("Continue clicked");
                 }, className: "continue-button" }),
             react_1.default.createElement(components_1.Button, { title: "Save & Close", onClick: () => {
-                    //alert("Save & Close clicked");
-                    onClose();
+                    setShowCloseWarning(false);
+                    setPendingClose(true);
                 }, className: "save-close-button" }))));
 };
 exports["default"] = Assessment;
@@ -40991,6 +41018,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
     const [plan, setPlan] = React.useState(null);
+    const [showCloseWarning, setShowCloseWarning] = React.useState(true);
     const alerts = (0, components_1.useAlert)();
     const [currentPage, setCurrentPage] = React.useState(1);
     const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
@@ -41117,13 +41145,18 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     React.createElement("div", { className: "pagination-wrapper" },
                         React.createElement(Pagination, null))))),
             React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, setShowCloseWarning: setShowCloseWarning, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
                 if (showModal) {
-                    const confirmed = yield alerts.confirm({
-                        title: 'Are you sure?',
-                        content: 'you are about to leave from the process of creating product. Do you wish to continue?'
-                    });
-                    confirmed ? setShowModal(false) : null;
+                    if (showCloseWarning) {
+                        const confirmed = yield alerts.confirm({
+                            title: 'Are you sure?',
+                            content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                        });
+                        confirmed ? setShowModal(false) : null;
+                    }
+                    else {
+                        setShowModal(false);
+                    }
                 }
                 else {
                     setShowModal(false);
@@ -41920,7 +41953,7 @@ const product_manufacturing_1 = __importDefault(__webpack_require__(/*! ./produc
 __webpack_require__(/*! ./product-wizard.scss */ "./src/lca/views/product-wizard.scss");
 const assessment_1 = __importDefault(__webpack_require__(/*! ./assessment */ "./src/lca/views/assessment.tsx"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }) => {
+const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowCloseWarning }) => {
     const [activeStep, setActiveStep] = (0, react_1.useState)(0);
     const [newlyCreatedProduct, setNewlyCreatedProduct] = (0, react_1.useState)();
     // State to hold product information data
@@ -41991,7 +42024,28 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }) => {
         }
         //onClose();
     });
-    return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { }, onClose: onClose, title: "Create Product" },
+    const onCloseEx = () => {
+        onClose();
+        setActiveStep(0);
+        setProductInfoData({
+            code: "",
+            name: "",
+            description: "",
+            images: [],
+            document: null,
+            uploadedImages: [],
+        });
+        setProductCategoryData({
+            category: "",
+            subCategory: "",
+            numberOfUnits: "",
+            totalWeight: "",
+            brandName: "",
+            supplierName: "",
+            country: "",
+        });
+    };
+    return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { setShowCloseWarning(true); }, onClose: onCloseEx, title: "Create Product" },
         react_1.default.createElement(stepper_1.default, { activeStep: activeStep, onStepChange: handleStepChange }),
         activeStep === 0 && (react_1.default.createElement(product_information_1.default, { productData: productInfoData, onNext: handleProductInfoChange, uxpContext: uxpContext })),
         activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange, uxpContext: uxpContext })),
@@ -41999,7 +42053,7 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated }) => {
         activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess, uxpContext: uxpContext })),
         activeStep === 3 && productManufacturingProcess.length > 0 && (react_1.default.createElement("div", { className: "done-button-container" },
             react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone }))),
-        activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onClose })));
+        activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onCloseEx, setShowCloseWarning: setShowCloseWarning })));
 };
 exports.ProductWizard = ProductWizard;
 exports["default"] = exports.ProductWizard;
@@ -42063,7 +42117,7 @@ const LCAWidget = (props) => {
             React.createElement("h2", { className: "create-your-first-product" }, "Create your first product"),
             React.createElement("p", { className: "description-text" }, "Start by creating a product to begin tracking its environmental impact and lifecycle analysis."),
             React.createElement("button", { className: "create-product-button", onClick: () => setShowModal(true) }, "Create Product")),
-        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext })))));
+        React.createElement(product_wizard_1.ProductWizard, { show: showModal, onClose: () => setShowModal(false), uxpContext: props.uxpContext, setShowCloseWarning: null })))));
 };
 exports["default"] = LCAWidget;
 

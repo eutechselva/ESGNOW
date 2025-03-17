@@ -7,7 +7,7 @@ import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
 interface IWidgetProps {
     uxpContext: IContextProvider
-    plan : string;
+    plan: string;
 }
 
 const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
@@ -21,6 +21,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [viewMode, setViewMode] = React.useState<'grid' | 'list'>('grid'); // Default to 'grid' view
     const [showModal, setShowModal] = React.useState(false);
     const [plan, setPlan] = React.useState<string>(null);
+    const [showCloseWarning, setShowCloseWarning] = React.useState(true);
 
     const alerts = useAlert();
 
@@ -30,10 +31,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    
+
     // Get current items for pagination
     const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-    
+
     // Calculate total pages based on filtered data
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
@@ -217,7 +218,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                         </div>
                                     </div>
                                 ))}
-                                
+
                                 <div className="pagination-wrapper">
                                     <Pagination />
                                 </div>
@@ -232,18 +233,24 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             )}
             <ProductWizard
                 show={showModal}
-                onClose={async () =>  {
-                    if(showModal){
-                        const confirmed = await alerts.confirm({
-                            title: 'Are you sure?',
-                            content: 'you are about to leave from the process of creating product. Do you wish to continue?'
-                        })
-                        confirmed ? setShowModal(false) : null
+                setShowCloseWarning={setShowCloseWarning}
+                onClose={async () => {
+                    if (showModal) {
+                        if (showCloseWarning) {
+                            const confirmed = await alerts.confirm({
+                                title: 'Are you sure?',
+                                content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                            })
+                            confirmed ? setShowModal(false) : null
+                        }
+                        else {
+                            setShowModal(false)
+                        }
                     }
-                    else{
+                    else {
                         setShowModal(false)
                     }
-                }} 
+                }}
                 uxpContext={uxpContext}
                 onProductCreated={() => {
                     // Refresh the product list after a new product is created
@@ -261,14 +268,14 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     product={selectedProduct}
                     hideHeader={false}
                     onClose={() => {
-                        setSelectedProduct(null); 
+                        setSelectedProduct(null);
                         getAllProducts(uxpContext).then(response => {
                             setProducts(response.data.products);
                         });
                     }}
                     onDelete={function (): void {
                         throw new Error("Function not implemented.");
-                    }} 
+                    }}
                 />
             )}
         </div>
