@@ -136,7 +136,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                    />
                </FormField>
    
-               <FormField className="unit-field">
+               {/* <FormField className="unit-field">
                    <Label>Unit</Label>
                    <Select
                        options={[
@@ -147,18 +147,17 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                        placeholder="Select unit"
                        className="unit-select"
                    />
-               </FormField>
+               </FormField> */}
                     {/* Wrap the button in a new div to place it on a separate line */}
-                    <div className="add-another-material-container">
+                </div>
+            ))}
+                <div className="add-another-material-container">
                         <Button
                             title="Add Another Material"
                             className="add-another-material-button"
                             onClick={handleAddAnother}
                         />
-                    </div>
-                    
                 </div>
-            ))}
     <div className="add-material-button-container">
             <Button
                 title="Done"

@@ -78,13 +78,13 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
       </p>
 
       <div className="button-group">
-        <Button
+        {/* <Button
           title="Continue"
           onClick={() => {
             alert("Continue clicked");
           }}
           className="continue-button"
-        />
+        /> */}
         <Button
           title="Save & Close"
           onClick={() => {
@@ -92,6 +92,7 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
             setPendingClose(true);
           }}
           className="save-close-button"
+          icon="https://static.iviva.com/images/floppy-disk.png"
         />
       </div>
     </div>

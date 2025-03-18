@@ -39606,13 +39606,10 @@ const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
                         " KgCO\u2082e")))),
         react_1.default.createElement("p", { className: "calculation-subtext" }, "Complete the analysis by calculating transportation emissions, or save your progress and do it later?"),
         react_1.default.createElement("div", { className: "button-group" },
-            react_1.default.createElement(components_1.Button, { title: "Continue", onClick: () => {
-                    alert("Continue clicked");
-                }, className: "continue-button" }),
             react_1.default.createElement(components_1.Button, { title: "Save & Close", onClick: () => {
                     setShowCloseWarning(false);
                     setPendingClose(true);
-                }, className: "save-close-button" }))));
+                }, className: "save-close-button", icon: "https://static.iviva.com/images/floppy-disk.png" }))));
 };
 exports["default"] = Assessment;
 
@@ -40671,14 +40668,9 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial }) => {
                         : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "specific-material-select" })),
             react_1.default.createElement(components_1.FormField, { className: "material-weight-field" },
                 react_1.default.createElement(components_1.Label, null, "Material Weight (Kg)"),
-                react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "weight-input" })),
-            react_1.default.createElement(components_1.FormField, { className: "unit-field" },
-                react_1.default.createElement(components_1.Label, null, "Unit"),
-                react_1.default.createElement(components_1.Select, { options: [
-                        { label: "kg", value: "kg" },
-                    ], selected: material.unit, onChange: (value) => handleInputChange(index, "unit", value), placeholder: "Select unit", className: "unit-select" })),
-            react_1.default.createElement("div", { className: "add-another-material-container" },
-                react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "add-another-material-button", onClick: handleAddAnother }))))),
+                react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "weight-input" }))))),
+        react_1.default.createElement("div", { className: "add-another-material-container" },
+            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "add-another-material-button", onClick: handleAddAnother })),
         react_1.default.createElement("div", { className: "add-material-button-container" },
             react_1.default.createElement(components_1.Button, { title: "Done", className: "add-material-button", onClick: handleAddMaterial }))));
 };
@@ -41436,8 +41428,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                 react_1.default.createElement("p", { className: "subheading" },
                     "Product : ",
                     product.name),
-                react_1.default.createElement(components_1.Button, { title: " < Back  ", onClick: onClose, className: "back-button" }))),
-            !hideDelete && (react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => deleteProduct(), className: "delete-button" }, "Delete")),
+                react_1.default.createElement(components_1.Button, { title: " < Back ", onClick: onClose, className: "back-button" }))),
+            !hideDelete && (react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => deleteProduct(), className: "delete-button", icon: "https://static.iviva.com/images/icons8-delete.svg" }, "Delete")),
             showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showModal, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
                 react_1.default.createElement("p", null, "Are you sure you want to delete this product?"),
                 react_1.default.createElement("div", { className: "modal-actions" },
