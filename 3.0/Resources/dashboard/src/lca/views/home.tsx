@@ -7,6 +7,9 @@ import ProductInfoSummary from './product-info-summary';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import ProductWizard from './product-wizard';
+// Import react-tooltip
+import { Tooltip } from 'react-tooltip';
+import 'react-tooltip/dist/react-tooltip.css'; // Import the CSS for styling
 
 interface IHomeDashboardWidgetProps {
     uxpContext: IContextProvider;
@@ -41,7 +44,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const [showTour, setShowTour] = useState(false);
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
 
-     const alerts = useAlert();
+    const alerts = useAlert();
 
     // Search config
     const searchConfig = useMemo(() => ({
@@ -122,48 +125,24 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
         }
     }, [uxpContext]);
 
-    // Get color based on CO2 emission value
-    const getCO2Color = (emission: number): string => {
-        if (emission < 300) return 'text-green-500';
-        if (emission < 600) return 'text-yellow-500';
-        return 'text-red-500';
-    };
-
     // Handle product selection
     const handleProductSelect = (product: ProductInfoSummary) => {
         setSelectedProduct(product);
         setShowModal(true);
     };
 
-    // Handle add new product
-    const handleAddNewProduct = () => {
-        // Implementation for adding new product
-        console.log('Add new product clicked');
-    };
-
-    // Render loading state
     if (isLoading) {
         return (
             <div className="loading-container">
-
                 <DefaultLoader></DefaultLoader>
             </div>
         );
     }
 
-    // Render error state
     if (hasError) {
         return (
             <div className="error-container">
-                {/* <EmptyState
-                    icon="error"
-                    title="Failed to load dashboard"
-                    message={errorMessage}
-                    action={{
-                        label: "Try Again",
-                        onClick: () => window.location.reload()
-                    }}
-                /> */}
+                {/* Error state UI */}
             </div>
         );
     }
@@ -175,7 +154,6 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 title={`Product: ${selectedProduct?.name || 'N/A'}`}
                 show={showModal}
                 onClose={() => setShowModal(false)}
-
             >
                 {selectedProduct && (
                     <ProductInfoSummary
@@ -233,13 +211,16 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     </div>
                 </div>
 
-                {/* Stats Cards */}
+                {/* Stats Cards with Tooltips */}
                 <div className="stats-container">
                     <div className="stats-cards">
                         <div className="stat-card products">
                             <div className="stat-icon">
-
-                                <FontAwesomeIcon icon={faInfoCircle} />
+                                <FontAwesomeIcon 
+                                    icon={faInfoCircle} 
+                                    data-tooltip-id="products-tooltip" 
+                                    data-tooltip-content="Displays the total number of products successfully added to the platform." 
+                                />
                             </div>
                             <h2>No. of Products Created</h2>
                             <p className="stat-number">{dashboardStats.totalProducts}</p>
@@ -248,7 +229,11 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                         <div className="stat-card projects">
                             <div className="stat-icon">
-                                <FontAwesomeIcon icon={faInfoCircle} />
+                                <FontAwesomeIcon 
+                                    icon={faInfoCircle} 
+                                    data-tooltip-id="projects-tooltip" 
+                                    data-tooltip-content="Displays the total number of projects create on the platform." 
+                                />
                             </div>
                             <h2>No. of Projects Created</h2>
                             <p className="stat-number">{dashboardStats.totalProjects}</p>
@@ -257,7 +242,11 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                         <div className="stat-card credits">
                             <div className="stat-icon">
-                                <FontAwesomeIcon icon={faInfoCircle} />
+                                <FontAwesomeIcon 
+                                    icon={faInfoCircle} 
+                                    data-tooltip-id="credits-tooltip" 
+                                    data-tooltip-content="Tracks the number of AI credits used for generating the inputs for carbon footprint calculations." 
+                                />
                             </div>
                             <h2>No. of AI Credits Consumed</h2>
                             <p className="stat-number">{dashboardStats.totalCredits}</p>
@@ -272,7 +261,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <iframe
                             width="100%"
                             height="200"
-                            src="https://www.youtube.com/embed/ESGTutorialVideo"
+                            src="https://www.youtube.com/embed/AkbGz3CYvqE"
                             title="Getting Started with ESG NOW"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
@@ -291,7 +280,6 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                                 {
                                     id: 'co2Emission',
                                     label: 'Carbon Footprint (KgCO2e)',
-
                                 },
                                 { id: 'category', label: 'Main Category' },
                                 { id: 'subCategory', label: 'Sub Category' },
@@ -313,11 +301,15 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     <p>Your current plan: <strong>{plan || 'Free Plan'}</strong></p>
                     <Button
                         title="Take a Tour"
-
                         onClick={() => setShowTour(true)}
                     />
                 </div>
             </div>
+
+            {/* React-Tooltip components */}
+            <Tooltip id="products-tooltip" place="top"  />
+            <Tooltip id="projects-tooltip" place="top"  />
+            <Tooltip id="credits-tooltip" place="top"  />
         </>
     );
 };
