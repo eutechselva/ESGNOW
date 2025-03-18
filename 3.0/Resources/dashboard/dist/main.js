@@ -119,7 +119,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".summary-card-container {\n  display: flex;\n  gap: 20px;\n  align-items: flex-start;\n  justify-content: space-between;\n}\n\n.summary {\n  display: flex;\n  gap: 20px;\n  flex-wrap: wrap;\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n.card {\n  background: #fff;\n  padding: 20px;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n  min-width: 200px;\n  min-height: 200px;\n  flex: 1;\n}\n\n.number {\n  font-size: 24px;\n  font-weight: bold;\n}\n\n.getting-started {\n  background: #f5f5f5;\n  padding: 20px;\n  border-radius: 8px;\n  flex: 1;\n  min-width: 300px;\n}\n.getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n}\n\n.recent-projects-container {\n  padding: 20px;\n  background: #f5f5f5;\n  border-radius: 8px;\n  margin-top: 20px;\n  margin-bottom: 20px;\n}\n\n.recent-projects-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.search-box-filter-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n}", ""]);
+exports.push([module.id, ".dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: flex;\n  gap: 16px;\n  flex-wrap: wrap;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  min-width: 200px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .getting-started {\n    flex: 1;\n  }\n}\n.getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container, .error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -40347,95 +40347,202 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 __webpack_require__(/*! ./home.scss */ "./src/lca/views/home.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
+const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
+const product_wizard_1 = __importDefault(__webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx"));
 const HomeDashboard = ({ uxpContext }) => {
+    // State management
     const [searchValue, setSearchValue] = (0, react_1.useState)('');
-    const [inputValue, setInputValue] = (0, react_1.useState)('');
-    const [totalProducts, setTotalProducts] = (0, react_1.useState)([]);
-    const [totalImpact, setTotalImpact] = (0, react_1.useState)([]);
-    const [totalProjects, setTotalProjects] = (0, react_1.useState)([]);
-    const [totalCredits, setTotalCredits] = (0, react_1.useState)([]);
-    const [products, setProducts] = react_1.default.useState([]);
-    const [plan, setPlan] = (0, react_1.useState)(null);
+    const [isLoading, setIsLoading] = (0, react_1.useState)(true);
+    const [hasError, setHasError] = (0, react_1.useState)(false);
+    const [errorMessage, setErrorMessage] = (0, react_1.useState)('');
+    const [dashboardStats, setDashboardStats] = (0, react_1.useState)({
+        totalProducts: 0,
+        totalImpact: 0,
+        totalProjects: 0,
+        totalCredits: 0
+    });
+    const [products, setProducts] = (0, react_1.useState)([]);
+    const [plan, setPlan] = (0, react_1.useState)('');
     const [showModal, setShowModal] = (0, react_1.useState)(false);
-    const [item, setItem] = (0, react_1.useState)();
-    const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
+    const [showCreateProductModal, setShowCreateProductModal] = (0, react_1.useState)(false);
+    const [selectedProduct, setSelectedProduct] = (0, react_1.useState)(null);
+    const [showTour, setShowTour] = (0, react_1.useState)(false);
+    const [showCloseWarning, setShowCloseWarning] = react_1.default.useState(true);
+    const alerts = (0, components_1.useAlert)();
+    // Search config
+    const searchConfig = (0, react_1.useMemo)(() => ({
+        enabled: true,
+        placeholder: 'Search products...'
+    }), []);
+    // Fetch dashboard data (combined API calls)
+    (0, react_1.useEffect)(() => {
+        const fetchDashboardData = () => __awaiter(void 0, void 0, void 0, function* () {
+            var _a;
+            setIsLoading(true);
+            try {
+                // Fetch products and stats in parallel
+                const [productsResponse, statsResponse] = yield Promise.all([
+                    (0, esgnow_service_1.getAllProducts)(uxpContext),
+                    (0, esgnow_service_1.home)(uxpContext)
+                ]);
+                // Handle products data
+                const productsData = productsResponse.data;
+                setProducts(productsData.products || []);
+                setPlan(((_a = productsData.plan) === null || _a === void 0 ? void 0 : _a.plan) || 'Free');
+                // Handle dashboard stats
+                const statsData = statsResponse.data;
+                setDashboardStats({
+                    totalProducts: statsData.totalProducts || 0,
+                    totalImpact: statsData.totalImpact || 0,
+                    totalProjects: statsData.totalProjects || 0,
+                    totalCredits: statsData.totalCredits || 0
+                });
+                setHasError(false);
+            }
+            catch (error) {
+                console.error('Failed to fetch dashboard data:', error);
+                setHasError(true);
+                setErrorMessage('Failed to load dashboard data. Please try again later.');
+            }
+            finally {
+                setIsLoading(false);
+            }
+        });
+        fetchDashboardData();
+    }, [uxpContext]);
+    // Handle search input change
     const handleSearchChange = (value) => {
         setSearchValue(value);
     };
-    react_1.default.useEffect(() => {
-        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-                let data = response.data.products;
-                setPlan(response.data.plan.plan);
-                setProducts(data);
-            }
-            catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        });
-        fetchProductData();
-    }, []);
-    react_1.default.useEffect(() => {
-        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
-            const data = yield (0, esgnow_service_1.home)(uxpContext);
-            setTotalProducts(data.data.totalProducts);
-            setTotalImpact(data.data.totalImpact);
-            setTotalProjects(data.data.totalProjects);
-            setTotalCredits(data.data.totalCredits);
-        });
-        fetchProductData();
-    }, []);
+    // Get products for CRUD component
     const getProducts = (0, react_1.useCallback)((page, pageSize, query, filters) => __awaiter(void 0, void 0, void 0, function* () {
-        let { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-        data = data.products.map((d) => (Object.assign(Object.assign({}, d), { modifiedDate: d.modifiedDate ? new Date(d.modifiedDate).toLocaleDateString() : 'N/A' })));
-        if (!!error)
+        try {
+            const { data, error } = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+            if (error) {
+                console.error('Error fetching products:', error);
+                return { items: [] };
+            }
+            // Format the data
+            const formattedData = data.products.map((product) => (Object.assign(Object.assign({}, product), { modifiedDate: product.modifiedDate
+                    ? new Date(product.modifiedDate).toLocaleDateString()
+                    : 'N/A' })));
+            return { items: formattedData };
+        }
+        catch (error) {
+            console.error('Failed to fetch products:', error);
             return { items: [] };
-        return { items: data };
-    }), []);
+        }
+    }), [uxpContext]);
+    // Get color based on CO2 emission value
+    const getCO2Color = (emission) => {
+        if (emission < 300)
+            return 'text-green-500';
+        if (emission < 600)
+            return 'text-yellow-500';
+        return 'text-red-500';
+    };
+    // Handle product selection
+    const handleProductSelect = (product) => {
+        setSelectedProduct(product);
+        setShowModal(true);
+    };
+    // Handle add new product
+    const handleAddNewProduct = () => {
+        // Implementation for adding new product
+        console.log('Add new product clicked');
+    };
+    // Render loading state
+    if (isLoading) {
+        return (react_1.default.createElement("div", { className: "loading-container" },
+            react_1.default.createElement(components_1.DefaultLoader, null)));
+    }
+    // Render error state
+    if (hasError) {
+        return (react_1.default.createElement("div", { className: "error-container" }));
+    }
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(components_1.Modal, { title: `Product : ${(item === null || item === void 0 ? void 0 : item.name) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) },
-            react_1.default.createElement(product_info_summary_1.default, { plan: plan, product: item, onClose: () => setShowModal(false), onDelete: function () {
-                    throw new Error('Function not implemented.');
-                }, hideHeader: true, hideDelete: true, uxpContext: uxpContext })),
-        react_1.default.createElement("div", { style: { width: "100%", height: "100%", position: "relative" } },
-            react_1.default.createElement("div", { className: "title-container" },
-                react_1.default.createElement("h1", { className: "heading" }, "Welcome to ESG NOW!")),
-            react_1.default.createElement("div", { className: "summary-card-container" },
-                react_1.default.createElement("section", { className: "summary" },
-                    react_1.default.createElement("div", { className: "card" },
+        react_1.default.createElement(components_1.Modal, { title: `Product: ${(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name) || 'N/A'}`, show: showModal, onClose: () => setShowModal(false) }, selectedProduct && (react_1.default.createElement(product_info_summary_1.default, { plan: plan, product: selectedProduct, onClose: () => setShowModal(false), onDelete: () => console.log('Delete not implemented'), hideHeader: true, hideDelete: true, uxpContext: uxpContext }))),
+        react_1.default.createElement(product_wizard_1.default, { show: showCreateProductModal, setShowCloseWarning: setShowCloseWarning, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
+                if (showCreateProductModal) {
+                    if (showCloseWarning) {
+                        const confirmed = yield alerts.confirm({
+                            title: 'Are you sure?',
+                            content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                        });
+                        confirmed ? setShowCreateProductModal(false) : null;
+                    }
+                    else {
+                        setShowCreateProductModal(false);
+                    }
+                }
+                else {
+                    setShowCreateProductModal(false);
+                }
+            }), uxpContext: uxpContext, onProductCreated: () => {
+                // Refresh the product list after a new product is created
+                (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
+                    setProducts(response.data.products);
+                });
+            } }),
+        react_1.default.createElement("div", { className: "dashboard-container" },
+            react_1.default.createElement("div", { className: "dashboard-header" },
+                react_1.default.createElement("div", null,
+                    react_1.default.createElement("h1", { className: "dashboard-title" }, "Welcome to ESG NOW!"),
+                    react_1.default.createElement("p", { className: "dashboard-subtitle" }, "Your sustainability dashboard")),
+                react_1.default.createElement("div", { className: "action-buttons" },
+                    react_1.default.createElement("button", { className: "add-product-button", onClick: () => setShowCreateProductModal(true) }, "+ Add Product"))),
+            react_1.default.createElement("div", { className: "stats-container" },
+                react_1.default.createElement("div", { className: "stats-cards" },
+                    react_1.default.createElement("div", { className: "stat-card products" },
+                        react_1.default.createElement("div", { className: "stat-icon" },
+                            react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle })),
                         react_1.default.createElement("h2", null, "No. of Products Created"),
-                        react_1.default.createElement("p", { className: "number" }, totalProducts),
-                        react_1.default.createElement("span", null, "Products")),
-                    react_1.default.createElement("div", { className: "card" },
+                        react_1.default.createElement("p", { className: "stat-number" }, dashboardStats.totalProducts),
+                        react_1.default.createElement("span", { className: "stat-label" }, "Products")),
+                    react_1.default.createElement("div", { className: "stat-card projects" },
+                        react_1.default.createElement("div", { className: "stat-icon" },
+                            react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle })),
                         react_1.default.createElement("h2", null, "No. of Projects Created"),
-                        react_1.default.createElement("p", { className: "number" }, totalProjects),
-                        react_1.default.createElement("span", null, "Projects")),
-                    react_1.default.createElement("div", { className: "card" },
+                        react_1.default.createElement("p", { className: "stat-number" }, dashboardStats.totalProjects),
+                        react_1.default.createElement("span", { className: "stat-label" }, "Projects")),
+                    react_1.default.createElement("div", { className: "stat-card credits" },
+                        react_1.default.createElement("div", { className: "stat-icon" },
+                            react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle })),
                         react_1.default.createElement("h2", null, "No. of AI Credits Consumed"),
-                        react_1.default.createElement("p", { className: "number" }, totalCredits),
-                        react_1.default.createElement("span", null, "Credits"))),
-                react_1.default.createElement("section", { className: "getting-started" },
-                    react_1.default.createElement("iframe", { width: "100%", height: "200", src: "https://www.youtube.com/embed/YOUR_VIDEO_ID", title: "Getting Started Video", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }))),
-            react_1.default.createElement("div", { className: "recent-projects-container" },
-                react_1.default.createElement("div", { className: "recent-projects" },
-                    react_1.default.createElement(components_1.CRUDComponent, { list: {
-                            title: 'Recent Products',
-                            columns: [
-                                { id: 'code', label: 'Product Code' },
-                                { id: 'name', label: 'Product Name' },
-                                { id: 'co2Emission', label: 'Carbon Footprint (KgCO2e)' },
-                                { id: 'category', label: 'Main Category' },
-                                { id: 'subCategory', label: 'Sub Category' },
-                                { id: 'modifiedDate', label: 'Date Created/Modified' }
-                            ],
-                            defaultPageSize: 10,
-                            data: {
-                                getData: getProducts
+                        react_1.default.createElement("p", { className: "stat-number" }, dashboardStats.totalCredits),
+                        react_1.default.createElement("span", { className: "stat-label" }, "Credits"))),
+                react_1.default.createElement("div", { className: "getting-started" },
+                    react_1.default.createElement("h2", null, "Getting Started with ESG NOW"),
+                    react_1.default.createElement("p", null, "Watch this quick tutorial to learn the basics of ESG NOW"),
+                    react_1.default.createElement("iframe", { width: "100%", height: "200", src: "https://www.youtube.com/embed/ESGTutorialVideo", title: "Getting Started with ESG NOW", allow: "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowFullScreen: true }))),
+            react_1.default.createElement("div", { className: "recent-products-container" },
+                react_1.default.createElement(components_1.CRUDComponent, { list: {
+                        title: 'Recent Products',
+                        columns: [
+                            { id: 'code', label: 'Product Code' },
+                            { id: 'name', label: 'Product Name' },
+                            {
+                                id: 'co2Emission',
+                                label: 'Carbon Footprint (KgCO2e)',
                             },
-                            search: memorizedSearch,
-                            onClickRow: (e, item) => { setItem(item); setShowModal(true); }
-                        } }))))));
+                            { id: 'category', label: 'Main Category' },
+                            { id: 'subCategory', label: 'Sub Category' },
+                            { id: 'modifiedDate', label: 'Date Created/Modified' }
+                        ],
+                        defaultPageSize: 10,
+                        data: {
+                            getData: getProducts
+                        },
+                        search: searchConfig,
+                        onClickRow: (e, item) => handleProductSelect(item),
+                        noItemsMessage: "No Products Found"
+                    } })),
+            react_1.default.createElement("div", { className: "dashboard-footer" },
+                react_1.default.createElement("p", null,
+                    "Your current plan: ",
+                    react_1.default.createElement("strong", null, plan || 'Free Plan')),
+                react_1.default.createElement(components_1.Button, { title: "Take a Tour", onClick: () => setShowTour(true) })))));
 };
 exports["default"] = HomeDashboard;
 
