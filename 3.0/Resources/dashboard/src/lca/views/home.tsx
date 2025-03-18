@@ -255,7 +255,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     </div>
 
                     {/* Getting Started Video */}
-                    <div className="getting-started">
+                    <div className="esgnow-getting-started">
                         <h2>Getting Started with ESG NOW</h2>
                         <p>Watch this quick tutorial to learn the basics of ESG NOW</p>
                         <iframe
