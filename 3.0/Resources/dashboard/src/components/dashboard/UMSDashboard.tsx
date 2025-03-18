@@ -1,4 +1,4 @@
-import './UMSDashboard.scss';
+import './ESGNOWDashboard.scss';
 import React, { useContext, useState } from "react";
 import classNames from "classnames";
 import { Button, Loading, SearchBox, SideBar, ThemeChanger, UserProfile } from "uxp/components";

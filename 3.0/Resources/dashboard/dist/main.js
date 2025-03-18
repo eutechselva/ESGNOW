@@ -21,10 +21,10 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/UMSDashboard.scss":
-/*!*********************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/UMSDashboard.scss ***!
-  \*********************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/ESGNOWDashboard.scss":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/ESGNOWDashboard.scss ***!
+  \************************************************************************************************************************************/
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
@@ -37334,14 +37334,14 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ "./src/components/dashboard/UMSDashboard.scss":
-/*!****************************************************!*\
-  !*** ./src/components/dashboard/UMSDashboard.scss ***!
-  \****************************************************/
+/***/ "./src/components/dashboard/ESGNOWDashboard.scss":
+/*!*******************************************************!*\
+  !*** ./src/components/dashboard/ESGNOWDashboard.scss ***!
+  \*******************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./UMSDashboard.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/UMSDashboard.scss");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./ESGNOWDashboard.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/components/dashboard/ESGNOWDashboard.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -38009,7 +38009,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.UMSDashboard = void 0;
-__webpack_require__(/*! ./UMSDashboard.scss */ "./src/components/dashboard/UMSDashboard.scss");
+__webpack_require__(/*! ./ESGNOWDashboard.scss */ "./src/components/dashboard/ESGNOWDashboard.scss");
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const classnames_1 = __importDefault(__webpack_require__(/*! classnames */ "./node_modules/classnames/index.js"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
