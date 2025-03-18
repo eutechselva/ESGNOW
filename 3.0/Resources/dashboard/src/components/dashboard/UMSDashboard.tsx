@@ -73,7 +73,7 @@ export const UMSDashboard: React.FC<UMSDashboardProps> = (props) => {
                     <AppLauncher uxpContext={context.uxpContext} />
 
                     <div className="ums__header_logo_container" onClick={() => { window.location.href = '/' }} >
-                        <div className="ums__header_logo"></div>
+                        <div className="esgnow__header_logo"></div>
                     </div>
 
                 </div>

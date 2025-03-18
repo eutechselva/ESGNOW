@@ -46,14 +46,6 @@
         cursor: pointer;
     }
 
-    &__header_logo {
-        width: 100%;
-        height: 100%;
-        background-position: left center;
-        background-repeat: no-repeat;
-        background-size: contain;
-    }
-
     &__title {
         font-size: 16px;
         font-weight: 700;
@@ -175,14 +167,22 @@
     }
 }
 
+.esgnow__header_logo {
+    width: 100%;
+    height: 100%;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
 .uxp-light-theme {
-    .ums__header_logo {
+    .esgnow__header_logo {
         background-image: url('../../images/ESG_now_logo.png');
     }
 }
 
 .uxp-dark-theme {
-    .ums__header_logo {
+    .esgnow__header_logo {
         background-image: url('../../images/ESG_now_logo.png');
     }
 }
