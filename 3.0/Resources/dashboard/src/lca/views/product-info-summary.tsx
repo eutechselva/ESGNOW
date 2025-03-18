@@ -127,13 +127,13 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
 
 
                         <Button
-                            title=" < Back  "
+                            title=" < Back "
                             onClick={onClose}
                             className="back-button"
                         /></>
                 )}
                 {!hideDelete && (
-                    <Button title="Delete" onClick={() => deleteProduct()} className="delete-button">
+                    <Button title="Delete" onClick={() => deleteProduct()} className="delete-button" icon="https://static.iviva.com/images/icons8-delete.svg">
                         Delete
                     </Button>
                 )}
