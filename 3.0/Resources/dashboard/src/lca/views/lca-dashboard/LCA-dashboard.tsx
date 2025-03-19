@@ -1,14 +1,14 @@
 import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, Input, } from "uxp/components";
 import * as React from "react";
 import './lca-dashboard.scss';
-import Stepper from './stepper-LCA';
+import Stepper from '../stepper-LCA';
 import { useState } from "react";
-import EmissionSummary from './emission-summary';
+import EmissionSummary from '../emission-summary';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { IContextProvider } from "@uxp";
-import { calculateTransportDistance, calculateTransportEmission, getAllProducts, transportDB } from "../../esgnow-service";
+import { calculateTransportDistance, calculateTransportEmission, getAllProducts, transportDB } from "../../../esgnow-service";
 
 interface TransportLeg {
     id: number;
