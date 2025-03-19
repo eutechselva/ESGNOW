@@ -75,23 +75,6 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/ProductDashboardWidget.scss":
-/*!********************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/ProductDashboardWidget.scss ***!
-  \********************************************************************************************************************************/
-/***/ ((module, exports, __webpack_require__) => {
-
-// Imports
-var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
-exports = ___CSS_LOADER_API_IMPORT___(false);
-// Module
-exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #0056D2;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n.add-product-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #ffffff;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.product-image-no-image {\n  width: 100%;\n  height: 150px;\n  background-color: #f4f4f4;\n  /* Light gray for better visibility */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: #888;\n  /* Soft gray text */\n  font-weight: bold;\n  border: 1px dashed #ccc;\n  /* Dashed border for a placeholder effect */\n  border-radius: 8px;\n}\n\n.no-image-text {\n  font-size: 14px;\n  opacity: 0.8;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover,\n.add-transport-leg-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0;\n  /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block;\n  /* Ensures inline display */\n  vertical-align: middle;\n  /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px;\n  /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}\n\n.pagination-container {\n  float: right;\n  margin-top: 20px;\n}\n\n.remove-leg-button {\n  top: 15px;\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}", ""]);
-// Exports
-module.exports = exports;
-
-
-/***/ }),
-
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/assessment.scss":
 /*!********************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/assessment.scss ***!
@@ -126,6 +109,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-upload.scss":
+/*!*********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-upload.scss ***!
+  \*********************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".bulk-upload-container {\n  max-width: 900px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n}\n\n.page-title {\n  font-size: 28px;\n  color: #333;\n  margin-bottom: 10px;\n}\n\n.page-description {\n  color: #666;\n  margin-bottom: 30px;\n}\n\n.card {\n  background: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  margin-bottom: 25px;\n  overflow: hidden;\n}\n\n.card-header {\n  background: #f7f9fc;\n  padding: 15px 20px;\n  border-bottom: 1px solid #eaedf3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.card-header h2 {\n  margin: 0;\n  font-size: 18px;\n  color: #2c3e50;\n}\n\n.card-body {\n  padding: 20px;\n}\n\n.section-info {\n  color: #666;\n  margin-bottom: 15px;\n  font-size: 14px;\n}\n\n.upload-section {\n  display: flex;\n  gap: 15px;\n  align-items: center;\n}\n\n.file-input-container {\n  flex: 1;\n  position: relative;\n}\n\n.file-input {\n  position: absolute;\n  left: -9999px;\n}\n\n.file-label {\n  display: block;\n  padding: 10px 15px;\n  background: #f2f4f7;\n  border: 1px dashed #cbd5e0;\n  border-radius: 4px;\n  cursor: pointer;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  transition: all 0.2s;\n}\n\n.file-label:hover {\n  background: #e2e8f0;\n}\n\n.upload-btn {\n  padding: 10px 20px;\n  background: #3182ce;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.upload-btn:hover {\n  background: #2c5282;\n}\n\n.upload-btn.disabled {\n  background: #a0aec0;\n  cursor: not-allowed;\n}\n\n.download-btn {\n  background: transparent;\n  color: #4299e1;\n  border: 1px solid #4299e1;\n  border-radius: 4px;\n  padding: 6px 12px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.download-btn:hover {\n  background: #ebf8ff;\n}\n\n.message {\n  padding: 12px 20px;\n  border-radius: 4px;\n  margin-top: 20px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.message.success {\n  background: #c6f6d5;\n  border-left: 4px solid #38a169;\n  color: #276749;\n}\n\n.message.error {\n  background: #fed7d7;\n  border-left: 4px solid #e53e3e;\n  color: #c53030;\n}\n\n.message-icon {\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.instructions-card {\n  background: #f7fafc;\n  border-radius: 8px;\n  padding: 20px;\n  margin-bottom: 25px;\n  border: 1px solid #e2e8f0;\n}\n\n.instructions-card h3 {\n  margin-top: 0;\n  margin-bottom: 15px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #e2e8f0;\n  color: #2d3748;\n}\n\n.instructions-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n}\n\n@media (max-width: 768px) {\n  .instructions-content {\n    grid-template-columns: 1fr;\n  }\n  .upload-section {\n    flex-direction: column;\n  }\n  .file-input-container {\n    width: 100%;\n  }\n  .upload-btn {\n    width: 100%;\n  }\n}\n.instruction-section h4 {\n  color: #4a5568;\n  margin-bottom: 10px;\n}\n\n.instruction-section ul {\n  padding-left: 20px;\n  margin: 0;\n}\n\n.instruction-section li {\n  margin-bottom: 5px;\n  font-size: 14px;\n  color: #4a5568;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss":
 /*!**************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss ***!
@@ -137,6 +137,23 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
 exports.push([module.id, ".dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n  gap: 16px;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  max-width: 300px;\n  min-width: 200px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  grid-column: 1/-1;\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.esgnow-getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .esgnow-getting-started {\n    flex: 1;\n  }\n}\n.esgnow-getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.esgnow-getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.esgnow-getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container, .error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard.scss":
+/*!***********************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard.scss ***!
+  \***********************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #0056D2;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n.add-product-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #ffffff;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.product-image-no-image {\n  width: 100%;\n  height: 150px;\n  background-color: #f4f4f4;\n  /* Light gray for better visibility */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: #888;\n  /* Soft gray text */\n  font-weight: bold;\n  border: 1px dashed #ccc;\n  /* Dashed border for a placeholder effect */\n  border-radius: 8px;\n}\n\n.no-image-text {\n  font-size: 14px;\n  opacity: 0.8;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover,\n.add-transport-leg-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0;\n  /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block;\n  /* Ensures inline display */\n  vertical-align: middle;\n  /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px;\n  /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}\n\n.pagination-container {\n  float: right;\n  margin-top: 20px;\n}\n\n.remove-leg-button {\n  top: 15px;\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -211,6 +228,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-dashboard.scss":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-dashboard.scss ***!
+  \***************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".product-dashboard-container {\n  width: 100%;\n  padding: 24px;\n  background-color: #f9f9f9;\n  min-height: 100vh;\n  font-family: \"Comfortaa\", sans-serif;\n}\n.product-dashboard-container .dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 24px;\n}\n.product-dashboard-container .dashboard-header .header-left .dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin: 0;\n  color: #333;\n}\n.product-dashboard-container .dashboard-header .header-left .dashboard-subtitle {\n  font-size: 14px;\n  color: #666;\n  margin: 4px 0 0 0;\n}\n.product-dashboard-container .dashboard-header .header-right {\n  display: flex;\n  gap: 12px;\n}\n.product-dashboard-container .dashboard-header .header-right .refresh-button {\n  display: flex;\n  align-items: center;\n  gap: 6px;\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  padding: 8px 16px;\n  border-radius: 4px;\n  font-size: 14px;\n  transition: all 0.2s ease;\n}\n.product-dashboard-container .dashboard-header .header-right .refresh-button:hover {\n  background-color: #e0e0e0;\n}\n.product-dashboard-container .dashboard-header .header-right .refresh-button:disabled {\n  opacity: 0.6;\n  cursor: not-allowed;\n}\n.product-dashboard-container .dashboard-header .header-right .refresh-button .refresh-icon {\n  font-size: 16px;\n}\n.product-dashboard-container .dashboard-header .header-right .add-product-button {\n  background-color: #0056D2;\n  color: #fff;\n  padding: 8px 16px;\n  border-radius: 4px;\n  font-size: 14px;\n  border: none;\n  transition: all 0.2s ease;\n  cursor: pointer;\n}\n.product-dashboard-container .dashboard-header .header-right .add-product-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n.product-dashboard-container .search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.product-dashboard-container .search-filter-container .search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .product-search-box {\n  flex: 1;\n  max-width: 500px;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .product-search-box input {\n  height: 40px;\n  padding: 8px 16px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .product-search-box input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .advanced-search-toggle {\n  padding: 8px 16px;\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 14px;\n  transition: all 0.2s ease;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .advanced-search-toggle:hover {\n  background-color: #e0e0e0;\n}\n.product-dashboard-container .search-filter-container .search-section .search-box-wrapper .advanced-search-toggle.active {\n  background-color: #0056D2;\n  color: white;\n  border-color: #0056D2;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle .view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle .view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle .view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle .view-mode-button .grid-icon, .product-dashboard-container .search-filter-container .search-section .view-options .view-mode-toggle .view-mode-button .list-icon {\n  display: block;\n  line-height: 1;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section {\n  margin-top: 16px;\n  padding-top: 16px;\n  border-top: 1px solid #eee;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field {\n  margin: 0;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field select, .product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field .number-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field select:focus, .product-dashboard-container .search-filter-container .advanced-filter-section .filter-grid .filter-field .number-input:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.product-dashboard-container .loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n}\n.product-dashboard-container .loading-container .loading-spinner {\n  width: 40px;\n  height: 40px;\n  border: 3px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top-color: #0056D2;\n  animation: spin 1s ease-in-out infinite;\n  margin-bottom: 16px;\n}\n.product-dashboard-container .loading-container p {\n  font-size: 16px;\n  color: #666;\n  margin: 0;\n}\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.product-dashboard-container .no-results {\n  text-align: center;\n  padding: 60px 0;\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n}\n.product-dashboard-container .no-results .no-results-icon {\n  font-size: 48px;\n  margin-bottom: 16px;\n}\n.product-dashboard-container .no-results h3 {\n  font-size: 20px;\n  color: #333;\n  margin: 0 0 8px 0;\n}\n.product-dashboard-container .no-results p {\n  font-size: 16px;\n  color: #666;\n  margin: 0 0 24px 0;\n}\n.product-dashboard-container .no-results .clear-filters-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 4px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.product-dashboard-container .no-results .clear-filters-button:hover {\n  background-color: #003E99;\n}\n.product-dashboard-container .product-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));\n  gap: 24px;\n  margin-bottom: 24px;\n}\n.product-dashboard-container .product-grid .product-card {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  overflow: hidden;\n  transition: transform 0.2s ease, box-shadow 0.2s ease;\n  cursor: pointer;\n}\n.product-dashboard-container .product-grid .product-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n.product-dashboard-container .product-grid .product-card .product-card-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n}\n.product-dashboard-container .product-grid .product-card .product-card-header .product-code {\n  font-size: 12px;\n  color: #666;\n  font-weight: 500;\n  background-color: white;\n  padding: 4px 8px;\n  border-radius: 4px;\n}\n.product-dashboard-container .product-grid .product-card .product-card-header .co2-emission {\n  background-color: #e6f7ff;\n  color: #0056D2;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 600;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n}\n.product-dashboard-container .product-grid .product-card .product-card-header .co2-emission .co2-value {\n  font-size: 14px;\n}\n.product-dashboard-container .product-grid .product-card .product-card-header .co2-emission .co2-unit {\n  font-size: 10px;\n  color: #666;\n}\n.product-dashboard-container .product-grid .product-card .product-image-container {\n  height: 200px;\n  background-color: #f9f9f9;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  border-bottom: 1px solid #eee;\n  position: relative;\n}\n.product-dashboard-container .product-grid .product-card .product-image-container .no-image {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n  font-size: 14px;\n  color: #999;\n  background-color: #f0f0f0;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content {\n  padding: 16px;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-name {\n  font-size: 16px;\n  font-weight: 600;\n  color: #333;\n  margin: 0 0 8px 0;\n  line-height: 1.4;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-meta {\n  display: flex;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-meta .product-category, .product-dashboard-container .product-grid .product-card .product-card-content .product-meta .product-subcategory {\n  font-size: 12px;\n  padding: 4px 8px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  color: #666;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-details-preview {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 12px;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-details-preview .detail-label {\n  font-size: 12px;\n  color: #999;\n  display: block;\n}\n.product-dashboard-container .product-grid .product-card .product-card-content .product-details-preview .detail-value {\n  font-size: 14px;\n  color: #333;\n  font-weight: 500;\n}\n.product-dashboard-container .product-grid .product-card .product-card-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 12px 16px;\n  background-color: #f9f9f9;\n  border-top: 1px solid #eee;\n}\n.product-dashboard-container .product-grid .product-card .product-card-footer .product-date {\n  font-size: 12px;\n  color: #999;\n}\n.product-dashboard-container .product-grid .product-card .product-card-footer .view-details-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.product-dashboard-container .product-grid .product-card .product-card-footer .view-details-button:hover {\n  background-color: #003E99;\n}\n.product-dashboard-container .product-list {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  overflow: hidden;\n  margin-bottom: 24px;\n}\n.product-dashboard-container .product-list .list-header {\n  display: grid;\n  grid-template-columns: 3fr 2fr 1fr 1fr 1.5fr 1.5fr 1fr;\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n  font-weight: 600;\n  font-size: 14px;\n  color: #333;\n}\n.product-dashboard-container .product-list .list-item {\n  display: grid;\n  grid-template-columns: 3fr 2fr 1fr 1fr 1.5fr 1.5fr 1fr;\n  padding: 12px 16px;\n  border-bottom: 1px solid #eee;\n  transition: background-color 0.2s ease;\n}\n.product-dashboard-container .product-list .list-item:hover {\n  background-color: #f9f9f9;\n}\n.product-dashboard-container .product-list .list-item:last-child {\n  border-bottom: none;\n}\n.product-dashboard-container .product-list .list-item .list-col-name .item-with-image {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n}\n.product-dashboard-container .product-list .list-item .list-col-name .item-with-image .list-item-thumbnail {\n  width: 50px;\n  height: 50px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-size: 10px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #999;\n  text-align: center;\n  line-height: 1.2;\n}\n.product-dashboard-container .product-list .list-item .list-col-name .item-with-image .product-name-code {\n  display: flex;\n  flex-direction: column;\n}\n.product-dashboard-container .product-list .list-item .list-col-name .item-with-image .product-name-code .product-name {\n  font-size: 14px;\n  font-weight: 600;\n  color: #333;\n}\n.product-dashboard-container .product-list .list-item .list-col-name .item-with-image .product-name-code .product-code {\n  font-size: 12px;\n  color: #999;\n}\n.product-dashboard-container .product-list .list-item .list-col-category {\n  font-size: 14px;\n  color: #333;\n}\n.product-dashboard-container .product-list .list-item .list-col-category .subcategory {\n  font-size: 12px;\n  color: #666;\n  margin-top: 4px;\n}\n.product-dashboard-container .product-list .list-item .list-col-weight, .product-dashboard-container .product-list .list-item .list-col-origin {\n  font-size: 14px;\n  color: #333;\n}\n.product-dashboard-container .product-list .list-item .list-col-co2 .co2-badge {\n  display: inline-block;\n  background-color: #e6f7ff;\n  color: #0056D2;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 13px;\n  font-weight: 500;\n}\n.product-dashboard-container .product-list .list-item .list-col-date {\n  font-size: 14px;\n  color: #666;\n}\n.product-dashboard-container .product-list .list-item .list-col-actions {\n  text-align: right;\n}\n.product-dashboard-container .product-list .list-item .list-col-actions .view-details-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.product-dashboard-container .product-list .list-item .list-col-actions .view-details-button:hover {\n  background-color: #003E99;\n}\n.product-dashboard-container .pagination-wrapper {\n  margin-top: 24px;\n  display: flex;\n  justify-content: flex-end;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .items-per-page {\n  height: 36px;\n  padding: 0 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .items-per-page:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons .pagination-button {\n  width: 36px;\n  height: 36px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: white;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 16px;\n  transition: all 0.2s ease;\n  padding: 0;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons .pagination-button:hover:not(:disabled) {\n  background-color: #f0f0f0;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons .pagination-button:disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons .pagination-button .pagination-arrow {\n  line-height: 1;\n}\n.product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .pagination-buttons .pagination-info {\n  font-size: 14px;\n  color: #666;\n}\n@media (max-width: 992px) {\n  .product-dashboard-container .search-section {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .product-dashboard-container .search-section .search-box-wrapper {\n    width: 100%;\n  }\n  .product-dashboard-container .search-section .view-options {\n    width: 100%;\n    justify-content: space-between;\n  }\n  .product-dashboard-container .product-grid {\n    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  }\n}\n@media (max-width: 768px) {\n  .product-dashboard-container {\n    padding: 16px;\n  }\n  .product-dashboard-container .dashboard-header {\n    flex-direction: column;\n    align-items: flex-start;\n    gap: 16px;\n  }\n  .product-dashboard-container .dashboard-header .header-right {\n    width: 100%;\n    justify-content: space-between;\n  }\n  .product-dashboard-container .product-list .list-header, .product-dashboard-container .product-list .list-item {\n    grid-template-columns: 2fr 1.5fr 1fr 1fr;\n  }\n  .product-dashboard-container .product-list .list-header .list-col-origin, .product-dashboard-container .product-list .list-header .list-col-date, .product-dashboard-container .product-list .list-header .list-col-actions, .product-dashboard-container .product-list .list-item .list-col-origin, .product-dashboard-container .product-list .list-item .list-col-date, .product-dashboard-container .product-list .list-item .list-col-actions {\n    display: none;\n  }\n  .product-dashboard-container .pagination-wrapper .pagination-container {\n    width: 100%;\n  }\n  .product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls {\n    flex-direction: column;\n    align-items: center;\n    gap: 12px;\n  }\n  .product-dashboard-container .pagination-wrapper .pagination-container .pagination-controls .items-per-page {\n    width: 100%;\n  }\n}\n@media (max-width: 576px) {\n  .product-dashboard-container .product-list .list-header, .product-dashboard-container .product-list .list-item {\n    grid-template-columns: 1fr 1fr;\n  }\n  .product-dashboard-container .product-list .list-header .list-col-weight, .product-dashboard-container .product-list .list-header .list-col-co2, .product-dashboard-container .product-list .list-item .list-col-weight, .product-dashboard-container .product-list .list-item .list-col-co2 {\n    display: none;\n  }\n  .product-dashboard-container .product-grid {\n    grid-template-columns: 1fr;\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-info-summary.scss":
 /*!******************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-info-summary.scss ***!
@@ -221,7 +255,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-info-summary {\n  display: flex;\n  align-items: flex-start;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  background-color: #f2f2f2;\n  width: auto;\n  margin: 0 auto;\n  height: auto;\n}\n.product-info-summary .summary-image {\n  position: relative;\n  width: 220px;\n  height: 220px;\n  border-radius: 0;\n  background-color: #ffffff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  margin-right: 20px;\n  font-size: 16px;\n  border: 1px solid #e0e0e0;\n}\n.product-info-summary .summary-image .image-label {\n  position: absolute;\n  top: 10px;\n  right: 10px;\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 5px 10px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: bold;\n}\n.product-info-summary .summary-details {\n  display: flex;\n  font-size: 14px;\n  width: calc(100% - 240px);\n  flex-wrap: wrap;\n}\n.product-info-summary .summary-details .details-left, .product-info-summary .summary-details .details-right {\n  width: 50%;\n  padding-right: 20px;\n}\n.product-info-summary .summary-details .detail-item {\n  margin-bottom: 15px;\n  width: 33.33%;\n  padding-right: 15px;\n  box-sizing: border-box;\n}\n.product-info-summary .summary-details .detail-item strong {\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 5px;\n  display: block;\n  font-size: 15px;\n}\n.product-info-summary .summary-details .detail-item p {\n  margin: 0;\n  color: #666;\n  font-weight: 400;\n  font-size: 15px;\n}\n.product-info-summary .summary-details .description-field {\n  margin-top: 10px;\n  width: 100%;\n}\n.product-info-summary .summary-details .description-field strong {\n  display: block;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 5px;\n  font-size: 15px;\n}\n.product-info-summary .summary-details .description-field p {\n  margin: 0;\n  color: #666;\n  line-height: 1.5;\n  font-size: 15px;\n  background-color: #fff;\n  padding: 10px;\n  border-radius: 4px;\n  height: auto;\n  max-height: 100px;\n  overflow-y: auto;\n}\n.product-info-summary .summary-details .close-button {\n  margin-top: 60px;\n  padding: 8px 16px;\n  font-size: 14px;\n  color: #fff;\n  background-color: #007bff;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n.product-info-summary .summary-details .close-button:hover {\n  background-color: #0056b3;\n}\n\n.expandable-icon {\n  width: 0;\n  height: 0;\n  border-left: 10px solid transparent;\n  border-right: 10px solid transparent;\n  border-top: 10px solid #333;\n  position: absolute;\n  bottom: 10px;\n  right: 10px;\n  cursor: pointer;\n}\n\n.inventory-section {\n  margin-top: 20px;\n  background-color: #f3f3f3;\n  border: 1px solid #ccc;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.view-toggle {\n  display: flex;\n}\n\n.inventory-tree, .inventory-list {\n  font-size: 16px;\n  color: #333;\n}\n\n.tree-item {\n  cursor: pointer;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n}\n\n.tree-children {\n  padding-left: 20px;\n}\n\n.tree-sub-item, .inventory-list li {\n  margin: 8px 0;\n  color: #424242;\n}\n\n.inventory-list {\n  margin-top: 1rem;\n  overflow-x: auto;\n}\n.inventory-list table {\n  width: 100%;\n  border-collapse: collapse;\n  font-size: 0.9rem;\n}\n.inventory-list table th, .inventory-list table td {\n  padding: 0.8rem;\n  text-align: left;\n  border: 1px solid #ddd;\n}\n.inventory-list table th {\n  background-color: #f5f5f5;\n  color: #333;\n  font-weight: bold;\n}\n.inventory-list table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n.inventory-list table tr:nth-child(odd) {\n  background-color: #fff;\n}\n.inventory-list table tbody tr:hover {\n  background-color: #e6f7ff;\n}\n\n.view-toggle {\n  display: flex;\n  gap: 0.5rem;\n  margin-bottom: 1rem;\n}\n.view-toggle .toggle-button {\n  padding: 0.5rem 1rem;\n  border: 1px solid #000000;\n  background-color: white;\n  cursor: pointer;\n  transition: background-color 0.3s, color 0.3s;\n  border-radius: 4px;\n}\n.view-toggle .toggle-button.active {\n  background-color: #000000;\n  color: white;\n}\n.view-toggle .toggle-button:hover:not(.active) {\n  background-color: #e6f7ff;\n}\n\n.title-container {\n  position: relative;\n  padding: 1rem 0;\n}\n.title-container .dashboard-title {\n  font-size: 18px;\n  font-weight: bold;\n  margin: 0;\n}\n.title-container .subheading {\n  font-size: 14 px;\n  color: #424242;\n}\n.title-container .back-button {\n  position: absolute;\n  background-color: #000000;\n  color: white;\n  top: 0;\n  right: 0;\n  cursor: pointer;\n}\n.title-container .delete-button {\n  position: absolute;\n  background-color: #ee0808;\n  color: white;\n  top: 0;\n  right: 120px;\n  cursor: pointer;\n}\n\n.widgets-row {\n  display: column;\n  justify-content: space-between;\n  gap: 1rem;\n  background-color: #ffffff;\n  border-radius: 8px;\n  margin-bottom: 20px;\n}\n\n.product-footprint {\n  text-align: center;\n  margin-top: 20px;\n}\n\n.widget {\n  flex: 1;\n  padding: 1rem;\n  background-color: #ffffff;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  flex-direction: column;\n  margin: 20px;\n}\n\n.widget h3 {\n  font-size: 14px;\n  font-weight: 600;\n  color: #424242;\n  margin-bottom: 1rem;\n  text-align: left !important;\n}\n\n.widget-content {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  width: 100%;\n}\n\n.widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n\n.widget table th,\n.widget table td {\n  text-align: left;\n  padding: 0.5rem;\n  font-size: 12px;\n  color: #424242;\n}\n\n.widget table th {\n  font-weight: 600;\n  background-color: #0066ff;\n  color: white;\n}\n\n.widget table tr:nth-child(even) {\n  background-color: #f9f9f9;\n}\n\n/* Responsiveness */\n@media (max-width: 768px) {\n  .widgets-row {\n    flex-direction: column;\n    gap: 1rem;\n  }\n  .widget {\n    width: 100%;\n  }\n  .circle-chart {\n    width: 100px;\n    height: 100px;\n  }\n  .circle-chart .circle-value {\n    font-size: 1rem;\n  }\n}", ""]);
+exports.push([module.id, ".product-summary-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: \"Comfortaa\", sans-serif;\n}\n\n.header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 24px;\n  border-bottom: 1px solid #e0e0e0;\n  padding-bottom: 16px;\n}\n.header-container .title-section .dashboard-title {\n  font-size: 24px;\n  font-weight: bold;\n  margin: 0;\n  color: #333;\n}\n.header-container .title-section .subheading {\n  font-size: 16px;\n  color: #666;\n  margin: 4px 0 0 0;\n}\n.header-container .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n.header-container .action-buttons .back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.header-container .action-buttons .back-button .back-icon {\n  font-size: 18px;\n  line-height: 1;\n}\n.header-container .action-buttons .back-button:hover {\n  background-color: #e0e0e0;\n}\n.header-container .action-buttons .delete-button {\n  background-color: #fff;\n  color: #d32f2f;\n  border: 1px solid #d32f2f;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.header-container .action-buttons .delete-button .delete-icon {\n  font-size: 20px;\n  font-weight: bold;\n  line-height: 1;\n}\n.header-container .action-buttons .delete-button:hover {\n  background-color: #ffebee;\n}\n\n.tabs-container {\n  margin-top: 16px;\n}\n.tabs-container .tabs {\n  display: flex;\n  border-bottom: 1px solid #e0e0e0;\n  margin-bottom: 24px;\n}\n.tabs-container .tabs .tab-button {\n  padding: 12px 24px;\n  border: none;\n  background: none;\n  cursor: pointer;\n  font-size: 16px;\n  font-weight: 500;\n  color: #666;\n  position: relative;\n  transition: color 0.3s;\n}\n.tabs-container .tabs .tab-button:hover {\n  color: #0066ff;\n}\n.tabs-container .tabs .tab-button.active {\n  color: #0066ff;\n  font-weight: 600;\n}\n.tabs-container .tabs .tab-button.active:after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  background-color: #0066ff;\n  border-top-left-radius: 3px;\n  border-top-right-radius: 3px;\n}\n\n.product-info-summary {\n  display: flex;\n  gap: 24px;\n  margin-bottom: 24px;\n  background-color: white;\n  padding: 24px;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n}\n.product-info-summary .summary-image {\n  position: relative;\n  width: 250px;\n  height: 250px;\n  border-radius: 8px;\n  overflow: hidden;\n  background-color: #fafafa;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  border: 1px solid #e0e0e0;\n}\n.product-info-summary .summary-image .image-placeholder {\n  color: #aaa;\n  font-size: 16px;\n  text-align: center;\n}\n.product-info-summary .summary-image .image-label {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: rgba(255, 255, 255, 0.9);\n  color: #0066ff;\n  padding: 8px 12px;\n  border-radius: 20px;\n  font-size: 14px;\n  font-weight: bold;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n.product-info-summary .summary-details {\n  flex: 1;\n}\n.product-info-summary .summary-details .detail-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n  margin-bottom: 20px;\n}\n.product-info-summary .summary-details .detail-item strong {\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 6px;\n  display: block;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.product-info-summary .summary-details .detail-item p {\n  margin: 0;\n  color: #333;\n  font-weight: 500;\n  font-size: 16px;\n}\n.product-info-summary .summary-details .description-field {\n  margin-top: 16px;\n}\n.product-info-summary .summary-details .description-field strong {\n  display: block;\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 8px;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.product-info-summary .summary-details .description-field .rich-text-editor {\n  position: relative;\n}\n.product-info-summary .summary-details .description-field .rich-text-editor .editable-description {\n  width: 100%;\n  min-height: 100px;\n  max-height: 120px;\n  overflow-y: auto;\n  color: #333;\n  line-height: 1.6;\n  font-size: 15px;\n  background-color: #f9f9f9;\n  padding: 16px;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n  resize: none;\n  font-family: inherit;\n  transition: border-color 0.3s ease;\n}\n.product-info-summary .summary-details .description-field .rich-text-editor .editable-description:focus {\n  outline: none;\n  border-color: #0066ff;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.product-info-summary .summary-details .description-field .rich-text-editor .editable-description:hover:not(:focus) {\n  border-color: #ccc;\n}\n\n.tab-content {\n  animation: fadeIn 0.3s ease-in-out;\n}\n\n.widget {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  overflow: hidden;\n}\n.widget h3 {\n  font-size: 18px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n}\n.widget .widget-content {\n  padding: 24px;\n}\n.widget.product-footprint {\n  text-align: center;\n}\n.widget.product-footprint .widget-content {\n  display: flex;\n  justify-content: center;\n}\n.widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.widget table th, .widget table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #eee;\n}\n.widget table th {\n  background-color: #f9f9f9;\n  font-weight: 600;\n  color: #333;\n  font-size: 14px;\n}\n.widget table td {\n  font-size: 14px;\n  color: #555;\n}\n.widget table tr:last-child td {\n  border-bottom: none;\n}\n.widget table tr:hover td {\n  background-color: #f5f5f5;\n}\n\n.percentage-bar {\n  position: relative;\n  width: 100%;\n  height: 20px;\n  background-color: #f0f0f0;\n  border-radius: 10px;\n  overflow: hidden;\n}\n.percentage-bar .percentage-fill {\n  height: 100%;\n  border-radius: 10px;\n}\n.percentage-bar span {\n  position: absolute;\n  right: 8px;\n  top: 0;\n  line-height: 20px;\n  font-size: 12px;\n  font-weight: 600;\n  color: #333;\n}\n\n.inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n}\n.inventory-header h3 {\n  margin: 0;\n  padding: 0;\n  border: none;\n}\n.inventory-header .view-toggle {\n  display: flex;\n  gap: 8px;\n}\n.inventory-header .view-toggle .toggle-button {\n  padding: 8px 16px;\n  border: 1px solid #ddd;\n  background-color: white;\n  color: #666;\n  border-radius: 4px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.inventory-header .view-toggle .toggle-button:hover {\n  background-color: #f5f5f5;\n}\n.inventory-header .view-toggle .toggle-button.active {\n  background-color: #0066ff;\n  color: white;\n  border-color: #0066ff;\n}\n\n.inventory-tree {\n  padding: 24px;\n}\n.inventory-tree .tree-item {\n  display: flex;\n  align-items: center;\n  font-weight: 600;\n  font-size: 16px;\n  color: #333;\n  cursor: pointer;\n  padding: 10px;\n  border-radius: 4px;\n}\n.inventory-tree .tree-item:hover {\n  background-color: #f5f5f5;\n}\n.inventory-tree .tree-item .expand-icon {\n  margin-right: 8px;\n  font-size: 12px;\n  color: #666;\n}\n.inventory-tree .tree-children {\n  margin-left: 24px;\n  margin-top: 12px;\n}\n.inventory-tree .tree-children .tree-sub-item {\n  display: flex;\n  align-items: center;\n  margin-bottom: 8px;\n  padding: 8px;\n  font-size: 14px;\n  color: #555;\n  border-radius: 4px;\n}\n.inventory-tree .tree-children .tree-sub-item:hover {\n  background-color: #f5f5f5;\n}\n.inventory-tree .tree-children .tree-sub-item .material-dot {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background-color: #0066ff;\n  margin-right: 12px;\n}\n\n.delete-modal .delete-confirmation {\n  text-align: center;\n  padding: 16px;\n}\n.delete-modal .delete-confirmation .warning-icon {\n  font-size: 48px;\n  margin-bottom: 16px;\n}\n.delete-modal .delete-confirmation p {\n  font-size: 16px;\n  margin-bottom: 8px;\n  color: #333;\n}\n.delete-modal .delete-confirmation .delete-warning {\n  color: #d32f2f;\n  font-size: 14px;\n  margin-bottom: 24px;\n}\n.delete-modal .delete-confirmation .modal-actions {\n  display: flex;\n  justify-content: center;\n  gap: 16px;\n}\n.delete-modal .delete-confirmation .modal-actions .cancel-button {\n  background-color: #f0f0f0;\n  color: #333;\n}\n.delete-modal .delete-confirmation .modal-actions .confirm-button {\n  background-color: #d32f2f;\n  color: white;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (max-width: 992px) {\n  .product-info-summary {\n    flex-direction: column;\n  }\n  .product-info-summary .summary-image {\n    width: 100%;\n    height: 220px;\n  }\n  .product-info-summary .summary-details .detail-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 768px) {\n  .header-container {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .header-container .action-buttons {\n    margin-top: 16px;\n    width: 100%;\n    justify-content: space-between;\n  }\n  .tabs .tab-button {\n    padding: 12px 16px;\n    font-size: 14px;\n  }\n  .summary-details .detail-grid {\n    grid-template-columns: 1fr;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38218,34 +38252,6 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ "./src/lca/views/ProductDashboardWidget.scss":
-/*!***************************************************!*\
-  !*** ./src/lca/views/ProductDashboardWidget.scss ***!
-  \***************************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./ProductDashboardWidget.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/ProductDashboardWidget.scss");
-
-            content = content.__esModule ? content.default : content;
-
-            if (typeof content === 'string') {
-              content = [[module.id, content, '']];
-            }
-
-var options = {};
-
-options.insert = "head";
-options.singleton = false;
-
-var update = api(content, options);
-
-
-
-module.exports = content.locals || {};
-
-/***/ }),
-
 /***/ "./src/lca/views/assessment.scss":
 /*!***************************************!*\
   !*** ./src/lca/views/assessment.scss ***!
@@ -38302,6 +38308,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/bulk-upload.scss":
+/*!****************************************!*\
+  !*** ./src/lca/views/bulk-upload.scss ***!
+  \****************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./bulk-upload.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-upload.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/home.scss":
 /*!*********************************!*\
   !*** ./src/lca/views/home.scss ***!
@@ -38310,6 +38344,34 @@ module.exports = content.locals || {};
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
             var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./home.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard.scss":
+/*!******************************************!*\
+  !*** ./src/lca/views/lca-dashboard.scss ***!
+  \******************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./lca-dashboard.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -38422,6 +38484,34 @@ module.exports = content.locals || {};
 
 var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
             var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./product-categorization.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-categorization.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/product-dashboard.scss":
+/*!**********************************************!*\
+  !*** ./src/lca/views/product-dashboard.scss ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./product-dashboard.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/product-dashboard.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -39879,7 +39969,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const React = __importStar(__webpack_require__(/*! react */ "react"));
-__webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
+__webpack_require__(/*! ./lca-dashboard.scss */ "./src/lca/views/lca-dashboard.scss");
 const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ./stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
 const react_1 = __webpack_require__(/*! react */ "react");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
@@ -40643,6 +40733,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
+__webpack_require__(/*! ./bulk-upload.scss */ "./src/lca/views/bulk-upload.scss");
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const BulkUploadWidget = ({ uxpContext }) => {
     const [excelFile, setExcelFile] = (0, react_1.useState)(null);
@@ -40650,16 +40741,19 @@ const BulkUploadWidget = ({ uxpContext }) => {
     const [uploadingExcel, setUploadingExcel] = (0, react_1.useState)(false);
     const [uploadingZip, setUploadingZip] = (0, react_1.useState)(false);
     const [message, setMessage] = (0, react_1.useState)(null);
+    const [messageType, setMessageType] = (0, react_1.useState)(null);
     // Handle file selection for Excel
     const handleExcelFileChange = (event) => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedFile = event.target.files[0];
             if (!selectedFile.name.toLowerCase().endsWith(".xlsx")) {
                 setMessage("Unsupported file type. Please upload an Excel (.xlsx) file.");
+                setMessageType("error");
                 return;
             }
             setExcelFile(selectedFile);
-            setMessage(null);
+            setMessage(`Selected: ${selectedFile.name}`);
+            setMessageType("success");
         }
     };
     // Handle file selection for ZIP
@@ -40668,20 +40762,24 @@ const BulkUploadWidget = ({ uxpContext }) => {
             const selectedFile = event.target.files[0];
             if (!selectedFile.name.toLowerCase().endsWith(".zip")) {
                 setMessage("Unsupported file type. Please upload a ZIP file.");
+                setMessageType("error");
                 return;
             }
             setZipFile(selectedFile);
-            setMessage(null);
+            setMessage(`Selected: ${selectedFile.name}`);
+            setMessageType("success");
         }
     };
     // Handle Excel Upload
     const handleExcelUpload = () => __awaiter(void 0, void 0, void 0, function* () {
         if (!excelFile) {
             setMessage("Please select an Excel file to upload.");
+            setMessageType("error");
             return;
         }
         setUploadingExcel(true);
-        setMessage(null);
+        setMessage("Uploading Excel file...");
+        setMessageType(null);
         const formData = new FormData();
         formData.append("file", excelFile);
         try {
@@ -40693,14 +40791,23 @@ const BulkUploadWidget = ({ uxpContext }) => {
             let response = yield fetch(`${config_1.default}/api/products/bulk-upload`, requestOptions);
             if (response.ok) {
                 setMessage("Excel upload successful!");
+                setMessageType("success");
+                setExcelFile(null);
+                // Reset the file input
+                const fileInput = document.getElementById("excel-file-input");
+                if (fileInput)
+                    fileInput.value = "";
             }
             else {
-                setMessage("Excel upload failed. Please try again.");
+                const errorData = yield response.json();
+                setMessage(`Excel upload failed: ${errorData.message || "Please try again."}`);
+                setMessageType("error");
             }
         }
         catch (error) {
             console.error("Excel Upload Error:", error);
             setMessage("An error occurred during Excel upload.");
+            setMessageType("error");
         }
         finally {
             setUploadingExcel(false);
@@ -40710,10 +40817,12 @@ const BulkUploadWidget = ({ uxpContext }) => {
     const handleZipUpload = () => __awaiter(void 0, void 0, void 0, function* () {
         if (!zipFile) {
             setMessage("Please select a ZIP file to upload.");
+            setMessageType("error");
             return;
         }
         setUploadingZip(true);
-        setMessage(null);
+        setMessage("Uploading ZIP file...");
+        setMessageType(null);
         const formData = new FormData();
         formData.append("file", zipFile);
         try {
@@ -40725,30 +40834,129 @@ const BulkUploadWidget = ({ uxpContext }) => {
             let response = yield fetch(`${config_1.default}/api/products/bulk-image-upload`, requestOptions);
             if (response.ok) {
                 setMessage("ZIP upload successful!");
+                setMessageType("success");
+                setZipFile(null);
+                // Reset the file input
+                const fileInput = document.getElementById("zip-file-input");
+                if (fileInput)
+                    fileInput.value = "";
             }
             else {
-                setMessage("ZIP upload failed. Please try again.");
+                const errorData = yield response.json();
+                setMessage(`ZIP upload failed: ${errorData.message || "Please try again."}`);
+                setMessageType("error");
             }
         }
         catch (error) {
             console.error("ZIP Upload Error:", error);
             setMessage("An error occurred during ZIP upload.");
+            setMessageType("error");
         }
         finally {
             setUploadingZip(false);
         }
     });
-    return (react_1.default.createElement("div", null,
-        react_1.default.createElement("h1", null, "Bulk Upload"),
-        react_1.default.createElement("div", null,
-            react_1.default.createElement("h2", null, "Upload Product Data (Excel)"),
-            react_1.default.createElement("input", { type: "file", accept: ".xlsx", onChange: handleExcelFileChange }),
-            react_1.default.createElement("button", { onClick: handleExcelUpload, disabled: uploadingExcel }, uploadingExcel ? "Uploading..." : "Upload Excel")),
-        react_1.default.createElement("div", { style: { marginTop: "20px" } },
-            react_1.default.createElement("h2", null, "Upload Product Images (ZIP)"),
-            react_1.default.createElement("input", { type: "file", accept: ".zip", onChange: handleZipFileChange }),
-            react_1.default.createElement("button", { onClick: handleZipUpload, disabled: uploadingZip }, uploadingZip ? "Uploading..." : "Upload ZIP")),
-        message && react_1.default.createElement("p", null, message)));
+    // Handle sample Excel template download
+    const handleDownloadExcelTemplate = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(`${config_1.default}/api/products/sample-template`, {
+                headers: { "x-iviva-account": "lucy1" },
+            });
+            if (response.ok) {
+                const blob = yield response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'product_upload_template.xlsx';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            }
+            else {
+                setMessage("Failed to download sample template.");
+                setMessageType("error");
+            }
+        }
+        catch (error) {
+            console.error("Download Error:", error);
+            setMessage("An error occurred while downloading the template.");
+            setMessageType("error");
+        }
+    });
+    // Handle sample folder structure download
+    const handleDownloadFolderStructure = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const response = yield fetch(`${config_1.default}/api/products/sample-folder-structure`, {
+                headers: { "x-iviva-account": "lucy1" },
+            });
+            if (response.ok) {
+                const blob = yield response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'product_images_structure.zip';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            }
+            else {
+                setMessage("Failed to download sample folder structure.");
+                setMessageType("error");
+            }
+        }
+        catch (error) {
+            console.error("Download Error:", error);
+            setMessage("An error occurred while downloading the folder structure.");
+            setMessageType("error");
+        }
+    });
+    return (react_1.default.createElement("div", { className: "bulk-upload-container" },
+        react_1.default.createElement("h1", { className: "page-title" }, "Product Bulk Upload"),
+        react_1.default.createElement("p", { className: "page-description" }, "Upload your product data and images in bulk using the forms below. Make sure to follow the required template and folder structure."),
+        react_1.default.createElement("div", { className: "card" },
+            react_1.default.createElement("div", { className: "card-header" },
+                react_1.default.createElement("h2", null, "Upload Product Data (Excel)"),
+                react_1.default.createElement("button", { onClick: handleDownloadExcelTemplate, className: "download-btn", title: "Download a sample Excel template for product upload" }, "Download Template")),
+            react_1.default.createElement("div", { className: "card-body" },
+                react_1.default.createElement("p", { className: "section-info" }, "Upload your Excel file (.xlsx) containing product data. Make sure all required fields are filled."),
+                react_1.default.createElement("div", { className: "upload-section" },
+                    react_1.default.createElement("div", { className: "file-input-container" },
+                        react_1.default.createElement("input", { type: "file", id: "excel-file-input", accept: ".xlsx", onChange: handleExcelFileChange, className: "file-input" }),
+                        react_1.default.createElement("label", { htmlFor: "excel-file-input", className: "file-label" }, excelFile ? excelFile.name : "Choose Excel File...")),
+                    react_1.default.createElement("button", { onClick: handleExcelUpload, disabled: uploadingExcel || !excelFile, className: `upload-btn ${!excelFile ? 'disabled' : ''}` }, uploadingExcel ? "Uploading..." : "Upload Excel")))),
+        react_1.default.createElement("div", { className: "card" },
+            react_1.default.createElement("div", { className: "card-header" },
+                react_1.default.createElement("h2", null, "Upload Product Images (ZIP)"),
+                react_1.default.createElement("button", { onClick: handleDownloadFolderStructure, className: "download-btn", title: "Download a sample folder structure for product images" }, "Download Structure")),
+            react_1.default.createElement("div", { className: "card-body" },
+                react_1.default.createElement("p", { className: "section-info" }, "Upload a ZIP file containing product images. Each product should have its own folder named with the product SKU or ID, containing images named according to the specification."),
+                react_1.default.createElement("div", { className: "upload-section" },
+                    react_1.default.createElement("div", { className: "file-input-container" },
+                        react_1.default.createElement("input", { type: "file", id: "zip-file-input", accept: ".zip", onChange: handleZipFileChange, className: "file-input" }),
+                        react_1.default.createElement("label", { htmlFor: "zip-file-input", className: "file-label" }, zipFile ? zipFile.name : "Choose ZIP File...")),
+                    react_1.default.createElement("button", { onClick: handleZipUpload, disabled: uploadingZip || !zipFile, className: `upload-btn ${!zipFile ? 'disabled' : ''}` }, uploadingZip ? "Uploading..." : "Upload ZIP")))),
+        react_1.default.createElement("div", { className: "instructions-card" },
+            react_1.default.createElement("h3", null, "Upload Instructions"),
+            react_1.default.createElement("div", { className: "instructions-content" },
+                react_1.default.createElement("div", { className: "instruction-section" },
+                    react_1.default.createElement("h4", null, "Excel Template Format"),
+                    react_1.default.createElement("ul", null,
+                        react_1.default.createElement("li", null, "The Excel file must contain the following required columns: SKU, Name, Description, Price, Category"),
+                        react_1.default.createElement("li", null, "Do not modify column headers in the template"),
+                        react_1.default.createElement("li", null, "Images should be referenced by filename in the Images column, separated by commas"),
+                        react_1.default.createElement("li", null, "Each product must have a unique SKU"))),
+                react_1.default.createElement("div", { className: "instruction-section" },
+                    react_1.default.createElement("h4", null, "ZIP File Structure"),
+                    react_1.default.createElement("ul", null,
+                        react_1.default.createElement("li", null, "Create a folder for each product named exactly as the product's SKU"),
+                        react_1.default.createElement("li", null, "Place all product images in their respective folders"),
+                        react_1.default.createElement("li", null, "Supported image formats: JPG, PNG (max 5MB per image)"),
+                        react_1.default.createElement("li", null, "Main product image should be named \"main.jpg\" or \"main.png\""))))),
+        message && (react_1.default.createElement("div", { className: `message ${messageType || ''}` },
+            react_1.default.createElement("span", { className: "message-icon" }, messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"),
+            react_1.default.createElement("span", { className: "message-text" }, message)))));
 };
 exports["default"] = BulkUploadWidget;
 
@@ -41921,7 +42129,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-__webpack_require__(/*! ./ProductDashboardWidget.scss */ "./src/lca/views/ProductDashboardWidget.scss");
+__webpack_require__(/*! ./product-dashboard.scss */ "./src/lca/views/product-dashboard.scss");
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
@@ -41932,40 +42140,71 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [searchValue, setSearchValue] = React.useState("");
     const [filteredData, setFilteredData] = React.useState([]);
     const [selectedCategory, setSelectedCategory] = React.useState(null);
+    const [selectedSubCategory, setSelectedSubCategory] = React.useState(null);
     const [maxCO2, setMaxCO2] = React.useState(null);
-    const [viewMode, setViewMode] = React.useState('grid'); // Default to 'grid' view
+    const [minCO2, setMinCO2] = React.useState(null);
+    const [sortBy, setSortBy] = React.useState("newest");
+    const [viewMode, setViewMode] = React.useState('grid');
     const [showModal, setShowModal] = React.useState(false);
     const [plan, setPlan] = React.useState(null);
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [selectedCountry, setSelectedCountry] = React.useState(null);
+    const [advancedSearch, setAdvancedSearch] = React.useState(false);
     const alerts = (0, components_1.useAlert)();
+    // Pagination state
     const [currentPage, setCurrentPage] = React.useState(1);
-    const itemsPerPage = 6; // Show 6 items per page (2 rows x 3 columns)
+    const [itemsPerPage, setItemsPerPage] = React.useState(6);
     // Calculate pagination
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    // Get current items for pagination
     const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-    // Calculate total pages based on filtered data
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
+    // Get unique categories and subcategories
+    const categories = React.useMemo(() => {
+        return [...new Set(products.map((item) => item.category))].sort();
+    }, [products]);
+    const subCategories = React.useMemo(() => {
+        return [...new Set(products.map((item) => item.subCategory))].filter(Boolean).sort();
+    }, [products]);
+    const countries = React.useMemo(() => {
+        return [...new Set(products.map((item) => {
+                if (item.countryOfOrigin === "CN")
+                    return "China";
+                if (item.countryOfOrigin === "VN")
+                    return "Vietnam";
+                return item.countryOfOrigin;
+            }))].filter(Boolean).sort();
+    }, [products]);
     const Pagination = () => (React.createElement("div", { className: "pagination-container" },
-        React.createElement("div", { className: "flex justify-center items-center gap-2 mt-4" },
-            React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1 }, "Previous"),
-            React.createElement("span", { className: "pagination-info" },
-                "Page ",
-                currentPage,
-                " of ",
-                totalPages || 1),
-            React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0 }, "Next"))));
+        React.createElement("div", { className: "pagination-controls" },
+            React.createElement("select", { className: "items-per-page", value: itemsPerPage, onChange: (e) => setItemsPerPage(parseInt(e.target.value)) },
+                React.createElement("option", { value: 6 }, "6 per page"),
+                React.createElement("option", { value: 12 }, "12 per page"),
+                React.createElement("option", { value: 24 }, "24 per page")),
+            React.createElement("div", { className: "pagination-buttons" },
+                React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
+                    React.createElement("span", { className: "pagination-arrow" }, "\u2190")),
+                React.createElement("span", { className: "pagination-info" },
+                    "Page ",
+                    currentPage,
+                    " of ",
+                    totalPages || 1),
+                React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
+                    React.createElement("span", { className: "pagination-arrow" }, "\u2192"))))));
     // Reset to first page when filters change
     React.useEffect(() => {
         setCurrentPage(1);
-    }, [searchValue, selectedCategory, maxCO2]);
+    }, [searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, sortBy]);
     // Initialize filteredData with products when products change
     React.useEffect(() => {
         setFilteredData(products);
+        setIsLoading(false);
     }, [products]);
+    // Fetch products
     React.useEffect(() => {
         const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            setIsLoading(true);
             try {
                 const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
                 let data = response.data;
@@ -41974,103 +42213,254 @@ const ProductDashboardWidget = ({ uxpContext }) => {
             }
             catch (error) {
                 console.error('There was a problem with the fetch operation:', error);
+                alerts.show({
+                    title: "Error",
+                    content: "Failed to load products. Please try again later."
+                });
+            }
+            finally {
+                setIsLoading(false);
             }
         });
         fetchProductData();
     }, []);
     const handleSearchChange = (newValue) => {
         setSearchValue(newValue);
-        applyFilters(newValue, selectedCategory, maxCO2);
+        applyFilters(newValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, sortBy);
     };
-    const applyFilters = (searchText, category, co2Limit) => {
-        const filtered = products.filter(item => {
-            const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
-                item.name.toLowerCase().includes(searchText.toLowerCase()) ||
-                item.category.toLowerCase().includes(searchText.toLowerCase());
-            const matchesCategory = category ? item.category.includes(category) : true;
-            const matchesCO2 = co2Limit ? parseFloat(item.co2Emission) <= co2Limit : true;
-            return matchesSearch && matchesCategory && matchesCO2;
+    const applyFilters = (searchText, category, subCategory, co2Max, co2Min, country, sort) => {
+        // Filter the products
+        let filtered = products.filter(item => {
+            // Search text matching
+            const matchesSearch = searchText ? ((item.title && item.title.toLowerCase().includes(searchText.toLowerCase())) ||
+                (item.name && item.name.toLowerCase().includes(searchText.toLowerCase())) ||
+                (item.category && item.category.toLowerCase().includes(searchText.toLowerCase())) ||
+                (item.description && item.description.toLowerCase().includes(searchText.toLowerCase())) ||
+                (item.code && item.code.toLowerCase().includes(searchText.toLowerCase()))) : true;
+            // Category matching
+            const matchesCategory = category ? item.category === category : true;
+            // Sub-category matching
+            const matchesSubCategory = subCategory ? item.subCategory === subCategory : true;
+            // CO2 max limit
+            const matchesMaxCO2 = co2Max ? parseFloat(item.co2Emission) <= co2Max : true;
+            // CO2 min limit
+            const matchesMinCO2 = co2Min ? parseFloat(item.co2Emission) >= co2Min : true;
+            // Country matching
+            const itemCountry = item.countryOfOrigin === "CN" ? "China" :
+                item.countryOfOrigin === "VN" ? "Vietnam" :
+                    item.countryOfOrigin;
+            const matchesCountry = country ? itemCountry === country : true;
+            return matchesSearch && matchesCategory && matchesSubCategory && matchesMaxCO2 && matchesMinCO2 && matchesCountry;
         });
+        // Sort the filtered products
+        if (sort === "newest") {
+            filtered = filtered.sort((a, b) => new Date(b.createdDate).getTime() - new Date(a.createdDate).getTime());
+        }
+        else if (sort === "oldest") {
+            filtered = filtered.sort((a, b) => new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime());
+        }
+        else if (sort === "co2High") {
+            filtered = filtered.sort((a, b) => parseFloat(b.co2Emission) - parseFloat(a.co2Emission));
+        }
+        else if (sort === "co2Low") {
+            filtered = filtered.sort((a, b) => parseFloat(a.co2Emission) - parseFloat(b.co2Emission));
+        }
+        else if (sort === "nameAZ") {
+            filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+        }
+        else if (sort === "nameZA") {
+            filtered = filtered.sort((a, b) => b.name.localeCompare(a.name));
+        }
         setFilteredData(filtered);
     };
     const handleClearFilters = () => {
         setSelectedCategory(null);
+        setSelectedSubCategory(null);
         setMaxCO2(null);
+        setMinCO2(null);
+        setSelectedCountry(null);
+        setSortBy("newest");
         setSearchValue("");
         setFilteredData(products);
     };
-    return (React.createElement("div", { className: "content" },
+    const refreshProducts = () => __awaiter(void 0, void 0, void 0, function* () {
+        setIsLoading(true);
+        try {
+            const response = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+            setProducts(response.data.products);
+        }
+        catch (error) {
+            console.error('Error refreshing products:', error);
+            alerts.show({
+                title: "Error",
+                content: "Failed to refresh products. Please try again later."
+            });
+        }
+        finally {
+            setIsLoading(false);
+        }
+    });
+    return (React.createElement("div", { className: "product-dashboard-container" },
         selectedProduct ? null : (React.createElement(React.Fragment, null,
-            React.createElement("h1", { className: "dashboard-title" }, "Products"),
-            React.createElement("div", { className: "product-library" },
-                React.createElement("div", { className: "search-filter-section" },
-                    React.createElement("div", { className: "uxp-search-box-container" },
-                        React.createElement(components_1.SearchBox, { placeholder: "Search products...", value: searchValue, onChange: handleSearchChange }),
-                        React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || maxCO2), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "filter-panel" },
-                            React.createElement(components_1.FormField, { className: "no-padding mb-only" },
+            React.createElement("div", { className: "dashboard-header" },
+                React.createElement("div", { className: "header-left" },
+                    React.createElement("h1", { className: "dashboard-title" }, "Products"),
+                    React.createElement("p", { className: "dashboard-subtitle" },
+                        filteredData.length,
+                        " product",
+                        filteredData.length !== 1 ? 's' : '',
+                        " found")),
+                React.createElement("div", { className: "header-right" },
+                    React.createElement(components_1.Button, { className: "refresh-button", onClick: refreshProducts, disabled: isLoading, title: "Refresh" },
+                        React.createElement("span", { className: "refresh-icon" }, "\u21BB"),
+                        isLoading ? "Loading..." : "Refresh"),
+                    React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
+            React.createElement("div", { className: "search-filter-container" },
+                React.createElement("div", { className: "search-section" },
+                    React.createElement("div", { className: "search-box-wrapper" },
+                        React.createElement(components_1.SearchBox, { placeholder: "Search by name, category, code...", value: searchValue, onChange: handleSearchChange, className: "product-search-box" }),
+                        React.createElement(components_1.Button, { className: `advanced-search-toggle ${advancedSearch ? 'active' : ''}`, onClick: () => setAdvancedSearch(!advancedSearch), title: advancedSearch ? "Hide Advanced Search" : "Advanced Search" }, advancedSearch ? "Hide Filters" : "Advanced Filters")),
+                    React.createElement("div", { className: "view-options" },
+                        React.createElement("div", { className: "sort-dropdown" },
+                            React.createElement(components_1.Label, null, "Sort by"),
+                            React.createElement(components_1.Select, { selected: sortBy, options: [
+                                    { label: "Newest First", value: "newest" },
+                                    { label: "Oldest First", value: "oldest" },
+                                    { label: "CO₂ (High to Low)", value: "co2High" },
+                                    { label: "CO₂ (Low to High)", value: "co2Low" },
+                                    { label: "Name (A-Z)", value: "nameAZ" },
+                                    { label: "Name (Z-A)", value: "nameZA" },
+                                ], onChange: (value) => {
+                                    setSortBy(value);
+                                    applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, value);
+                                } })),
+                        React.createElement("div", { className: "view-mode-toggle" },
+                            React.createElement("button", { className: `view-mode-button ${viewMode === 'grid' ? 'active' : ''}`, onClick: () => setViewMode('grid'), title: "Grid View" },
+                                React.createElement("span", { className: "grid-icon" }, "\u25A6")),
+                            React.createElement("button", { className: `view-mode-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list'), title: "List View" },
+                                React.createElement("span", { className: "list-icon" }, "\u2261"))))),
+                advancedSearch && (React.createElement("div", { className: "advanced-filter-section" },
+                    React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "filter-panel" },
+                        React.createElement("div", { className: "filter-grid" },
+                            React.createElement(components_1.FormField, { className: "filter-field" },
                                 React.createElement(components_1.Label, null, "Category"),
-                                React.createElement(components_1.Select, { selected: selectedCategory, options: [
-                                        { label: "Furniture | Windows", value: "Furniture | Windows" },
-                                        { label: "Furniture | Dining", value: "Furniture | Dining" },
-                                        { label: "Electronics | Lighting", value: "Electronics | Lighting" },
-                                        { label: "Energy | Solar", value: "Energy | Solar" },
-                                        { label: "Kitchenware | Disposable", value: "Kitchenware | Disposable" },
-                                        { label: "Accessories | Drinkware", value: "Accessories | Drinkware" },
-                                    ], onChange: (value) => {
+                                React.createElement(components_1.Select, { selected: selectedCategory, options: categories.map(cat => ({ label: cat, value: cat })), onChange: (value) => {
                                         setSelectedCategory(value);
-                                        applyFilters(searchValue, value, maxCO2);
-                                    }, placeholder: " -- select --" })),
-                            React.createElement(components_1.FormField, { className: "no-padding mb-only" },
-                                React.createElement(components_1.Label, null, "Max CO2 Emission (Kg CO2e)"),
-                                React.createElement("input", { type: "number", min: "0", max: "5", step: "0.1", value: maxCO2 || "", onChange: (event) => {
-                                        const value = parseFloat(event.target.value);
+                                        applyFilters(searchValue, value, selectedSubCategory, maxCO2, minCO2, selectedCountry, sortBy);
+                                    }, placeholder: "-- All Categories --" })),
+                            React.createElement(components_1.FormField, { className: "filter-field" },
+                                React.createElement(components_1.Label, null, "Sub Category"),
+                                React.createElement(components_1.Select, { selected: selectedSubCategory, options: subCategories.map(subCat => ({ label: subCat, value: subCat })), onChange: (value) => {
+                                        setSelectedSubCategory(value);
+                                        applyFilters(searchValue, selectedCategory, value, maxCO2, minCO2, selectedCountry, sortBy);
+                                    }, placeholder: "-- All Sub Categories --" })),
+                            React.createElement(components_1.FormField, { className: "filter-field" },
+                                React.createElement(components_1.Label, null, "Country of Manufacture"),
+                                React.createElement(components_1.Select, { selected: selectedCountry, options: countries.map(country => ({ label: country, value: country })), onChange: (value) => {
+                                        setSelectedCountry(value);
+                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, value, sortBy);
+                                    }, placeholder: "-- All Countries --" })),
+                            React.createElement(components_1.FormField, { className: "filter-field" },
+                                React.createElement(components_1.Label, null, "Min CO\u2082 Emission (Kg CO\u2082e)"),
+                                React.createElement("input", { type: "number", min: "0", step: "0.1", value: minCO2 || "", onChange: (event) => {
+                                        const value = event.target.value ? parseFloat(event.target.value) : null;
+                                        setMinCO2(value);
+                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, value, selectedCountry, sortBy);
+                                    }, placeholder: "Minimum CO\u2082", className: "number-input" })),
+                            React.createElement(components_1.FormField, { className: "filter-field" },
+                                React.createElement(components_1.Label, null, "Max CO\u2082 Emission (Kg CO\u2082e)"),
+                                React.createElement("input", { type: "number", min: "0", step: "0.1", value: maxCO2 || "", onChange: (event) => {
+                                        const value = event.target.value ? parseFloat(event.target.value) : null;
                                         setMaxCO2(value);
-                                        applyFilters(searchValue, selectedCategory, value);
-                                    }, placeholder: "Set maximum CO2" }))))),
-                viewMode === 'grid' ? (React.createElement(React.Fragment, null,
-                    React.createElement(components_1.DataGrid, { data: currentItems, renderItem: (item) => (React.createElement("div", { className: "product-card", onClick: () => setSelectedProduct(item) },
-                            item.images && item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
-                                React.createElement("span", { className: "no-image-text" }, "No Image Available"))),
-                            React.createElement("div", { className: "co2-emission" }, parseFloat(item.co2Emission).toFixed(2) + ' Kg CO2e'),
-                            React.createElement("div", { className: "product-details" },
-                                React.createElement("p", null, item.title),
-                                React.createElement("h4", null, item.name),
-                                React.createElement("p", null, item.category),
-                                React.createElement("p", null,
-                                    "Modified: ",
-                                    new Date(item.modifiedDate).toLocaleString()),
-                                React.createElement("p", null,
-                                    "Created: ",
-                                    new Date(item.createdDate).toLocaleString())))), columns: 3, className: "product-data-grid" }),
-                    React.createElement("div", { className: "pagination-wrapper" },
-                        React.createElement(Pagination, null)))) : (React.createElement("div", { className: "list-view" },
-                    currentItems.map((item, index) => ( // Use currentItems here too
-                    React.createElement("div", { key: index, className: "product-list-item", onClick: () => setSelectedProduct(item) },
-                        React.createElement("img", { src: item.icon, alt: "Product", className: "product-image" }),
-                        React.createElement("div", { className: "product-details" },
-                            React.createElement("p", null, item.title),
-                            React.createElement("h4", null, item.name),
-                            React.createElement("p", null, item.category),
-                            React.createElement("p", null,
-                                "Modified: ",
-                                item.modifiedDate),
-                            React.createElement("p", null,
-                                "Created: ",
-                                item.createdDate),
-                            React.createElement("p", null,
-                                "CO2 Emission: ",
-                                item.co2Emission + ' Kg CO2e'))))),
-                    React.createElement("div", { className: "pagination-wrapper" },
-                        React.createElement(Pagination, null))))),
-            React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
+                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, value, minCO2, selectedCountry, sortBy);
+                                    }, placeholder: "Maximum CO\u2082", className: "number-input" }))))))),
+            isLoading ? (React.createElement("div", { className: "loading-container" },
+                React.createElement("div", { className: "loading-spinner" }),
+                React.createElement("p", null, "Loading products..."))) : filteredData.length === 0 ? (React.createElement("div", { className: "no-results" },
+                React.createElement("div", { className: "no-results-icon" }, "\uD83D\uDD0D"),
+                React.createElement("h3", null, "No products found"),
+                React.createElement("p", null, "Try adjusting your search criteria or filters"),
+                React.createElement("button", { onClick: handleClearFilters, className: "clear-filters-button" }, "Clear All Filters"))) : viewMode === 'grid' ? (React.createElement(React.Fragment, null,
+                React.createElement("div", { className: "product-grid" }, currentItems.map((item, index) => (React.createElement("div", { className: "product-card", key: item._id || index, onClick: () => setSelectedProduct(item) },
+                    React.createElement("div", { className: "product-card-header" },
+                        React.createElement("div", { className: "product-code" }, item.code),
+                        React.createElement("div", { className: "co2-emission" },
+                            React.createElement("span", { className: "co2-value" }, parseFloat(item.co2Emission).toFixed(2)),
+                            React.createElement("span", { className: "co2-unit" }, "Kg CO\u2082e"))),
+                    React.createElement("div", { className: "product-image-container", style: {
+                            backgroundImage: item.images && item.images.length > 0 ?
+                                `url(${item.images[0]})` : 'none'
+                        } }, (!item.images || item.images.length === 0) && (React.createElement("div", { className: "no-image" },
+                        React.createElement("span", null, "No Image")))),
+                    React.createElement("div", { className: "product-card-content" },
+                        React.createElement("h3", { className: "product-name" }, item.name),
+                        React.createElement("div", { className: "product-meta" },
+                            React.createElement("span", { className: "product-category" }, item.category),
+                            item.subCategory && (React.createElement("span", { className: "product-subcategory" }, item.subCategory))),
+                        React.createElement("div", { className: "product-details-preview" },
+                            React.createElement("div", { className: "product-weight" },
+                                React.createElement("span", { className: "detail-label" }, "Weight:"),
+                                React.createElement("span", { className: "detail-value" },
+                                    item.weight,
+                                    " Kg")),
+                            React.createElement("div", { className: "product-origin" },
+                                React.createElement("span", { className: "detail-label" }, "Origin:"),
+                                React.createElement("span", { className: "detail-value" }, item.countryOfOrigin === "CN" ? "China" :
+                                    item.countryOfOrigin === "VN" ? "Vietnam" :
+                                        item.countryOfOrigin)))),
+                    React.createElement("div", { className: "product-card-footer" },
+                        React.createElement("div", { className: "product-date" },
+                            "Modified: ",
+                            new Date(item.modifiedDate).toLocaleDateString()),
+                        React.createElement("button", { className: "view-details-button" }, "View Details")))))),
+                totalPages > 1 && (React.createElement("div", { className: "pagination-wrapper" },
+                    React.createElement(Pagination, null))))) : (React.createElement(React.Fragment, null,
+                React.createElement("div", { className: "product-list" },
+                    React.createElement("div", { className: "list-header" },
+                        React.createElement("div", { className: "list-col-name" }, "Product Name"),
+                        React.createElement("div", { className: "list-col-category" }, "Category"),
+                        React.createElement("div", { className: "list-col-weight" }, "Weight"),
+                        React.createElement("div", { className: "list-col-origin" }, "Origin"),
+                        React.createElement("div", { className: "list-col-co2" }, "CO\u2082 Emission"),
+                        React.createElement("div", { className: "list-col-date" }, "Modified Date"),
+                        React.createElement("div", { className: "list-col-actions" }, "Actions")),
+                    currentItems.map((item, index) => (React.createElement("div", { className: "list-item", key: item._id || index },
+                        React.createElement("div", { className: "list-col-name" },
+                            React.createElement("div", { className: "item-with-image" },
+                                React.createElement("div", { className: "list-item-thumbnail", style: {
+                                        backgroundImage: item.images && item.images.length > 0 ?
+                                            `url(${item.images[0]})` : 'none'
+                                    } }, (!item.images || item.images.length === 0) && "No Image"),
+                                React.createElement("div", { className: "product-name-code" },
+                                    React.createElement("span", { className: "product-name" }, item.name),
+                                    React.createElement("span", { className: "product-code" }, item.code)))),
+                        React.createElement("div", { className: "list-col-category" },
+                            React.createElement("div", null, item.category),
+                            item.subCategory && React.createElement("div", { className: "subcategory" }, item.subCategory)),
+                        React.createElement("div", { className: "list-col-weight" },
+                            item.weight,
+                            " Kg"),
+                        React.createElement("div", { className: "list-col-origin" }, item.countryOfOrigin === "CN" ? "China" :
+                            item.countryOfOrigin === "VN" ? "Vietnam" :
+                                item.countryOfOrigin),
+                        React.createElement("div", { className: "list-col-co2" },
+                            React.createElement("div", { className: "co2-badge" },
+                                parseFloat(item.co2Emission).toFixed(2),
+                                " Kg CO\u2082e")),
+                        React.createElement("div", { className: "list-col-date" }, new Date(item.modifiedDate).toLocaleDateString()),
+                        React.createElement("div", { className: "list-col-actions" },
+                            React.createElement("button", { className: "view-details-button", onClick: () => setSelectedProduct(item) }, "View Details")))))),
+                totalPages > 1 && (React.createElement("div", { className: "pagination-wrapper" },
+                    React.createElement(Pagination, null))))))),
         React.createElement(product_wizard_1.ProductWizard, { show: showModal, setShowCloseWarning: setShowCloseWarning, onClose: () => __awaiter(void 0, void 0, void 0, function* () {
                 if (showModal) {
                     if (showCloseWarning) {
                         const confirmed = yield alerts.confirm({
                             title: 'Are you sure?',
-                            content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                            content: 'You are about to leave the process of creating product. Do you wish to continue?'
                         });
-                        confirmed ? setShowModal(false) : null;
+                        if (confirmed)
+                            setShowModal(false);
                     }
                     else {
                         setShowModal(false);
@@ -42080,18 +42470,15 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     setShowModal(false);
                 }
             }), uxpContext: uxpContext, onProductCreated: () => {
-                // Refresh the product list after a new product is created
-                (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
-                    setProducts(response.data.products);
-                });
+                refreshProducts();
+                setShowModal(false);
             } }),
         selectedProduct && (React.createElement(product_info_summary_1.default, { plan: plan, uxpContext: uxpContext, product: selectedProduct, hideHeader: false, onClose: () => {
                 setSelectedProduct(null);
-                (0, esgnow_service_1.getAllProducts)(uxpContext).then(response => {
-                    setProducts(response.data.products);
-                });
+                refreshProducts();
             }, onDelete: function () {
-                throw new Error("Function not implemented.");
+                setSelectedProduct(null);
+                refreshProducts();
             } }))));
 };
 exports["default"] = ProductDashboardWidget;
@@ -42153,18 +42540,22 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
     const [viewMode, setViewMode] = (0, react_1.useState)('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = (0, react_1.useState)(false);
-    const [showModal, setShowModal] = react_1.default.useState(false);
+    const [activeTab, setActiveTab] = (0, react_1.useState)('overview');
     const toggleExpand = () => setIsExpanded(!isExpanded);
     const deleteProduct = () => __awaiter(void 0, void 0, void 0, function* () {
+        setShowDeleteConfirm(true);
+    });
+    const confirmDelete = () => __awaiter(void 0, void 0, void 0, function* () {
         yield (0, esgnow_service_1.deleteProductByID)(uxpContext, { _id: product._id });
-        onClose();
+        onDelete();
+        setShowDeleteConfirm(false);
     });
     const donutChartOptions = {
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 300,
-            width: 600,
+            height: 280,
+            width: 500,
             events: {
                 render() {
                     const chart = this;
@@ -42172,7 +42563,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                         chart.customText = chart.renderer
                             .text(`${product.co2Emission} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
                             .css({
-                            fontSize: '16px',
+                            fontSize: '18px',
                             fontWeight: 'bold',
                             fontFamily: 'Comfortaa',
                             color: '#424242',
@@ -42186,7 +42577,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     }
                     else {
                         chart.customText.attr({
-                            text: `${product.co2Emission}} KgCO₂e`,
+                            text: `${product.co2Emission} KgCO₂e`,
                         });
                     }
                 },
@@ -42240,147 +42631,173 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
             enabled: false,
         },
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement("div", { className: "title-container" },
-            !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
-                react_1.default.createElement("h1", { className: "dashboard-title" }, "Product Summary"),
-                react_1.default.createElement("p", { className: "subheading" },
-                    "Product : ",
-                    product.name),
-                react_1.default.createElement(components_1.Button, { title: " < Back ", onClick: onClose, className: "back-button" }))),
-            !hideDelete && (react_1.default.createElement(components_1.Button, { title: "Delete", onClick: () => deleteProduct(), className: "delete-button", icon: "https://static.iviva.com/images/icons8-delete.svg" }, "Delete")),
-            showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showModal, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
-                react_1.default.createElement("p", null, "Are you sure you want to delete this product?"),
-                react_1.default.createElement("div", { className: "modal-actions" },
-                    react_1.default.createElement(components_1.Button, { title: "Yes", onClick: () => { onDelete(); setShowDeleteConfirm(false); }, className: "confirm-button" }, "Yes"),
-                    react_1.default.createElement(components_1.Button, { title: "No", onClick: () => setShowDeleteConfirm(false), className: "cancel-button" }, "No"))))),
+    const renderOverviewTab = () => (react_1.default.createElement("div", { className: "tab-content" },
         react_1.default.createElement("div", { className: "product-info-summary" },
             react_1.default.createElement("div", { className: "summary-image", style: {
                     backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                 } },
                 !product.images[0] && react_1.default.createElement("div", { className: "image-placeholder" }, "Image Unavailable"),
-                react_1.default.createElement("div", { className: "image-label" }, `${product.co2Emission}  Kg CO₂e`)),
+                react_1.default.createElement("div", { className: "image-label" }, `${product.co2Emission} Kg CO₂e`)),
             react_1.default.createElement("div", { className: "summary-details" },
-                react_1.default.createElement("div", { className: "detail-item" },
-                    react_1.default.createElement("strong", null, "Project Code"),
-                    react_1.default.createElement("p", null, product.code)),
-                react_1.default.createElement("div", { className: "detail-item" },
-                    react_1.default.createElement("strong", null, "Product Category:"),
-                    react_1.default.createElement("p", null, product.category)),
-                react_1.default.createElement("div", { className: "detail-item" },
-                    react_1.default.createElement("strong", null, "Sub Category:"),
-                    react_1.default.createElement("p", null, product.subCategory)),
-                react_1.default.createElement("div", { className: "detail-item" },
-                    react_1.default.createElement("strong", null, "Weight"),
-                    react_1.default.createElement("p", null,
-                        product.weight,
-                        " Kg")),
-                react_1.default.createElement("div", { className: "detail-item" },
-                    react_1.default.createElement("strong", null, "Country of Manufacture"),
-                    react_1.default.createElement("p", null, product.countryOfOrigin === "CN" ? "China" :
-                        product.countryOfOrigin === "VN" ? "Vietnam" :
-                            product.countryOfOrigin)),
+                react_1.default.createElement("div", { className: "detail-grid" },
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Project Code"),
+                        react_1.default.createElement("p", null, product.code)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Product Category"),
+                        react_1.default.createElement("p", null, product.category)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Sub Category"),
+                        react_1.default.createElement("p", null, product.subCategory)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Weight"),
+                        react_1.default.createElement("p", null,
+                            product.weight,
+                            " Kg")),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Country of Manufacture"),
+                        react_1.default.createElement("p", null, product.countryOfOrigin === "CN" ? "China" :
+                            product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin))),
                 react_1.default.createElement("div", { className: "description-field" },
-                    react_1.default.createElement("strong", null, "Product Description:"),
-                    react_1.default.createElement("p", null, product.description)))),
-        react_1.default.createElement("div", { className: "widgets-section" },
-            react_1.default.createElement("div", { className: "widget product-footprint" },
-                react_1.default.createElement("h3", null, "Product Footprint"),
-                react_1.default.createElement("div", { className: "widget-content" },
-                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }))),
-            react_1.default.createElement("div", { className: "widgets-row" },
-                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
-                    react_1.default.createElement("h3", null, "Contribution by Raw Material"),
-                    react_1.default.createElement("div", { className: "widget-content" },
-                        react_1.default.createElement("table", null,
-                            react_1.default.createElement("thead", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Material Class"),
-                                    plan == 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
-                                    react_1.default.createElement("th", null, "Contribution"),
-                                    react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null, (() => {
-                                // Calculate the total emission factor
-                                const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
-                                // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
-                                // Map through the sorted materials and calculate percentage
-                                return sortedMaterials.map((item) => {
-                                    const percentage = totalEmissionFactor > 0
-                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                        : 0;
-                                    return (react_1.default.createElement("tr", { key: item.materialClass },
-                                        react_1.default.createElement("td", null, item.materialClass),
-                                        plan == 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
-                                        react_1.default.createElement("td", null,
-                                            parseFloat(item.emissionFactor).toFixed(2),
-                                            " KgCO\u2082e"),
-                                        react_1.default.createElement("td", null,
-                                            percentage,
-                                            " %")));
-                                });
-                            })())))),
-                react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
-                    react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
-                    react_1.default.createElement("div", { className: "widget-content" },
-                        react_1.default.createElement("table", null,
-                            react_1.default.createElement("thead", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Specific Material"),
-                                    react_1.default.createElement("th", null, "Manufacturing Process"),
-                                    react_1.default.createElement("th", null, "Contribution"),
-                                    react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null, (() => {
-                                // Calculate the total emission factor
-                                const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
-                                // Sort the productManufacturingProcess by emissionFactor in descending order
-                                const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
-                                // Map through the sorted materials and calculate percentage
-                                return sortedProcess.map((item) => {
-                                    const percentage = totalEmissionFactor > 0
-                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                        : 0;
-                                    return (react_1.default.createElement("tr", { key: item.materialClass },
-                                        react_1.default.createElement("td", null, item.materialClass),
-                                        react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
-                                        react_1.default.createElement("td", null,
-                                            parseFloat(item.emissionFactor).toFixed(2),
-                                            " KgCO\u2082e"),
-                                        react_1.default.createElement("td", null,
-                                            percentage,
-                                            " %")));
-                                });
-                            })())))))),
-        react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
-            react_1.default.createElement("div", null,
-                react_1.default.createElement("h3", null, "Inventory Information")),
-            viewMode === 'tree' ? (react_1.default.createElement("div", { className: "inventory-tree" },
-                react_1.default.createElement("div", { className: "tree-item", onClick: toggleExpand },
-                    react_1.default.createElement("span", null,
-                        isExpanded ? '▼' : '▶',
-                        " Single - Pane aluminium window (Finished Good)")),
-                isExpanded && (react_1.default.createElement("div", { className: "tree-children" },
-                    react_1.default.createElement("div", { className: "tree-sub-item" }, "Aluminium Frame"),
-                    react_1.default.createElement("div", { className: "tree-sub-item" }, "Glass pane"),
-                    react_1.default.createElement("div", { className: "tree-sub-item" }, "Latch"))))) : (react_1.default.createElement("div", { className: "widget-content" },
+                    react_1.default.createElement("strong", null, "Product Description"),
+                    react_1.default.createElement("div", { className: "rich-text-editor" },
+                        react_1.default.createElement("textarea", { defaultValue: product.description, className: "editable-description", rows: 4 }))))),
+        react_1.default.createElement("div", { className: "widget product-footprint" },
+            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdown"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
+    const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+            react_1.default.createElement("h3", null, "Contribution by Raw Material"),
+            react_1.default.createElement("div", { className: "widget-content" },
                 react_1.default.createElement("table", null,
                     react_1.default.createElement("thead", null,
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, "Material Class"),
-                            plan == 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
+                            plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
+                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Percentage"))),
+                    react_1.default.createElement("tbody", null, (() => {
+                        const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
+                        const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                        return sortedMaterials.map((item) => {
+                            const percentage = totalEmissionFactor > 0
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                : 0;
+                            return (react_1.default.createElement("tr", { key: item.materialClass },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                                react_1.default.createElement("td", null,
+                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    react_1.default.createElement("div", { className: "percentage-bar" },
+                                        react_1.default.createElement("div", { className: "percentage-fill", style: { width: `${percentage}%`, backgroundColor: '#78BE7C' } }),
+                                        react_1.default.createElement("span", null,
+                                            percentage,
+                                            "%")))));
+                        });
+                    })()))))));
+    const renderManufacturingTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
+            react_1.default.createElement("h3", null, "Contribution by Manufacturing Process"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement("table", null,
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            react_1.default.createElement("th", null, "Specific Material"),
+                            react_1.default.createElement("th", null, "Manufacturing Process"),
+                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Percentage"))),
+                    react_1.default.createElement("tbody", null, (() => {
+                        const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
+                        const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                        return sortedProcess.map((item) => {
+                            const percentage = totalEmissionFactor > 0
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                : 0;
+                            return (react_1.default.createElement("tr", { key: item.materialClass },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
+                                react_1.default.createElement("td", null,
+                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    react_1.default.createElement("div", { className: "percentage-bar" },
+                                        react_1.default.createElement("div", { className: "percentage-fill", style: { width: `${percentage}%`, backgroundColor: '#ffaa00' } }),
+                                        react_1.default.createElement("span", null,
+                                            percentage,
+                                            "%")))));
+                        });
+                    })()))))));
+    const renderInventoryTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget inventory-info" },
+            react_1.default.createElement("div", { className: "inventory-header" },
+                react_1.default.createElement("h3", null, "Inventory Information"),
+                react_1.default.createElement("div", { className: "view-toggle" },
+                    react_1.default.createElement("button", { className: `toggle-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list') }, "List View"),
+                    react_1.default.createElement("button", { className: `toggle-button ${viewMode === 'tree' ? 'active' : ''}`, onClick: () => setViewMode('tree') }, "Tree View"))),
+            viewMode === 'tree' ? (react_1.default.createElement("div", { className: "inventory-tree" },
+                react_1.default.createElement("div", { className: "tree-item", onClick: toggleExpand },
+                    react_1.default.createElement("span", { className: "expand-icon" }, isExpanded ? '▼' : '▶'),
+                    react_1.default.createElement("span", null, "Single - Pane aluminium window (Finished Good)")),
+                isExpanded && (react_1.default.createElement("div", { className: "tree-children" }, product.productManufacturingProcess.map((item) => (react_1.default.createElement("div", { key: item.materialClass, className: "tree-sub-item" },
+                    react_1.default.createElement("span", { className: "material-dot" }),
+                    item.materialClass,
+                    " - ",
+                    item.specificMaterial,
+                    " (",
+                    item.weight,
+                    " Kg)"))))))) : (react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement("table", { className: "inventory-table" },
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            react_1.default.createElement("th", null, "Material Class"),
+                            plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
                             react_1.default.createElement("th", null, "Weight"),
                             react_1.default.createElement("th", null, "Manufacturing Process"),
                             react_1.default.createElement("th", null, "Sub Process"))),
-                    react_1.default.createElement("tbody", null, 
-                    // @ts-ignore
-                    product.productManufacturingProcess.map((item) => (react_1.default.createElement("tr", { key: item.materialClass },
+                    react_1.default.createElement("tbody", null, product.productManufacturingProcess.map((item) => (react_1.default.createElement("tr", { key: item.materialClass },
                         react_1.default.createElement("td", null, item.materialClass),
-                        plan == 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                        plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
                         react_1.default.createElement("td", null,
                             item.weight,
                             " Kg"),
                         react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
                         react_1.default.createElement("td", null, item.manufacturingProcesses[0].processes.join(', '))))))))))));
+    return (react_1.default.createElement("div", { className: "product-summary-container" },
+        react_1.default.createElement("div", { className: "header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("div", { className: "title-section" },
+                react_1.default.createElement("h1", { className: "dashboard-title" }, "Product Summary"),
+                react_1.default.createElement("p", { className: "subheading" },
+                    "Product: ",
+                    product.name)),
+            react_1.default.createElement("div", { className: "action-buttons" },
+                react_1.default.createElement(components_1.Button, { title: "Back", onClick: onClose, className: "back-button" },
+                    react_1.default.createElement("span", { className: "back-icon" }, "\u2190"),
+                    "Back"),
+                !hideDelete && (react_1.default.createElement(components_1.Button, { title: "Delete", onClick: deleteProduct, className: "delete-button" },
+                    react_1.default.createElement("span", { className: "delete-icon" }, "\u00D7"),
+                    "Delete")))))),
+        react_1.default.createElement("div", { className: "tabs-container" },
+            react_1.default.createElement("div", { className: "tabs" },
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'overview' ? 'active' : ''}`, onClick: () => setActiveTab('overview') }, "Overview"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'materials' ? 'active' : ''}`, onClick: () => setActiveTab('materials') }, "Raw Materials"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`, onClick: () => setActiveTab('manufacturing') }, "Manufacturing"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'inventory' ? 'active' : ''}`, onClick: () => setActiveTab('inventory') }, "Inventory")),
+            activeTab === 'overview' && renderOverviewTab(),
+            activeTab === 'materials' && renderMaterialsTab(),
+            activeTab === 'manufacturing' && renderManufacturingTab(),
+            activeTab === 'inventory' && renderInventoryTab()),
+        showDeleteConfirm && (react_1.default.createElement(components_1.Modal, { show: showDeleteConfirm, title: "Confirm Deletion", onClose: () => setShowDeleteConfirm(false), className: "delete-modal" },
+            react_1.default.createElement("div", { className: "delete-confirmation" },
+                react_1.default.createElement("div", { className: "warning-icon" }, "\u26A0\uFE0F"),
+                react_1.default.createElement("p", null, "Are you sure you want to delete this product?"),
+                react_1.default.createElement("p", { className: "delete-warning" }, "This action cannot be undone."),
+                react_1.default.createElement("div", { className: "modal-actions" },
+                    react_1.default.createElement(components_1.Button, { title: "Cancel", onClick: () => setShowDeleteConfirm(false), className: "cancel-button" }, "Cancel"),
+                    react_1.default.createElement(components_1.Button, { title: "Delete", onClick: confirmDelete, className: "confirm-button" }, "Delete")))))));
 };
 exports["default"] = ProductInfoSummary;
 

@@ -7,7 +7,6 @@ import HighchartsReact from 'highcharts-react-official';
 import { deleteProductByID } from "../../esgnow-service";
 import { IContextProvider } from '@uxp';
 
-
 interface ProductInfoSummaryProps {
     product: ProductInfoSummary;
     onClose: () => void;
@@ -18,25 +17,30 @@ interface ProductInfoSummaryProps {
     plan: string;
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete , plan}) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete, plan }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
     const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-    const [showModal, setShowModal] = React.useState(false);
+    const [activeTab, setActiveTab] = useState<'overview' | 'materials' | 'manufacturing' | 'inventory'>('overview');
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
 
     const deleteProduct = async () => {
+        setShowDeleteConfirm(true);
+    }
+
+    const confirmDelete = async () => {
         await deleteProductByID(uxpContext, { _id: product._id });
-        onClose();
+        onDelete();
+        setShowDeleteConfirm(false);
     }
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 300,
-            width: 600,
+            height: 280,
+            width: 500,
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
@@ -49,7 +53,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 chart.plotHeight / 2 + chart.plotTop
                             )
                             .css({
-                                fontSize: '16px',
+                                fontSize: '18px',
                                 fontWeight: 'bold',
                                 fontFamily: 'Comfortaa',
                                 color: '#424242',
@@ -62,7 +66,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             .add();
                     } else {
                         chart.customText.attr({
-                            text: `${product.co2Emission}} KgCO₂e`,
+                            text: `${product.co2Emission} KgCO₂e`,
                         });
                     }
                 },
@@ -100,7 +104,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'bottom',
-            symbolRadius: 0, // Makes the symbols square (for circles, remove this line)
+            symbolRadius: 0,
             symbolHeight: 10,
             symbolWidth: 10,
             itemStyle: {
@@ -117,42 +121,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
         },
     };
 
-    return (
-        <>
-            <div className="title-container">
-                {!hideHeader && (
-                    <>
-                        <h1 className="dashboard-title">Product Summary</h1>
-                        <p className="subheading">Product : {product.name}</p>
-
-
-                        <Button
-                            title=" < Back "
-                            onClick={onClose}
-                            className="back-button"
-                        /></>
-                )}
-                {!hideDelete && (
-                    <Button title="Delete" onClick={() => deleteProduct()} className="delete-button" icon="https://static.iviva.com/images/icons8-delete.svg">
-                        Delete
-                    </Button>
-                )}
-                {showDeleteConfirm && (
-                    <Modal
-                        show={showModal}
-                        title="Confirm Deletion"
-                        onClose={() => setShowDeleteConfirm(false)}
-                        className="delete-modal"
-                    >
-                        <p>Are you sure you want to delete this product?</p>
-                        <div className="modal-actions">
-                            <Button title="Yes" onClick={() => { onDelete(); setShowDeleteConfirm(false); }} className="confirm-button">Yes</Button>
-                            <Button title="No" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">No</Button>
-                        </div>
-                    </Modal>
-                )}
-
-            </div>
+    const renderOverviewTab = () => (
+        <div className="tab-content">
             <div className="product-info-summary">
                 <div
                     className="summary-image"
@@ -161,215 +131,318 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     }}
                 >
                     {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">{`${product.co2Emission}  Kg CO₂e`}</div>
+                    <div className="image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
 
                 <div className="summary-details">
-                    {/* First row - 3 items */}
-                    <div className="detail-item">
-                        <strong>Project Code</strong>
-                        <p>{product.code}</p>
+                    <div className="detail-grid">
+                        <div className="detail-item">
+                            <strong>Project Code</strong>
+                            <p>{product.code}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Product Category</strong>
+                            <p>{product.category}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Sub Category</strong>
+                            <p>{product.subCategory}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Weight</strong>
+                            <p>{product.weight} Kg</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Country of Manufacture</strong>
+                            <p>
+                                {product.countryOfOrigin === "CN" ? "China" :
+                                product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin}
+                            </p>
+                        </div>
                     </div>
-                    <div className="detail-item">
-                        <strong>Product Category:</strong>
-                        <p>{product.category}</p>
-                    </div>
-                    <div className="detail-item">
-                        <strong>Sub Category:</strong>
-                        <p>{product.subCategory}</p>
-                    </div>
-                    
-                    {/* Second row - 2 items */}
-                    <div className="detail-item">
-                        <strong>Weight</strong>
-                        <p>{product.weight} Kg</p>
-                    </div>
-                    <div className="detail-item">
-                    <strong>Country of Manufacture</strong>
-                    <p>
-                        {product.countryOfOrigin === "CN" ? "China" : 
-                        product.countryOfOrigin === "VN" ? "Vietnam" : 
-                        product.countryOfOrigin}
-                    </p>
-                </div>
                     <div className="description-field">
-                        <strong>Product Description:</strong>
-                        <p>{product.description}</p>
-                    </div>
-                </div>
-            </div>
-
-            <div className="widgets-section">
-                <div className="widget product-footprint">
-                    <h3>Product Footprint</h3>
-                    <div className="widget-content">
-                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
-                    </div>
-                </div>
-                <div className="widgets-row">
-                    <div className="widget contribution-raw-material">
-                        <h3>Contribution by Raw Material</h3>
-                        <div className="widget-content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Material Class</th>
-                                         { plan == 'professional' && ( <th>Specific Material</th>) } 
-                                        <th>Contribution</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {(() => {
-                                        // Calculate the total emission factor
-                                        const totalEmissionFactor = product.materials.reduce(
-                                            (sum: number, item: any) => sum + item.emissionFactor,
-                                            0
-                                        );
-
-                                        // Sort the materials by emissionFactor in descending order
-                                        const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
-
-                                        // Map through the sorted materials and calculate percentage
-                                        return sortedMaterials.map((item: any) => {
-                                            const percentage =
-                                                totalEmissionFactor > 0
-                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                                    : 0;
-                                            return (
-                                                <tr key={item.materialClass}>
-                                                    <td>{item.materialClass}</td>
-                                                    { plan == 'professional' && ( <td>{item.specificMaterial}</td> )}
-                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
-                                                    <td>{percentage} %</td>
-                                                </tr>
-                                            );
-                                        });
-                                    })()}
-                                </tbody>
-
-                            </table>
-                        </div>
-                    </div>
-
-                    <div className="widget contribution-manufacturing">
-                        <h3>Contribution by Manufacturing</h3>
-                        <div className="widget-content">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Specific Material</th>
-                                        <th>Manufacturing Process</th>
-                                        <th>Contribution</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-
-
-                                    {(() => {
-                                        // Calculate the total emission factor
-                                        const totalEmissionFactor = product.productManufacturingProcess.reduce(
-                                            (sum: number, item: any) => sum + item.emissionFactor,
-                                            0
-                                        );
-
-                                        // Sort the productManufacturingProcess by emissionFactor in descending order
-                                        const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
-
-                                        // Map through the sorted materials and calculate percentage
-                                        return sortedProcess.map((item: any) => {
-                                            const percentage =
-                                                totalEmissionFactor > 0
-                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                                    : 0;
-                                            return (
-                                                <tr key={item.materialClass}>
-                                                    <td>{item.materialClass}</td>
-                                                    <td>{item.manufacturingProcesses[0].category}</td>
-                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
-                                                    <td>{percentage} %</td>
-                                                </tr>
-                                            );
-                                        });
-                                    })()}
-                                </tbody>
-
-
-                            </table>
+                        <strong>Product Description</strong>
+                        <div className="rich-text-editor">
+                            <textarea 
+                                defaultValue={product.description}
+                                className="editable-description"
+                                rows={4}
+                            />
                         </div>
                     </div>
                 </div>
             </div>
 
+            <div className="widget product-footprint">
+                <h3>Product Carbon Footprint Breakdown</h3>
+                <div className="widget-content">
+                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                </div>
+            </div>
+        </div>
+    );
 
+    const renderMaterialsTab = () => (
+        <div className="tab-content">
+            <div className="widget contribution-raw-material">
+                <h3>Contribution by Raw Material</h3>
+                <div className="widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Material Class</th>
+                                {plan === 'professional' && (<th>Specific Material</th>)}
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                const totalEmissionFactor = product.materials.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
+
+                                const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                return sortedMaterials.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="percentage-bar">
+                                                    <div 
+                                                        className="percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderManufacturingTab = () => (
+        <div className="tab-content">
             <div className="widget contribution-manufacturing">
-                <div>
+                <h3>Contribution by Manufacturing Process</h3>
+                <div className="widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Specific Material</th>
+                                <th>Manufacturing Process</th>
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
+
+                                const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                return sortedProcess.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="percentage-bar">
+                                                    <div 
+                                                        className="percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderInventoryTab = () => (
+        <div className="tab-content">
+            <div className="widget inventory-info">
+                <div className="inventory-header">
                     <h3>Inventory Information</h3>
-                    {/* <div className="view-toggle">
+                    <div className="view-toggle">
                         <button
                             className={`toggle-button ${viewMode === 'list' ? 'active' : ''}`}
-                            onClick={() => handleViewToggle('list')}
+                            onClick={() => setViewMode('list')}
                         >
-                            List
+                            List View
                         </button>
                         <button
                             className={`toggle-button ${viewMode === 'tree' ? 'active' : ''}`}
-                            onClick={() => handleViewToggle('tree')}
+                            onClick={() => setViewMode('tree')}
                         >
-                            Tree
+                            Tree View
                         </button>
-                    </div> */}
+                    </div>
                 </div>
 
                 {viewMode === 'tree' ? (
                     <div className="inventory-tree">
                         <div className="tree-item" onClick={toggleExpand}>
-                            <span>{isExpanded ? '▼' : '▶'} Single - Pane aluminium window (Finished Good)</span>
+                            <span className="expand-icon">{isExpanded ? '▼' : '▶'}</span>
+                            <span>Single - Pane aluminium window (Finished Good)</span>
                         </div>
                         {isExpanded && (
                             <div className="tree-children">
-                                <div className="tree-sub-item">Aluminium Frame</div>
-                                <div className="tree-sub-item">Glass pane</div>
-                                <div className="tree-sub-item">Latch</div>
+                                {product.productManufacturingProcess.map((item: any) => (
+                                    <div key={item.materialClass} className="tree-sub-item">
+                                        <span className="material-dot"></span>
+                                        {item.materialClass} - {item.specificMaterial} ({item.weight} Kg)
+                                    </div>
+                                ))}
                             </div>
                         )}
                     </div>
                 ) : (
                     <div className="widget-content">
-                        <table>
+                        <table className="inventory-table">
                             <thead>
                                 <tr>
                                     <th>Material Class</th>
-                                    { plan == 'professional' && ( <th>Specific Material</th> )}
+                                    {plan === 'professional' && (<th>Specific Material</th>)}
                                     <th>Weight</th>
                                     <th>Manufacturing Process</th>
                                     <th>Sub Process</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {
-                                    // @ts-ignore
-                                    product.productManufacturingProcess.map((item: any) => (
-                                        <tr key={item.materialClass}>
-                                            <td>{item.materialClass}</td>
-                                            { plan == 'professional' && (<td>{item.specificMaterial}</td>)}
-                                            <td>{item.weight} Kg</td>
-                                            <td>{item.manufacturingProcesses[0].category}</td>
-                                            <td>{item.manufacturingProcesses[0].processes.join(', ')}</td>
-                                        </tr>
-                                    ))
-                                }
-
-
-
+                                {product.productManufacturingProcess.map((item: any) => (
+                                    <tr key={item.materialClass}>
+                                        <td>{item.materialClass}</td>
+                                        {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                        <td>{item.weight} Kg</td>
+                                        <td>{item.manufacturingProcesses[0].category}</td>
+                                        <td>{item.manufacturingProcesses[0].processes.join(', ')}</td>
+                                    </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 )}
             </div>
-        </>
+        </div>
+    );
+
+    return (
+        <div className="product-summary-container">
+            <div className="header-container">
+                {!hideHeader && (
+                    <>
+                        <div className="title-section">
+                            <h1 className="dashboard-title">Product Summary</h1>
+                            <p className="subheading">Product: {product.name}</p>
+                        </div>
+                        <div className="action-buttons">
+                            <Button
+                                title="Back"
+                                onClick={onClose}
+                                className="back-button"
+                            >
+                                <span className="back-icon">←</span>
+                                Back
+                            </Button>
+                            {!hideDelete && (
+                                <Button 
+                                    title="Delete" 
+                                    onClick={deleteProduct} 
+                                    className="delete-button"
+                                >
+                                    <span className="delete-icon">×</span>
+                                    Delete
+                                </Button>
+                            )}
+                        </div>
+                    </>
+                )}
+            </div>
+
+            <div className="tabs-container">
+                <div className="tabs">
+                    <button 
+                        className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('overview')}
+                    >
+                        Overview
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'materials' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('materials')}
+                    >
+                        Raw Materials
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('manufacturing')}
+                    >
+                        Manufacturing
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'inventory' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('inventory')}
+                    >
+                        Inventory
+                    </button>
+                </div>
+
+                {activeTab === 'overview' && renderOverviewTab()}
+                {activeTab === 'materials' && renderMaterialsTab()}
+                {activeTab === 'manufacturing' && renderManufacturingTab()}
+                {activeTab === 'inventory' && renderInventoryTab()}
+            </div>
+
+            {showDeleteConfirm && (
+                <Modal
+                    show={showDeleteConfirm}
+                    title="Confirm Deletion"
+                    onClose={() => setShowDeleteConfirm(false)}
+                    className="delete-modal"
+                >
+                    <div className="delete-confirmation">
+                        <div className="warning-icon">⚠️</div>
+                        <p>Are you sure you want to delete this product?</p>
+                        <p className="delete-warning">This action cannot be undone.</p>
+                        <div className="modal-actions">
+                            <Button title="Cancel" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">Cancel</Button>
+                            <Button title="Delete" onClick={confirmDelete} className="confirm-button">Delete</Button>
+                        </div>
+                    </div>
+                </Modal>
+            )}
+        </div>
     );
 };
 
