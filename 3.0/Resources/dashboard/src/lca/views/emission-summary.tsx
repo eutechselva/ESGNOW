@@ -8,6 +8,7 @@ import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
 import { createProject, createProjectProductMap, projectProductMapping } from "../../esgnow-service";
 import { IContextProvider } from '@uxp';
+import './emission-summary.scss';
 
 interface SaveResultsModalProps {
     onClose: () => void;
@@ -125,7 +126,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     };
 
     return (
-        <Modal show={true} onClose={onClose} title="Save Transportation-Footprint Results"> 
+        <Modal className="save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
             <div className="save-results-modal">
                 {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
@@ -329,19 +330,21 @@ const EmissionSummary: React.FC<{
     return (
         <>
         { !hideHeader ? <div className="title-container">
-                <h1 className="dashboard-title">Emission Summary</h1>
+                {/* <h1 className="dashboard-title">Emission Summary</h1> */}
 
-                <div className="save-go-back-buttons">
-                    <Button
-                        title="Save results & view later"
+                <div className="save-go-back-buttons-container">
+                <Button
+                        title="Save "
                         onClick={onSave}
                         className="save-results-button"
                     />
-                    <Button
-                        title="Go back"
+                <Button
+                        title="< Back"
                         onClick={onBack}
                         className="back-button"
                     />
+                   
+                   
                 </div>
             </div> : null }
             
