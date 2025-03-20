@@ -1,0 +1,80 @@
+// File: transport-selection-step.scss
+
+.transport-selection-container {
+    padding: 10px;
+  }
+  
+  .transport-selection-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .transport-leg-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  .remove-leg-container {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .highlighted-select {
+    border-radius: 4px;
+    padding: 8px;
+    transition: border-color 0.3s ease;
+  
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  .add-transport-leg-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+  
+  .add-transport-leg-button, 
+  .save-button {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 13px;
+    border-radius: 8px;
+    background-color: #0058d200;
+    border: 2px solid #0056D2;
+    color: #0056D2;
+    
+    &:hover {
+      background-color: #0056D2;
+      color: white;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+  
+  .remove-leg-button {
+    float: right;
+    font-size: 13px;
+    margin-right: initial;
+    border-radius: 8px;
+    background-color: #0058d200;
+    border: 2px solid #D7263D;
+    color: #D7263D;
+    
+    &:hover {
+      background-color: #D7263D;
+      color: white;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.2s ease-in-out;
+    }
+  }

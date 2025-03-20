@@ -1,0 +1,38 @@
+// File: product-selection-step.scss
+
+.product-selection-step {
+    padding: 20px;
+  
+    .product-info-row {
+      margin-bottom: 20px;
+  
+      .label-value-pair {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+  
+        .product-value {
+          padding: 8px;
+          background-color: #f5f5f5;
+          border-radius: 4px;
+          font-size: 14px;
+          flex: 1;
+        }
+      }
+    }
+  
+    .product-info-field {
+      margin-bottom: 20px;
+  
+      .product-info-textarea {
+        width: 100%;
+        height: 150px;
+        padding: 12px;
+        border: 1px solid #e0e0e0;
+        border-radius: 4px;
+        font-size: 14px;
+        resize: none;
+        background-color: #f5f5f5;
+      }
+    }
+  }

@@ -143,17 +143,85 @@ module.exports = exports;
 
 /***/ }),
 
-/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard.scss":
-/*!*************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard.scss ***!
-  \*************************************************************************************************************************************/
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard-widget.scss":
+/*!********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard-widget.scss ***!
+  \********************************************************************************************************************************************/
 /***/ ((module, exports, __webpack_require__) => {
 
 // Imports
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".content {\n  width: 100%;\n  padding: 20px;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n}\n\n.dashboard-title {\n  font-size: 18px;\n  font-weight: 700;\n  margin-bottom: 10px;\n}\n\n.subheading {\n  font-size: 14px;\n  margin-bottom: 20px;\n}\n\n.product-library {\n  margin-top: 20px;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.view-toggle-section {\n  display: flex;\n  gap: 10px;\n  align-items: center;\n  margin-left: auto;\n}\n\n.view-toggle-section .active {\n  background-color: #bab8b3;\n  color: white;\n}\n\n.add-product-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n  background-color: #0056D2;\n  color: #fff;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n.add-product-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.product-data-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 15px;\n  margin-top: 25px;\n  background-color: #ffffff;\n}\n\n.data-grid-column {\n  width: 100% !important;\n  border-radius: 12px;\n}\n\n.product-card {\n  background: white;\n  cursor: pointer;\n  border-radius: 12px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  width: 100%;\n  position: relative;\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n.product-card:hover {\n  transform: scale(1.05);\n  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);\n  background: #f1f1f1;\n}\n\n.product-image {\n  width: 100%;\n  height: 150px;\n  object-fit: scale-down;\n  background-color: white;\n}\n\n.product-image-no-image {\n  width: 100%;\n  height: 150px;\n  background-color: #f4f4f4;\n  /* Light gray for better visibility */\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: #888;\n  /* Soft gray text */\n  font-weight: bold;\n  border: 1px dashed #ccc;\n  /* Dashed border for a placeholder effect */\n  border-radius: 8px;\n}\n\n.no-image-text {\n  font-size: 14px;\n  opacity: 0.8;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #007acc;\n  padding: 8px 12px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: bold;\n  text-align: center;\n  display: inline-block;\n  position: absolute;\n  top: 130px;\n  right: 6px;\n  transform: translateY(-50%);\n}\n\n.product-details {\n  padding: 16px;\n  width: 100%;\n  align-items: flex-start;\n  line-height: 1.15em;\n}\n\n.product-details h4 {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  font-weight: bold;\n  color: #333;\n  text-align: left;\n}\n\n.product-details p {\n  margin: 0 0 8px 0;\n  font-size: 12px;\n  color: #555;\n  text-align: left;\n}\n\n.calculate-impact-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  border-radius: 10px;\n  margin-bottom: 6px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: background-color 0.3s;\n}\n.calculate-impact-button:hover {\n  background-color: #003E99;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n.calculate-impact-button:focus {\n  outline: none;\n}\n\n.impact-history-button {\n  position: absolute;\n  top: 20px;\n  right: 20px;\n  padding: 8px 16px;\n  font-size: 14px;\n}\n\n.product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: flex-end;\n  padding: 16px 24px;\n}\n\n.button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n\n.highlighted-select:focus {\n  outline: none;\n  /* Remove default outline */\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  border-radius: 8px;\n  margin-bottom: 10px;\n}\n\n.save-button-container {\n  margin-top: 30px;\n  display: flex;\n  grid-column: 2;\n}\n\n.save-button {\n  text-align: center;\n  margin-right: 9px;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.transport-leg-summary {\n  background-color: #f0f0f0;\n  padding: 16px;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 8px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.transport-leg-details {\n  font-size: 14px;\n  color: #555;\n}\n\n.save-button,\n.add-transport-leg-button {\n  top: 15px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover,\n.add-transport-leg-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\nh3 {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.product-weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0;\n  /* Remove top margin if any */\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.label {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  /* Reduced gap between input and unit */\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block;\n  /* Ensures inline display */\n  vertical-align: middle;\n  /* Aligns vertically with input */\n  margin-left: 4px;\n}\n\n/* If needed, you might want to adjust the input width */\n.input-group input[type=number] {\n  width: 80px;\n  /* Slightly reduced width to accommodate unit */\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.next-button {\n  width: 100%;\n  padding: 10px;\n  background-color: #2196f3;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n}\n\n.next-button:hover {\n  background-color: #1976d2;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}\n\n.toggle-buttons {\n  display: inline-flex;\n  justify-content: left;\n  width: 100%;\n  gap: 10px;\n  margin-bottom: 20px;\n}\n\n.product-info-btn {\n  margin: 0px;\n}\n\n.carbon-impact-btn {\n  margin: 0px;\n}\n\n.toggle-buttons .active {\n  background-color: #0078d4;\n  color: white;\n}\n\n.package-weight-method {\n  width: 200px !important;\n  margin-bottom: 20px;\n}\n\n.pagination-container {\n  float: right;\n  margin-top: 20px;\n}\n\n.remove-leg-button {\n  top: 15px;\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}", ""]);
+exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.search-filter-section {\n  display: flex;\n  align-items: center;\n  width: 100%;\n  gap: 12px;\n  margin-bottom: 20px;\n  background-color: white;\n  padding: 16px;\n  border-radius: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.uxp-search-box-container {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  gap: 12px;\n  width: 100%;\n}\n\n.search-filter-group {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  width: 65%;\n}\n\n.search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  width: 50%;\n}\n\n.inline-filter {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  width: 50%;\n}\n\n.category-filter {\n  width: 55%;\n}\n\n.co2-filter-container {\n  position: relative;\n  width: 45%;\n  display: flex;\n  align-items: center;\n}\n\n.co2-filter-input {\n  width: 100%;\n  padding: 8px 55px 8px 10px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 14px;\n}\n.co2-filter-input:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.2);\n}\n\n.co2-unit-label {\n  position: absolute;\n  right: 10px;\n  font-size: 12px;\n  color: #666;\n}\n\n.search-icon {\n  position: absolute;\n  left: 12px;\n  color: #666;\n  font-size: 14px;\n}\n\n.search-input {\n  padding: 10px 12px 10px 36px;\n  border: 1px solid #ddd;\n  border-radius: 6px;\n  width: 100%;\n  font-size: 14px;\n}\n.search-input:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.2);\n}\n\n.clear-search-btn {\n  position: absolute;\n  right: 8px;\n  background: transparent;\n  border: none;\n  color: #666;\n  font-size: 12px;\n  cursor: pointer;\n}\n.clear-search-btn:hover {\n  color: #333;\n}\n\n.view-sort-controls {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n\n.view-mode-toggle {\n  display: flex;\n  align-items: center;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n\n.view-mode-button {\n  padding: 8px 12px;\n  background: white;\n  border: none;\n  border-right: 1px solid #ddd;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-size: 16px;\n}\n.view-mode-button:last-child {\n  border-right: none;\n}\n.view-mode-button:hover {\n  background-color: #f5f5f5;\n}\n.view-mode-button.active {\n  background-color: #e6f2ff;\n  color: #0056D2;\n}\n\n.grid-icon, .list-icon {\n  font-size: 18px;\n  line-height: 1;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  position: relative;\n}\n\n.sort-icon {\n  color: #666;\n  font-size: 14px;\n  margin-right: 4px;\n}\n\n.sort-select {\n  width: 160px;\n}\n\n.filter-input {\n  padding: 8px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  width: 100%;\n}\n.filter-input:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 86, 210, 0.2);\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.product-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));\n  gap: 24px;\n  margin-top: 16px;\n  margin-bottom: 24px;\n}\n\n.product-card {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  overflow: hidden;\n  transition: transform 0.2s ease, box-shadow 0.2s ease;\n  cursor: pointer;\n}\n.product-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);\n}\n\n.product-card-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n}\n\n.product-code {\n  font-size: 12px;\n  color: #666;\n  font-weight: 500;\n  background-color: white;\n  padding: 4px 8px;\n  border-radius: 4px;\n}\n\n.co2-emission {\n  background-color: #e6f7ff;\n  color: #0056D2;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 600;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-end;\n}\n\n.co2-value {\n  font-size: 14px;\n}\n\n.co2-unit {\n  font-size: 10px;\n  color: #666;\n}\n\n.product-image-container {\n  height: 180px;\n  background-color: #f9f9f9;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  border-bottom: 1px solid #eee;\n  position: relative;\n}\n\n.no-image {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  height: 100%;\n  font-size: 14px;\n  color: #999;\n  background-color: #f0f0f0;\n}\n\n.product-card-content {\n  padding: 16px;\n}\n\n.product-name {\n  font-size: 16px;\n  font-weight: 600;\n  color: #333;\n  margin: 0 0 8px 0;\n  line-height: 1.4;\n}\n\n.product-meta {\n  display: flex;\n  gap: 8px;\n  margin-bottom: 16px;\n}\n\n.product-category {\n  font-size: 12px;\n  padding: 4px 8px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  color: #666;\n}\n\n.product-details-preview {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 12px;\n}\n.product-details-preview .product-date {\n  text-align: right;\n}\n\n.detail-label {\n  font-size: 12px;\n  color: #999;\n  display: block;\n}\n\n.detail-value {\n  font-size: 14px;\n  color: #333;\n  font-weight: 500;\n}\n\n.product-card-footer {\n  display: flex;\n  justify-content: center;\n  padding: 16px;\n  background-color: #f9f9f9;\n  border-top: 1px solid #eee;\n}\n\n.calculate-impact-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  border-radius: 6px;\n  padding: 10px 16px;\n  font-size: 14px;\n  font-weight: 500;\n  width: 100%;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.calculate-impact-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n\n.product-list {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  overflow: hidden;\n  margin-bottom: 24px;\n}\n\n.list-header {\n  display: grid;\n  grid-template-columns: 60px 2fr 1fr 1fr 1fr 1fr;\n  padding: 10px 12px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n  font-weight: 600;\n  font-size: 14px;\n  color: #333;\n}\n\n.list-item {\n  display: grid;\n  grid-template-columns: 60px 2fr 1fr 1fr 1fr 1fr;\n  padding: 8px 12px;\n  border-bottom: 1px solid #eee;\n  transition: background-color 0.2s ease;\n  align-items: center;\n  min-height: 60px;\n  height: auto;\n}\n.list-item:hover {\n  background-color: #f9f9f9;\n}\n.list-item:last-child {\n  border-bottom: none;\n}\n\n.list-col-image {\n  width: 48px;\n  height: 48px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.list-item-thumbnail {\n  width: 44px;\n  height: 44px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-size: 8px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #999;\n  text-align: center;\n  line-height: 1.2;\n  flex-shrink: 0;\n}\n\n.list-col-name {\n  min-width: 0;\n  padding-right: 8px;\n}\n\n.product-name-code {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n}\n\n.product-name-code .product-name {\n  font-size: 14px;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 2px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.product-name-code .product-code {\n  font-size: 12px;\n  color: #999;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.list-col-category, .list-col-weight {\n  font-size: 13px;\n  color: #333;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.list-col-co2 .co2-badge {\n  display: inline-block;\n  background-color: #e6f7ff;\n  color: #0056D2;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 500;\n  white-space: nowrap;\n}\n\n.list-col-actions {\n  text-align: right;\n}\n\n.view-details-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 6px 10px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  white-space: nowrap;\n}\n.view-details-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);\n}\n\n.pagination-wrapper {\n  margin-top: 24px;\n  display: flex;\n  justify-content: flex-end;\n}\n\n.pagination-container .pagination-controls {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n\n.items-per-page {\n  height: 36px;\n  padding: 0 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.items-per-page:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n\n.pagination-buttons {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.pagination-button {\n  width: 36px;\n  height: 36px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-color: white;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  font-size: 16px;\n  transition: all 0.2s ease;\n  padding: 0;\n}\n.pagination-button:hover:not(:disabled) {\n  background-color: #f0f0f0;\n}\n.pagination-button:disabled {\n  opacity: 0.4;\n  cursor: not-allowed;\n}\n\n.pagination-arrow {\n  line-height: 1;\n}\n\n.pagination-info {\n  font-size: 14px;\n  color: #666;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 16px 24px;\n  border-top: 1px solid #eee;\n  margin-top: auto;\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n  .product-grid {\n    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 2fr 1fr 1fr;\n  }\n  .product-list .list-header .list-col-co2, .product-list .list-item .list-col-co2 {\n    display: none;\n  }\n  .pagination-wrapper .pagination-container {\n    width: 100%;\n  }\n  .pagination-wrapper .pagination-container .pagination-controls {\n    flex-direction: column;\n    align-items: center;\n    gap: 12px;\n  }\n  .pagination-wrapper .pagination-container .pagination-controls .items-per-page {\n    width: 100%;\n  }\n}\n@media (max-width: 576px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 2fr 1fr;\n  }\n  .product-list .list-header .list-col-weight, .product-list .list-item .list-col-weight {\n    display: none;\n  }\n  .product-grid {\n    grid-template-columns: 1fr;\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/product-selection-step.scss":
+/*!**********************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/product-selection-step.scss ***!
+  \**********************************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/summary-step.scss":
+/*!************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/summary-step.scss ***!
+  \************************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".summary-container {\n  padding: 15px;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-section h4 {\n  font-size: 14px;\n  font-weight: bold;\n  margin: 10px 0;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n  margin-bottom: 15px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/transport-selection-step.scss":
+/*!************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/transport-selection-step.scss ***!
+  \************************************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.add-transport-leg-button,\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.add-transport-leg-button:hover,\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/weight-details-step.scss":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/weight-details-step.scss ***!
+  \*******************************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".transport-weight-details {\n  width: 100%;\n  margin: auto;\n  padding: 20px;\n  border-radius: 8px;\n}\n\n.product-weight-section,\n.weight-section {\n  background: white;\n  padding: 12px;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.input-group-top {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-top: 8px;\n}\n\n.weight-input-row {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n}\n\n.toggle-group {\n  display: flex;\n  gap: 16px;\n  margin-top: 0;\n}\n\n.toggle-option {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  font-size: 14px;\n  color: #424242;\n}\n\n.input-group {\n  display: flex;\n  align-items: center;\n  gap: 4px;\n}\n\n.unit {\n  font-size: 14px;\n  color: #757575;\n  display: inline-block;\n  vertical-align: middle;\n  margin-left: 4px;\n}\n\n.input-group input[type=number] {\n  width: 80px;\n  padding: 6px;\n  text-align: right;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n}\n\n.weight-toggle {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 8px 12px;\n  background: white;\n  border-radius: 8px;\n  margin-bottom: 12px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.switch {\n  position: relative;\n  display: inline-block;\n  width: 44px;\n  height: 24px;\n}\n\n.switch input {\n  opacity: 0;\n  width: 0;\n  height: 0;\n}\n\n.slider {\n  position: absolute;\n  cursor: pointer;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: #ccc;\n  transition: 0.4s;\n  border-radius: 24px;\n}\n\n.slider:before {\n  position: absolute;\n  content: \"\";\n  height: 18px;\n  width: 18px;\n  left: 3px;\n  bottom: 3px;\n  background-color: white;\n  transition: 0.4s;\n  border-radius: 50%;\n}\n\ninput:checked + .slider {\n  background-color: #2196F3;\n}\n\ninput:checked + .slider:before {\n  transform: translateX(20px);\n}\n\n.disabled-input {\n  background-color: #f5f5f5;\n  cursor: not-allowed;\n}\n\n.total-weight {\n  background-color: #f5f5f5;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n}\n\n.weight-display {\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n  text-align: right;\n}\n\n.info-icon {\n  position: relative;\n  margin-left: 5px;\n  cursor: pointer;\n}\n\n.tooltip {\n  position: absolute;\n  background-color: #333;\n  color: white;\n  padding: 8px;\n  border-radius: 4px;\n  width: 200px;\n  font-size: 12px;\n  z-index: 10;\n  top: -5px;\n  left: 25px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38364,14 +38432,126 @@ module.exports = content.locals || {};
 
 /***/ }),
 
-/***/ "./src/lca/views/lca-dashboard/lca-dashboard.scss":
-/*!********************************************************!*\
-  !*** ./src/lca/views/lca-dashboard/lca-dashboard.scss ***!
-  \********************************************************/
+/***/ "./src/lca/views/lca-dashboard/lca-dashboard-widget.scss":
+/*!***************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/lca-dashboard-widget.scss ***!
+  \***************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
-            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./lca-dashboard.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard.scss");
+            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./lca-dashboard-widget.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/lca-dashboard-widget.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/product-selection-step.scss":
+/*!*****************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/product-selection-step.scss ***!
+  \*****************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./product-selection-step.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/product-selection-step.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/summary-step.scss":
+/*!*******************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/summary-step.scss ***!
+  \*******************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./summary-step.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/summary-step.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/transport-selection-step.scss":
+/*!*******************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/transport-selection-step.scss ***!
+  \*******************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./transport-selection-step.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/transport-selection-step.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/weight-details-step.scss":
+/*!**************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/weight-details-step.scss ***!
+  \**************************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../../node_modules/css-loader/dist/cjs.js!../../../../node_modules/sass-loader/dist/cjs.js!./weight-details-step.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/lca-dashboard/weight-details-step.scss");
 
             content = content.__esModule ? content.default : content;
 
@@ -39787,7 +39967,7 @@ const UMSDashboard_1 = __webpack_require__(/*! @components/dashboard/UMSDashboar
 const _other_services_1 = __webpack_require__(/*! @other-services */ "./src/other-services.ts");
 const product_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/product-dashboard */ "./src/lca/views/product-dashboard.tsx"));
 const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products */ "./src/lca/views/products.tsx"));
-const LCA_dashboard_1 = __importDefault(__webpack_require__(/*! ./lca/views/lca-dashboard/LCA-dashboard */ "./src/lca/views/lca-dashboard/LCA-dashboard.tsx"));
+const LCADashboardWidget_1 = __importDefault(__webpack_require__(/*! ./lca/views/lca-dashboard/LCADashboardWidget */ "./src/lca/views/lca-dashboard/LCADashboardWidget.tsx"));
 const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
 const bulk_upload_1 = __importDefault(__webpack_require__(/*! ./lca/views/bulk-upload */ "./src/lca/views/bulk-upload.tsx"));
 const home_1 = __importDefault(__webpack_require__(/*! ./lca/views/home */ "./src/lca/views/home.tsx"));
@@ -39864,7 +40044,7 @@ const WrappedDashboard = (props) => {
 });
 (0, uxp_1.registerWidget)({
     id: 'lca-dashboard',
-    widget: LCA_dashboard_1.default,
+    widget: LCADashboardWidget_1.default,
     configs: {
         layout: {
             w: 30,
@@ -41046,10 +41226,10 @@ exports["default"] = HomeDashboard;
 
 /***/ }),
 
-/***/ "./src/lca/views/lca-dashboard/LCA-dashboard.tsx":
-/*!*******************************************************!*\
-  !*** ./src/lca/views/lca-dashboard/LCA-dashboard.tsx ***!
-  \*******************************************************/
+/***/ "./src/lca/views/lca-dashboard/LCADashboardWidget.tsx":
+/*!************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/LCADashboardWidget.tsx ***!
+  \************************************************************/
 /***/ (function(__unused_webpack_module, exports, __webpack_require__) {
 
 "use strict";
@@ -41090,148 +41270,45 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const React = __importStar(__webpack_require__(/*! react */ "react"));
-__webpack_require__(/*! ./lca-dashboard.scss */ "./src/lca/views/lca-dashboard/lca-dashboard.scss");
-const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ../stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
 const react_1 = __webpack_require__(/*! react */ "react");
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const esgnow_service_1 = __webpack_require__(/*! ../../../esgnow-service */ "./src/esgnow-service.ts");
+const ProductSelectionStep_1 = __importDefault(__webpack_require__(/*! ./ProductSelectionStep */ "./src/lca/views/lca-dashboard/ProductSelectionStep.tsx"));
+const TransportSelectionStep_1 = __importDefault(__webpack_require__(/*! ./TransportSelectionStep */ "./src/lca/views/lca-dashboard/TransportSelectionStep.tsx"));
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ../emission-summary */ "./src/lca/views/emission-summary.tsx"));
+const stepper_LCA_1 = __importDefault(__webpack_require__(/*! ../stepper-LCA */ "./src/lca/views/stepper-LCA.tsx"));
+__webpack_require__(/*! ./lca-dashboard-widget.scss */ "./src/lca/views/lca-dashboard/lca-dashboard-widget.scss");
+const WeightDetailsStep_1 = __importDefault(__webpack_require__(/*! ./WeightDetailsStep */ "./src/lca/views/lca-dashboard/WeightDetailsStep.tsx"));
+const SummaryStep_1 = __importDefault(__webpack_require__(/*! ./SummaryStep */ "./src/lca/views/lca-dashboard/SummaryStep.tsx"));
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
-const esgnow_service_1 = __webpack_require__(/*! ../../../esgnow-service */ "./src/esgnow-service.ts");
 const LCADashboardWidget = ({ uxpContext }) => {
-    const [products, setProducts] = React.useState([]);
-    const [transportDatabase, setTransportDatabase] = React.useState({});
-    const [countries, setCountries] = React.useState([]);
-    const [showModal, setShowModal] = React.useState(false);
-    const [selectedProduct, setSelectedProduct] = React.useState(null);
-    const [activeStep, setActiveStep] = React.useState(0);
-    const [searchValue, setSearchValue] = React.useState("");
-    const [showFilterPanel, setShowFilterPanel] = React.useState(false);
-    const [filteredData, setFilteredData] = React.useState(products);
-    const [selectedCategory, setSelectedCategory] = React.useState(null);
-    const [maxCO2, setMaxCO2] = React.useState(null);
+    var _a;
+    const [products, setProducts] = (0, react_1.useState)([]);
+    const [filteredProducts, setFilteredProducts] = (0, react_1.useState)([]);
+    const [transportDatabase, setTransportDatabase] = (0, react_1.useState)({});
+    const [countries, setCountries] = (0, react_1.useState)([]);
+    const [showModal, setShowModal] = (0, react_1.useState)(false);
+    const [selectedProduct, setSelectedProduct] = (0, react_1.useState)(null);
+    const [activeStep, setActiveStep] = (0, react_1.useState)(0);
+    const [searchValue, setSearchValue] = (0, react_1.useState)("");
+    const [showFilterPanel, setShowFilterPanel] = (0, react_1.useState)(false);
+    const [selectedCategory, setSelectedCategory] = (0, react_1.useState)(null);
+    const [maxCO2, setMaxCO2] = (0, react_1.useState)(null);
     const [packagingWeight, setPackagingWeight] = (0, react_1.useState)(0);
     const [isPackagingManual, setIsPackagingManual] = (0, react_1.useState)(false);
     const [includePallet, setIncludePallet] = (0, react_1.useState)(false);
     const [palletWeight, setPalletWeight] = (0, react_1.useState)(20);
     const [isPalletManual, setIsPalletManual] = (0, react_1.useState)(false);
-    const [isProductWeightEditable, setIsProductWeightEditable] = (0, react_1.useState)(false);
-    const [isEmissionSummaryVisible, setisEmissionSummaryvisible] = (0, react_1.useState)(false);
+    const [isEmissionSummaryVisible, setIsEmissionSummaryVisible] = (0, react_1.useState)(false);
     const [transportationEmission, setTransportationEmission] = (0, react_1.useState)("");
     const [totalTransportWeight, setTotalTransportWeight] = (0, react_1.useState)(0);
-    const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
     const [plan, setPlan] = (0, react_1.useState)("");
-    const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
-        setisEmissionSummaryvisible(true);
-        setShowModal(false);
-    });
-    const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
-        const emission = yield Promise.all(transportLegs.map((leg) => __awaiter(void 0, void 0, void 0, function* () {
-            const emission = yield calculateSingleLegEmission(leg);
-            return Object.assign(Object.assign({}, leg), { transportEmission: emission });
-        })));
-        setTransportLegs(emission);
-        const totalEmission = emission.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toString());
-    });
-    React.useEffect(() => {
-        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
-            const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
-            setProducts(data.data.products);
-            setPlan(data.data.plan.plan);
-        });
-        fetchProductData();
-    }, []);
-    React.useEffect(() => {
-        const fetchCountries = () => __awaiter(void 0, void 0, void 0, function* () {
-            try {
-                const response = yield (0, esgnow_service_1.transportDB)(uxpContext);
-                if (!response.data) {
-                    throw new Error('Network response was not ok');
-                }
-                const data = yield response.data;
-                if (data.plan.plan == 'basic') {
-                    const formattedOptions = data.transportDatabase.map((country) => ({
-                        label: country,
-                        value: country // Replace `code` with the appropriate field
-                    }));
-                    setCountries(formattedOptions);
-                    console.log("Countries:", countries);
-                }
-                else {
-                    setTransportDatabase(data.transportDatabase);
-                    const formattedOptions = Object.keys(data.transportDatabase).map((country) => ({
-                        label: country,
-                        value: country // Replace `code` with the appropriate field
-                    }));
-                    setCountries(formattedOptions);
-                    console.log("Countries:", countries);
-                }
-            }
-            catch (error) {
-                console.error('There was a problem with the fetch operation:', error);
-            }
-        });
-        fetchCountries();
-    }, []);
-    const distance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            const response = yield (0, esgnow_service_1.calculateTransportDistance)(uxpContext, { origin: origin, destination: destination });
-            const data = response.data;
-            return data.distance_in_km;
-        }
-        catch (error) {
-            console.error('Error calculating transport distance:', error);
-            return 0;
-        }
-    });
-    React.useEffect(() => {
-        if (includePallet) {
-            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight + palletWeight);
-        }
-        else {
-            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight);
-        }
-    }, [packagingWeight, palletWeight, includePallet, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight]);
-    const handleSearchChange = (newValue) => {
-        setSearchValue(newValue);
-        applyFilters(newValue, selectedCategory);
-    };
-    const applyFilters = (searchText, category) => {
-        const filtered = products.filter(item => {
-            const matchesSearch = item.title.toLowerCase().includes(searchText.toLowerCase()) ||
-                item.subTitle.toLowerCase().includes(searchText.toLowerCase());
-            const matchesCategory = category ? item.subTitle.toLowerCase().includes(category.toLowerCase()) : true;
-            return matchesSearch && matchesCategory;
-        });
-        setFilteredData(filtered);
-    };
-    const calculateSingleLegEmission = (leg) => __awaiter(void 0, void 0, void 0, function* () {
-        try {
-            debugger;
-            const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, { weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance });
-            const data = yield response.data;
-            return parseFloat(data.transportEmissions);
-        }
-        catch (error) {
-            console.error('Error calculating transport emission:', error);
-            return 0;
-        }
-    });
-    const handleClearFilters = () => {
-        setSelectedCategory(null);
-        setMaxCO2(null);
-        setFilteredData(products);
-    };
-    const selectProduct = (product) => {
-        setSelectedProduct(product);
-        setShowModal(true);
-        setActiveStep(0);
-    };
-    React.useEffect(() => {
-        setPackagingWeight(((((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) / 100) * 10);
-    }, [selectProduct]);
+    const [isLoading, setIsLoading] = (0, react_1.useState)(true);
+    const [sortOption, setSortOption] = (0, react_1.useState)("name_asc");
+    const [categories, setCategories] = (0, react_1.useState)([]);
+    const [viewMode, setViewMode] = (0, react_1.useState)("grid");
     const [transportLegs, setTransportLegs] = (0, react_1.useState)([{
             id: 1,
             originCountry: "",
@@ -41244,6 +41321,600 @@ const LCADashboardWidget = ({ uxpContext }) => {
             originGateways: [],
             destinationGateways: []
         }]);
+    // Pagination state from product-dashboard
+    const [currentPage, setCurrentPage] = (0, react_1.useState)(1);
+    const [itemsPerPage, setItemsPerPage] = (0, react_1.useState)(6);
+    // Calculate pagination
+    const indexOfLastItem = currentPage * itemsPerPage;
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const currentItems = filteredProducts.slice(indexOfFirstItem, indexOfLastItem);
+    const totalPages = Math.ceil(filteredProducts.length / itemsPerPage);
+    // Fetch product data on component mount
+    (0, react_1.useEffect)(() => {
+        const fetchProductData = () => __awaiter(void 0, void 0, void 0, function* () {
+            setIsLoading(true);
+            try {
+                const data = yield (0, esgnow_service_1.getAllProducts)(uxpContext);
+                setProducts(data.data.products);
+                setFilteredProducts(data.data.products);
+                setPlan(data.data.plan.plan);
+                // Extract unique categories for filter dropdown
+                const uniqueCategories = [...new Set(data.data.products.map((product) => product.subTitle))];
+                setCategories(uniqueCategories.map((category) => ({
+                    label: category,
+                    value: category
+                })));
+            }
+            catch (error) {
+                console.error("Error fetching products:", error);
+            }
+            finally {
+                setIsLoading(false);
+            }
+        });
+        fetchProductData();
+    }, []);
+    // Fetch countries data for transport selection
+    (0, react_1.useEffect)(() => {
+        const fetchCountries = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                const response = yield (0, esgnow_service_1.transportDB)(uxpContext);
+                if (!response.data) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = yield response.data;
+                if (data.plan.plan === 'basic') {
+                    const formattedOptions = data.transportDatabase.map((country) => ({
+                        label: country,
+                        value: country
+                    }));
+                    setCountries(formattedOptions);
+                }
+                else {
+                    setTransportDatabase(data.transportDatabase);
+                    const formattedOptions = Object.keys(data.transportDatabase).map((country) => ({
+                        label: country,
+                        value: country
+                    }));
+                    setCountries(formattedOptions);
+                }
+            }
+            catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+            }
+        });
+        fetchCountries();
+    }, []);
+    // Reset to first page when filters change
+    (0, react_1.useEffect)(() => {
+        setCurrentPage(1);
+    }, [searchValue, selectedCategory, maxCO2, sortOption]);
+    // Update total transport weight whenever dependencies change
+    (0, react_1.useEffect)(() => {
+        if (includePallet) {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight + palletWeight);
+        }
+        else {
+            setTotalTransportWeight(parseFloat(((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) + packagingWeight);
+        }
+    }, [packagingWeight, palletWeight, includePallet, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight]);
+    // Set default packaging weight as 10% of product weight
+    (0, react_1.useEffect)(() => {
+        setPackagingWeight(((((selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) || 0)) / 100) * 10);
+    }, [selectedProduct]);
+    // Filter products based on search, category, and CO2 max
+    const applyFilters = (0, react_1.useCallback)(() => {
+        if (!products.length)
+            return;
+        let filtered = [...products];
+        // Apply text search
+        if (searchValue) {
+            const searchLower = searchValue.toLowerCase();
+            filtered = filtered.filter(item => item.name.toLowerCase().includes(searchLower) ||
+                item.code.toLowerCase().includes(searchLower) ||
+                item.subTitle.toLowerCase().includes(searchLower));
+        }
+        // Apply category filter
+        if (selectedCategory) {
+            filtered = filtered.filter(item => item.subTitle === selectedCategory);
+        }
+        // Apply CO2 max filter
+        if (maxCO2 !== null) {
+            filtered = filtered.filter(item => (item.emission || 0) <= maxCO2);
+        }
+        // Apply sorting
+        if (sortOption) {
+            filtered = sortProducts(filtered, sortOption);
+        }
+        setFilteredProducts(filtered);
+    }, [products, searchValue, selectedCategory, maxCO2, sortOption]);
+    // Apply filters whenever filter criteria changes
+    (0, react_1.useEffect)(() => {
+        applyFilters();
+    }, [applyFilters]);
+    const handleSearchChange = (newValue) => {
+        setSearchValue(newValue);
+        // Directly filter products when search changes for immediate feedback
+        const filtered = products.filter(item => {
+            const matchesSearch = item.name.toLowerCase().includes(newValue.toLowerCase()) ||
+                item.code.toLowerCase().includes(newValue.toLowerCase()) ||
+                item.subTitle.toLowerCase().includes(newValue.toLowerCase());
+            const matchesCategory = selectedCategory ? item.subTitle === selectedCategory : true;
+            const matchesCO2 = maxCO2 !== null ? (item.emission || 0) <= maxCO2 : true;
+            return matchesSearch && matchesCategory && matchesCO2;
+        });
+        setFilteredProducts(sortProducts(filtered, sortOption));
+    };
+    const handleClearFilters = () => {
+        setSelectedCategory(null);
+        setMaxCO2(null);
+        setSearchValue("");
+    };
+    const sortProducts = (products, option) => {
+        const sortedProducts = [...products];
+        switch (option) {
+            case "name_asc":
+                return sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+            case "name_desc":
+                return sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+            case "emission_asc":
+                return sortedProducts.sort((a, b) => (a.emission || 0) - (b.emission || 0));
+            case "emission_desc":
+                return sortedProducts.sort((a, b) => (b.emission || 0) - (a.emission || 0));
+            case "date_newest":
+                return sortedProducts.sort((a, b) => {
+                    const dateA = a.modifiedDate ? new Date(a.modifiedDate).getTime() : 0;
+                    const dateB = b.modifiedDate ? new Date(b.modifiedDate).getTime() : 0;
+                    return dateB - dateA; // newest first
+                });
+            case "date_oldest":
+                return sortedProducts.sort((a, b) => {
+                    const dateA = a.modifiedDate ? new Date(a.modifiedDate).getTime() : 0;
+                    const dateB = b.modifiedDate ? new Date(b.modifiedDate).getTime() : 0;
+                    return dateA - dateB; // oldest first
+                });
+            default:
+                // Default to newest first
+                return sortedProducts.sort((a, b) => {
+                    const dateA = a.modifiedDate ? new Date(a.modifiedDate).getTime() : 0;
+                    const dateB = b.modifiedDate ? new Date(b.modifiedDate).getTime() : 0;
+                    return dateB - dateA; // newest first
+                });
+        }
+    };
+    const selectProduct = (product) => {
+        setSelectedProduct(product);
+        setShowModal(true);
+        setActiveStep(0);
+    };
+    const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
+        setIsEmissionSummaryVisible(true);
+        setShowModal(false);
+    });
+    const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
+        // Mock implementation (original had actual API call)
+        const updatedLegs = transportLegs.map(leg => (Object.assign(Object.assign({}, leg), { transportEmission: leg.transportDistance * 0.1 // Simplified calculation
+         })));
+        setTransportLegs(updatedLegs);
+        const totalEmission = updatedLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toString());
+    });
+    const handleNext = () => {
+        if (activeStep < steps.length - 1) {
+            setActiveStep(activeStep + 1);
+        }
+        if (activeStep === 2) {
+            calculateTransportationEmission();
+        }
+    };
+    const handlePrevious = () => {
+        if (activeStep > 0) {
+            setActiveStep(activeStep - 1);
+        }
+    };
+    // Pagination controls component inspired by product-dashboard
+    const Pagination = () => (React.createElement("div", { className: "pagination-container" },
+        React.createElement("div", { className: "pagination-controls" },
+            React.createElement("select", { className: "items-per-page", value: itemsPerPage, onChange: (e) => setItemsPerPage(parseInt(e.target.value)) },
+                React.createElement("option", { value: 6 }, "6 per page"),
+                React.createElement("option", { value: 12 }, "12 per page"),
+                React.createElement("option", { value: 24 }, "24 per page")),
+            React.createElement("div", { className: "pagination-buttons" },
+                React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
+                    React.createElement("span", { className: "pagination-arrow" }, "\u2190")),
+                React.createElement("span", { className: "pagination-info" },
+                    "Page ",
+                    currentPage,
+                    " of ",
+                    totalPages || 1),
+                React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
+                    React.createElement("span", { className: "pagination-arrow" }, "\u2192"))))));
+    const steps = [
+        {
+            id: "step-1",
+            title: "PRODUCT SELECTION",
+            content: (React.createElement(ProductSelectionStep_1.default, { selectedProduct: selectedProduct })),
+        },
+        {
+            id: "step-2",
+            title: "TRANSPORT SELECTION",
+            content: (React.createElement(TransportSelectionStep_1.default, { transportLegs: transportLegs, setTransportLegs: setTransportLegs, countries: countries, transportDatabase: transportDatabase, plan: plan, uxpContext: uxpContext })),
+        },
+        {
+            id: "step-3",
+            title: "TRANSPORT WEIGHT DETAILS",
+            content: (React.createElement(WeightDetailsStep_1.default, { selectedProduct: selectedProduct, packagingWeight: packagingWeight, setPackagingWeight: setPackagingWeight, isPackagingManual: isPackagingManual, setIsPackagingManual: setIsPackagingManual, includePallet: includePallet, setIncludePallet: setIncludePallet, palletWeight: palletWeight, setPalletWeight: setPalletWeight, isPalletManual: isPalletManual, setIsPalletManual: setIsPalletManual, totalTransportWeight: totalTransportWeight })),
+        },
+        {
+            id: "step-4",
+            title: "SUMMARY",
+            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate })),
+        },
+    ];
+    if (isEmissionSummaryVisible) {
+        return (React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setIsEmissionSummaryVisible(false), uxContext: uxpContext, plan: plan }));
+    }
+    return (React.createElement("div", { className: "lca-content" },
+        React.createElement("h1", { className: "dashboard-title" }, "Transportation"),
+        React.createElement("div", { className: "search-filter-section" },
+            React.createElement("div", { className: "uxp-search-box-container" },
+                React.createElement("div", { className: "search-field" },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faSearch, className: "search-icon" }),
+                    React.createElement("input", { type: "text", className: "search-input", placeholder: "Search Products", value: searchValue, onChange: (e) => handleSearchChange(e.target.value) }),
+                    searchValue && (React.createElement(components_1.Button, { title: "Clear", className: "clear-search-btn", onClick: () => handleSearchChange("") }))),
+                React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || maxCO2), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "filter-panel" },
+                    React.createElement(components_1.FormField, { className: "no-padding mb-only" },
+                        React.createElement(components_1.Label, null, "Product Category"),
+                        React.createElement(components_1.Select, { selected: selectedCategory, options: categories, onChange: (value) => {
+                                setSelectedCategory(value);
+                                // Apply filter immediately when category changes
+                                const filtered = products.filter(item => {
+                                    const matchesSearch = searchValue ?
+                                        (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                            item.subTitle.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                    const matchesCategory = value ? item.subTitle === value : true;
+                                    const matchesCO2 = maxCO2 !== null ? (item.emission || 0) <= maxCO2 : true;
+                                    return matchesSearch && matchesCategory && matchesCO2;
+                                });
+                                setFilteredProducts(sortProducts(filtered, sortOption));
+                            }, placeholder: "-- Select a category --" })),
+                    React.createElement(components_1.FormField, { className: "no-padding mb-only" },
+                        React.createElement(components_1.Label, null, "Max CO2 Emission (Kg CO2e)"),
+                        React.createElement("input", { type: "number", min: "0", max: "100", step: "0.1", value: maxCO2 || "", onChange: (event) => {
+                                const value = parseFloat(event.target.value);
+                                const newMaxCO2 = isNaN(value) ? null : value;
+                                setMaxCO2(newMaxCO2);
+                                // Apply filter immediately when CO2 limit changes
+                                const filtered = products.filter(item => {
+                                    const matchesSearch = searchValue ?
+                                        (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                            item.subTitle.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                    const matchesCategory = selectedCategory ? item.subTitle === selectedCategory : true;
+                                    const matchesCO2 = newMaxCO2 !== null ? (item.emission || 0) <= newMaxCO2 : true;
+                                    return matchesSearch && matchesCategory && matchesCO2;
+                                });
+                                setFilteredProducts(sortProducts(filtered, sortOption));
+                            }, placeholder: "Set maximum CO2", className: "filter-input" }))),
+                React.createElement("div", { className: "sort-control" },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faSort, className: "sort-icon" }),
+                    React.createElement(components_1.Select, { selected: sortOption, options: [
+                            { label: "Date (Newest First)", value: "date_newest" },
+                            { label: "Date (Oldest First)", value: "date_oldest" },
+                            { label: "Name (A-Z)", value: "name_asc" },
+                            { label: "Name (Z-A)", value: "name_desc" },
+                            { label: "Emission (Low-High)", value: "emission_asc" },
+                            { label: "Emission (High-Low)", value: "emission_desc" }
+                        ], onChange: (value) => {
+                            setSortOption(value);
+                            setFilteredProducts(sortProducts([...filteredProducts], value));
+                        }, placeholder: "Sort by", className: "sort-select" })),
+                React.createElement("div", { className: "view-mode-toggle" },
+                    React.createElement("button", { className: `view-mode-button ${viewMode === 'grid' ? 'active' : ''}`, onClick: () => setViewMode('grid'), title: "Grid View" },
+                        React.createElement("span", { className: "grid-icon" }, "\u25A6")),
+                    React.createElement("button", { className: `view-mode-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list'), title: "List View" },
+                        React.createElement("span", { className: "list-icon" }, "\u2261"))))),
+        React.createElement("div", { className: "results-summary" },
+            React.createElement("span", null,
+                "Showing ",
+                currentItems.length,
+                " of ",
+                filteredProducts.length,
+                " products (page ",
+                currentPage,
+                " of ",
+                totalPages,
+                ")"),
+            (searchValue || selectedCategory || maxCO2) && (React.createElement(components_1.Button, { title: "Clear All Filters", className: "button-secondary clear-all-btn", onClick: handleClearFilters }))),
+        isLoading ? (React.createElement("div", { className: "loading-container" },
+            React.createElement("div", { className: "loading-spinner" }),
+            React.createElement("p", null, "Loading products..."))) : filteredProducts.length === 0 ? (React.createElement("div", { className: "no-results" },
+            React.createElement("p", null, "No products match your search criteria."),
+            React.createElement(components_1.Button, { title: "Clear Filters", className: "button-secondary", onClick: handleClearFilters }))) : viewMode === "grid" ? (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "product-grid" }, currentItems.map((item, index) => (React.createElement("div", { key: item.code || index, className: "product-card" },
+                React.createElement("div", { className: "product-card-header" },
+                    React.createElement("div", { className: "product-code" }, item.code),
+                    item.emission && (React.createElement("div", { className: "co2-emission" },
+                        React.createElement("span", { className: "co2-value" }, (item.emission || 0).toFixed(2)),
+                        React.createElement("span", { className: "co2-unit" }, "Kg CO\u2082e")))),
+                React.createElement("div", { className: "product-image-container", style: {
+                        backgroundImage: item.images && item.images.length > 0 ?
+                            `url(${item.images[0]})` : 'none'
+                    } }, (!item.images || item.images.length === 0) && (React.createElement("div", { className: "no-image" },
+                    React.createElement("span", null, "No Image Available")))),
+                React.createElement("div", { className: "product-card-content" },
+                    React.createElement("h3", { className: "product-name" }, item.name),
+                    React.createElement("div", { className: "product-meta" },
+                        React.createElement("span", { className: "product-category" }, item.subTitle || "Uncategorized")),
+                    React.createElement("div", { className: "product-details-preview" },
+                        React.createElement("div", { className: "product-weight" },
+                            React.createElement("span", { className: "detail-label" }, "Weight:"),
+                            React.createElement("span", { className: "detail-value" },
+                                item.weight,
+                                " Kg")))),
+                React.createElement("div", { className: "product-card-footer" },
+                    React.createElement("button", { type: "button", className: "calculate-impact-button", onClick: () => selectProduct(item) }, "Calculate Impact")))))),
+            totalPages > 1 && (React.createElement("div", { className: "pagination-wrapper" },
+                React.createElement(Pagination, null))))) : (React.createElement(React.Fragment, null,
+            React.createElement("div", { className: "product-list" },
+                React.createElement("div", { className: "list-header" },
+                    React.createElement("div", { className: "list-col-name" }, "Product Name"),
+                    React.createElement("div", { className: "list-col-category" }, "Category"),
+                    React.createElement("div", { className: "list-col-weight" }, "Weight"),
+                    React.createElement("div", { className: "list-col-co2" }, "CO\u2082 Emission"),
+                    React.createElement("div", { className: "list-col-actions" }, "Actions")),
+                currentItems.map((item, index) => (React.createElement("div", { className: "list-item", key: item.code || index },
+                    React.createElement("div", { className: "list-col-name" },
+                        React.createElement("div", { className: "item-with-image" },
+                            React.createElement("div", { className: "list-item-thumbnail", style: {
+                                    backgroundImage: item.images && item.images.length > 0 ?
+                                        `url(${item.images[0]})` : 'none'
+                                } }, (!item.images || item.images.length === 0) && "No Image"),
+                            React.createElement("div", { className: "product-name-code" },
+                                React.createElement("span", { className: "product-name" }, item.name),
+                                React.createElement("span", { className: "product-code" }, item.code)))),
+                    React.createElement("div", { className: "list-col-category" },
+                        React.createElement("div", null, item.subTitle || "Uncategorized")),
+                    React.createElement("div", { className: "list-col-weight" },
+                        item.weight,
+                        " Kg"),
+                    React.createElement("div", { className: "list-col-co2" },
+                        React.createElement("div", { className: "co2-badge" },
+                            (item.emission || 0).toFixed(2),
+                            " Kg CO\u2082e")),
+                    React.createElement("div", { className: "list-col-actions" },
+                        React.createElement("button", { type: "button", className: "view-details-button", onClick: () => selectProduct(item) }, "Calculate")))))),
+            totalPages > 1 && (React.createElement("div", { className: "pagination-wrapper" },
+                React.createElement(Pagination, null))))),
+        React.createElement(components_1.Modal, { show: showModal, onClose: () => setShowModal(false), title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
+            React.createElement("div", { className: "modal-content" },
+                React.createElement("div", { className: "modal-stepper-container" },
+                    React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: setActiveStep })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
+                _a.content,
+                React.createElement("div", { className: "modal-footer" },
+                    activeStep > 0 && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: handlePrevious })),
+                    activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-primary", title: "Next", onClick: handleNext })))))));
+};
+exports["default"] = LCADashboardWidget;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/ProductSelectionStep.tsx":
+/*!**************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/ProductSelectionStep.tsx ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+// File: ProductSelectionStep.tsx
+const React = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./product-selection-step.scss */ "./src/lca/views/lca-dashboard/product-selection-step.scss");
+const ProductSelectionStep = ({ selectedProduct }) => {
+    return (React.createElement("div", { className: "product-selection-step" },
+        React.createElement("div", { className: "product-info-row" },
+            React.createElement("div", { className: "label-value-pair" },
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Product Code:")),
+                React.createElement("span", { className: "product-value" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code))),
+        React.createElement("div", { className: "product-info-row" },
+            React.createElement("div", { className: "label-value-pair" },
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Product Name:")),
+                React.createElement("span", { className: "product-value" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name))),
+        React.createElement(components_1.FormField, { className: "product-info-field" },
+            React.createElement(components_1.Label, null,
+                React.createElement("span", { className: "label-text" }, "Product Description:")),
+            React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, className: "product-info-textarea", readOnly: true }))));
+};
+exports["default"] = ProductSelectionStep;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/SummaryStep.tsx":
+/*!*****************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/SummaryStep.tsx ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+// File: SummaryStep.tsx
+const React = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./summary-step.scss */ "./src/lca/views/lca-dashboard/summary-step.scss");
+const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm }) => {
+    return (React.createElement("div", { className: "summary-container" },
+        React.createElement("div", { className: "summary-section" },
+            React.createElement("h3", null, "PRODUCT DETAILS"),
+            React.createElement("div", { className: "summary-box" },
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Product Code"),
+                    React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code)),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Product Name"),
+                    React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name)))),
+        React.createElement("div", { className: "summary-section" },
+            React.createElement("h3", null, "TRANSPORT DETAILS"),
+            transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "summary-box" },
+                React.createElement("h4", null,
+                    "Transport Leg ",
+                    index + 1),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Origin Country"),
+                    React.createElement("span", null, leg.originCountry)),
+                plan === 'professional' && (React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Origin Gateway"),
+                    React.createElement("span", null, leg.originGateway))),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Destination Country"),
+                    React.createElement("span", null, leg.destinationCountry)),
+                plan === 'professional' && (React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Destination Gateway"),
+                    React.createElement("span", null, leg.destinationGateway))),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Transport Mode"),
+                    React.createElement("span", null, leg.transportMode)),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Distance"),
+                    React.createElement("span", null,
+                        leg.transportDistance,
+                        " Km")),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Carbon Footprint - Transportation"),
+                    React.createElement("span", null,
+                        leg.transportEmission.toFixed(2),
+                        " Kg CO2e")))))),
+        React.createElement("div", { className: "summary-section" },
+            React.createElement("h3", null, "WEIGHT DETAILS"),
+            React.createElement("div", { className: "summary-box" },
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Product Weight"),
+                    React.createElement("span", null,
+                        parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                        " Kg")),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Packaging Weight"),
+                    React.createElement("span", null,
+                        packagingWeight.toFixed(2),
+                        " Kg")),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Pallet Weight"),
+                    React.createElement("span", null,
+                        (includePallet ? palletWeight : 0).toFixed(2),
+                        " Kg")),
+                React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Total Weight"),
+                    React.createElement("span", null,
+                        (parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight +
+                            (includePallet ? palletWeight : 0)).toFixed(2),
+                        " Kg")))),
+        React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: onConfirm })));
+};
+exports["default"] = SummaryStep;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/TransportSelectionStep.tsx":
+/*!****************************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/TransportSelectionStep.tsx ***!
+  \****************************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+// File: TransportSelectionStep.tsx
+const React = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const esgnow_service_1 = __webpack_require__(/*! ../../../esgnow-service */ "./src/esgnow-service.ts");
+__webpack_require__(/*! ./transport-selection-step.scss */ "./src/lca/views/lca-dashboard/transport-selection-step.scss");
+const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, transportDatabase, plan, uxpContext }) => {
     const addTransportLeg = () => {
         setTransportLegs([...transportLegs, {
                 id: transportLegs.length + 1,
@@ -41258,6 +41929,24 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 destinationGateways: []
             }]);
     };
+    const removeTransportLeg = (legId) => {
+        if (transportLegs.length > 1) {
+            setTransportLegs(transportLegs.filter(leg => leg.id !== legId));
+        }
+    };
+    const distance = (origin, destination) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const response = yield (0, esgnow_service_1.calculateTransportDistance)(uxpContext, {
+                origin: origin,
+                destination: destination
+            });
+            return response.data.distance_in_km;
+        }
+        catch (error) {
+            console.error('Error calculating transport distance:', error);
+            return 0;
+        }
+    });
     const updateTransportLeg = (legId, field, value) => __awaiter(void 0, void 0, void 0, function* () {
         setTransportLegs(prevLegs => {
             const updatedLegs = prevLegs.map(leg => {
@@ -41268,20 +41957,18 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         updatedLeg = Object.assign(Object.assign({}, updatedLeg), { originCountry: value, originGateways: ((_a = transportDatabase[value]) === null || _a === void 0 ? void 0 : _a.map((gateway) => ({
                                 label: gateway,
                                 value: gateway
-                            }))) || [], originGateway: '', transportEmission: 0 // Reset emission when changing route
-                         });
+                            }))) || [], originGateway: '', transportEmission: 0 });
                     }
                     else if (field === 'destinationCountry') {
                         updatedLeg = Object.assign(Object.assign({}, updatedLeg), { destinationCountry: value, destinationGateways: ((_b = transportDatabase[value]) === null || _b === void 0 ? void 0 : _b.map((gateway) => ({
                                 label: gateway,
                                 value: gateway
-                            }))) || [], destinationGateway: '', transportEmission: 0 // Reset emission when changing route
-                         });
+                            }))) || [], destinationGateway: '', transportEmission: 0 });
                     }
                     else {
-                        updatedLeg = Object.assign(Object.assign(Object.assign({}, updatedLeg), { [field]: value }), (field === 'transportMode' && { transportEmission: 0 }) // Reset emission when changing mode
-                        );
+                        updatedLeg = Object.assign(Object.assign(Object.assign({}, updatedLeg), { [field]: value }), (field === 'transportMode' && { transportEmission: 0 }));
                     }
+                    // Calculate distance if all required fields are filled
                     if (field === 'transportMode' &&
                         updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
@@ -41313,262 +42000,140 @@ const LCADashboardWidget = ({ uxpContext }) => {
             return updatedLegs;
         });
     });
-    const removeTransportLeg = (legId) => {
-        if (transportLegs.length > 1) {
-            setTransportLegs(transportLegs.filter(leg => leg.id !== legId));
-        }
-    };
-    const steps = [
-        {
-            id: "step-1",
-            title: "PRODUCT SELECTION",
-            content: (React.createElement("div", null,
-                React.createElement("div", { className: "product-selection-step" },
-                    React.createElement("div", { className: "product-info-row" },
-                        React.createElement("div", { className: "label-value-pair" },
-                            React.createElement(components_1.Label, null,
-                                React.createElement("span", { style: { fontSize: '12px' } }, "Product Code:")),
-                            React.createElement("span", { className: "product-value" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code))),
-                    React.createElement("div", { className: "product-info-row" },
-                        React.createElement("div", { className: "label-value-pair" },
-                            React.createElement(components_1.Label, null,
-                                React.createElement("span", { style: { fontSize: '12px' } }, "Product Name:")),
-                            React.createElement("span", { className: "product-value" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name))),
-                    React.createElement(components_1.FormField, { className: "product-info-field" },
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Product Description:")),
-                        React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, className: "product-info-textarea", readOnly: true }))))),
-        },
-        {
-            id: "step-2",
-            title: "TRANSPORT SELECTION",
-            content: (React.createElement("div", null,
-                transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
-                    React.createElement("div", { className: "transport-leg-header" },
-                        React.createElement("h3", null,
-                            "Transport Leg ",
-                            index + 1)),
-                    React.createElement("div", null, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
-                    React.createElement(components_1.FormField, null,
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Origin Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => {
-                                updateTransportLeg(leg.id, 'originCountry', value);
-                            } })),
-                    React.createElement(components_1.FormField, null,
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Destination Country")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => {
-                                updateTransportLeg(leg.id, 'destinationCountry', value);
-                            } })),
-                    (plan == 'professional' && (React.createElement(components_1.FormField, null,
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Origin Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) })))),
-                    (plan == 'professional' && (React.createElement(components_1.FormField, null,
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Destination Gateway")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) })))),
-                    React.createElement(components_1.FormField, null,
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Transport Mode")),
-                        React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                                { label: "SeaFreight", value: "SeaFreight" },
-                                // { label: "RoadFreight", value: "RoadFreight" },
-                                // { label: "RailFreight", value: "RailFreight" },
-                                // { label: "AirFreight", value: "AirFreight" },
-                            ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
-                React.createElement("div", { className: "add-transport-leg-container" },
-                    React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg })))),
-        },
-        {
-            id: "step-3",
-            title: "TRANSPORT WEIGHT DETAILS",
-            content: (React.createElement("div", null,
-                React.createElement("div", { className: "transport-weight-details" },
-                    React.createElement("div", { className: "product-weight-section" },
-                        React.createElement("div", { className: "input-group-top" },
-                            React.createElement(components_1.Label, null,
-                                React.createElement("span", { style: { fontSize: '12px' } }, "Product Weight:")),
-                            isProductWeightEditable ? (React.createElement(React.Fragment, null)) : (React.createElement(React.Fragment, null,
-                                React.createElement("span", { className: "weight-display" },
-                                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
-                                    " Kg"))))),
-                    React.createElement("div", { className: "weight-section" },
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Packaging Weight"),
-                            React.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
-                                React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
-                                showTooltip && (React.createElement("div", { className: "tooltip" }, "Select Assistance to estimate packaging weight (10% of product weight), or enter the weight manually if known")))),
-                        React.createElement("div", { className: "weight-input-row" },
-                            React.createElement("div", { className: "toggle-group" },
-                                React.createElement("label", { className: "toggle-option" },
-                                    React.createElement("input", { type: "radio", checked: !isPackagingManual, onChange: () => setIsPackagingManual(false) }),
-                                    "AI Assistance"),
-                                React.createElement("label", { className: "toggle-option" },
-                                    React.createElement("input", { type: "radio", checked: isPackagingManual, onChange: () => setIsPackagingManual(true) }),
-                                    "Manual Entry")),
-                            React.createElement("div", { className: "input-group" },
-                                isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
-                                React.createElement("span", { className: "unit" }, "Kg")))),
-                    React.createElement("div", { className: "weight-toggle" },
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Include Pallet Weight?")),
-                        React.createElement("label", { className: "switch" },
-                            React.createElement("input", { type: "checkbox", checked: includePallet, onChange: (e) => setIncludePallet(e.target.checked) }),
-                            React.createElement("span", { className: "slider" }))),
-                    includePallet && (React.createElement("div", { className: "weight-section" },
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Pallet Weight"),
-                            React.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
-                                React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
-                                showTooltip && (React.createElement("div", { className: "tooltip" }, "Select Assistance to apply an industry-standard pallet weight (typically 13.6 kg to 21.8 kg), or enter the weight manually if known")))),
-                        React.createElement("div", { className: "weight-input-row" },
-                            React.createElement("div", { className: "toggle-group" },
-                                React.createElement("label", { className: "toggle-option" },
-                                    React.createElement("input", { type: "radio", checked: !isPalletManual, onChange: () => setIsPalletManual(false) }),
-                                    "AI Assistance"),
-                                React.createElement("label", { className: "toggle-option" },
-                                    React.createElement("input", { type: "radio", checked: isPalletManual, onChange: () => setIsPalletManual(true) }),
-                                    "Manual Entry")),
-                            React.createElement("div", { className: "input-group" },
-                                isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
-                                React.createElement("span", { className: "unit" }, "Kg"))))),
-                    React.createElement("div", { className: "total-weight" },
-                        React.createElement(components_1.Label, null,
-                            React.createElement("span", { style: { fontSize: '12px' } }, "Total Transport Weight")),
-                        React.createElement("div", { className: "weight-display" },
-                            totalTransportWeight.toFixed(2),
-                            " Kg"))))),
-        },
-        {
-            id: "step-4",
-            title: "SUMMARY",
-            content: (React.createElement("div", null,
-                React.createElement("div", { className: "summary-section" },
-                    React.createElement("h3", null, "PRODUCT DETAILS"),
-                    React.createElement("div", { className: "summary-box" },
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Product Code"),
-                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.code)),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Product Name"),
-                            React.createElement("span", null, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name)))),
-                React.createElement("div", { className: "summary-section" },
-                    React.createElement("h3", null, "TRANSPORT DETAILS"),
-                    transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "summary-box" },
-                        React.createElement("h4", null,
-                            "Transport Leg ",
-                            index + 1),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Origin Country"),
-                            React.createElement("span", null, leg.originCountry)),
-                        (plan == 'professional' && (React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Origin Gateway"),
-                            React.createElement("span", null, leg.originGateway)))),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Destination Country"),
-                            React.createElement("span", null, leg.destinationCountry)),
-                        (plan == 'professional' && (React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Destination Gateway"),
-                            React.createElement("span", null, leg.destinationGateway)))),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Transport Mode"),
-                            React.createElement("span", null, leg.transportMode)),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Distance"),
-                            React.createElement("span", null,
-                                leg.transportDistance,
-                                " Km")),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Carbon Footprint - Transportation"),
-                            React.createElement("span", null,
-                                leg.transportEmission.toFixed(2),
-                                " Kg CO2e")))))),
-                React.createElement("div", { className: "summary-section" },
-                    React.createElement("h3", null, "WEIGHT DETAILS"),
-                    React.createElement("div", { className: "summary-box" },
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Product Weight"),
-                            React.createElement("span", null,
-                                parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
-                                " Kg")),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Packaging Weight"),
-                            React.createElement("span", null,
-                                packagingWeight.toFixed(2),
-                                " Kg")),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Pallet Weight"),
-                            React.createElement("span", null,
-                                (includePallet ? palletWeight : 0).toFixed(2),
-                                " Kg")),
-                        React.createElement("div", { className: "summary-row" },
-                            React.createElement("span", null, "Total Weight"),
-                            React.createElement("span", null,
-                                (parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight + (includePallet ? palletWeight : 0)).toFixed(2),
-                                " Kg")))),
-                React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: () => handleConfirmCalculate() }))),
-        },
-    ];
-    const handleNext = () => {
-        if (activeStep < steps.length - 1) {
-            setActiveStep(activeStep + 1);
-        }
-        if (activeStep === 2) {
-            calculateTransportationEmission();
-        }
-    };
-    const handlePrevious = () => {
-        if (activeStep > 0) {
-            setActiveStep(activeStep - 1);
-        }
-    };
-    if (isEmissionSummaryVisible) {
-        return React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setisEmissionSummaryvisible(false), uxContext: uxpContext, plan: plan });
-    }
-    return (React.createElement("div", { className: "content" },
-        React.createElement("h1", { className: "dashboard-title" }, "Transportation"),
-        React.createElement("div", { className: "search-filter-section" },
-            React.createElement("div", { className: "uxp-search-box-container" },
-                React.createElement(components_1.SearchBox, { placeholder: "Search Placeholder", value: searchValue, onChange: handleSearchChange }),
-                React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || maxCO2), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "filter-panel" },
-                    React.createElement(components_1.FormField, { className: "no-padding mb-only" },
-                        React.createElement(components_1.Label, null, "Category"),
-                        React.createElement(components_1.Select, { selected: selectedCategory, options: [
-                                { label: "Furniture | Windows", value: "Furniture | Windows" },
-                                { label: "Furniture | Dining", value: "Furniture | Dining" },
-                                { label: "Electronics | Lighting", value: "Electronics | Lighting" },
-                                { label: "Energy | Solar", value: "Energy | Solar" },
-                                { label: "Kitchenware | Disposable", value: "Kitchenware | Disposable" },
-                                { label: "Accessories | Drinkware", value: "Accessories | Drinkware" },
-                            ], onChange: (value) => {
-                                setSelectedCategory(value);
-                                applyFilters(searchValue, value);
-                            }, placeholder: " -- select --" })),
-                    React.createElement(components_1.FormField, { className: "no-padding mb-only" },
-                        React.createElement(components_1.Label, null, "Max CO2 Emission (Kg CO2e)"),
-                        React.createElement("input", { type: "number", min: "0", max: "5", step: "0.1", value: maxCO2 || "", onChange: (event) => {
-                                const value = parseFloat(event.target.value);
-                                setMaxCO2(value);
-                                applyFilters(searchValue, selectedCategory);
-                            }, placeholder: "Set maximum CO2" }))))),
-        React.createElement(components_1.DataGrid, { data: products, renderItem: (item) => (React.createElement("div", { className: "product-card" },
-                item.images.length > 0 ? (React.createElement("img", { src: item.images[0], alt: "Product", className: "product-image" })) : (React.createElement("div", { className: "product-image-no-image" },
-                    React.createElement("span", { className: "no-image-text" }, "No Image Available"))),
-                React.createElement("div", { className: "product-details" },
-                    React.createElement("p", null, item.code),
-                    React.createElement("h4", null, item.name)),
-                React.createElement(components_1.Button, { title: "Calculate Impact", className: "calculate-impact-button", onClick: () => selectProduct(item) }))), columns: 3, className: "product-data-grid" }),
-        React.createElement(components_1.Modal, { show: showModal, onClose: () => setShowModal(false), title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
-            React.createElement("div", { className: "modal-content" },
-                React.createElement("div", { className: "modal-stepper-container" },
-                    React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: setActiveStep })),
-                steps[activeStep].content,
-                activeStep < steps.length - 1 && (React.createElement("div", { className: "modal-footer" },
-                    React.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))))));
+    return (React.createElement("div", { className: "transport-selection-container" },
+        transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
+            React.createElement("div", { className: "transport-leg-header" },
+                React.createElement("h3", null,
+                    "Transport Leg ",
+                    index + 1)),
+            React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
+            React.createElement(components_1.FormField, null,
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Origin Country")),
+                React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) })),
+            React.createElement(components_1.FormField, null,
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Destination Country")),
+                React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) })),
+            plan === 'professional' && (React.createElement(components_1.FormField, null,
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Origin Gateway")),
+                React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) }))),
+            plan === 'professional' && (React.createElement(components_1.FormField, null,
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Destination Gateway")),
+                React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }))),
+            React.createElement(components_1.FormField, null,
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Transport Mode")),
+                React.createElement(components_1.Select, { className: "highlighted-select", options: [
+                        { label: "SeaFreight", value: "SeaFreight" },
+                        // Additional transport modes could be added here
+                    ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
+        React.createElement("div", { className: "add-transport-leg-container" },
+            React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg }))));
 };
-exports["default"] = LCADashboardWidget;
+exports["default"] = TransportSelectionStep;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/lca-dashboard/WeightDetailsStep.tsx":
+/*!***********************************************************!*\
+  !*** ./src/lca/views/lca-dashboard/WeightDetailsStep.tsx ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+// File: WeightDetailsStep.tsx
+const React = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
+__webpack_require__(/*! ./weight-details-step.scss */ "./src/lca/views/lca-dashboard/weight-details-step.scss");
+const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeight, isPackagingManual, setIsPackagingManual, includePallet, setIncludePallet, palletWeight, setPalletWeight, isPalletManual, setIsPalletManual, totalTransportWeight }) => {
+    const [showTooltip, setShowTooltip] = React.useState(false);
+    return (React.createElement("div", { className: "transport-weight-details" },
+        React.createElement("div", { className: "product-weight-section" },
+            React.createElement("div", { className: "input-group-top" },
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Product Weight:")),
+                React.createElement("span", { className: "weight-display" },
+                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                    " Kg"))),
+        React.createElement("div", { className: "weight-section" },
+            React.createElement(components_1.Label, null,
+                React.createElement("span", { className: "label-text" }, "Packaging Weight"),
+                React.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
+                    showTooltip && (React.createElement("div", { className: "tooltip" }, "Select Assistance to estimate packaging weight (10% of product weight), or enter the weight manually if known")))),
+            React.createElement("div", { className: "weight-input-row" },
+                React.createElement("div", { className: "toggle-group" },
+                    React.createElement("label", { className: "toggle-option" },
+                        React.createElement("input", { type: "radio", checked: !isPackagingManual, onChange: () => setIsPackagingManual(false) }),
+                        "AI Assistance"),
+                    React.createElement("label", { className: "toggle-option" },
+                        React.createElement("input", { type: "radio", checked: isPackagingManual, onChange: () => setIsPackagingManual(true) }),
+                        "Manual Entry")),
+                React.createElement("div", { className: "input-group" },
+                    isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    React.createElement("span", { className: "unit" }, "Kg")))),
+        React.createElement("div", { className: "weight-toggle" },
+            React.createElement(components_1.Label, null,
+                React.createElement("span", { className: "label-text" }, "Include Pallet Weight?")),
+            React.createElement("label", { className: "switch" },
+                React.createElement("input", { type: "checkbox", checked: includePallet, onChange: (e) => setIncludePallet(e.target.checked) }),
+                React.createElement("span", { className: "slider" }))),
+        includePallet && (React.createElement("div", { className: "weight-section" },
+            React.createElement(components_1.Label, null,
+                React.createElement("span", { className: "label-text" }, "Pallet Weight"),
+                React.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
+                    showTooltip && (React.createElement("div", { className: "tooltip" }, "Select Assistance to apply an industry-standard pallet weight (typically 13.6 kg to 21.8 kg), or enter the weight manually if known")))),
+            React.createElement("div", { className: "weight-input-row" },
+                React.createElement("div", { className: "toggle-group" },
+                    React.createElement("label", { className: "toggle-option" },
+                        React.createElement("input", { type: "radio", checked: !isPalletManual, onChange: () => setIsPalletManual(false) }),
+                        "AI Assistance"),
+                    React.createElement("label", { className: "toggle-option" },
+                        React.createElement("input", { type: "radio", checked: isPalletManual, onChange: () => setIsPalletManual(true) }),
+                        "Manual Entry")),
+                React.createElement("div", { className: "input-group" },
+                    isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    React.createElement("span", { className: "unit" }, "Kg"))))),
+        React.createElement("div", { className: "total-weight" },
+            React.createElement(components_1.Label, null,
+                React.createElement("span", { className: "label-text" }, "Total Transport Weight")),
+            React.createElement("div", { className: "weight-display" },
+                totalTransportWeight.toFixed(2),
+                " Kg"))));
+};
+exports["default"] = WeightDetailsStep;
 
 
 /***/ }),
