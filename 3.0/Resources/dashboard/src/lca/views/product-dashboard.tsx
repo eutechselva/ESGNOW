@@ -74,7 +74,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 
                 <div className="pagination-buttons">
                     <Button
-                        title="Previous"
+                        title="<"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                         className="pagination-button"
@@ -87,7 +87,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     </span>
                     
                     <Button
-                        title="Next"
+                        title=">"
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages || totalPages === 0}
                         className="pagination-button"
@@ -265,13 +265,13 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     onChange={handleSearchChange}
                                     className="product-search-box"
                                 />
-                                <Button 
+                                {/* <Button 
                                     className={`advanced-search-toggle ${advancedSearch ? 'active' : ''}`} 
                                     onClick={() => setAdvancedSearch(!advancedSearch)}
                                     title={advancedSearch ? "Hide Advanced Search" : "Advanced Search"}
                                 >
                                     {advancedSearch ? "Hide Filters" : "Advanced Filters"}
-                                </Button>
+                                </Button> */}
                             </div>
                             
                             <div className="view-options">
