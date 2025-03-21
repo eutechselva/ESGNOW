@@ -23,15 +23,24 @@ const ProductSelectionStep: React.FC<ProductSelectionStepProps> = ({ selectedPro
                     <span className="product-value">{selectedProduct?.name}</span>
                 </div>
             </div>
-
-            <FormField className="product-info-field">
+            <div className="product-info-field">
+                <div className="label-value-pair">
+                    <Label><span className="label-text">Product Description:</span></Label>
+                    <textarea
+                        value={selectedProduct?.description}
+                        className="product-info-textarea"
+                        readOnly
+                    />
+                </div>
+            </div>
+            {/* <FormField className="product-info-field">
                 <Label><span className="label-text">Product Description:</span></Label>
                 <textarea
                     value={selectedProduct?.description}
                     className="product-info-textarea"
                     readOnly
                 />
-            </FormField>
+            </FormField> */}
         </div>
     );
 };

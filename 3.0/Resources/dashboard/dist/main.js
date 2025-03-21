@@ -187,7 +187,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}", ""]);
+exports.push([module.id, ".product-selection-step {\n  padding: 20px;\n}\n.product-selection-step .product-info-row {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-row .label-value-pair {\n  display: flex;\n  align-items: flex-start;\n  gap: 16px;\n}\n.product-selection-step .product-info-row .label-value-pair .label-textarea {\n  font-size: 12px;\n  font-weight: 500;\n}\n.product-selection-step .product-info-row .label-value-pair .label-text {\n  font-size: 12px;\n  font-weight: 500;\n  display: inline-block;\n  width: 90px;\n  text-align: left;\n}\n.product-selection-step .product-info-row .label-value-pair .product-value {\n  padding: 8px;\n  background-color: #f5f5f5;\n  border-radius: 4px;\n  font-size: 14px;\n  flex: 1;\n}\n.product-selection-step .product-info-field {\n  margin-bottom: 20px;\n}\n.product-selection-step .product-info-field .product-info-textarea {\n  width: 100%;\n  height: 150px;\n  padding: 12px;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  font-size: 14px;\n  resize: none;\n  background-color: #f5f5f5;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -41794,10 +41794,11 @@ const ProductSelectionStep = ({ selectedProduct }) => {
                 React.createElement(components_1.Label, null,
                     React.createElement("span", { className: "label-text" }, "Product Name:")),
                 React.createElement("span", { className: "product-value" }, selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.name))),
-        React.createElement(components_1.FormField, { className: "product-info-field" },
-            React.createElement(components_1.Label, null,
-                React.createElement("span", { className: "label-text" }, "Product Description:")),
-            React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, className: "product-info-textarea", readOnly: true }))));
+        React.createElement("div", { className: "product-info-field" },
+            React.createElement("div", { className: "label-value-pair" },
+                React.createElement(components_1.Label, null,
+                    React.createElement("span", { className: "label-text" }, "Product Description:")),
+                React.createElement("textarea", { value: selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.description, className: "product-info-textarea", readOnly: true })))));
 };
 exports["default"] = ProductSelectionStep;
 
