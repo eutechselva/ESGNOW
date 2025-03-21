@@ -265,13 +265,13 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     onChange={handleSearchChange}
                                     className="product-search-box"
                                 />
-                                <Button 
+                                {/* <Button 
                                     className={`advanced-search-toggle ${advancedSearch ? 'active' : ''}`} 
                                     onClick={() => setAdvancedSearch(!advancedSearch)}
                                     title={advancedSearch ? "Hide Advanced Search" : "Advanced Search"}
                                 >
                                     {advancedSearch ? "Hide Filters" : "Advanced Filters"}
-                                </Button>
+                                </Button> */}
                             </div>
                             
                             <div className="view-options">
