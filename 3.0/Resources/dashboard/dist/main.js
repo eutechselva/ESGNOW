@@ -42793,14 +42793,14 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 React.createElement("option", { value: 12 }, "12 per page"),
                 React.createElement("option", { value: 24 }, "24 per page")),
             React.createElement("div", { className: "pagination-buttons" },
-                React.createElement(components_1.Button, { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
+                React.createElement(components_1.Button, { title: "<", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
                     React.createElement("span", { className: "pagination-arrow" }, "\u2190")),
                 React.createElement("span", { className: "pagination-info" },
                     "Page ",
                     currentPage,
                     " of ",
                     totalPages || 1),
-                React.createElement(components_1.Button, { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
+                React.createElement(components_1.Button, { title: ">", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
                     React.createElement("span", { className: "pagination-arrow" }, "\u2192"))))));
     // Reset to first page when filters change
     React.useEffect(() => {
