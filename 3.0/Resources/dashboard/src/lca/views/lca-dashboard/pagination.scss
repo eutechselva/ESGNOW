@@ -1,0 +1,86 @@
+// Pagination Styles
+
+.pagination-wrapper {
+    margin-top: 24px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .pagination-container {
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+  }
+  
+  .items-per-page {
+    height: 36px;
+    padding: 0 12px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: white;
+    
+    &:focus {
+      border-color: #0056D2;
+      outline: none;
+    }
+  }
+  
+  .pagination-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .pagination-button {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: all 0.2s ease;
+    padding: 0;
+    
+    &:hover:not(:disabled) {
+      background-color: #f0f0f0;
+    }
+    
+    &:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  }
+  
+  .pagination-arrow {
+    line-height: 1;
+  }
+  
+  .pagination-info {
+    font-size: 14px;
+    color: #666;
+  }
+  
+  // Responsive adjustments for pagination
+  @media (max-width: 768px) {
+    .pagination-wrapper {
+      .pagination-container {
+        width: 100%;
+        
+        .pagination-controls {
+          flex-direction: column;
+          align-items: center;
+          gap: 12px;
+          
+          .items-per-page {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
