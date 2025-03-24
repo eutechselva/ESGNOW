@@ -41857,7 +41857,7 @@ const Pagination = ({ currentPage, totalPages, itemsPerPage, setCurrentPage, set
     return (React.createElement("div", { className: "pagination-container" },
         React.createElement("div", { className: "pagination-controls" },
             React.createElement("select", { className: "items-per-page", value: itemsPerPage, onChange: (e) => setItemsPerPage(parseInt(e.target.value)) },
-                React.createElement("option", { value: 6 }, "6 per page"),
+                React.createElement("option", { value: 6 }, "6 per pagees"),
                 React.createElement("option", { value: 12 }, "12 per page"),
                 React.createElement("option", { value: 24 }, "24 per page")),
             React.createElement("div", { className: "pagination-buttons" },
@@ -43006,6 +43006,8 @@ __webpack_require__(/*! ./product-dashboard.scss */ "./src/lca/views/product-das
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const ProductDashboardWidget = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -43056,15 +43058,15 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 React.createElement("option", { value: 12 }, "12 per page"),
                 React.createElement("option", { value: 24 }, "24 per page")),
             React.createElement("div", { className: "pagination-buttons" },
-                React.createElement(components_1.Button, { title: "<", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
-                    React.createElement("span", { className: "pagination-arrow" }, "\u2190")),
+                React.createElement("button", { onClick: () => setCurrentPage(Math.max(currentPage - 1, 1)), disabled: currentPage === 1, className: "pagination-button" },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faChevronLeft, className: "pagination-arrow" })),
                 React.createElement("span", { className: "pagination-info" },
                     "Page ",
                     currentPage,
                     " of ",
                     totalPages || 1),
-                React.createElement(components_1.Button, { title: ">", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
-                    React.createElement("span", { className: "pagination-arrow" }, "\u2192"))))));
+                React.createElement("button", { onClick: () => setCurrentPage(Math.min(currentPage + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "pagination-button" },
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faChevronRight, className: "pagination-arrow" }))))));
     // Reset to first page when filters change
     React.useEffect(() => {
         setCurrentPage(1);
@@ -43187,28 +43189,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     React.createElement("button", { className: "add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
             React.createElement("div", { className: "search-filter-container" },
                 React.createElement("div", { className: "search-section" },
-                    React.createElement("div", { className: "search-box-wrapper" },
-                        React.createElement(components_1.SearchBox, { placeholder: "Search by name, category, code...", value: searchValue, onChange: handleSearchChange, className: "product-search-box" })),
-                    React.createElement("div", { className: "view-options" },
-                        React.createElement("div", { className: "sort-dropdown" },
-                            React.createElement(components_1.Label, null, "Sort by"),
-                            React.createElement(components_1.Select, { selected: sortBy, options: [
-                                    { label: "Newest First", value: "newest" },
-                                    { label: "Oldest First", value: "oldest" },
-                                    { label: "CO₂ (High to Low)", value: "co2High" },
-                                    { label: "CO₂ (Low to High)", value: "co2Low" },
-                                    { label: "Name (A-Z)", value: "nameAZ" },
-                                    { label: "Name (Z-A)", value: "nameZA" },
-                                ], onChange: (value) => {
-                                    setSortBy(value);
-                                    applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, value);
-                                } })),
-                        React.createElement("div", { className: "view-mode-toggle" },
-                            React.createElement("button", { className: `view-mode-button ${viewMode === 'grid' ? 'active' : ''}`, onClick: () => setViewMode('grid'), title: "Grid View" },
-                                React.createElement("span", { className: "grid-icon" }, "\u25A6")),
-                            React.createElement("button", { className: `view-mode-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list'), title: "List View" },
-                                React.createElement("span", { className: "list-icon" }, "\u2261"))))),
-                advancedSearch && (React.createElement("div", { className: "advanced-filter-section" },
+                    React.createElement("div", { className: "search-field" },
+                        React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faSearch, className: "search-icon" }),
+                        React.createElement("input", { type: "text", className: "search-input", placeholder: "Search Products", value: searchValue, onChange: (e) => handleSearchChange(e.target.value) }),
+                        searchValue && (React.createElement(components_1.Button, { title: "Clear", className: "clear-search-btn", onClick: () => handleSearchChange("") }))),
                     React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "filter-panel" },
                         React.createElement("div", { className: "filter-grid" },
                             React.createElement(components_1.FormField, { className: "filter-field" },
@@ -43242,7 +43226,26 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                         const value = event.target.value ? parseFloat(event.target.value) : null;
                                         setMaxCO2(value);
                                         applyFilters(searchValue, selectedCategory, selectedSubCategory, value, minCO2, selectedCountry, sortBy);
-                                    }, placeholder: "Maximum CO\u2082", className: "number-input" }))))))),
+                                    }, placeholder: "Maximum CO\u2082", className: "number-input" })))),
+                    React.createElement("div", { className: "view-options" },
+                        React.createElement("div", { className: "sort-dropdown" },
+                            React.createElement(components_1.Label, null, "Sort by"),
+                            React.createElement(components_1.Select, { selected: sortBy, options: [
+                                    { label: "Newest First", value: "newest" },
+                                    { label: "Oldest First", value: "oldest" },
+                                    { label: "CO₂ (High to Low)", value: "co2High" },
+                                    { label: "CO₂ (Low to High)", value: "co2Low" },
+                                    { label: "Name (A-Z)", value: "nameAZ" },
+                                    { label: "Name (Z-A)", value: "nameZA" },
+                                ], onChange: (value) => {
+                                    setSortBy(value);
+                                    applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, value);
+                                } })),
+                        React.createElement("div", { className: "view-mode-toggle" },
+                            React.createElement("button", { className: `view-mode-button ${viewMode === 'grid' ? 'active' : ''}`, onClick: () => setViewMode('grid'), title: "Grid View" },
+                                React.createElement("span", { className: "grid-icon" }, "\u25A6")),
+                            React.createElement("button", { className: `view-mode-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list'), title: "List View" },
+                                React.createElement("span", { className: "list-icon" }, "\u2261")))))),
             isLoading ? (React.createElement("div", { className: "loading-container" },
                 React.createElement("div", { className: "loading-spinner" }),
                 React.createElement("p", null, "Loading products..."))) : filteredData.length === 0 ? (React.createElement("div", { className: "no-results" },

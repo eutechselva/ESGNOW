@@ -5,6 +5,8 @@ import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
 import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft, faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 interface IWidgetProps {
     uxpContext: IContextProvider
@@ -73,27 +75,25 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 </select>
                 
                 <div className="pagination-buttons">
-                    <Button
-                        title="<"
-                        onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                <button
+                        onClick={() => setCurrentPage(Math.max(currentPage - 1, 1))}
                         disabled={currentPage === 1}
                         className="pagination-button"
                     >
-                        <span className="pagination-arrow">←</span>
-                    </Button>
+                        <FontAwesomeIcon icon={faChevronLeft} className="pagination-arrow" />
+                    </button>
                     
                     <span className="pagination-info">
                         Page {currentPage} of {totalPages || 1}
                     </span>
                     
-                    <Button
-                        title=">"
-                        onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                    <button
+                        onClick={() => setCurrentPage(Math.min(currentPage + 1, totalPages))}
                         disabled={currentPage === totalPages || totalPages === 0}
                         className="pagination-button"
                     >
-                        <span className="pagination-arrow">→</span>
-                    </Button>
+                        <FontAwesomeIcon icon={faChevronRight} className="pagination-arrow" />
+                    </button>
                 </div>
             </div>
         </div>
@@ -258,63 +258,24 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
                     <div className="search-filter-container">
                         <div className="search-section">
-                            <div className="search-box-wrapper">
-                                <SearchBox
-                                    placeholder="Search by name, category, code..."
+                                <div className="search-field">
+                                <FontAwesomeIcon icon={faSearch} className="search-icon" />
+                                <input
+                                    type="text"
+                                    className="search-input"
+                                    placeholder="Search Products"
                                     value={searchValue}
-                                    onChange={handleSearchChange}
-                                    className="product-search-box"
+                                    onChange={(e) => handleSearchChange(e.target.value)}
                                 />
-                                {/* <Button 
-                                    className={`advanced-search-toggle ${advancedSearch ? 'active' : ''}`} 
-                                    onClick={() => setAdvancedSearch(!advancedSearch)}
-                                    title={advancedSearch ? "Hide Advanced Search" : "Advanced Search"}
-                                >
-                                    {advancedSearch ? "Hide Filters" : "Advanced Filters"}
-                                </Button> */}
+                                {searchValue && (
+                                    <Button 
+                                        title="Clear" 
+                                        className="clear-search-btn" 
+                                        onClick={() => handleSearchChange("")}
+                                    />
+                                )}
                             </div>
                             
-                            <div className="view-options">
-                                <div className="sort-dropdown">
-                                    <Label>Sort by</Label>
-                                    <Select
-                                        selected={sortBy}
-                                        options={[
-                                            { label: "Newest First", value: "newest" },
-                                            { label: "Oldest First", value: "oldest" },
-                                            { label: "CO₂ (High to Low)", value: "co2High" },
-                                            { label: "CO₂ (Low to High)", value: "co2Low" },
-                                            { label: "Name (A-Z)", value: "nameAZ" },
-                                            { label: "Name (Z-A)", value: "nameZA" },
-                                        ]}
-                                        onChange={(value: string) => {
-                                            setSortBy(value);
-                                            applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, value);
-                                        }}
-                                    />
-                                </div>
-                                
-                                <div className="view-mode-toggle">
-                                    <button 
-                                        className={`view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
-                                        onClick={() => setViewMode('grid')}
-                                        title="Grid View"
-                                    >
-                                        <span className="grid-icon">▦</span>
-                                    </button>
-                                    <button 
-                                        className={`view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
-                                        onClick={() => setViewMode('list')}
-                                        title="List View"
-                                    >
-                                        <span className="list-icon">≡</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        {advancedSearch && (
-                            <div className="advanced-filter-section">
                                 <FilterPanel
                                     enableClear={!!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry)}
                                     onClear={handleClearFilters}
@@ -397,8 +358,45 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                         </FormField>
                                     </div>
                                 </FilterPanel>
+                            
+                            <div className="view-options">
+                                <div className="sort-dropdown">
+                                    <Label>Sort by</Label>
+                                    <Select
+                                        selected={sortBy}
+                                        options={[
+                                            { label: "Newest First", value: "newest" },
+                                            { label: "Oldest First", value: "oldest" },
+                                            { label: "CO₂ (High to Low)", value: "co2High" },
+                                            { label: "CO₂ (Low to High)", value: "co2Low" },
+                                            { label: "Name (A-Z)", value: "nameAZ" },
+                                            { label: "Name (Z-A)", value: "nameZA" },
+                                        ]}
+                                        onChange={(value: string) => {
+                                            setSortBy(value);
+                                            applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, selectedCountry, value);
+                                        }}
+                                    />
+                                </div>
+                                
+                                <div className="view-mode-toggle">
+                                    <button 
+                                        className={`view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
+                                        onClick={() => setViewMode('grid')}
+                                        title="Grid View"
+                                    >
+                                        <span className="grid-icon">▦</span>
+                                    </button>
+                                    <button 
+                                        className={`view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
+                                        onClick={() => setViewMode('list')}
+                                        title="List View"
+                                    >
+                                        <span className="list-icon">≡</span>
+                                    </button>
+                                </div>
                             </div>
-                        )}
+                        </div>
                     </div>
 
                     {isLoading ? (
