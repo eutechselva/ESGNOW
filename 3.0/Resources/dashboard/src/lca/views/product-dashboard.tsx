@@ -237,7 +237,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         </div>
                         
                         <div className="header-right">
-                            <Button 
+                            {/* <Button 
                                 className="refresh-button" 
                                 onClick={refreshProducts}
                                 disabled={isLoading}
@@ -245,7 +245,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             >
                                 <span className="refresh-icon">↻</span>
                                 {isLoading ? "Loading..." : "Refresh"}
-                            </Button>
+                            </Button> */}
                             
                             <button 
                                 className="add-product-button" 

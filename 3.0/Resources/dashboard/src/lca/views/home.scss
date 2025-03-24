@@ -14,20 +14,20 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 8px;
-    
+
     .dashboard-title {
         font-size: 28px;
         font-weight: 600;
         margin: 0;
         color: var(--textColor);
     }
-    
+
     .dashboard-subtitle {
         font-size: 16px;
         color: var(--textColorSecondary);
         margin: 4px 0 0;
     }
-    
+
     .action-buttons {
         display: flex;
         gap: 12px;
@@ -38,7 +38,7 @@
 .stats-container {
     display: flex;
     gap: 24px;
-    
+
     @media (max-width: 768px) {
         flex-direction: column;
     }
@@ -50,7 +50,7 @@
     grid-template-rows: auto auto;
     gap: 16px;
     flex: 3;
-    
+
     @media (max-width: 1024px) {
         flex: 2;
     }
@@ -63,51 +63,51 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     text-align: center;
     flex: 1;
-    max-width: 300px; 
-    min-width: 200px; 
+    max-width: 300px;
+    min-width: 200px;
     color: white;
     position: relative;
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    
+
     &:hover {
         transform: translateY(-4px);
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
     }
-    
+
     h2 {
         font-size: 16px;
         font-weight: 500;
         margin-bottom: 8px;
     }
-    
+
     .stat-number {
         font-size: 36px;
         font-weight: 700;
         margin: 12px 0 4px;
     }
-    
+
     .stat-label {
         font-size: 14px;
         opacity: 0.8;
     }
-    
+
     .stat-icon {
         position: absolute;
         top: 16px;
         right: 16px;
         opacity: 0.7;
     }
-    
+
     // Card color variations
     &.products {
         background: linear-gradient(135deg, #4e54c8, #8f94fb);
     }
-    
+
     &.projects {
         background: linear-gradient(135deg, #11998e, #38ef7d);
     }
-    
+
     &.credits {
         grid-column: 1 / -1; // Makes this card span the full width
         background: linear-gradient(135deg, #ff8008, #ffc837);
@@ -122,22 +122,22 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     flex: 2;
     min-width: 300px;
-    
+
     @media (max-width: 1024px) {
         flex: 1;
     }
-    
+
     h2 {
         font-size: 18px;
         font-weight: 600;
         margin: 0 0 8px;
     }
-    
+
     p {
         color: var(--textColorSecondary);
         margin-bottom: 16px;
     }
-    
+
     iframe {
         width: 100%;
         border-radius: 8px;
@@ -151,7 +151,7 @@
     padding: 24px;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    
+
     :global {
         .uxp-crud-list-component {
             .uxp-crud-list-title {
@@ -159,65 +159,65 @@
                 font-weight: 600;
                 margin-bottom: 16px;
             }
-            
+
             table {
                 border-collapse: separate;
                 border-spacing: 0;
                 width: 100%;
-                
+
                 th {
                     background-color: #f5f7fa;
                     font-weight: 600;
                     padding: 12px 16px;
                     text-align: left;
                     border-bottom: 1px solid #e0e6ed;
-                    
+
                     &:first-child {
                         border-top-left-radius: 8px;
                     }
-                    
+
                     &:last-child {
                         border-top-right-radius: 8px;
                     }
                 }
-                
+
                 td {
                     padding: 12px 16px;
                     border-bottom: 1px solid #e0e6ed;
                 }
-                
+
                 tr {
                     transition: background-color 0.2s ease;
-                    
+
                     &:hover {
                         background-color: #f5f7fa;
                         cursor: pointer;
                     }
-                    
+
                     &:last-child td {
                         border-bottom: none;
-                        
+
                         &:first-child {
                             border-bottom-left-radius: 8px;
                         }
-                        
+
                         &:last-child {
                             border-bottom-right-radius: 8px;
                         }
                     }
                 }
             }
-            
+
             .uxp-crud-search {
                 margin-bottom: 16px;
-                
+
                 input {
                     border-radius: 8px;
                     padding: 10px 16px;
                     border: 1px solid #e0e6ed;
                     width: 100%;
                     max-width: 320px;
-                    
+
                     &:focus {
                         outline: none;
                         border-color: var(--portalSidebarBGColor);
@@ -225,19 +225,19 @@
                     }
                 }
             }
-            
+
             .uxp-crud-pagination {
                 margin-top: 16px;
-                
+
                 button {
                     border-radius: 6px;
                     margin: 0 4px;
                     transition: all 0.2s ease;
-                    
+
                     &:hover:not(:disabled) {
                         background-color: #f0f2f5;
                     }
-                    
+
                     &:disabled {
                         opacity: 0.5;
                     }
@@ -248,7 +248,8 @@
 }
 
 // Loading and Error States
-.loading-container, .error-container {
+.loading-container,
+.error-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,7 +266,7 @@
     margin-top: 8px;
     padding: 16px 0;
     border-top: 1px solid #e0e6ed;
-    
+
     p {
         color: var(--textColorSecondary);
     }
@@ -288,8 +289,27 @@
 }
 
 
-.uxpcore_crud__header {
-    background-color: #0056D2;
+
+.uxpcore_datatable__header-cell {
+    background-color: #0066ff;
     color: white;
 }
 
+.add-product-button {
+    background-color: #0056D2;
+    font-size: 14px;
+    color: white;
+    border-radius: 4px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: pointer;
+    border: none;
+    
+
+    &:hover {
+        background-color: #003E99;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    }
+}

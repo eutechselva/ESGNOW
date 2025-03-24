@@ -1,0 +1,161 @@
+// Product List View Styles
+
+.product-list {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.list-header {
+  display: grid;
+  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;
+  padding: 10px 12px;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #eee;
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.list-item {
+  display: grid;
+  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s ease;
+  align-items: center;
+  min-height: 60px;
+  height: auto;
+  
+  &:hover {
+    background-color: #f9f9f9;
+  }
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.list-col-image {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-item-thumbnail {
+  width: 44px;
+  height: 44px;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-size: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  text-align: center;
+  line-height: 1.2;
+  flex-shrink: 0;
+}
+
+.list-col-name {
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.product-name-code {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.product-name-code .product-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product-name-code .product-code {
+  font-size: 12px;
+  color: #999;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-col-category, .list-col-subcategory, .list-col-weight {
+  font-size: 13px;
+  color: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.list-col-actions {
+  text-align: right;
+}
+
+.view-details-button {
+  background-color: #0056D2;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  
+  &:hover {
+    background-color: #003E99;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// Responsive adjustments for list view
+@media (max-width: 992px) {
+  .product-list {
+    .list-header, .list-item {
+      grid-template-columns: 60px 3fr 1fr 1fr 1fr;
+      
+      .list-col-weight {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .product-list {
+    .list-header, .list-item {
+      grid-template-columns: 60px 3fr 1fr 1fr;
+      
+      .list-col-subcategory {
+        display: none;
+      }
+    }
+  }
+}
+
+@media (max-width: 576px) {
+  .product-list {
+    .list-header, .list-item {
+      grid-template-columns: 60px 3fr 1fr;
+      
+      .list-col-category {
+        display: none;
+      }
+    }
+  }
+}
