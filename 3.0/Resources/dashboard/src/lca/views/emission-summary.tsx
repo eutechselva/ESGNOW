@@ -232,7 +232,7 @@ const EmissionSummary: React.FC<{
     const [showModal, setShowModal] = useState(false);
     const [hasExistingProjects, setHasExistingProjects] = useState(true);
     const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
-
+    const [activeTab, setActiveTab] = useState<'overview'|'materials' | 'manufacturing' | 'transportation'>('overview');
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
@@ -322,44 +322,74 @@ const EmissionSummary: React.FC<{
             enabled: false,
         },
     };
-
-    function onSave(): void {
-        setShowModal(true);
-    }
-
-    return (
-        <>
-        { !hideHeader ? <div className="title-container">
-                {/* <h1 className="dashboard-title">Emission Summary</h1> */}
-
-                <div className="save-go-back-buttons-container">
-                <Button
-                        title="Save "
-                        onClick={onSave}
-                        className="save-results-button"
-                    />
-                <Button
-                        title="< Back"
-                        onClick={onBack}
-                        className="back-button"
-                    />
-                   
-                   
+    const renderOverviewTab = () => (
+        <div className="tab-content">
+            <div className="product-info-summary">
+                <div
+                    className="summary-image"
+                    style={{
+                        backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
+                    }}
+                >
+                    {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
+                    <div className="image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
-            </div> : null }
-            
-            <div className="widgets-section">
-                <div className="widget product-footprint">
-                    <h3>Product Footprint</h3>
-                    <div className="widget-content">
-                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+
+                <div className="summary-details">
+                    <div className="detail-grid">
+                        <div className="detail-item">
+                            <strong>Project Code</strong>
+                            <p>{product.code}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Product Category</strong>
+                            <p>{product.category}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Sub Category</strong>
+                            <p>{product.subCategory}</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Weight</strong>
+                            <p>{product.weight} Kg</p>
+                        </div>
+                        <div className="detail-item">
+                            <strong>Country of Manufacture</strong>
+                            <p>
+                                {product.countryOfOrigin === "CN" ? "China" :
+                                product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="description-field">
+                        <strong>Product Description</strong>
+                        <div className="rich-text-editor">
+                            <textarea 
+                                defaultValue={product.description}
+                                className="editable-description"
+                                rows={4}
+                            />
+                        </div>
                     </div>
                 </div>
-                <div className="widgets-row">
-                    <div className="widget contribution-raw-material">
-                        <h3>Contribution by Raw Material</h3>
-                        <div className="widget-content">
-                            <table>
+            </div>
+
+            <div className="widget product-footprint">
+                <h3>Product Carbon Footprint Breakdowns</h3>
+                <div className="widget-content">
+                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderMaterialsTab = () => (
+        <div className="tab-content">
+            <div className="widget contribution-raw-material">
+            <h3>Contribution by Raw Material</h3>
+                <div className="widget-content">
+                <table>
                                 <thead>
                                     <tr>
                                         <th>Material Class</th>
@@ -390,19 +420,38 @@ const EmissionSummary: React.FC<{
                                                     <td>{item.materialClass}</td>
                                                     { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
                                                     <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
-                                                    <td>{percentage} %</td>
+                                                    <td>
+                                                <div className="percentage-bar">
+                                                    <div 
+                                                        className="percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
                                                 </tr>
                                             );
                                         });
                                     })()}
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
-                    <div className="widget contribution-manufacturing">
-                        <h3>Contribution by Manufacturing</h3>
-                        <div className="widget-content">
-                            <table>
+                </div>
+            </div>
+            {/* <div className="widget product-footprint">
+                <h3>Product Footprint</h3>
+                <div className="widget-content">
+                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                </div>
+            </div> */}
+        </div>
+    );
+
+    const renderManufacturingTab = () => (
+        <div className="tab-content">
+            <div className="widget contribution-manufacturing">
+            <h3>Contribution by Manufacturing</h3>
+                <div className="widget-content">
+                <table>
                                 <thead>
                                     <tr>
                                          { plan == 'basic' ? <th> Material</th> : <th>Specific Material</th>  }
@@ -436,20 +485,32 @@ const EmissionSummary: React.FC<{
                                                     <td>{item.materialClass}</td>
                                                     <td>{item.manufacturingProcesses[0].category}</td>
                                                     <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
-                                                    <td>{percentage} %</td>
+                                                    <td>
+                                                <div className="percentage-bar">
+                                                    <div 
+                                                        className="percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
                                                 </tr>
                                             );
                                         });
                                     })()}
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
+                </div>
+            </div>
+        </div>
+    );
 
-                    <div className="widget contribution-raw-material">
-                        <h3>Contribution by Transportation</h3>
-                        <div className="widget-content">
-                            <table>
+    const renderTransportationTab = () => (
+        <div className="tab-content">
+            <div className="widget contribution-raw-material">
+            <h3>Contribution by Transportation</h3>
+                <div className="widget-content">
+                <table>
                                 <thead>
                                     <tr>
                                         <th>Mode</th>
@@ -490,10 +551,102 @@ const EmissionSummary: React.FC<{
 
                                 </tbody>
                             </table>
-                        </div>
-                    </div>
                 </div>
             </div>
+        </div>
+    );
+
+    function onSave(): void {
+        setShowModal(true);
+    }
+
+    return (
+        <>
+            {/* {!hideHeader && (
+                <div className="title-container">
+                    <div className="save-go-back-buttons-container">
+                        <Button
+                            title="Save"
+                            onClick={() => setShowModal(true)}
+                            className="save-results-button"
+                        />
+                        <Button
+                            title="< Back"
+                            onClick={onBack}
+                            className="back-button"
+                        />
+                    </div>
+                </div>
+            )} */}
+                <div className="header-container">
+                {!hideHeader && (
+                    <>
+                        <div className="title-section">
+                            <h1 className="dashboard-title">Transport Summary</h1>
+                            <p className="subheading">Product: {product.name}</p>
+                        </div>
+                        <div className="action-buttons">
+                        <Button
+                            title="Save"
+                            onClick={() => setShowModal(true)}
+                            className="save-results-button"
+                        >
+                            {/* <Button
+                                title="Back"
+                                onClick={onClose}
+                                className="back-button"
+                            > */}
+                                <span className="back-icon">←</span>
+                                Back
+                            </Button>
+                            
+                                <Button
+                                title="< Back"
+                                onClick={onBack}
+                                className="back-button"
+                            >
+                                    <span className="delete-icon">×</span>
+                                    Delete
+                                </Button>
+                            
+                        </div>
+                    </>
+                )}
+            </div>
+            <div className="tabs-container">
+                <div className="tabs">
+                    <button 
+                        className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('overview')}
+                    >
+                        Overview
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'materials' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('materials')}
+                    >
+                        Raw Materials
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('manufacturing')}
+                    >
+                        Manufacturing
+                    </button>
+                    <button 
+                        className={`tab-button ${activeTab === 'transportation' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('transportation')}
+                    >
+                        Transportation
+                    </button>
+                </div>
+
+                {activeTab === 'overview' && renderOverviewTab()}
+                {activeTab === 'materials' && renderMaterialsTab()}
+                {activeTab === 'manufacturing' && renderManufacturingTab()}
+                {activeTab === 'transportation' && renderTransportationTab()}
+            </div>
+
             {showModal && (
                 <SaveResultsModal
                     onClose={() => setShowModal(false)}
