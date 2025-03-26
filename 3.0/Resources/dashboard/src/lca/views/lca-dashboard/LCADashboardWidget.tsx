@@ -454,7 +454,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     </FilterPanel>
                     
                     <div className="sort-control">
-                        <FontAwesomeIcon icon={faSort} className="sort-icon" />
+                        {/* <FontAwesomeIcon icon={faSort} className="sort-icon" /> */}
+                         <Label>Sort by</Label>
                         <Select
                             selected={sortOption}
                             options={[
