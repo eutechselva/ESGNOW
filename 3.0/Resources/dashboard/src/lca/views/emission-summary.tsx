@@ -16,10 +16,10 @@ interface SaveResultsModalProps {
     product: ProductInfoSummary;
     packageWeight: Number;
     palletWeight: Number;
-    
     transportationEmission: string;
     transportLegs: TransportLeg[];
     uxpContext: IContextProvider;
+    className?: string; // Added className property
 }
 
 interface ProjectOption {
@@ -128,11 +128,11 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     return (
         <Modal className="save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
             <div className="save-results-modal">
-                {hasExistingProjects ? (
+                {/* {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
                 ) : (
                     <p>No existing projects found. Please create a new project.</p>
-                )}
+                )} */}
 
                 <div className="card-container">
                     <div
@@ -142,7 +142,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                         <h3>Create New Project</h3>
                         <p>Start a fresh project with these results.</p>
                     </div>
-                    {hasExistingProjects && (
+                    {/* {hasExistingProjects && (
                         <div
                             className={`option-card ${selectedCard === 'existing' ? 'selected' : ''}`}
                             onClick={() => setSelectedCard('existing')}
@@ -150,7 +150,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                             <h3>Add to Existing Project</h3>
                             <p>Include these results in one of your existing projects.</p>
                         </div>
-                    )}
+                    )} */}
                 </div>
 
                 {selectedCard === 'new' && (
@@ -198,7 +198,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
 
                 <div className="save-button-container">
                     <Button
-                        title={isLoading ? "Saving..." : "Save results"}
+                        title={isLoading ? "Saving..." : "Save"}
                         onClick={handleSave}
                         className="save-results"
                         disabled={isLoading}

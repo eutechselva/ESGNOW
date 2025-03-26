@@ -27,7 +27,7 @@ const Pagination: React.FC<PaginationProps> = ({
                     value={itemsPerPage}
                     onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
                 >
-                    <option value={6}>6 per pagees</option>
+                    <option value={6}>6 per page</option>
                     <option value={12}>12 per page</option>
                     <option value={24}>24 per page</option>
                 </select>
