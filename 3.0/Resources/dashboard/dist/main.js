@@ -136,7 +136,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".save-go-back-buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.save-results-button {\n  background-color: #4CAF50;\n  color: white;\n  font-weight: bold;\n  border: none;\n  cursor: pointer;\n  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;\n}\n.save-results-button:hover {\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  background-color: #45a049;\n  color: white;\n}\n.save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.back-button {\n  background-color: black;\n  color: white;\n}\n.back-button:hover {\n  background-color: black;\n  color: white;\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.save-results-modal .card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.save-results-modal .option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.save-results-modal .option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.save-results-modal .option-card.selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.existing-project-selection {\n  margin-top: 20px;\n}\n\n.save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}\n\n.modal-container .modal-panel .modal-header {\n  background-color: #0066ff;\n  color: white;\n  font-size: 16px;\n}\n\n.save-results .modal-panel {\n  width: 50%;\n  min-width: auto;\n}", ""]);
+exports.push([module.id, ".save-go-back-buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.save-results-button {\n  background-color: #0066ff;\n  color: #fff;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.save-results-button:hover {\n  color: white;\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n.save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.back-button:hover {\n  background-color: black;\n  color: white;\n}\n\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.save-results-modal .card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.save-results-modal .option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.save-results-modal .option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.save-results-modal .option-card.selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.existing-project-selection {\n  margin-top: 20px;\n}\n\n.save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}\n\n.modal-container .modal-panel .modal-header {\n  background-color: #0066ff;\n  color: white;\n  font-size: 16px;\n}\n\n.save-results .modal-panel {\n  width: 50%;\n  min-width: auto;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -40984,6 +40984,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
     const [showModal, setShowModal] = (0, react_1.useState)(false);
     const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
     const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
+    const [activeTab, setActiveTab] = (0, react_1.useState)('overview');
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -41069,115 +41070,173 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
             enabled: false,
         },
     };
+    const renderOverviewTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "product-info-summary" },
+            react_1.default.createElement("div", { className: "summary-image", style: {
+                    backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
+                } },
+                !product.images[0] && react_1.default.createElement("div", { className: "image-placeholder" }, "Image Unavailable"),
+                react_1.default.createElement("div", { className: "image-label" }, `${product.co2Emission} Kg CO₂e`)),
+            react_1.default.createElement("div", { className: "summary-details" },
+                react_1.default.createElement("div", { className: "detail-grid" },
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Project Code"),
+                        react_1.default.createElement("p", null, product.code)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Product Category"),
+                        react_1.default.createElement("p", null, product.category)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Sub Category"),
+                        react_1.default.createElement("p", null, product.subCategory)),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Weight"),
+                        react_1.default.createElement("p", null,
+                            product.weight,
+                            " Kg")),
+                    react_1.default.createElement("div", { className: "detail-item" },
+                        react_1.default.createElement("strong", null, "Country of Manufacture"),
+                        react_1.default.createElement("p", null, product.countryOfOrigin === "CN" ? "China" :
+                            product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin))),
+                react_1.default.createElement("div", { className: "description-field" },
+                    react_1.default.createElement("strong", null, "Product Description"),
+                    react_1.default.createElement("div", { className: "rich-text-editor" },
+                        react_1.default.createElement("textarea", { defaultValue: product.description, className: "editable-description", rows: 4 }))))),
+        react_1.default.createElement("div", { className: "widget product-footprint" },
+            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdowns"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
+    const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+            react_1.default.createElement("h3", null, "Contribution by Raw Material"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement("table", null,
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            react_1.default.createElement("th", null, "Material Class"),
+                            (plan == 'professional' && react_1.default.createElement("th", null, "Specific Material")),
+                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Percentage"))),
+                    react_1.default.createElement("tbody", null, (() => {
+                        // Calculate the total emission factor
+                        const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
+                        // Sort the materials by emissionFactor in descending order
+                        const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                        // Map through the sorted materials and calculate percentage
+                        return sortedMaterials.map((item) => {
+                            const percentage = totalEmissionFactor > 0
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                : 0;
+                            return (react_1.default.createElement("tr", { key: item.materialClass },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
+                                react_1.default.createElement("td", null,
+                                    item.emissionFactor.toFixed(2),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    react_1.default.createElement("div", { className: "percentage-bar" },
+                                        react_1.default.createElement("div", { className: "percentage-fill", style: { width: `${percentage}%`, backgroundColor: '#78BE7C' } }),
+                                        react_1.default.createElement("span", null,
+                                            percentage,
+                                            "%")))));
+                        });
+                    })()))))));
+    const renderManufacturingTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
+            react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement("table", null,
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            plan == 'basic' ? react_1.default.createElement("th", null, " Material") : react_1.default.createElement("th", null, "Specific Material"),
+                            react_1.default.createElement("th", null, "Manufacturing Process"),
+                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Percentage"))),
+                    react_1.default.createElement("tbody", null, (() => {
+                        // Calculate the total emission factor
+                        const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
+                        // Sort the productManufacturingProcess by emissionFactor in descending order
+                        const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
+                        // Map through the sorted materials and calculate percentage
+                        return sortedProcess.map((item) => {
+                            const percentage = totalEmissionFactor > 0
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                : 0;
+                            return (react_1.default.createElement("tr", { key: item.materialClass },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
+                                react_1.default.createElement("td", null,
+                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    react_1.default.createElement("div", { className: "percentage-bar" },
+                                        react_1.default.createElement("div", { className: "percentage-fill", style: { width: `${percentage}%`, backgroundColor: '#ffaa00' } }),
+                                        react_1.default.createElement("span", null,
+                                            percentage,
+                                            "%")))));
+                        });
+                    })()))))));
+    const renderTransportationTab = () => (react_1.default.createElement("div", { className: "tab-content" },
+        react_1.default.createElement("div", { className: "widget contribution-raw-material" },
+            react_1.default.createElement("h3", null, "Contribution by Transportation"),
+            react_1.default.createElement("div", { className: "widget-content" },
+                react_1.default.createElement("table", null,
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            react_1.default.createElement("th", null, "Mode"),
+                            react_1.default.createElement("th", null, "Origin"),
+                            react_1.default.createElement("th", null, "Destination"),
+                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Percentage"))),
+                    react_1.default.createElement("tbody", null, (() => {
+                        // Calculate the total emission factor
+                        const totalEmissionFactor = transportLegs.reduce((sum, item) => sum + item.transportEmission, 0);
+                        // Sort the materials by emissionFactor in descending order
+                        const sortedMaterials = transportLegs.sort((a, b) => b.transportEmission - a.transportEmission);
+                        // Map through the sorted materials and calculate percentage
+                        return sortedMaterials.map((item) => {
+                            const percentage = totalEmissionFactor > 0
+                                ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                : 0;
+                            return (react_1.default.createElement("tr", { key: item.id },
+                                react_1.default.createElement("td", null, item.transportMode),
+                                plan == 'professional' ? react_1.default.createElement("td", null, item.originCountry) : react_1.default.createElement("td", null, item.originGateway),
+                                plan == 'professional' ? react_1.default.createElement("td", null, item.destinationCountry) : react_1.default.createElement("td", null, item.destinationGateway),
+                                react_1.default.createElement("td", null,
+                                    parseFloat(item.transportEmission).toFixed(2),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    percentage,
+                                    " %")));
+                        });
+                    })()))))));
     function onSave() {
         setShowModal(true);
     }
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        !hideHeader ? react_1.default.createElement("div", { className: "title-container" },
-            react_1.default.createElement("div", { className: "save-go-back-buttons-container" },
-                react_1.default.createElement(components_1.Button, { title: "Save ", onClick: onSave, className: "save-results-button" }),
-                react_1.default.createElement(components_1.Button, { title: "< Back", onClick: onBack, className: "back-button" }))) : null,
-        react_1.default.createElement("div", { className: "widgets-section" },
-            react_1.default.createElement("div", { className: "widget product-footprint" },
-                react_1.default.createElement("h3", null, "Product Footprint"),
-                react_1.default.createElement("div", { className: "widget-content" },
-                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }))),
-            react_1.default.createElement("div", { className: "widgets-row" },
-                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
-                    react_1.default.createElement("h3", null, "Contribution by Raw Material"),
-                    react_1.default.createElement("div", { className: "widget-content" },
-                        react_1.default.createElement("table", null,
-                            react_1.default.createElement("thead", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Material Class"),
-                                    (plan == 'professional' && react_1.default.createElement("th", null, "Specific Material")),
-                                    react_1.default.createElement("th", null, "Contribution"),
-                                    react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null, (() => {
-                                // Calculate the total emission factor
-                                const totalEmissionFactor = product.materials.reduce((sum, item) => sum + item.emissionFactor, 0);
-                                // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
-                                // Map through the sorted materials and calculate percentage
-                                return sortedMaterials.map((item) => {
-                                    const percentage = totalEmissionFactor > 0
-                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                        : 0;
-                                    return (react_1.default.createElement("tr", { key: item.materialClass },
-                                        react_1.default.createElement("td", null, item.materialClass),
-                                        (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
-                                        react_1.default.createElement("td", null,
-                                            item.emissionFactor.toFixed(2),
-                                            " KgCO\u2082e"),
-                                        react_1.default.createElement("td", null,
-                                            percentage,
-                                            " %")));
-                                });
-                            })())))),
-                react_1.default.createElement("div", { className: "widget contribution-manufacturing" },
-                    react_1.default.createElement("h3", null, "Contribution by Manufacturing"),
-                    react_1.default.createElement("div", { className: "widget-content" },
-                        react_1.default.createElement("table", null,
-                            react_1.default.createElement("thead", null,
-                                react_1.default.createElement("tr", null,
-                                    plan == 'basic' ? react_1.default.createElement("th", null, " Material") : react_1.default.createElement("th", null, "Specific Material"),
-                                    react_1.default.createElement("th", null, "Manufacturing Process"),
-                                    react_1.default.createElement("th", null, "Contribution"),
-                                    react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null, (() => {
-                                // Calculate the total emission factor
-                                const totalEmissionFactor = product.productManufacturingProcess.reduce((sum, item) => sum + item.emissionFactor, 0);
-                                // Sort the productManufacturingProcess by emissionFactor in descending order
-                                const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
-                                // Map through the sorted materials and calculate percentage
-                                return sortedProcess.map((item) => {
-                                    const percentage = totalEmissionFactor > 0
-                                        ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                        : 0;
-                                    return (react_1.default.createElement("tr", { key: item.materialClass },
-                                        react_1.default.createElement("td", null, item.materialClass),
-                                        react_1.default.createElement("td", null, item.manufacturingProcesses[0].category),
-                                        react_1.default.createElement("td", null,
-                                            parseFloat(item.emissionFactor).toFixed(2),
-                                            " KgCO\u2082e"),
-                                        react_1.default.createElement("td", null,
-                                            percentage,
-                                            " %")));
-                                });
-                            })())))),
-                react_1.default.createElement("div", { className: "widget contribution-raw-material" },
-                    react_1.default.createElement("h3", null, "Contribution by Transportation"),
-                    react_1.default.createElement("div", { className: "widget-content" },
-                        react_1.default.createElement("table", null,
-                            react_1.default.createElement("thead", null,
-                                react_1.default.createElement("tr", null,
-                                    react_1.default.createElement("th", null, "Mode"),
-                                    react_1.default.createElement("th", null, "Origin"),
-                                    react_1.default.createElement("th", null, "Destination"),
-                                    react_1.default.createElement("th", null, "Contribution"),
-                                    react_1.default.createElement("th", null, "Percentage"))),
-                            react_1.default.createElement("tbody", null, (() => {
-                                // Calculate the total emission factor
-                                const totalEmissionFactor = transportLegs.reduce((sum, item) => sum + item.transportEmission, 0);
-                                // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = transportLegs.sort((a, b) => b.transportEmission - a.transportEmission);
-                                // Map through the sorted materials and calculate percentage
-                                return sortedMaterials.map((item) => {
-                                    const percentage = totalEmissionFactor > 0
-                                        ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
-                                        : 0;
-                                    return (react_1.default.createElement("tr", { key: item.id },
-                                        react_1.default.createElement("td", null, item.transportMode),
-                                        plan == 'professional' ? react_1.default.createElement("td", null, item.originCountry) : react_1.default.createElement("td", null, item.originGateway),
-                                        plan == 'professional' ? react_1.default.createElement("td", null, item.destinationCountry) : react_1.default.createElement("td", null, item.destinationGateway),
-                                        react_1.default.createElement("td", null,
-                                            parseFloat(item.transportEmission).toFixed(2),
-                                            " KgCO\u2082e"),
-                                        react_1.default.createElement("td", null,
-                                            percentage,
-                                            " %")));
-                                });
-                            })())))))),
+        react_1.default.createElement("div", { className: "header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("div", { className: "title-section" },
+                react_1.default.createElement("h1", { className: "dashboard-title" }, "Transport Summary"),
+                react_1.default.createElement("p", { className: "subheading" },
+                    "Product: ",
+                    product.name)),
+            react_1.default.createElement("div", { className: "action-buttons" },
+                react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => setShowModal(true), className: "save-results-button" },
+                    react_1.default.createElement("span", { className: "back-icon" }, "\u2190"),
+                    "Back"),
+                react_1.default.createElement(components_1.Button, { title: "< Back", onClick: onBack, className: "back-button" },
+                    react_1.default.createElement("span", { className: "delete-icon" }, "\u00D7"),
+                    "Delete"))))),
+        react_1.default.createElement("div", { className: "tabs-container" },
+            react_1.default.createElement("div", { className: "tabs" },
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'overview' ? 'active' : ''}`, onClick: () => setActiveTab('overview') }, "Overview"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'materials' ? 'active' : ''}`, onClick: () => setActiveTab('materials') }, "Raw Materials"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`, onClick: () => setActiveTab('manufacturing') }, "Manufacturing"),
+                react_1.default.createElement("button", { className: `tab-button ${activeTab === 'transportation' ? 'active' : ''}`, onClick: () => setActiveTab('transportation') }, "Transportation")),
+            activeTab === 'overview' && renderOverviewTab(),
+            activeTab === 'materials' && renderMaterialsTab(),
+            activeTab === 'manufacturing' && renderManufacturingTab(),
+            activeTab === 'transportation' && renderTransportationTab()),
         showModal && (react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: packageWeight, uxpContext: uxContext }))));
 };
 exports["default"] = EmissionSummary;
