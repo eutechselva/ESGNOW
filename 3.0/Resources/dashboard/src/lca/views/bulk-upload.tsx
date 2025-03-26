@@ -8,25 +8,26 @@ interface IBulkUploadWidgetProps {
 }
 
 const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
-    const [excelFile, setExcelFile] = useState<File | null>(null);
+    const [dataFile, setDataFile] = useState<File | null>(null);
     const [zipFile, setZipFile] = useState<File | null>(null);
-    const [uploadingExcel, setUploadingExcel] = useState<boolean>(false);
+    const [uploadingData, setUploadingData] = useState<boolean>(false);
     const [uploadingZip, setUploadingZip] = useState<boolean>(false);
     const [message, setMessage] = useState<string | null>(null);
     const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
 
-    // Handle file selection for Excel
-    const handleExcelFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Handle file selection for data file (Excel or CSV)
+    const handleDataFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedFile = event.target.files[0];
+            const fileName = selectedFile.name.toLowerCase();
 
-            if (!selectedFile.name.toLowerCase().endsWith(".xlsx")) {
-                setMessage("Unsupported file type. Please upload an Excel (.xlsx) file.");
+            if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".csv")) {
+                setMessage("Unsupported file type. Please upload an Excel (.xlsx) or CSV (.csv) file.");
                 setMessageType("error");
                 return;
             }
 
-            setExcelFile(selectedFile);
+            setDataFile(selectedFile);
             setMessage(`Selected: ${selectedFile.name}`);
             setMessageType("success");
         }
@@ -49,20 +50,20 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         }
     };
 
-    // Handle Excel Upload
-    const handleExcelUpload = async () => {
-        if (!excelFile) {
-            setMessage("Please select an Excel file to upload.");
+    // Handle Data File Upload (Excel or CSV)
+    const handleDataUpload = async () => {
+        if (!dataFile) {
+            setMessage("Please select an Excel or CSV file to upload.");
             setMessageType("error");
             return;
         }
 
-        setUploadingExcel(true);
-        setMessage("Uploading Excel file...");
+        setUploadingData(true);
+        setMessage(`Uploading ${dataFile.name}...`);
         setMessageType(null);
 
         const formData = new FormData();
-        formData.append("file", excelFile);
+        formData.append("file", dataFile);
 
         try {
             const requestOptions = {
@@ -74,23 +75,37 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
 
             if (response.ok) {
-                setMessage("Excel upload successful!");
+                setMessage("Data upload successful!");
                 setMessageType("success");
-                setExcelFile(null);
+                setDataFile(null);
                 // Reset the file input
-                const fileInput = document.getElementById("excel-file-input") as HTMLInputElement;
+                const fileInput = document.getElementById("data-file-input") as HTMLInputElement;
                 if (fileInput) fileInput.value = "";
             } else {
-                const errorData = await response.json();
-                setMessage(`Excel upload failed: ${errorData.message || "Please try again."}`);
+                let errorData;
+                try {
+                    errorData = await response.json();
+                } catch (e) {
+                    errorData = { message: "An unknown error occurred" };
+                }
+                
+                // Provide more detailed error messages
+                if (errorData.validationErrors) {
+                    const errorMessages = Object.entries(errorData.validationErrors)
+                        .map(([field, msg]) => `${field}: ${msg}`)
+                        .join(", ");
+                    setMessage(`Data validation failed: ${errorMessages}`);
+                } else {
+                    setMessage(`Data upload failed: ${errorData.message || "Please try again."}`);
+                }
                 setMessageType("error");
             }
         } catch (error) {
-            console.error("Excel Upload Error:", error);
-            setMessage("An error occurred during Excel upload.");
+            console.error("Data Upload Error:", error);
+            setMessage(`An error occurred during data upload: ${error.message}`);
             setMessageType("error");
         } finally {
-            setUploadingExcel(false);
+            setUploadingData(false);
         }
     };
 
@@ -139,8 +154,8 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         }
     };
 
-    // Handle sample Excel template download
-    const handleDownloadExcelTemplate = async () => {
+    // Handle sample template download
+    const handleDownloadTemplate = async () => {
         try {
             const response = await fetch(`${API_BASE_URL}/api/products/sample-template`, {
                 headers: { "x-iviva-account": "lucy1" },
@@ -205,11 +220,11 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             
             <div className="card">
                 <div className="card-header">
-                    <h2>Upload Product Data (Excel)</h2>
+                    <h2>Upload Product Data (Excel/CSV)</h2>
                     <button 
-                        onClick={handleDownloadExcelTemplate}
+                        onClick={handleDownloadTemplate}
                         className="download-btn"
-                        title="Download a sample Excel template for product upload"
+                        title="Download a sample template for product upload"
                     >
                         Download Template
                     </button>
@@ -217,29 +232,29 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 
                 <div className="card-body">
                     <p className="section-info">
-                        Upload your Excel file (.xlsx) containing product data. Make sure all required fields are filled.
+                        Upload your Excel (.xlsx) or CSV (.csv) file containing product data. Make sure all required fields are filled.
                     </p>
                     
                     <div className="upload-section">
                         <div className="file-input-container">
                             <input 
                                 type="file" 
-                                id="excel-file-input"
-                                accept=".xlsx" 
-                                onChange={handleExcelFileChange}
+                                id="data-file-input"
+                                accept=".xlsx,.csv" 
+                                onChange={handleDataFileChange}
                                 className="file-input" 
                             />
-                            <label htmlFor="excel-file-input" className="file-label">
-                                {excelFile ? excelFile.name : "Choose Excel File..."}
+                            <label htmlFor="data-file-input" className="file-label">
+                                {dataFile ? dataFile.name : "Choose Excel/CSV File..."}
                             </label>
                         </div>
                         
                         <button 
-                            onClick={handleExcelUpload} 
-                            disabled={uploadingExcel || !excelFile}
-                            className={`upload-btn ${!excelFile ? 'disabled' : ''}`}
+                            onClick={handleDataUpload} 
+                            disabled={uploadingData || !dataFile}
+                            className={`upload-btn ${!dataFile ? 'disabled' : ''}`}
                         >
-                            {uploadingExcel ? "Uploading..." : "Upload Excel"}
+                            {uploadingData ? "Uploading..." : "Upload Data"}
                         </button>
                     </div>
                 </div>
@@ -293,21 +308,30 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 <h3>Upload Instructions</h3>
                 <div className="instructions-content">
                     <div className="instruction-section">
-                        <h4>Excel Template Format</h4>
+                        <h4>Data File Format</h4>
                         <ul>
-                            <li>The Excel file must contain the following required columns: SKU, Name, Description, Price, Category</li>
-                            <li>Do not modify column headers in the template</li>
-                            <li>Images should be referenced by filename in the Images column, separated by commas</li>
-                            <li>Each product must have a unique SKU</li>
+                            <li>Your Excel or CSV file must contain the following required columns: Code, Name, Description, Weight, Country Of Origin, Supplier Name</li>
+                            <li>The system will match column headers regardless of case (e.g., "Code" or "code" will both work)</li>
+                            <li>Make sure all required fields (Code, Name, Description) are filled for each product</li>
+                            <li>Each product must have a unique Code</li>
                         </ul>
                     </div>
                     <div className="instruction-section">
                         <h4>ZIP File Structure</h4>
                         <ul>
-                            <li>Create a folder for each product named exactly as the product's SKU</li>
+                            <li>Create a folder for each product named exactly as the product's Code</li>
                             <li>Place all product images in their respective folders</li>
                             <li>Supported image formats: JPG, PNG (max 5MB per image)</li>
                             <li>Main product image should be named "main.jpg" or "main.png"</li>
+                        </ul>
+                    </div>
+                    <div className="instruction-section">
+                        <h4>Common Issues</h4>
+                        <ul>
+                            <li>If upload fails, check that all required fields are filled out</li>
+                            <li>Verify that your CSV file has proper column headers</li>
+                            <li>Ensure your file isn't too large (max 10MB)</li>
+                            <li>Check that your file is properly formatted without special characters</li>
                         </ul>
                     </div>
                 </div>
@@ -318,10 +342,13 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 <div className={`message ${messageType || ''}`}>
                     <span className="message-icon">{messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"}</span>
                     <span className="message-text">{message}</span>
+                    {messageType === "error" && (
+                        <button className="dismiss-btn" onClick={() => setMessage(null)}>
+                            Dismiss
+                        </button>
+                    )}
                 </div>
             )}
-
-            
         </div>
     );
 };

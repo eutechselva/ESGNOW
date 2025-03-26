@@ -40275,9 +40275,10 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
-Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "https://lca-microservice.onrender.com";
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
 //const API_BASE_URL = "http://localhost:5009";
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const API_BASE_URL = "http://172.30.0.125:21555";
 exports["default"] = API_BASE_URL;
 
 
@@ -40569,22 +40570,23 @@ const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca
 __webpack_require__(/*! ./bulk-upload.scss */ "./src/lca/views/bulk-upload.scss");
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const BulkUploadWidget = ({ uxpContext }) => {
-    const [excelFile, setExcelFile] = (0, react_1.useState)(null);
+    const [dataFile, setDataFile] = (0, react_1.useState)(null);
     const [zipFile, setZipFile] = (0, react_1.useState)(null);
-    const [uploadingExcel, setUploadingExcel] = (0, react_1.useState)(false);
+    const [uploadingData, setUploadingData] = (0, react_1.useState)(false);
     const [uploadingZip, setUploadingZip] = (0, react_1.useState)(false);
     const [message, setMessage] = (0, react_1.useState)(null);
     const [messageType, setMessageType] = (0, react_1.useState)(null);
-    // Handle file selection for Excel
-    const handleExcelFileChange = (event) => {
+    // Handle file selection for data file (Excel or CSV)
+    const handleDataFileChange = (event) => {
         if (event.target.files && event.target.files.length > 0) {
             const selectedFile = event.target.files[0];
-            if (!selectedFile.name.toLowerCase().endsWith(".xlsx")) {
-                setMessage("Unsupported file type. Please upload an Excel (.xlsx) file.");
+            const fileName = selectedFile.name.toLowerCase();
+            if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".csv")) {
+                setMessage("Unsupported file type. Please upload an Excel (.xlsx) or CSV (.csv) file.");
                 setMessageType("error");
                 return;
             }
-            setExcelFile(selectedFile);
+            setDataFile(selectedFile);
             setMessage(`Selected: ${selectedFile.name}`);
             setMessageType("success");
         }
@@ -40603,18 +40605,18 @@ const BulkUploadWidget = ({ uxpContext }) => {
             setMessageType("success");
         }
     };
-    // Handle Excel Upload
-    const handleExcelUpload = () => __awaiter(void 0, void 0, void 0, function* () {
-        if (!excelFile) {
-            setMessage("Please select an Excel file to upload.");
+    // Handle Data File Upload (Excel or CSV)
+    const handleDataUpload = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!dataFile) {
+            setMessage("Please select an Excel or CSV file to upload.");
             setMessageType("error");
             return;
         }
-        setUploadingExcel(true);
-        setMessage("Uploading Excel file...");
+        setUploadingData(true);
+        setMessage(`Uploading ${dataFile.name}...`);
         setMessageType(null);
         const formData = new FormData();
-        formData.append("file", excelFile);
+        formData.append("file", dataFile);
         try {
             const requestOptions = {
                 method: "POST",
@@ -40623,27 +40625,42 @@ const BulkUploadWidget = ({ uxpContext }) => {
             };
             let response = yield fetch(`${config_1.default}/api/products/bulk-upload`, requestOptions);
             if (response.ok) {
-                setMessage("Excel upload successful!");
+                setMessage("Data upload successful!");
                 setMessageType("success");
-                setExcelFile(null);
+                setDataFile(null);
                 // Reset the file input
-                const fileInput = document.getElementById("excel-file-input");
+                const fileInput = document.getElementById("data-file-input");
                 if (fileInput)
                     fileInput.value = "";
             }
             else {
-                const errorData = yield response.json();
-                setMessage(`Excel upload failed: ${errorData.message || "Please try again."}`);
+                let errorData;
+                try {
+                    errorData = yield response.json();
+                }
+                catch (e) {
+                    errorData = { message: "An unknown error occurred" };
+                }
+                // Provide more detailed error messages
+                if (errorData.validationErrors) {
+                    const errorMessages = Object.entries(errorData.validationErrors)
+                        .map(([field, msg]) => `${field}: ${msg}`)
+                        .join(", ");
+                    setMessage(`Data validation failed: ${errorMessages}`);
+                }
+                else {
+                    setMessage(`Data upload failed: ${errorData.message || "Please try again."}`);
+                }
                 setMessageType("error");
             }
         }
         catch (error) {
-            console.error("Excel Upload Error:", error);
-            setMessage("An error occurred during Excel upload.");
+            console.error("Data Upload Error:", error);
+            setMessage(`An error occurred during data upload: ${error.message}`);
             setMessageType("error");
         }
         finally {
-            setUploadingExcel(false);
+            setUploadingData(false);
         }
     });
     // Handle ZIP Upload
@@ -40689,8 +40706,8 @@ const BulkUploadWidget = ({ uxpContext }) => {
             setUploadingZip(false);
         }
     });
-    // Handle sample Excel template download
-    const handleDownloadExcelTemplate = () => __awaiter(void 0, void 0, void 0, function* () {
+    // Handle sample template download
+    const handleDownloadTemplate = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const response = yield fetch(`${config_1.default}/api/products/sample-template`, {
                 headers: { "x-iviva-account": "lucy1" },
@@ -40750,15 +40767,15 @@ const BulkUploadWidget = ({ uxpContext }) => {
         react_1.default.createElement("p", { className: "page-description" }, "Upload your product data and images in bulk using the forms below. Make sure to follow the required template and folder structure."),
         react_1.default.createElement("div", { className: "card" },
             react_1.default.createElement("div", { className: "card-header" },
-                react_1.default.createElement("h2", null, "Upload Product Data (Excel)"),
-                react_1.default.createElement("button", { onClick: handleDownloadExcelTemplate, className: "download-btn", title: "Download a sample Excel template for product upload" }, "Download Template")),
+                react_1.default.createElement("h2", null, "Upload Product Data (Excel/CSV)"),
+                react_1.default.createElement("button", { onClick: handleDownloadTemplate, className: "download-btn", title: "Download a sample template for product upload" }, "Download Template")),
             react_1.default.createElement("div", { className: "card-body" },
-                react_1.default.createElement("p", { className: "section-info" }, "Upload your Excel file (.xlsx) containing product data. Make sure all required fields are filled."),
+                react_1.default.createElement("p", { className: "section-info" }, "Upload your Excel (.xlsx) or CSV (.csv) file containing product data. Make sure all required fields are filled."),
                 react_1.default.createElement("div", { className: "upload-section" },
                     react_1.default.createElement("div", { className: "file-input-container" },
-                        react_1.default.createElement("input", { type: "file", id: "excel-file-input", accept: ".xlsx", onChange: handleExcelFileChange, className: "file-input" }),
-                        react_1.default.createElement("label", { htmlFor: "excel-file-input", className: "file-label" }, excelFile ? excelFile.name : "Choose Excel File...")),
-                    react_1.default.createElement("button", { onClick: handleExcelUpload, disabled: uploadingExcel || !excelFile, className: `upload-btn ${!excelFile ? 'disabled' : ''}` }, uploadingExcel ? "Uploading..." : "Upload Excel")))),
+                        react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".xlsx,.csv", onChange: handleDataFileChange, className: "file-input" }),
+                        react_1.default.createElement("label", { htmlFor: "data-file-input", className: "file-label" }, dataFile ? dataFile.name : "Choose Excel/CSV File...")),
+                    react_1.default.createElement("button", { onClick: handleDataUpload, disabled: uploadingData || !dataFile, className: `upload-btn ${!dataFile ? 'disabled' : ''}` }, uploadingData ? "Uploading..." : "Upload Data")))),
         react_1.default.createElement("div", { className: "card" },
             react_1.default.createElement("div", { className: "card-header" },
                 react_1.default.createElement("h2", null, "Upload Product Images (ZIP)"),
@@ -40774,22 +40791,30 @@ const BulkUploadWidget = ({ uxpContext }) => {
             react_1.default.createElement("h3", null, "Upload Instructions"),
             react_1.default.createElement("div", { className: "instructions-content" },
                 react_1.default.createElement("div", { className: "instruction-section" },
-                    react_1.default.createElement("h4", null, "Excel Template Format"),
+                    react_1.default.createElement("h4", null, "Data File Format"),
                     react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null, "The Excel file must contain the following required columns: SKU, Name, Description, Price, Category"),
-                        react_1.default.createElement("li", null, "Do not modify column headers in the template"),
-                        react_1.default.createElement("li", null, "Images should be referenced by filename in the Images column, separated by commas"),
-                        react_1.default.createElement("li", null, "Each product must have a unique SKU"))),
+                        react_1.default.createElement("li", null, "Your Excel or CSV file must contain the following required columns: Code, Name, Description, Weight, Country Of Origin, Supplier Name"),
+                        react_1.default.createElement("li", null, "The system will match column headers regardless of case (e.g., \"Code\" or \"code\" will both work)"),
+                        react_1.default.createElement("li", null, "Make sure all required fields (Code, Name, Description) are filled for each product"),
+                        react_1.default.createElement("li", null, "Each product must have a unique Code"))),
                 react_1.default.createElement("div", { className: "instruction-section" },
                     react_1.default.createElement("h4", null, "ZIP File Structure"),
                     react_1.default.createElement("ul", null,
-                        react_1.default.createElement("li", null, "Create a folder for each product named exactly as the product's SKU"),
+                        react_1.default.createElement("li", null, "Create a folder for each product named exactly as the product's Code"),
                         react_1.default.createElement("li", null, "Place all product images in their respective folders"),
                         react_1.default.createElement("li", null, "Supported image formats: JPG, PNG (max 5MB per image)"),
-                        react_1.default.createElement("li", null, "Main product image should be named \"main.jpg\" or \"main.png\""))))),
+                        react_1.default.createElement("li", null, "Main product image should be named \"main.jpg\" or \"main.png\""))),
+                react_1.default.createElement("div", { className: "instruction-section" },
+                    react_1.default.createElement("h4", null, "Common Issues"),
+                    react_1.default.createElement("ul", null,
+                        react_1.default.createElement("li", null, "If upload fails, check that all required fields are filled out"),
+                        react_1.default.createElement("li", null, "Verify that your CSV file has proper column headers"),
+                        react_1.default.createElement("li", null, "Ensure your file isn't too large (max 10MB)"),
+                        react_1.default.createElement("li", null, "Check that your file is properly formatted without special characters"))))),
         message && (react_1.default.createElement("div", { className: `message ${messageType || ''}` },
             react_1.default.createElement("span", { className: "message-icon" }, messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"),
-            react_1.default.createElement("span", { className: "message-text" }, message)))));
+            react_1.default.createElement("span", { className: "message-text" }, message),
+            messageType === "error" && (react_1.default.createElement("button", { className: "dismiss-btn", onClick: () => setMessage(null) }, "Dismiss"))))));
 };
 exports["default"] = BulkUploadWidget;
 
