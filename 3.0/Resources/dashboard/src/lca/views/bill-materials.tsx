@@ -163,7 +163,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 />
             )}
 
-            {(materials.length > 0 && entryType === "ai") && (
+            {(materials.length > 0 ) && (
                 <>
                  <MaterialSummary
                  plan={plan}
