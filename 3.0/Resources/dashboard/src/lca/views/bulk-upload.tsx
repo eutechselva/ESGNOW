@@ -2,6 +2,7 @@ import { IContextProvider } from "@uxp";
 import API_BASE_URL from "../config";
 import './bulk-upload.scss';
 import React, { useState } from "react";
+import { bulkUpload } from "../../esgnow-service";
 
 interface IBulkUploadWidgetProps {
    uxpContext: IContextProvider;
@@ -66,15 +67,16 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         formData.append("file", dataFile);
 
         try {
-            const requestOptions = {
-                method: "POST",
-                body: formData,
-                headers: { "x-iviva-account": "lucy1" },
-            };
+            // const requestOptions = {
+            //     method: "POST",
+            //     body: formData,
+            //     headers: { "x-iviva-account": "lucy1" },
+            // };
 
-            let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
+            //let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
+            let response = await bulkUpload(uxpContext,formData);
 
-            if (response.ok) {
+            if (response.data) {
                 setMessage("Data upload successful!");
                 setMessageType("success");
                 setDataFile(null);
@@ -84,20 +86,13 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             } else {
                 let errorData;
                 try {
-                    errorData = await response.json();
+                    errorData = await response.error;
+                    
                 } catch (e) {
                     errorData = { message: "An unknown error occurred" };
                 }
                 
-                // Provide more detailed error messages
-                if (errorData.validationErrors) {
-                    const errorMessages = Object.entries(errorData.validationErrors)
-                        .map(([field, msg]) => `${field}: ${msg}`)
-                        .join(", ");
-                    setMessage(`Data validation failed: ${errorMessages}`);
-                } else {
-                    setMessage(`Data upload failed: ${errorData.message || "Please try again."}`);
-                }
+                
                 setMessageType("error");
             }
         } catch (error) {

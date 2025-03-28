@@ -39951,7 +39951,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = 'ESGNOW';
@@ -40073,6 +40073,12 @@ function projectProductMapping(uxpContext, payload) {
     });
 }
 exports.projectProductMapping = projectProductMapping;
+function bulkUpload(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/bulk-upload`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.bulkUpload = bulkUpload;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40275,10 +40281,10 @@ const WrappedDashboard = (props) => {
 
 "use strict";
 
-//const API_BASE_URL = "https://lca-microservice.onrender.com";
-//const API_BASE_URL = "http://localhost:5009";
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-const API_BASE_URL = "http://172.30.0.125:21555";
+//const API_BASE_URL = "https://lca-microservice.onrender.com";
+const API_BASE_URL = "http://localhost:5009";
+//const API_BASE_URL = "http://172.30.0.125:21555";
 exports["default"] = API_BASE_URL;
 
 
@@ -40513,7 +40519,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             entryType === "ai" && (react_1.default.createElement(components_1.Button, { title: "Generate", className: "generate-materials-button", onClick: handleGenerateMaterials }))),
         aiGeneratingBOM && react_1.default.createElement("div", { className: "ai-generating-bom" }, "Generating Bill of Materials..."),
         showMaterialEntry && entryType === "manual" && (react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined })),
-        (materials.length > 0 && entryType === "ai") && (react_1.default.createElement(react_1.default.Fragment, null,
+        (materials.length > 0) && (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete }),
             react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
 };
@@ -40569,6 +40575,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const config_1 = __importDefault(__webpack_require__(/*! ../config */ "./src/lca/config.ts"));
 __webpack_require__(/*! ./bulk-upload.scss */ "./src/lca/views/bulk-upload.scss");
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const BulkUploadWidget = ({ uxpContext }) => {
     const [dataFile, setDataFile] = (0, react_1.useState)(null);
     const [zipFile, setZipFile] = (0, react_1.useState)(null);
@@ -40618,13 +40625,14 @@ const BulkUploadWidget = ({ uxpContext }) => {
         const formData = new FormData();
         formData.append("file", dataFile);
         try {
-            const requestOptions = {
-                method: "POST",
-                body: formData,
-                headers: { "x-iviva-account": "lucy1" },
-            };
-            let response = yield fetch(`${config_1.default}/api/products/bulk-upload`, requestOptions);
-            if (response.ok) {
+            // const requestOptions = {
+            //     method: "POST",
+            //     body: formData,
+            //     headers: { "x-iviva-account": "lucy1" },
+            // };
+            //let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
+            let response = yield (0, esgnow_service_1.bulkUpload)(uxpContext, formData);
+            if (response.data) {
                 setMessage("Data upload successful!");
                 setMessageType("success");
                 setDataFile(null);
@@ -40636,20 +40644,10 @@ const BulkUploadWidget = ({ uxpContext }) => {
             else {
                 let errorData;
                 try {
-                    errorData = yield response.json();
+                    errorData = yield response.error;
                 }
                 catch (e) {
                     errorData = { message: "An unknown error occurred" };
-                }
-                // Provide more detailed error messages
-                if (errorData.validationErrors) {
-                    const errorMessages = Object.entries(errorData.validationErrors)
-                        .map(([field, msg]) => `${field}: ${msg}`)
-                        .join(", ");
-                    setMessage(`Data validation failed: ${errorMessages}`);
-                }
-                else {
-                    setMessage(`Data upload failed: ${errorData.message || "Please try again."}`);
                 }
                 setMessageType("error");
             }
