@@ -122,37 +122,37 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     };
 
     const renderOverviewTab = () => (
-        <div className="tab-content">
-            <div className="product-info-summary">
+        <div className="esgnow-tab-content">
+            <div className="esgnow-product-info-summary">
                 <div
-                    className="summary-image"
+                    className="esgnow-summary-image"
                     style={{
                         backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                     }}
                 >
-                    {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">{`${product.co2Emission} Kg CO₂e`}</div>
+                    {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
+                    <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
 
-                <div className="summary-details">
-                    <div className="detail-grid">
-                        <div className="detail-item">
+                <div className="esgnow-summary-details">
+                    <div className="esgnow-detail-grid">
+                        <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
                             <p>{product.code}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
                             <p>{product.category}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Sub Category</strong>
                             <p>{product.subCategory}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Weight</strong>
                             <p>{product.weight} Kg</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Country of Manufacture</strong>
                             <p>
                                 {product.countryOfOrigin === "CN" ? "China" :
@@ -161,12 +161,12 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             </p>
                         </div>
                     </div>
-                    <div className="description-field">
+                    <div className="esgnow-description-field">
                         <strong>Product Description</strong>
-                        <div className="rich-text-editor">
+                        <div className="esgnow-rich-text-editor">
                             <textarea 
                                 defaultValue={product.description}
-                                className="editable-description"
+                                className="esgnow-editable-description"
                                 rows={4}
                             />
                         </div>
@@ -174,9 +174,9 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 </div>
             </div>
 
-            <div className="widget product-footprint">
+            <div className="esgnow-widget esgnow-product-footprint">
                 <h3>Product Carbon Footprint Breakdown</h3>
-                <div className="widget-content">
+                <div className="esgnow-widget-content">
                     <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
                 </div>
             </div>
@@ -184,10 +184,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     );
 
     const renderMaterialsTab = () => (
-        <div className="tab-content">
-            <div className="widget contribution-raw-material">
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
                 <h3>Contribution by Raw Material</h3>
-                <div className="widget-content">
+                <div className="esgnow-widget-content">
                     <table>
                         <thead>
                             <tr>
@@ -217,9 +217,9 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
                                             <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                             <td>
-                                                <div className="percentage-bar">
+                                                <div className="esgnow-percentage-bar">
                                                     <div 
-                                                        className="percentage-fill" 
+                                                        className="esgnow-percentage-fill" 
                                                         style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
                                                     ></div>
                                                     <span>{percentage}%</span>
@@ -237,10 +237,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     );
 
     const renderManufacturingTab = () => (
-        <div className="tab-content">
-            <div className="widget contribution-manufacturing">
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-manufacturing">
                 <h3>Contribution by Manufacturing Process</h3>
-                <div className="widget-content">
+                <div className="esgnow-widget-content">
                     <table>
                         <thead>
                             <tr>
@@ -270,9 +270,9 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             <td>{item.manufacturingProcesses[0].category}</td>
                                             <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                             <td>
-                                                <div className="percentage-bar">
+                                                <div className="esgnow-percentage-bar">
                                                     <div 
-                                                        className="percentage-fill" 
+                                                        className="esgnow-percentage-fill" 
                                                         style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
                                                     ></div>
                                                     <span>{percentage}%</span>
@@ -290,19 +290,19 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     );
 
     const renderInventoryTab = () => (
-        <div className="tab-content">
-            <div className="widget inventory-info">
-                <div className="inventory-header">
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-inventory-info">
+                <div className="esgnow-inventory-header">
                     <h3>Inventory Information</h3>
-                    <div className="view-toggle">
+                    <div className="esgnow-view-toggle">
                         <button
-                            className={`toggle-button ${viewMode === 'list' ? 'active' : ''}`}
+                            className={`esgnow-toggle-button ${viewMode === 'list' ? 'active' : ''}`}
                             onClick={() => setViewMode('list')}
                         >
                             List View
                         </button>
                         <button
-                            className={`toggle-button ${viewMode === 'tree' ? 'active' : ''}`}
+                            className={`esgnow-toggle-button ${viewMode === 'tree' ? 'active' : ''}`}
                             onClick={() => setViewMode('tree')}
                         >
                             Tree View
@@ -311,16 +311,16 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 </div>
 
                 {viewMode === 'tree' ? (
-                    <div className="inventory-tree">
-                        <div className="tree-item" onClick={toggleExpand}>
-                            <span className="expand-icon">{isExpanded ? '▼' : '▶'}</span>
+                    <div className="esgnow-inventory-tree">
+                        <div className="esgnow-tree-item" onClick={toggleExpand}>
+                            <span className="esgnow-expand-icon">{isExpanded ? '▼' : '▶'}</span>
                             <span>Single - Pane aluminium window (Finished Good)</span>
                         </div>
                         {isExpanded && (
-                            <div className="tree-children">
+                            <div className="esgnow-tree-children">
                                 {product.productManufacturingProcess.map((item: any) => (
-                                    <div key={item.materialClass} className="tree-sub-item">
-                                        <span className="material-dot"></span>
+                                    <div key={item.materialClass} className="esgnow-tree-sub-item">
+                                        <span className="esgnow-material-dot"></span>
                                         {item.materialClass} - {item.specificMaterial} ({item.weight} Kg)
                                     </div>
                                 ))}
@@ -328,8 +328,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         )}
                     </div>
                 ) : (
-                    <div className="widget-content">
-                        <table className="inventory-table">
+                    <div className="esgnow-widget-content">
+                        <table className="esgnow-inventory-table">
                             <thead>
                                 <tr>
                                     <th>Material Class</th>
@@ -358,30 +358,30 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     );
 
     return (
-        <div className="product-summary-container">
-            <div className="header-container">
+        <div className="esgnow-product-summary-container">
+            <div className="esgnow-header-container">
                 {!hideHeader && (
                     <>
-                        <div className="title-section">
-                            <h1 className="dashboard-title">Product Summary</h1>
-                            <p className="subheading">Product: {product.name}</p>
+                        <div className="esgnow-title-section">
+                            <h1 className="esgnow-dashboard-title">Product Summary</h1>
+                            <p className="esgnow-subheading">Product: {product.name}</p>
                         </div>
-                        <div className="action-buttons">
+                        <div className="esgnow-action-buttons">
                             <Button
                                 title="Back"
                                 onClick={onClose}
-                                className="back-button"
+                                className="esgnow-back-button"
                             >
-                                <span className="back-icon">←</span>
+                                <span className="esgnow-back-icon">←</span>
                                 Back
                             </Button>
                             {!hideDelete && (
                                 <Button 
                                     title="Delete" 
                                     onClick={deleteProduct} 
-                                    className="delete-button"
+                                    className="esgnow-delete-button"
                                 >
-                                    <span className="delete-icon">×</span>
+                                    <span className="esgnow-delete-icon">×</span>
                                     Delete
                                 </Button>
                             )}
@@ -390,28 +390,28 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 )}
             </div>
 
-            <div className="tabs-container">
-                <div className="tabs">
+            <div className="esgnow-tabs-container">
+                <div className="esgnow-tabs">
                     <button 
-                        className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'overview' ? 'active' : ''}`}
                         onClick={() => setActiveTab('overview')}
                     >
                         Overview
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'materials' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'materials' ? 'active' : ''}`}
                         onClick={() => setActiveTab('materials')}
                     >
                         Raw Materials
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
                         onClick={() => setActiveTab('manufacturing')}
                     >
                         Manufacturing
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'inventory' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'inventory' ? 'active' : ''}`}
                         onClick={() => setActiveTab('inventory')}
                     >
                         Inventory
@@ -429,15 +429,15 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     show={showDeleteConfirm}
                     title="Confirm Deletion"
                     onClose={() => setShowDeleteConfirm(false)}
-                    className="delete-modal"
+                    className="esgnow-delete-modal"
                 >
-                    <div className="delete-confirmation">
-                        <div className="warning-icon">⚠️</div>
+                    <div className="esgnow-delete-confirmation">
+                        <div className="esgnow-warning-icon">⚠️</div>
                         <p>Are you sure you want to delete this product?</p>
-                        <p className="delete-warning">This action cannot be undone.</p>
-                        <div className="modal-actions">
-                            <Button title="Cancel" onClick={() => setShowDeleteConfirm(false)} className="cancel-button">Cancel</Button>
-                            <Button title="Delete" onClick={confirmDelete} className="confirm-button">Delete</Button>
+                        <p className="esgnow-delete-warning">This action cannot be undone.</p>
+                        <div className="esgnow-modal-actions">
+                            <Button title="Cancel" onClick={() => setShowDeleteConfirm(false)} className="esgnow-cancel-button">Cancel</Button>
+                            <Button title="Delete" onClick={confirmDelete} className="esgnow-confirm-button">Delete</Button>
                         </div>
                     </div>
                 </Modal>

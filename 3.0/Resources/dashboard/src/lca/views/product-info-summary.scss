@@ -1,11 +1,11 @@
-.product-summary-container {
+.esgnow-product-summary-container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
   font-family: 'Comfortaa', sans-serif;
 }
 
-.header-container {
+.esgnow-header-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,26 +13,26 @@
   border-bottom: 1px solid #e0e0e0;
   padding-bottom: 16px;
 
-  .title-section {
-    .dashboard-title {
+  .esgnow-title-section {
+    .esgnow-dashboard-title {
       font-size: 24px;
       font-weight: bold;
       margin: 0;
       color: #333;
     }
 
-    .subheading {
+    .esgnow-subheading {
       font-size: 16px;
       color: #666;
       margin: 4px 0 0 0;
     }
   }
 
-  .action-buttons {
+  .esgnow-action-buttons {
     display: flex;
     gap: 12px;
 
-    .back-button {
+    .esgnow-back-button {
       background-color: #f0f0f0;
       color: #333;
       border: 1px solid #ddd;
@@ -44,7 +44,7 @@
       align-items: center;
       gap: 6px;
 
-      .back-icon {
+      .esgnow-back-icon {
         font-size: 18px;
         line-height: 1;
       }
@@ -54,7 +54,7 @@
       }
     }
 
-    .delete-button {
+    .esgnow-delete-button {
       background-color: #fff;
       color: #d32f2f;
       border: 1px solid #d32f2f;
@@ -66,7 +66,7 @@
       align-items: center;
       gap: 6px;
 
-      .delete-icon {
+      .esgnow-delete-icon {
         font-size: 20px;
         font-weight: bold;
         line-height: 1;
@@ -79,15 +79,15 @@
   }
 }
 
-.tabs-container {
+.esgnow-tabs-container {
   margin-top: 16px;
 
-  .tabs {
+  .esgnow-tabs {
     display: flex;
     border-bottom: 1px solid #e0e0e0;
     margin-bottom: 24px;
 
-    .tab-button {
+    .esgnow-tab-button {
       padding: 12px 24px;
       border: none;
       background: none;
@@ -122,7 +122,7 @@
   }
 }
 
-.product-info-summary {
+.esgnow-product-info-summary {
   display: flex;
   gap: 24px;
   margin-bottom: 24px;
@@ -131,7 +131,7 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 
-  .summary-image {
+  .esgnow-summary-image {
     position: relative;
     width: 250px;
     height: 250px;
@@ -145,13 +145,13 @@
     background-position: center;
     border: 1px solid #e0e0e0;
 
-    .image-placeholder {
+    .esgnow-image-placeholder {
       color: #aaa;
       font-size: 16px;
       text-align: center;
     }
 
-    .image-label {
+    .esgnow-image-label {
       position: absolute;
       top: 12px;
       right: 12px;
@@ -165,17 +165,17 @@
     }
   }
 
-  .summary-details {
+  .esgnow-summary-details {
     flex: 1;
 
-    .detail-grid {
+    .esgnow-detail-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
       margin-bottom: 20px;
     }
 
-    .detail-item {
+    .esgnow-detail-item {
       strong {
         font-weight: 600;
         color: #666;
@@ -193,7 +193,7 @@
       }
     }
 
-    .description-field {
+    .esgnow-description-field {
       margin-top: 16px;
 
       strong {
@@ -205,10 +205,10 @@
         text-transform: uppercase;
       }
 
-      .rich-text-editor {
+      .esgnow-rich-text-editor {
         position: relative;
 
-        .editable-description {
+        .esgnow-editable-description {
           width: 100%;
           min-height: 100px;
           max-height: 120px;
@@ -239,11 +239,11 @@
   }
 }
 
-.tab-content {
+.esgnow-tab-content {
   animation: fadeIn 0.3s ease-in-out;
 }
 
-.widget {
+.esgnow-widget {
   background-color: white;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -259,14 +259,14 @@
     border-bottom: 1px solid #eee;
   }
 
-  .widget-content {
+  .esgnow-widget-content {
     padding: 24px;
   }
 
-  &.product-footprint {
+  &.esgnow-product-footprint {
     text-align: center;
 
-    .widget-content {
+    .esgnow-widget-content {
       display: flex;
       justify-content: center;
     }
@@ -305,7 +305,7 @@
   }
 }
 
-.percentage-bar {
+.esgnow-percentage-bar {
   position: relative;
   width: 100%;
   height: 20px;
@@ -313,7 +313,7 @@
   border-radius: 10px;
   overflow: hidden;
 
-  .percentage-fill {
+  .esgnow-percentage-fill {
     height: 100%;
     border-radius: 10px;
   }
@@ -329,7 +329,7 @@
   }
 }
 
-.inventory-header {
+.esgnow-inventory-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -342,11 +342,11 @@
     border: none;
   }
 
-  .view-toggle {
+  .esgnow-view-toggle {
     display: flex;
     gap: 8px;
 
-    .toggle-button {
+    .esgnow-toggle-button {
       padding: 8px 16px;
       border: 1px solid #ddd;
       background-color: white;
@@ -369,10 +369,10 @@
   }
 }
 
-.inventory-tree {
+.esgnow-inventory-tree {
   padding: 24px;
 
-  .tree-item {
+  .esgnow-tree-item {
     display: flex;
     align-items: center;
     font-weight: 600;
@@ -386,18 +386,18 @@
       background-color: #f5f5f5;
     }
 
-    .expand-icon {
+    .esgnow-expand-icon {
       margin-right: 8px;
       font-size: 12px;
       color: #666;
     }
   }
 
-  .tree-children {
+  .esgnow-tree-children {
     margin-left: 24px;
     margin-top: 12px;
 
-    .tree-sub-item {
+    .esgnow-tree-sub-item {
       display: flex;
       align-items: center;
       margin-bottom: 8px;
@@ -410,7 +410,7 @@
         background-color: #f5f5f5;
       }
 
-      .material-dot {
+      .esgnow-material-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -421,12 +421,12 @@
   }
 }
 
-.delete-modal {
-  .delete-confirmation {
+.esgnow-delete-modal {
+  .esgnow-delete-confirmation {
     text-align: center;
     padding: 16px;
 
-    .warning-icon {
+    .esgnow-warning-icon {
       font-size: 48px;
       margin-bottom: 16px;
     }
@@ -437,23 +437,23 @@
       color: #333;
     }
 
-    .delete-warning {
+    .esgnow-delete-warning {
       color: #d32f2f;
       font-size: 14px;
       margin-bottom: 24px;
     }
 
-    .modal-actions {
+    .esgnow-modal-actions {
       display: flex;
       justify-content: center;
       gap: 16px;
 
-      .cancel-button {
+      .esgnow-cancel-button {
         background-color: #f0f0f0;
         color: #333;
       }
 
-      .confirm-button {
+      .esgnow-confirm-button {
         background-color: #d32f2f;
         color: white;
       }
@@ -474,39 +474,39 @@
 }
 
 @media (max-width: 992px) {
-  .product-info-summary {
+  .esgnow-product-info-summary {
     flex-direction: column;
 
-    .summary-image {
+    .esgnow-summary-image {
       width: 100%;
       height: 100%;
 
     }
 
-    .summary-details .detail-grid {
+    .esgnow-summary-details .esgnow-detail-grid {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 }
 
 @media (max-width: 768px) {
-  .header-container {
+  .esgnow-header-container {
     flex-direction: column;
     align-items: flex-start;
 
-    .action-buttons {
+    .esgnow-action-buttons {
       margin-top: 16px;
       width: 100%;
       justify-content: space-between;
     }
   }
 
-  .tabs .tab-button {
+  .esgnow-tabs .esgnow-tab-button {
     padding: 12px 16px;
     font-size: 14px;
   }
 
-  .summary-details .detail-grid {
+  .esgnow-summary-details .esgnow-detail-grid {
     grid-template-columns: 1fr;
   }
 }
