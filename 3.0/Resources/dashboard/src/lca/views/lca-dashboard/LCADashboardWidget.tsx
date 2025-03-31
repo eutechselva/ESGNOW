@@ -58,8 +58,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     const [plan, setPlan] = useState<string>("");
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [sortOption, setSortOption] = useState<string>("date_newest");
-    const [categories, setCategories] = useState<{label: string, value: string}[]>([]);
-    const [subCategories, setSubCategories] = useState<{label: string, value: string}[]>([]);
+    const [categories, setCategories] = useState<{ label: string, value: string }[]>([]);
+    const [subCategories, setSubCategories] = useState<{ label: string, value: string }[]>([]);
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
     const [transportLegs, setTransportLegs] = useState<TransportLeg[]>([{
         id: 1,
@@ -94,17 +94,17 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 setProducts(data.data.products);
                 setFilteredProducts(sortedProducts);
                 setPlan(data.data.plan.plan);
-                
+
                 // Extract unique categories for filter dropdown
                 const uniqueCategories = [...new Set(data.data.products.map((product: any) => product.category))];
-                setCategories(uniqueCategories.map((category : any) => ({
+                setCategories(uniqueCategories.map((category: any) => ({
                     label: category,
                     value: category
                 })));
-                
+
                 // Extract unique subCategories for filter dropdown
                 const uniqueSubCategories = [...new Set(data.data.products.map((product: any) => product.subCategory))];
-                setSubCategories(uniqueSubCategories.filter(Boolean).map((subCategory : any) => ({
+                setSubCategories(uniqueSubCategories.filter(Boolean).map((subCategory: any) => ({
                     label: subCategory,
                     value: subCategory
                 })));
@@ -169,38 +169,38 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     // Filter products based on search, category, and subCategory
     const applyFilters = useCallback(() => {
         if (!products.length) return;
-        
+
         let filtered = [...products];
-        
+
         // Apply text search
         if (searchValue) {
             const searchLower = searchValue.toLowerCase();
-            filtered = filtered.filter(item => 
+            filtered = filtered.filter(item =>
                 item.name.toLowerCase().includes(searchLower) ||
                 item.code.toLowerCase().includes(searchLower) ||
                 item.category.toLowerCase().includes(searchLower)
             );
         }
-        
+
         // Apply category filter
         if (selectedCategory) {
-            filtered = filtered.filter(item => 
+            filtered = filtered.filter(item =>
                 item.category === selectedCategory
             );
         }
-        
+
         // Apply subCategory filter
         if (selectedSubCategory) {
-            filtered = filtered.filter(item => 
+            filtered = filtered.filter(item =>
                 item.subCategory === selectedSubCategory
             );
         }
-        
+
         // Apply sorting
         if (sortOption) {
             filtered = sortProducts(filtered, sortOption);
         }
-        
+
         setFilteredProducts(filtered);
     }, [products, searchValue, selectedCategory, selectedSubCategory, sortOption]);
 
@@ -213,15 +213,15 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         setSearchValue(newValue);
         // Directly filter products when search changes for immediate feedback
         const filtered = products.filter(item => {
-            const matchesSearch = item.name.toLowerCase().includes(newValue.toLowerCase()) || 
-                                 item.code.toLowerCase().includes(newValue.toLowerCase()) ||
-                                 item.category.toLowerCase().includes(newValue.toLowerCase());
+            const matchesSearch = item.name.toLowerCase().includes(newValue.toLowerCase()) ||
+                item.code.toLowerCase().includes(newValue.toLowerCase()) ||
+                item.category.toLowerCase().includes(newValue.toLowerCase());
             const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
             const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
-            
+
             return matchesSearch && matchesCategory && matchesSubCategory;
         });
-        
+
         setFilteredProducts(sortProducts(filtered, sortOption));
     };
 
@@ -233,8 +233,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     const sortProducts = (products: any[], option: string) => {
         const sortedProducts = [...products];
-        
-        switch(option) {
+
+        switch (option) {
             case "name_asc":
                 return sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
             case "name_desc":
@@ -280,7 +280,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             transportEmission: leg.transportDistance * 0.1 // Simplified calculation
         }));
         setTransportLegs(updatedLegs);
-        
+
         const totalEmission = updatedLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
         setTransportationEmission(totalEmission.toString());
     };
@@ -312,7 +312,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             id: "step-2",
             title: "TRANSPORT SELECTION",
             content: (
-                <TransportSelectionStep 
+                <TransportSelectionStep
                     transportLegs={transportLegs}
                     setTransportLegs={setTransportLegs}
                     countries={countries}
@@ -326,7 +326,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             id: "step-3",
             title: "TRANSPORT WEIGHT DETAILS",
             content: (
-                <WeightDetailsStep 
+                <WeightDetailsStep
                     selectedProduct={selectedProduct}
                     packagingWeight={packagingWeight}
                     setPackagingWeight={setPackagingWeight}
@@ -346,7 +346,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             id: "step-4",
             title: "SUMMARY",
             content: (
-                <SummaryStep 
+                <SummaryStep
                     selectedProduct={selectedProduct}
                     transportLegs={transportLegs}
                     packagingWeight={packagingWeight}
@@ -361,15 +361,15 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     if (isEmissionSummaryVisible) {
         return (
-            <EmissionSummary 
-                packageWeight={packagingWeight} 
-                palletWeight={palletWeight} 
-                transportLegs={transportLegs} 
-                transportationEmission={transportationEmission} 
-                product={selectedProduct} 
-                onBack={() => setIsEmissionSummaryVisible(false)} 
-                uxContext={uxpContext} 
-                plan={plan} 
+            <EmissionSummary
+                packageWeight={packagingWeight}
+                palletWeight={palletWeight}
+                transportLegs={transportLegs}
+                transportationEmission={transportationEmission}
+                product={selectedProduct}
+                onBack={() => setIsEmissionSummaryVisible(false)}
+                uxContext={uxpContext}
+                plan={plan}
             />
         );
     }
@@ -377,85 +377,87 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     return (
         <div className="lca-content">
             <h1 className="dashboard-title">Transportation</h1>
-            
+
             <div className="search-filter-section">
                 <div className="uxp-search-box-container">
                     <div className="search-field">
                         <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                        <input
-                            type="text"
-                            className="search-input"
-                            placeholder="Search Products"
-                            value={searchValue}
-                            onChange={(e) => handleSearchChange(e.target.value)}
-                        />
-                        {searchValue && (
-                            <Button 
-                                title="Clear" 
-                                className="clear-search-btn" 
-                                onClick={() => handleSearchChange("")}
+                        <div className="search-input-filter-container">
+                            <input
+                                type="text"
+                                className="search-input"
+                                placeholder="Search Products"
+                                value={searchValue}
+                                onChange={(e) => handleSearchChange(e.target.value)}
                             />
-                        )}
+                            {searchValue && (
+                                <Button
+                                    title="Clear"
+                                    className="clear-search-btn"
+                                    onClick={() => handleSearchChange("")}
+                                />
+                            )}
+                        </div>
+
+                        <FilterPanel
+                            enableClear={!!(selectedCategory || selectedSubCategory)}
+                            onClear={handleClearFilters}
+                            onOpen={() => setShowFilterPanel(true)}
+                            onClose={() => setShowFilterPanel(false)}
+                            className="filter-panel"
+                        >
+                            <FormField className="no-padding mb-only">
+                                <Label>Product Category</Label>
+                                <Select
+                                    selected={selectedCategory}
+                                    options={categories}
+                                    onChange={(value: string) => {
+                                        setSelectedCategory(value);
+                                        // Apply filter immediately when category changes
+                                        const filtered = products.filter(item => {
+                                            const matchesSearch = searchValue ?
+                                                (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                    item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                    item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                            const matchesCategory = value ? item.category === value : true;
+                                            const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
+
+                                            return matchesSearch && matchesCategory && matchesSubCategory;
+                                        });
+                                        setFilteredProducts(sortProducts(filtered, sortOption));
+                                    }}
+                                    placeholder="-- Select a category --"
+                                />
+                            </FormField>
+                            <FormField className="no-padding mb-only">
+                                <Label>Sub Category</Label>
+                                <Select
+                                    selected={selectedSubCategory}
+                                    options={subCategories}
+                                    onChange={(value: string) => {
+                                        setSelectedSubCategory(value);
+                                        // Apply filter immediately when subCategory changes
+                                        const filtered = products.filter(item => {
+                                            const matchesSearch = searchValue ?
+                                                (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                    item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                    item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                            const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
+                                            const matchesSubCategory = value ? item.subCategory === value : true;
+
+                                            return matchesSearch && matchesCategory && matchesSubCategory;
+                                        });
+                                        setFilteredProducts(sortProducts(filtered, sortOption));
+                                    }}
+                                    placeholder="-- Select a sub category --"
+                                />
+                            </FormField>
+                        </FilterPanel>
                     </div>
-                    
-                    <FilterPanel
-                        enableClear={!!(selectedCategory || selectedSubCategory)}
-                        onClear={handleClearFilters}
-                        onOpen={() => setShowFilterPanel(true)}
-                        onClose={() => setShowFilterPanel(false)}
-                        className="filter-panel"
-                    >
-                        <FormField className="no-padding mb-only">
-                            <Label>Product Category</Label>
-                            <Select
-                                selected={selectedCategory}
-                                options={categories}
-                                onChange={(value: string) => {
-                                    setSelectedCategory(value);
-                                    // Apply filter immediately when category changes
-                                    const filtered = products.filter(item => {
-                                        const matchesSearch = searchValue ? 
-                                            (item.name.toLowerCase().includes(searchValue.toLowerCase()) || 
-                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                            item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
-                                        const matchesCategory = value ? item.category === value : true;
-                                        const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
-                                        
-                                        return matchesSearch && matchesCategory && matchesSubCategory;
-                                    });
-                                    setFilteredProducts(sortProducts(filtered, sortOption));
-                                }}
-                                placeholder="-- Select a category --"
-                            />
-                        </FormField>
-                        <FormField className="no-padding mb-only">
-                            <Label>Sub Category</Label>
-                            <Select
-                                selected={selectedSubCategory}
-                                options={subCategories}
-                                onChange={(value: string) => {
-                                    setSelectedSubCategory(value);
-                                    // Apply filter immediately when subCategory changes
-                                    const filtered = products.filter(item => {
-                                        const matchesSearch = searchValue ? 
-                                            (item.name.toLowerCase().includes(searchValue.toLowerCase()) || 
-                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                            item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
-                                        const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
-                                        const matchesSubCategory = value ? item.subCategory === value : true;
-                                        
-                                        return matchesSearch && matchesCategory && matchesSubCategory;
-                                    });
-                                    setFilteredProducts(sortProducts(filtered, sortOption));
-                                }}
-                                placeholder="-- Select a sub category --"
-                            />
-                        </FormField>
-                    </FilterPanel>
-                    
+
                     <div className="sort-control">
                         {/* <FontAwesomeIcon icon={faSort} className="sort-icon" /> */}
-                         <Label>Sort by</Label>
+                        <Label>Sort by</Label>
                         <Select
                             selected={sortOption}
                             options={[
@@ -472,16 +474,16 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                             className="sort-select"
                         />
                     </div>
-                    
+
                     <div className="view-mode-toggle">
-                        <button 
+                        <button
                             className={`view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
                             onClick={() => setViewMode('grid')}
                             title="Grid View"
                         >
                             <span className="grid-icon">▦</span>
                         </button>
-                        <button 
+                        <button
                             className={`view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
                             onClick={() => setViewMode('list')}
                             title="List View"
@@ -491,15 +493,15 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     </div>
                 </div>
             </div>
-            
+
             {/* Results summary */}
             <div className="results-summary">
                 <span>Showing {currentItems.length} of {filteredProducts.length} products (page {currentPage} of {totalPages})</span>
                 {(searchValue || selectedCategory || selectedSubCategory) && (
-                    <Button 
-                        title="Clear All Filters" 
-                        className="button-secondary clear-all-btn" 
-                        onClick={handleClearFilters} 
+                    <Button
+                        title="Clear All Filters"
+                        className="button-secondary clear-all-btn"
+                        onClick={handleClearFilters}
                     />
                 )}
             </div>
@@ -518,21 +520,21 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 <>
                     {/* Render either grid or list view based on viewMode */}
                     {viewMode === "grid" ? (
-                        <ProductGridView 
-                            currentItems={currentItems} 
-                            selectProduct={selectProduct} 
+                        <ProductGridView
+                            currentItems={currentItems}
+                            selectProduct={selectProduct}
                         />
                     ) : (
-                        <ProductListView 
-                            currentItems={currentItems} 
-                            selectProduct={selectProduct} 
+                        <ProductListView
+                            currentItems={currentItems}
+                            selectProduct={selectProduct}
                         />
                     )}
-                    
+
                     {/* Pagination component */}
                     {totalPages > 1 && (
                         <div className="pagination-wrapper">
-                            <Pagination 
+                            <Pagination
                                 currentPage={currentPage}
                                 totalPages={totalPages}
                                 itemsPerPage={itemsPerPage}
