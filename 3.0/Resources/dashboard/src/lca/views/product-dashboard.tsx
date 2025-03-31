@@ -60,10 +60,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     }, [products]);
 
     const Pagination = () => (
-        <div className="pagination-container">
-            <div className="pagination-controls">
+        <div className="esgnow-pagination-container">
+            <div className="esgnow-pagination-controls">
                 <select 
-                    className="items-per-page" 
+                    className="esgnow-items-per-page" 
                     value={itemsPerPage}
                     onChange={(e) => setItemsPerPage(parseInt(e.target.value))}
                 >
@@ -72,17 +72,17 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     <option value={24}>24 per page</option>
                 </select>
                 
-                <div className="pagination-buttons">
+                <div className="esgnow-pagination-buttons">
                     <Button
                         title="Previous"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
-                        className="pagination-button"
+                        className="esgnow-pagination-button"
                     >
-                        <span className="pagination-arrow">←</span>
+                        <span className="esgnow-pagination-arrow">←</span>
                     </Button>
                     
-                    <span className="pagination-info">
+                    <span className="esgnow-pagination-info">
                         Page {currentPage} of {totalPages || 1}
                     </span>
                     
@@ -90,9 +90,9 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         title="Next"
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages || totalPages === 0}
-                        className="pagination-button"
+                        className="esgnow-pagination-button"
                     >
-                        <span className="pagination-arrow">→</span>
+                        <span className="esgnow-pagination-arrow">→</span>
                     </Button>
                 </div>
             </div>
@@ -225,27 +225,27 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     };
 
     return (
-        <div className="product-dashboard-container">
+        <div className="esgnow-product-dashboard-container">
             {selectedProduct ? null : (
                 <>
-                    <div className="dashboard-header">
-                        <div className="header-left">
-                            <h1 className="dashboard-title">Products</h1>
+                    <div className="esgnow-dashboard-header">
+                        <div className="esgnow-header-left">
+                            <h1 className="esgnow-dashboard-title">Products</h1>
                         </div>
                         
-                        <div className="header-right">
+                        <div className="esgnow-header-right">
                             <Button 
-                                className="refresh-button" 
+                                className="esgnow-refresh-button" 
                                 onClick={refreshProducts}
                                 disabled={isLoading}
                                 title="Refresh"
                             >
-                                <span className="refresh-icon">↻</span>
+                                <span className="esgnow-refresh-icon">↻</span>
                                 {isLoading ? "Loading..." : "Refresh"}
                             </Button>
                             
                             <button 
-                                className="add-product-button" 
+                                className="esgnow-add-product-button" 
                                 onClick={() => setShowModal(true)}
                             >
                                 + Add Product
@@ -253,17 +253,17 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         </div>
                     </div>
 
-                    <div className="search-filter-container">
-                        <div className="search-section">
-                            <div className="search-box-wrapper">
+                    <div className="esgnow-search-filter-container">
+                        <div className="esgnow-search-section">
+                            <div className="esgnow-search-box-wrapper">
                                 <SearchBox
                                     placeholder="Search by name, category, code..."
                                     value={searchValue}
                                     onChange={handleSearchChange}
-                                    className="product-search-box"
+                                    className="esgnow-product-search-box"
                                 />
                                 <Button 
-                                    className={`advanced-search-toggle ${advancedSearch ? 'active' : ''}`} 
+                                    className={`esgnow-advanced-search-toggle ${advancedSearch ? 'active' : ''}`} 
                                     onClick={() => setAdvancedSearch(!advancedSearch)}
                                     title={advancedSearch ? "Hide Advanced Search" : "Advanced Search"}
                                 >
@@ -271,8 +271,8 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 </Button>
                             </div>
                             
-                            <div className="view-options">
-                                <div className="sort-dropdown">
+                            <div className="esgnow-view-options">
+                                <div className="esgnow-sort-dropdown">
                                     <Label>Sort by</Label>
                                     <Select
                                         selected={sortBy}
@@ -291,36 +291,36 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     />
                                 </div>
                                 
-                                <div className="view-mode-toggle">
+                                <div className="esgnow-view-mode-toggle">
                                     <button 
-                                        className={`view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
+                                        className={`esgnow-view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
                                         onClick={() => setViewMode('grid')}
                                         title="Grid View"
                                     >
-                                        <span className="grid-icon">▦</span>
+                                        <span className="esgnow-grid-icon">▦</span>
                                     </button>
                                     <button 
-                                        className={`view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
+                                        className={`esgnow-view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
                                         onClick={() => setViewMode('list')}
                                         title="List View"
                                     >
-                                        <span className="list-icon">≡</span>
+                                        <span className="esgnow-list-icon">≡</span>
                                     </button>
                                 </div>
                             </div>
                         </div>
                         
                         {advancedSearch && (
-                            <div className="advanced-filter-section">
+                            <div className="esgnow-advanced-filter-section">
                                 <FilterPanel
                                     enableClear={!!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry)}
                                     onClear={handleClearFilters}
                                     onOpen={() => setShowFilterPanel(true)}
                                     onClose={() => setShowFilterPanel(false)}
-                                    className="filter-panel"
+                                    className="esgnow-filter-panel"
                                 >
-                                    <div className="filter-grid">
-                                        <FormField className="filter-field">
+                                    <div className="esgnow-filter-grid">
+                                        <FormField className="esgnow-filter-field">
                                             <Label>Category</Label>
                                             <Select
                                                 selected={selectedCategory}
@@ -333,7 +333,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                             />
                                         </FormField>
                                         
-                                        <FormField className="filter-field">
+                                        <FormField className="esgnow-filter-field">
                                             <Label>Sub Category</Label>
                                             <Select
                                                 selected={selectedSubCategory}
@@ -346,7 +346,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                             />
                                         </FormField>
                                         
-                                        <FormField className="filter-field">
+                                        <FormField className="esgnow-filter-field">
                                             <Label>Country of Manufacture</Label>
                                             <Select
                                                 selected={selectedCountry}
@@ -359,7 +359,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                             />
                                         </FormField>
                                         
-                                        <FormField className="filter-field">
+                                        <FormField className="esgnow-filter-field">
                                             <Label>Min CO₂ Emission (Kg CO₂e)</Label>
                                             <input
                                                 type="number"
@@ -372,11 +372,11 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                                     applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, value, selectedCountry, sortBy);
                                                 }}
                                                 placeholder="Minimum CO₂"
-                                                className="number-input"
+                                                className="esgnow-number-input"
                                             />
                                         </FormField>
                                         
-                                        <FormField className="filter-field">
+                                        <FormField className="esgnow-filter-field">
                                             <Label>Max CO₂ Emission (Kg CO₂e)</Label>
                                             <input
                                                 type="number"
@@ -389,7 +389,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                                     applyFilters(searchValue, selectedCategory, selectedSubCategory, value, minCO2, selectedCountry, sortBy);
                                                 }}
                                                 placeholder="Maximum CO₂"
-                                                className="number-input"
+                                                className="esgnow-number-input"
                                             />
                                         </FormField>
                                     </div>
@@ -399,83 +399,83 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     </div>
 
                     {/* Results Summary Section */}
-                    <div className="results-summary">
+                    <div className="esgnow-results-summary">
                         <span>Showing {currentItems.length} of {filteredData.length} products (page {currentPage} of {totalPages})</span>
                         {(searchValue || selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry) && (
                             <Button 
                                 title="Clear All Filters" 
-                                className="button-secondary clear-all-btn" 
+                                className="button-secondary esgnow-clear-all-btn" 
                                 onClick={handleClearFilters} 
                             />
                         )}
                     </div>
 
                     {isLoading ? (
-                        <div className="loading-container">
-                            <div className="loading-spinner"></div>
+                        <div className="esgnow-loading-container">
+                            <div className="esgnow-loading-spinner"></div>
                             <p>Loading products...</p>
                         </div>
                     ) : filteredData.length === 0 ? (
-                        <div className="no-results">
-                            <div className="no-results-icon">🔍</div>
+                        <div className="esgnow-no-results">
+                            <div className="esgnow-no-results-icon">🔍</div>
                             <h3>No products found</h3>
                             <p>Try adjusting your search criteria or filters</p>
                             <button 
                                 onClick={handleClearFilters} 
-                                className="clear-filters-button"
+                                className="esgnow-clear-filters-button"
                             >
                                 Clear All Filters
                             </button>
                         </div>
                     ) : viewMode === 'grid' ? (
                         <>
-                            <div className="product-grid">
+                            <div className="esgnow-product-grid">
                                 {currentItems.map((item, index) => (
                                     <div 
-                                        className="product-card" 
+                                        className="esgnow-product-card" 
                                         key={item._id || index} 
                                         onClick={() => setSelectedProduct(item)}
                                     >
-                                        <div className="product-card-header">
-                                            <div className="product-code">{item.code}</div>
-                                            <div className="co2-emission">
-                                                <span className="co2-value">{parseFloat(item.co2Emission).toFixed(2)}</span>
-                                                <span className="co2-unit">Kg CO₂e</span>
+                                        <div className="esgnow-product-card-header">
+                                            <div className="esgnow-product-code">{item.code}</div>
+                                            <div className="esgnow-co2-emission">
+                                                <span className="esgnow-co2-value">{parseFloat(item.co2Emission).toFixed(2)}</span>
+                                                <span className="esgnow-co2-unit">Kg CO₂e</span>
                                             </div>
                                         </div>
                                         
                                         <div 
-                                            className="product-image-container"
+                                            className="esgnow-product-image-container"
                                             style={{
                                                 backgroundImage: item.images && item.images.length > 0 ? 
                                                     `url(${item.images[0]})` : 'none'
                                             }}
                                         >
                                             {(!item.images || item.images.length === 0) && (
-                                                <div className="no-image">
+                                                <div className="esgnow-no-image">
                                                     <span>No Image</span>
                                                 </div>
                                             )}
                                         </div>
                                         
-                                        <div className="product-card-content">
-                                            <h3 className="product-name">{item.name}</h3>
-                                            <div className="product-meta">
-                                                <span className="product-category">{item.category}</span>
+                                        <div className="esgnow-product-card-content">
+                                            <h3 className="esgnow-product-name">{item.name}</h3>
+                                            <div className="esgnow-product-meta">
+                                                <span className="esgnow-product-category">{item.category}</span>
                                                 {item.subCategory && (
-                                                    <span className="product-subcategory">{item.subCategory}</span>
+                                                    <span className="esgnow-product-subcategory">{item.subCategory}</span>
                                                 )}
                                             </div>
                                             
-                                            <div className="product-details-preview">
-                                                <div className="product-weight">
-                                                    <span className="detail-label">Weight:</span>
-                                                    <span className="detail-value">{item.weight} Kg</span>
+                                            <div className="esgnow-product-details-preview">
+                                                <div className="esgnow-product-weight">
+                                                    <span className="esgnow-detail-label">Weight:</span>
+                                                    <span className="esgnow-detail-value">{item.weight} Kg</span>
                                                 </div>
                                                 
-                                                <div className="product-origin">
-                                                    <span className="detail-label">Origin:</span>
-                                                    <span className="detail-value">
+                                                <div className="esgnow-product-origin">
+                                                    <span className="esgnow-detail-label">Origin:</span>
+                                                    <span className="esgnow-detail-value">
                                                         {item.countryOfOrigin === "CN" ? "China" : 
                                                         item.countryOfOrigin === "VN" ? "Vietnam" : 
                                                         item.countryOfOrigin}
@@ -484,11 +484,11 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                             </div>
                                         </div>
                                         
-                                        <div className="product-card-footer">
-                                            <div className="product-date">
+                                        <div className="esgnow-product-card-footer">
+                                            <div className="esgnow-product-date">
                                                 Modified: {new Date(item.modifiedDate).toLocaleDateString()}
                                             </div>
-                                            <button className="view-details-button">
+                                            <button className="esgnow-view-details-button">
                                                 View Details
                                             </button>
                                         </div>
@@ -497,30 +497,30 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             </div>
 
                             {totalPages > 1 && (
-                                <div className="pagination-wrapper">
+                                <div className="esgnow-pagination-wrapper">
                                     <Pagination />
                                 </div>
                             )}
                         </>
                     ) : (
                         <>
-                            <div className="product-list">
-                                <div className="list-header">
-                                    <div className="list-col-name">Product Name</div>
-                                    <div className="list-col-category">Category</div>
-                                    <div className="list-col-weight">Weight</div>
-                                    <div className="list-col-origin">Origin</div>
-                                    <div className="list-col-co2">CO₂ Emission</div>
-                                    <div className="list-col-date">Modified Date</div>
-                                    <div className="list-col-actions">Actions</div>
+                            <div className="esgnow-product-list">
+                                <div className="esgnow-list-header">
+                                    <div className="esgnow-list-col-name">Product Name</div>
+                                    <div className="esgnow-list-col-category">Category</div>
+                                    <div className="esgnow-list-col-weight">Weight</div>
+                                    <div className="esgnow-list-col-origin">Origin</div>
+                                    <div className="esgnow-list-col-co2">CO₂ Emission</div>
+                                    <div className="esgnow-list-col-date">Modified Date</div>
+                                    <div className="esgnow-list-col-actions">Actions</div>
                                 </div>
 
                                 {currentItems.map((item, index) => (
-                                    <div className="list-item" key={item._id || index}>
-                                        <div className="list-col-name">
-                                            <div className="item-with-image">
+                                    <div className="esgnow-list-item" key={item._id || index}>
+                                        <div className="esgnow-list-col-name">
+                                            <div className="esgnow-item-with-image">
                                                 <div 
-                                                    className="list-item-thumbnail"
+                                                    className="esgnow-list-item-thumbnail"
                                                     style={{
                                                         backgroundImage: item.images && item.images.length > 0 ? 
                                                             `url(${item.images[0]})` : 'none'
@@ -528,33 +528,33 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                                 >
                                                     {(!item.images || item.images.length === 0) && "No Image"}
                                                 </div>
-                                                <div className="product-name-code">
-                                                    <span className="product-name">{item.name}</span>
-                                                    <span className="product-code">{item.code}</span>
+                                                <div className="esgnow-product-name-code">
+                                                    <span className="esgnow-product-name">{item.name}</span>
+                                                    <span className="esgnow-product-code">{item.code}</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="list-col-category">
+                                        <div className="esgnow-list-col-category">
                                             <div>{item.category}</div>
-                                            {item.subCategory && <div className="subcategory">{item.subCategory}</div>}
+                                            {item.subCategory && <div className="esgnow-subcategory">{item.subCategory}</div>}
                                         </div>
-                                        <div className="list-col-weight">{item.weight} Kg</div>
-                                        <div className="list-col-origin">
+                                        <div className="esgnow-list-col-weight">{item.weight} Kg</div>
+                                        <div className="esgnow-list-col-origin">
                                             {item.countryOfOrigin === "CN" ? "China" : 
                                              item.countryOfOrigin === "VN" ? "Vietnam" : 
                                              item.countryOfOrigin}
                                         </div>
-                                        <div className="list-col-co2">
-                                            <div className="co2-badge">
+                                        <div className="esgnow-list-col-co2">
+                                            <div className="esgnow-co2-badge">
                                                 {parseFloat(item.co2Emission).toFixed(2)} Kg CO₂e
                                             </div>
                                         </div>
-                                        <div className="list-col-date">
+                                        <div className="esgnow-list-col-date">
                                             {new Date(item.modifiedDate).toLocaleDateString()}
                                         </div>
-                                        <div className="list-col-actions">
+                                        <div className="esgnow-list-col-actions">
                                             <button 
-                                                className="view-details-button"
+                                                className="esgnow-view-details-button"
                                                 onClick={() => setSelectedProduct(item)}
                                             >
                                                 View Details
@@ -565,7 +565,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             </div>
 
                             {totalPages > 1 && (
-                                <div className="pagination-wrapper">
+                                <div className="esgnow-pagination-wrapper">
                                     <Pagination />
                                 </div>
                             )}
