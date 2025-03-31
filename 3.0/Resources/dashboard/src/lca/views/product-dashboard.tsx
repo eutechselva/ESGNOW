@@ -73,27 +73,27 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 </select>
                 
                 <div className="esgnow-pagination-buttons">
-                    <Button
+                    <button
                         title="Previous"
                         onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
                         disabled={currentPage === 1}
                         className="esgnow-pagination-button"
                     >
                         <span className="esgnow-pagination-arrow">←</span>
-                    </Button>
+                    </button>
                     
                     <span className="esgnow-pagination-info">
                         Page {currentPage} of {totalPages || 1}
                     </span>
                     
-                    <Button
+                    <button
                         title="Next"
                         onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                         disabled={currentPage === totalPages || totalPages === 0}
                         className="esgnow-pagination-button"
                     >
                         <span className="esgnow-pagination-arrow">→</span>
-                    </Button>
+                    </button>
                 </div>
             </div>
         </div>
