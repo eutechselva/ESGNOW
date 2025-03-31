@@ -3,7 +3,6 @@ import { Button, Input, FormField, Label, Select } from 'uxp/components';
 import { Modal } from 'uxp/components';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 import { TransportLeg } from '../types/transport-leg.type';
-import API_BASE_URL from "../config";
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
 import { createProject, createProjectProductMap, projectProductMapping } from "../../esgnow-service";
@@ -126,17 +125,17 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     };
 
     return (
-        <Modal className="save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
-            <div className="save-results-modal">
+        <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
+            <div className="esgnow-save-results-modal">
                 {/* {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
                 ) : (
                     <p>No existing projects found. Please create a new project.</p>
                 )} */}
 
-                <div className="card-container">
+                <div className="esgnow-card-container">
                     <div
-                        className={`option-card ${selectedCard === 'new' ? 'selected' : ''}`}
+                        className={`esgnow-option-card ${selectedCard === 'new' ? 'esgnow-selected' : ''}`}
                         onClick={() => setSelectedCard('new')}
                     >
                         <h3>Create New Project</h3>
@@ -144,7 +143,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                     </div>
                     {/* {hasExistingProjects && (
                         <div
-                            className={`option-card ${selectedCard === 'existing' ? 'selected' : ''}`}
+                            className={`esgnow-option-card ${selectedCard === 'existing' ? 'esgnow-selected' : ''}`}
                             onClick={() => setSelectedCard('existing')}
                         >
                             <h3>Add to Existing Project</h3>
@@ -154,7 +153,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 </div>
 
                 {selectedCard === 'new' && (
-                    <div className="new-project-inputs">
+                    <div className="esgnow-new-project-inputs">
                         <FormField>
                             <Label><span style={{ fontSize: '12px' }}>Project Name</span></Label>
                             <Input
@@ -177,7 +176,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 )}
 
                 {selectedCard === 'existing' && (
-                    <div className="existing-project-selection">
+                    <div className="esgnow-existing-project-selection">
                         <FormField>
                             <Label><span style={{ fontSize: '12px' }}>Select an existing project</span></Label>
                             <Select
@@ -191,16 +190,16 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 )}
 
                 {error && (
-                    <div className="error-message" style={{ color: 'red', marginBottom: '10px' }}>
+                    <div className="esgnow-error-message" style={{ color: 'red', marginBottom: '10px' }}>
                         {error}
                     </div>
                 )}
 
-                <div className="save-button-container">
+                <div className="esgnow-save-button-container">
                     <Button
                         title={isLoading ? "Saving..." : "Save"}
                         onClick={handleSave}
-                        className="save-results"
+                        className="esgnow-save-results"
                         disabled={isLoading}
                     />
                 </div>
@@ -323,37 +322,37 @@ const EmissionSummary: React.FC<{
         },
     };
     const renderOverviewTab = () => (
-        <div className="tab-content">
-            <div className="product-info-summary">
+        <div className="esgnow-tab-content">
+            <div className="esgnow-product-info-summary">
                 <div
-                    className="summary-image"
+                    className="esgnow-summary-image"
                     style={{
                         backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                     }}
                 >
-                    {!product.images[0] && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">{`${product.co2Emission} Kg CO₂e`}</div>
+                    {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
+                    <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
 
-                <div className="summary-details">
-                    <div className="detail-grid">
-                        <div className="detail-item">
+                <div className="esgnow-summary-details">
+                    <div className="esgnow-detail-grid">
+                        <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
                             <p>{product.code}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
                             <p>{product.category}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Sub Category</strong>
                             <p>{product.subCategory}</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Weight</strong>
                             <p>{product.weight} Kg</p>
                         </div>
-                        <div className="detail-item">
+                        <div className="esgnow-detail-item">
                             <strong>Country of Manufacture</strong>
                             <p>
                                 {product.countryOfOrigin === "CN" ? "China" :
@@ -362,12 +361,12 @@ const EmissionSummary: React.FC<{
                             </p>
                         </div>
                     </div>
-                    <div className="description-field">
+                    <div className="esgnow-description-field">
                         <strong>Product Description</strong>
-                        <div className="rich-text-editor">
+                        <div className="esgnow-rich-text-editor">
                             <textarea 
                                 defaultValue={product.description}
-                                className="editable-description"
+                                className="esgnow-editable-description"
                                 rows={4}
                             />
                         </div>
@@ -375,9 +374,9 @@ const EmissionSummary: React.FC<{
                 </div>
             </div>
 
-            <div className="widget product-footprint">
+            <div className="esgnow-widget esgnow-product-footprint">
                 <h3>Product Carbon Footprint Breakdowns</h3>
-                <div className="widget-content">
+                <div className="esgnow-widget-content">
                     <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
                 </div>
             </div>
@@ -385,172 +384,162 @@ const EmissionSummary: React.FC<{
     );
 
     const renderMaterialsTab = () => (
-        <div className="tab-content">
-            <div className="widget contribution-raw-material">
-            <h3>Contribution by Raw Material</h3>
-                <div className="widget-content">
-                <table>
-                                <thead>
-                                    <tr>
-                                        <th>Material Class</th>
-                                        { (plan == 'professional' &&  <th>Specific Material</th>)  }
-                                        <th>Contribution</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {(() => {
-                                        // Calculate the total emission factor
-                                        const totalEmissionFactor = product.materials.reduce(
-                                            (sum: number, item: any) => sum + item.emissionFactor,
-                                            0
-                                        );
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
+                <h3>Contribution by Raw Material</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Material Class</th>
+                                { (plan == 'professional' &&  <th>Specific Material</th>)  }
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.materials.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
 
-                                        // Sort the materials by emissionFactor in descending order
-                                        const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
 
-                                        // Map through the sorted materials and calculate percentage
-                                        return sortedMaterials.map((item: any) => {
-                                            const percentage =
-                                                totalEmissionFactor > 0
-                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                                    : 0;
-                                            return (
-                                                <tr key={item.materialClass}>
-                                                    <td>{item.materialClass}</td>
-                                                    { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
-                                                    <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
-                                                    <td>
-                                                <div className="percentage-bar">
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
+                                            <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
                                                     <div 
-                                                        className="percentage-fill" 
+                                                        className="esgnow-percentage-fill" 
                                                         style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
                                                     ></div>
                                                     <span>{percentage}%</span>
                                                 </div>
                                             </td>
-                                                </tr>
-                                            );
-                                        });
-                                    })()}
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            {/* <div className="widget product-footprint">
-                <h3>Product Footprint</h3>
-                <div className="widget-content">
-                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
-                </div>
-            </div> */}
         </div>
     );
 
     const renderManufacturingTab = () => (
-        <div className="tab-content">
-            <div className="widget contribution-manufacturing">
-            <h3>Contribution by Manufacturing</h3>
-                <div className="widget-content">
-                <table>
-                                <thead>
-                                    <tr>
-                                         { plan == 'basic' ? <th> Material</th> : <th>Specific Material</th>  }
-                                        <th>Manufacturing Process</th>
-                                        <th>Contribution</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-manufacturing">
+                <h3>Contribution by Manufacturing</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                { plan == 'basic' ? <th> Material</th> : <th>Specific Material</th>  }
+                                <th>Manufacturing Process</th>
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
 
+                                // Sort the productManufacturingProcess by emissionFactor in descending order
+                                const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
 
-
-                                    {(() => {
-                                        // Calculate the total emission factor
-                                        const totalEmissionFactor = product.productManufacturingProcess.reduce(
-                                            (sum: number, item: any) => sum + item.emissionFactor,
-                                            0
-                                        );
-
-                                        // Sort the productManufacturingProcess by emissionFactor in descending order
-                                        const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
-
-                                        // Map through the sorted materials and calculate percentage
-                                        return sortedProcess.map((item: any) => {
-                                            const percentage =
-                                                totalEmissionFactor > 0
-                                                    ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
-                                                    : 0;
-                                            return (
-                                                <tr key={item.materialClass}>
-                                                    <td>{item.materialClass}</td>
-                                                    <td>{item.manufacturingProcesses[0].category}</td>
-                                                    <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
-                                                    <td>
-                                                <div className="percentage-bar">
+                                // Map through the sorted materials and calculate percentage
+                                return sortedProcess.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
                                                     <div 
-                                                        className="percentage-fill" 
+                                                        className="esgnow-percentage-fill" 
                                                         style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
                                                     ></div>
                                                     <span>{percentage}%</span>
                                                 </div>
                                             </td>
-                                                </tr>
-                                            );
-                                        });
-                                    })()}
-                                </tbody>
-                            </table>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     );
 
     const renderTransportationTab = () => (
-        <div className="tab-content">
-            <div className="widget contribution-raw-material">
-            <h3>Contribution by Transportation</h3>
-                <div className="widget-content">
-                <table>
-                                <thead>
-                                    <tr>
-                                        <th>Mode</th>
-                                        <th>Origin</th>
-                                        <th>Destination</th>
-                                        <th>Contribution</th>
-                                        <th>Percentage</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {(() => {
-                                        // Calculate the total emission factor
-                                        const totalEmissionFactor = transportLegs.reduce(
-                                            (sum: number, item: any) => sum + item.transportEmission,
-                                            0
-                                        );
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
+                <h3>Contribution by Transportation</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Calculate the total emission factor
+                                const totalEmissionFactor = transportLegs.reduce(
+                                    (sum: number, item: any) => sum + item.transportEmission,
+                                    0
+                                );
 
-                                        // Sort the materials by emissionFactor in descending order
-                                        const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportEmission - a.transportEmission);
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportEmission - a.transportEmission);
 
-                                        // Map through the sorted materials and calculate percentage
-                                        return sortedMaterials.map((item: any) => {
-                                            const percentage =
-                                                totalEmissionFactor > 0
-                                                    ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
-                                                    : 0;
-                                            return (
-                                                <tr key={item.id}>
-                                                    <td>{item.transportMode}</td>
-                                                    { plan == 'professional' ?  <td>{item.originCountry }</td> : <td>{item.originGateway}</td>} 
-                                                    { plan == 'professional' ?  <td>{item.destinationCountry }</td> : <td>{item.destinationGateway}</td>} 
-                                                    <td>{parseFloat(item.transportEmission).toFixed(2)} KgCO₂e</td>
-                                                    <td>{percentage} %</td>
-                                                </tr>
-                                            );
-                                        });
-                                    })()}
-
-                                </tbody>
-                            </table>
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.transportMode}</td>
+                                            { plan == 'professional' ?  <td>{item.originCountry }</td> : <td>{item.originGateway}</td>} 
+                                            { plan == 'professional' ?  <td>{item.destinationCountry }</td> : <td>{item.destinationGateway}</td>} 
+                                            <td>{parseFloat(item.transportEmission).toFixed(2)} KgCO₂e</td>
+                                            <td>{percentage} %</td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -562,79 +551,57 @@ const EmissionSummary: React.FC<{
 
     return (
         <>
-            {/* {!hideHeader && (
-                <div className="title-container">
-                    <div className="save-go-back-buttons-container">
-                        <Button
-                            title="Save"
-                            onClick={() => setShowModal(true)}
-                            className="save-results-button"
-                        />
-                        <Button
-                            title="< Back"
-                            onClick={onBack}
-                            className="back-button"
-                        />
-                    </div>
-                </div>
-            )} */}
-                <div className="header-container">
+            <div className="esgnow-header-container">
                 {!hideHeader && (
                     <>
-                        <div className="title-section">
-                            <h1 className="dashboard-title">Transport Summary</h1>
-                            <p className="subheading">Product: {product.name}</p>
+                        <div className="esgnow-title-section">
+                            <h1 className="esgnow-dashboard-title">Transport Summary</h1>
+                            <p className="esgnow-subheading">Product: {product.name}</p>
                         </div>
-                        <div className="action-buttons">
-                        <Button
-                            title="Save"
-                            onClick={() => setShowModal(true)}
-                            className="save-results-button"
-                        >
-                            {/* <Button
-                                title="Back"
-                                onClick={onClose}
-                                className="back-button"
-                            > */}
-                                <span className="back-icon">←</span>
+                        <div className="esgnow-action-buttons">
+                            <Button
+                                title="Save"
+                                onClick={() => setShowModal(true)}
+                                className="esgnow-save-results-button"
+                            >
+                                <span className="esgnow-back-icon">←</span>
                                 Back
                             </Button>
-                            
-                                <Button
+                                
+                            <Button
                                 title="< Back"
                                 onClick={onBack}
-                                className="back-button"
+                                className="esgnow-back-button"
                             >
-                                    <span className="delete-icon">×</span>
-                                    Delete
-                                </Button>
-                            
+                                <span className="esgnow-delete-icon">×</span>
+                                Delete
+                            </Button>
                         </div>
                     </>
                 )}
             </div>
-            <div className="tabs-container">
-                <div className="tabs">
+            <div className="esgnow-tabs-container">
+                <div className="esgnow-tabs">
                     <button 
-                        className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'overview' ? 'esgnow-active' : ''}`}
                         onClick={() => setActiveTab('overview')}
                     >
                         Overview
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'materials' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'materials' ? 'esgnow-active' : ''}`}
                         onClick={() => setActiveTab('materials')}
                     >
                         Raw Materials
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'manufacturing' ? 'esgnow-active' : ''}`}
                         onClick={() => setActiveTab('manufacturing')}
                     >
                         Manufacturing
                     </button>
                     <button 
-                        className={`tab-button ${activeTab === 'transportation' ? 'active' : ''}`}
+                        className={`esgnow-tab-button ${activeTab === 'transportation' ? 'esgnow-active' : ''}`}
                         onClick={() => setActiveTab('transportation')}
                     >
                         Transportation
