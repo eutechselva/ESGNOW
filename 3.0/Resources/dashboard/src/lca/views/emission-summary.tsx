@@ -331,7 +331,7 @@ const EmissionSummary: React.FC<{
                     }}
                 >
                     {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
-                    <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div>
+                    {/* <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div> */}
                 </div>
 
                 <div className="esgnow-summary-details">
