@@ -40075,7 +40075,7 @@ function projectProductMapping(uxpContext, payload) {
 exports.projectProductMapping = projectProductMapping;
 function bulkUpload(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
-        return executeRequest(uxpContext, `${BaseEndPoint}/bulk-upload`, _uxp_1.RequestMethod.POST, {}, payload);
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/bulk-upload`, _uxp_1.RequestMethod.POST, {}, payload);
     });
 }
 exports.bulkUpload = bulkUpload;
@@ -41072,9 +41072,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
         react_1.default.createElement("div", { className: "esgnow-product-info-summary" },
             react_1.default.createElement("div", { className: "esgnow-summary-image", style: {
                     backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
-                } },
-                !product.images[0] && react_1.default.createElement("div", { className: "esgnow-image-placeholder" }, "Image Unavailable"),
-                react_1.default.createElement("div", { className: "esgnow-image-label" }, `${product.co2Emission} Kg CO₂e`)),
+                } }, !product.images[0] && react_1.default.createElement("div", { className: "esgnow-image-placeholder" }, "Image Unavailable")),
             react_1.default.createElement("div", { className: "esgnow-summary-details" },
                 react_1.default.createElement("div", { className: "esgnow-detail-grid" },
                     react_1.default.createElement("div", { className: "esgnow-detail-item" },
@@ -43024,8 +43022,10 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                 react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Country of Manufacture")),
             react_1.default.createElement(components_1.Select, { options: [
                     { label: 'China', value: 'CN' },
-                    { label: 'Vietnam', value: 'VD' },
-                    { label: 'Global', value: 'GL' },
+                    { label: 'Germany', value: 'DE' },
+                    { label: 'Sweden', value: 'SE' },
+                    { label: 'Global', value: 'GLO' },
+                    { label: ' Rest of World', value: 'RoW' },
                     // Add more countries as needed
                 ], selected: country, onChange: (value) => setCountry(value) })),
         react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })));
@@ -43085,6 +43085,8 @@ __webpack_require__(/*! ./product-dashboard.scss */ "./src/lca/views/product-das
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/views/product-wizard.tsx");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
+const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const ProductDashboardWidget = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -43102,7 +43104,6 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
     const [isLoading, setIsLoading] = React.useState(true);
     const [selectedCountry, setSelectedCountry] = React.useState(null);
-    const [advancedSearch, setAdvancedSearch] = React.useState(false);
     const alerts = (0, components_1.useAlert)();
     // Pagination state
     const [currentPage, setCurrentPage] = React.useState(1);
@@ -43136,14 +43137,14 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 React.createElement("option", { value: 24 }, "24 per page")),
             React.createElement("div", { className: "esgnow-pagination-buttons" },
                 React.createElement("button", { title: "Previous", onClick: () => setCurrentPage(prev => Math.max(prev - 1, 1)), disabled: currentPage === 1, className: "esgnow-pagination-button" },
-                    React.createElement("span", { className: "esgnow-pagination-arrow" }, "\u2190")),
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faChevronLeft, className: "esgnow-pagination-arrow" })),
                 React.createElement("span", { className: "esgnow-pagination-info" },
                     "Page ",
                     currentPage,
                     " of ",
                     totalPages || 1),
                 React.createElement("button", { title: "Next", onClick: () => setCurrentPage(prev => Math.min(prev + 1, totalPages)), disabled: currentPage === totalPages || totalPages === 0, className: "esgnow-pagination-button" },
-                    React.createElement("span", { className: "esgnow-pagination-arrow" }, "\u2192"))))));
+                    React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faChevronRight, className: "esgnow-pagination-arrow" }))))));
     // Reset to first page when filters change
     React.useEffect(() => {
         setCurrentPage(1);
@@ -43265,8 +43266,44 @@ const ProductDashboardWidget = ({ uxpContext }) => {
             React.createElement("div", { className: "esgnow-search-filter-container" },
                 React.createElement("div", { className: "esgnow-search-section" },
                     React.createElement("div", { className: "esgnow-search-box-wrapper" },
-                        React.createElement(components_1.SearchBox, { placeholder: "Search by name, category, code...", value: searchValue, onChange: handleSearchChange, className: "esgnow-product-search-box" }),
-                        React.createElement(components_1.Button, { className: `esgnow-advanced-search-toggle ${advancedSearch ? 'active' : ''}`, onClick: () => setAdvancedSearch(!advancedSearch), title: advancedSearch ? "Hide Advanced Search" : "Advanced Search" }, advancedSearch ? "Hide Filters" : "Advanced Filters")),
+                        React.createElement("div", { className: "search-field" },
+                            React.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faSearch, className: "search-icon" }),
+                            React.createElement("input", { type: "text", className: "search-input", placeholder: "Search Products", value: searchValue, onChange: (e) => handleSearchChange(e.target.value) })),
+                        React.createElement("div", { className: "esgnow-filter-section" },
+                            React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "esgnow-filter-panel" },
+                                React.createElement("div", { className: "esgnow-filter-grid" },
+                                    React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
+                                        React.createElement(components_1.Label, null, "Category"),
+                                        React.createElement(components_1.Select, { selected: selectedCategory, options: categories.map(cat => ({ label: cat, value: cat })), onChange: (value) => {
+                                                setSelectedCategory(value);
+                                                applyFilters(searchValue, value, selectedSubCategory, maxCO2, minCO2, selectedCountry, sortBy);
+                                            }, placeholder: "-- All Categories --" })),
+                                    React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
+                                        React.createElement(components_1.Label, null, "Sub Category"),
+                                        React.createElement(components_1.Select, { selected: selectedSubCategory, options: subCategories.map(subCat => ({ label: subCat, value: subCat })), onChange: (value) => {
+                                                setSelectedSubCategory(value);
+                                                applyFilters(searchValue, selectedCategory, value, maxCO2, minCO2, selectedCountry, sortBy);
+                                            }, placeholder: "-- All Sub Categories --" })),
+                                    React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
+                                        React.createElement(components_1.Label, null, "Country of Manufacture"),
+                                        React.createElement(components_1.Select, { selected: selectedCountry, options: countries.map(country => ({ label: country, value: country })), onChange: (value) => {
+                                                setSelectedCountry(value);
+                                                applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, value, sortBy);
+                                            }, placeholder: "-- All Countries --" })),
+                                    React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
+                                        React.createElement(components_1.Label, null, "Min CO\u2082 Emission (Kg CO\u2082e)"),
+                                        React.createElement("input", { type: "number", min: "0", step: "0.1", value: minCO2 || "", onChange: (event) => {
+                                                const value = event.target.value ? parseFloat(event.target.value) : null;
+                                                setMinCO2(value);
+                                                applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, value, selectedCountry, sortBy);
+                                            }, placeholder: "Minimum CO\u2082", className: "esgnow-number-input" })),
+                                    React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
+                                        React.createElement(components_1.Label, null, "Max CO\u2082 Emission (Kg CO\u2082e)"),
+                                        React.createElement("input", { type: "number", min: "0", step: "0.1", value: maxCO2 || "", onChange: (event) => {
+                                                const value = event.target.value ? parseFloat(event.target.value) : null;
+                                                setMaxCO2(value);
+                                                applyFilters(searchValue, selectedCategory, selectedSubCategory, value, minCO2, selectedCountry, sortBy);
+                                            }, placeholder: "Maximum CO\u2082", className: "esgnow-number-input" })))))),
                     React.createElement("div", { className: "esgnow-view-options" },
                         React.createElement("div", { className: "esgnow-sort-dropdown" },
                             React.createElement(components_1.Label, null, "Sort by"),
@@ -43285,42 +43322,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                             React.createElement("button", { className: `esgnow-view-mode-button ${viewMode === 'grid' ? 'active' : ''}`, onClick: () => setViewMode('grid'), title: "Grid View" },
                                 React.createElement("span", { className: "esgnow-grid-icon" }, "\u25A6")),
                             React.createElement("button", { className: `esgnow-view-mode-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list'), title: "List View" },
-                                React.createElement("span", { className: "esgnow-list-icon" }, "\u2261"))))),
-                advancedSearch && (React.createElement("div", { className: "esgnow-advanced-filter-section" },
-                    React.createElement(components_1.FilterPanel, { enableClear: !!(selectedCategory || selectedSubCategory || maxCO2 || minCO2 || selectedCountry), onClear: handleClearFilters, onOpen: () => setShowFilterPanel(true), onClose: () => setShowFilterPanel(false), className: "esgnow-filter-panel" },
-                        React.createElement("div", { className: "esgnow-filter-grid" },
-                            React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                React.createElement(components_1.Label, null, "Category"),
-                                React.createElement(components_1.Select, { selected: selectedCategory, options: categories.map(cat => ({ label: cat, value: cat })), onChange: (value) => {
-                                        setSelectedCategory(value);
-                                        applyFilters(searchValue, value, selectedSubCategory, maxCO2, minCO2, selectedCountry, sortBy);
-                                    }, placeholder: "-- All Categories --" })),
-                            React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                React.createElement(components_1.Label, null, "Sub Category"),
-                                React.createElement(components_1.Select, { selected: selectedSubCategory, options: subCategories.map(subCat => ({ label: subCat, value: subCat })), onChange: (value) => {
-                                        setSelectedSubCategory(value);
-                                        applyFilters(searchValue, selectedCategory, value, maxCO2, minCO2, selectedCountry, sortBy);
-                                    }, placeholder: "-- All Sub Categories --" })),
-                            React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                React.createElement(components_1.Label, null, "Country of Manufacture"),
-                                React.createElement(components_1.Select, { selected: selectedCountry, options: countries.map(country => ({ label: country, value: country })), onChange: (value) => {
-                                        setSelectedCountry(value);
-                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, value, sortBy);
-                                    }, placeholder: "-- All Countries --" })),
-                            React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                React.createElement(components_1.Label, null, "Min CO\u2082 Emission (Kg CO\u2082e)"),
-                                React.createElement("input", { type: "number", min: "0", step: "0.1", value: minCO2 || "", onChange: (event) => {
-                                        const value = event.target.value ? parseFloat(event.target.value) : null;
-                                        setMinCO2(value);
-                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, value, selectedCountry, sortBy);
-                                    }, placeholder: "Minimum CO\u2082", className: "esgnow-number-input" })),
-                            React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                React.createElement(components_1.Label, null, "Max CO\u2082 Emission (Kg CO\u2082e)"),
-                                React.createElement("input", { type: "number", min: "0", step: "0.1", value: maxCO2 || "", onChange: (event) => {
-                                        const value = event.target.value ? parseFloat(event.target.value) : null;
-                                        setMaxCO2(value);
-                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, value, minCO2, selectedCountry, sortBy);
-                                    }, placeholder: "Maximum CO\u2082", className: "esgnow-number-input" }))))))),
+                                React.createElement("span", { className: "esgnow-list-icon" }, "\u2261")))))),
             React.createElement("div", { className: "esgnow-results-summary" },
                 React.createElement("span", null,
                     "Showing ",

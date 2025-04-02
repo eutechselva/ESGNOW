@@ -240,7 +240,7 @@ export async function projectProductMapping(
 export async function bulkUpload(uxpContext: IContextProvider, payload: any) {
   return executeRequest(
     uxpContext,
-    `${BaseEndPoint}/bulk-upload`,
+    `${BaseEndPoint}/products/bulk-upload`,
     RequestMethod.POST,
     {},
     payload
