@@ -39951,7 +39951,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.getBillOfMaterials = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
@@ -40079,6 +40079,12 @@ function bulkUpload(uxpContext, payload) {
     });
 }
 exports.bulkUpload = bulkUpload;
+function getBillOfMaterials(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/bill-of-materials`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.getBillOfMaterials = getBillOfMaterials;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40518,7 +40524,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             entryType === "manual" && (react_1.default.createElement(components_1.Button, { title: "Add ", className: "add-materials-button", onClick: handleAddMaterials })),
             entryType === "ai" && (react_1.default.createElement(components_1.Button, { title: "Generate", className: "generate-materials-button", onClick: handleGenerateMaterials }))),
         aiGeneratingBOM && react_1.default.createElement("div", { className: "ai-generating-bom" }, "Generating Bill of Materials..."),
-        showMaterialEntry && entryType === "manual" && (react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined })),
+        showMaterialEntry && entryType === "manual" && (react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined, uxpContext: uxpContext })),
         (materials.length > 0) && (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete }),
             react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
@@ -42554,73 +42560,61 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./material-entry.scss */ "./src/lca/views/material-entry.scss");
-const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial }) => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, uxpContext }) => {
     const [materials, setMaterials] = (0, react_1.useState)([{
             materialClass: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.materialClass) || "",
             specificMaterial: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.specificMaterial) || "",
             weight: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.weight) || "",
-            unit: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.unit) || ""
+            unit: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.unit) || "kg"
         }]);
-    const classOptions = [
-        { label: "Wood", value: "Wood" },
-        { label: "Metal", value: "Metal" },
-        { label: "Plastic", value: "Plastic" },
-        { label: "Glass", value: "Glass" },
-        { label: "Fabric", value: "Fabric" },
-        { label: "Leather", value: "Leather" },
-        { label: "Laminate", value: "Laminate" },
-        { label: "Mesh", value: "Mesh" },
-        { label: "Foam", value: "Foam" },
-        { label: "Stone", value: "Stone" },
-        { label: "Bamboo", value: "Bamboo" },
-    ];
-    const materialOptions = {
-        Wood: [
-            { label: "Oak", value: "Oak" },
-            { label: "Maple", value: "Maple" },
-            { label: "Cherry", value: "Cherry" },
-            { label: "Walnut", value: "Walnut" },
-            { label: "Beech", value: "Beech" },
-            { label: "Mahogany", value: "Mahogany" },
-            { label: "Pine", value: "Pine" },
-            { label: "Birch", value: "Birch" },
-            { label: "Teak", value: "Teak" },
-            { label: "Ash", value: "Ash" },
-            { label: "Alder", value: "Alder" },
-            { label: "Rubberwood", value: "Rubberwood" },
-            { label: "Rosewood", value: "Rosewood" },
-            { label: "Poplar", value: "Poplar" },
-            { label: "Bamboo", value: "Bamboo" },
-            { label: "MDF (Medium Density Fiberboard)", value: "MDF" },
-        ],
-        Metal: [
-            { label: "Stainless Steel", value: "stainless-steel" },
-            { label: "Aluminium", value: "Aluminium" },
-            { label: "Steel", value: "Steel" },
-            { label: "Chromed steel", value: "chromed-steel" },
-            { label: "Wroght iron", value: "wroght-iron" },
-            { label: "Cast iron", value: "cast-iron" },
-            { label: "Brass", value: "Brass" },
-            { label: "Copper", value: "Copper" },
-            { label: "Zinc", value: "Zinc" },
-            { label: "Titanium", value: "Titanium" },
-            { label: "Mild steel (Carbon steel)", value: "mild-steel" },
-            { label: "Galvanized steel", value: "galvanized-steel" },
-            { label: "Nickel", value: "Nickel" },
-        ],
-        Plastic: [
-            { label: "Polypropylene", value: "Polypropylene" },
-            { label: "Polyvinyl Chloride", value: "polyvinyl-chloride" },
-            { label: "Acrylonitrile Butadiene Styrene (ABS)", value: "ABS" },
-            { label: "Polycarbonate (PC)", value: "polycarbonate" },
-            { label: "High-Density Polyethylene (HDPE)", value: "HDPE" },
-            { label: "Polyurethane (PU)", value: "pu" },
-        ],
-    };
+    const [materialOptions, setMaterialOptions] = (0, react_1.useState)({});
+    const [classOptions, setClassOptions] = (0, react_1.useState)([]);
+    (0, react_1.useEffect)(() => {
+        const fetchMaterials = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                debugger;
+                const { data, error } = yield (0, esgnow_service_1.getBillOfMaterials)(uxpContext);
+                if (error) {
+                    console.error("Error fetching bill of materials:", error);
+                    return;
+                }
+                if (data && (error == undefined)) {
+                    // Convert API response to the format needed for the component
+                    const options = {};
+                    const classes = [];
+                    // Transform data into the format needed for the dropdowns
+                    Object.keys(data).forEach(category => {
+                        classes.push({ label: category, value: category });
+                        options[category] = data[category].map((material) => ({
+                            label: material,
+                            value: material
+                        }));
+                    });
+                    setClassOptions(classes);
+                    setMaterialOptions(options);
+                }
+            }
+            catch (error) {
+                console.error("Failed to fetch bill of materials:", error);
+            }
+        });
+        fetchMaterials();
+    }, [uxpContext]);
+    // Using only API data, no fallback options
     const handleAddAnother = () => {
         setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
     };
@@ -42641,7 +42635,7 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial }) => {
             react_1.default.createElement(components_1.FormField, { className: "specific-material-field" },
                 react_1.default.createElement(components_1.Label, null, "Specific Material"),
                 react_1.default.createElement(components_1.Select, { options: material.materialClass
-                        ? materialOptions[material.materialClass] || []
+                        ? (materialOptions[material.materialClass] || [])
                         : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "specific-material-select" })),
             react_1.default.createElement(components_1.FormField, { className: "material-weight-field" },
                 react_1.default.createElement(components_1.Label, null, "Material Weight (Kg)"),

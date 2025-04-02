@@ -160,6 +160,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                     onAddMaterial={handleMaterialAdd}
                     isEditable={true}
                     initialMaterial={editIndex !== null ? materials[editIndex] : undefined}
+                    uxpContext={uxpContext}
                 />
             )}
 

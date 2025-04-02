@@ -247,6 +247,15 @@ export async function bulkUpload(uxpContext: IContextProvider, payload: any) {
   );
 }
 
+export async function getBillOfMaterials(uxpContext: IContextProvider) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/bill-of-materials`,
+    RequestMethod.GET,
+    {}
+  );
+}
+
 // Baselines for locations
 export async function getLocationData(
   uxpContext: IContextProvider,

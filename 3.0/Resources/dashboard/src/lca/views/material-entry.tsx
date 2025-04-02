@@ -1,83 +1,64 @@
 import React, { useEffect, useState } from "react";
 import { Select, FormField, Label, Input, Button } from "uxp/components";
 import "./material-entry.scss";
+import { getBillOfMaterials } from "../../esgnow-service";
+import { IContextProvider } from "@uxp";
 
 interface MaterialEntryProps {
     onAddMaterial: (materials: { materialClass: string; specificMaterial: string; weight: string; unit: string }[]) => void;
     isEditable?: boolean;
     initialMaterial?: { materialClass: string; specificMaterial: string; weight: string; unit: string };
+    uxpContext: IContextProvider;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable, initialMaterial }) => {
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable, initialMaterial, uxpContext }) => {
     const [materials, setMaterials] = useState([{ 
         materialClass: initialMaterial?.materialClass || "", 
         specificMaterial: initialMaterial?.specificMaterial || "", 
         weight: initialMaterial?.weight || "", 
-        unit: initialMaterial?.unit || "" 
+        unit: initialMaterial?.unit || "kg" 
     }]);
-
-    const classOptions = [
-        { label: "Wood", value: "Wood" },
-        { label: "Metal", value: "Metal" },
-        { label: "Plastic", value: "Plastic" },
-        { label: "Glass", value: "Glass" },
-        { label: "Fabric", value: "Fabric" },
-        { label: "Leather", value: "Leather" },
-        { label: "Laminate", value: "Laminate" },
-        { label: "Mesh", value: "Mesh" },
-        { label: "Foam", value: "Foam" },
-        { label: "Stone", value: "Stone" },
-        { label: "Bamboo", value: "Bamboo" },
+    
+    const [materialOptions, setMaterialOptions] = useState<Record<string, { label: string; value: string }[]>>({});
+    const [classOptions, setClassOptions] = useState<{ label: string; value: string }[]>([]);
+    
+    useEffect(() => {
+        const fetchMaterials = async () => {
+            try {
+                debugger;
+                const { data, error } = await getBillOfMaterials(uxpContext);
+                if (error) {
+                    console.error("Error fetching bill of materials:", error);
+                    return;
+                }
+                
+                if (data && (error == undefined)) {
+                    // Convert API response to the format needed for the component
+                    const options: Record<string, { label: string; value: string }[]> = {};
+                    const classes: { label: string; value: string }[] = [];
+                    
+                    // Transform data into the format needed for the dropdowns
+                    Object.keys(data).forEach(category => {
+                        classes.push({ label: category, value: category });
+                        
+                        options[category] = data[category].map((material: string) => ({
+                            label: material,
+                            value: material
+                        }));
+                    });
+                    
+                    setClassOptions(classes);
+                    setMaterialOptions(options);
+                }
+            } catch (error) {
+                console.error("Failed to fetch bill of materials:", error);
+            }
+        };
         
-        
-    ];
+        fetchMaterials();
+    }, [uxpContext]);
 
-    const materialOptions: Record<string, { label: string; value: string }[]> = {
-        Wood: [
-            { label: "Oak", value: "Oak" },
-            { label: "Maple", value: "Maple" },
-            { label: "Cherry", value: "Cherry" },
-            { label: "Walnut", value: "Walnut" },
-            { label: "Beech", value: "Beech" },
-            { label: "Mahogany", value: "Mahogany" },
-            { label: "Pine", value: "Pine" },
-            { label: "Birch", value: "Birch" },
-            { label: "Teak", value: "Teak" },
-            { label: "Ash", value: "Ash" },
-            { label: "Alder", value: "Alder" },
-            { label: "Rubberwood", value: "Rubberwood" },
-            { label: "Rosewood", value: "Rosewood" },
-            { label: "Poplar", value: "Poplar" },
-            { label: "Bamboo", value: "Bamboo" },
-            { label: "MDF (Medium Density Fiberboard)", value: "MDF" },
-
-
-        ],
-        Metal: [
-            { label: "Stainless Steel", value: "stainless-steel" },
-            { label: "Aluminium", value: "Aluminium" },
-            { label: "Steel", value: "Steel" },
-            { label: "Chromed steel", value: "chromed-steel" },
-            { label: "Wroght iron", value: "wroght-iron" },
-            { label: "Cast iron", value: "cast-iron" },
-            { label: "Brass", value: "Brass" },
-            { label: "Copper", value: "Copper" },
-            { label: "Zinc", value: "Zinc" },
-            { label: "Titanium", value: "Titanium" },
-            { label: "Mild steel (Carbon steel)", value: "mild-steel"},
-            { label: "Galvanized steel", value: "galvanized-steel" },
-            { label: "Nickel", value: "Nickel" },
-
-        ],
-        Plastic: [
-            { label: "Polypropylene", value: "Polypropylene" },
-            { label: "Polyvinyl Chloride", value: "polyvinyl-chloride" },
-            { label: "Acrylonitrile Butadiene Styrene (ABS)", value: "ABS" },
-            { label: "Polycarbonate (PC)", value: "polycarbonate"},
-            { label: "High-Density Polyethylene (HDPE)", value: "HDPE"},
-            { label: "Polyurethane (PU)", value: "pu"},
-        ],
-    };
+    // Using only API data, no fallback options
 
     const handleAddAnother = () => {
         setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
@@ -114,7 +95,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                    <Select
                        options={
                            material.materialClass
-                               ? materialOptions[material.materialClass] || []
+                               ? (materialOptions[material.materialClass] || [])
                                : [{ label: "Select Material Class first", value: "" }]
                        }
                        selected={material.specificMaterial}
