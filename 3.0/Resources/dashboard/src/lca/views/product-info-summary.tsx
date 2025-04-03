@@ -215,7 +215,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
-                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td> {parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e ({parseFloat(item.weight).toFixed(2)} Kg)</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 
