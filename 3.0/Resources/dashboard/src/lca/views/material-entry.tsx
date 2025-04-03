@@ -36,15 +36,22 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                     // Convert API response to the format needed for the component
                     const options: Record<string, { label: string; value: string }[]> = {};
                     const classes: { label: string; value: string }[] = [];
+                    const sortedCategories = Object.keys(data).sort((a, b) => a.localeCompare(b));
                     
                     // Transform data into the format needed for the dropdowns
-                    Object.keys(data).forEach(category => {
+                    sortedCategories.forEach(category => {
+                        // Add sorted category to classes
                         classes.push({ label: category, value: category });
                         
-                        options[category] = data[category].map((material: string) => ({
-                            label: material,
-                            value: material
-                        }));
+                        // Sort materials within each category
+                        const sortedMaterials = data[category]
+                            .map((material: string) => ({
+                                label: material,
+                                value: material
+                            }))
+                            .sort((a: { label: string; value: string }, b: { label: string; value: string }) => a.label.localeCompare(b.label));
+                        
+                        options[category] = sortedMaterials;
                     });
                     
                     setClassOptions(classes);
@@ -80,7 +87,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
             {materials.map((material, index) => (
                <div key={index} className="material-row">
                <FormField className="material-field">
-                   <Label>Material Class</Label>
+                   <Label className="material-entry-label">Material Class</Label>
                    <Select
                        options={classOptions}
                        selected={material.materialClass}
@@ -91,7 +98,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                </FormField>
    
                <FormField className="specific-material-field">
-                   <Label>Specific Material</Label>
+                   <Label className="specific-material-label">Specific Material</Label>
                    <Select
                        options={
                            material.materialClass
@@ -106,7 +113,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                </FormField>
    
                <FormField className="material-weight-field">
-                   <Label>Material Weight (Kg)</Label>
+                   <Label className="material-weight-field-label">Material Weight (Kg)</Label>
                    <Input
                        type="number"
                        value={material.weight}

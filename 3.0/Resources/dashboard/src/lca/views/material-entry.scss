@@ -26,21 +26,22 @@
 .specific-material-select,
 .weight-input,
 .unit-select {
-    width: 100%;  
-    
+    width: 100%;
+
 }
 
 .unit-select {
-    max-width: 100px; 
+    max-width: 100px;
 }
 
 .weight-input {
-    max-width: 180px; 
+    max-width: 180px;
 }
+
 .weight-input input {
-    background-color: transparent; 
-   // border: 1px solid #ccc; 
-    padding: 8px; 
+    background-color: transparent;
+    // border: 1px solid #ccc; 
+    padding: 8px;
     box-sizing: border-box;
 }
 
@@ -74,4 +75,10 @@
 .add-material-button {
     text-align: center;
     margin-right: 20px;
+}
+
+.material-entry-label,
+.specific-material-label,
+.material-weight-field-label {
+    font-size: 12px;
 }
