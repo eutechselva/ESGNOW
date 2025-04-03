@@ -42616,7 +42616,7 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, uxpContext 
     }, [uxpContext]);
     // Using only API data, no fallback options
     const handleAddAnother = () => {
-        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
+        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
     };
     const handleInputChange = (index, field, value) => {
         const updatedMaterials = [...materials];

@@ -61,7 +61,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
     // Using only API data, no fallback options
 
     const handleAddAnother = () => {
-        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
+        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
     };
 
     const handleInputChange = (index: number, field: string, value: string) => {
