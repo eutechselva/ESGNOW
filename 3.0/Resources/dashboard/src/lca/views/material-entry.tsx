@@ -87,7 +87,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
             {materials.map((material, index) => (
                <div key={index} className="material-row">
                <FormField className="material-field">
-                   <Label className="material-entry-label">Material Class</Label>
+                   <Label className="esgnow-material-entry-label">Material Class</Label>
                    <Select
                        options={classOptions}
                        selected={material.materialClass}
@@ -98,7 +98,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                </FormField>
    
                <FormField className="specific-material-field">
-                   <Label className="specific-material-label">Specific Material</Label>
+                   <Label className="esgnow-specific-material-label">Specific Material</Label>
                    <Select
                        options={
                            material.materialClass
@@ -113,7 +113,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                </FormField>
    
                <FormField className="material-weight-field">
-                   <Label className="material-weight-field-label">Material Weight (Kg)</Label>
+                   <Label className="esgnow-material-weight-field-label">Material Weight (Kg)</Label>
                    <Input
                        type="number"
                        value={material.weight}
