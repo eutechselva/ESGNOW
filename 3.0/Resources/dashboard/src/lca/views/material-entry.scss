@@ -1,4 +1,4 @@
-.material-row {
+.esgnow-material-row {
     display: flex;
     flex-wrap: wrap;
     gap: 13px;
@@ -6,25 +6,25 @@
     margin-bottom: 10px;
 }
 
-.material-field {
+.esgnow-material-field {
     flex: 1;
 }
 
-.specific-material-field {
+.esgnow-specific-material-field {
     flex: 2;
 }
 
-.material-weight-field {
+.esgnow-material-weight-field {
     flex: 0.7;
 }
 
-.unit-field {
+.esgnow-unit-field {
     flex: 0.3;
 }
 
-.material-select,
-.specific-material-select,
-.weight-input,
+.esgnow-material-select,
+.esgnow-specific-material-select,
+.esgnow-weight-input,
 .unit-select {
     width: 100%;
 
@@ -34,11 +34,11 @@
     max-width: 100px;
 }
 
-.weight-input {
+.esgnow-weight-input {
     max-width: 180px;
 }
 
-.weight-input input {
+.esgnow-weight-input input {
     background-color: transparent;
     // border: 1px solid #ccc; 
     padding: 8px;
@@ -50,16 +50,16 @@
         flex-direction: column;
     }
 
-    .material-field,
-    .specific-material-field,
-    .material-weight-field,
+    .esgnow-material-field,
+    .esgnow-specific-material-field,
+    .esgnow-material-weight-field,
     .unit-field {
         flex: 1;
         min-width: 100%;
     }
 }
 
-.add-another-material-container {
+.esgnow-add-another-material-container {
     width: 100%;
     display: flex;
     justify-content: flex-end;
@@ -67,12 +67,12 @@
     margin-right: 12px;
 }
 
-.add-material-button-container {
+.esgnow-add-material-button-container {
     display: flex;
     margin-top: 20px;
 }
 
-.add-material-button {
+.esgnow-add-material-button {
     text-align: center;
     margin-right: 20px;
 }
