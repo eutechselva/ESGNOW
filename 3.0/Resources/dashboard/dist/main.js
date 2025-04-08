@@ -306,7 +306,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.material-field {\n  flex: 1;\n}\n\n.specific-material-field {\n  flex: 2;\n}\n\n.material-weight-field {\n  flex: 0.7;\n}\n\n.unit-field {\n  flex: 0.3;\n}\n\n.material-select,\n.specific-material-select,\n.weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.weight-input {\n  max-width: 180px;\n}\n\n.weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .material-field,\n  .specific-material-field,\n  .material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.add-another-material-container {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  margin-right: 12px;\n}\n\n.add-material-button-container {\n  display: flex;\n  margin-top: 20px;\n}\n\n.add-material-button {\n  text-align: center;\n  margin-right: 20px;\n}\n\n.material-entry-label,\n.specific-material-label,\n.material-weight-field-label {\n  font-size: 12px;\n}", ""]);
+exports.push([module.id, ".esgnow-material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.esgnow-material-field {\n  flex: 1;\n}\n\n.esgnow-specific-material-field {\n  flex: 2;\n}\n\n.esgnow-material-weight-field {\n  flex: 0.7;\n}\n\n.esgnow-unit-field {\n  flex: 0.3;\n}\n\n.esgnow-material-select,\n.esgnow-specific-material-select,\n.esgnow-weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.esgnow-weight-input {\n  max-width: 180px;\n}\n\n.esgnow-weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .esgnow-material-field,\n  .esgnow-specific-material-field,\n  .esgnow-material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.esgnow-add-another-material-container {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  margin-right: 12px;\n}\n\n.esgnow-add-material-button-container {\n  display: flex;\n  margin-top: 20px;\n}\n\n.esgnow-add-material-button {\n  text-align: center;\n  margin-right: 20px;\n}\n\n.esgnow-material-entry-label,\n.esgnow-specific-material-label,\n.esgnow-material-weight-field-label {\n  font-size: 12px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -42759,22 +42759,22 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, uxpContext 
         setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        materials.map((material, index) => (react_1.default.createElement("div", { key: index, className: "material-row" },
-            react_1.default.createElement(components_1.FormField, { className: "material-field" },
-                react_1.default.createElement(components_1.Label, { className: "material-entry-label" }, "Material Class"),
-                react_1.default.createElement(components_1.Select, { options: classOptions, selected: material.materialClass, onChange: (value) => handleInputChange(index, "materialClass", value), placeholder: "Select an item", className: "material-select" })),
-            react_1.default.createElement(components_1.FormField, { className: "specific-material-field" },
-                react_1.default.createElement(components_1.Label, { className: "specific-material-label" }, "Specific Material"),
+        materials.map((material, index) => (react_1.default.createElement("div", { key: index, className: "esgnow-material-row" },
+            react_1.default.createElement(components_1.FormField, { className: "esgnow-material-field" },
+                react_1.default.createElement(components_1.Label, { className: "esgnow-material-entry-label" }, "Material Class"),
+                react_1.default.createElement(components_1.Select, { options: classOptions, selected: material.materialClass, onChange: (value) => handleInputChange(index, "materialClass", value), placeholder: "Select an item", className: "esgnow-material-select" })),
+            react_1.default.createElement(components_1.FormField, { className: "esgnow-specific-material-field" },
+                react_1.default.createElement(components_1.Label, { className: "esgnow-specific-material-label" }, "Specific Material"),
                 react_1.default.createElement(components_1.Select, { options: material.materialClass
                         ? (materialOptions[material.materialClass] || [])
-                        : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "specific-material-select" })),
-            react_1.default.createElement(components_1.FormField, { className: "material-weight-field" },
-                react_1.default.createElement(components_1.Label, { className: "material-weight-field-label" }, "Material Weight (Kg)"),
-                react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "weight-input" }))))),
-        react_1.default.createElement("div", { className: "add-another-material-container" },
-            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "add-another-material-button", onClick: handleAddAnother })),
-        react_1.default.createElement("div", { className: "add-material-button-container" },
-            react_1.default.createElement(components_1.Button, { title: "Done", className: "add-material-button", onClick: handleAddMaterial }))));
+                        : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "esgnow-specific-material-select" })),
+            react_1.default.createElement(components_1.FormField, { className: "esgnow-material-weight-field" },
+                react_1.default.createElement(components_1.Label, { className: "esgnow-material-weight-field-label" }, "Material Weight (Kg)"),
+                react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "esgnow-weight-input" }))))),
+        react_1.default.createElement("div", { className: "esgnow-add-another-material-container" },
+            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "esgnow-add-another-material-button", onClick: handleAddAnother })),
+        react_1.default.createElement("div", { className: "esgnow-add-material-button-container" },
+            react_1.default.createElement(components_1.Button, { title: "Done", className: "esgnow-add-material-button", onClick: handleAddMaterial }))));
 };
 exports["default"] = MaterialEntry;
 
@@ -43824,9 +43824,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-inventory-info" },
             react_1.default.createElement("div", { className: "esgnow-inventory-header" },
                 react_1.default.createElement("h3", null, "Inventory Information"),
-                react_1.default.createElement("div", { className: "esgnow-view-toggle" },
-                    react_1.default.createElement("button", { className: `esgnow-toggle-button ${viewMode === 'list' ? 'active' : ''}`, onClick: () => setViewMode('list') }, "List View"),
-                    react_1.default.createElement("button", { className: `esgnow-toggle-button ${viewMode === 'tree' ? 'active' : ''}`, onClick: () => setViewMode('tree') }, "Tree View"))),
+                react_1.default.createElement("div", { className: "esgnow-view-toggle" })),
             viewMode === 'tree' ? (react_1.default.createElement("div", { className: "esgnow-inventory-tree" },
                 react_1.default.createElement("div", { className: "esgnow-tree-item", onClick: toggleExpand },
                     react_1.default.createElement("span", { className: "esgnow-expand-icon" }, isExpanded ? '▼' : '▶'),
