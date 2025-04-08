@@ -1,11 +1,15 @@
 import { IContextProvider } from "@uxp";
 import API_BASE_URL from "../config";
 import './bulk-upload.scss';
-import React, { useState } from "react";
-import { bulkUpload } from "../../esgnow-service";
+import React, { useState, useEffect } from "react";
+import { bulkImageUpload, bulkUpload } from "../../esgnow-service";
+import * as XLSX from 'xlsx';
+import JSZip from 'jszip';
+// Import logo
+import esgLogo from '../../images/ESG_now_logo.png';
 
 interface IBulkUploadWidgetProps {
-   uxpContext: IContextProvider;
+    uxpContext: IContextProvider;
 }
 
 const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
@@ -15,6 +19,34 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
     const [uploadingZip, setUploadingZip] = useState<boolean>(false);
     const [message, setMessage] = useState<string | null>(null);
     const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
+    const [logoImageData, setLogoImageData] = useState<Uint8Array | null>(null);
+    
+    // Load the logo image when component mounts
+    useEffect(() => {
+        const loadLogoImage = async () => {
+            try {
+                // Create a simple 1x1 pixel image as fallback
+                const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+                const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+                const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+                
+                // Try to fetch the actual logo image
+                try {
+                    const response = await fetch(esgLogo);
+                    const blob = await response.blob();
+                    const arrayBuffer = await blob.arrayBuffer();
+                    setLogoImageData(new Uint8Array(arrayBuffer));
+                } catch (error) {
+                    console.error("Error loading logo image:", error);
+                    setLogoImageData(defaultImage);
+                }
+            } catch (error) {
+                console.error("Error in loadLogoImage:", error);
+            }
+        };
+        
+        loadLogoImage();
+    }, []);
 
     // Handle file selection for data file (Excel or CSV)
     const handleDataFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +106,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             // };
 
             //let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
-            let response = await bulkUpload(uxpContext,formData);
+            let response = await bulkUpload(uxpContext, formData);
 
             if (response.data) {
                 setMessage("Data upload successful!");
@@ -87,12 +119,12 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 let errorData;
                 try {
                     errorData = await response.error;
-                    
+
                 } catch (e) {
                     errorData = { message: "An unknown error occurred" };
                 }
-                
-                
+
+
                 setMessageType("error");
             }
         } catch (error) {
@@ -120,15 +152,16 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         formData.append("file", zipFile);
 
         try {
-            const requestOptions = {
-                method: "POST",
-                body: formData,
-                headers: { "x-iviva-account": "lucy1" },
-            };
+            // const requestOptions = {
+            //     method: "POST",
+            //     body: formData,
+            //     headers: { "x-iviva-account": "lucy1" },
+            // };
 
-            let response = await fetch(`${API_BASE_URL}/api/products/bulk-image-upload`, requestOptions);
+            let response = await bulkImageUpload(uxpContext, formData);
 
-            if (response.ok) {
+
+            if (response.data) {
                 setMessage("ZIP upload successful!");
                 setMessageType("success");
                 setZipFile(null);
@@ -136,8 +169,9 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 const fileInput = document.getElementById("zip-file-input") as HTMLInputElement;
                 if (fileInput) fileInput.value = "";
             } else {
-                const errorData = await response.json();
-                setMessage(`ZIP upload failed: ${errorData.message || "Please try again."}`);
+                const errorData = await response.error;
+                ;
+                setMessage(`ZIP upload failed: ${errorData || "Please try again."}`);
                 setMessageType("error");
             }
         } catch (error) {
@@ -150,26 +184,82 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
     };
 
     // Handle sample template download
-    const handleDownloadTemplate = async () => {
+    const handleDownloadTemplate = () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/products/sample-template`, {
-                headers: { "x-iviva-account": "lucy1" },
-            });
-            
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'product_upload_template.xlsx';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } else {
-                setMessage("Failed to download sample template.");
-                setMessageType("error");
-            }
+            // Define the sample data
+            const sampleData = [
+                {
+                    "code": "OF001",
+                    "name": "Executive Desk",
+                    "description": "Modern wooden executive desk with drawers",
+                    "weight": 50,
+                    "countryOfOrigin": "CN",
+                    "supplierName": "OfficeFurnish Ltd"
+                },
+                {
+                    "code": "OF002",
+                    "name": "Ergonomic Chair",
+                    "description": "Adjustable office chair with lumbar support",
+                    "weight": 15,
+                    "countryOfOrigin": "VN",
+                    "supplierName": "ComfortSeating GmbH"
+                },
+                {
+                    "code": "OF003",
+                    "name": "Conference Table",
+                    "description": "Large wooden conference table for meetings",
+                    "weight": 80,
+                    "countryOfOrigin": "Global",
+                    "supplierName": "BoardRoom Supplies"
+                },
+                {
+                    "code": "OF004",
+                    "name": "Bookshelf",
+                    "description": "5-tier wooden bookshelf for office storage",
+                    "weight": 30,
+                    "countryOfOrigin": "CN",
+                    "supplierName": "ScandiOffice Solutions"
+                },
+                {
+                    "code": "OF005",
+                    "name": "File Cabinet",
+                    "description": "Steel file cabinet with locking drawers",
+                    "weight": 45,
+                    "countryOfOrigin": "VN",
+                    "supplierName": "SecureFiles Inc"
+                }
+            ]
+                ;
+
+            // Create a new workbook
+            const workbook = XLSX.utils.book_new();
+
+            // Convert JSON data to worksheet
+            const worksheet = XLSX.utils.json_to_sheet(sampleData);
+
+            // Add the worksheet to the workbook
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Products");
+
+            // Generate Excel file as array buffer
+            const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+            // Convert to Blob
+            const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+            // Create URL and trigger download
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product_upload_template.xlsx';
+            document.body.appendChild(a);
+            a.click();
+
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+
+            setMessage("Excel template downloaded successfully.");
+            setMessageType("success");
         } catch (error) {
             console.error("Download Error:", error);
             setMessage("An error occurred while downloading the template.");
@@ -180,24 +270,74 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
     // Handle sample folder structure download
     const handleDownloadFolderStructure = async () => {
         try {
-            const response = await fetch(`${API_BASE_URL}/api/products/sample-folder-structure`, {
-                headers: { "x-iviva-account": "lucy1" },
-            });
+            // Create a sample folder structure programmatically
+            // This creates a basic structure with product folders that matches what's needed
             
-            if (response.ok) {
-                const blob = await response.blob();
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'product_images_structure.zip';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            } else {
-                setMessage("Failed to download sample folder structure.");
-                setMessageType("error");
-            }
+            // Create a new JSZip instance
+            const zip = new JSZip();
+            
+            // Create a default 1x1 pixel JPG as fallback
+            const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+            const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+            const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+            
+            // Use the loaded logo image or default if not available
+            const imageData = logoImageData || defaultImage;
+            
+            // Create product folders with sample images
+            // Product 1
+            const prod1Folder = zip.folder("OF001");
+            prod1Folder.file("main.jpg", imageData, {binary: true});
+            prod1Folder.file("alternate1.jpg", imageData, {binary: true});
+            prod1Folder.file("alternate2.jpg", imageData, {binary: true});
+            
+            // Product 2
+            const prod2Folder = zip.folder("OF002");
+            prod2Folder.file("main.jpg", imageData, {binary: true});
+            prod2Folder.file("side_view.jpg", imageData, {binary: true});
+            
+            
+            
+            // Add a README file explaining the structure
+            zip.file("README.txt", 
+                "PRODUCT IMAGES FOLDER STRUCTURE\n\n" +
+                "Each product should have its own folder named exactly as the product's Code.\n" +
+                "For example, if your product code is PROD001, create a folder named 'PROD001'.\n\n" +
+                "Inside each product folder, save the images with proper naming:\n" +
+                "- Main product image should be named 'main.jpg' or 'main.png'\n" +
+                "- Additional images can be named as desired (e.g., 'alternate1.jpg', 'side.png', etc.)\n\n" +
+                "Supported image formats: JPG, PNG (max 5MB per image)\n" +
+                "Ensure all images are high quality and properly represent the product.\n\n" +
+                "EXAMPLE STRUCTURE:\n" +
+                "- PROD001/\n" +
+                "  - main.jpg (Main product image)\n" +
+                "  - alternate1.jpg (Additional view)\n" +
+                "  - alternate2.jpg (Another view)\n" +
+                "- PROD002/\n" +
+                "  - main.jpg (Main product image)\n" +
+                "  - side_view.jpg (Side view of product)\n" +
+                "- PROD003/\n" +
+                "  - main.jpg (Main product image)\n\n" +
+                "Note: The sample images in this ZIP are 1x1 pixel placeholders. Replace them with your actual product images."
+            );
+            
+            // Generate zip file
+            const content = await zip.generateAsync({type: "blob"});
+            
+            // Create URL and download
+            const url = window.URL.createObjectURL(content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product_images_structure.zip';
+            document.body.appendChild(a);
+            a.click();
+            
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            
+            setMessage("Folder structure downloaded successfully.");
+            setMessageType("success");
         } catch (error) {
             console.error("Download Error:", error);
             setMessage("An error occurred while downloading the folder structure.");
@@ -209,14 +349,14 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         <div className="bulk-upload-container">
             <h1 className="page-title">Product Bulk Upload</h1>
             <p className="page-description">
-                Upload your product data and images in bulk using the forms below. 
+                Upload your product data and images in bulk using the forms below.
                 Make sure to follow the required template and folder structure.
             </p>
-            
+
             <div className="card">
                 <div className="card-header">
                     <h2>Upload Product Data (Excel/CSV)</h2>
-                    <button 
+                    <button
                         onClick={handleDownloadTemplate}
                         className="download-btn"
                         title="Download a sample template for product upload"
@@ -224,28 +364,28 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                         Download Template
                     </button>
                 </div>
-                
+
                 <div className="card-body">
                     <p className="section-info">
                         Upload your Excel (.xlsx) or CSV (.csv) file containing product data. Make sure all required fields are filled.
                     </p>
-                    
+
                     <div className="upload-section">
                         <div className="file-input-container">
-                            <input 
-                                type="file" 
+                            <input
+                                type="file"
                                 id="data-file-input"
-                                accept=".xlsx,.csv" 
+                                accept=".xlsx,.csv"
                                 onChange={handleDataFileChange}
-                                className="file-input" 
+                                className="file-input"
                             />
                             <label htmlFor="data-file-input" className="file-label">
                                 {dataFile ? dataFile.name : "Choose Excel/CSV File..."}
                             </label>
                         </div>
-                        
-                        <button 
-                            onClick={handleDataUpload} 
+
+                        <button
+                            onClick={handleDataUpload}
                             disabled={uploadingData || !dataFile}
                             className={`upload-btn ${!dataFile ? 'disabled' : ''}`}
                         >
@@ -258,7 +398,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             <div className="card">
                 <div className="card-header">
                     <h2>Upload Product Images (ZIP)</h2>
-                    <button 
+                    <button
                         onClick={handleDownloadFolderStructure}
                         className="download-btn"
                         title="Download a sample folder structure for product images"
@@ -266,29 +406,29 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                         Download Structure
                     </button>
                 </div>
-                
+
                 <div className="card-body">
                     <p className="section-info">
-                        Upload a ZIP file containing product images. Each product should have its own folder named 
+                        Upload a ZIP file containing product images. Each product should have its own folder named
                         with the product SKU or ID, containing images named according to the specification.
                     </p>
-                    
+
                     <div className="upload-section">
                         <div className="file-input-container">
-                            <input 
-                                type="file" 
+                            <input
+                                type="file"
                                 id="zip-file-input"
-                                accept=".zip" 
+                                accept=".zip"
                                 onChange={handleZipFileChange}
-                                className="file-input" 
+                                className="file-input"
                             />
                             <label htmlFor="zip-file-input" className="file-label">
                                 {zipFile ? zipFile.name : "Choose ZIP File..."}
                             </label>
                         </div>
-                        
-                        <button 
-                            onClick={handleZipUpload} 
+
+                        <button
+                            onClick={handleZipUpload}
                             disabled={uploadingZip || !zipFile}
                             className={`upload-btn ${!zipFile ? 'disabled' : ''}`}
                         >
