@@ -85,20 +85,20 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
     return (
         <>
             {materials.map((material, index) => (
-               <div key={index} className="material-row">
-               <FormField className="material-field">
-                   <Label className="material-entry-label">Material Class</Label>
+               <div key={index} className="esgnow-material-row">
+               <FormField className="esgnow-material-field">
+                   <Label className="esgnow-material-entry-label">Material Class</Label>
                    <Select
                        options={classOptions}
                        selected={material.materialClass}
                        onChange={(value) => handleInputChange(index, "materialClass", value)}
                        placeholder="Select an item"
-                       className="material-select"
+                       className="esgnow-material-select"
                    />
                </FormField>
    
-               <FormField className="specific-material-field">
-                   <Label className="specific-material-label">Specific Material</Label>
+               <FormField className="esgnow-specific-material-field">
+                   <Label className="esgnow-specific-material-label">Specific Material</Label>
                    <Select
                        options={
                            material.materialClass
@@ -108,19 +108,19 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                        selected={material.specificMaterial}
                        onChange={(value) => handleInputChange(index, "specificMaterial", value)}
                        placeholder="Select specific material"
-                       className="specific-material-select"
+                       className="esgnow-specific-material-select"
                    />
                </FormField>
    
-               <FormField className="material-weight-field">
-                   <Label className="material-weight-field-label">Material Weight (Kg)</Label>
+               <FormField className="esgnow-material-weight-field">
+                   <Label className="esgnow-material-weight-field-label">Material Weight (Kg)</Label>
                    <Input
                        type="number"
                        value={material.weight}
                        onChange={(value) => handleInputChange(index, "weight", value)}
                        placeholder="Enter weight"
                        inputAttr={{ step: "0.01" }}
-                       className="weight-input"
+                       className="esgnow-weight-input"
                    />
                </FormField>
    
@@ -139,17 +139,17 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                     {/* Wrap the button in a new div to place it on a separate line */}
                 </div>
             ))}
-                <div className="add-another-material-container">
+                <div className="esgnow-add-another-material-container">
                         <Button
                             title="Add Another Material"
-                            className="add-another-material-button"
+                            className="esgnow-add-another-material-button"
                             onClick={handleAddAnother}
                         />
                 </div>
-    <div className="add-material-button-container">
+    <div className="esgnow-add-material-button-container">
             <Button
                 title="Done"
-                className="add-material-button"
+                className="esgnow-add-material-button"
                 onClick={handleAddMaterial}
             />
         </div>
