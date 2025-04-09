@@ -119,7 +119,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".bulk-upload-container {\n  max-width: 900px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n}\n\n.page-title {\n  font-size: 28px;\n  color: #333;\n  margin-bottom: 10px;\n}\n\n.page-description {\n  color: #666;\n  margin-bottom: 30px;\n}\n\n.card {\n  background: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  margin-bottom: 25px;\n  overflow: hidden;\n}\n\n.card-header {\n  background: #f7f9fc;\n  padding: 15px 20px;\n  border-bottom: 1px solid #eaedf3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.card-header h2 {\n  margin: 0;\n  font-size: 18px;\n  color: #2c3e50;\n}\n\n.card-body {\n  padding: 20px;\n}\n\n.section-info {\n  color: #666;\n  margin-bottom: 15px;\n  font-size: 14px;\n}\n\n.upload-section {\n  display: flex;\n  gap: 15px;\n  align-items: center;\n}\n\n.file-input-container {\n  flex: 1;\n  position: relative;\n}\n\n.file-input {\n  position: absolute;\n  left: -9999px;\n}\n\n.file-label {\n  display: block;\n  padding: 10px 15px;\n  background: #f2f4f7;\n  border: 1px dashed #cbd5e0;\n  border-radius: 4px;\n  cursor: pointer;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  transition: all 0.2s;\n}\n\n.file-label:hover {\n  background: #e2e8f0;\n}\n\n.upload-btn {\n  padding: 10px 20px;\n  background: #3182ce;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.upload-btn:hover {\n  background: #2c5282;\n}\n\n.upload-btn.disabled {\n  background: #a0aec0;\n  cursor: not-allowed;\n}\n\n.download-btn {\n  background: transparent;\n  color: #4299e1;\n  border: 1px solid #4299e1;\n  border-radius: 4px;\n  padding: 6px 12px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.download-btn:hover {\n  background: #ebf8ff;\n}\n\n.message {\n  padding: 12px 20px;\n  border-radius: 4px;\n  margin-top: 20px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.message.success {\n  background: #c6f6d5;\n  border-left: 4px solid #38a169;\n  color: #276749;\n}\n\n.message.error {\n  background: #fed7d7;\n  border-left: 4px solid #e53e3e;\n  color: #c53030;\n}\n\n.message-icon {\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.instructions-card {\n  background: #f7fafc;\n  border-radius: 8px;\n  padding: 20px;\n  margin-bottom: 25px;\n  border: 1px solid #e2e8f0;\n}\n\n.instructions-card h3 {\n  margin-top: 0;\n  margin-bottom: 15px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #e2e8f0;\n  color: #2d3748;\n}\n\n.instructions-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n}\n\n@media (max-width: 768px) {\n  .instructions-content {\n    grid-template-columns: 1fr;\n  }\n  .upload-section {\n    flex-direction: column;\n  }\n  .file-input-container {\n    width: 100%;\n  }\n  .upload-btn {\n    width: 100%;\n  }\n}\n.instruction-section h4 {\n  color: #4a5568;\n  margin-bottom: 10px;\n}\n\n.instruction-section ul {\n  padding-left: 20px;\n  margin: 0;\n}\n\n.instruction-section li {\n  margin-bottom: 5px;\n  font-size: 14px;\n  color: #4a5568;\n}", ""]);
+exports.push([module.id, ".bulk-upload-container {\n  max-width: 900px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Helvetica, Arial, sans-serif;\n}\n\n.page-title {\n  font-size: 28px;\n  color: #333;\n  margin-bottom: 10px;\n}\n\n.page-description {\n  color: #666;\n  margin-bottom: 30px;\n}\n\n.card {\n  background: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  margin-bottom: 25px;\n  overflow: hidden;\n  transition: all 0.3s ease;\n}\n\n.disabled-card {\n  opacity: 0.6;\n  pointer-events: none;\n}\n\n.disabled-label {\n  background: #e2e2e2 !important;\n  cursor: not-allowed !important;\n  color: #888;\n}\n\n.card-header {\n  background: #f7f9fc;\n  padding: 15px 20px;\n  border-bottom: 1px solid #eaedf3;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.card-header h2 {\n  margin: 0;\n  font-size: 18px;\n  color: #2c3e50;\n}\n\n.card-body {\n  padding: 20px;\n}\n\n.section-info {\n  color: #666;\n  margin-bottom: 15px;\n  font-size: 14px;\n}\n\n.upload-section {\n  display: flex;\n  gap: 15px;\n  align-items: center;\n}\n\n.file-input-container {\n  flex: 1;\n  position: relative;\n}\n\n.file-input {\n  position: absolute;\n  left: -9999px;\n}\n\n.file-label {\n  display: block;\n  padding: 10px 15px;\n  background: #f2f4f7;\n  border: 1px dashed #cbd5e0;\n  border-radius: 4px;\n  cursor: pointer;\n  text-overflow: ellipsis;\n  overflow: hidden;\n  white-space: nowrap;\n  transition: all 0.2s;\n}\n\n.file-label:hover {\n  background: #e2e8f0;\n}\n\n.upload-btn {\n  padding: 10px 20px;\n  background: #3182ce;\n  color: white;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.upload-btn:hover {\n  background: #2c5282;\n}\n\n.upload-btn.disabled {\n  background: #a0aec0;\n  cursor: not-allowed;\n}\n\n.download-btn {\n  background: transparent;\n  color: #4299e1;\n  border: 1px solid #4299e1;\n  border-radius: 4px;\n  padding: 6px 12px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s;\n}\n\n.download-btn:hover {\n  background: #ebf8ff;\n}\n\n.download-btn:disabled {\n  background: #f5f5f5;\n  color: #a0aec0;\n  border-color: #a0aec0;\n  cursor: not-allowed;\n}\n\n.message {\n  padding: 12px 20px;\n  border-radius: 4px;\n  margin-bottom: 20px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.message.success {\n  background: #c6f6d5;\n  border-left: 4px solid #38a169;\n  color: #276749;\n}\n\n.message.error {\n  background: #fed7d7;\n  border-left: 4px solid #e53e3e;\n  color: #c53030;\n}\n\n.message-icon {\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.instructions-card {\n  background: #f7fafc;\n  border-radius: 8px;\n  padding: 20px;\n  margin-bottom: 25px;\n  border: 1px solid #e2e8f0;\n}\n\n.instructions-card h3 {\n  margin-top: 0;\n  margin-bottom: 15px;\n  padding-bottom: 10px;\n  border-bottom: 1px solid #e2e8f0;\n  color: #2d3748;\n}\n\n.instructions-content {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n}\n\n@media (max-width: 768px) {\n  .instructions-content {\n    grid-template-columns: 1fr;\n  }\n  .upload-section {\n    flex-direction: column;\n  }\n  .file-input-container {\n    width: 100%;\n  }\n  .upload-btn {\n    width: 100%;\n  }\n}\n.instruction-section h4 {\n  color: #4a5568;\n  margin-bottom: 10px;\n}\n\n.instruction-section ul {\n  padding-left: 20px;\n  margin: 0;\n}\n\n.instruction-section li {\n  margin-bottom: 5px;\n  font-size: 14px;\n  color: #4a5568;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -40604,6 +40604,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
     const [message, setMessage] = (0, react_1.useState)(null);
     const [messageType, setMessageType] = (0, react_1.useState)(null);
     const [logoImageData, setLogoImageData] = (0, react_1.useState)(null);
+    const [isActiveUpload, setIsActiveUpload] = (0, react_1.useState)(null);
     // Load the logo image when component mounts
     (0, react_1.useEffect)(() => {
         const loadLogoImage = () => __awaiter(void 0, void 0, void 0, function* () {
@@ -40641,8 +40642,14 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 return;
             }
             setDataFile(selectedFile);
-            setMessage(`Selected: ${selectedFile.name}`);
+            setZipFile(null);
+            setIsActiveUpload("data");
+            setMessage(`Selected: ${selectedFile.name}, Please click Upload Data button`);
             setMessageType("success");
+            // Reset the zip file input
+            const zipFileInput = document.getElementById("zip-file-input");
+            if (zipFileInput)
+                zipFileInput.value = "";
         }
     };
     // Handle file selection for ZIP
@@ -40655,8 +40662,14 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 return;
             }
             setZipFile(selectedFile);
-            setMessage(`Selected: ${selectedFile.name}`);
+            setDataFile(null);
+            setIsActiveUpload("zip");
+            setMessage(`Selected: ${selectedFile.name}, Please click Upload ZIP button`);
             setMessageType("success");
+            // Reset the data file input
+            const dataFileInput = document.getElementById("data-file-input");
+            if (dataFileInput)
+                dataFileInput.value = "";
         }
     };
     // Handle Data File Upload (Excel or CSV)
@@ -40683,6 +40696,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 setMessage("Data upload successful!");
                 setMessageType("success");
                 setDataFile(null);
+                setIsActiveUpload(null);
                 // Reset the file input
                 const fileInput = document.getElementById("data-file-input");
                 if (fileInput)
@@ -40731,6 +40745,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
                 setMessage("ZIP upload successful!");
                 setMessageType("success");
                 setZipFile(null);
+                setIsActiveUpload(null);
                 // Reset the file input
                 const fileInput = document.getElementById("zip-file-input");
                 if (fileInput)
@@ -40894,28 +40909,32 @@ const BulkUploadWidget = ({ uxpContext }) => {
     return (react_1.default.createElement("div", { className: "bulk-upload-container" },
         react_1.default.createElement("h1", { className: "page-title" }, "Product Bulk Upload"),
         react_1.default.createElement("p", { className: "page-description" }, "Upload your product data and images in bulk using the forms below. Make sure to follow the required template and folder structure."),
-        react_1.default.createElement("div", { className: "card" },
+        message && (react_1.default.createElement("div", { className: `message ${messageType || ''}` },
+            react_1.default.createElement("span", { className: "message-icon" }, messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"),
+            react_1.default.createElement("span", { className: "message-text" }, message),
+            messageType === "error" && (react_1.default.createElement("button", { className: "dismiss-btn", onClick: () => setMessage(null) }, "Dismiss")))),
+        react_1.default.createElement("div", { className: `card ${isActiveUpload === "zip" ? "disabled-card" : ""}` },
             react_1.default.createElement("div", { className: "card-header" },
                 react_1.default.createElement("h2", null, "Upload Product Data (Excel/CSV)"),
-                react_1.default.createElement("button", { onClick: handleDownloadTemplate, className: "download-btn", title: "Download a sample template for product upload" }, "Download Template")),
+                react_1.default.createElement("button", { onClick: handleDownloadTemplate, className: "download-btn", title: "Download a sample template for product upload", disabled: isActiveUpload === "zip" }, "Download Template")),
             react_1.default.createElement("div", { className: "card-body" },
                 react_1.default.createElement("p", { className: "section-info" }, "Upload your Excel (.xlsx) or CSV (.csv) file containing product data. Make sure all required fields are filled."),
                 react_1.default.createElement("div", { className: "upload-section" },
                     react_1.default.createElement("div", { className: "file-input-container" },
-                        react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".xlsx,.csv", onChange: handleDataFileChange, className: "file-input" }),
-                        react_1.default.createElement("label", { htmlFor: "data-file-input", className: "file-label" }, dataFile ? dataFile.name : "Choose Excel/CSV File...")),
-                    react_1.default.createElement("button", { onClick: handleDataUpload, disabled: uploadingData || !dataFile, className: `upload-btn ${!dataFile ? 'disabled' : ''}` }, uploadingData ? "Uploading..." : "Upload Data")))),
-        react_1.default.createElement("div", { className: "card" },
+                        react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".xlsx,.csv", onChange: handleDataFileChange, className: "file-input", disabled: isActiveUpload === "zip" }),
+                        react_1.default.createElement("label", { htmlFor: "data-file-input", className: `file-label ${isActiveUpload === "zip" ? "disabled-label" : ""}` }, dataFile ? dataFile.name : "Choose Excel/CSV File...")),
+                    react_1.default.createElement("button", { onClick: handleDataUpload, disabled: uploadingData || !dataFile || isActiveUpload === "zip", className: `upload-btn ${(!dataFile || isActiveUpload === "zip") ? 'disabled' : ''}` }, uploadingData ? "Uploading..." : "Upload Data")))),
+        react_1.default.createElement("div", { className: `card ${isActiveUpload === "data" ? "disabled-card" : ""}` },
             react_1.default.createElement("div", { className: "card-header" },
                 react_1.default.createElement("h2", null, "Upload Product Images (ZIP)"),
-                react_1.default.createElement("button", { onClick: handleDownloadFolderStructure, className: "download-btn", title: "Download a sample folder structure for product images" }, "Download Structure")),
+                react_1.default.createElement("button", { onClick: handleDownloadFolderStructure, className: "download-btn", title: "Download a sample folder structure for product images", disabled: isActiveUpload === "data" }, "Download Structure")),
             react_1.default.createElement("div", { className: "card-body" },
                 react_1.default.createElement("p", { className: "section-info" }, "Upload a ZIP file containing product images. Each product should have its own folder named with the product SKU or ID, containing images named according to the specification."),
                 react_1.default.createElement("div", { className: "upload-section" },
                     react_1.default.createElement("div", { className: "file-input-container" },
-                        react_1.default.createElement("input", { type: "file", id: "zip-file-input", accept: ".zip", onChange: handleZipFileChange, className: "file-input" }),
-                        react_1.default.createElement("label", { htmlFor: "zip-file-input", className: "file-label" }, zipFile ? zipFile.name : "Choose ZIP File...")),
-                    react_1.default.createElement("button", { onClick: handleZipUpload, disabled: uploadingZip || !zipFile, className: `upload-btn ${!zipFile ? 'disabled' : ''}` }, uploadingZip ? "Uploading..." : "Upload ZIP")))),
+                        react_1.default.createElement("input", { type: "file", id: "zip-file-input", accept: ".zip", onChange: handleZipFileChange, className: "file-input", disabled: isActiveUpload === "data" }),
+                        react_1.default.createElement("label", { htmlFor: "zip-file-input", className: `file-label ${isActiveUpload === "data" ? "disabled-label" : ""}` }, zipFile ? zipFile.name : "Choose ZIP File...")),
+                    react_1.default.createElement("button", { onClick: handleZipUpload, disabled: uploadingZip || !zipFile || isActiveUpload === "data", className: `upload-btn ${(!zipFile || isActiveUpload === "data") ? 'disabled' : ''}` }, uploadingZip ? "Uploading..." : "Upload ZIP")))),
         react_1.default.createElement("div", { className: "instructions-card" },
             react_1.default.createElement("h3", null, "Upload Instructions"),
             react_1.default.createElement("div", { className: "instructions-content" },
@@ -40939,11 +40958,7 @@ const BulkUploadWidget = ({ uxpContext }) => {
                         react_1.default.createElement("li", null, "If upload fails, check that all required fields are filled out"),
                         react_1.default.createElement("li", null, "Verify that your CSV file has proper column headers"),
                         react_1.default.createElement("li", null, "Ensure your file isn't too large (max 10MB)"),
-                        react_1.default.createElement("li", null, "Check that your file is properly formatted without special characters"))))),
-        message && (react_1.default.createElement("div", { className: `message ${messageType || ''}` },
-            react_1.default.createElement("span", { className: "message-icon" }, messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"),
-            react_1.default.createElement("span", { className: "message-text" }, message),
-            messageType === "error" && (react_1.default.createElement("button", { className: "dismiss-btn", onClick: () => setMessage(null) }, "Dismiss"))))));
+                        react_1.default.createElement("li", null, "Check that your file is properly formatted without special characters")))))));
 };
 exports["default"] = BulkUploadWidget;
 

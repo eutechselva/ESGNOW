@@ -20,6 +20,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
     const [message, setMessage] = useState<string | null>(null);
     const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
     const [logoImageData, setLogoImageData] = useState<Uint8Array | null>(null);
+    const [isActiveUpload, setIsActiveUpload] = useState<"data" | "zip" | null>(null);
     
     // Load the logo image when component mounts
     useEffect(() => {
@@ -61,8 +62,14 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             }
 
             setDataFile(selectedFile);
-            setMessage(`Selected: ${selectedFile.name}`);
+            setZipFile(null);
+            setIsActiveUpload("data");
+            setMessage(`Selected: ${selectedFile.name}, Please click Upload Data button`);
             setMessageType("success");
+            
+            // Reset the zip file input
+            const zipFileInput = document.getElementById("zip-file-input") as HTMLInputElement;
+            if (zipFileInput) zipFileInput.value = "";
         }
     };
 
@@ -78,8 +85,14 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
             }
 
             setZipFile(selectedFile);
-            setMessage(`Selected: ${selectedFile.name}`);
+            setDataFile(null);
+            setIsActiveUpload("zip");
+            setMessage(`Selected: ${selectedFile.name}, Please click Upload ZIP button`);
             setMessageType("success");
+            
+            // Reset the data file input
+            const dataFileInput = document.getElementById("data-file-input") as HTMLInputElement;
+            if (dataFileInput) dataFileInput.value = "";
         }
     };
 
@@ -112,6 +125,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 setMessage("Data upload successful!");
                 setMessageType("success");
                 setDataFile(null);
+                setIsActiveUpload(null);
                 // Reset the file input
                 const fileInput = document.getElementById("data-file-input") as HTMLInputElement;
                 if (fileInput) fileInput.value = "";
@@ -165,6 +179,7 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 setMessage("ZIP upload successful!");
                 setMessageType("success");
                 setZipFile(null);
+                setIsActiveUpload(null);
                 // Reset the file input
                 const fileInput = document.getElementById("zip-file-input") as HTMLInputElement;
                 if (fileInput) fileInput.value = "";
@@ -353,13 +368,27 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 Make sure to follow the required template and folder structure.
             </p>
 
-            <div className="card">
+            {/* Status Messages - Moved to the top */}
+            {message && (
+                <div className={`message ${messageType || ''}`}>
+                    <span className="message-icon">{messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"}</span>
+                    <span className="message-text">{message}</span>
+                    {messageType === "error" && (
+                        <button className="dismiss-btn" onClick={() => setMessage(null)}>
+                            Dismiss
+                        </button>
+                    )}
+                </div>
+            )}
+
+            <div className={`card ${isActiveUpload === "zip" ? "disabled-card" : ""}`}>
                 <div className="card-header">
                     <h2>Upload Product Data (Excel/CSV)</h2>
                     <button
                         onClick={handleDownloadTemplate}
                         className="download-btn"
                         title="Download a sample template for product upload"
+                        disabled={isActiveUpload === "zip"}
                     >
                         Download Template
                     </button>
@@ -378,16 +407,17 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                                 accept=".xlsx,.csv"
                                 onChange={handleDataFileChange}
                                 className="file-input"
+                                disabled={isActiveUpload === "zip"}
                             />
-                            <label htmlFor="data-file-input" className="file-label">
+                            <label htmlFor="data-file-input" className={`file-label ${isActiveUpload === "zip" ? "disabled-label" : ""}`}>
                                 {dataFile ? dataFile.name : "Choose Excel/CSV File..."}
                             </label>
                         </div>
 
                         <button
                             onClick={handleDataUpload}
-                            disabled={uploadingData || !dataFile}
-                            className={`upload-btn ${!dataFile ? 'disabled' : ''}`}
+                            disabled={uploadingData || !dataFile || isActiveUpload === "zip"}
+                            className={`upload-btn ${(!dataFile || isActiveUpload === "zip") ? 'disabled' : ''}`}
                         >
                             {uploadingData ? "Uploading..." : "Upload Data"}
                         </button>
@@ -395,13 +425,14 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                 </div>
             </div>
 
-            <div className="card">
+            <div className={`card ${isActiveUpload === "data" ? "disabled-card" : ""}`}>
                 <div className="card-header">
                     <h2>Upload Product Images (ZIP)</h2>
                     <button
                         onClick={handleDownloadFolderStructure}
                         className="download-btn"
                         title="Download a sample folder structure for product images"
+                        disabled={isActiveUpload === "data"}
                     >
                         Download Structure
                     </button>
@@ -421,16 +452,17 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                                 accept=".zip"
                                 onChange={handleZipFileChange}
                                 className="file-input"
+                                disabled={isActiveUpload === "data"}
                             />
-                            <label htmlFor="zip-file-input" className="file-label">
+                            <label htmlFor="zip-file-input" className={`file-label ${isActiveUpload === "data" ? "disabled-label" : ""}`}>
                                 {zipFile ? zipFile.name : "Choose ZIP File..."}
                             </label>
                         </div>
 
                         <button
                             onClick={handleZipUpload}
-                            disabled={uploadingZip || !zipFile}
-                            className={`upload-btn ${!zipFile ? 'disabled' : ''}`}
+                            disabled={uploadingZip || !zipFile || isActiveUpload === "data"}
+                            className={`upload-btn ${(!zipFile || isActiveUpload === "data") ? 'disabled' : ''}`}
                         >
                             {uploadingZip ? "Uploading..." : "Upload ZIP"}
                         </button>
@@ -471,19 +503,6 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
                     </div>
                 </div>
             </div>
-
-            {/* Status Messages */}
-            {message && (
-                <div className={`message ${messageType || ''}`}>
-                    <span className="message-icon">{messageType === "success" ? "✓" : messageType === "error" ? "✗" : "ℹ"}</span>
-                    <span className="message-text">{message}</span>
-                    {messageType === "error" && (
-                        <button className="dismiss-btn" onClick={() => setMessage(null)}>
-                            Dismiss
-                        </button>
-                    )}
-                </div>
-            )}
         </div>
     );
 };

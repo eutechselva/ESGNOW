@@ -1,11 +1,14 @@
 <Roles>
     <AppRoles>
         <Role name='canopenapp'>Allow access to App</Role>
-        <Role name='canconfigurepages'>Allow to configure pages</Role>
+        <Role name='canconfigureusers'>Allow to configure pages</Role>
+        <Role name='canruncalculator'>Allow to run the calculator</Role>
+         <Role name='canviewreports'>Allow to view reports</Role>
     </AppRoles>
     <UserRoles>
-        <UserRole name='Administrator' roles='canopenapp, canconfigurepages' />
-        <UserRole name='User' roles='canopenapp' />
+        <UserRole name='Administrator' roles='canopenapp, canconfigureusers' />
+        <UserRole name='Calculator' roles='canopenapp,canruncalculator' />
+        <UserRole name='Viewer' roles='canopenapp,canviewreports' />
     </UserRoles>
 
     <Default visible='#{authrole.canopenapp?}' />

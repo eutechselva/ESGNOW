@@ -22,6 +22,18 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     margin-bottom: 25px;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.disabled-card {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.disabled-label {
+    background: #e2e2e2 !important;
+    cursor: not-allowed !important;
+    color: #888;
 }
 
 .card-header {
@@ -116,10 +128,17 @@
     background: #ebf8ff;
 }
 
+.download-btn:disabled {
+    background: #f5f5f5;
+    color: #a0aec0;
+    border-color: #a0aec0;
+    cursor: not-allowed;
+}
+
 .message {
     padding: 12px 20px;
     border-radius: 4px;
-    margin-top: 20px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     gap: 10px;
