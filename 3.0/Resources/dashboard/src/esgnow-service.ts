@@ -250,7 +250,7 @@ export async function bulkUpload(uxpContext: IContextProvider, payload: any) {
 export async function bulkImageUpload(uxpContext: IContextProvider, payload: any) {
   return executeRequest(
     uxpContext,
-    `${BaseEndPoint}/products//bulk-image-upload`,
+    `${BaseEndPoint}/products/bulk-image-upload`,
     RequestMethod.POST,
     {},
     payload
@@ -261,6 +261,15 @@ export async function getBillOfMaterials(uxpContext: IContextProvider) {
   return executeRequest(
     uxpContext,
     `${BaseEndPoint}/bill-of-materials`,
+    RequestMethod.GET,
+    {}
+  );
+}
+
+export async function getAccountPlan(uxpContext: IContextProvider) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/account-plan`,
     RequestMethod.GET,
     {}
   );

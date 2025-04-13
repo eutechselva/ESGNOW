@@ -9,7 +9,7 @@ import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { IContextProvider } from "@uxp";
-import { classifyBOM } from "../../esgnow-service";
+import { classifyBOM, getAccountPlan } from "../../esgnow-service";
 import { set } from "lodash";
 
 interface BillMaterialProps {
@@ -32,6 +32,16 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
+
+    useEffect(  () => {
+        getAccountPlanFromAPI();
+    });
+
+    const getAccountPlanFromAPI = async () => {
+        const response = await  getAccountPlan( uxpContext);
+        setPlan(response.data.plan);
+        debugger;
+    }
 
     const fetchMaterialsFromAPI = async () => {
         setAIGeneratingBOM(true);

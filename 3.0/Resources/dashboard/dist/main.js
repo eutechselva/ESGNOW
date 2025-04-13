@@ -39973,7 +39973,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
@@ -40103,7 +40103,7 @@ function bulkUpload(uxpContext, payload) {
 exports.bulkUpload = bulkUpload;
 function bulkImageUpload(uxpContext, payload) {
     return __awaiter(this, void 0, void 0, function* () {
-        return executeRequest(uxpContext, `${BaseEndPoint}/products//bulk-image-upload`, _uxp_1.RequestMethod.POST, {}, payload);
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/bulk-image-upload`, _uxp_1.RequestMethod.POST, {}, payload);
     });
 }
 exports.bulkImageUpload = bulkImageUpload;
@@ -40113,6 +40113,12 @@ function getBillOfMaterials(uxpContext) {
     });
 }
 exports.getBillOfMaterials = getBillOfMaterials;
+function getAccountPlan(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/account-plan`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.getAccountPlan = getAccountPlan;
 // Baselines for locations
 function getLocationData(uxpContext, location) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -40455,6 +40461,14 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
+    (0, react_1.useEffect)(() => {
+        getAccountPlanFromAPI();
+    });
+    const getAccountPlanFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield (0, esgnow_service_1.getAccountPlan)(uxpContext);
+        setPlan(response.data.plan);
+        debugger;
+    });
     const fetchMaterialsFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
         setAIGeneratingBOM(true);
         try {
