@@ -102,7 +102,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".bill-materials {\n  padding: 16px;\n}\n\n.material-composition-heading {\n  font-size: 14px;\n  text-align: left;\n  display: flex;\n  margin-bottom: 26px;\n  gap: 8px;\n  position: relative;\n}\n\n.info-icon {\n  position: relative;\n  cursor: pointer;\n  color: #007bff;\n  font-size: 16px;\n}\n\n.tooltip {\n  position: absolute;\n  top: 50%;\n  left: 100%;\n  transform: translateY(-50%);\n  background-color: #fff;\n  color: #333;\n  padding: 10px 12px;\n  border-radius: 8px;\n  font-size: 11px;\n  min-width: 300px;\n  text-align: left;\n  z-index: 1000;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);\n  opacity: 0;\n  transition: opacity 0.3s ease;\n  line-height: 1.4;\n}\n\n.info-icon:hover .tooltip {\n  opacity: 1;\n}\n\n.tooltip::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: -6px;\n  transform: translateY(-50%);\n  border-width: 6px;\n  border-style: solid;\n  border-color: transparent #333 transparent transparent;\n}\n\n.entry-type-select {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  margin-bottom: 16px;\n}\n\n.select-method-label {\n  font-size: 12px;\n  text-align: left;\n}\n\n.add-materials-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.add-materials-button:hover {\n  background-color: #1c88e0;\n  color: white;\n}\n\n.generate-materials-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(45deg, #2196F3, #0D47A1);\n  color: white;\n  transition: background-color 0.3s ease;\n}\n.generate-materials-button:hover {\n  background-color: #1c88e0;\n  color: white;\n}", ""]);
+exports.push([module.id, "@charset \"UTF-8\";\n.bill-materials {\n  padding: 16px;\n}\n\n.material-composition-heading {\n  font-size: 14px;\n  text-align: left;\n  display: flex;\n  margin-bottom: 26px;\n  gap: 8px;\n  position: relative;\n}\n\n.info-icon {\n  position: relative;\n  cursor: pointer;\n  color: #007bff;\n  font-size: 16px;\n}\n\n.tooltip {\n  position: absolute;\n  top: 50%;\n  left: 100%;\n  transform: translateY(-50%);\n  background-color: #fff;\n  color: #333;\n  padding: 10px 12px;\n  border-radius: 8px;\n  font-size: 11px;\n  min-width: 300px;\n  text-align: left;\n  z-index: 1000;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);\n  opacity: 0;\n  transition: opacity 0.3s ease;\n  line-height: 1.4;\n}\n\n.info-icon:hover .tooltip {\n  opacity: 1;\n}\n\n.tooltip::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: -6px;\n  transform: translateY(-50%);\n  border-width: 6px;\n  border-style: solid;\n  border-color: transparent #333 transparent transparent;\n}\n\n.entry-method-container {\n  margin-bottom: 24px;\n}\n\n.entry-method-title {\n  font-size: 16px;\n  margin-bottom: 16px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.entry-method-options {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 24px;\n}\n\n.entry-method-card {\n  flex: 1;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  padding: 20px;\n  cursor: pointer;\n  display: flex;\n  transition: all 0.2s ease;\n  background-color: #ffffff;\n}\n.entry-method-card:hover {\n  border-color: #bbdefb;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);\n}\n.entry-method-card.active {\n  border-color: #2196f3;\n  background-color: #e3f2fd;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-icon {\n  font-size: 24px;\n  color: #2196f3;\n  margin-right: 16px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  background-color: rgba(33, 150, 243, 0.08);\n  border-radius: 50%;\n}\n.active .entry-card-icon {\n  background-color: rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-content {\n  flex: 1;\n}\n.entry-card-content h4 {\n  margin: 0 0 8px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.entry-card-content p {\n  margin: 0 0 16px 0;\n  font-size: 14px;\n  color: #757575;\n  line-height: 1.4;\n}\n.entry-card-content button {\n  margin-top: 8px;\n}\n\n.add-materials-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.add-materials-button:hover {\n  background-color: #1976d2;\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.generate-materials-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(135deg, #2196F3, #1565C0);\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.generate-materials-button:hover {\n  background: linear-gradient(135deg, #1E88E5, #0D47A1);\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.validation-error {\n  background-color: #ffebee;\n  color: #d32f2f;\n  padding: 12px 16px;\n  border-radius: 4px;\n  border-left: 4px solid #d32f2f;\n  margin: 16px 0;\n  font-size: 14px;\n  display: flex;\n  align-items: center;\n}\n.validation-error::before {\n  content: \"⚠️\";\n  margin-right: 8px;\n  font-size: 16px;\n}\n\n.materials-weight-summary {\n  display: flex;\n  gap: 24px;\n  margin: 16px 0;\n  background-color: #f5f5f5;\n  padding: 12px 16px;\n  border-radius: 4px;\n  border-left: 4px solid #2196f3;\n}\n.materials-weight-summary .weight-info {\n  font-size: 14px;\n  font-weight: 500;\n}\n.materials-weight-summary .weight-info:first-child {\n  color: #2196f3;\n}\n.materials-weight-summary .weight-info:last-child {\n  color: #616161;\n}\n\n.materials-list-header {\n  margin: 24px 0 16px 0;\n}\n.materials-list-header h3 {\n  margin: 0 0 8px 0;\n  font-size: 18px;\n  font-weight: 500;\n  color: #424242;\n}\n.materials-list-header p {\n  margin: 0;\n  font-size: 14px;\n  color: #757575;\n}\n\n.material-entry-container {\n  background-color: #f9f9f9;\n  border: 1px solid #e0e0e0;\n  border-radius: 6px;\n  padding: 16px;\n  margin: 16px 0;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n\n.material-entry-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  padding-bottom: 12px;\n  border-bottom: 1px solid #e0e0e0;\n}\n.material-entry-header h3 {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.material-entry-header .cancel-button {\n  background-color: transparent;\n  color: #757575;\n  border: 1px solid #e0e0e0;\n  padding: 6px 12px;\n}\n.material-entry-header .cancel-button:hover {\n  background-color: #f5f5f5;\n  color: #616161;\n}\n\n.empty-materials-container, .manual-entry-prompt {\n  background-color: #f9f9f9;\n  border: 1px dashed #bdbdbd;\n  border-radius: 6px;\n  padding: 24px;\n  margin: 24px 0;\n  text-align: center;\n}\n.empty-materials-container p, .manual-entry-prompt p {\n  color: #757575;\n  margin-bottom: 16px;\n}\n.empty-materials-container .empty-add-material-button, .empty-materials-container .add-first-material-button, .manual-entry-prompt .empty-add-material-button, .manual-entry-prompt .add-first-material-button {\n  background-color: #2196f3;\n  color: white;\n  padding: 10px 20px;\n  font-weight: 500;\n}\n.empty-materials-container .empty-add-material-button:hover, .empty-materials-container .add-first-material-button:hover, .manual-entry-prompt .empty-add-material-button:hover, .manual-entry-prompt .add-first-material-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.manual-entry-prompt {\n  border-color: #bbdefb;\n  background-color: #e3f2fd;\n}\n.manual-entry-prompt p {\n  color: #1976d2;\n  font-weight: 500;\n}\n\n.materials-actions {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 20px;\n  padding-top: 16px;\n  border-top: 1px solid #e0e0e0;\n}\n.materials-actions .add-more-materials-button {\n  background-color: transparent;\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  padding: 10px 20px;\n  transition: all 0.2s ease;\n}\n.materials-actions .add-more-materials-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n}\n.materials-actions .next-button {\n  background-color: #2196f3;\n  color: white;\n  padding: 10px 20px;\n  font-weight: 500;\n  transition: all 0.2s ease;\n}\n.materials-actions .next-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.ai-generating-bom {\n  display: flex;\n  align-items: center;\n  background-color: #e3f2fd;\n  border-radius: 8px;\n  padding: 16px;\n  margin-bottom: 24px;\n  border-left: 4px solid #2196f3;\n}\n.ai-generating-bom .loader-spinner {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 3px solid rgba(33, 150, 243, 0.2);\n  border-top-color: #2196f3;\n  animation: spin 1s infinite linear;\n  margin-right: 16px;\n  flex-shrink: 0;\n}\n.ai-generating-bom .generating-message h4 {\n  margin: 0 0 4px 0;\n  font-size: 16px;\n  color: #1976d2;\n}\n.ai-generating-bom .generating-message p {\n  margin: 0;\n  font-size: 14px;\n  color: #546e7a;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -306,7 +306,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".esgnow-material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n  margin-bottom: 10px;\n}\n\n.esgnow-material-field {\n  flex: 1;\n}\n\n.esgnow-specific-material-field {\n  flex: 2;\n}\n\n.esgnow-material-weight-field {\n  flex: 0.7;\n}\n\n.esgnow-unit-field {\n  flex: 0.3;\n}\n\n.esgnow-material-select,\n.esgnow-specific-material-select,\n.esgnow-weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.esgnow-weight-input {\n  max-width: 180px;\n}\n\n.esgnow-weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .esgnow-material-field,\n  .esgnow-specific-material-field,\n  .esgnow-material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.esgnow-add-another-material-container {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 10px;\n  margin-right: 12px;\n}\n\n.esgnow-add-material-button-container {\n  display: flex;\n  margin-top: 20px;\n}\n\n.esgnow-add-material-button {\n  text-align: center;\n  margin-right: 20px;\n}\n\n.esgnow-material-entry-label,\n.esgnow-specific-material-label,\n.esgnow-material-weight-field-label {\n  font-size: 12px;\n}", ""]);
+exports.push([module.id, ".esgnow-material-card {\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  padding: 16px;\n  margin-bottom: 16px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);\n}\n.esgnow-material-card:hover {\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}\n\n.esgnow-material-card-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #f0f0f0;\n}\n\n.esgnow-material-number {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.esgnow-remove-material-button {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  font-size: 16px;\n  padding: 4px 8px;\n  border-radius: 50%;\n}\n.esgnow-remove-material-button:hover {\n  background-color: #f5f5f5;\n  color: #d32f2f;\n}\n\n.esgnow-material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n}\n\n.esgnow-material-field {\n  flex: 1;\n}\n\n.esgnow-specific-material-field {\n  flex: 2;\n}\n\n.esgnow-material-weight-field {\n  flex: 0.7;\n}\n\n.esgnow-unit-field {\n  flex: 0.3;\n}\n\n.esgnow-material-select,\n.esgnow-specific-material-select,\n.esgnow-weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.esgnow-weight-input {\n  max-width: 180px;\n}\n\n.esgnow-weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .esgnow-material-field,\n  .esgnow-specific-material-field,\n  .esgnow-material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.esgnow-actions-container {\n  display: flex;\n  justify-content: flex-end;\n  gap: 16px;\n  margin-top: 20px;\n  width: 100%;\n}\n\n.esgnow-add-material-button {\n  background-color: #2196f3;\n  color: white;\n  font-weight: 500;\n  min-width: 100px;\n}\n.esgnow-add-material-button:hover {\n  background-color: #1976d2;\n}\n\n.esgnow-add-another-material-button {\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  background-color: transparent;\n}\n.esgnow-add-another-material-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n}\n\n.esgnow-material-entry-label,\n.esgnow-specific-material-label,\n.esgnow-material-weight-field-label {\n  font-size: 12px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -340,7 +340,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  width: fit-content;\n  display: flex;\n  align-items: center;\n  margin-bottom: 16px;\n  gap: 10px;\n}\n\n.material-summary p {\n  margin: 0;\n  padding: 0 10px;\n  border-right: 1px solid #ccc;\n}\n\n.material-summary p:last-child {\n  border-right: none;\n}\n\n.process-entry {\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.form-field {\n  margin-top: 8px;\n}\n\n.save-process-button {\n  margin-top: 12px;\n  align-self: flex-start;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 16px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  margin-bottom: 16px;\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n  background-color: #000000;\n  color: #fff;\n  border: none;\n  padding: 4px 8px;\n  cursor: pointer;\n  border-radius: 4px;\n}", ""]);
+exports.push([module.id, ".material-summary {\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n  border-radius: 6px;\n  margin-bottom: 20px;\n  border-left: 3px solid #2196f3;\n}\n.material-summary p {\n  margin: 6px 0;\n  font-size: 14px;\n  color: #616161;\n}\n.material-summary p strong {\n  color: #424242;\n  font-weight: 500;\n  margin-right: 6px;\n}\n.material-summary p:first-child strong {\n  color: #1976d2;\n}\n\n.process-entry {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  padding: 16px;\n  background-color: #f9f9f9;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n}\n.process-entry h3 {\n  margin: 0 0 16px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.form-field {\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.form-field label {\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #616161;\n  display: block;\n}\n\n.save-process-button {\n  margin-top: 16px;\n  align-self: flex-end;\n  background-color: #2196f3;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: all 0.2s ease;\n}\n.save-process-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n.save-process-button:disabled {\n  background-color: #e0e0e0;\n  color: #9e9e9e;\n  cursor: not-allowed;\n  box-shadow: none;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  background-color: #ffffff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: #f5f5f5;\n  color: #616161;\n  border: none;\n  padding: 6px 10px;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 12px;\n  transition: all 0.2s ease;\n}\n.process-entry-container .collapse-expand-button:hover {\n  background-color: #e0e0e0;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -425,7 +425,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 16px;\n  background-color: #f7f7f7;\n  padding: 16px;\n  border-radius: 8px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary h3 {\n  margin-bottom: 12px;\n  color: #424242;\n  font-weight: 700;\n  font-size: 16px;\n}\n.product-manufacturing .process-summary .summary-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.product-manufacturing .process-summary .summary-table th, .product-manufacturing .process-summary .summary-table td {\n  padding: 12px;\n  text-align: left;\n  border: 1px solid #ddd;\n  font-size: 12px;\n}\n.product-manufacturing .process-summary .summary-table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.product-manufacturing .process-summary .summary-table td {\n  background-color: #f9f9f9;\n  vertical-align: top;\n}\n.product-manufacturing .process-summary .summary-table td .process-item {\n  margin-top: 4px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item strong {\n  color: #333;\n  font-weight: 600;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul {\n  padding-left: 16px;\n  margin: 4px 0;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .summary-table td .process-item ul li {\n  color: #555;\n  font-size: 12px;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-type-toggle {\n  display: flex;\n  gap: 1rem;\n}\n\n.add-process-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: background-color 0.3s ease;\n}\n\n.generate-button {\n  margin-left: 12px;\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(45deg, #2196F3, #0D47A1);\n  color: white;\n  transition: background-color 0.3s ease;\n}\n.generate-button:hover {\n  background-color: #1c88e0;\n  color: white;\n}\n\n.entry-type-select {\n  margin-top: 32px !important;\n}\n\n.action-buttons {\n  display: flex;\n  gap: 8px;\n  margin-top: 10px;\n}", ""]);
+exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 24px;\n  margin-bottom: 24px;\n}\n.product-manufacturing .process-summary .process-summary-header {\n  margin-bottom: 20px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 {\n  color: #424242;\n  font-weight: 500;\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .summary-icon {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .method-badge {\n  background-color: #e3f2fd;\n  color: #1976d2;\n  font-size: 12px;\n  padding: 4px 8px;\n  border-radius: 12px;\n  margin-left: 12px;\n  font-weight: 400;\n}\n.product-manufacturing .process-summary .material-process-cards {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n.product-manufacturing .process-summary .material-process-card {\n  background-color: #ffffff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);\n  overflow: hidden;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .material-header {\n  background-color: #f5f5f5;\n  padding: 14px 16px;\n  border-bottom: 1px solid #e0e0e0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-name {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details {\n  display: flex;\n  gap: 16px;\n  margin-top: 4px;\n  font-size: 13px;\n  color: #757575;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .specific-material {\n  font-style: italic;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .material-weight {\n  font-weight: 500;\n}\n.product-manufacturing .process-summary .material-process-card .process-list {\n  padding: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item {\n  padding: 16px;\n  border-bottom: 1px solid #f0f0f0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item:last-child {\n  border-bottom: none;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category {\n  margin: 0;\n  font-size: 15px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category .process-icon {\n  color: #2196f3;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions {\n  display: flex;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button {\n  background: none;\n  border: none;\n  cursor: pointer;\n  width: 28px;\n  height: 28px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 50%;\n  color: #757575;\n  font-size: 14px;\n  transition: all 0.2s ease;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover {\n  background-color: #f5f5f5;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.edit {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.delete {\n  color: #f44336;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list {\n  margin: 0;\n  padding-left: 24px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item {\n  color: #616161;\n  font-size: 14px;\n  margin-bottom: 6px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item:last-child {\n  margin-bottom: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form {\n  padding: 12px;\n  background-color: #f9f9f9;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form label {\n  display: block;\n  font-size: 13px;\n  font-weight: 500;\n  margin-bottom: 8px;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .process-edit-input {\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .subprocess-edit {\n  margin-bottom: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .edit-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.product-manufacturing .process-summary .material-process-card .no-processes {\n  padding: 20px;\n  text-align: center;\n  color: #757575;\n  font-style: italic;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-method-container {\n  margin-bottom: 24px;\n}\n\n.entry-method-title {\n  font-size: 16px;\n  margin-bottom: 16px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.entry-method-options {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 24px;\n}\n\n.entry-method-card {\n  flex: 1;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  padding: 20px;\n  cursor: pointer;\n  display: flex;\n  transition: all 0.2s ease;\n  background-color: #ffffff;\n}\n.entry-method-card:hover {\n  border-color: #bbdefb;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);\n}\n.entry-method-card.active {\n  border-color: #2196f3;\n  background-color: #e3f2fd;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-icon {\n  font-size: 24px;\n  color: #2196f3;\n  margin-right: 16px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  background-color: rgba(33, 150, 243, 0.08);\n  border-radius: 50%;\n}\n.active .entry-card-icon {\n  background-color: rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-content {\n  flex: 1;\n}\n.entry-card-content h4 {\n  margin: 0 0 8px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.entry-card-content p {\n  margin: 0 0 16px 0;\n  font-size: 14px;\n  color: #757575;\n  line-height: 1.4;\n}\n.entry-card-content button {\n  margin-top: 8px;\n}\n\n.add-process-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.generate-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(135deg, #2196F3, #1565C0);\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.generate-button:hover {\n  background: linear-gradient(135deg, #1E88E5, #0D47A1);\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.ai-generating-process {\n  display: flex;\n  align-items: center;\n  background-color: #e3f2fd;\n  border-radius: 8px;\n  padding: 16px;\n  margin-bottom: 24px;\n  border-left: 4px solid #2196f3;\n}\n.ai-generating-process .loader-spinner {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 3px solid rgba(33, 150, 243, 0.2);\n  border-top-color: #2196f3;\n  animation: spin 1s infinite linear;\n  margin-right: 16px;\n  flex-shrink: 0;\n}\n.ai-generating-process .generating-message h4 {\n  margin: 0 0 4px 0;\n  font-size: 16px;\n  color: #1976d2;\n}\n.ai-generating-process .generating-message p {\n  margin: 0;\n  font-size: 14px;\n  color: #546e7a;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.action-buttons {\n  display: flex;\n  gap: 8px;\n  margin-top: 10px;\n}\n\n.manual-entry-prompt, .empty-processes-container {\n  background-color: #f9f9f9;\n  border: 1px dashed #bdbdbd;\n  border-radius: 6px;\n  padding: 24px;\n  margin: 24px 0;\n  text-align: center;\n}\n.manual-entry-prompt p, .empty-processes-container p {\n  color: #757575;\n  margin-bottom: 16px;\n}\n.manual-entry-prompt .define-processes-button, .empty-processes-container .define-processes-button {\n  background-color: #2196f3;\n  color: white;\n  padding: 10px 20px;\n  font-weight: 500;\n}\n.manual-entry-prompt .define-processes-button:hover, .empty-processes-container .define-processes-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.manual-entry-prompt {\n  border-color: #bbdefb;\n  background-color: #e3f2fd;\n}\n.manual-entry-prompt p {\n  color: #1976d2;\n  font-weight: 500;\n}\n\n.processes-actions {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 20px;\n  padding-top: 16px;\n  border-top: 1px solid #e0e0e0;\n}\n.processes-actions .add-more-processes-button {\n  background-color: transparent;\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  padding: 10px 20px;\n  transition: all 0.2s ease;\n}\n.processes-actions .add-more-processes-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -442,7 +442,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".done-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n\n.modal-container.lgs-create-product-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-create-product-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}", ""]);
+exports.push([module.id, ".done-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n.done-button-container button {\n  background-color: #4caf50;\n  color: white;\n  padding: 10px 24px;\n  font-weight: 500;\n  transition: all 0.2s ease;\n  min-width: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.done-button-container button:hover {\n  background-color: #388e3c;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n.done-button-container button:disabled {\n  background-color: #ccc;\n  cursor: not-allowed;\n}\n.done-button-container button:disabled:hover {\n  box-shadow: none;\n  background-color: #ccc;\n}\n\n.modal-container.lgs-create-product-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-create-product-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -40450,24 +40450,34 @@ const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontaweso
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext }) => {
+    // Check if we have materials data from a previous visit to this step
+    const prevMaterialsData = sessionStorage.getItem(`product_${productData.code}_materials`);
+    const prevEntryType = sessionStorage.getItem(`product_${productData.code}_entry_type`);
     const [showMaterialEntry, setShowMaterialEntry] = (0, react_1.useState)(false);
-    const [materials, setMaterials] = (0, react_1.useState)([]);
-    const [entryType, setEntryType] = (0, react_1.useState)("ai");
+    const [materials, setMaterials] = (0, react_1.useState)(prevMaterialsData ? JSON.parse(prevMaterialsData) : []);
+    const [entryType, setEntryType] = (0, react_1.useState)(prevEntryType || "ai");
     const [editIndex, setEditIndex] = (0, react_1.useState)(null);
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
     const [aiGeneratingBOM, setAIGeneratingBOM] = (0, react_1.useState)(false);
     const [plan, setPlan] = (0, react_1.useState)(null);
+    const [validationError, setValidationError] = (0, react_1.useState)("");
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
     (0, react_1.useEffect)(() => {
         getAccountPlanFromAPI();
-    });
+        // Add cleanup when component unmounts
+        return () => {
+            // Reset the local state only (session storage is handled by wizard)
+            setEditIndex(null);
+            setShowMaterialEntry(false);
+            setValidationError("");
+        };
+    }, []);
     const getAccountPlanFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield (0, esgnow_service_1.getAccountPlan)(uxpContext);
         setPlan(response.data.plan);
-        debugger;
     });
     const fetchMaterialsFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
         setAIGeneratingBOM(true);
@@ -40491,6 +40501,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
                 unit: "kg",
             }));
             setMaterials(apiMaterials);
+            saveMaterialsToStorage(apiMaterials);
             setAIGeneratingBOM(false);
         }
         catch (error) {
@@ -40508,51 +40519,151 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             fetchMaterialsFromAPI();
         }
     };
+    // Helper function to save materials to session storage
+    const saveMaterialsToStorage = (updatedMaterials) => {
+        sessionStorage.setItem(`product_${productData.code}_materials`, JSON.stringify(updatedMaterials));
+    };
     const handleMaterialAdd = (newMaterials) => {
+        let updatedMaterials;
         if (editIndex !== null) {
-            const updatedMaterials = [...materials];
+            // Replace the material being edited
+            updatedMaterials = [...materials];
             updatedMaterials.splice(editIndex, 1, ...newMaterials);
-            setMaterials(updatedMaterials);
+            // Reset edit index
+            setEditIndex(null);
         }
         else {
-            setMaterials([...materials, ...newMaterials]);
+            // Add new materials to existing ones
+            updatedMaterials = [...materials, ...newMaterials];
         }
+        setMaterials(updatedMaterials);
+        saveMaterialsToStorage(updatedMaterials);
         setShowMaterialEntry(false);
+        setValidationError(""); // Clear validation errors when materials are updated
     };
     const handleMaterialEdit = (index, material) => {
-        setEditIndex(index);
-        setShowMaterialEntry(true);
-        const materialData = [...materials];
-        materialData[index] = Object.assign({}, material);
-        setMaterials(materialData);
+        // When the user edits in the summary table, update the material directly
+        // without showing the material entry form
+        const updatedMaterials = [...materials];
+        updatedMaterials[index] = Object.assign({}, material);
+        setMaterials(updatedMaterials);
+        saveMaterialsToStorage(updatedMaterials);
+        setValidationError(""); // Clear validation errors when materials are updated
+    };
+    const handleOpenFullEditor = (index) => {
+        if (entryType === "manual") {
+            setEditIndex(index);
+            setShowMaterialEntry(true);
+        }
     };
     const handleMaterialDelete = (index) => {
-        setMaterials(materials.filter((_, i) => i !== index));
+        const updatedMaterials = materials.filter((_, i) => i !== index);
+        setMaterials(updatedMaterials);
+        saveMaterialsToStorage(updatedMaterials);
+        setValidationError(""); // Clear validation errors when materials are updated
     };
     const handleEntryTypeChange = (newValue) => {
         setEntryType(newValue);
+        sessionStorage.setItem(`product_${productData.code}_entry_type`, newValue);
         if (newValue === "manual") {
             setMaterials([]);
+            saveMaterialsToStorage([]);
         }
+        setValidationError(""); // Clear validation errors when entry type changes
     };
     const handleNext = () => {
+        // Clear previous validation errors
+        setValidationError("");
+        // Check for validation errors
+        if (materials.length === 0) {
+            setValidationError("Please add at least one material");
+            return;
+        }
+        // Check for total weight matching
+        const totalMaterialWeight = materials.reduce((sum, material) => {
+            return sum + (parseFloat(material.weight) || 0);
+        }, 0);
+        const productTotalWeight = parseFloat(productCategoryData.totalWeight) || 0;
+        // Allow a small rounding tolerance (0.01 kg)
+        if (Math.abs(totalMaterialWeight - productTotalWeight) > 0.01) {
+            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(2)} kg) must match product weight (${productTotalWeight.toFixed(2)} kg)`);
+            return;
+        }
+        // Check for duplicates based on plan
+        if (plan === "basic") {
+            // For basic plan, check for duplicate material classes
+            const materialClasses = materials.map(m => m.materialClass);
+            const uniqueClasses = new Set(materialClasses);
+            if (uniqueClasses.size !== materialClasses.length) {
+                setValidationError("Duplicate material classes detected. Please ensure each material class is unique.");
+                return;
+            }
+        }
+        else if (plan === "professional") {
+            // For professional plan, check for duplicate specific materials
+            const specificMaterials = materials.map(m => m.specificMaterial);
+            const uniqueSpecificMaterials = new Set(specificMaterials);
+            if (uniqueSpecificMaterials.size !== specificMaterials.length) {
+                setValidationError("Duplicate specific materials detected. Please ensure each specific material is unique.");
+                return;
+            }
+        }
+        // If validation passes, proceed to next step
+        // Keep the storage so when the user goes back, they keep their data
+        // We'll rely on the wizard's reset function to clean everything at the end
         onNext(materials);
     };
     return (react_1.default.createElement("div", { className: "bill-materials" },
-        react_1.default.createElement("div", { className: "entry-type-select" },
-            react_1.default.createElement("label", { htmlFor: "entryType", className: "select-method-label" },
-                "Select Method",
-                react_1.default.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
-                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
-                    showTooltip && (react_1.default.createElement("div", { className: "tooltip" }, "Use manual entry or let AI assist you to generate the Bill of Materials based on the product details provided.")))),
-            react_1.default.createElement(components_1.Select, { options: entryOptions, selected: entryType, onChange: handleEntryTypeChange }),
-            entryType === "manual" && (react_1.default.createElement(components_1.Button, { title: "Add ", className: "add-materials-button", onClick: handleAddMaterials })),
-            entryType === "ai" && (react_1.default.createElement(components_1.Button, { title: "Generate", className: "generate-materials-button", onClick: handleGenerateMaterials }))),
-        aiGeneratingBOM && react_1.default.createElement("div", { className: "ai-generating-bom" }, "Generating Bill of Materials..."),
-        showMaterialEntry && entryType === "manual" && (react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined, uxpContext: uxpContext })),
-        (materials.length > 0) && (react_1.default.createElement(react_1.default.Fragment, null,
-            react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete }),
-            react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })))));
+        react_1.default.createElement("div", { className: "entry-method-container" },
+            react_1.default.createElement("h3", { className: "entry-method-title" }, "How would you like to add materials?"),
+            react_1.default.createElement("div", { className: "entry-method-options" },
+                react_1.default.createElement("div", { className: `entry-method-card ${entryType === "ai" ? "active" : ""}`, onClick: () => handleEntryTypeChange("ai") },
+                    react_1.default.createElement("div", { className: "entry-card-icon" },
+                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faRobot })),
+                    react_1.default.createElement("div", { className: "entry-card-content" },
+                        react_1.default.createElement("h4", null, "AI Assistance"),
+                        react_1.default.createElement("p", null, "Let AI analyze your product and suggest materials automatically."),
+                        entryType === "ai" && (react_1.default.createElement(components_1.Button, { title: "Generate Materials", className: "generate-materials-button", onClick: handleGenerateMaterials })))),
+                react_1.default.createElement("div", { className: `entry-method-card ${entryType === "manual" ? "active" : ""}`, onClick: () => handleEntryTypeChange("manual") },
+                    react_1.default.createElement("div", { className: "entry-card-icon" },
+                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEdit })),
+                    react_1.default.createElement("div", { className: "entry-card-content" },
+                        react_1.default.createElement("h4", null, "Manual Entry"),
+                        react_1.default.createElement("p", null, "Manually add and customize materials for your product."))))),
+        entryType === "manual" && !showMaterialEntry && !materials.length && (react_1.default.createElement("div", { className: "manual-entry-prompt" },
+            react_1.default.createElement("p", null, "Click the button below to start adding materials to your product."),
+            react_1.default.createElement(components_1.Button, { title: "Add First Material", className: "add-first-material-button", onClick: handleAddMaterials }))),
+        aiGeneratingBOM && (react_1.default.createElement("div", { className: "ai-generating-bom" },
+            react_1.default.createElement("div", { className: "loader-spinner" }),
+            react_1.default.createElement("div", { className: "generating-message" },
+                react_1.default.createElement("h4", null, "AI is generating your Bill of Materials"),
+                react_1.default.createElement("p", null, "Analyzing product information and identifying suitable materials...")))),
+        showMaterialEntry && entryType === "manual" && (react_1.default.createElement("div", { className: "material-entry-container" },
+            react_1.default.createElement("div", { className: "material-entry-header" },
+                react_1.default.createElement("h3", null, editIndex !== null ? "Edit Material" : "Add Material"),
+                react_1.default.createElement(components_1.Button, { title: "Cancel", className: "cancel-button", onClick: () => setShowMaterialEntry(false) })),
+            react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined, existingMaterials: materials, uxpContext: uxpContext }))),
+        materials.length > 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("div", { className: "materials-weight-summary" },
+                react_1.default.createElement("div", { className: "weight-info" },
+                    "Total Material Weight: ",
+                    materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2),
+                    " kg"),
+                react_1.default.createElement("div", { className: "weight-info" },
+                    "Target Product Weight: ",
+                    parseFloat(productCategoryData.totalWeight).toFixed(2),
+                    " kg")),
+            react_1.default.createElement("div", { className: "materials-list-header" },
+                react_1.default.createElement("h3", null, "Material List"),
+                react_1.default.createElement("p", null, "The materials below will be used to calculate the environmental impact of your product.")),
+            react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete, onOpenFullEditor: handleOpenFullEditor }),
+            validationError && (react_1.default.createElement("div", { className: "validation-error" }, validationError)),
+            react_1.default.createElement("div", { className: "materials-actions" },
+                entryType === "manual" && !showMaterialEntry && (react_1.default.createElement(components_1.Button, { className: "add-more-materials-button", title: "Add More Materials", onClick: handleAddMaterials })),
+                react_1.default.createElement(components_1.Button, { className: "next-button", title: "Next", onClick: handleNext })))) : (
+        // Only show the empty container for AI mode or when no specific prompts are shown
+        !showMaterialEntry && (entryType === "ai") && (react_1.default.createElement("div", { className: "empty-materials-container" },
+            react_1.default.createElement("p", null, "No materials added yet. Generate materials using AI or switch to manual entry."))))));
 };
 exports["default"] = BillMaterials;
 
@@ -42728,19 +42839,31 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./material-entry.scss */ "./src/lca/views/material-entry.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, uxpContext }) => {
+const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMaterials, uxpContext }) => {
+    // Start with either the initial material for editing, or a blank material for adding
     const [materials, setMaterials] = (0, react_1.useState)([{
             materialClass: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.materialClass) || "",
             specificMaterial: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.specificMaterial) || "",
             weight: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.weight) || "",
             unit: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.unit) || "kg"
         }]);
+    // Reset materials when initialMaterial changes
+    (0, react_1.useEffect)(() => {
+        if (initialMaterial) {
+            // If editing an existing material
+            setMaterials([{
+                    materialClass: initialMaterial.materialClass || "",
+                    specificMaterial: initialMaterial.specificMaterial || "",
+                    weight: initialMaterial.weight || "",
+                    unit: initialMaterial.unit || "kg"
+                }]);
+        }
+    }, [initialMaterial]);
     const [materialOptions, setMaterialOptions] = (0, react_1.useState)({});
     const [classOptions, setClassOptions] = (0, react_1.useState)([]);
     (0, react_1.useEffect)(() => {
         const fetchMaterials = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
-                debugger;
                 const { data, error } = yield (0, esgnow_service_1.getBillOfMaterials)(uxpContext);
                 if (error) {
                     console.error("Error fetching bill of materials:", error);
@@ -42784,26 +42907,51 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, uxpContext 
         setMaterials(updatedMaterials);
     };
     const handleAddMaterial = () => {
-        onAddMaterial(materials);
-        setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
+        // Filter out materials with empty required fields
+        const validMaterials = materials.filter(m => m.materialClass.trim() !== "" && m.weight.trim() !== "");
+        if (validMaterials.length > 0) {
+            // If editing a specific material, replace it; otherwise add new materials
+            if (initialMaterial) {
+                onAddMaterial(validMaterials);
+            }
+            else {
+                // Add only the new materials without replacing existing ones
+                onAddMaterial(validMaterials);
+            }
+            // Reset the entry form
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+        }
+        else {
+            // If no valid materials, at least require one form entry
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+        }
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        materials.map((material, index) => (react_1.default.createElement("div", { key: index, className: "esgnow-material-row" },
-            react_1.default.createElement(components_1.FormField, { className: "esgnow-material-field" },
-                react_1.default.createElement(components_1.Label, { className: "esgnow-material-entry-label" }, "Material Class"),
-                react_1.default.createElement(components_1.Select, { options: classOptions, selected: material.materialClass, onChange: (value) => handleInputChange(index, "materialClass", value), placeholder: "Select an item", className: "esgnow-material-select" })),
-            react_1.default.createElement(components_1.FormField, { className: "esgnow-specific-material-field" },
-                react_1.default.createElement(components_1.Label, { className: "esgnow-specific-material-label" }, "Specific Material"),
-                react_1.default.createElement(components_1.Select, { options: material.materialClass
-                        ? (materialOptions[material.materialClass] || [])
-                        : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "esgnow-specific-material-select" })),
-            react_1.default.createElement(components_1.FormField, { className: "esgnow-material-weight-field" },
-                react_1.default.createElement(components_1.Label, { className: "esgnow-material-weight-field-label" }, "Material Weight (Kg)"),
-                react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "esgnow-weight-input" }))))),
-        react_1.default.createElement("div", { className: "esgnow-add-another-material-container" },
-            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "esgnow-add-another-material-button", onClick: handleAddAnother })),
-        react_1.default.createElement("div", { className: "esgnow-add-material-button-container" },
-            react_1.default.createElement(components_1.Button, { title: "Done", className: "esgnow-add-material-button", onClick: handleAddMaterial }))));
+        materials.map((material, index) => (react_1.default.createElement("div", { key: index, className: "esgnow-material-card" },
+            react_1.default.createElement("div", { className: "esgnow-material-card-header" },
+                react_1.default.createElement("span", { className: "esgnow-material-number" },
+                    "Material #",
+                    index + 1),
+                materials.length > 1 && (react_1.default.createElement("button", { className: "esgnow-remove-material-button", onClick: () => {
+                        const updatedMaterials = [...materials];
+                        updatedMaterials.splice(index, 1);
+                        setMaterials(updatedMaterials);
+                    } }, "\u2715"))),
+            react_1.default.createElement("div", { className: "esgnow-material-row" },
+                react_1.default.createElement(components_1.FormField, { className: "esgnow-material-field" },
+                    react_1.default.createElement(components_1.Label, { className: "esgnow-material-entry-label" }, "Material Class"),
+                    react_1.default.createElement(components_1.Select, { options: classOptions, selected: material.materialClass, onChange: (value) => handleInputChange(index, "materialClass", value), placeholder: "Select an item", className: "esgnow-material-select" })),
+                react_1.default.createElement(components_1.FormField, { className: "esgnow-specific-material-field" },
+                    react_1.default.createElement(components_1.Label, { className: "esgnow-specific-material-label" }, "Specific Material"),
+                    react_1.default.createElement(components_1.Select, { options: material.materialClass
+                            ? (materialOptions[material.materialClass] || [])
+                            : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "esgnow-specific-material-select" })),
+                react_1.default.createElement(components_1.FormField, { className: "esgnow-material-weight-field" },
+                    react_1.default.createElement(components_1.Label, { className: "esgnow-material-weight-field-label" }, "Material Weight (Kg)"),
+                    react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "esgnow-weight-input" })))))),
+        react_1.default.createElement("div", { className: "esgnow-actions-container" },
+            react_1.default.createElement(components_1.Button, { title: "Done", className: "esgnow-add-material-button", onClick: handleAddMaterial }),
+            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "esgnow-add-another-material-button", onClick: handleAddAnother }))));
 };
 exports["default"] = MaterialEntry;
 
@@ -42845,10 +42993,22 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
-    debugger;
+const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }) => {
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
     const [editedData, setEditedData] = (0, react_1.useState)(null);
+    // Reset state when materials prop changes (like when reopening)
+    (0, react_1.useEffect)(() => {
+        setEditingIndex(null);
+        setEditedData(null);
+    }, [materials]);
+    // Add cleanup effect
+    (0, react_1.useEffect)(() => {
+        return () => {
+            // Clean up state when component unmounts
+            setEditingIndex(null);
+            setEditedData(null);
+        };
+    }, []);
     const specificMaterialOptions = [
         { label: "Oak", value: "Oak" },
         { label: "Maple", value: "Maple" },
@@ -42865,6 +43025,7 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
         if (editedData) {
             onEdit(index, editedData);
             setEditingIndex(null);
+            setEditedData(null); // Clear edited data after saving
         }
     };
     const handleChange = (field, value) => {
@@ -42881,13 +43042,11 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
                     react_1.default.createElement("th", null, "Material Weight"),
                     react_1.default.createElement("th", null, "Actions"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
-                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Input, { className: "material-class-input", value: (editedData === null || editedData === void 0 ? void 0 : editedData.materialClass) || "", onChange: (val) => handleChange("materialClass", val) })) : (material.materialClass)),
-                plan == "professional" && (react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement(components_1.Select, { options: specificMaterialOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.specificMaterial) || specificMaterialOptions[0].value, onChange: (newValue) => handleChange("specificMaterial", newValue) })) : (material.specificMaterial))),
-                react_1.default.createElement("td", null, editingIndex === index ? (react_1.default.createElement("div", { className: "weight-unit-input" },
-                    react_1.default.createElement(components_1.Input, { className: "weight-input-field", value: (editedData === null || editedData === void 0 ? void 0 : editedData.weight) || "", onChange: (val) => handleChange("weight", val) }),
-                    react_1.default.createElement(components_1.Select, { className: "unit-select-field", options: unitOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.unit) || unitOptions[0].value, onChange: (newValue) => handleChange("unit", newValue) }))) : (`${material.weight} ${material.unit}`)),
+                react_1.default.createElement("td", null, material.materialClass),
+                plan == "professional" && (react_1.default.createElement("td", null, material.specificMaterial)),
+                react_1.default.createElement("td", null, `${material.weight} ${material.unit}`),
                 react_1.default.createElement("td", null,
-                    editingIndex === index ? (react_1.default.createElement(components_1.IconButton, { type: "plus", onClick: () => handleSaveClick(index), className: "edit-button" })) : (react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: () => handleEditClick(index, material), className: "edit-button" })),
+                    onOpenFullEditor && (react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: () => onOpenFullEditor(index), className: "edit-button" })),
                     react_1.default.createElement(components_1.IconButton, { type: "delete", onClick: () => onDelete(index), className: "delete-button" })))))))));
 };
 exports["default"] = MaterialSummary;
@@ -42986,6 +43145,7 @@ const ProcessEntry = ({ material, onProcessAdd }) => {
                 " ",
                 material.unit)),
         isExpanded && (react_1.default.createElement("div", { className: "process-entry" },
+            react_1.default.createElement("h3", null, "Define Manufacturing Process"),
             react_1.default.createElement(components_1.FormField, { className: "form-field" },
                 react_1.default.createElement(components_1.Label, null, "Manufacturing Process"),
                 react_1.default.createElement(components_1.Select, { options: processOptions, selected: selectedProcess, onChange: (value) => setSelectedProcess(value), placeholder: "Select manufacturing process" })),
@@ -44221,15 +44381,43 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
         { label: "Manual Entry", value: "manual" },
     ];
     const handleEntryTypeChange = (newValue) => {
+        // Only set showProcessContent to false if changing from manual to AI
+        // This preserves any open process forms when switching to manual
+        if (entryType === "manual" && newValue === "ai") {
+            setShowProcessContent(false);
+        }
         setEntryType(newValue);
-        setShowProcessContent(false);
+        // Update the parent component with the appropriate processes for the selected entry type
+        const processes = newValue === "ai" ? aiProcesses : manualProcesses;
+        updateParentManufacturingProcess(processes);
     };
     const handleProcessAdd = (materialId, process) => {
         const newProcess = {
             category: process.manufacturingProcess,
             processes: process.subProcesses,
         };
-        setManualProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialId]: [...(prev[materialId] || []), newProcess] })));
+        setManualProcesses((prev) => {
+            const updatedProcesses = Object.assign(Object.assign({}, prev), { [materialId]: [...(prev[materialId] || []), newProcess] });
+            // Update the parent component's state for both manual and AI processes
+            updateParentManufacturingProcess(updatedProcesses);
+            return updatedProcesses;
+        });
+    };
+    // Helper function to update the parent component's state
+    const updateParentManufacturingProcess = (processes) => {
+        const manufacturingProcesses = [];
+        for (const materialClass in processes) {
+            const material = billMaterials.find(m => m.materialClass === materialClass);
+            if (material) {
+                manufacturingProcesses.push({
+                    materialClass: material.materialClass,
+                    specificMaterial: material.specificMaterial,
+                    weight: parseFloat(material.weight),
+                    manufacturingProcesses: processes[materialClass] || []
+                });
+            }
+        }
+        onProductManufacturingChange(manufacturingProcesses);
     };
     const handleAddProcess = () => {
         setShowProcessContent(true);
@@ -44276,74 +44464,124 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
             const updatedProcesses = [...processes];
             updatedProcesses[processIndex] = editedProcess;
             if (entryType === "ai") {
-                setAIProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses })));
+                setAIProcesses((prev) => {
+                    const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
+                    updateParentManufacturingProcess(newProcesses);
+                    return newProcesses;
+                });
             }
             else {
-                setManualProcesses((prev) => (Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses })));
+                setManualProcesses((prev) => {
+                    const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
+                    updateParentManufacturingProcess(newProcesses);
+                    return newProcesses;
+                });
             }
             setEditingProcess(null);
             setEditedProcess(null);
         }
     };
     const handleDeleteProcess = (materialClass, processIndex) => {
-        setManualProcesses((prev) => {
-            const updatedProcesses = [...(prev[materialClass] || [])];
-            updatedProcesses.splice(processIndex, 1);
-            return Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-        });
-        setAIProcesses((prev) => {
-            const updatedProcesses = [...(prev[materialClass] || [])];
-            updatedProcesses.splice(processIndex, 1);
-            return Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-        });
+        if (entryType === "manual") {
+            setManualProcesses((prev) => {
+                const updatedProcesses = [...(prev[materialClass] || [])];
+                updatedProcesses.splice(processIndex, 1);
+                const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
+                updateParentManufacturingProcess(newProcesses);
+                return newProcesses;
+            });
+        }
+        else {
+            setAIProcesses((prev) => {
+                const updatedProcesses = [...(prev[materialClass] || [])];
+                updatedProcesses.splice(processIndex, 1);
+                const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
+                updateParentManufacturingProcess(newProcesses);
+                return newProcesses;
+            });
+        }
     };
     const selectedProcesses = entryType === "ai" ? aiProcesses : manualProcesses;
+    // Debug logs to verify button conditions
+    console.log("Entry Type is AI:", entryType === "ai");
+    console.log("AI Generating Process:", aiGeneratingProcess);
+    console.log("Selected Processes Keys:", Object.keys(selectedProcesses));
+    console.log("Show Create Button:", entryType === "ai" && !aiGeneratingProcess);
     return (react_1.default.createElement("div", { className: "product-manufacturing" },
-        react_1.default.createElement("div", { className: "entry-type-select" },
-            react_1.default.createElement("label", { htmlFor: "entryType", className: "select-method-label" },
-                "Select Method",
-                react_1.default.createElement("span", { className: "info-icon", onMouseEnter: () => setShowTooltip(true), onMouseLeave: () => setShowTooltip(false) },
-                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faInfoCircle }),
-                    showTooltip && (react_1.default.createElement("div", { className: "tooltip" }, "Use AI Assist to suggest processes based on product details provided, or manually choose them if the information is available.")))),
-            react_1.default.createElement(components_1.Select, { options: entryOptions, selected: entryType, onChange: handleEntryTypeChange }),
-            entryType === "ai" && (react_1.default.createElement(components_1.Button, { title: "Generate", className: "generate-button", onClick: handleGenerate })),
-            entryType === "manual" && (react_1.default.createElement(components_1.Button, { title: "Add Process", className: "add-process-button", onClick: handleAddProcess }))),
+        react_1.default.createElement("div", { className: "entry-method-container" },
+            react_1.default.createElement("h3", { className: "entry-method-title" }, "How would you like to define manufacturing processes?"),
+            react_1.default.createElement("div", { className: "entry-method-options" },
+                react_1.default.createElement("div", { className: `entry-method-card ${entryType === "ai" ? "active" : ""}`, onClick: () => handleEntryTypeChange("ai") },
+                    react_1.default.createElement("div", { className: "entry-card-icon" },
+                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faRobot })),
+                    react_1.default.createElement("div", { className: "entry-card-content" },
+                        react_1.default.createElement("h4", null, "AI Assistance"),
+                        react_1.default.createElement("p", null, "Let AI suggest manufacturing processes based on your materials and product details."),
+                        entryType === "ai" && (react_1.default.createElement("div", { onClick: (e) => e.stopPropagation() },
+                            react_1.default.createElement(components_1.Button, { title: "Generate Processes", className: "generate-button", onClick: handleGenerate }))))),
+                react_1.default.createElement("div", { className: `entry-method-card ${entryType === "manual" ? "active" : ""}`, onClick: () => handleEntryTypeChange("manual") },
+                    react_1.default.createElement("div", { className: "entry-card-icon" },
+                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faCogs })),
+                    react_1.default.createElement("div", { className: "entry-card-content" },
+                        react_1.default.createElement("h4", null, "Manual Definition"),
+                        react_1.default.createElement("p", null, "Manually specify manufacturing processes for each material in your product."))))),
+        entryType === "manual" && !showProcessContent && Object.keys(selectedProcesses).length === 0 && (react_1.default.createElement("div", { className: "manual-entry-prompt" },
+            react_1.default.createElement("p", null, "Click the button below to start defining manufacturing processes for your materials."),
+            react_1.default.createElement(components_1.Button, { title: "Define Manufacturing Processes", className: "define-processes-button", onClick: handleAddProcess }))),
         showProcessContent && entryType === "manual" &&
             billMaterials.map((item) => (react_1.default.createElement("div", { key: item.materialClass },
                 react_1.default.createElement(process_entry_1.default, { material: item, onProcessAdd: (process) => handleProcessAdd(item.materialClass, process) })))),
-        aiGeneratingProcess && react_1.default.createElement("div", { className: "ai-generating" }, "Generating AI Processes..."),
+        aiGeneratingProcess && (react_1.default.createElement("div", { className: "ai-generating-process" },
+            react_1.default.createElement("div", { className: "loader-spinner" }),
+            react_1.default.createElement("div", { className: "generating-message" },
+                react_1.default.createElement("h4", null, "AI is analyzing your materials"),
+                react_1.default.createElement("p", null, "Determining optimal manufacturing processes for each material in your product...")))),
+        entryType === "ai" && !aiGeneratingProcess && Object.keys(selectedProcesses).length === 0 && (react_1.default.createElement("div", { className: "empty-processes-container" },
+            react_1.default.createElement("p", null, "No manufacturing processes defined yet. Generate processes using AI or switch to manual entry."))),
         Object.keys(selectedProcesses).length > 0 && (react_1.default.createElement("div", { className: "process-summary" },
-            react_1.default.createElement("table", { className: "summary-table" },
-                react_1.default.createElement("thead", null,
-                    react_1.default.createElement("tr", null,
-                        react_1.default.createElement("th", null, "Material Class"),
-                        (plan == 'professional' && react_1.default.createElement("th", null, "Specific Material")),
-                        react_1.default.createElement("th", null, "Weight"),
-                        react_1.default.createElement("th", null, "Processes"),
-                        react_1.default.createElement("th", null, "Actions"))),
-                react_1.default.createElement("tbody", null, billMaterials.map((item) => {
-                    var _a, _b;
-                    return (react_1.default.createElement("tr", { key: item.materialClass },
-                        react_1.default.createElement("td", null, item.materialClass),
-                        (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
-                        react_1.default.createElement("td", null,
-                            item.weight,
-                            " ",
-                            item.unit),
-                        react_1.default.createElement("td", null, (_a = selectedProcesses[item.materialClass]) === null || _a === void 0 ? void 0 : _a.map((process, index) => (react_1.default.createElement("div", { key: index, className: "process-item" }, (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass && editingProcess.processIndex === index ? (react_1.default.createElement(react_1.default.Fragment, null,
-                            react_1.default.createElement(components_1.Input, { value: (editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.category) || "", onChange: (val) => setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { category: val }) : null) }),
-                            react_1.default.createElement("ul", null, editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex },
+            react_1.default.createElement("div", { className: "process-summary-header" },
+                react_1.default.createElement("h3", null,
+                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faIndustry, className: "summary-icon" }),
+                    "Manufacturing Processes",
+                    react_1.default.createElement("span", { className: "method-badge" }, entryType === "manual" ? "Manual" : "AI-Generated"))),
+            react_1.default.createElement("div", { className: "material-process-cards" }, billMaterials.map((item) => {
+                var _a;
+                return (react_1.default.createElement("div", { key: item.materialClass, className: "material-process-card" },
+                    react_1.default.createElement("div", { className: "material-header" },
+                        react_1.default.createElement("div", { className: "material-info" },
+                            react_1.default.createElement("h4", { className: "material-name" }, item.materialClass),
+                            react_1.default.createElement("div", { className: "material-details" },
+                                plan === 'professional' && (react_1.default.createElement("span", { className: "specific-material" }, item.specificMaterial)),
+                                react_1.default.createElement("span", { className: "material-weight" },
+                                    item.weight,
+                                    " ",
+                                    item.unit)))),
+                    react_1.default.createElement("div", { className: "process-list" }, ((_a = selectedProcesses[item.materialClass]) === null || _a === void 0 ? void 0 : _a.length) > 0 ? (selectedProcesses[item.materialClass].map((process, index) => (react_1.default.createElement("div", { key: index, className: "process-item" },
+                        react_1.default.createElement("div", { className: "process-content" }, (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass &&
+                            editingProcess.processIndex === index ? (react_1.default.createElement("div", { className: "process-edit-form" },
+                            react_1.default.createElement("label", null, "Process Category:"),
+                            react_1.default.createElement(components_1.Input, { value: (editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.category) || "", onChange: (val) => setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { category: val }) : null), className: "process-edit-input" }),
+                            react_1.default.createElement("label", null, "Sub-processes:"), editedProcess === null || editedProcess === void 0 ? void 0 :
+                            editedProcess.processes.map((subProcess, subIndex) => (react_1.default.createElement("div", { key: subIndex, className: "subprocess-edit" },
                                 react_1.default.createElement(components_1.Input, { value: subProcess, onChange: (val) => {
                                         const updatedProcesses = [...(editedProcess.processes || [])];
                                         updatedProcesses[subIndex] = val;
                                         setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { processes: updatedProcesses }) : null);
-                                    } }))))))) : (react_1.default.createElement(react_1.default.Fragment, null,
-                            react_1.default.createElement("strong", null, process.category),
-                            react_1.default.createElement("ul", null, process.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex }, subProcess)))))))))),
-                        react_1.default.createElement("td", null, (_b = selectedProcesses[item.materialClass]) === null || _b === void 0 ? void 0 : _b.map((_, index) => (react_1.default.createElement("div", { key: index, className: "action-buttons" },
-                            (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass && editingProcess.processIndex === index ? (react_1.default.createElement(components_1.Button, { title: "Save", className: "save-button", onClick: handleSaveProcess })) : (react_1.default.createElement(components_1.Button, { title: "Edit", className: "edit-button", onClick: () => handleEditProcess(item.materialClass, index) })),
-                            react_1.default.createElement(components_1.Button, { title: "Delete", className: "delete-button", onClick: () => handleDeleteProcess(item.materialClass, index) })))))));
-                })))))));
+                                    }, className: "subprocess-edit-input" })))),
+                            react_1.default.createElement("div", { className: "edit-actions" },
+                                react_1.default.createElement(components_1.Button, { title: "Save Changes", className: "save-button", onClick: handleSaveProcess })))) : (react_1.default.createElement(react_1.default.Fragment, null,
+                            react_1.default.createElement("div", { className: "process-header" },
+                                react_1.default.createElement("h5", { className: "process-category" },
+                                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faWrench, className: "process-icon" }),
+                                    process.category),
+                                react_1.default.createElement("div", { className: "process-actions" },
+                                    react_1.default.createElement("button", { className: "icon-button edit", onClick: () => handleEditProcess(item.materialClass, index), title: "Edit Process" },
+                                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEdit })),
+                                    react_1.default.createElement("button", { className: "icon-button delete", onClick: () => handleDeleteProcess(item.materialClass, index), title: "Delete Process" }, "\u2715"))),
+                            react_1.default.createElement("ul", { className: "subprocess-list" }, process.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex, className: "subprocess-item" }, subProcess))))))))))) : (react_1.default.createElement("div", { className: "no-processes" },
+                        react_1.default.createElement("p", null, "No manufacturing processes defined for this material."))))));
+            })),
+            react_1.default.createElement("div", { className: "processes-actions" }, entryType === "manual" && !showProcessContent && (react_1.default.createElement(components_1.Button, { className: "add-more-processes-button", title: "Add More Processes", onClick: handleAddProcess })))))));
 };
 exports["default"] = ProductManufacturing;
 
@@ -44477,6 +44715,11 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
         //onClose();
     });
     const onCloseEx = () => {
+        // Clean up all session storage related to this product
+        if (productInfoData && productInfoData.code) {
+            sessionStorage.removeItem(`product_${productInfoData.code}_materials`);
+            sessionStorage.removeItem(`product_${productInfoData.code}_entry_type`);
+        }
         onClose();
         setActiveStep(0);
         setProductInfoData({
@@ -44498,6 +44741,19 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
         });
         setBillMaterialsData([]);
         setProductManufacturingProcess([]);
+        // Clear all session storage related to any products
+        // Using a separate array to store keys to prevent issues with changing sessionStorage during iteration
+        const keysToRemove = [];
+        for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i);
+            if (key && (key.includes('_materials') || key.includes('_entry_type'))) {
+                keysToRemove.push(key);
+            }
+        }
+        // Remove all marked keys
+        keysToRemove.forEach(key => {
+            sessionStorage.removeItem(key);
+        });
     };
     return (react_1.default.createElement(components_1.Modal, { className: "lgs-create-product-modal", show: show, onOpen: () => { setShowCloseWarning(true); }, onClose: onCloseEx, title: "Create Product" },
         react_1.default.createElement(stepper_1.default, { activeStep: activeStep, onStepChange: handleStepChange }),
@@ -44505,8 +44761,8 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
         activeStep === 1 && (react_1.default.createElement(product_categorization_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleProductCategoryChange, uxpContext: uxpContext })),
         activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange, uxpContext: uxpContext })),
         activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess, uxpContext: uxpContext })),
-        activeStep === 3 && productManufacturingProcess.length > 0 && (react_1.default.createElement("div", { className: "done-button-container" },
-            react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone }))),
+        activeStep === 3 && (react_1.default.createElement("div", { className: "done-button-container" },
+            react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone, disabled: billMaterialsData.length === 0 }))),
         activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onCloseEx, setShowCloseWarning: setShowCloseWarning })));
 };
 exports.ProductWizard = ProductWizard;

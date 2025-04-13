@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./material-summary.scss";
 import { Button, Input, Select, IconButton } from "uxp/components";
 
@@ -14,12 +14,28 @@ interface MaterialSummaryProps {
     plan: string;
     onEdit: (index: number, updatedMaterial: Material) => void;
     onDelete: (index: number) => void;
+    onOpenFullEditor?: (index: number) => void;
 }
 
-const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, onDelete, plan }) => {
-    debugger;
+const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }) => {
+
     const [editingIndex, setEditingIndex] = useState<number | null>(null);
     const [editedData, setEditedData] = useState<Material | null>(null);
+    
+    // Reset state when materials prop changes (like when reopening)
+    useEffect(() => {
+        setEditingIndex(null);
+        setEditedData(null);
+    }, [materials]);
+    
+    // Add cleanup effect
+    useEffect(() => {
+        return () => {
+            // Clean up state when component unmounts
+            setEditingIndex(null);
+            setEditedData(null);
+        };
+    }, []);
 
     const specificMaterialOptions = [
         { label: "Oak", value: "Oak" },
@@ -41,6 +57,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
         if (editedData) {
             onEdit(index, editedData);
             setEditingIndex(null);
+            setEditedData(null); // Clear edited data after saving
         }
     };
 
@@ -65,55 +82,23 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                     {materials.map((material, index) => (
                         <tr key={index}>
                             <td>
-                                {editingIndex === index ? (
-                                    <Input className="material-class-input"
-                                        value={editedData?.materialClass || ""}
-                                        onChange={(val) => handleChange("materialClass", val)}
-                                    />
-                                ) : (
-                                    material.materialClass
-                                )}
+                                {material.materialClass}
                             </td>
 
                             {plan == "professional" && (
                                 <td>
-                                    {editingIndex === index ? (
-                                        <Select
-                                            options={specificMaterialOptions}
-                                            selected={editedData?.specificMaterial || specificMaterialOptions[0].value}
-                                            onChange={(newValue) => handleChange("specificMaterial", newValue)}
-                                        />
-                                    ) : (
-                                        material.specificMaterial
-                                    )}
+                                    {material.specificMaterial}
                                 </td>
                             )}
                             
                             <td>
-                                {editingIndex === index ? (
-                                    <div className="weight-unit-input">
-                                        <Input className="weight-input-field" value={editedData?.weight || ""} onChange={(val) => handleChange("weight", val)} />
-                                        <Select className="unit-select-field"
-                                            options={unitOptions}
-                                            selected={editedData?.unit || unitOptions[0].value}
-                                            onChange={(newValue) => handleChange("unit", newValue)}
-                                        />
-                                    </div>
-                                ) : (
-                                    `${material.weight} ${material.unit}`
-                                )}
+                                {`${material.weight} ${material.unit}`}
                             </td>
                             <td>
-                                {editingIndex === index ? (
-                                    <IconButton
-                                        type="plus"
-                                        onClick={() => handleSaveClick(index)}
-                                        className="edit-button"
-                                    />
-                                ) : (
+                                {onOpenFullEditor && (
                                     <IconButton
                                         type="edit"
-                                        onClick={() => handleEditClick(index, material)}
+                                        onClick={() => onOpenFullEditor(index)}
                                         className="edit-button"
                                     />
                                 )}

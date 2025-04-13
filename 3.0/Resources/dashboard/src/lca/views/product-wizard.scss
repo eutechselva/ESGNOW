@@ -2,6 +2,33 @@
     display: flex;
     justify-content: center;
     margin-top: 20px;
+    
+    button {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px 24px;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        min-width: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        &:hover {
+            background-color: #388e3c;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            
+            &:hover {
+                box-shadow: none;
+                background-color: #ccc;
+            }
+        }
+    }
 }
 
 .modal-container {

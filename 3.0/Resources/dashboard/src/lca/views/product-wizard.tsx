@@ -121,6 +121,11 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
     };
 
     const onCloseEx = () =>{
+        // Clean up all session storage related to this product
+        if (productInfoData && productInfoData.code) {
+            sessionStorage.removeItem(`product_${productInfoData.code}_materials`);
+            sessionStorage.removeItem(`product_${productInfoData.code}_entry_type`);
+        }
         
         onClose();
         setActiveStep(0);
@@ -144,6 +149,21 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
         });
         setBillMaterialsData([]);
         setProductManufacturingProcess([]);
+        
+        // Clear all session storage related to any products
+        // Using a separate array to store keys to prevent issues with changing sessionStorage during iteration
+        const keysToRemove = [];
+        for (let i = 0; i < sessionStorage.length; i++) {
+            const key = sessionStorage.key(i);
+            if (key && (key.includes('_materials') || key.includes('_entry_type'))) {
+                keysToRemove.push(key);
+            }
+        }
+        
+        // Remove all marked keys
+        keysToRemove.forEach(key => {
+            sessionStorage.removeItem(key);
+        });
     }
 
     return (
@@ -186,9 +206,13 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
             )}
 
             {/* Rendering the "Done" button on the last step */}
-            {activeStep === 3 && productManufacturingProcess.length > 0 && (
+            {activeStep === 3 && (
                 <div className="done-button-container">
-                    <Button title="Create" onClick={handleDone} />
+                    <Button 
+                        title="Create" 
+                        onClick={handleDone} 
+                        disabled={billMaterialsData.length === 0}
+                    />
                 </div>
             )}
 

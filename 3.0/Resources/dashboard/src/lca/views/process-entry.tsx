@@ -70,7 +70,7 @@ const ProcessEntry: React.FC<ProcessEntryProps> = ({ material, onProcessAdd }) =
 
             {isExpanded && (
                 <div className="process-entry">
-
+                    <h3>Define Manufacturing Process</h3>
 
                     {/* Manufacturing Process Select */}
                     <FormField className="form-field">

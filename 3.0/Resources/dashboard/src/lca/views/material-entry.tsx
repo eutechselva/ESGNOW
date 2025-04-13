@@ -8,10 +8,12 @@ interface MaterialEntryProps {
     onAddMaterial: (materials: { materialClass: string; specificMaterial: string; weight: string; unit: string }[]) => void;
     isEditable?: boolean;
     initialMaterial?: { materialClass: string; specificMaterial: string; weight: string; unit: string };
+    existingMaterials?: Array<{ materialClass: string; specificMaterial: string; weight: string; unit: string }>;
     uxpContext: IContextProvider;
 }
 
-const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable, initialMaterial, uxpContext }) => {
+const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable, initialMaterial, existingMaterials, uxpContext }) => {
+    // Start with either the initial material for editing, or a blank material for adding
     const [materials, setMaterials] = useState([{ 
         materialClass: initialMaterial?.materialClass || "", 
         specificMaterial: initialMaterial?.specificMaterial || "", 
@@ -19,13 +21,26 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
         unit: initialMaterial?.unit || "kg" 
     }]);
     
+    // Reset materials when initialMaterial changes
+    useEffect(() => {
+        if (initialMaterial) {
+            // If editing an existing material
+            setMaterials([{ 
+                materialClass: initialMaterial.materialClass || "", 
+                specificMaterial: initialMaterial.specificMaterial || "", 
+                weight: initialMaterial.weight || "", 
+                unit: initialMaterial.unit || "kg" 
+            }]);
+        }
+    }, [initialMaterial]);
+    
     const [materialOptions, setMaterialOptions] = useState<Record<string, { label: string; value: string }[]>>({});
     const [classOptions, setClassOptions] = useState<{ label: string; value: string }[]>([]);
     
     useEffect(() => {
         const fetchMaterials = async () => {
             try {
-                debugger;
+            
                 const { data, error } = await getBillOfMaterials(uxpContext);
                 if (error) {
                     console.error("Error fetching bill of materials:", error);
@@ -78,81 +93,100 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
     };
 
     const handleAddMaterial = () => {
-        onAddMaterial(materials);
-        setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "" }]);
+        // Filter out materials with empty required fields
+        const validMaterials = materials.filter(m => 
+            m.materialClass.trim() !== "" && m.weight.trim() !== ""
+        );
+        
+        if (validMaterials.length > 0) {
+            // If editing a specific material, replace it; otherwise add new materials
+            if (initialMaterial) {
+                onAddMaterial(validMaterials);
+            } else {
+                // Add only the new materials without replacing existing ones
+                onAddMaterial(validMaterials);
+            }
+            
+            // Reset the entry form
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+        } else {
+            // If no valid materials, at least require one form entry
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+        }
     };
 
     return (
         <>
             {materials.map((material, index) => (
-               <div key={index} className="esgnow-material-row">
-               <FormField className="esgnow-material-field">
-                   <Label className="esgnow-material-entry-label">Material Class</Label>
-                   <Select
-                       options={classOptions}
-                       selected={material.materialClass}
-                       onChange={(value) => handleInputChange(index, "materialClass", value)}
-                       placeholder="Select an item"
-                       className="esgnow-material-select"
-                   />
-               </FormField>
-   
-               <FormField className="esgnow-specific-material-field">
-                   <Label className="esgnow-specific-material-label">Specific Material</Label>
-                   <Select
-                       options={
-                           material.materialClass
-                               ? (materialOptions[material.materialClass] || [])
-                               : [{ label: "Select Material Class first", value: "" }]
-                       }
-                       selected={material.specificMaterial}
-                       onChange={(value) => handleInputChange(index, "specificMaterial", value)}
-                       placeholder="Select specific material"
-                       className="esgnow-specific-material-select"
-                   />
-               </FormField>
-   
-               <FormField className="esgnow-material-weight-field">
-                   <Label className="esgnow-material-weight-field-label">Material Weight (Kg)</Label>
-                   <Input
-                       type="number"
-                       value={material.weight}
-                       onChange={(value) => handleInputChange(index, "weight", value)}
-                       placeholder="Enter weight"
-                       inputAttr={{ step: "0.01" }}
-                       className="esgnow-weight-input"
-                   />
-               </FormField>
-   
-               {/* <FormField className="unit-field">
-                   <Label>Unit</Label>
-                   <Select
-                       options={[
-                           { label: "kg", value: "kg" },
-                       ]}
-                       selected={material.unit}
-                       onChange={(value) => handleInputChange(index, "unit", value)}
-                       placeholder="Select unit"
-                       className="unit-select"
-                   />
-               </FormField> */}
-                    {/* Wrap the button in a new div to place it on a separate line */}
-                </div>
+               <div key={index} className="esgnow-material-card">
+                  <div className="esgnow-material-card-header">
+                      <span className="esgnow-material-number">Material #{index + 1}</span>
+                      {materials.length > 1 && (
+                          <button 
+                              className="esgnow-remove-material-button"
+                              onClick={() => {
+                                  const updatedMaterials = [...materials];
+                                  updatedMaterials.splice(index, 1);
+                                  setMaterials(updatedMaterials);
+                              }}
+                          >
+                              ✕
+                          </button>
+                      )}
+                  </div>
+                  <div className="esgnow-material-row">
+                     <FormField className="esgnow-material-field">
+                         <Label className="esgnow-material-entry-label">Material Class</Label>
+                         <Select
+                             options={classOptions}
+                             selected={material.materialClass}
+                             onChange={(value) => handleInputChange(index, "materialClass", value)}
+                             placeholder="Select an item"
+                             className="esgnow-material-select"
+                         />
+                     </FormField>
+         
+                     <FormField className="esgnow-specific-material-field">
+                         <Label className="esgnow-specific-material-label">Specific Material</Label>
+                         <Select
+                             options={
+                                 material.materialClass
+                                     ? (materialOptions[material.materialClass] || [])
+                                     : [{ label: "Select Material Class first", value: "" }]
+                             }
+                             selected={material.specificMaterial}
+                             onChange={(value) => handleInputChange(index, "specificMaterial", value)}
+                             placeholder="Select specific material"
+                             className="esgnow-specific-material-select"
+                         />
+                     </FormField>
+         
+                     <FormField className="esgnow-material-weight-field">
+                         <Label className="esgnow-material-weight-field-label">Material Weight (Kg)</Label>
+                         <Input
+                             type="number"
+                             value={material.weight}
+                             onChange={(value) => handleInputChange(index, "weight", value)}
+                             placeholder="Enter weight"
+                             inputAttr={{ step: "0.01" }}
+                             className="esgnow-weight-input"
+                         />
+                     </FormField>
+                  </div>
+              </div>
             ))}
-                <div className="esgnow-add-another-material-container">
-                        <Button
-                            title="Add Another Material"
-                            className="esgnow-add-another-material-button"
-                            onClick={handleAddAnother}
-                        />
+                <div className="esgnow-actions-container">
+                    <Button
+                        title="Done"
+                        className="esgnow-add-material-button"
+                        onClick={handleAddMaterial}
+                    />
+                    <Button
+                        title="Add Another Material"
+                        className="esgnow-add-another-material-button"
+                        onClick={handleAddAnother}
+                    />
                 </div>
-    <div className="esgnow-add-material-button-container">
-            <Button
-                title="Done"
-                className="esgnow-add-material-button"
-                onClick={handleAddMaterial}
-            />
-        </div>
             
         </>
     );
