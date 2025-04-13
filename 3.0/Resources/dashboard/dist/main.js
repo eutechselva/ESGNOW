@@ -42832,6 +42832,7 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
+    debugger;
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
     const [editedData, setEditedData] = (0, react_1.useState)(null);
     const specificMaterialOptions = [

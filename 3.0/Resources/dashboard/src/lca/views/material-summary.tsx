@@ -17,6 +17,7 @@ interface MaterialSummaryProps {
 }
 
 const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, onDelete, plan }) => {
+    debugger;
     const [editingIndex, setEditingIndex] = useState<number | null>(null);
     const [editedData, setEditedData] = useState<Material | null>(null);
 
