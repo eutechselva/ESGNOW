@@ -42887,7 +42887,7 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan }) => {
                     react_1.default.createElement(components_1.Input, { className: "weight-input-field", value: (editedData === null || editedData === void 0 ? void 0 : editedData.weight) || "", onChange: (val) => handleChange("weight", val) }),
                     react_1.default.createElement(components_1.Select, { className: "unit-select-field", options: unitOptions, selected: (editedData === null || editedData === void 0 ? void 0 : editedData.unit) || unitOptions[0].value, onChange: (newValue) => handleChange("unit", newValue) }))) : (`${material.weight} ${material.unit}`)),
                 react_1.default.createElement("td", null,
-                    editingIndex === index ? (react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => handleSaveClick(index), className: "save-materials-button" })) : (react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: () => handleEditClick(index, material), className: "edit-button" })),
+                    editingIndex === index ? (react_1.default.createElement(components_1.IconButton, { type: "plus", onClick: () => handleSaveClick(index), className: "edit-button" })) : (react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: () => handleEditClick(index, material), className: "edit-button" })),
                     react_1.default.createElement(components_1.IconButton, { type: "delete", onClick: () => onDelete(index), className: "delete-button" })))))))));
 };
 exports["default"] = MaterialSummary;

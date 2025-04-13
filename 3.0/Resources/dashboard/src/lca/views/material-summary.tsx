@@ -105,7 +105,11 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                             </td>
                             <td>
                                 {editingIndex === index ? (
-                                    <Button title="Save" onClick={() => handleSaveClick(index)} className="save-materials-button" />
+                                    <IconButton
+                                        type="plus"
+                                        onClick={() => handleSaveClick(index)}
+                                        className="edit-button"
+                                    />
                                 ) : (
                                     <IconButton
                                         type="edit"
