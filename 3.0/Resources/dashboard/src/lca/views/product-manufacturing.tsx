@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Button, Select, Input } from "uxp/components";
+import React, { useState, useEffect } from "react";
+import { Button, Select } from "uxp/components";
 import ProcessEntry from "./process-entry";
 import "./product-manufacturing.scss";
 import { BillMaterial } from "../types/bill-material-type";
@@ -7,8 +7,8 @@ import { ProductManufacturingProcess } from "../types/product-manufacturing-proc
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { IContextProvider } from "@uxp";
-import { classifyManufacturingProcess } from "../../esgnow-service";
-import { faInfoCircle, faRobot, faEdit, faWrench, faCogs, faIndustry } from "@fortawesome/free-solid-svg-icons";
+import { classifyManufacturingProcess, getAccountPlan } from "../../esgnow-service";
+import { faInfoCircle, faRobot, faWrench, faCogs, faIndustry } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 interface ProductManufacturingProps {
@@ -31,22 +31,39 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     const [aiProcesses, setAIProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [showProcessContent, setShowProcessContent] = useState(false);
     const [aiGeneratingProcess, setAIGeneratingProcess] = useState<boolean>(false);
-    const [editingProcess, setEditingProcess] = useState<{ materialClass: string, processIndex: number } | null>(null);
-    const [editedProcess, setEditedProcess] = useState<ProductManufacturingProcess | null>(null);
+    // We no longer need editing state since we're making this view-only
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
-    const [plan, setPlan] = useState<string>();
+    const [plan, setPlan] = useState<string>(null);
+    const [validationError, setValidationError] = useState<string>("");
 
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
+    
+    useEffect(() => {
+        getAccountPlanFromAPI();
+        
+        // Add cleanup when component unmounts
+        return () => {
+            setShowProcessContent(false);
+            setValidationError("");
+        };
+    }, [uxpContext]);
+    
+    const getAccountPlanFromAPI = async () => {
+        const response = await getAccountPlan(uxpContext);
+        setPlan(response.data.plan);
+    };
 
     const handleEntryTypeChange = (newValue: "ai" | "manual") => {
-        // Only set showProcessContent to false if changing from manual to AI
-        // This preserves any open process forms when switching to manual
-        if (entryType === "manual" && newValue === "ai") {
+        // Manual mode is always expanded
+        if (newValue === "manual") {
+            setShowProcessContent(true);
+        } else {
             setShowProcessContent(false);
         }
+        
         setEntryType(newValue);
         
         // Update the parent component with the appropriate processes for the selected entry type
@@ -60,14 +77,19 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             processes: process.subProcesses,
         };
 
-        setManualProcesses((prev) => {
+        // Use functional update to ensure we're working with the most current state
+        setManualProcesses(prev => {
+            // Create a new object to avoid reference issues
             const updatedProcesses = {
                 ...prev,
-                [materialId]: [...(prev[materialId] || []), newProcess],
+                [materialId]: [newProcess], // Only keep the new process
             };
             
-            // Update the parent component's state for both manual and AI processes
-            updateParentManufacturingProcess(updatedProcesses);
+            // We need to use setTimeout to break the potential circular update cycle
+            // This ensures the state update completes before triggering the parent update
+            setTimeout(() => {
+                updateParentManufacturingProcess(updatedProcesses);
+            }, 0);
             
             return updatedProcesses;
         });
@@ -75,6 +97,10 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     
     // Helper function to update the parent component's state
     const updateParentManufacturingProcess = (processes: Record<string, ProductManufacturingProcess[]>) => {
+        // Check for valid processes but don't set validation error yet
+        // We'll manually check and set the error message
+        const processesValid = checkProcessesValidity();
+        
         const manufacturingProcesses = [];
         for (const materialClass in processes) {
             const material = billMaterials.find(m => m.materialClass === materialClass);
@@ -87,9 +113,23 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 });
             }
         }
-        onProductManufacturingChange(manufacturingProcesses);
+        
+        // Only call the parent's callback if we have valid data
+        if (manufacturingProcesses.length > 0) {
+            onProductManufacturingChange(manufacturingProcesses);
+            
+            // If processes are valid, clear any validation errors
+            if (processesValid) {
+                setValidationError(""); 
+            } else {
+                // Otherwise set the error message
+                setValidationError("Please define at least one manufacturing process before proceeding.");
+            }
+        }
     };
 
+    // This function is no longer needed since we always show process content in manual mode
+    // But we'll keep it for backward compatibility
     const handleAddProcess = () => {
         setShowProcessContent(true);
     };
@@ -115,7 +155,8 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 const apiResults: { materialClass: string, specificMaterial: string, weight: number, manufacturingProcesses: ProductManufacturingProcess[] }[] =
                     await response.data.manufacturingProcess;
 
-                setPlan(response.data.plan.plan);
+                // Make sure to maintain the same structure as getAccountPlanFromAPI
+                setPlan(response.data.plan);
 
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
                 apiResults.forEach((item) => {
@@ -132,77 +173,46 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
         }
     };
 
-    const handleEditProcess = (materialClass: string, processIndex: number) => {
-        const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
-        setEditingProcess({ materialClass, processIndex });
-        setEditedProcess(processes[processIndex]);
-    };
+    // These functions are no longer needed since we're making the UI view-only
 
-    const handleSaveProcess = () => {
-        if (editingProcess && editedProcess) {
-            const { materialClass, processIndex } = editingProcess;
-            const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
-            const updatedProcesses = [...processes];
-            updatedProcesses[processIndex] = editedProcess;
-
-            if (entryType === "ai") {
-                setAIProcesses((prev) => {
-                    const newProcesses = {
-                        ...prev,
-                        [materialClass]: updatedProcesses,
-                    };
-                    updateParentManufacturingProcess(newProcesses);
-                    return newProcesses;
-                });
-            } else {
-                setManualProcesses((prev) => {
-                    const newProcesses = {
-                        ...prev,
-                        [materialClass]: updatedProcesses,
-                    };
-                    updateParentManufacturingProcess(newProcesses);
-                    return newProcesses;
-                });
-            }
-
-            setEditingProcess(null);
-            setEditedProcess(null);
-        }
-    };
-
-    const handleDeleteProcess = (materialClass: string, processIndex: number) => {
-        if (entryType === "manual") {
-            setManualProcesses((prev) => {
-                const updatedProcesses = [...(prev[materialClass] || [])];
-                updatedProcesses.splice(processIndex, 1);
-                const newProcesses = {
-                    ...prev,
-                    [materialClass]: updatedProcesses,
-                };
-                updateParentManufacturingProcess(newProcesses);
-                return newProcesses;
-            });
-        } else {
-            setAIProcesses((prev) => {
-                const updatedProcesses = [...(prev[materialClass] || [])];
-                updatedProcesses.splice(processIndex, 1);
-                const newProcesses = {
-                    ...prev,
-                    [materialClass]: updatedProcesses,
-                };
-                updateParentManufacturingProcess(newProcesses);
-                return newProcesses;
-            });
-        }
-    };
+    // This function is also no longer needed since we're making the UI view-only
 
     const selectedProcesses = entryType === "ai" ? aiProcesses : manualProcesses;
     
-    // Debug logs to verify button conditions
-    console.log("Entry Type is AI:", entryType === "ai");
-    console.log("AI Generating Process:", aiGeneratingProcess);
-    console.log("Selected Processes Keys:", Object.keys(selectedProcesses));
-    console.log("Show Create Button:", entryType === "ai" && !aiGeneratingProcess);
+    // Function to validate if there are any manufacturing processes defined without setting state
+    const checkProcessesValidity = (): boolean => {
+        // Check if there are any entries in the process object
+        if (Object.keys(selectedProcesses).length === 0) {
+            return false;
+        }
+        
+        // Check if any material has at least one process defined
+        let hasAnyProcess = false;
+        for (const materialClass in selectedProcesses) {
+            if (selectedProcesses[materialClass] && selectedProcesses[materialClass].length > 0) {
+                hasAnyProcess = true;
+                break;
+            }
+        }
+        
+        return hasAnyProcess;
+    };
+    
+    // Separate function that sets the validation error (to be called from event handlers, not during render)
+    const validateProcesses = (): boolean => {
+        const isValid = checkProcessesValidity();
+        
+        if (!isValid) {
+            setValidationError("Please define at least one manufacturing process before proceeding.");
+        } else {
+            setValidationError("");
+        }
+        
+        return isValid;
+    };
+    
+    // Check validity without setting state for debugging and UI conditionals
+    const hasValidProcesses = checkProcessesValidity();
 
     return (
         <div className="product-manufacturing">
@@ -261,26 +271,37 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 </div>
             </div>
 
-            {entryType === "manual" && !showProcessContent && Object.keys(selectedProcesses).length === 0 && (
-                <div className="manual-entry-prompt">
-                    <p>Click the button below to start defining manufacturing processes for your materials.</p>
-                    <Button
-                        title="Define Manufacturing Processes"
-                        className="define-processes-button"
-                        onClick={handleAddProcess}
-                    />
+            {entryType === "manual" && (
+                <div className="manual-manufacturing-container">
+                    <div className="manufacturing-process-editor">
+                        <h3>Define Manufacturing Processes</h3>
+                        <p className="editor-subtitle">Select a manufacturing process and sub-processes for each material. Your selections will be automatically saved.</p>
+                        
+                        <div className="material-cards-container">
+                            {billMaterials.map((item) => (
+                                <div key={item.materialClass} className="material-process-entry-card">
+                                    <div className="material-header">
+                                        <div className="material-info-row">
+                                            <h4 className="material-name">{item.materialClass}</h4>
+                                            {plan === 'professional' && (
+                                                <span className="specific-material">({item.specificMaterial})</span>
+                                            )}
+                                            <span className="material-weight">{item.weight} {item.unit}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <ProcessEntry
+                                        material={item}
+                                        onProcessAdd={(process) => handleProcessAdd(item.materialClass, process)}
+                                        uxpContext={uxpContext}
+                                    />
+                                    
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             )}
-
-            {showProcessContent && entryType === "manual" &&
-                billMaterials.map((item) => (
-                    <div key={item.materialClass}>
-                        <ProcessEntry
-                            material={item}
-                            onProcessAdd={(process) => handleProcessAdd(item.materialClass, process)}
-                        />
-                    </div>
-                ))}
 
             {aiGeneratingProcess && (
                 <div className="ai-generating-process">
@@ -298,126 +319,12 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 </div>
             )}
 
-            {Object.keys(selectedProcesses).length > 0 && (
-                <div className="process-summary">
-                    <div className="process-summary-header">
-                        <h3>
-                            <FontAwesomeIcon icon={faIndustry} className="summary-icon" />
-                            Manufacturing Processes 
-                            <span className="method-badge">{entryType === "manual" ? "Manual" : "AI-Generated"}</span>
-                        </h3>
-                    </div>
-                    
-                    <div className="material-process-cards">
-                        {billMaterials.map((item) => (
-                            <div key={item.materialClass} className="material-process-card">
-                                <div className="material-header">
-                                    <div className="material-info">
-                                        <h4 className="material-name">{item.materialClass}</h4>
-                                        <div className="material-details">
-                                            {plan === 'professional' && (
-                                                <span className="specific-material">{item.specificMaterial}</span>
-                                            )}
-                                            <span className="material-weight">{item.weight} {item.unit}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div className="process-list">
-                                    {selectedProcesses[item.materialClass]?.length > 0 ? (
-                                        selectedProcesses[item.materialClass].map((process, index) => (
-                                            <div key={index} className="process-item">
-                                                <div className="process-content">
-                                                    {editingProcess?.materialClass === item.materialClass && 
-                                                    editingProcess.processIndex === index ? (
-                                                        <div className="process-edit-form">
-                                                            <label>Process Category:</label>
-                                                            <Input
-                                                                value={editedProcess?.category || ""}
-                                                                onChange={(val) => setEditedProcess((prev) => 
-                                                                    prev ? { ...prev, category: val } : null)}
-                                                                className="process-edit-input"
-                                                            />
-                                                            <label>Sub-processes:</label>
-                                                            {editedProcess?.processes.map((subProcess, subIndex) => (
-                                                                <div key={subIndex} className="subprocess-edit">
-                                                                    <Input
-                                                                        value={subProcess}
-                                                                        onChange={(val) => {
-                                                                            const updatedProcesses = [...(editedProcess.processes || [])];
-                                                                            updatedProcesses[subIndex] = val;
-                                                                            setEditedProcess((prev) => 
-                                                                                prev ? { ...prev, processes: updatedProcesses } : null);
-                                                                        }}
-                                                                        className="subprocess-edit-input"
-                                                                    />
-                                                                </div>
-                                                            ))}
-                                                            <div className="edit-actions">
-                                                                <Button
-                                                                    title="Save Changes"
-                                                                    className="save-button"
-                                                                    onClick={handleSaveProcess}
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    ) : (
-                                                        <>
-                                                            <div className="process-header">
-                                                                <h5 className="process-category">
-                                                                    <FontAwesomeIcon icon={faWrench} className="process-icon" />
-                                                                    {process.category}
-                                                                </h5>
-                                                                <div className="process-actions">
-                                                                    <button 
-                                                                        className="icon-button edit"
-                                                                        onClick={() => handleEditProcess(item.materialClass, index)}
-                                                                        title="Edit Process"
-                                                                    >
-                                                                        <FontAwesomeIcon icon={faEdit} />
-                                                                    </button>
-                                                                    <button 
-                                                                        className="icon-button delete"
-                                                                        onClick={() => handleDeleteProcess(item.materialClass, index)}
-                                                                        title="Delete Process"
-                                                                    >
-                                                                        ✕
-                                                                    </button>
-                                                                </div>
-                                                            </div>
-                                                            <ul className="subprocess-list">
-                                                                {process.processes.map((subProcess, subIndex) => (
-                                                                    <li key={subIndex} className="subprocess-item">{subProcess}</li>
-                                                                ))}
-                                                            </ul>
-                                                        </>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))
-                                    ) : (
-                                        <div className="no-processes">
-                                            <p>No manufacturing processes defined for this material.</p>
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                    
-                    <div className="processes-actions">
-                        {entryType === "manual" && !showProcessContent && (
-                            <Button
-                                className="add-more-processes-button"
-                                title="Add More Processes"
-                                onClick={handleAddProcess}
-                            />
-                        )}
-                       
-                    </div>
+            {/* Display validation error if any */}
+            {validationError && !hasValidProcesses && (
+                <div className="validation-error-container">
+                    <p className="validation-error-message">{validationError}</p>
                 </div>
             )}
-            
         </div>
     );
 };

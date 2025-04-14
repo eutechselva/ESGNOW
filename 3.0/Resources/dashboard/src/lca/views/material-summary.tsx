@@ -37,35 +37,6 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
         };
     }, []);
 
-    const specificMaterialOptions = [
-        { label: "Oak", value: "Oak" },
-        { label: "Maple", value: "Maple" },
-
-    ];
-
-    const unitOptions = [
-        { label: "kg", value: "kg" },
-        // { label: "lbs", value: "lbs" },
-    ];
-
-    const handleEditClick = (index: number, material: Material) => {
-        setEditingIndex(index);
-        setEditedData(material);
-    };
-
-    const handleSaveClick = (index: number) => {
-        if (editedData) {
-            onEdit(index, editedData);
-            setEditingIndex(null);
-            setEditedData(null); // Clear edited data after saving
-        }
-    };
-
-    const handleChange = (field: string, value: string) => {
-        if (editedData) {
-            setEditedData({ ...editedData, [field]: value });
-        }
-    };
 
     return (
         <div className="material-summary">

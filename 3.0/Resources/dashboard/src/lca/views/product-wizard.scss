@@ -1,6 +1,8 @@
 .done-button-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
     
     button {
@@ -28,6 +30,13 @@
                 background-color: #ccc;
             }
         }
+    }
+    
+    .button-helper-text {
+        color: #f44336;
+        font-size: 14px;
+        margin-top: 8px;
+        font-style: italic;
     }
 }
 

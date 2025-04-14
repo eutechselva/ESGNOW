@@ -211,8 +211,13 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
                     <Button 
                         title="Create" 
                         onClick={handleDone} 
-                        disabled={billMaterialsData.length === 0}
+                        disabled={billMaterialsData.length === 0 || !productManufacturingProcess || productManufacturingProcess.length === 0}
                     />
+                    {billMaterialsData.length === 0 ? (
+                        <p className="button-helper-text">Please add materials before proceeding</p>
+                    ) : !productManufacturingProcess || productManufacturingProcess.length === 0 ? (
+                        <p className="button-helper-text">Please define at least one manufacturing process</p>
+                    ) : null}
                 </div>
             )}
 

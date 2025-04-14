@@ -340,7 +340,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n  border-radius: 6px;\n  margin-bottom: 20px;\n  border-left: 3px solid #2196f3;\n}\n.material-summary p {\n  margin: 6px 0;\n  font-size: 14px;\n  color: #616161;\n}\n.material-summary p strong {\n  color: #424242;\n  font-weight: 500;\n  margin-right: 6px;\n}\n.material-summary p:first-child strong {\n  color: #1976d2;\n}\n\n.process-entry {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n  padding: 16px;\n  background-color: #f9f9f9;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n}\n.process-entry h3 {\n  margin: 0 0 16px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.form-field {\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.form-field label {\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #616161;\n  display: block;\n}\n\n.save-process-button {\n  margin-top: 16px;\n  align-self: flex-end;\n  background-color: #2196f3;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: all 0.2s ease;\n}\n.save-process-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n.save-process-button:disabled {\n  background-color: #e0e0e0;\n  color: #9e9e9e;\n  cursor: not-allowed;\n  box-shadow: none;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  background-color: #ffffff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: #f5f5f5;\n  color: #616161;\n  border: none;\n  padding: 6px 10px;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 12px;\n  transition: all 0.2s ease;\n}\n.process-entry-container .collapse-expand-button:hover {\n  background-color: #e0e0e0;\n}", ""]);
+exports.push([module.id, ".process-entry-form {\n  padding: 16px;\n  margin-top: 12px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  border: 1px solid #e0e0e0;\n}\n\n.process-form-fields {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.form-field {\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.form-field label {\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #616161;\n  display: block;\n}\n\n.add-process-button {\n  align-self: flex-end;\n  background-color: #2196f3;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: all 0.2s ease;\n  margin-bottom: 10px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  transform: translateY(-1px);\n}\n.add-process-button:disabled {\n  background-color: #e0e0e0;\n  color: #9e9e9e;\n  cursor: not-allowed;\n  box-shadow: none;\n  transform: none;\n}\n\n.process-note {\n  font-size: 12px;\n  color: #757575;\n  font-style: italic;\n  margin-top: 8px;\n  text-align: center;\n  border-top: 1px dashed #e0e0e0;\n  padding-top: 8px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  padding: 8px;\n}\n\n.selected-process-summary {\n  margin-top: 16px;\n  padding: 12px;\n  background-color: #e3f2fd;\n  border-radius: 6px;\n  border: 1px solid #bbdefb;\n}\n.selected-process-summary .selected-manufacturing-process, .selected-process-summary .selected-sub-processes {\n  margin-bottom: 10px;\n}\n.selected-process-summary .selected-manufacturing-process:last-child, .selected-process-summary .selected-sub-processes:last-child {\n  margin-bottom: 0;\n}\n.selected-process-summary .selected-label {\n  font-weight: 500;\n  color: #1976d2;\n  margin-right: 8px;\n  font-size: 13px;\n}\n.selected-process-summary .selected-value {\n  color: #424242;\n  font-weight: 400;\n}\n.selected-process-summary .selected-chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-top: 6px;\n}\n.selected-process-summary .sub-process-chip {\n  background-color: #bbdefb;\n  color: #1565c0;\n  padding: 4px 8px;\n  border-radius: 16px;\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n}\n.loading-container p {\n  margin-top: 16px;\n  color: #757575;\n  font-size: 14px;\n}\n\n.error-message {\n  background-color: #ffebee;\n  border-left: 4px solid #f44336;\n  padding: 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n.error-message p {\n  color: #d32f2f;\n  margin: 0 0 16px 0;\n  font-size: 14px;\n}\n.error-message button {\n  background-color: #f44336;\n  color: white;\n  padding: 8px 16px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  transition: background-color 0.2s;\n}\n.error-message button:hover {\n  background-color: #d32f2f;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  background-color: #ffffff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: #f5f5f5;\n  color: #616161;\n  border: none;\n  padding: 6px 10px;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 12px;\n  transition: all 0.2s ease;\n}\n.process-entry-container .collapse-expand-button:hover {\n  background-color: #e0e0e0;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -425,7 +425,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 24px;\n  margin-bottom: 24px;\n}\n.product-manufacturing .process-summary .process-summary-header {\n  margin-bottom: 20px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 {\n  color: #424242;\n  font-weight: 500;\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .summary-icon {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .method-badge {\n  background-color: #e3f2fd;\n  color: #1976d2;\n  font-size: 12px;\n  padding: 4px 8px;\n  border-radius: 12px;\n  margin-left: 12px;\n  font-weight: 400;\n}\n.product-manufacturing .process-summary .material-process-cards {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n.product-manufacturing .process-summary .material-process-card {\n  background-color: #ffffff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);\n  overflow: hidden;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .material-header {\n  background-color: #f5f5f5;\n  padding: 14px 16px;\n  border-bottom: 1px solid #e0e0e0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-name {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details {\n  display: flex;\n  gap: 16px;\n  margin-top: 4px;\n  font-size: 13px;\n  color: #757575;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .specific-material {\n  font-style: italic;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .material-weight {\n  font-weight: 500;\n}\n.product-manufacturing .process-summary .material-process-card .process-list {\n  padding: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item {\n  padding: 16px;\n  border-bottom: 1px solid #f0f0f0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item:last-child {\n  border-bottom: none;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category {\n  margin: 0;\n  font-size: 15px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category .process-icon {\n  color: #2196f3;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions {\n  display: flex;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button {\n  background: none;\n  border: none;\n  cursor: pointer;\n  width: 28px;\n  height: 28px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 50%;\n  color: #757575;\n  font-size: 14px;\n  transition: all 0.2s ease;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover {\n  background-color: #f5f5f5;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.edit {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.delete {\n  color: #f44336;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list {\n  margin: 0;\n  padding-left: 24px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item {\n  color: #616161;\n  font-size: 14px;\n  margin-bottom: 6px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item:last-child {\n  margin-bottom: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form {\n  padding: 12px;\n  background-color: #f9f9f9;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form label {\n  display: block;\n  font-size: 13px;\n  font-weight: 500;\n  margin-bottom: 8px;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .process-edit-input {\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .subprocess-edit {\n  margin-bottom: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .edit-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.product-manufacturing .process-summary .material-process-card .no-processes {\n  padding: 20px;\n  text-align: center;\n  color: #757575;\n  font-style: italic;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-method-container {\n  margin-bottom: 24px;\n}\n\n.entry-method-title {\n  font-size: 16px;\n  margin-bottom: 16px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.entry-method-options {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 24px;\n}\n\n.entry-method-card {\n  flex: 1;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  padding: 20px;\n  cursor: pointer;\n  display: flex;\n  transition: all 0.2s ease;\n  background-color: #ffffff;\n}\n.entry-method-card:hover {\n  border-color: #bbdefb;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);\n}\n.entry-method-card.active {\n  border-color: #2196f3;\n  background-color: #e3f2fd;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-icon {\n  font-size: 24px;\n  color: #2196f3;\n  margin-right: 16px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  background-color: rgba(33, 150, 243, 0.08);\n  border-radius: 50%;\n}\n.active .entry-card-icon {\n  background-color: rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-content {\n  flex: 1;\n}\n.entry-card-content h4 {\n  margin: 0 0 8px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.entry-card-content p {\n  margin: 0 0 16px 0;\n  font-size: 14px;\n  color: #757575;\n  line-height: 1.4;\n}\n.entry-card-content button {\n  margin-top: 8px;\n}\n\n.add-process-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.generate-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(135deg, #2196F3, #1565C0);\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.generate-button:hover {\n  background: linear-gradient(135deg, #1E88E5, #0D47A1);\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.ai-generating-process {\n  display: flex;\n  align-items: center;\n  background-color: #e3f2fd;\n  border-radius: 8px;\n  padding: 16px;\n  margin-bottom: 24px;\n  border-left: 4px solid #2196f3;\n}\n.ai-generating-process .loader-spinner {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 3px solid rgba(33, 150, 243, 0.2);\n  border-top-color: #2196f3;\n  animation: spin 1s infinite linear;\n  margin-right: 16px;\n  flex-shrink: 0;\n}\n.ai-generating-process .generating-message h4 {\n  margin: 0 0 4px 0;\n  font-size: 16px;\n  color: #1976d2;\n}\n.ai-generating-process .generating-message p {\n  margin: 0;\n  font-size: 14px;\n  color: #546e7a;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.action-buttons {\n  display: flex;\n  gap: 8px;\n  margin-top: 10px;\n}\n\n.manual-entry-prompt, .empty-processes-container {\n  background-color: #f9f9f9;\n  border: 1px dashed #bdbdbd;\n  border-radius: 6px;\n  padding: 24px;\n  margin: 24px 0;\n  text-align: center;\n}\n.manual-entry-prompt p, .empty-processes-container p {\n  color: #757575;\n  margin-bottom: 16px;\n}\n.manual-entry-prompt .define-processes-button, .empty-processes-container .define-processes-button {\n  background-color: #2196f3;\n  color: white;\n  padding: 10px 20px;\n  font-weight: 500;\n}\n.manual-entry-prompt .define-processes-button:hover, .empty-processes-container .define-processes-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.manual-entry-prompt {\n  border-color: #bbdefb;\n  background-color: #e3f2fd;\n}\n.manual-entry-prompt p {\n  color: #1976d2;\n  font-weight: 500;\n}\n\n.processes-actions {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 20px;\n  padding-top: 16px;\n  border-top: 1px solid #e0e0e0;\n}\n.processes-actions .add-more-processes-button {\n  background-color: transparent;\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  padding: 10px 20px;\n  transition: all 0.2s ease;\n}\n.processes-actions .add-more-processes-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n}", ""]);
+exports.push([module.id, ".product-manufacturing {\n  padding: 16px;\n}\n.product-manufacturing .process-summary {\n  margin-top: 24px;\n  margin-bottom: 24px;\n}\n.product-manufacturing .process-summary .process-summary-header {\n  margin-bottom: 20px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 {\n  color: #424242;\n  font-weight: 500;\n  font-size: 18px;\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .summary-icon {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .process-summary-header h3 .method-badge {\n  background-color: #e3f2fd;\n  color: #1976d2;\n  font-size: 12px;\n  padding: 4px 8px;\n  border-radius: 12px;\n  margin-left: 12px;\n  font-weight: 400;\n}\n.product-manufacturing .process-summary .material-process-cards {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n.product-manufacturing .process-summary .material-process-card {\n  background-color: #ffffff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);\n  overflow: hidden;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .material-header {\n  background-color: #f5f5f5;\n  padding: 14px 16px;\n  border-bottom: 1px solid #e0e0e0;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-name {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details {\n  display: flex;\n  gap: 16px;\n  margin-top: 4px;\n  font-size: 13px;\n  color: #757575;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .specific-material {\n  font-style: italic;\n}\n.product-manufacturing .process-summary .material-process-card .material-header .material-info .material-details .material-weight {\n  font-weight: 500;\n}\n.product-manufacturing .process-summary .material-process-card .process-list {\n  padding: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item {\n  padding: 16px;\n  border-bottom: 1px solid #f0f0f0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item:last-child {\n  border-bottom: none;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category {\n  margin: 0;\n  font-size: 15px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-category .process-icon {\n  color: #2196f3;\n  font-size: 14px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions {\n  display: flex;\n  gap: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button {\n  background: none;\n  border: none;\n  cursor: pointer;\n  width: 28px;\n  height: 28px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 50%;\n  color: #757575;\n  font-size: 14px;\n  transition: all 0.2s ease;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover {\n  background-color: #f5f5f5;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.edit {\n  color: #2196f3;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-header .process-actions .icon-button:hover.delete {\n  color: #f44336;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list {\n  margin: 0;\n  padding-left: 24px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item {\n  color: #616161;\n  font-size: 14px;\n  margin-bottom: 6px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .subprocess-list .subprocess-item:last-child {\n  margin-bottom: 0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form {\n  padding: 12px;\n  background-color: #f9f9f9;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form label {\n  display: block;\n  font-size: 13px;\n  font-weight: 500;\n  margin-bottom: 8px;\n  color: #424242;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .process-edit-input {\n  margin-bottom: 16px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .subprocess-edit {\n  margin-bottom: 8px;\n}\n.product-manufacturing .process-summary .material-process-card .process-item .process-content .process-edit-form .edit-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.product-manufacturing .process-summary .material-process-card .no-processes {\n  padding: 20px;\n  text-align: center;\n  color: #757575;\n  font-style: italic;\n}\n\n.product-manufacturing {\n  position: relative;\n  padding-bottom: 60px;\n}\n\n.view-summary-button {\n  position: absolute;\n  bottom: 10px;\n  right: 20px;\n  padding: 10px 20px;\n  color: #424242;\n}\n\n.entry-method-container {\n  margin-bottom: 24px;\n}\n\n.entry-method-title {\n  font-size: 16px;\n  margin-bottom: 16px;\n  font-weight: 500;\n  color: #424242;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.entry-method-options {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 24px;\n}\n\n.entry-method-card {\n  flex: 1;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  padding: 20px;\n  cursor: pointer;\n  display: flex;\n  transition: all 0.2s ease;\n  background-color: #ffffff;\n}\n.entry-method-card:hover {\n  border-color: #bbdefb;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.1);\n}\n.entry-method-card.active {\n  border-color: #2196f3;\n  background-color: #e3f2fd;\n  box-shadow: 0 4px 8px rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-icon {\n  font-size: 24px;\n  color: #2196f3;\n  margin-right: 16px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 48px;\n  height: 48px;\n  background-color: rgba(33, 150, 243, 0.08);\n  border-radius: 50%;\n}\n.active .entry-card-icon {\n  background-color: rgba(33, 150, 243, 0.2);\n}\n\n.entry-card-content {\n  flex: 1;\n}\n.entry-card-content h4 {\n  margin: 0 0 8px 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.entry-card-content p {\n  margin: 0 0 16px 0;\n  font-size: 14px;\n  color: #757575;\n  line-height: 1.4;\n}\n.entry-card-content button {\n  margin-top: 8px;\n}\n\n.add-process-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background-color: #2196f3;\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.generate-button {\n  padding: 0.75rem 1.25rem;\n  font-size: 1rem;\n  background: linear-gradient(135deg, #2196F3, #1565C0);\n  color: white;\n  transition: all 0.3s ease;\n  border-radius: 4px;\n}\n.generate-button:hover {\n  background: linear-gradient(135deg, #1E88E5, #0D47A1);\n  color: white;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n\n.ai-generating-process {\n  display: flex;\n  align-items: center;\n  background-color: #e3f2fd;\n  border-radius: 8px;\n  padding: 16px;\n  margin-bottom: 24px;\n  border-left: 4px solid #2196f3;\n}\n.ai-generating-process .loader-spinner {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 3px solid rgba(33, 150, 243, 0.2);\n  border-top-color: #2196f3;\n  animation: spin 1s infinite linear;\n  margin-right: 16px;\n  flex-shrink: 0;\n}\n.ai-generating-process .generating-message h4 {\n  margin: 0 0 4px 0;\n  font-size: 16px;\n  color: #1976d2;\n}\n.ai-generating-process .generating-message p {\n  margin: 0;\n  font-size: 14px;\n  color: #546e7a;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.action-buttons {\n  display: flex;\n  gap: 8px;\n  margin-top: 10px;\n}\n\n.manual-entry-prompt, .empty-processes-container {\n  background-color: #f9f9f9;\n  border: 1px dashed #bdbdbd;\n  border-radius: 6px;\n  padding: 24px;\n  margin: 24px 0;\n  text-align: center;\n}\n.manual-entry-prompt p, .empty-processes-container p {\n  color: #757575;\n  margin-bottom: 16px;\n}\n.manual-entry-prompt .define-processes-button, .empty-processes-container .define-processes-button {\n  background-color: #2196f3;\n  color: white;\n  padding: 10px 20px;\n  font-weight: 500;\n}\n.manual-entry-prompt .define-processes-button:hover, .empty-processes-container .define-processes-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n}\n\n.validation-error-container {\n  background-color: #ffebee;\n  border-left: 4px solid #f44336;\n  padding: 16px;\n  margin: 20px 0;\n  border-radius: 4px;\n}\n.validation-error-container .validation-error-message {\n  color: #d32f2f;\n  margin: 0;\n  font-size: 14px;\n  font-weight: 500;\n}\n\n.manual-manufacturing-container {\n  margin-top: 20px;\n}\n\n.manufacturing-process-editor {\n  background-color: #ffffff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n}\n.manufacturing-process-editor h3 {\n  font-size: 18px;\n  font-weight: 500;\n  color: #424242;\n  margin: 0 0 8px 0;\n}\n.manufacturing-process-editor .editor-subtitle {\n  font-size: 14px;\n  color: #757575;\n  margin-bottom: 20px;\n}\n.manufacturing-process-editor .material-cards-container {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n.manufacturing-process-editor .material-process-entry-card {\n  background-color: #ffffff;\n  border-radius: 8px;\n  border: 1px solid #e0e0e0;\n  overflow: hidden;\n}\n.manufacturing-process-editor .material-process-entry-card .material-header {\n  background-color: #f5f5f5;\n  padding: 14px 16px;\n  border-bottom: 1px solid #e0e0e0;\n}\n.manufacturing-process-editor .material-process-entry-card .material-header .material-info-row {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.manufacturing-process-editor .material-process-entry-card .material-header .material-info-row .material-name {\n  margin: 0;\n  font-size: 16px;\n  font-weight: 500;\n  color: #424242;\n}\n.manufacturing-process-editor .material-process-entry-card .material-header .material-info-row .specific-material {\n  font-style: italic;\n  font-size: 14px;\n  color: #757575;\n}\n.manufacturing-process-editor .material-process-entry-card .material-header .material-info-row .material-weight {\n  font-weight: 500;\n  font-size: 14px;\n  color: #757575;\n  margin-left: auto;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes {\n  padding: 16px;\n  border-top: 1px solid #e0e0e0;\n  background-color: #f9f9f9;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .existing-processes-title {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n  margin: 0 0 12px 0;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item {\n  background-color: #ffffff;\n  border: 1px solid #e0e0e0;\n  border-radius: 6px;\n  margin-bottom: 12px;\n  overflow: hidden;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item:last-child {\n  margin-bottom: 0;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item .process-header {\n  padding: 10px 12px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #e0e0e0;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item .process-header .process-name {\n  font-weight: 500;\n  color: #2196f3;\n  font-size: 14px;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item .subprocess-list {\n  padding: 10px 12px;\n  display: flex;\n  flex-wrap: wrap;\n  gap: 8px;\n}\n.manufacturing-process-editor .material-process-entry-card .existing-processes .process-item .subprocess-list .subprocess-item {\n  background-color: #e3f2fd;\n  color: #1976d2;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 12px;\n}\n\n.manual-entry-prompt {\n  border-color: #bbdefb;\n  background-color: #e3f2fd;\n}\n.manual-entry-prompt p {\n  color: #1976d2;\n  font-weight: 500;\n}\n\n.processes-actions {\n  display: flex;\n  justify-content: space-between;\n  margin-top: 20px;\n  padding-top: 16px;\n  border-top: 1px solid #e0e0e0;\n}\n.processes-actions .add-more-processes-button {\n  background-color: transparent;\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  padding: 10px 20px;\n  transition: all 0.2s ease;\n}\n.processes-actions .add-more-processes-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -442,7 +442,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".done-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n}\n.done-button-container button {\n  background-color: #4caf50;\n  color: white;\n  padding: 10px 24px;\n  font-weight: 500;\n  transition: all 0.2s ease;\n  min-width: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.done-button-container button:hover {\n  background-color: #388e3c;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n.done-button-container button:disabled {\n  background-color: #ccc;\n  cursor: not-allowed;\n}\n.done-button-container button:disabled:hover {\n  box-shadow: none;\n  background-color: #ccc;\n}\n\n.modal-container.lgs-create-product-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-create-product-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}", ""]);
+exports.push([module.id, ".done-button-container {\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  margin-top: 20px;\n}\n.done-button-container button {\n  background-color: #4caf50;\n  color: white;\n  padding: 10px 24px;\n  font-weight: 500;\n  transition: all 0.2s ease;\n  min-width: 150px;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n.done-button-container button:hover {\n  background-color: #388e3c;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n}\n.done-button-container button:disabled {\n  background-color: #ccc;\n  cursor: not-allowed;\n}\n.done-button-container button:disabled:hover {\n  box-shadow: none;\n  background-color: #ccc;\n}\n.done-button-container .button-helper-text {\n  color: #f44336;\n  font-size: 14px;\n  margin-top: 8px;\n  font-style: italic;\n}\n\n.modal-container.lgs-create-product-modal .modal-panel {\n  width: 50%;\n  min-width: 50%;\n  max-width: 50%;\n  height: 80%;\n}\n.modal-container.lgs-create-product-modal .modal-header {\n  background-color: #0066ff;\n  color: white;\n  text-align: center;\n  font-size: 16px;\n  font-weight: bold;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -39973,7 +39973,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
@@ -40113,6 +40113,12 @@ function getBillOfMaterials(uxpContext) {
     });
 }
 exports.getBillOfMaterials = getBillOfMaterials;
+function getManufacturingProcesses(uxpContext) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/manufacturingProcesses`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.getManufacturingProcesses = getManufacturingProcesses;
 function getAccountPlan(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/account-plan`, _uxp_1.RequestMethod.GET, {});
@@ -43009,30 +43015,6 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }
             setEditedData(null);
         };
     }, []);
-    const specificMaterialOptions = [
-        { label: "Oak", value: "Oak" },
-        { label: "Maple", value: "Maple" },
-    ];
-    const unitOptions = [
-        { label: "kg", value: "kg" },
-        // { label: "lbs", value: "lbs" },
-    ];
-    const handleEditClick = (index, material) => {
-        setEditingIndex(index);
-        setEditedData(material);
-    };
-    const handleSaveClick = (index) => {
-        if (editedData) {
-            onEdit(index, editedData);
-            setEditingIndex(null);
-            setEditedData(null); // Clear edited data after saving
-        }
-    };
-    const handleChange = (field, value) => {
-        if (editedData) {
-            setEditedData(Object.assign(Object.assign({}, editedData), { [field]: value }));
-        }
-    };
     return (react_1.default.createElement("div", { className: "material-summary" },
         react_1.default.createElement("table", { className: "material-summary-table" },
             react_1.default.createElement("thead", null,
@@ -43085,76 +43067,158 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./process-entry.scss */ "./src/lca/views/process-entry.scss");
-const ProcessEntry = ({ material, onProcessAdd }) => {
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const ProcessEntry = ({ material, onProcessAdd, uxpContext }) => {
     const [selectedProcess, setSelectedProcess] = (0, react_1.useState)(null);
     const [selectedSubProcess, setSelectedSubProcess] = (0, react_1.useState)([]);
     const [subProcesses, setSubProcesses] = (0, react_1.useState)([]);
     const [isExpanded, setIsExpanded] = (0, react_1.useState)(true);
-    const processOptions = [
-        { label: "Casting", value: "Casting" },
-        { label: "Molding", value: "Molding" },
-        { label: "Machining", value: "Machining" },
-    ];
-    const subProcessOptions = {
-        Casting: [
-            { label: "Die Casting", value: "Die Casting" },
-            { label: "Sand Casting", value: "Sand Casting" },
-        ],
-        Molding: [
-            { label: "Injection Molding", value: "Injection Molding" },
-            { label: "Blow Molding", value: "Blow Molding" },
-        ],
-        Machining: [
-            { label: "CNC Milling", value: "CNC Milling" },
-            { label: "Turning", value: "Turning" },
-        ],
-    };
+    const [loading, setLoading] = (0, react_1.useState)(true);
+    const [error, setError] = (0, react_1.useState)(null);
+    // State for API data
+    const [processOptions, setProcessOptions] = (0, react_1.useState)([]);
+    const [subProcessOptions, setSubProcessOptions] = (0, react_1.useState)({});
+    // Fetch manufacturing processes from API
+    (0, react_1.useEffect)(() => {
+        const fetchManufacturingProcesses = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                setLoading(true);
+                const response = yield (0, esgnow_service_1.getManufacturingProcesses)(uxpContext);
+                if (!response.data) {
+                    setError("Failed to fetch manufacturing processes");
+                    return;
+                }
+                const data = response.data;
+                // Convert the API response to the required format
+                const processes = Object.keys(data).map(process => ({
+                    label: process,
+                    value: process
+                }));
+                // Create a mapping for sub-processes
+                const subProcessMapping = {};
+                Object.entries(data).forEach(([process, subProcessList]) => {
+                    subProcessMapping[process] = subProcessList.map(subProcess => ({
+                        label: subProcess,
+                        value: subProcess
+                    }));
+                });
+                setProcessOptions(processes);
+                setSubProcessOptions(subProcessMapping);
+                setLoading(false);
+            }
+            catch (err) {
+                console.error("Error fetching manufacturing processes:", err);
+                setError("An error occurred while fetching manufacturing processes");
+                setLoading(false);
+            }
+        });
+        fetchManufacturingProcesses();
+    }, [uxpContext]);
     // const handleAddSubProcess = () => {
     //     // if (selectedSubProcess && !subProcesses.includes(selectedSubProcess)) {
     //     //     setSubProcesses([...subProcesses, selectedSubProcess]);
     //     //     setSelectedSubProcess(null);
     //     // }
     // };
-    const handleAddProcess = () => {
-        if (selectedProcess && selectedSubProcess.length > 0) {
-            onProcessAdd({ manufacturingProcess: selectedProcess, subProcesses: selectedSubProcess });
-            setSelectedProcess(null);
-            setSubProcesses([]);
+    // Use refs to keep track of previous selections to avoid infinite loops
+    const prevSelectionRef = (0, react_1.useRef)({
+        process: null,
+        subProcesses: null
+    });
+    // Auto-update parent when selections change
+    (0, react_1.useEffect)(() => {
+        // Only update if we have a valid selection
+        if (selectedProcess && selectedSubProcess && selectedSubProcess.length > 0) {
+            // Check if the selection has actually changed
+            const prevProcess = prevSelectionRef.current.process;
+            const prevSubProcesses = prevSelectionRef.current.subProcesses;
+            // Check if the selection has changed
+            const hasProcessChanged = prevProcess !== selectedProcess;
+            const hasSubProcessesChanged = !prevSubProcesses ||
+                prevSubProcesses.length !== selectedSubProcess.length ||
+                !prevSubProcesses.every(p => selectedSubProcess.includes(p));
+            // Only update if something has changed
+            if (hasProcessChanged || hasSubProcessesChanged) {
+                // Update our reference to the current selection
+                prevSelectionRef.current = {
+                    process: selectedProcess,
+                    subProcesses: [...selectedSubProcess]
+                };
+                // Call the handler
+                onProcessAdd({ manufacturingProcess: selectedProcess, subProcesses: selectedSubProcess });
+            }
         }
-    };
-    return (react_1.default.createElement("div", { className: "process-entry-container" },
-        react_1.default.createElement("div", { className: "collapse-expand-toggle" },
-            react_1.default.createElement(components_1.Button, { title: isExpanded ? "Collapse" : "Expand", onClick: () => setIsExpanded(!isExpanded), className: "collapse-expand-button" })),
-        react_1.default.createElement("div", { className: "material-summary" },
-            react_1.default.createElement("p", null,
-                react_1.default.createElement("strong", null, "Material Class:"),
-                " ",
-                material.materialClass),
-            react_1.default.createElement("p", null,
-                react_1.default.createElement("strong", null, "Specific Material:"),
-                " ",
-                material.specificMaterial),
-            react_1.default.createElement("p", null,
-                react_1.default.createElement("strong", null, "Weight:"),
-                " ",
-                material.weight,
-                " ",
-                material.unit)),
-        isExpanded && (react_1.default.createElement("div", { className: "process-entry" },
-            react_1.default.createElement("h3", null, "Define Manufacturing Process"),
-            react_1.default.createElement(components_1.FormField, { className: "form-field" },
-                react_1.default.createElement(components_1.Label, null, "Manufacturing Process"),
-                react_1.default.createElement(components_1.Select, { options: processOptions, selected: selectedProcess, onChange: (value) => setSelectedProcess(value), placeholder: "Select manufacturing process" })),
-            react_1.default.createElement(components_1.FormField, { className: "form-field" },
-                react_1.default.createElement(components_1.Label, null, "Sub Process"),
-                react_1.default.createElement(components_1.MultiSelect, { options: selectedProcess
-                        ? subProcessOptions[selectedProcess]
-                        : [{ label: "Select Manufacturing Process first", value: "" }], selected: selectedSubProcess, onChange: (newValues) => setSelectedSubProcess(newValues), placeholder: "Select sub processes" })),
-            react_1.default.createElement(components_1.Button, { title: "Save Manufacturing Process", onClick: handleAddProcess, disabled: !selectedProcess || selectedSubProcess.length === 0, className: "save-process-button" })))));
+        // We're intentionally omitting onProcessAdd from dependencies to prevent infinite loops
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selectedProcess, selectedSubProcess]);
+    return (react_1.default.createElement("div", { className: "process-entry-form" }, loading ? (react_1.default.createElement("div", { className: "loading-container" },
+        react_1.default.createElement(components_1.Loading, null),
+        react_1.default.createElement("p", null, "Loading manufacturing processes..."))) : error ? (react_1.default.createElement("div", { className: "error-message" },
+        react_1.default.createElement("p", null, error),
+        react_1.default.createElement(components_1.Button, { title: "Retry", onClick: () => {
+                setError(null);
+                setLoading(true);
+                (0, esgnow_service_1.getManufacturingProcesses)(uxpContext)
+                    .then(response => {
+                    if (!response.data) {
+                        setError("Failed to fetch manufacturing processes");
+                        return;
+                    }
+                    const data = response.data;
+                    // Convert the API response to the required format
+                    const processes = Object.keys(data).map(process => ({
+                        label: process,
+                        value: process
+                    }));
+                    // Create a mapping for sub-processes
+                    const subProcessMapping = {};
+                    Object.entries(data).forEach(([process, subProcessList]) => {
+                        subProcessMapping[process] = subProcessList.map(subProcess => ({
+                            label: subProcess,
+                            value: subProcess
+                        }));
+                    });
+                    setProcessOptions(processes);
+                    setSubProcessOptions(subProcessMapping);
+                    setLoading(false);
+                })
+                    .catch(err => {
+                    console.error("Error fetching manufacturing processes:", err);
+                    setError("An error occurred while fetching manufacturing processes");
+                    setLoading(false);
+                });
+            } }))) : (react_1.default.createElement("div", { className: "process-form-fields" },
+        react_1.default.createElement(components_1.FormField, { className: "form-field" },
+            react_1.default.createElement(components_1.Label, null, "Manufacturing Process"),
+            react_1.default.createElement(components_1.Select, { options: processOptions, selected: selectedProcess, onChange: (value) => {
+                    setSelectedProcess(value);
+                    setSelectedSubProcess([]);
+                }, placeholder: "Select manufacturing process" })),
+        react_1.default.createElement(components_1.FormField, { className: "form-field" },
+            react_1.default.createElement(components_1.Label, null, "Sub Process"),
+            react_1.default.createElement(components_1.MultiSelect, { options: selectedProcess && subProcessOptions[selectedProcess]
+                    ? subProcessOptions[selectedProcess]
+                    : [{ label: "Select Manufacturing Process first", value: "" }], selected: selectedSubProcess, onChange: (newValues) => setSelectedSubProcess(newValues), placeholder: selectedProcess ? "Select sub processes" : "Select Manufacturing Process first" })),
+        selectedProcess && selectedSubProcess.length > 0 && (react_1.default.createElement("div", { className: "selected-process-summary" },
+            react_1.default.createElement("div", { className: "selected-manufacturing-process" },
+                react_1.default.createElement("span", { className: "selected-label" }, "Selected Process:"),
+                react_1.default.createElement("span", { className: "selected-value" }, selectedProcess)),
+            react_1.default.createElement("div", { className: "selected-sub-processes" },
+                react_1.default.createElement("span", { className: "selected-label" }, "Selected Sub-processes:"),
+                react_1.default.createElement("div", { className: "selected-chips" }, selectedSubProcess.map((subProcess, index) => (react_1.default.createElement("span", { key: index, className: "sub-process-chip" }, subProcess)))))))))));
 };
 exports["default"] = ProcessEntry;
 
@@ -44372,18 +44436,32 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
     const [aiProcesses, setAIProcesses] = (0, react_1.useState)({});
     const [showProcessContent, setShowProcessContent] = (0, react_1.useState)(false);
     const [aiGeneratingProcess, setAIGeneratingProcess] = (0, react_1.useState)(false);
-    const [editingProcess, setEditingProcess] = (0, react_1.useState)(null);
-    const [editedProcess, setEditedProcess] = (0, react_1.useState)(null);
+    // We no longer need editing state since we're making this view-only
     const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
-    const [plan, setPlan] = (0, react_1.useState)();
+    const [plan, setPlan] = (0, react_1.useState)(null);
+    const [validationError, setValidationError] = (0, react_1.useState)("");
     const entryOptions = [
         { label: "AI Assistance", value: "ai" },
         { label: "Manual Entry", value: "manual" },
     ];
+    (0, react_1.useEffect)(() => {
+        getAccountPlanFromAPI();
+        // Add cleanup when component unmounts
+        return () => {
+            setShowProcessContent(false);
+            setValidationError("");
+        };
+    }, [uxpContext]);
+    const getAccountPlanFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield (0, esgnow_service_1.getAccountPlan)(uxpContext);
+        setPlan(response.data.plan);
+    });
     const handleEntryTypeChange = (newValue) => {
-        // Only set showProcessContent to false if changing from manual to AI
-        // This preserves any open process forms when switching to manual
-        if (entryType === "manual" && newValue === "ai") {
+        // Manual mode is always expanded
+        if (newValue === "manual") {
+            setShowProcessContent(true);
+        }
+        else {
             setShowProcessContent(false);
         }
         setEntryType(newValue);
@@ -44396,15 +44474,23 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
             category: process.manufacturingProcess,
             processes: process.subProcesses,
         };
-        setManualProcesses((prev) => {
-            const updatedProcesses = Object.assign(Object.assign({}, prev), { [materialId]: [...(prev[materialId] || []), newProcess] });
-            // Update the parent component's state for both manual and AI processes
-            updateParentManufacturingProcess(updatedProcesses);
+        // Use functional update to ensure we're working with the most current state
+        setManualProcesses(prev => {
+            // Create a new object to avoid reference issues
+            const updatedProcesses = Object.assign(Object.assign({}, prev), { [materialId]: [newProcess] });
+            // We need to use setTimeout to break the potential circular update cycle
+            // This ensures the state update completes before triggering the parent update
+            setTimeout(() => {
+                updateParentManufacturingProcess(updatedProcesses);
+            }, 0);
             return updatedProcesses;
         });
     };
     // Helper function to update the parent component's state
     const updateParentManufacturingProcess = (processes) => {
+        // Check for valid processes but don't set validation error yet
+        // We'll manually check and set the error message
+        const processesValid = checkProcessesValidity();
         const manufacturingProcesses = [];
         for (const materialClass in processes) {
             const material = billMaterials.find(m => m.materialClass === materialClass);
@@ -44417,8 +44503,21 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                 });
             }
         }
-        onProductManufacturingChange(manufacturingProcesses);
+        // Only call the parent's callback if we have valid data
+        if (manufacturingProcesses.length > 0) {
+            onProductManufacturingChange(manufacturingProcesses);
+            // If processes are valid, clear any validation errors
+            if (processesValid) {
+                setValidationError("");
+            }
+            else {
+                // Otherwise set the error message
+                setValidationError("Please define at least one manufacturing process before proceeding.");
+            }
+        }
     };
+    // This function is no longer needed since we always show process content in manual mode
+    // But we'll keep it for backward compatibility
     const handleAddProcess = () => {
         setShowProcessContent(true);
     };
@@ -44437,7 +44536,8 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                     throw new Error("Failed to fetch manufacturing processes");
                 }
                 const apiResults = yield response.data.manufacturingProcess;
-                setPlan(response.data.plan.plan);
+                // Make sure to maintain the same structure as getAccountPlanFromAPI
+                setPlan(response.data.plan);
                 const mappedProcesses = {};
                 apiResults.forEach((item) => {
                     mappedProcesses[item.materialClass] = item.manufacturingProcesses;
@@ -44452,61 +44552,38 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
             }
         }
     });
-    const handleEditProcess = (materialClass, processIndex) => {
-        const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
-        setEditingProcess({ materialClass, processIndex });
-        setEditedProcess(processes[processIndex]);
-    };
-    const handleSaveProcess = () => {
-        if (editingProcess && editedProcess) {
-            const { materialClass, processIndex } = editingProcess;
-            const processes = entryType === "ai" ? aiProcesses[materialClass] : manualProcesses[materialClass];
-            const updatedProcesses = [...processes];
-            updatedProcesses[processIndex] = editedProcess;
-            if (entryType === "ai") {
-                setAIProcesses((prev) => {
-                    const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-                    updateParentManufacturingProcess(newProcesses);
-                    return newProcesses;
-                });
-            }
-            else {
-                setManualProcesses((prev) => {
-                    const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-                    updateParentManufacturingProcess(newProcesses);
-                    return newProcesses;
-                });
-            }
-            setEditingProcess(null);
-            setEditedProcess(null);
+    // These functions are no longer needed since we're making the UI view-only
+    // This function is also no longer needed since we're making the UI view-only
+    const selectedProcesses = entryType === "ai" ? aiProcesses : manualProcesses;
+    // Function to validate if there are any manufacturing processes defined without setting state
+    const checkProcessesValidity = () => {
+        // Check if there are any entries in the process object
+        if (Object.keys(selectedProcesses).length === 0) {
+            return false;
         }
+        // Check if any material has at least one process defined
+        let hasAnyProcess = false;
+        for (const materialClass in selectedProcesses) {
+            if (selectedProcesses[materialClass] && selectedProcesses[materialClass].length > 0) {
+                hasAnyProcess = true;
+                break;
+            }
+        }
+        return hasAnyProcess;
     };
-    const handleDeleteProcess = (materialClass, processIndex) => {
-        if (entryType === "manual") {
-            setManualProcesses((prev) => {
-                const updatedProcesses = [...(prev[materialClass] || [])];
-                updatedProcesses.splice(processIndex, 1);
-                const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-                updateParentManufacturingProcess(newProcesses);
-                return newProcesses;
-            });
+    // Separate function that sets the validation error (to be called from event handlers, not during render)
+    const validateProcesses = () => {
+        const isValid = checkProcessesValidity();
+        if (!isValid) {
+            setValidationError("Please define at least one manufacturing process before proceeding.");
         }
         else {
-            setAIProcesses((prev) => {
-                const updatedProcesses = [...(prev[materialClass] || [])];
-                updatedProcesses.splice(processIndex, 1);
-                const newProcesses = Object.assign(Object.assign({}, prev), { [materialClass]: updatedProcesses });
-                updateParentManufacturingProcess(newProcesses);
-                return newProcesses;
-            });
+            setValidationError("");
         }
+        return isValid;
     };
-    const selectedProcesses = entryType === "ai" ? aiProcesses : manualProcesses;
-    // Debug logs to verify button conditions
-    console.log("Entry Type is AI:", entryType === "ai");
-    console.log("AI Generating Process:", aiGeneratingProcess);
-    console.log("Selected Processes Keys:", Object.keys(selectedProcesses));
-    console.log("Show Create Button:", entryType === "ai" && !aiGeneratingProcess);
+    // Check validity without setting state for debugging and UI conditionals
+    const hasValidProcesses = checkProcessesValidity();
     return (react_1.default.createElement("div", { className: "product-manufacturing" },
         react_1.default.createElement("div", { className: "entry-method-container" },
             react_1.default.createElement("h3", { className: "entry-method-title" }, "How would you like to define manufacturing processes?"),
@@ -44525,12 +44602,23 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                     react_1.default.createElement("div", { className: "entry-card-content" },
                         react_1.default.createElement("h4", null, "Manual Definition"),
                         react_1.default.createElement("p", null, "Manually specify manufacturing processes for each material in your product."))))),
-        entryType === "manual" && !showProcessContent && Object.keys(selectedProcesses).length === 0 && (react_1.default.createElement("div", { className: "manual-entry-prompt" },
-            react_1.default.createElement("p", null, "Click the button below to start defining manufacturing processes for your materials."),
-            react_1.default.createElement(components_1.Button, { title: "Define Manufacturing Processes", className: "define-processes-button", onClick: handleAddProcess }))),
-        showProcessContent && entryType === "manual" &&
-            billMaterials.map((item) => (react_1.default.createElement("div", { key: item.materialClass },
-                react_1.default.createElement(process_entry_1.default, { material: item, onProcessAdd: (process) => handleProcessAdd(item.materialClass, process) })))),
+        entryType === "manual" && (react_1.default.createElement("div", { className: "manual-manufacturing-container" },
+            react_1.default.createElement("div", { className: "manufacturing-process-editor" },
+                react_1.default.createElement("h3", null, "Define Manufacturing Processes"),
+                react_1.default.createElement("p", { className: "editor-subtitle" }, "Select a manufacturing process and sub-processes for each material. Your selections will be automatically saved."),
+                react_1.default.createElement("div", { className: "material-cards-container" }, billMaterials.map((item) => (react_1.default.createElement("div", { key: item.materialClass, className: "material-process-entry-card" },
+                    react_1.default.createElement("div", { className: "material-header" },
+                        react_1.default.createElement("div", { className: "material-info-row" },
+                            react_1.default.createElement("h4", { className: "material-name" }, item.materialClass),
+                            plan === 'professional' && (react_1.default.createElement("span", { className: "specific-material" },
+                                "(",
+                                item.specificMaterial,
+                                ")")),
+                            react_1.default.createElement("span", { className: "material-weight" },
+                                item.weight,
+                                " ",
+                                item.unit))),
+                    react_1.default.createElement(process_entry_1.default, { material: item, onProcessAdd: (process) => handleProcessAdd(item.materialClass, process), uxpContext: uxpContext })))))))),
         aiGeneratingProcess && (react_1.default.createElement("div", { className: "ai-generating-process" },
             react_1.default.createElement("div", { className: "loader-spinner" }),
             react_1.default.createElement("div", { className: "generating-message" },
@@ -44538,50 +44626,8 @@ const ProductManufacturing = ({ productCategoryData, productData, billMaterials,
                 react_1.default.createElement("p", null, "Determining optimal manufacturing processes for each material in your product...")))),
         entryType === "ai" && !aiGeneratingProcess && Object.keys(selectedProcesses).length === 0 && (react_1.default.createElement("div", { className: "empty-processes-container" },
             react_1.default.createElement("p", null, "No manufacturing processes defined yet. Generate processes using AI or switch to manual entry."))),
-        Object.keys(selectedProcesses).length > 0 && (react_1.default.createElement("div", { className: "process-summary" },
-            react_1.default.createElement("div", { className: "process-summary-header" },
-                react_1.default.createElement("h3", null,
-                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faIndustry, className: "summary-icon" }),
-                    "Manufacturing Processes",
-                    react_1.default.createElement("span", { className: "method-badge" }, entryType === "manual" ? "Manual" : "AI-Generated"))),
-            react_1.default.createElement("div", { className: "material-process-cards" }, billMaterials.map((item) => {
-                var _a;
-                return (react_1.default.createElement("div", { key: item.materialClass, className: "material-process-card" },
-                    react_1.default.createElement("div", { className: "material-header" },
-                        react_1.default.createElement("div", { className: "material-info" },
-                            react_1.default.createElement("h4", { className: "material-name" }, item.materialClass),
-                            react_1.default.createElement("div", { className: "material-details" },
-                                plan === 'professional' && (react_1.default.createElement("span", { className: "specific-material" }, item.specificMaterial)),
-                                react_1.default.createElement("span", { className: "material-weight" },
-                                    item.weight,
-                                    " ",
-                                    item.unit)))),
-                    react_1.default.createElement("div", { className: "process-list" }, ((_a = selectedProcesses[item.materialClass]) === null || _a === void 0 ? void 0 : _a.length) > 0 ? (selectedProcesses[item.materialClass].map((process, index) => (react_1.default.createElement("div", { key: index, className: "process-item" },
-                        react_1.default.createElement("div", { className: "process-content" }, (editingProcess === null || editingProcess === void 0 ? void 0 : editingProcess.materialClass) === item.materialClass &&
-                            editingProcess.processIndex === index ? (react_1.default.createElement("div", { className: "process-edit-form" },
-                            react_1.default.createElement("label", null, "Process Category:"),
-                            react_1.default.createElement(components_1.Input, { value: (editedProcess === null || editedProcess === void 0 ? void 0 : editedProcess.category) || "", onChange: (val) => setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { category: val }) : null), className: "process-edit-input" }),
-                            react_1.default.createElement("label", null, "Sub-processes:"), editedProcess === null || editedProcess === void 0 ? void 0 :
-                            editedProcess.processes.map((subProcess, subIndex) => (react_1.default.createElement("div", { key: subIndex, className: "subprocess-edit" },
-                                react_1.default.createElement(components_1.Input, { value: subProcess, onChange: (val) => {
-                                        const updatedProcesses = [...(editedProcess.processes || [])];
-                                        updatedProcesses[subIndex] = val;
-                                        setEditedProcess((prev) => prev ? Object.assign(Object.assign({}, prev), { processes: updatedProcesses }) : null);
-                                    }, className: "subprocess-edit-input" })))),
-                            react_1.default.createElement("div", { className: "edit-actions" },
-                                react_1.default.createElement(components_1.Button, { title: "Save Changes", className: "save-button", onClick: handleSaveProcess })))) : (react_1.default.createElement(react_1.default.Fragment, null,
-                            react_1.default.createElement("div", { className: "process-header" },
-                                react_1.default.createElement("h5", { className: "process-category" },
-                                    react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faWrench, className: "process-icon" }),
-                                    process.category),
-                                react_1.default.createElement("div", { className: "process-actions" },
-                                    react_1.default.createElement("button", { className: "icon-button edit", onClick: () => handleEditProcess(item.materialClass, index), title: "Edit Process" },
-                                        react_1.default.createElement(react_fontawesome_1.FontAwesomeIcon, { icon: free_solid_svg_icons_1.faEdit })),
-                                    react_1.default.createElement("button", { className: "icon-button delete", onClick: () => handleDeleteProcess(item.materialClass, index), title: "Delete Process" }, "\u2715"))),
-                            react_1.default.createElement("ul", { className: "subprocess-list" }, process.processes.map((subProcess, subIndex) => (react_1.default.createElement("li", { key: subIndex, className: "subprocess-item" }, subProcess))))))))))) : (react_1.default.createElement("div", { className: "no-processes" },
-                        react_1.default.createElement("p", null, "No manufacturing processes defined for this material."))))));
-            })),
-            react_1.default.createElement("div", { className: "processes-actions" }, entryType === "manual" && !showProcessContent && (react_1.default.createElement(components_1.Button, { className: "add-more-processes-button", title: "Add More Processes", onClick: handleAddProcess })))))));
+        validationError && !hasValidProcesses && (react_1.default.createElement("div", { className: "validation-error-container" },
+            react_1.default.createElement("p", { className: "validation-error-message" }, validationError)))));
 };
 exports["default"] = ProductManufacturing;
 
@@ -44762,7 +44808,8 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
         activeStep === 2 && (react_1.default.createElement(bill_materials_1.default, { productCategoryData: productCategoryData, productData: productInfoData, onNext: handleBillMaterialsChange, uxpContext: uxpContext })),
         activeStep === 3 && (react_1.default.createElement(product_manufacturing_1.default, { productCategoryData: productCategoryData, productData: productInfoData, billMaterials: billMaterialsData, onProductManufacturingChange: setProductManufacturingProcess, uxpContext: uxpContext })),
         activeStep === 3 && (react_1.default.createElement("div", { className: "done-button-container" },
-            react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone, disabled: billMaterialsData.length === 0 }))),
+            react_1.default.createElement(components_1.Button, { title: "Create", onClick: handleDone, disabled: billMaterialsData.length === 0 || !productManufacturingProcess || productManufacturingProcess.length === 0 }),
+            billMaterialsData.length === 0 ? (react_1.default.createElement("p", { className: "button-helper-text" }, "Please add materials before proceeding")) : !productManufacturingProcess || productManufacturingProcess.length === 0 ? (react_1.default.createElement("p", { className: "button-helper-text" }, "Please define at least one manufacturing process")) : null)),
         activeStep === 4 && react_1.default.createElement(assessment_1.default, { newlyCreatedProduct: newlyCreatedProduct, onClose: onCloseEx, setShowCloseWarning: setShowCloseWarning })));
 };
 exports.ProductWizard = ProductWizard;

@@ -266,6 +266,15 @@ export async function getBillOfMaterials(uxpContext: IContextProvider) {
   );
 }
 
+export async function getManufacturingProcesses(uxpContext: IContextProvider) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/manufacturingProcesses`,
+    RequestMethod.GET,
+    {}
+  );
+}
+
 export async function getAccountPlan(uxpContext: IContextProvider) {
   return executeRequest(
     uxpContext,
