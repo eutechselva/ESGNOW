@@ -31,7 +31,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
     const [aiProcesses, setAIProcesses] = useState<Record<string, ProductManufacturingProcess[]>>({});
     const [showProcessContent, setShowProcessContent] = useState(false);
     const [aiGeneratingProcess, setAIGeneratingProcess] = useState<boolean>(false);
-    // We no longer need editing state since we're making this view-only
+    const [editingMaterialId, setEditingMaterialId] = useState<string | null>(null);
     const [showTooltip, setShowTooltip] = useState<boolean>(false);
     const [plan, setPlan] = useState<string>(null);
     const [validationError, setValidationError] = useState<string>("");
@@ -77,22 +77,42 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             processes: process.subProcesses,
         };
 
-        // Use functional update to ensure we're working with the most current state
-        setManualProcesses(prev => {
-            // Create a new object to avoid reference issues
-            const updatedProcesses = {
-                ...prev,
-                [materialId]: [newProcess], // Only keep the new process
-            };
-            
-            // We need to use setTimeout to break the potential circular update cycle
-            // This ensures the state update completes before triggering the parent update
-            setTimeout(() => {
-                updateParentManufacturingProcess(updatedProcesses);
-            }, 0);
-            
-            return updatedProcesses;
-        });
+        // Determine which state to update based on the current entry type
+        if (entryType === "ai") {
+            // Use functional update to ensure we're working with the most current state
+            setAIProcesses(prev => {
+                // Create a new object to avoid reference issues
+                const updatedProcesses = {
+                    ...prev,
+                    [materialId]: [newProcess], // Only keep the new process
+                };
+                
+                // We need to use setTimeout to break the potential circular update cycle
+                // This ensures the state update completes before triggering the parent update
+                setTimeout(() => {
+                    updateParentManufacturingProcess(updatedProcesses);
+                }, 0);
+                
+                return updatedProcesses;
+            });
+        } else {
+            // Use functional update to ensure we're working with the most current state
+            setManualProcesses(prev => {
+                // Create a new object to avoid reference issues
+                const updatedProcesses = {
+                    ...prev,
+                    [materialId]: [newProcess], // Only keep the new process
+                };
+                
+                // We need to use setTimeout to break the potential circular update cycle
+                // This ensures the state update completes before triggering the parent update
+                setTimeout(() => {
+                    updateParentManufacturingProcess(updatedProcesses);
+                }, 0);
+                
+                return updatedProcesses;
+            });
+        }
     };
     
     // Helper function to update the parent component's state
@@ -158,13 +178,23 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                 // Make sure to maintain the same structure as getAccountPlanFromAPI
                 setPlan(response.data.plan);
 
+                // Create a mapped object of manufacturing processes by material class
                 const mappedProcesses: Record<string, ProductManufacturingProcess[]> = {};
                 apiResults.forEach((item) => {
-                    mappedProcesses[item.materialClass] = item.manufacturingProcesses;
+                    if (item.manufacturingProcesses && item.manufacturingProcesses.length > 0) {
+                        mappedProcesses[item.materialClass] = item.manufacturingProcesses;
+                    }
                 });
 
+                console.log("AI generated processes:", mappedProcesses);
+
+                // Update the AI processes state
                 setAIProcesses(mappedProcesses);
+                
+                // Update the parent component
                 onProductManufacturingChange(apiResults);
+                
+                // Hide the loading indicator and process form since we now have AI results
                 setAIGeneratingProcess(false);
                 setShowProcessContent(false);
             } catch (error) {
@@ -316,6 +346,95 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
             {entryType === "ai" && !aiGeneratingProcess && Object.keys(selectedProcesses).length === 0 && (
                 <div className="empty-processes-container">
                     <p>No manufacturing processes defined yet. Generate processes using AI or switch to manual entry.</p>
+                </div>
+            )}
+            
+            {/* Display AI-generated processes when they exist */}
+            {entryType === "ai" && !aiGeneratingProcess && Object.keys(selectedProcesses).length > 0 && (
+                <div className="ai-processes-container">
+                    <div className="ai-processes-header">
+                        <h3>
+                            <FontAwesomeIcon icon={faRobot} className="ai-icon" />
+                            AI-Generated Manufacturing Processes
+                        </h3>
+                        <p className="ai-subtitle">The following manufacturing processes have been generated based on your materials and product details. You can edit processes for each material if needed.</p>
+                    </div>
+                    
+                    <div className="ai-material-cards">
+                        {billMaterials.map((item) => {
+                            // Check if we're currently editing this material
+                            const isEditing = item.materialClass === editingMaterialId;
+                            
+                            return (
+                                <div key={item.materialClass} className="ai-material-card">
+                                    <div className="material-header">
+                                        <div className="material-info-row">
+                                            <h4 className="material-name">{item.materialClass}</h4>
+                                            {plan === 'professional' && (
+                                                <span className="specific-material">({item.specificMaterial})</span>
+                                            )}
+                                            <span className="material-weight">{item.weight} {item.unit}</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <div className="ai-processes">
+                                        {isEditing ? (
+                                            <div className="ai-process-edit-form">
+                                                <ProcessEntry
+                                                    material={item}
+                                                    onProcessAdd={(process) => {
+                                                        handleProcessAdd(item.materialClass, process);
+                                                        setEditingMaterialId(null); // Exit edit mode
+                                                    }}
+                                                    uxpContext={uxpContext}
+                                                />
+                                                <div className="edit-actions">
+                                                    <Button 
+                                                        title="Cancel" 
+                                                        className="cancel-edit-button"
+                                                        onClick={() => setEditingMaterialId(null)} 
+                                                    />
+                                                </div>
+                                            </div>
+                                        ) : (
+                                            <div>
+                                                {selectedProcesses[item.materialClass]?.length > 0 ? (
+                                                    <div>
+                                                        {selectedProcesses[item.materialClass].map((process, index) => (
+                                                            <div key={index} className="ai-process-item">
+                                                                <div className="ai-process-header">
+                                                                    <span className="ai-process-name">{process.category}</span>
+                                                                    <Button
+                                                                        title="Edit"
+                                                                        className="edit-process-inline-button"
+                                                                        onClick={() => setEditingMaterialId(item.materialClass)}
+                                                                    />
+                                                                </div>
+                                                                <div className="ai-subprocess-list">
+                                                                    {process.processes.map((subProcess, subIndex) => (
+                                                                        <span key={subIndex} className="ai-subprocess-item">{subProcess}</span>
+                                                                    ))}
+                                                                </div>
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                ) : (
+                                                    <div className="no-processes-found">
+                                                        <p>No processes generated for this material.</p>
+                                                        <Button 
+                                                            title="Add Process" 
+                                                            className="add-process-button"
+                                                            onClick={() => setEditingMaterialId(item.materialClass)}
+                                                        />
+                                                    </div>
+                                                )}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                 </div>
             )}
 
