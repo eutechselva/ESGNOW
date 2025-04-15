@@ -299,10 +299,10 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 {/* Dashboard Footer */}
                 <div className="dashboard-footer">
                     <p>Your current plan: <strong>{plan || 'Free Plan'}</strong></p>
-                    <Button
+                    {/* <Button
                         title="Take a Tour"
                         onClick={() => setShowTour(true)}
-                    />
+                    /> */}
                 </div>
             </div>
 
