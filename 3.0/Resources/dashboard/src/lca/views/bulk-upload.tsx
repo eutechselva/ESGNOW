@@ -1,5 +1,4 @@
 import { IContextProvider } from "@uxp";
-import API_BASE_URL from "../config";
 import './bulk-upload.scss';
 import React, { useState, useEffect } from "react";
 import { bulkImageUpload, bulkUpload } from "../../esgnow-service";
@@ -112,13 +111,6 @@ const BulkUploadWidget: React.FC<IBulkUploadWidgetProps> = ({ uxpContext }) => {
         formData.append("file", dataFile);
 
         try {
-            // const requestOptions = {
-            //     method: "POST",
-            //     body: formData,
-            //     headers: { "x-iviva-account": "lucy1" },
-            // };
-
-            //let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
             let response = await bulkUpload(uxpContext, formData);
 
             if (response.data) {

@@ -40816,12 +40816,6 @@ const BulkUploadWidget = ({ uxpContext }) => {
         const formData = new FormData();
         formData.append("file", dataFile);
         try {
-            // const requestOptions = {
-            //     method: "POST",
-            //     body: formData,
-            //     headers: { "x-iviva-account": "lucy1" },
-            // };
-            //let response = await fetch(`${API_BASE_URL}/api/products/bulk-upload`, requestOptions);
             let response = yield (0, esgnow_service_1.bulkUpload)(uxpContext, formData);
             if (response.data) {
                 setMessage("Data upload successful!");
