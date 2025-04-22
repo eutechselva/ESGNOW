@@ -40310,7 +40310,7 @@ const WrappedDashboard = (props) => {
     configs: {
         layout: {
             w: 30,
-            h: 20,
+            h: 40,
         }
     }
 });
@@ -41742,8 +41742,7 @@ const HomeDashboard = ({ uxpContext }) => {
             react_1.default.createElement("div", { className: "dashboard-footer" },
                 react_1.default.createElement("p", null,
                     "Your current plan: ",
-                    react_1.default.createElement("strong", null, plan || 'Free Plan')),
-                react_1.default.createElement(components_1.Button, { title: "Take a Tour", onClick: () => setShowTour(true) }))),
+                    react_1.default.createElement("strong", null, plan || 'Free Plan')))),
         react_1.default.createElement(react_tooltip_1.Tooltip, { id: "products-tooltip", place: "top" }),
         react_1.default.createElement(react_tooltip_1.Tooltip, { id: "projects-tooltip", place: "top" }),
         react_1.default.createElement(react_tooltip_1.Tooltip, { id: "credits-tooltip", place: "top" })));
