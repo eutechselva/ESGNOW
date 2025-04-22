@@ -601,6 +601,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             {/* Product summary modal screen */}
             {selectedProduct && (
                 <Modal
+                    title="Product Summary"
                     show={!!selectedProduct}
                     onClose={() => setSelectedProduct(null)}
                     className="esgnow-product-summary-modal"
