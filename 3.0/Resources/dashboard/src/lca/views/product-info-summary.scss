@@ -426,7 +426,10 @@
   }
 }
 
-.esgnow-delete-modal {
+.esgnow-delete-modal.modal-container .modal-panel {
+  min-width: 40%;
+
+
   .esgnow-delete-confirmation {
     text-align: center;
     padding: 16px;
@@ -451,7 +454,17 @@
     .esgnow-modal-actions {
       display: flex;
       justify-content: center;
-      gap: 16px;
+
+      .esgnow-cancel-button {
+        margin-right: 12px;
+      }
+
+      .esgnow-confirm-button {
+        margin-left: 12px;
+      }
+
+
+
 
       .esgnow-cancel-button {
         background-color: #f0f0f0;

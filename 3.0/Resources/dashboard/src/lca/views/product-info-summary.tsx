@@ -15,6 +15,7 @@ interface ProductInfoSummaryProps {
     hideDelete?: boolean;
     uxpContext: IContextProvider;
     plan: string;
+    show?: boolean; 
 }
 
 const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete, plan }) => {
@@ -367,14 +368,14 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             <p className="esgnow-subheading">Product: {product.name}</p>
                         </div>
                         <div className="esgnow-action-buttons">
-                            <Button
+                            {/* <Button
                                 title="Back"
                                 onClick={onClose}
                                 className="esgnow-back-button"
                             >
                                 <span className="esgnow-back-icon">←</span>
                                 Back
-                            </Button>
+                            </Button> */}
                             {!hideDelete && (
                                 <Button 
                                     title="Delete" 

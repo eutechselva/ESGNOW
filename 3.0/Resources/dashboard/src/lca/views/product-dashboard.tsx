@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select, useAlert, Tab } from "uxp/components";
+import { Button, SearchBox, DataGrid, FilterPanel, FormField, Label, Select, useAlert, Tab, Modal } from "uxp/components";
 import './product-dashboard.scss';
 import ProductInfoSummary from './product-info-summary';
 import { IContextProvider } from "@uxp";
@@ -598,22 +598,29 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 }}
             />
 
-            {/* Product summary screen */}
+            {/* Product summary modal screen */}
             {selectedProduct && (
-                <ProductInfoSummary
-                    plan={plan}
-                    uxpContext={uxpContext}
-                    product={selectedProduct}
-                    hideHeader={false}
-                    onClose={() => {
-                        setSelectedProduct(null);
-                        refreshProducts();
-                    }}
-                    onDelete={function (): void {
-                        setSelectedProduct(null);
-                        refreshProducts();
-                    }}
-                />
+                <Modal
+                    title="Product Summary"
+                    show={!!selectedProduct}
+                    onClose={() => setSelectedProduct(null)}
+                    className="esgnow-product-summary-modal"
+                >
+                    <ProductInfoSummary
+                        plan={plan}
+                        uxpContext={uxpContext}
+                        product={selectedProduct}
+                        hideHeader={false}
+                        onClose={() => {
+                            setSelectedProduct(null);
+                            refreshProducts();
+                        }}
+                        onDelete={() => {
+                            setSelectedProduct(null);
+                            refreshProducts();
+                        }}
+                    />
+                </Modal>
             )}
         </div>
     );

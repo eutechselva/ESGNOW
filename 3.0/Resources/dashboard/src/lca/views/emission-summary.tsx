@@ -242,7 +242,7 @@ const EmissionSummary: React.FC<{
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = (Number(product.co2EmissionRawMaterials) + Number(product.co2EmissionFromProcesses) + Number(transportationEmission)).toFixed(2);
+                    const totalValue = (Number(product?.co2EmissionRawMaterials) + Number(product?.co2EmissionFromProcesses) + Number(transportationEmission)).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
@@ -293,8 +293,8 @@ const EmissionSummary: React.FC<{
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
-                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
+                    { name: 'Raw Materials', y: product?.co2EmissionRawMaterials? Number(product.co2EmissionRawMaterials):0, color: '#78BE7C' },
+                    { name: 'Manufacturing', y: product?.co2EmissionFromProcesses? Number(product.co2EmissionFromProcesses):0, color: '#ffaa00' },
                     { name: 'Transportation', y: Number(transportationEmission), color: '#2A9D8F' },
                 ],
             },
@@ -327,10 +327,10 @@ const EmissionSummary: React.FC<{
                 <div
                     className="esgnow-summary-image"
                     style={{
-                        backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
+                        backgroundImage: product?.images[0] ? `url(${product.images[0]})` : 'none',
                     }}
                 >
-                    {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
+                    {!product?.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
                     {/* <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div> */}
                 </div>
 
@@ -338,26 +338,26 @@ const EmissionSummary: React.FC<{
                     <div className="esgnow-detail-grid">
                         <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
-                            <p>{product.code}</p>
+                            <p>{product?.code}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
-                            <p>{product.category}</p>
+                            <p>{product?.category}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Sub Category</strong>
-                            <p>{product.subCategory}</p>
+                            <p>{product?.subCategory}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Weight</strong>
-                            <p>{product.weight} Kg</p>
+                            <p>{product?.weight} Kg</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Country of Manufacture</strong>
                             <p>
-                                {product.countryOfOrigin === "CN" ? "China" :
-                                product.countryOfOrigin === "VN" ? "Vietnam" :
-                                product.countryOfOrigin}
+                                {product?.countryOfOrigin === "CN" ? "China" :
+                                product?.countryOfOrigin === "VN" ? "Vietnam" :
+                                product?.countryOfOrigin}
                             </p>
                         </div>
                     </div>
@@ -365,7 +365,7 @@ const EmissionSummary: React.FC<{
                         <strong>Product Description</strong>
                         <div className="esgnow-rich-text-editor">
                             <textarea 
-                                defaultValue={product.description}
+                                defaultValue={product?.description}
                                 className="esgnow-editable-description"
                                 rows={4}
                             />
@@ -400,13 +400,13 @@ const EmissionSummary: React.FC<{
                         <tbody>
                             {(() => {
                                 // Calculate the total emission factor
-                                const totalEmissionFactor = product.materials.reduce(
+                                const totalEmissionFactor = product?.materials.reduce(
                                     (sum: number, item: any) => sum + item.emissionFactor,
                                     0
                                 );
 
                                 // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+                                const sortedMaterials = product?.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
 
                                 // Map through the sorted materials and calculate percentage
                                 return sortedMaterials.map((item: any) => {
@@ -456,13 +456,13 @@ const EmissionSummary: React.FC<{
                         <tbody>
                             {(() => {
                                 // Calculate the total emission factor
-                                const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                const totalEmissionFactor = product?.productManufacturingProcess.reduce(
                                     (sum: number, item: any) => sum + item.emissionFactor,
                                     0
                                 );
 
                                 // Sort the productManufacturingProcess by emissionFactor in descending order
-                                const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+                                const sortedProcess = product?.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
 
                                 // Map through the sorted materials and calculate percentage
                                 return sortedProcess.map((item: any) => {
@@ -520,7 +520,7 @@ const EmissionSummary: React.FC<{
 
                                 // Sort the materials by emissionFactor in descending order
                                 const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportEmission - a.transportEmission);
-
+                 
                                 // Map through the sorted materials and calculate percentage
                                 return sortedMaterials.map((item: any) => {
                                     const percentage =
@@ -556,7 +556,7 @@ const EmissionSummary: React.FC<{
                     <>
                         <div className="esgnow-title-section">
                             <h1 className="esgnow-dashboard-title">Transport Summary</h1>
-                            <p className="esgnow-subheading">Product: {product.name}</p>
+                            <p className="esgnow-subheading">Product: {product?.name}</p>
                         </div>
                         <div className="esgnow-action-buttons">
                             <Button
