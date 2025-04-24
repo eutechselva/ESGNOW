@@ -81,7 +81,7 @@ registerWidget({
     configs: {
         layout: {
             w: 30,
-            h: 20,
+            h: 30,
         }
     }
 })
@@ -136,7 +136,7 @@ registerWidget({
     configs: {
         layout: {
             w: 30,
-            h: 40,
+            h: 120,
         }
     }
 })
