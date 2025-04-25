@@ -7,6 +7,7 @@ import { ProductWizard } from "./product-wizard";
 import { getAllProducts } from "../../esgnow-service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { canRunCalculator } from "@utils";
 
 interface IWidgetProps {
     uxpContext: IContextProvider
@@ -245,12 +246,12 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 {isLoading ? "Loading..." : "Refresh"}
                             </Button>
 
-                            <button
+                            { canRunCalculator(uxpContext) ? <button
                                 className="esgnow-add-product-button"
                                 onClick={() => setShowModal(true)}
                             >
                                 + Add Product
-                            </button>
+                            </button> : null }
                         </div>
                     </div>
 

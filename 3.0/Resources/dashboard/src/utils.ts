@@ -253,3 +253,7 @@ export async function executeComponent(context: IContextProvider, component: str
         throw obj;
     }
 }
+
+export function canRunCalculator(uxpContext: IContextProvider) {
+    return uxpContext.hasAppRole('ESGNOW', 'canruncalculator');
+}

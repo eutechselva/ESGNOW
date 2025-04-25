@@ -41566,6 +41566,7 @@ const product_wizard_1 = __importDefault(__webpack_require__(/*! ./product-wizar
 // Import react-tooltip
 const react_tooltip_1 = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/react-tooltip.min.cjs");
 __webpack_require__(/*! react-tooltip/dist/react-tooltip.css */ "./node_modules/react-tooltip/dist/react-tooltip.min.css"); // Import the CSS for styling
+const _utils_1 = __webpack_require__(/*! @utils */ "./src/utils.ts");
 const HomeDashboard = ({ uxpContext }) => {
     // State management
     const [searchValue, setSearchValue] = (0, react_1.useState)('');
@@ -41691,8 +41692,9 @@ const HomeDashboard = ({ uxpContext }) => {
                 react_1.default.createElement("div", null,
                     react_1.default.createElement("h1", { className: "dashboard-title" }, "Welcome to ESG NOW!"),
                     react_1.default.createElement("p", { className: "dashboard-subtitle" }, "Your sustainability dashboard")),
-                react_1.default.createElement("div", { className: "action-buttons" },
-                    react_1.default.createElement("button", { className: "add-product-button", onClick: () => setShowCreateProductModal(true) }, "+ Add Product"))),
+                (0, _utils_1.canRunCalculator)(uxpContext) ?
+                    react_1.default.createElement("div", { className: "action-buttons" },
+                        react_1.default.createElement("button", { className: "add-product-button", onClick: () => setShowCreateProductModal(true) }, "+ Add Product")) : null),
             react_1.default.createElement("div", { className: "stats-container" },
                 react_1.default.createElement("div", { className: "stats-cards" },
                     react_1.default.createElement("div", { className: "stat-card products" },
@@ -43459,6 +43461,7 @@ const product_wizard_1 = __webpack_require__(/*! ./product-wizard */ "./src/lca/
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
+const _utils_1 = __webpack_require__(/*! @utils */ "./src/utils.ts");
 const ProductDashboardWidget = ({ uxpContext }) => {
     const [products, setProducts] = React.useState([]);
     const [selectedProduct, setSelectedProduct] = React.useState(null);
@@ -43634,7 +43637,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     React.createElement(components_1.Button, { className: "esgnow-refresh-button", onClick: refreshProducts, disabled: isLoading, title: "Refresh" },
                         React.createElement("span", { className: "esgnow-refresh-icon" }, "\u21BB"),
                         isLoading ? "Loading..." : "Refresh"),
-                    React.createElement("button", { className: "esgnow-add-product-button", onClick: () => setShowModal(true) }, "+ Add Product"))),
+                    (0, _utils_1.canRunCalculator)(uxpContext) ? React.createElement("button", { className: "esgnow-add-product-button", onClick: () => setShowModal(true) }, "+ Add Product") : null)),
             React.createElement("div", { className: "esgnow-search-filter-container" },
                 React.createElement("div", { className: "esgnow-search-section" },
                     React.createElement("div", { className: "esgnow-search-box-wrapper" },
@@ -45347,7 +45350,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.executeComponent = exports.sortByKeys = exports.checkFileExists = exports.removeDuplicates = exports.formatNumber = exports.getPreviousRangeFromRelativeDates = exports.getEndDate = exports.getStartDate = exports.convertJSONToLowercase = exports.getChangedValues = exports.hasAnyFieldChanged = exports.joinParts = exports.roundOffValue = exports.getRelativeTime = exports.formatToISOString = exports.formatToDateString = exports.toPlural = exports.toSingular = exports.toSentenceCase = exports.getLabelFonmEnum = exports.generateLabelValuePairsFromEnum = exports.camelCaseToSentenceCase = exports.wait = exports.getRegisteredWidgets = void 0;
+exports.canRunCalculator = exports.executeComponent = exports.sortByKeys = exports.checkFileExists = exports.removeDuplicates = exports.formatNumber = exports.getPreviousRangeFromRelativeDates = exports.getEndDate = exports.getStartDate = exports.convertJSONToLowercase = exports.getChangedValues = exports.hasAnyFieldChanged = exports.joinParts = exports.roundOffValue = exports.getRelativeTime = exports.formatToISOString = exports.formatToDateString = exports.toPlural = exports.toSingular = exports.toSentenceCase = exports.getLabelFonmEnum = exports.generateLabelValuePairsFromEnum = exports.camelCaseToSentenceCase = exports.wait = exports.getRegisteredWidgets = void 0;
 const date_fns_1 = __webpack_require__(/*! date-fns */ "./node_modules/date-fns/index.cjs");
 const lodash_1 = __importDefault(__webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js"));
 const pluralize_1 = __importDefault(__webpack_require__(/*! pluralize */ "./node_modules/pluralize/pluralize.js"));
@@ -45594,6 +45597,10 @@ function executeComponent(context, component, route, method, parameters, body) {
     });
 }
 exports.executeComponent = executeComponent;
+function canRunCalculator(uxpContext) {
+    return uxpContext.hasAppRole('ESGNOW', 'canruncalculator');
+}
+exports.canRunCalculator = canRunCalculator;
 
 
 /***/ }),

@@ -10,6 +10,7 @@ import ProductWizard from './product-wizard';
 // Import react-tooltip
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'; // Import the CSS for styling
+import { canRunCalculator } from '@utils';
 
 interface IHomeDashboardWidgetProps {
     uxpContext: IContextProvider;
@@ -204,11 +205,12 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <h1 className="dashboard-title">Welcome to ESG NOW!</h1>
                         <p className="dashboard-subtitle">Your sustainability dashboard</p>
                     </div>
+                    { canRunCalculator(uxpContext) ?
                     <div className="action-buttons">
                         <button className="add-product-button" onClick={() => setShowCreateProductModal(true)}>
                             + Add Product
                         </button>
-                    </div>
+                    </div> : null}
                 </div>
 
                 {/* Stats Cards with Tooltips */}
