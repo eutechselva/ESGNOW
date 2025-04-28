@@ -40260,7 +40260,7 @@ const WrappedDashboard = (props) => {
     configs: {
         layout: {
             w: 30,
-            h: 20,
+            h: 30,
         }
     }
 });
@@ -40310,7 +40310,7 @@ const WrappedDashboard = (props) => {
     configs: {
         layout: {
             w: 30,
-            h: 40,
+            h: 120,
         }
     }
 });
@@ -43397,9 +43397,9 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
             react_1.default.createElement(components_1.Select, { options: [
                     { label: 'China', value: 'CN' },
                     { label: 'Germany', value: 'DE' },
-                    { label: 'Sweden', value: 'SE' },
-                    { label: 'Global', value: 'GLO' },
-                    { label: ' Rest of World', value: 'RoW' },
+                    // { label: 'Sweden', value: 'SE' },
+                    // { label: 'Global', value: 'GLO' },
+                    { label: ' Global', value: 'RoW' },
                     // Add more countries as needed
                 ], selected: country, onChange: (value) => setCountry(value) })),
         react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })));
