@@ -324,21 +324,23 @@ const EmissionSummary: React.FC<{
     const renderOverviewTab = () => (
         <div className="esgnow-tab-content">
             <div className="esgnow-product-info-summary">
-                <div
-                    className="esgnow-summary-image"
-                    style={{
-                        backgroundImage: product?.images[0] ? `url(${product.images[0]})` : 'none',
-                    }}
+            <div
+                className="esgnow-summary-image"
+                style={{
+                    backgroundImage: Array.isArray(product?.images) && product.images[0] ? `url(${product.images[0]})` : 'none',
+                }}
                 >
-                    {!product?.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
-                    {/* <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div> */}
-                </div>
+                {!(Array.isArray(product?.images) && product.images[0]) && (
+                    <div className="esgnow-image-placeholder">Image Unavailable</div>
+                )}
+            </div>
+
 
                 <div className="esgnow-summary-details">
                     <div className="esgnow-detail-grid">
                         <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
-                            <p>{product?.code}</p>
+                            <p>{product?.productCode}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
