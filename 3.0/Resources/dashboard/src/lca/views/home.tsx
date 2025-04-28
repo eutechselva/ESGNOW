@@ -205,6 +205,8 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <h1 className="dashboard-title">Welcome to ESG NOW!</h1>
                         <p className="dashboard-subtitle">Your sustainability dashboard</p>
                     </div>
+
+                    {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
                     { canRunCalculator(uxpContext) ?
                     <div className="action-buttons">
                         <button className="add-product-button" onClick={() => setShowCreateProductModal(true)}>

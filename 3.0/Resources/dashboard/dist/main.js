@@ -41692,6 +41692,7 @@ const HomeDashboard = ({ uxpContext }) => {
                 react_1.default.createElement("div", null,
                     react_1.default.createElement("h1", { className: "dashboard-title" }, "Welcome to ESG NOW!"),
                     react_1.default.createElement("p", { className: "dashboard-subtitle" }, "Your sustainability dashboard")),
+                (0, _utils_1.canRunCalculator)(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false'),
                 (0, _utils_1.canRunCalculator)(uxpContext) ?
                     react_1.default.createElement("div", { className: "action-buttons" },
                         react_1.default.createElement("button", { className: "add-product-button", onClick: () => setShowCreateProductModal(true) }, "+ Add Product")) : null),
