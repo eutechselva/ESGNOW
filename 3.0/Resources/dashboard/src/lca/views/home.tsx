@@ -205,7 +205,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <p className="dashboard-subtitle">Your sustainability dashboard</p>
                     </div>
                     <div className="action-buttons">
-                        <button className="add-product-button" onClick={() => setShowCreateProductModal(true)}>
+                        <button className="esgnow-add-product-button" onClick={() => setShowCreateProductModal(true)}>
                             + Add Product
                         </button>
                     </div>
