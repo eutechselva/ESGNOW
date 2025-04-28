@@ -31,6 +31,6 @@
     "label": "Bulk Upload",
     "icon": "fad upload",
     "dashboardKey": "bulkupload",
-    "userRoles": []
+    "userRoles": ["Calculator"]
   }
 ]

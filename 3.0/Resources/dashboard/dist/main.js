@@ -101665,7 +101665,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","userRoles":[]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","userRoles":["Calculator"]}]');
 
 /***/ }),
 
