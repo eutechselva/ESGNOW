@@ -209,7 +209,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
                     { canRunCalculator(uxpContext) ?
                     <div className="action-buttons">
-                        <button className="add-product-button" onClick={() => setShowCreateProductModal(true)}>
+                        <button className="esgnow-add-product-button" onClick={() => setShowCreateProductModal(true)}>
                             + Add Product
                         </button>
                     </div> : null}
