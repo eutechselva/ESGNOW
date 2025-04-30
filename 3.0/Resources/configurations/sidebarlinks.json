@@ -16,7 +16,7 @@
   {
     "id": "lca",
     "label": "Transportation",
-    "icon": "fad ship" ,
+    "icon": "fad ship",
     "dashboardKey": "lca",
     "userRoles": []
   },
@@ -26,11 +26,17 @@
     "icon": "fad folder-open",
     "dashboardKey": "projects",
     "userRoles": []
-  }, {
+  },
+  {
     "id": "bulkupload",
     "label": "Bulk Upload",
     "icon": "fad upload",
     "dashboardKey": "bulkupload",
-    "userRoles": ["Calculator"]
+    "appRoles": [
+      {
+        "app": "ESGNOW",
+        "role": "canbulkupload"
+      }
+    ]
   }
 ]

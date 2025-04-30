@@ -15,7 +15,7 @@ interface ProductCategorizationProps {
     uxpContext: IContextProvider;
 }
 
-const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext ,uxpContext }) => {
+const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [productCategory, setProductCategory] = useState<string>("");
     const [productSubCategory, setProductSubCategory] = useState<string>("");
     const [categoryOptions, setCategoryOptions] = useState<{ label: string, value: string }[]>([]);
@@ -44,7 +44,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     useEffect(() => {
         const fetchCategoryDataAndClassify = async () => {
             try {
-                
+
                 // Fetch category data
                 const response = await productCategories(uxpContext);
 
@@ -115,9 +115,9 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
         if (totalWeight === "" || parseFloat(totalWeight) <= 0) {
             setErrorTotalWeight("Total weight must be a positive number");
             return
-            
+
         }
-        
+
         const productData: ProductCategoryInfo = {
             category: productCategory,
             subCategory: productSubCategory,
@@ -133,9 +133,9 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     return (
         <div className="modal-content">
 
-           {aiGenerating && ( <div className="loading-overlay"></div> )}
+            {aiGenerating && (<div className="loading-overlay"></div>)}
 
-           <div style={{ display: 'flex', gap: '16px' }}>
+            <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField>
                     <Label><span style={{ fontSize: '12px' }}>Category</span><span
                         className="info-icon"
@@ -202,7 +202,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                     />
                     {errorTotalWeight && <div className="error-text">{errorTotalWeight}</div>}
                 </FormField>
-                
+
             </div>
 
 
@@ -210,11 +210,18 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 <Label><span style={{ fontSize: '12px' }}>Country of Manufacture</span></Label>
                 <Select
                     options={[
-                        
+
                         { label: 'China', value: 'CN' },
-                        { label: 'Germany', value: 'DE' },
-                        // { label: 'Sweden', value: 'SE' },
-                        // { label: 'Global', value: 'GLO' },
+                        { label: 'Vietnam', value: 'VN' },
+                        { label: 'Global', value: 'RoW' },
+                        { label: 'Czech Republic', value: 'CZ' },
+                        { label: 'France', value: 'FR' },
+                        { label: 'Netherlands', value: 'NL' },
+                        { label: 'Poland', value: 'PL' },
+                        { label: 'Spain', value: 'ES' },
+                        { label: 'Taiwan', value: 'TW' },
+                        { label: 'United States', value: 'US' },
+                        { label: 'United Kingdom', value: 'UK' },
                         { label: ' Global', value: 'RoW' },
                         // Add more countries as needed
                     ]}

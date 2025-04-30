@@ -43397,9 +43397,16 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                 react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Country of Manufacture")),
             react_1.default.createElement(components_1.Select, { options: [
                     { label: 'China', value: 'CN' },
-                    { label: 'Germany', value: 'DE' },
-                    // { label: 'Sweden', value: 'SE' },
-                    // { label: 'Global', value: 'GLO' },
+                    { label: 'Vietnam', value: 'VN' },
+                    { label: 'Global', value: 'RoW' },
+                    { label: 'Czech Republic', value: 'CZ' },
+                    { label: 'France', value: 'FR' },
+                    { label: 'Netherlands', value: 'NL' },
+                    { label: 'Poland', value: 'PL' },
+                    { label: 'Spain', value: 'ES' },
+                    { label: 'Taiwan', value: 'TW' },
+                    { label: 'United States', value: 'US' },
+                    { label: 'United Kingdom', value: 'UK' },
                     { label: ' Global', value: 'RoW' },
                     // Add more countries as needed
                 ], selected: country, onChange: (value) => setCountry(value) })),
@@ -101665,7 +101672,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","userRoles":["Calculator"]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","appRoles":[{"app":"ESGNOW","role":"canbulkupload"}]}]');
 
 /***/ }),
 
