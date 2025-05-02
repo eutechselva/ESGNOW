@@ -353,8 +353,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     palletWeight={palletWeight}
                     includePallet={includePallet}
                     plan={plan}
-                    onConfirm={handleConfirmCalculate}
-                />
+                    onConfirm={handleConfirmCalculate} uxpContext={undefined} />
             ),
         },
     ];

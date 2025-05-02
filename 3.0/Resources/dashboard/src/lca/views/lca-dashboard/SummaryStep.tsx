@@ -1,8 +1,9 @@
 // File: SummaryStep.tsx
 import * as React from "react";
-import { Button } from "uxp/components";
+import { Button, Modal } from "uxp/components";
 import { TransportLeg } from "./LCADashboardWidget";
 import './summary-step.scss';
+import EmissionSummary from "../emission-summary";
 
 interface SummaryStepProps {
     selectedProduct: any;
@@ -12,6 +13,7 @@ interface SummaryStepProps {
     includePallet: boolean;
     plan: string;
     onConfirm: () => void;
+    uxpContext: any;
 }
 
 const SummaryStep: React.FC<SummaryStepProps> = ({
@@ -21,8 +23,22 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     palletWeight,
     includePallet,
     plan,
-    onConfirm
+    onConfirm,
+    uxpContext
 }) => {
+    const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
+    const [transportationEmission, setTransportationEmission] = React.useState("0");
+
+    // Calculate total transportation emission
+    React.useEffect(() => {
+        const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toFixed(2));
+    }, [transportLegs]);
+
+    const handleCalculate = () => {
+        setShowEmissionSummary(true);
+    };
+
     return (
         <div className="summary-container">
             {/* Product Details */}
@@ -101,14 +117,38 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     <div className="summary-row">
                         <span>Total Weight</span>
                         <span>
-                            {(parseFloat(selectedProduct?.weight) + packagingWeight + 
-                              (includePallet ? palletWeight : 0)).toFixed(2)} Kg
+                            {(parseFloat(selectedProduct?.weight) + packagingWeight +
+                                (includePallet ? palletWeight : 0)).toFixed(2)} Kg
                         </span>
                     </div>
                 </div>
             </div>
-            
-            <Button title="Calculate" className="confirm-button" onClick={onConfirm} />
+
+            <Button
+                title="Calculate"
+                className="confirm-button"
+                onClick={handleCalculate}
+            />
+
+            {/* Emission Summary Modal */}
+            <Modal
+                show={showEmissionSummary}
+                onClose={() => setShowEmissionSummary(false)}
+                title="Emission Summary"
+                className="emission-summary-modal"
+
+            >
+                <EmissionSummary
+                    product={selectedProduct}
+                    transportationEmission={transportationEmission}
+                    onBack={() => setShowEmissionSummary(false)}
+                    transportLegs={transportLegs}
+                    uxContext={uxpContext}
+                    packageWeight={packagingWeight}
+                    palletWeight={includePallet ? palletWeight : 0}
+                    plan={plan}
+                />
+            </Modal>
         </div>
     );
 };
