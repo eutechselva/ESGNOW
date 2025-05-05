@@ -387,7 +387,28 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 transportLegs={transportLegs}
                 transportationEmission={transportationEmission}
                 product={selectedProduct}
-                onBack={() => setIsEmissionSummaryVisible(false)}
+                onBack={() => {
+                    setIsEmissionSummaryVisible(false);
+                    // Reset all data when going back
+                    setActiveStep(0);
+                    setTransportLegs([{
+                        id: 1,
+                        originCountry: "",
+                        destinationCountry: "",
+                        originGateway: "",
+                        destinationGateway: "",
+                        transportMode: "",
+                        transportDistance: 0,
+                        transportEmission: 0,
+                        originGateways: [],
+                        destinationGateways: []
+                    }]);
+                    setIsPackagingManual(false);
+                    setIsPalletManual(false);
+                    setIncludePallet(false);
+                    setPalletWeight(20);
+                    setTransportationEmission("");
+                }}
                 uxContext={uxpContext}
                 plan={plan}
             />
@@ -568,7 +589,28 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
             <Modal
                 show={showModal}
-                onClose={() => setShowModal(false)}
+                onClose={() => {
+                    // Reset all data before closing the modal
+                    setShowModal(false);
+                    setActiveStep(0);
+                    setTransportLegs([{
+                        id: 1,
+                        originCountry: "",
+                        destinationCountry: "",
+                        originGateway: "",
+                        destinationGateway: "",
+                        transportMode: "",
+                        transportDistance: 0,
+                        transportEmission: 0,
+                        originGateways: [],
+                        destinationGateways: []
+                    }]);
+                    setIsPackagingManual(false);
+                    setIsPalletManual(false);
+                    setIncludePallet(false);
+                    setPalletWeight(20);
+                    setTransportationEmission("");
+                }}
                 title="Calculate Impact"
                 className="lgs-calculate-impact-modal"
             >

@@ -42093,7 +42093,28 @@ const LCADashboardWidget = ({ uxpContext }) => {
         },
     ];
     if (isEmissionSummaryVisible) {
-        return (React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => setIsEmissionSummaryVisible(false), uxContext: uxpContext, plan: plan }));
+        return (React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => {
+                setIsEmissionSummaryVisible(false);
+                // Reset all data when going back
+                setActiveStep(0);
+                setTransportLegs([{
+                        id: 1,
+                        originCountry: "",
+                        destinationCountry: "",
+                        originGateway: "",
+                        destinationGateway: "",
+                        transportMode: "",
+                        transportDistance: 0,
+                        transportEmission: 0,
+                        originGateways: [],
+                        destinationGateways: []
+                    }]);
+                setIsPackagingManual(false);
+                setIsPalletManual(false);
+                setIncludePallet(false);
+                setPalletWeight(20);
+                setTransportationEmission("");
+            }, uxContext: uxpContext, plan: plan }));
     }
     return (React.createElement("div", { className: "lca-content" },
         React.createElement("h1", { className: "dashboard-title" }, "Transportation"),
@@ -42173,7 +42194,28 @@ const LCADashboardWidget = ({ uxpContext }) => {
             viewMode === "grid" ? (React.createElement(ProductGridView_1.default, { currentItems: currentItems, selectProduct: selectProduct })) : (React.createElement(ProductListView_1.default, { currentItems: currentItems, selectProduct: selectProduct })),
             totalPages > 1 && (React.createElement("div", { className: "pagination-wrapper" },
                 React.createElement(Pagination_1.default, { currentPage: currentPage, totalPages: totalPages, itemsPerPage: itemsPerPage, setCurrentPage: setCurrentPage, setItemsPerPage: setItemsPerPage }))))),
-        React.createElement(components_1.Modal, { show: showModal, onClose: () => setShowModal(false), title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
+        React.createElement(components_1.Modal, { show: showModal, onClose: () => {
+                // Reset all data before closing the modal
+                setShowModal(false);
+                setActiveStep(0);
+                setTransportLegs([{
+                        id: 1,
+                        originCountry: "",
+                        destinationCountry: "",
+                        originGateway: "",
+                        destinationGateway: "",
+                        transportMode: "",
+                        transportDistance: 0,
+                        transportEmission: 0,
+                        originGateways: [],
+                        destinationGateways: []
+                    }]);
+                setIsPackagingManual(false);
+                setIsPalletManual(false);
+                setIncludePallet(false);
+                setPalletWeight(20);
+                setTransportationEmission("");
+            }, title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
             React.createElement("div", { className: "modal-content" },
                 React.createElement("div", { className: "modal-stepper-container" },
                     React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: setActiveStep })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
