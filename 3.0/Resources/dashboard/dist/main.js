@@ -42030,12 +42030,32 @@ const LCADashboardWidget = ({ uxpContext }) => {
         setShowModal(false);
     });
     const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
-        // Mock implementation (original had actual API call)
-        const updatedLegs = transportLegs.map(leg => (Object.assign(Object.assign({}, leg), { transportEmission: leg.transportDistance * 0.1 // Simplified calculation
-         })));
-        setTransportLegs(updatedLegs);
-        const totalEmission = updatedLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toString());
+        try {
+            const updatedLegs = [...transportLegs];
+            let totalEmission = 0;
+            // Call API for each transport leg
+            for (let i = 0; i < updatedLegs.length; i++) {
+                const leg = updatedLegs[i];
+                const payload = {
+                    weightKg: totalTransportWeight,
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance
+                };
+                const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, payload);
+                if (response.data) {
+                    updatedLegs[i] = Object.assign(Object.assign({}, leg), { transportEmission: response.data.transportEmissions });
+                    totalEmission += response.data.emission;
+                }
+                else if (response.error) {
+                    console.error(`Error calculating emission for leg ${i + 1}:`, response.error);
+                }
+            }
+            setTransportLegs(updatedLegs);
+            setTransportationEmission(totalEmission.toString());
+        }
+        catch (error) {
+            console.error("Error calculating transport emission:", error);
+        }
     });
     const handleNext = () => {
         if (activeStep < steps.length - 1) {
@@ -42069,7 +42089,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         {
             id: "step-4",
             title: "SUMMARY",
-            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate })),
+            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate, uxpContext: undefined })),
         },
     ];
     if (isEmissionSummaryVisible) {
@@ -42448,12 +42468,26 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 // File: SummaryStep.tsx
 const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./summary-step.scss */ "./src/lca/views/lca-dashboard/summary-step.scss");
-const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm }) => {
+const emission_summary_1 = __importDefault(__webpack_require__(/*! ../emission-summary */ "./src/lca/views/emission-summary.tsx"));
+const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, uxpContext }) => {
+    const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
+    const [transportationEmission, setTransportationEmission] = React.useState("0");
+    // Calculate total transportation emission
+    React.useEffect(() => {
+        const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
+        setTransportationEmission(totalEmission.toFixed(2));
+    }, [transportLegs]);
+    const handleCalculate = () => {
+        setShowEmissionSummary(true);
+    };
     return (React.createElement("div", { className: "summary-container" },
         React.createElement("div", { className: "summary-section" },
             React.createElement("h3", null, "PRODUCT DETAILS"),
@@ -42519,7 +42553,9 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                         (parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight +
                             (includePallet ? palletWeight : 0)).toFixed(2),
                         " Kg")))),
-        React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: onConfirm })));
+        React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: handleCalculate }),
+        React.createElement(components_1.Modal, { show: showEmissionSummary, onClose: () => setShowEmissionSummary(false), title: "Emission Summary", className: "emission-summary-modal" },
+            React.createElement(emission_summary_1.default, { product: selectedProduct, transportationEmission: transportationEmission, onBack: () => setShowEmissionSummary(false), transportLegs: transportLegs, uxContext: uxpContext, packageWeight: packagingWeight, palletWeight: includePallet ? palletWeight : 0, plan: plan }))));
 };
 exports["default"] = SummaryStep;
 
@@ -43407,7 +43443,7 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                     { label: 'Taiwan', value: 'TW' },
                     { label: 'United States', value: 'US' },
                     { label: 'United Kingdom', value: 'UK' },
-                    { label: ' Global', value: 'RoW' },
+                    { label: 'Rest of the World', value: 'RoW' },
                     // Add more countries as needed
                 ], selected: country, onChange: (value) => setCountry(value) })),
         react_1.default.createElement(components_1.Button, { className: "button-container", title: "Next", onClick: handleNext })));

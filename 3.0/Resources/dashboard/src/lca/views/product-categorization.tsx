@@ -222,7 +222,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         { label: 'Taiwan', value: 'TW' },
                         { label: 'United States', value: 'US' },
                         { label: 'United Kingdom', value: 'UK' },
-                        { label: ' Global', value: 'RoW' },
+                        { label: 'Rest of the World', value: 'RoW' },
                         // Add more countries as needed
                     ]}
                     selected={country}

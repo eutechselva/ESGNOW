@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState, useEffect, useCallback } from "react";
 import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Modal, IconButton } from "uxp/components";
 import { IContextProvider } from "@uxp";
-import { getAllProducts, transportDB } from "../../../esgnow-service";
+import { getAllProducts, transportDB, calculateTransportEmission } from "../../../esgnow-service";
 import ProductSelectionStep from "./ProductSelectionStep";
 import TransportSelectionStep from "./TransportSelectionStep";
 import EmissionSummary from '../emission-summary';
@@ -274,15 +274,36 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     };
 
     const calculateTransportationEmission = async () => {
-        // Mock implementation (original had actual API call)
-        const updatedLegs = transportLegs.map(leg => ({
-            ...leg,
-            transportEmission: leg.transportDistance * 0.1 // Simplified calculation
-        }));
-        setTransportLegs(updatedLegs);
-
-        const totalEmission = updatedLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toString());
+        try {
+            const updatedLegs = [...transportLegs];
+            let totalEmission = 0;
+            
+            // Call API for each transport leg
+            for (let i = 0; i < updatedLegs.length; i++) {
+                const leg = updatedLegs[i];
+                const payload = {
+                    weightKg: totalTransportWeight,
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance
+                };
+                
+                const response = await calculateTransportEmission(uxpContext, payload);
+                if (response.data) {
+                    updatedLegs[i] = {
+                        ...leg,
+                        transportEmission: response.data.transportEmissions
+                    };
+                    totalEmission += response.data.emission;
+                } else if (response.error) {
+                    console.error(`Error calculating emission for leg ${i+1}:`, response.error);
+                }
+            }
+            
+            setTransportLegs(updatedLegs);
+            setTransportationEmission(totalEmission.toString());
+        } catch (error) {
+            console.error("Error calculating transport emission:", error);
+        }
     };
 
     const handleNext = () => {
