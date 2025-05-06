@@ -58,7 +58,8 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
             if (item.countryOfOrigin === "CN") return "China";
             if (item.countryOfOrigin === "VN") return "Vietnam";
             return item.countryOfOrigin;
-        }))].filter(Boolean).sort();
+        }))].filter(Boolean).sort((a, b) => a.localeCompare(b));
+
     }, [products]);
 
     const Pagination = () => (
@@ -246,18 +247,18 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 {isLoading ? "Loading..." : "Refresh"}
                             </Button>
 
-                            { canRunCalculator(uxpContext) ? <button
+                            {canRunCalculator(uxpContext) ? <button
                                 className="esgnow-add-product-button"
                                 onClick={() => setShowModal(true)}
                             >
                                 + Add Product
-                            </button> : null }
+                            </button> : null}
                         </div>
                     </div>
 
                     <div className="esgnow-search-filter-container">
                         <div className="esgnow-search-section">
-                            <div className="esgnow-search-box-wrapper">
+                        <div className="esgnow-search-filter-panel-wrapper">
                                 <div className="search-field">
                                     <FontAwesomeIcon icon={faSearch} className="search-icon" />
                                     <input

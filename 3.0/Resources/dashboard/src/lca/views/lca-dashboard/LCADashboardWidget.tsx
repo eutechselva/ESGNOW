@@ -277,7 +277,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         try {
             const updatedLegs = [...transportLegs];
             let totalEmission = 0;
-            
+
             // Call API for each transport leg
             for (let i = 0; i < updatedLegs.length; i++) {
                 const leg = updatedLegs[i];
@@ -286,7 +286,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     transportMode: leg.transportMode,
                     transportKm: leg.transportDistance
                 };
-                
+
                 const response = await calculateTransportEmission(uxpContext, payload);
                 if (response.data) {
                     updatedLegs[i] = {
@@ -295,10 +295,10 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     };
                     totalEmission += response.data.emission;
                 } else if (response.error) {
-                    console.error(`Error calculating emission for leg ${i+1}:`, response.error);
+                    console.error(`Error calculating emission for leg ${i + 1}:`, response.error);
                 }
             }
-            
+
             setTransportLegs(updatedLegs);
             setTransportationEmission(totalEmission.toString());
         } catch (error) {
@@ -502,8 +502,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         <Select
                             selected={sortOption}
                             options={[
-                                { label: "Date (Newest First)", value: "date_newest" },
-                                { label: "Date (Oldest First)", value: "date_oldest" },
+                                { label: "Newest First", value: "date_newest" },
+                                { label: "Oldest First", value: "date_oldest" },
                                 { label: "Name (A-Z)", value: "name_asc" },
                                 { label: "Name (Z-A)", value: "name_desc" }
                             ]}

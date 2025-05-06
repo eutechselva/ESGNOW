@@ -216,7 +216,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         <Select
                             className="highlighted-select"
                             options={[
-                                { label: "SeaFreight", value: "SeaFreight" },
+                                { label: "Sea Freight", value: "SeaFreight" },
                                 // Additional transport modes could be added here
                             ]}
                             placeholder="Select Transport Mode"
