@@ -10,12 +10,10 @@ import Stepper from '../stepper-LCA';
 import WeightDetailsStep from "./WeightDetailsStep";
 import SummaryStep from "./SummaryStep";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faThLarge, faList, faSort, faSearch } from "@fortawesome/free-solid-svg-icons";
-// Import the new components
+import { faThLarge, faList, faSort, faSearch, faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import ProductGridView from "./ProductGridView";
 import ProductListView from "./ProductListView";
 import Pagination from "./Pagination";
-// Import core styles
 import './lca-dashboard.scss';
 
 export interface TransportLeg {
@@ -419,11 +417,11 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         <div className="lca-content">
             <h1 className="dashboard-title">Transportation</h1>
 
-            <div className="search-filter-section">
-                <div className="uxp-search-box-container">
-                    <div className="search-field">
-                        <FontAwesomeIcon icon={faSearch} className="search-icon" />
-                        <div className="search-input-filter-container">
+            <div className="esgnow-search-filter-container">
+                <div className="esgnow-search-section">
+                    <div className="esgnow-search-filter-panel-wrapper">
+                        <div className="search-field">
+                            <FontAwesomeIcon icon={faSearch} className="search-icon" />
                             <input
                                 type="text"
                                 className="search-input"
@@ -431,129 +429,124 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                                 value={searchValue}
                                 onChange={(e) => handleSearchChange(e.target.value)}
                             />
-                            {searchValue && (
-                                <Button
-                                    title="Clear"
-                                    className="clear-search-btn"
-                                    onClick={() => handleSearchChange("")}
-                                />
-                            )}
+                        </div>
+                        <div className="esgnow-filter-section">
+                            <FilterPanel
+                                enableClear={!!(selectedCategory || selectedSubCategory)}
+                                onClear={handleClearFilters}
+                                onOpen={() => setShowFilterPanel(true)}
+                                onClose={() => setShowFilterPanel(false)}
+                                className="esgnow-filter-panel"
+                            >
+                                <div className="esgnow-filter-grid">
+                                    <FormField className="esgnow-filter-field">
+                                        <Label>Product Category</Label>
+                                        <Select
+                                            selected={selectedCategory}
+                                            options={categories}
+                                            onChange={(value: string) => {
+                                                setSelectedCategory(value);
+                                                // Apply filter immediately when category changes
+                                                const filtered = products.filter(item => {
+                                                    const matchesSearch = searchValue ?
+                                                        (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                        item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                        item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                                    const matchesCategory = value ? item.category === value : true;
+                                                    const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
+
+                                                    return matchesSearch && matchesCategory && matchesSubCategory;
+                                                });
+                                                setFilteredProducts(sortProducts(filtered, sortOption));
+                                            }}
+                                            placeholder="-- Select a category --"
+                                        />
+                                    </FormField>
+                                    <FormField className="esgnow-filter-field">
+                                        <Label>Sub Category</Label>
+                                        <Select
+                                            selected={selectedSubCategory}
+                                            options={subCategories}
+                                            onChange={(value: string) => {
+                                                setSelectedSubCategory(value);
+                                                // Apply filter immediately when subCategory changes
+                                                const filtered = products.filter(item => {
+                                                    const matchesSearch = searchValue ?
+                                                        (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                        item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                        item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                                    const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
+                                                    const matchesSubCategory = value ? item.subCategory === value : true;
+
+                                                    return matchesSearch && matchesCategory && matchesSubCategory;
+                                                });
+                                                setFilteredProducts(sortProducts(filtered, sortOption));
+                                            }}
+                                            placeholder="-- Select a sub category --"
+                                        />
+                                    </FormField>
+                                </div>
+                            </FilterPanel>
+                        </div>
+                    </div>
+
+                    <div className="esgnow-view-options">
+                        <div className="esgnow-sort-dropdown">
+                            <Label>Sort by</Label>
+                            <Select
+                                selected={sortOption}
+                                options={[
+                                    { label: "Newest First", value: "date_newest" },
+                                    { label: "Oldest First", value: "date_oldest" },
+                                    { label: "Name (A-Z)", value: "name_asc" },
+                                    { label: "Name (Z-A)", value: "name_desc" }
+                                ]}
+                                onChange={(value: string) => {
+                                    setSortOption(value);
+                                    setFilteredProducts(sortProducts([...filteredProducts], value));
+                                }}
+                            />
                         </div>
 
-                        <FilterPanel
-                            enableClear={!!(selectedCategory || selectedSubCategory)}
-                            onClear={handleClearFilters}
-                            onOpen={() => setShowFilterPanel(true)}
-                            onClose={() => setShowFilterPanel(false)}
-                            className="filter-panel"
-                        >
-                            <FormField className="no-padding mb-only">
-                                <Label>Product Category</Label>
-                                <Select
-                                    selected={selectedCategory}
-                                    options={categories}
-                                    onChange={(value: string) => {
-                                        setSelectedCategory(value);
-                                        // Apply filter immediately when category changes
-                                        const filtered = products.filter(item => {
-                                            const matchesSearch = searchValue ?
-                                                (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                    item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                    item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
-                                            const matchesCategory = value ? item.category === value : true;
-                                            const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
-
-                                            return matchesSearch && matchesCategory && matchesSubCategory;
-                                        });
-                                        setFilteredProducts(sortProducts(filtered, sortOption));
-                                    }}
-                                    placeholder="-- Select a category --"
-                                />
-                            </FormField>
-                            <FormField className="no-padding mb-only">
-                                <Label>Sub Category</Label>
-                                <Select
-                                    selected={selectedSubCategory}
-                                    options={subCategories}
-                                    onChange={(value: string) => {
-                                        setSelectedSubCategory(value);
-                                        // Apply filter immediately when subCategory changes
-                                        const filtered = products.filter(item => {
-                                            const matchesSearch = searchValue ?
-                                                (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                    item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                    item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
-                                            const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
-                                            const matchesSubCategory = value ? item.subCategory === value : true;
-
-                                            return matchesSearch && matchesCategory && matchesSubCategory;
-                                        });
-                                        setFilteredProducts(sortProducts(filtered, sortOption));
-                                    }}
-                                    placeholder="-- Select a sub category --"
-                                />
-                            </FormField>
-                        </FilterPanel>
-                    </div>
-
-                    <div className="sort-control">
-                        {/* <FontAwesomeIcon icon={faSort} className="sort-icon" /> */}
-                        <Label>Sort by</Label>
-                        <Select
-                            selected={sortOption}
-                            options={[
-                                { label: "Newest First", value: "date_newest" },
-                                { label: "Oldest First", value: "date_oldest" },
-                                { label: "Name (A-Z)", value: "name_asc" },
-                                { label: "Name (Z-A)", value: "name_desc" }
-                            ]}
-                            onChange={(value: string) => {
-                                setSortOption(value);
-                                setFilteredProducts(sortProducts([...filteredProducts], value));
-                            }}
-                            placeholder="Sort by"
-                            className="sort-select"
-                        />
-                    </div>
-
-                    <div className="view-mode-toggle">
-                        <button
-                            className={`view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
-                            onClick={() => setViewMode('grid')}
-                            title="Grid View"
-                        >
-                            <span className="grid-icon">▦</span>
-                        </button>
-                        <button
-                            className={`view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
-                            onClick={() => setViewMode('list')}
-                            title="List View"
-                        >
-                            <span className="list-icon">≡</span>
-                        </button>
+                        <div className="esgnow-view-mode-toggle">
+                            <button
+                                className={`esgnow-view-mode-button ${viewMode === 'grid' ? 'active' : ''}`}
+                                onClick={() => setViewMode('grid')}
+                                title="Grid View"
+                            >
+                                <span className="esgnow-grid-icon">▦</span>
+                            </button>
+                            <button
+                                className={`esgnow-view-mode-button ${viewMode === 'list' ? 'active' : ''}`}
+                                onClick={() => setViewMode('list')}
+                                title="List View"
+                            >
+                                <span className="esgnow-list-icon">≡</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
 
             {/* Results summary */}
-            <div className="results-summary">
+            <div className="esgnow-results-summary">
                 <span>Showing {currentItems.length} of {filteredProducts.length} products (page {currentPage} of {totalPages})</span>
                 {(searchValue || selectedCategory || selectedSubCategory) && (
                     <Button
                         title="Clear All Filters"
-                        className="button-secondary clear-all-btn"
+                        className="button-secondary esgnow-clear-all-btn"
                         onClick={handleClearFilters}
                     />
                 )}
             </div>
 
             {isLoading ? (
-                <div className="loading-container">
-                    <div className="loading-spinner"></div>
+                <div className="esgnow-loading-container">
+                    <div className="esgnow-loading-spinner"></div>
                     <p>Loading products...</p>
                 </div>
             ) : filteredProducts.length === 0 ? (
-                <div className="no-results">
+                <div className="esgnow-no-results">
                     <p>No products match your search criteria.</p>
                     <Button title="Clear Filters" className="button-secondary" onClick={handleClearFilters} />
                 </div>
@@ -574,7 +567,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
                     {/* Pagination component */}
                     {totalPages > 1 && (
-                        <div className="pagination-wrapper">
+                        <div className="esgnow-pagination-wrapper">
                             <Pagination
                                 currentPage={currentPage}
                                 totalPages={totalPages}
