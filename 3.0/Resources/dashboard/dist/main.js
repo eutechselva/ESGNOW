@@ -40488,11 +40488,24 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
     const fetchMaterialsFromAPI = () => __awaiter(void 0, void 0, void 0, function* () {
         setAIGeneratingBOM(true);
         try {
+            let imageUrl = '';
+            if (productCategoryData.images && productCategoryData.images.length > 0) {
+                // Check if the image URL already contains a host
+                if (productCategoryData.images[0].startsWith('http')) {
+                    imageUrl = productCategoryData.images[0];
+                }
+                else {
+                    // Use window.location.origin to get the base URL
+                    const baseUrl = window.location.origin;
+                    imageUrl = baseUrl + (productCategoryData.images[0].startsWith('/') ? '' : '/') + productCategoryData.images[0];
+                }
+            }
             const classifyBOMPayload = {
                 name: productData.name,
                 description: productData.description,
                 productCode: productData.code,
                 weight: productCategoryData.totalWeight,
+                imageUrl: imageUrl
             };
             const response = yield (0, esgnow_service_1.classifyBOM)(uxpContext, classifyBOMPayload);
             if (!response.data) {
@@ -43429,16 +43442,17 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
             setErrorTotalWeight("Total weight must be a positive number");
             return;
         }
-        const productData = {
+        const categoryData = {
             category: productCategory,
             subCategory: productSubCategory,
             numberOfUnits: numberOfUnits,
             totalWeight: totalWeight,
             brandName: productBrandName,
             supplierName: supplierName,
-            country: country
+            country: country,
+            images: productData.uploadedImages || []
         };
-        onNext === null || onNext === void 0 ? void 0 : onNext(productData);
+        onNext === null || onNext === void 0 ? void 0 : onNext(categoryData);
     };
     return (react_1.default.createElement("div", { className: "modal-content" },
         aiGenerating && (react_1.default.createElement("div", { className: "loading-overlay" })),
@@ -44838,6 +44852,7 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
         brandName: "",
         supplierName: "",
         country: "",
+        images: [],
     });
     // State to hold bill of materials data
     const [billMaterialsData, setBillMaterialsData] = (0, react_1.useState)([]);
@@ -44912,6 +44927,7 @@ const ProductWizard = ({ show, onClose, uxpContext, onProductCreated, setShowClo
             brandName: "",
             supplierName: "",
             country: "",
+            images: [],
         });
         setBillMaterialsData([]);
         setProductManufacturingProcess([]);

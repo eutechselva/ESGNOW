@@ -58,11 +58,24 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     const fetchMaterialsFromAPI = async () => {
         setAIGeneratingBOM(true);
         try {
+            let imageUrl = '';
+            if (productCategoryData.images && productCategoryData.images.length > 0) {
+                // Check if the image URL already contains a host
+                if (productCategoryData.images[0].startsWith('http')) {
+                    imageUrl = productCategoryData.images[0];
+                } else {
+                    // Use window.location.origin to get the base URL
+                    const baseUrl = window.location.origin;
+                    imageUrl = baseUrl + (productCategoryData.images[0].startsWith('/') ? '' : '/') + productCategoryData.images[0];
+                }
+            }
+
             const classifyBOMPayload = {
                 name: productData.name,
                 description: productData.description,
                 productCode: productData.code,
                 weight: productCategoryData.totalWeight,
+                imageUrl: imageUrl
             };
             const response = await  classifyBOM( uxpContext, classifyBOMPayload);
             

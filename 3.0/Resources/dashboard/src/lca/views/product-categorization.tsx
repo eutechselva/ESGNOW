@@ -117,17 +117,17 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
             return
 
         }
-
-        const productData: ProductCategoryInfo = {
+        const categoryData: ProductCategoryInfo = {
             category: productCategory,
             subCategory: productSubCategory,
             numberOfUnits: numberOfUnits,
             totalWeight: totalWeight,
             brandName: productBrandName,
             supplierName: supplierName,
-            country: country
+            country: country,
+            images: productData.uploadedImages || []
         };
-        onNext?.(productData);
+        onNext?.(categoryData);
     };
 
     return (

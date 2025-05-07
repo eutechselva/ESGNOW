@@ -6,4 +6,5 @@ export type ProductCategoryInfo = {
     brandName: string;
     supplierName: string;
     country: string
+    images : string[];
 }

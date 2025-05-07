@@ -56,6 +56,7 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
         brandName: "",
         supplierName: "",
         country: "",
+        images : [],
     });
 
     // State to hold bill of materials data
@@ -146,6 +147,7 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
             brandName: "",
             supplierName: "",
             country: "",
+            images: [],
         });
         setBillMaterialsData([]);
         setProductManufacturingProcess([]);
