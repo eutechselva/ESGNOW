@@ -286,7 +286,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                         </div>
                     </div>
                     
-                    <div 
+                    {/* <div 
                         className={`entry-method-card ${entryType === "manual" ? "active" : ""}`}
                         onClick={() => handleEntryTypeChange("manual")}
                     >
@@ -297,7 +297,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                             <h4>Manual Definition</h4>
                             <p>Manually specify manufacturing processes for each material in your product.</p>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div>
 
