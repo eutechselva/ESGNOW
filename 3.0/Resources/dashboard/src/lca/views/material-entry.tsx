@@ -162,7 +162,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                      </FormField>
          
                      <FormField className="esgnow-material-weight-field">
-                         <Label className="esgnow-material-weight-field-label">Material Weight (Kg)</Label>
+                         <Label className="esgnow-material-weight-field-label"> Weight (Kg)</Label>
                          <Input
                              type="number"
                              value={material.weight}
@@ -178,7 +178,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                 <div className="esgnow-actions-container">
                     <Button
                         title="Done"
-                        className="esgnow-add-material-button"
+                        className="esgnow-done-button"
                         onClick={handleAddMaterial}
                     />
                     <Button

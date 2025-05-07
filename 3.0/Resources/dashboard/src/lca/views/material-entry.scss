@@ -109,14 +109,15 @@
     width: 100%;
 }
 
-.esgnow-add-material-button {
+.esgnow-done-button {
     background-color: #2196f3;
     color: white;
     font-weight: 500;
-    min-width: 100px;
+    // min-width: 100px;
     
     &:hover {
         background-color: #1976d2;
+        color: white;
     }
 }
 
@@ -127,6 +128,7 @@
     
     &:hover {
         background-color: rgba(33, 150, 243, 0.08);
+        color: #2196f3;
     }
 }
 

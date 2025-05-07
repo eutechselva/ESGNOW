@@ -583,7 +583,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         if (showCloseWarning) {
                             const confirmed = await alerts.confirm({
                                 title: 'Are you sure?',
-                                content: 'You are about to leave the process of creating product. Do you wish to continue?'
+                                content: 'Are you sure you want to exit?'
                             });
                             if (confirmed) setShowModal(false);
                         } else {
