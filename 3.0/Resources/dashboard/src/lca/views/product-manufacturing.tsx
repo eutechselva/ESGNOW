@@ -357,7 +357,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                             <FontAwesomeIcon icon={faRobot} className="ai-icon" />
                             AI-Generated Manufacturing Processes
                         </h3>
-                        <p className="ai-subtitle">The following manufacturing processes have been generated based on your materials and product details. You can edit processes for each material if needed.</p>
+                        <p className="ai-subtitle">The following manufacturing processes have been generated based on your materials and product details.</p>
                     </div>
                     
                     <div className="ai-material-cards">

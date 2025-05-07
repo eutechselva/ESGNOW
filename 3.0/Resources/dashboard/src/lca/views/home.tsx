@@ -44,6 +44,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = useState<ProductInfoSummary | null>(null);
     const [showTour, setShowTour] = useState(false);
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
+    const [showPdfModal, setShowPdfModal] = useState(false);
 
     const alerts = useAlert();
 
@@ -176,7 +177,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         if (showCloseWarning) {
                             const confirmed = await alerts.confirm({
                                 title: 'Are you sure?',
-                                content: 'you are about to leave from the process of creating product. Do you wish to continue?'
+                                content: 'Are you sure you want to exit?'
                             })
                             confirmed ? setShowCreateProductModal(false) : null
                         }
@@ -197,6 +198,31 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 }}
             />
 
+            <Modal
+                title="Frequently Asked Questions"
+                show={showPdfModal}
+                onClose={() => setShowPdfModal(false)}
+            // size="large"
+            >
+                <div className="pdf-viewer-container">
+                    {/* If you have a PDFViewer component */}
+                    {/* <PDFViewer url="/path/to/faq.pdf" /> */}
+
+                    {/* Fallback iframe if PDFViewer isn't available */}
+                    <iframe
+                        src="/public/assets/Esgfaq.pdf"
+                        width="100%"
+                        height="600px"
+                        style={{ border: 'none' }}
+                        title="FAQ PDF"
+                    >
+                        <p>Your browser does not support PDFs.
+                            <a href="/path/to/faq.pdf">Download the FAQ</a> instead.
+                        </p>
+                    </iframe>
+                </div>
+            </Modal>
+
             {/* Main Dashboard */}
             <div className="dashboard-container">
                 {/* Header */}
@@ -205,14 +231,14 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <h1 className="dashboard-title">Welcome to ESG NOW!</h1>
                         <p className="dashboard-subtitle">Your sustainability dashboard</p>
                     </div>
-{/* 
+                    {/* 
                     {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
                     { canRunCalculator(uxpContext) ? */}
                     <div className="action-buttons">
                         <button className="esgnow-add-product-button" onClick={() => setShowCreateProductModal(true)}>
                             + Add Product
                         </button>
-                    </div> 
+                    </div>
                 </div>
 
                 {/* Stats Cards with Tooltips */}
@@ -220,10 +246,10 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     <div className="stats-cards">
                         <div className="stat-card products">
                             <div className="stat-icon">
-                                <FontAwesomeIcon 
-                                    icon={faInfoCircle} 
-                                    data-tooltip-id="products-tooltip" 
-                                    data-tooltip-content="Displays the total number of products successfully added to the platform." 
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    data-tooltip-id="products-tooltip"
+                                    data-tooltip-content="Displays the total number of products successfully added to the platform."
                                 />
                             </div>
                             <h2>No. of Products Created</h2>
@@ -233,10 +259,10 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                         <div className="stat-card projects">
                             <div className="stat-icon">
-                                <FontAwesomeIcon 
-                                    icon={faInfoCircle} 
-                                    data-tooltip-id="projects-tooltip" 
-                                    data-tooltip-content="Displays the total number of projects create on the platform." 
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    data-tooltip-id="projects-tooltip"
+                                    data-tooltip-content="Displays the total number of projects create on the platform."
                                 />
                             </div>
                             <h2>No. of Projects Created</h2>
@@ -246,10 +272,10 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                         <div className="stat-card credits">
                             <div className="stat-icon">
-                                <FontAwesomeIcon 
-                                    icon={faInfoCircle} 
-                                    data-tooltip-id="credits-tooltip" 
-                                    data-tooltip-content="Tracks the number of AI credits used for generating the inputs for carbon footprint calculations." 
+                                <FontAwesomeIcon
+                                    icon={faInfoCircle}
+                                    data-tooltip-id="credits-tooltip"
+                                    data-tooltip-content="Tracks the number of AI credits used for generating the inputs for carbon footprint calculations."
                                 />
                             </div>
                             <h2>No. of AI Credits Consumed</h2>
@@ -258,19 +284,23 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         </div>
                     </div>
 
-                    {/* Getting Started Video */}
-                    <div className="esgnow-getting-started">
-                        <h2>Getting Started with ESG NOW</h2>
-                        <p>Watch this quick tutorial to learn the basics of ESG NOW</p>
-                        <iframe
-                            width="100%"
-                            height="200"
-                            src="https://www.youtube.com/embed/AkbGz3CYvqE"
-                            title="Getting Started with ESG NOW"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowFullScreen
-                        ></iframe>
+                    {/* frequently asked question section */}
+                    <div className="faq-section">
+                        <h2>Getting Started</h2>
+                        <p>Get answers to common questions about ESG NOW</p>
+                        <a
+                            href="#"
+                            className="esgnow-faq-link"
+                            onClick={(e) => {
+                                e.preventDefault(); 
+                                setShowPdfModal(true);
+                            }}
+                        >
+                            Frequently Asked Questions
+                        </a>
+
                     </div>
+
                 </div>
 
                 {/* Recent Products Table */}
@@ -311,9 +341,9 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
             </div>
 
             {/* React-Tooltip components */}
-            <Tooltip id="products-tooltip" place="top"  />
-            <Tooltip id="projects-tooltip" place="top"  />
-            <Tooltip id="credits-tooltip" place="top"  />
+            <Tooltip id="products-tooltip" place="top" />
+            <Tooltip id="projects-tooltip" place="top" />
+            <Tooltip id="credits-tooltip" place="top" />
         </>
     );
 };

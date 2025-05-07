@@ -301,19 +301,19 @@
     padding-top: 16px;
     border-top: 1px solid #e0e0e0;
     
-    .add-more-materials-button {
-        background-color: transparent;
-        color: #2196f3;
-        border: 1px solid #2196f3;
-        padding: 10px 20px;
-        transition: all 0.2s ease;
+    // .add-more-materials-button {
+    //     background-color: #ffffff;
+    //     color: #2196f3;
+    //     border: 1px solid #2196f3;
+    //     padding: 10px 20px;
+    //     transition: all 0.2s ease;
         
-        &:hover {
-            background-color: rgba(33, 150, 243, 0.08);
-        }
-    }
+    //     &:hover {
+    //         background-color: rgba(33, 150, 243, 0.08);
+    //     }
+    // }
     
-    .next-button {
+    .esgnow-next-button {
         background-color: #2196f3;
         color: white;
         padding: 10px 20px;
@@ -323,6 +323,7 @@
         &:hover {
             background-color: #1976d2;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: white;
         }
     }
 }
