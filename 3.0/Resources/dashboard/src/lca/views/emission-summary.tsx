@@ -340,7 +340,7 @@ const EmissionSummary: React.FC<{
                     <div className="esgnow-detail-grid">
                         <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
-                            <p>{product?.productCode}</p>
+                            <p>{product?.code}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
