@@ -326,6 +326,9 @@
       overflow: hidden;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
       cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;  /* Fill the grid cell height */
 
       &:hover {
         transform: translateY(-4px);
@@ -392,6 +395,9 @@
 
       .esgnow-product-card-content {
         padding: 16px;
+        flex: 1;  /* This will make the content take available space */
+        display: flex;
+        flex-direction: column;
 
         .esgnow-product-name {
           font-size: 16px;
@@ -442,6 +448,7 @@
         padding: 12px 16px;
         background-color: #f9f9f9;
         border-top: 1px solid #eee;
+        margin-top: auto;  /* Push the footer to the bottom */
 
         .esgnow-product-date {
           font-size: 12px;
