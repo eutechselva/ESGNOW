@@ -195,6 +195,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 <th>Material Class</th>
                                 {plan === 'professional' && (<th>Specific Material</th>)}
                                 <th>Contribution</th>
+                                <th>Reasoning</th>
                                 <th>Percentage</th>
                             </tr>
                         </thead>
@@ -217,6 +218,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             <td>{item.materialClass}</td>
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
                                             <td> {parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e ({parseFloat(item.weight).toFixed(2)} Kg)</td>
+                                            <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 

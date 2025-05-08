@@ -17,7 +17,16 @@
             text-align: left;
             border-bottom: 1px solid #ddd;
             white-space: nowrap;
-            
+        }
+
+        .reasoning-cell {
+            white-space: normal; 
+            max-width: 300px;
+            min-width: 200px;
+            word-wrap: break-word;
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #555;
         }
 
         th {

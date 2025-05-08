@@ -5,10 +5,10 @@ import { getBillOfMaterials } from "../../esgnow-service";
 import { IContextProvider } from "@uxp";
 
 interface MaterialEntryProps {
-    onAddMaterial: (materials: { materialClass: string; specificMaterial: string; weight: string; unit: string }[]) => void;
+    onAddMaterial: (materials: { materialClass: string; specificMaterial: string; weight: string; unit: string; reasoning?: string }[]) => void;
     isEditable?: boolean;
-    initialMaterial?: { materialClass: string; specificMaterial: string; weight: string; unit: string };
-    existingMaterials?: Array<{ materialClass: string; specificMaterial: string; weight: string; unit: string }>;
+    initialMaterial?: { materialClass: string; specificMaterial: string; weight: string; unit: string; reasoning?: string };
+    existingMaterials?: Array<{ materialClass: string; specificMaterial: string; weight: string; unit: string; reasoning?: string }>;
     uxpContext: IContextProvider;
 }
 
@@ -18,7 +18,8 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
         materialClass: initialMaterial?.materialClass || "", 
         specificMaterial: initialMaterial?.specificMaterial || "", 
         weight: initialMaterial?.weight || "", 
-        unit: initialMaterial?.unit || "kg" 
+        unit: initialMaterial?.unit || "kg",
+        reasoning: initialMaterial?.reasoning || ""
     }]);
     
     // Reset materials when initialMaterial changes
@@ -29,7 +30,8 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                 materialClass: initialMaterial.materialClass || "", 
                 specificMaterial: initialMaterial.specificMaterial || "", 
                 weight: initialMaterial.weight || "", 
-                unit: initialMaterial.unit || "kg" 
+                unit: initialMaterial.unit || "kg",
+                reasoning: initialMaterial.reasoning || "" 
             }]);
         }
     }, [initialMaterial]);
@@ -83,7 +85,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
     // Using only API data, no fallback options
 
     const handleAddAnother = () => {
-        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
     };
 
     const handleInputChange = (index: number, field: string, value: string) => {
@@ -108,10 +110,10 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
             }
             
             // Reset the entry form
-            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
         } else {
             // If no valid materials, at least require one form entry
-            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg" }]);
+            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
         }
     };
 
@@ -170,6 +172,20 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({ onAddMaterial, isEditable
                              placeholder="Enter weight"
                              inputAttr={{ step: "0.01" }}
                              className="esgnow-weight-input"
+                         />
+                     </FormField>
+                  </div>
+                  
+                  {/* Reasoning Field */}
+                  <div className="esgnow-material-row">
+                     <FormField className="esgnow-material-reasoning-field">
+                         <Label className="esgnow-material-reasoning-label">Reasoning</Label>
+                         <textarea
+                             value={material.reasoning || ""}
+                             onChange={(e) => handleInputChange(index, "reasoning", e.target.value)}
+                             placeholder="Enter reasoning for this material selection"
+                             className="esgnow-reasoning-textarea"
+                             rows={3}
                          />
                      </FormField>
                   </div>

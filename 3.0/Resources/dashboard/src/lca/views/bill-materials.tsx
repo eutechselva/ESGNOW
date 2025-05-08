@@ -92,6 +92,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 specificMaterial: material.specificMaterial,
                 weight: material.weight,
                 unit: "kg",
+                reasoning : material.reasoning
             }));
 
             setMaterials(apiMaterials);

@@ -7,6 +7,7 @@ type Material = {
     specificMaterial: string;
     weight: string;
     unit: string;
+    reasoning?: string;
 };
 
 interface MaterialSummaryProps {
@@ -46,6 +47,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                         <th>Material Class</th>
                         {plan == "professional" && (<th>Specific Material</th>)}
                         <th>Material Weight</th>
+                        <th>Reasoning</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -64,6 +66,9 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                             
                             <td>
                                 {`${material.weight} ${material.unit}`}
+                            </td>
+                            <td className="reasoning-cell">
+                                {material.reasoning || "-"}
                             </td>
                             <td>
                                 {onOpenFullEditor && (
