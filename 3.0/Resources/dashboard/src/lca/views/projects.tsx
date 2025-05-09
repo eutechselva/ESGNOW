@@ -144,7 +144,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
                         throw new Error("Function not implemented.");
                     }}
                     transportLegs={item?.products?.length > 0 ? item.products[0].transportationLegs : undefined}
-                    uxContext={props.uxpContext}
+                    uxpContext={props.uxpContext}
                     packageWeight={item?.products?.length > 0 ? item.products[0].packagingWeight : undefined}
                     palletWeight={item?.products?.length > 0 ? item.products[0].palletWeight : undefined}
                     hideHeader={true}

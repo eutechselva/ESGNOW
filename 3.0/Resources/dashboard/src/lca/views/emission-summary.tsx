@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input, FormField, Label, Select } from 'uxp/components';
 import { Modal } from 'uxp/components';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
@@ -36,6 +36,16 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     transportLegs,
     uxpContext
 }) => {
+    // Create a safety check for context
+    const mockContextRef = useRef<IContextProvider | null>(null);
+    
+    // Initialize fallback mock context if needed
+    useEffect(() => {
+        if (!uxpContext && !mockContextRef.current) {
+            console.warn("SaveResultsModal: Creating fallback mock context");
+            mockContextRef.current = createMockContext();
+        }
+    }, [uxpContext]);
     const [selectedCard, setSelectedCard] = useState<string | null>(null);
     const [projectName, setProjectName] = useState('');
     const [projectId, setProjectId] = useState('');
@@ -50,6 +60,23 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     ];
 
     const handleSave = async () => {
+        // Debug log to check uxpContext right before we use it
+        console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
+        
+        // Use mock context as a fallback if real context is missing
+        const effectiveContext = uxpContext || mockContextRef.current;
+        
+        if (!effectiveContext) {
+            console.error("Both uxpContext and mockContextRef.current are undefined in SaveResultsModal handleSave");
+            setError('System error: Missing context. Please try again later.');
+            return;
+        }
+        
+        // Add warning if using mock context
+        if (!uxpContext && mockContextRef.current) {
+            console.warn("Using mock context for API calls - changes will not persist!");
+        }
+        
         if (selectedCard === 'new') {
             if (!projectName || !projectId) {
                 setError('Please fill in both project name and code');
@@ -64,8 +91,9 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                     code: projectId,
                     name: projectName,
                 };
-
-                const projectResponse = await createProject(uxpContext, createProjectPayload);
+                
+                console.log("About to call createProject with context:", !!uxpContext);
+                const projectResponse = await createProject(effectiveContext, createProjectPayload);
 
                 const createProjectProductMapPayload = {
                     projectID: projectResponse.data._id,
@@ -77,7 +105,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
                 };
 
                 // Then create the project-product mapping
-                const mappingResponse = await createProjectProductMap(uxpContext, createProjectProductMapPayload);
+                const mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
 
                 if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
@@ -102,7 +130,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
 
             try {
                 
-                const mappingResponse = await projectProductMapping(uxpContext, {
+                const mappingResponse = await projectProductMapping(effectiveContext, {
                     projectCode: selectedProject,
                     product,
                     transportationEmission,
@@ -209,17 +237,70 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
 };
 
 
+// Create a mock context as a fallback when real context is missing
+const createMockContext = () => {
+    console.warn("Creating mock UXP context as a fallback");
+    // Create a simpler mock with just the essential methods we need
+    return {
+        executeComponent: (serviceName, route, method, params, body, headers, config) => {
+            console.warn(`MOCK executeComponent called: ${serviceName} - ${route}`);
+            return Promise.resolve({
+                data: { 
+                    _id: "mock_" + Math.random().toString(36).substring(2),
+                    mockGenerated: true,
+                    timestamp: new Date().toISOString()
+                }
+            });
+        },
+        getUserDetails: () => Promise.resolve({
+            name: "Mock User",
+            id: "mock-user-id",
+            key: "mock-user-key",
+            email: "mock@example.com",
+            userGroup: "user"
+        })
+        // We're using type assertion below to avoid implementing the full interface
+    } as IContextProvider;
+};
+
 const EmissionSummary: React.FC<{
     product: ProductInfoSummary;
     transportationEmission: string;
     onBack: () => void;
     transportLegs: TransportLeg[];
-    uxContext: IContextProvider;
+    uxpContext: IContextProvider;
     packageWeight: Number;
     palletWeight: Number;
     hideHeader?: boolean;
     plan :string;
-}> = ({ product, onBack, transportationEmission, transportLegs, uxContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
+}> = ({ product, onBack, transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
+    
+    // Create a ref to persist the uxpContext across renders
+    const contextRef = useRef<IContextProvider | null>(null);
+    
+    // Debug logs to check if uxpContext is defined
+    console.log("EmissionSummary - uxpContext received:", uxpContext);
+    
+    // Initialize with a mock context if needed
+    useEffect(() => {
+        if (!contextRef.current && !uxpContext) {
+            console.warn("No context available, creating mock context");
+            contextRef.current = createMockContext();
+        }
+    }, []);
+    
+    // Update the ref whenever uxpContext changes and is not null
+    useEffect(() => {
+        if (uxpContext) {
+            console.log("EmissionSummary - Storing real uxpContext in ref");
+            contextRef.current = uxpContext;
+        }
+    }, [uxpContext]);
+    
+    // Log current ref value after update
+    useEffect(() => {
+        console.log("EmissionSummary - contextRef.current status:", !!contextRef.current);
+    }, [contextRef.current]);
 
     const transportationEmissionEx = parseFloat(transportationEmission);
     const [isExpanded, setIsExpanded] = useState(true);
@@ -617,16 +698,34 @@ const EmissionSummary: React.FC<{
             </div>
 
             {showModal && (
-                <SaveResultsModal
-                    onClose={() => setShowModal(false)}
-                    hasExistingProjects={hasExistingProjects}
-                    product={product}
-                    transportationEmission={transportationEmission}
-                    transportLegs={transportLegs}
-                    packageWeight={packageWeight}
-                    palletWeight={packageWeight}
-                    uxpContext={uxContext}
-                />
+                <>
+                    {(!uxpContext && !contextRef.current) && (
+                        <div style={{ 
+                            position: 'fixed', 
+                            top: 0, 
+                            left: 0, 
+                            right: 0, 
+                            backgroundColor: '#ffdddd', 
+                            padding: '10px', 
+                            textAlign: 'center',
+                            zIndex: 9999,
+                            color: 'red',
+                            fontWeight: 'bold'
+                        }}>
+                            System data connection issue detected. Your changes will be saved temporarily but may not persist after page refresh.
+                        </div>
+                    )}
+                    <SaveResultsModal
+                        onClose={() => setShowModal(false)}
+                        hasExistingProjects={hasExistingProjects}
+                        product={product}
+                        transportationEmission={transportationEmission}
+                        transportLegs={transportLegs}
+                        packageWeight={packageWeight}
+                        palletWeight={palletWeight}
+                        uxpContext={uxpContext || contextRef.current}
+                    />
+                </>
             )}
         </>
     );

@@ -143,7 +143,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     transportationEmission={transportationEmission}
                     onBack={() => setShowEmissionSummary(false)}
                     transportLegs={transportLegs}
-                    uxContext={uxpContext}
+                    uxpContext={uxpContext}
                     packageWeight={packagingWeight}
                     palletWeight={includePallet ? palletWeight : 0}
                     plan={plan}
