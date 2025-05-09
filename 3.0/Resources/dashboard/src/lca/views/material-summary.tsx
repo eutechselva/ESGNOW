@@ -48,7 +48,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                         {plan == "professional" && (<th>Specific Material</th>)}
                         <th>Material Weight</th>
                         <th>Reasoning</th>
-                        <th>Actions</th>
+                        {/* <th>Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
@@ -70,7 +70,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                             <td className="reasoning-cell">
                                 {material.reasoning || "-"}
                             </td>
-                            <td>
+                            {/* <td>
                                 {onOpenFullEditor && (
                                     <IconButton
                                         type="edit"
@@ -83,7 +83,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                                     onClick={() => onDelete(index)}
                                     className="delete-button"
                                 />
-                            </td>
+                            </td> */}
                         </tr>
                     ))}
                 </tbody>
