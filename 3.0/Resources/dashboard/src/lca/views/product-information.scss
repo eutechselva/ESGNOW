@@ -190,3 +190,17 @@ h3,
     flex-direction: column;
     gap: 10px;
 }
+
+.esgnow-next-button {
+    background-color: #2196f3;
+    color: white;
+    padding: 10px 20px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    
+    &:hover {
+        background-color: #1976d2;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        color: white;
+    }
+}

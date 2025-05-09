@@ -237,7 +237,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
 
 
 
-            <Button className="button-container" title="Next" onClick={handleNext} />
+            <Button className="esgnow-next-button" title="Next" onClick={handleNext} />
         </div>
     );
 };

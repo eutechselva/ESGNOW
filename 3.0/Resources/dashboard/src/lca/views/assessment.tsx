@@ -86,13 +86,13 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
           className="continue-button"
         /> */}
         <Button
-          title="Save & Close"
+          title="Save"
           onClick={() => {
             setShowCloseWarning(false);
             setPendingClose(true);
           }}
-          className="save-close-button"
-          icon="https://static.iviva.com/images/floppy-disk.png"
+          className="esgnow-save-close-button"
+          // icon="https://static.iviva.com/images/floppy-disk.png"
         />
       </div>
     </div>

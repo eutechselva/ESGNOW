@@ -304,7 +304,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
             {/* Next Button */}
             <Button
-                className="button-container"
+                className="esgnow-next-button"
                 title="Next"
                 onClick={handleNext}
             />
