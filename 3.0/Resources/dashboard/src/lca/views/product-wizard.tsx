@@ -208,7 +208,7 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
             )}
 
             {/* Rendering the "Done" button on the last step */}
-            {activeStep === 3 && (
+            {/* {activeStep === 3 && (
                 <div className="done-button-container">
                     <Button 
                         title="Create" 
@@ -219,6 +219,21 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
                         <p className="button-helper-text">Please add materials before proceeding</p>
                     ) : !productManufacturingProcess || productManufacturingProcess.length === 0 ? (
                         <p className="button-helper-text">Please define at least one manufacturing process</p>
+                    ) : null}
+                </div>
+            )} */}
+                {/* Rendering the "Done" button on the last step with verbose logging */}
+                {activeStep === 3 && (
+                <div className="done-button-container">
+                    {productManufacturingProcess.length > 0 ? (
+                        <>
+                            {console.log("Button condition met, rendering button")}
+                            <Button 
+                                title="Create" 
+                                onClick={handleDone} 
+                                disabled={!productManufacturingProcess || productManufacturingProcess.length === 0}
+                            />
+                        </>
                     ) : null}
                 </div>
             )}
