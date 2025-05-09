@@ -43424,7 +43424,15 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                 setAIGenerating(true);
                 let imageUrl = '';
                 if (productData.uploadedImages && productData.uploadedImages.length > 0) {
-                    imageUrl = productData.uploadedImages[0];
+                    // Check if the image URL already contains a host
+                    if (productData.uploadedImages[0].startsWith('http')) {
+                        imageUrl = productData.uploadedImages[0];
+                    }
+                    else {
+                        // Use window.location.origin to get the base URL
+                        const baseUrl = window.location.origin;
+                        imageUrl = baseUrl + (productData.uploadedImages[0].startsWith('/') ? '' : '/') + productData.uploadedImages[0];
+                    }
                 }
                 const classifyProductPayload = {
                     name: productData.name,
