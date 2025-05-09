@@ -323,7 +323,11 @@ const EmissionSummary: React.FC<{
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = (Number(product?.co2EmissionRawMaterials) + Number(product?.co2EmissionFromProcesses) + Number(transportationEmission)).toFixed(2);
+                    const totalValue = (
+                        Number(product.co2EmissionRawMaterials || 0) + 
+                        Number(product.co2EmissionFromProcesses || 0) + 
+                        Number(transportationEmission || 0)
+                    ).toFixed(2);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
@@ -374,9 +378,9 @@ const EmissionSummary: React.FC<{
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: product?.co2EmissionRawMaterials? Number(product.co2EmissionRawMaterials):0, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: product?.co2EmissionFromProcesses? Number(product.co2EmissionFromProcesses):0, color: '#ffaa00' },
-                    { name: 'Transportation', y: Number(transportationEmission), color: '#2A9D8F' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials || 0), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses || 0), color: '#ffaa00' },
+                    { name: 'Transportation', y: Number(transportationEmission || 0), color: '#2A9D8F' },
                 ],
             },
         ],
@@ -408,10 +412,10 @@ const EmissionSummary: React.FC<{
             <div
                 className="esgnow-summary-image"
                 style={{
-                    backgroundImage: Array.isArray(product?.images) && product.images[0] ? `url(${product.images[0]})` : 'none',
+                    backgroundImage: Array.isArray(product.images) && product.images.length > 0 ? `url(${product.images[0]})` : 'none',
                 }}
                 >
-                {!(Array.isArray(product?.images) && product.images[0]) && (
+                {!(Array.isArray(product.images) && product.images.length > 0) && (
                     <div className="esgnow-image-placeholder">Image Unavailable</div>
                 )}
             </div>
@@ -421,26 +425,26 @@ const EmissionSummary: React.FC<{
                     <div className="esgnow-detail-grid">
                         <div className="esgnow-detail-item">
                             <strong>Project Code</strong>
-                            <p>{product?.code}</p>
+                            <p>{product.code}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Product Category</strong>
-                            <p>{product?.category}</p>
+                            <p>{product.category}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Sub Category</strong>
-                            <p>{product?.subCategory}</p>
+                            <p>{product.subCategory}</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Weight</strong>
-                            <p>{product?.weight} Kg</p>
+                            <p>{product.weight} Kg</p>
                         </div>
                         <div className="esgnow-detail-item">
                             <strong>Country of Manufacture</strong>
                             <p>
-                                {product?.countryOfOrigin === "CN" ? "China" :
-                                product?.countryOfOrigin === "VN" ? "Vietnam" :
-                                product?.countryOfOrigin}
+                                {product.countryOfOrigin === "CN" ? "China" :
+                                product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin}
                             </p>
                         </div>
                     </div>
@@ -448,7 +452,7 @@ const EmissionSummary: React.FC<{
                         <strong>Product Description</strong>
                         <div className="esgnow-rich-text-editor">
                             <textarea 
-                                defaultValue={product?.description}
+                                defaultValue={product.description}
                                 className="esgnow-editable-description"
                                 rows={4}
                             />
@@ -482,17 +486,27 @@ const EmissionSummary: React.FC<{
                         </thead>
                         <tbody>
                             {(() => {
+                                // Define material type
+                                interface Material {
+                                    materialClass: string;
+                                    specificMaterial?: string;
+                                    emissionFactor: number;
+                                    quantity?: number;
+                                }
+                                
                                 // Calculate the total emission factor
-                                const totalEmissionFactor = product?.materials.reduce(
-                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                const materials: Material[] = Array.isArray(product.materials) ? product.materials : [];
+                                const totalEmissionFactor = materials.reduce(
+                                    (sum: number, item: Material) => sum + (item.emissionFactor || 0),
                                     0
                                 );
 
                                 // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = product?.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+                                const sortedMaterials = [...materials].sort((a: Material, b: Material) => 
+                                    (b.emissionFactor || 0) - (a.emissionFactor || 0));
 
                                 // Map through the sorted materials and calculate percentage
-                                return sortedMaterials.map((item: any) => {
+                                return sortedMaterials.map((item: Material) => {
                                     const percentage =
                                         totalEmissionFactor > 0
                                             ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
@@ -538,17 +552,31 @@ const EmissionSummary: React.FC<{
                         </thead>
                         <tbody>
                             {(() => {
+                                // Define manufacturing process type
+                                interface ManufacturingProcess {
+                                    materialClass: string;
+                                    emissionFactor: number;
+                                    manufacturingProcesses: Array<{
+                                        category: string;
+                                        process?: string;
+                                        emissionFactor: number;
+                                    }>;
+                                }
+                                
                                 // Calculate the total emission factor
-                                const totalEmissionFactor = product?.productManufacturingProcess.reduce(
-                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                const manufacturingProcesses: ManufacturingProcess[] = Array.isArray(product.productManufacturingProcess) ? 
+                                    product.productManufacturingProcess : [];
+                                const totalEmissionFactor = manufacturingProcesses.reduce(
+                                    (sum: number, item: ManufacturingProcess) => sum + (item.emissionFactor || 0),
                                     0
                                 );
 
                                 // Sort the productManufacturingProcess by emissionFactor in descending order
-                                const sortedProcess = product?.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+                                const sortedProcess = [...manufacturingProcesses].sort((a: ManufacturingProcess, b: ManufacturingProcess) => 
+                                    (b.emissionFactor || 0) - (a.emissionFactor || 0));
 
                                 // Map through the sorted materials and calculate percentage
-                                return sortedProcess.map((item: any) => {
+                                return sortedProcess.map((item: ManufacturingProcess) => {
                                     const percentage =
                                         totalEmissionFactor > 0
                                             ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
@@ -556,7 +584,8 @@ const EmissionSummary: React.FC<{
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
-                                            <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{item.manufacturingProcesses && item.manufacturingProcesses[0] ? 
+                                                item.manufacturingProcesses[0].category : 'Unknown'}</td>
                                             <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
@@ -595,27 +624,37 @@ const EmissionSummary: React.FC<{
                         </thead>
                         <tbody>
                             {(() => {
+                                // Use the TransportLeg type from props
+                                
                                 // Calculate the total emission factor
-                                const totalEmissionFactor = transportLegs.reduce(
-                                    (sum: number, item: any) => sum + item.transportEmission,
+                                const legs: TransportLeg[] = Array.isArray(transportLegs) ? transportLegs : [];
+                                const totalEmissionFactor = legs.reduce(
+                                    (sum: number, item: TransportLeg) => sum + (item.transportEmission || 0),
                                     0
                                 );
 
-                                // Sort the materials by emissionFactor in descending order
-                                const sortedMaterials = transportLegs.sort((a: any, b: any) => b.transportEmission - a.transportEmission);
+                                // Sort the legs by transportEmission in descending order
+                                const sortedLegs = [...legs].sort((a: TransportLeg, b: TransportLeg) => 
+                                    (b.transportEmission || 0) - (a.transportEmission || 0));
                  
-                                // Map through the sorted materials and calculate percentage
-                                return sortedMaterials.map((item: any) => {
+                                // Map through the sorted legs and calculate percentage
+                                return sortedLegs.map((item: TransportLeg) => {
                                     const percentage =
                                         totalEmissionFactor > 0
                                             ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
                                             : 0;
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.transportMode}</td>
-                                            { plan == 'professional' ?  <td>{item.originCountry }</td> : <td>{item.originGateway}</td>} 
-                                            { plan == 'professional' ?  <td>{item.destinationCountry }</td> : <td>{item.destinationGateway}</td>} 
-                                            <td>{parseFloat(item.transportEmission).toFixed(2)} KgCO₂e</td>
+                                            <td>{item.transportMode || 'Unknown'}</td>
+                                            { plan == 'professional' ? 
+                                              <td>{item.originCountry || 'Unknown'}</td> : 
+                                              <td>{item.originGateway || 'Unknown'}</td>
+                                            } 
+                                            { plan == 'professional' ? 
+                                              <td>{item.destinationCountry || 'Unknown'}</td> : 
+                                              <td>{item.destinationGateway || 'Unknown'}</td>
+                                            } 
+                                            <td>{parseFloat(item.transportEmission || 0).toFixed(2)} KgCO₂e</td>
                                             <td>{percentage} %</td>
                                         </tr>
                                     );
