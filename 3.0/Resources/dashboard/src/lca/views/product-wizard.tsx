@@ -227,12 +227,12 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
                 <div className="done-button-container">
                     {productManufacturingProcess.length > 0 ? (
                         <>
-                            {console.log("Button condition met, rendering button")}
-                            <Button 
-                                title="Create" 
-                                onClick={handleDone} 
-                                disabled={!productManufacturingProcess || productManufacturingProcess.length === 0}
-                            />
+                            <Button
+                            className="esgnow-next-button"
+                            title="Next"
+                            disabled={!productManufacturingProcess || productManufacturingProcess.length === 0}
+                            onClick={handleDone}
+                        />
                         </>
                     ) : null}
                 </div>
