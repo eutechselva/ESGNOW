@@ -69,10 +69,16 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
         const fetchClassifyProduct = async (data: { [key: string]: string[] }) => {
             try {
                 setAIGenerating(true);
+                let imageUrl = '';
+                if (productData.uploadedImages && productData.uploadedImages.length > 0) {
+                    imageUrl = productData.uploadedImages[0];
+                }
+
                 const classifyProductPayload = {
                     name: productData.name,
                     description: productData.description,
-                    productCode: productData.code
+                    productCode: productData.code,
+                    imageUrl: imageUrl
                 };
 
                 const response = await classifyProduct(uxpContext, classifyProductPayload);

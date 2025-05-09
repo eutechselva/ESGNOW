@@ -43422,10 +43422,15 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
         const fetchClassifyProduct = (data) => __awaiter(void 0, void 0, void 0, function* () {
             try {
                 setAIGenerating(true);
+                let imageUrl = '';
+                if (productData.uploadedImages && productData.uploadedImages.length > 0) {
+                    imageUrl = productData.uploadedImages[0];
+                }
                 const classifyProductPayload = {
                     name: productData.name,
                     description: productData.description,
-                    productCode: productData.code
+                    productCode: productData.code,
+                    imageUrl: imageUrl
                 };
                 const response = yield (0, esgnow_service_1.classifyProduct)(uxpContext, classifyProductPayload);
                 const classificationData = yield response.data;
@@ -101778,7 +101783,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]},{"id":"bulkupload","label":"Bulk Upload","icon":"fad upload","dashboardKey":"bulkupload","appRoles":[{"app":"ESGNOW","role":"canbulkupload"}]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"products","icon":"fad box","dashboardKey":"products","userRoles":[]},{"id":"lca","label":"Transportation","icon":"fad ship","dashboardKey":"lca","userRoles":[]},{"id":"projects","label":"Projects","icon":"fad folder-open","dashboardKey":"projects","userRoles":[]}]');
 
 /***/ }),
 

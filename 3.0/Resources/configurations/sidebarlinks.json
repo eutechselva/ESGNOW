@@ -26,17 +26,5 @@
     "icon": "fad folder-open",
     "dashboardKey": "projects",
     "userRoles": []
-  },
-  {
-    "id": "bulkupload",
-    "label": "Bulk Upload",
-    "icon": "fad upload",
-    "dashboardKey": "bulkupload",
-    "appRoles": [
-      {
-        "app": "ESGNOW",
-        "role": "canbulkupload"
-      }
-    ]
   }
 ]
