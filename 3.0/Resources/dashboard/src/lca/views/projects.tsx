@@ -48,21 +48,8 @@ const createProductFromAPI = (item: any): ProductInfoSummary => {
             co2Emission: 0,
             co2EmissionRawMaterials: 0,
             co2EmissionFromProcesses: 0,
-            materials: [{
-                materialClass: "Primary Material",
-                specificMaterial: "Unknown",
-                emissionFactor: 0,
-                quantity: 1
-            }],
-            productManufacturingProcess: [{
-                materialClass: "Manufacturing",
-                emissionFactor: 0,
-                manufacturingProcesses: [{
-                    category: "Unknown Process",
-                    process: "Unknown Process",
-                    emissionFactor: 0
-                }]
-            }]
+            materials: [] ,
+            productManufacturingProcess: [] 
         };
     }
     
@@ -108,14 +95,17 @@ const createProductFromAPI = (item: any): ProductInfoSummary => {
         co2Emission: Number(product.co2Emission || product.impacts?.totalImpact || 0),
         co2EmissionRawMaterials: Number(product.co2EmissionRawMaterials || product.impacts?.impactByMaterials || 0),
         co2EmissionFromProcesses: Number(product.co2EmissionFromProcesses || product.impacts?.impactByManufacturing || 0),
-        materials: Array.isArray(product.materials) && product.materials.length > 0 ? product.materials : [{
-            materialClass: "Primary Material",
-            specificMaterial: "Unknown",
-            emissionFactor: Number(product.impacts?.impactByMaterials || 0),
-            quantity: 1
-        }],
+        materials: Array.isArray(product.materials) && product.materials.length > 0 ? 
+            product.materials : 
+            [{ 
+                materialClass: "Primary Material", 
+                specificMaterial: "Unknown", 
+                emissionFactor: Number(product.impacts?.impactByMaterials || 0), 
+                quantity: 1 
+            }] as Array<{ materialClass: string; specificMaterial: string; emissionFactor: number; quantity: number }>,
         productManufacturingProcess: Array.isArray(product.productManufacturingProcess) && product.productManufacturingProcess.length > 0 ? 
-            product.productManufacturingProcess : [{
+            product.productManufacturingProcess : 
+            [{
                 materialClass: "Manufacturing",
                 emissionFactor: Number(product.impacts?.impactByManufacturing || 0),
                 manufacturingProcesses: [{
@@ -123,7 +113,15 @@ const createProductFromAPI = (item: any): ProductInfoSummary => {
                     process: "Unknown Process",
                     emissionFactor: Number(product.impacts?.impactByManufacturing || 0)
                 }]
-            }]
+            }] as Array<{
+                materialClass: string;
+                emissionFactor: number;
+                manufacturingProcesses: Array<{
+                    category: string;
+                    process?: string;
+                    emissionFactor: number;
+                }>
+            }>
     };
 }
 

@@ -586,7 +586,7 @@ const EmissionSummary: React.FC<{
                                             <td>{item.materialClass}</td>
                                             <td>{item.manufacturingProcesses && item.manufacturingProcesses[0] ? 
                                                 item.manufacturingProcesses[0].category : 'Unknown'}</td>
-                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>{parseFloat(item.emissionFactor.toString()).toFixed(2)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 
@@ -654,7 +654,7 @@ const EmissionSummary: React.FC<{
                                               <td>{item.destinationCountry || 'Unknown'}</td> : 
                                               <td>{item.destinationGateway || 'Unknown'}</td>
                                             } 
-                                            <td>{parseFloat(item.transportEmission || 0).toFixed(2)} KgCO₂e</td>
+                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(2)} KgCO₂e</td>
                                             <td>{percentage} %</td>
                                         </tr>
                                     );

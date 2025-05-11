@@ -41586,7 +41586,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                 react_1.default.createElement("td", null, item.manufacturingProcesses && item.manufacturingProcesses[0] ?
                                     item.manufacturingProcesses[0].category : 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    parseFloat(item.emissionFactor.toString()).toFixed(2),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -41629,7 +41629,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                     react_1.default.createElement("td", null, item.destinationCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.destinationGateway || 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.transportEmission || 0).toFixed(2),
+                                    parseFloat(item.transportEmission.toString() || '0').toFixed(2),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     percentage,
@@ -43247,7 +43247,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
-const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }) => {
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
     const [editedData, setEditedData] = (0, react_1.useState)(null);
@@ -43271,16 +43270,12 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }
                     react_1.default.createElement("th", null, "Material Class"),
                     plan == "professional" && (react_1.default.createElement("th", null, "Specific Material")),
                     react_1.default.createElement("th", null, "Material Weight"),
-                    react_1.default.createElement("th", null, "Reasoning"),
-                    react_1.default.createElement("th", null, "Actions"))),
+                    react_1.default.createElement("th", null, "Reasoning"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
                 react_1.default.createElement("td", null, material.materialClass),
                 plan == "professional" && (react_1.default.createElement("td", null, material.specificMaterial)),
                 react_1.default.createElement("td", null, `${material.weight} ${material.unit}`),
-                react_1.default.createElement("td", { className: "reasoning-cell" }, material.reasoning || "-"),
-                react_1.default.createElement("td", null,
-                    onOpenFullEditor && (react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: () => onOpenFullEditor(index), className: "edit-button" })),
-                    react_1.default.createElement(components_1.IconButton, { type: "delete", onClick: () => onDelete(index), className: "delete-button" })))))))));
+                react_1.default.createElement("td", { className: "reasoning-cell" }, material.reasoning || "-"))))))));
 };
 exports["default"] = MaterialSummary;
 
@@ -45274,21 +45269,8 @@ const createProductFromAPI = (item) => {
             co2Emission: 0,
             co2EmissionRawMaterials: 0,
             co2EmissionFromProcesses: 0,
-            materials: [{
-                    materialClass: "Primary Material",
-                    specificMaterial: "Unknown",
-                    emissionFactor: 0,
-                    quantity: 1
-                }],
-            productManufacturingProcess: [{
-                    materialClass: "Manufacturing",
-                    emissionFactor: 0,
-                    manufacturingProcesses: [{
-                            category: "Unknown Process",
-                            process: "Unknown Process",
-                            emissionFactor: 0
-                        }]
-                }]
+            materials: [],
+            productManufacturingProcess: []
         };
     }
     // Get the product data
@@ -45331,22 +45313,25 @@ const createProductFromAPI = (item) => {
         co2Emission: Number(product.co2Emission || ((_a = product.impacts) === null || _a === void 0 ? void 0 : _a.totalImpact) || 0),
         co2EmissionRawMaterials: Number(product.co2EmissionRawMaterials || ((_b = product.impacts) === null || _b === void 0 ? void 0 : _b.impactByMaterials) || 0),
         co2EmissionFromProcesses: Number(product.co2EmissionFromProcesses || ((_c = product.impacts) === null || _c === void 0 ? void 0 : _c.impactByManufacturing) || 0),
-        materials: Array.isArray(product.materials) && product.materials.length > 0 ? product.materials : [{
-                materialClass: "Primary Material",
-                specificMaterial: "Unknown",
-                emissionFactor: Number(((_d = product.impacts) === null || _d === void 0 ? void 0 : _d.impactByMaterials) || 0),
-                quantity: 1
-            }],
+        materials: Array.isArray(product.materials) && product.materials.length > 0 ?
+            product.materials :
+            [{
+                    materialClass: "Primary Material",
+                    specificMaterial: "Unknown",
+                    emissionFactor: Number(((_d = product.impacts) === null || _d === void 0 ? void 0 : _d.impactByMaterials) || 0),
+                    quantity: 1
+                }],
         productManufacturingProcess: Array.isArray(product.productManufacturingProcess) && product.productManufacturingProcess.length > 0 ?
-            product.productManufacturingProcess : [{
-                materialClass: "Manufacturing",
-                emissionFactor: Number(((_e = product.impacts) === null || _e === void 0 ? void 0 : _e.impactByManufacturing) || 0),
-                manufacturingProcesses: [{
-                        category: "Unknown Process",
-                        process: "Unknown Process",
-                        emissionFactor: Number(((_f = product.impacts) === null || _f === void 0 ? void 0 : _f.impactByManufacturing) || 0)
-                    }]
-            }]
+            product.productManufacturingProcess :
+            [{
+                    materialClass: "Manufacturing",
+                    emissionFactor: Number(((_e = product.impacts) === null || _e === void 0 ? void 0 : _e.impactByManufacturing) || 0),
+                    manufacturingProcesses: [{
+                            category: "Unknown Process",
+                            process: "Unknown Process",
+                            emissionFactor: Number(((_f = product.impacts) === null || _f === void 0 ? void 0 : _f.impactByManufacturing) || 0)
+                        }]
+                }]
     };
 };
 const Projects = (props) => {
