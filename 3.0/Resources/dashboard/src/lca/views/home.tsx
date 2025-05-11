@@ -44,7 +44,6 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = useState<ProductInfoSummary | null>(null);
     const [showTour, setShowTour] = useState(false);
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
-    const [showPdfModal, setShowPdfModal] = useState(false);
 
     const alerts = useAlert();
 
@@ -198,30 +197,6 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 }}
             />
 
-            <Modal
-                title="Frequently Asked Questions"
-                show={showPdfModal}
-                onClose={() => setShowPdfModal(false)}
-            // size="large"
-            >
-                <div className="pdf-viewer-container">
-                    {/* If you have a PDFViewer component */}
-                    {/* <PDFViewer url="/path/to/faq.pdf" /> */}
-
-                    {/* Fallback iframe if PDFViewer isn't available */}
-                    <iframe
-                        src="/public/assets/Esgfaq.pdf"
-                        width="100%"
-                        height="600px"
-                        style={{ border: 'none' }}
-                        title="FAQ PDF"
-                    >
-                        <p>Your browser does not support PDFs.
-                            <a href="/path/to/faq.pdf">Download the FAQ</a> instead.
-                        </p>
-                    </iframe>
-                </div>
-            </Modal>
 
             {/* Main Dashboard */}
             <div className="dashboard-container">
@@ -289,12 +264,10 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <h2>Getting Started</h2>
                         <p>Get answers to common questions about ESG NOW</p>
                         <a
-                            href="#"
+                            href="/Resources/ESGNOW/pdf/Esgfaq.pdf"
                             className="esgnow-faq-link"
-                            onClick={(e) => {
-                                e.preventDefault(); 
-                                setShowPdfModal(true);
-                            }}
+                            target="_blank"
+                            rel="noopener noreferrer"
                         >
                             Frequently Asked Questions
                         </a>

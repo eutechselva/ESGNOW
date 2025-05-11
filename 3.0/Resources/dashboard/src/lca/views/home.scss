@@ -355,13 +355,22 @@
 //     }
 // }
 
-.esgnow-faq-link::before {
+.esgnow-faq-link {
     color: #0056D2;
-    font-weight: bold;
-    content: "• ";
-    margin-right: 4px;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.2s ease;
+
+    &::before {
+        font-weight: bold;
+        content: "• ";
+        margin-right: 4px;
+    }
 
     &:hover {
         color: #003E99;
+        text-decoration: underline;
     }
 }
