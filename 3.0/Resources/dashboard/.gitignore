@@ -1,4 +1,28 @@
+# System files
 .DS_Store
+**/.DS_Store
+
+# Config files
 .spaceworx.config
 .lucy.config
-node_modules
+
+# Node modules
+node_modules/
+
+# Build outputs
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Editor directories and files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
