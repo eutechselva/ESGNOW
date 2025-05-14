@@ -596,7 +596,6 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 uxpContext={uxpContext}
                 onProductCreated={() => {
                     refreshProducts();
-                    setShowModal(false);
                 }}
             />
 
