@@ -14,15 +14,15 @@ import { IContextProvider } from "@uxp";
 interface ProductInformationProps {
     productData: ProductInfo;
     onNext: (productData: ProductInfo) => void;
-    uxpContext : IContextProvider;
+    uxpContext: IContextProvider;
 }
 
-const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext ,uxpContext}) => {
+const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext, uxpContext }) => {
     const [productCode, setProductCode] = React.useState(productData.code);
     const [productName, setProductName] = React.useState(productData.name);
     const [productDescription, setProductDescription] = React.useState(productData.description);
     const [productImages, setProductImages] = React.useState<File[]>(productData.images);
-    const [productUploadedImages, setProductUploadedImages] = React.useState<string[]>(productData.uploadedImages );
+    const [productUploadedImages, setProductUploadedImages] = React.useState<string[]>(productData.uploadedImages);
     const [imagePreviews, setImagePreviews] = React.useState<string[]>(
         productData.images.map((file) => URL.createObjectURL(file))
     );
@@ -64,7 +64,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
         return responseText;
     }
 
-     function generateUUID() {
+    function generateUUID() {
         var d = new Date().getTime();
         var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
             var r = (d + Math.random() * 16) % 16 | 0;
@@ -91,20 +91,20 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
         const fileArray = Array.from(files);
         if (fileArray.length + productImages.length <= 3) {
             const newImagePreviews = fileArray.map((file) => {
-                
+
                 let name = file.name
                 let ext = name.slice((Math.max(0, name.lastIndexOf(".")) || Infinity) + 1)
                 name = "file-" + generateUUID() + '.' + ext
-                let baseUrl = uxpContext.lucyUrl + 'uploadcontent/notes/uploads/images/' ;
+                let baseUrl = uxpContext.lucyUrl + 'uploadcontent/notes/uploads/images/';
                 let url = addQSToURL(baseUrl, { filename: name })
 
                 let apikey = uxpContext.apiKey
 
                 uploadFile(url, name, apikey, file);
-                let downloadUrl = uxpContext.lucyUrl + 'content/notes/uploads/images/'  + name;
+                let downloadUrl = uxpContext.lucyUrl + 'content/notes/uploads/images/' + name;
                 setProductUploadedImages([...productUploadedImages, downloadUrl]);
                 return URL.createObjectURL(file);
-            } );
+            });
             setProductImages([...productImages, ...fileArray]);
             setImagePreviews([...imagePreviews, ...newImagePreviews]);
         } else {
@@ -164,21 +164,21 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
     const handleNext = () => {
         if (validate()) {
-        const productData = {
-            code: productCode,
-            name: productName,
-            description: productDescription,
-            images: productImages,
-            uploadedImages: productUploadedImages,
-            document,
-        };
-        onNext(productData);
-    }
+            const productData = {
+                code: productCode,
+                name: productName,
+                description: productDescription,
+                images: productImages,
+                uploadedImages: productUploadedImages,
+                document,
+            };
+            onNext(productData);
+        }
     };
 
     return (
         <div className="modal-content">
-             <h3>Fill in the fields below to assist with the analysis. Providing as much detail as possible helps the AI deliver better support for your assessment.</h3> 
+            <h3>Fill in the details to run your assessment.</h3>
 
             <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField className="form-field">
@@ -205,7 +205,22 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
             </div>
 
             <FormField className="form-field">
-                <Label><span style={{ fontSize: '12px' }}>Product Description</span></Label>
+                <Label>
+                    <span style={{ fontSize: '12px' }}>Product Description</span>
+                    <span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Provide key product details such as size, material, use case, and physical characteristics. The more descriptive your input, the better the AI can assist with categorisation and material generation. 
+                            </div>
+                        )}
+                    </span>
+                </Label>
+
                 <textarea
                     value={productDescription}
                     onChange={(event) => setProductDescription(event.target.value)}
@@ -217,7 +232,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         fontSize: '12px',
                         borderRadius: '4px',
                         border: '1px solid #ccc',
-                        fontFamily:'comfortaa'
+                        fontFamily: 'comfortaa'
                     }}
                 />
                 {errors.productDescription && <span className="error-text">{errors.productDescription}</span>}
@@ -226,19 +241,19 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
             {/* Drag and Drop Area for Images */}
             <FormField className="form-field">
-                <Label><span style ={{ fontSize: '12px' }}>Product Images</span>
-                <span
-                                className="info-icon"
-                                onMouseEnter={() => setShowTooltip(true)}
-                                onMouseLeave={() => setShowTooltip(false)}
-                            >
-                                <FontAwesomeIcon icon={faInfoCircle} />
-                                {showTooltip && (
-                                    <div className="tooltip">
-                                       Upload up to 3 images in JPG, PNG, or compatible formats to provide visual details.
-                                    </div>
-                                )}
-                            </span>
+                <Label><span style={{ fontSize: '12px' }}>Product Images</span>
+                    <span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Upload up to 3 images in JPG, PNG, or compatible formats to provide visual details.
+                            </div>
+                        )}
+                    </span>
                 </Label>
                 <div
                     className={`drop-zone ${isDragging ? 'drag-over' : ''}`}

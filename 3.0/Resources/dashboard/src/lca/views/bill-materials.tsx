@@ -334,8 +334,8 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                  </div>
                  
                  <div className="materials-list-header">
-                    <h3>Material List</h3>
-                    <p>The materials below will be used to calculate the environmental impact of your product.</p>
+                    {/* <h3>Material List</h3>
+                    <p>The materials below will be used to calculate the environmental impact of your product.</p> */}
                  </div>
                  
                  <MaterialSummary
