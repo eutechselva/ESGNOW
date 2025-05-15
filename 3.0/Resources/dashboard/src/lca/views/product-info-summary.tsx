@@ -195,7 +195,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 <th>Material Class</th>
                                 {plan === 'professional' && (<th>Specific Material</th>)}
                                 <th>Contribution</th>
-                                <th>Reasoning</th>
+                                {/* <th>Reasoning</th> */}
                                 <th>Percentage</th>
                             </tr>
                         </thead>
@@ -218,7 +218,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             <td>{item.materialClass}</td>
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
                                             <td> {parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e ({parseFloat(item.weight).toFixed(2)} Kg)</td>
-                                            <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td>
+                                            {/* <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td> */}
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 
@@ -247,8 +247,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     <table>
                         <thead>
                             <tr>
-                                <th>Specific Material</th>
-                                <th>Manufacturing Process</th>
+                                <th> Material</th>
+                                {/* <th>Manufacturing Process</th> */}
                                 <th>Contribution</th>
                                 <th>Percentage</th>
                             </tr>
@@ -270,7 +270,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
-                                            <td>{item.manufacturingProcesses[0].category}</td>
+                                            {/* <td>{item.manufacturingProcesses[0].category}</td> */}
                                             <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
@@ -321,12 +321,43 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         </div>
                         {isExpanded && (
                             <div className="esgnow-tree-children">
-                                {product.productManufacturingProcess.map((item: any) => (
-                                    <div key={item.materialClass} className="esgnow-tree-sub-item">
-                                        <span className="esgnow-material-dot"></span>
-                                        {item.materialClass} - {item.specificMaterial} ({item.weight} Kg)
-                                    </div>
-                                ))}
+                                {(() => {
+                                    // Create a map to merge processes with materials
+                                    const mergedItems = new Map();
+                                    
+                                    // First, add all manufacturing processes
+                                    product.productManufacturingProcess.forEach((item: any) => {
+                                        const key = `${item.materialClass}-${item.specificMaterial}`;
+                                        mergedItems.set(key, {
+                                            ...item,
+                                            reasoning: "" // Default empty reasoning
+                                        });
+                                    });
+                                    
+                                    // Then, merge with materials data (including reasoning)
+                                    product.materials.forEach((material: any) => {
+                                        const key = `${material.materialClass}-${material.specificMaterial}`;
+                                        if (mergedItems.has(key)) {
+                                            // Update existing item with reasoning from materials
+                                            const existingItem = mergedItems.get(key);
+                                            mergedItems.set(key, {
+                                                ...existingItem,
+                                                reasoning: material.reasoning || "-"
+                                            });
+                                        }
+                                    });
+                                    
+                                    // Convert map values to array and render
+                                    return Array.from(mergedItems.values()).map((item: any) => (
+                                        <div key={`${item.materialClass}-${item.specificMaterial}`} className="esgnow-tree-sub-item">
+                                            <div className="esgnow-tree-main-content">
+                                                <span className="esgnow-material-dot"></span>
+                                                <span>{item.materialClass} - {item.specificMaterial} ({item.weight} Kg)</span>
+                                            </div>
+                                            {item.reasoning && <div className="esgnow-tree-reasoning">{item.reasoning}</div>}
+                                        </div>
+                                    ));
+                                })()}
                             </div>
                         )}
                     </div>
@@ -338,20 +369,50 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     <th>Material Class</th>
                                     {plan === 'professional' && (<th>Specific Material</th>)}
                                     <th>Weight</th>
-                                    <th>Manufacturing Process</th>
-                                    <th>Sub Process</th>
+                                    {/* <th>Manufacturing Process</th>
+                                    <th>Sub Process</th> */}
+                                    <th>Reasoning</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {product.productManufacturingProcess.map((item: any) => (
-                                    <tr key={item.materialClass}>
-                                        <td>{item.materialClass}</td>
-                                        {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
-                                        <td>{item.weight} Kg</td>
-                                        <td>{item.manufacturingProcesses[0].category}</td>
-                                        <td>{item.manufacturingProcesses[0].processes.join(', ')}</td>
-                                    </tr>
-                                ))}
+                                {(() => {
+                                    // Create a map to merge processes with materials based on materialClass and specificMaterial
+                                    const mergedItems = new Map();
+                                    
+                                    // First, add all manufacturing processes
+                                    product.productManufacturingProcess.forEach((item: any) => {
+                                        const key = `${item.materialClass}-${item.specificMaterial}`;
+                                        mergedItems.set(key, {
+                                            ...item,
+                                            reasoning: "" // Default empty reasoning
+                                        });
+                                    });
+                                    
+                                    // Then, merge with materials data (including reasoning)
+                                    product.materials.forEach((material: any) => {
+                                        const key = `${material.materialClass}-${material.specificMaterial}`;
+                                        if (mergedItems.has(key)) {
+                                            // Update existing item with reasoning from materials
+                                            const existingItem = mergedItems.get(key);
+                                            mergedItems.set(key, {
+                                                ...existingItem,
+                                                reasoning: material.reasoning || "-"
+                                            });
+                                        }
+                                    });
+                                    
+                                    // Convert map values to array and render
+                                    return Array.from(mergedItems.values()).map((item: any) => (
+                                        <tr key={`${item.materialClass}-${item.specificMaterial}`}>
+                                            <td>{item.materialClass}</td>
+                                            {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                            <td>{item.weight} Kg</td>
+                                            {/* <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{item.manufacturingProcesses[0].processes.join(', ')}</td> */}
+                                            <td className="esgnow-reasoning-cell">{item.reasoning}</td>
+                                        </tr>
+                                    ));
+                                })()}
                             </tbody>
                         </table>
                     </div>
