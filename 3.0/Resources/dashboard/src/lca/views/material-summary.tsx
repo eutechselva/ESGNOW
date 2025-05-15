@@ -46,7 +46,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                     <tr>
                         <th>Material Class</th>
                         {plan == "professional" && (<th>Specific Material</th>)}
-                        <th>Material Weight</th>
+                        <th> Weight</th>
                         <th>Reasoning</th>
                         {/* <th>Actions</th> */}
                     </tr>
