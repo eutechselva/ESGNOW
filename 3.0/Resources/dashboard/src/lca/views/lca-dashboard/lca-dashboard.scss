@@ -287,7 +287,12 @@ h3,
   border-top: 1px solid #eee;
   margin-top: auto;
 }
-
+//pagination style
+.esgnow-pagination-wrapper{
+  display: flex;
+  justify-content: flex-end; /* Moves content to the right */
+  padding: 1rem; /* Optional: for spacing */
+}
 // Responsive adjustments
 @media (max-width: 992px) {
   .search-filter-section .uxp-search-box-container {
