@@ -1,0 +1,98 @@
+.esgnow-container {
+    line-height: 1.5;
+    color: #424242;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    position: relative;
+    padding-top: 60px;
+}
+
+.esgnow-header-image {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.esgnow-header-image img {
+    width: 100px;
+    height: auto;
+}
+
+.esgnow-h1 {
+    font-size: 24px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-top: 30px;
+}
+
+.esgnow-question {
+    font-weight: bold;
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+}
+
+.esgnow-answer {
+    margin-left: 15px;
+}
+
+.esgnow-material-list {
+    columns: 1;
+    margin: 15px 0;
+}
+
+.esgnow-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 15px 0;
+    font-size: 14px;
+}
+
+.esgnow-table th,
+.esgnow-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.esgnow-note {
+    font-style: italic;
+    margin: 15px 0;
+}
+
+.esgnow-footer {
+    margin-top: 40px;
+    font-size: 12px;
+    color: #424242;
+}
+
+.esgnow-footer-title {
+    font-weight: bold;
+    margin: 10px 0 5px 0;
+}
+
+.esgnow-image {
+    width: 100%;
+    max-width: 600px;
+    margin: 1rem 0;
+    display: block;
+}
+
+.esgnow-footer-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin-top: 2rem;
+}
+
+.esgnow-footer-iviva-image {
+    width: 110px;
+    height: 40px;
+    margin-right: 0.5rem;
+}
+
+.esgnow-footer-ecoinvent-image {
+    width: 110px;
+    height: 20px;
+    margin-right: 0.5rem;
+}
