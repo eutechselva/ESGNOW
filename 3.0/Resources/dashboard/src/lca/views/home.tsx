@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import { CRUDComponent, Modal, Button, LoadingSpinner, DefaultLoader, useAlert } from 'uxp/components';
 import './home.scss';
-import { getAllProducts, home } from '../../esgnow-service';
+import { getAllProducts, home, getAllProjects } from '../../esgnow-service'; // Import getAllProjects
 import { IContextProvider } from '@uxp';
 import ProductInfoSummary from './product-info-summary';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -58,10 +58,11 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
         const fetchDashboardData = async () => {
             setIsLoading(true);
             try {
-                // Fetch products and stats in parallel
-                const [productsResponse, statsResponse] = await Promise.all([
+                // Fetch products, projects and stats in parallel
+                const [productsResponse, statsResponse, projectsResponse] = await Promise.all([
                     getAllProducts(uxpContext),
-                    home(uxpContext)
+                    home(uxpContext),
+                    getAllProjects(uxpContext,{})
                 ]);
 
                 // Handle products data
@@ -71,10 +72,16 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                 // Handle dashboard stats
                 const statsData = statsResponse.data;
+                
+                // Get the actual project count from getAllProjects response
+                const projectsCount = Array.isArray(projectsResponse.data) 
+                    ? projectsResponse.data.length 
+                    : (projectsResponse.data.projects?.length || 0);
+                
                 setDashboardStats({
                     totalProducts: statsData.totalProducts || 0,
                     totalImpact: statsData.totalImpact || 0,
-                    totalProjects: statsData.totalProjects || 0,
+                    totalProjects: projectsCount, // Use the actual project count
                     totalCredits: statsData.totalCredits || 0
                 });
 
@@ -208,7 +215,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     </div>
                     {/* 
                     {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
-                    { canRunCalculator(uxpContext) ? */}
+                    { canRunCalculator(uxpContext) ? */}                    
                     <div className="action-buttons">
                         <button className="esgnow-add-product-button" onClick={() => setShowCreateProductModal(true)}>
                             + Add Product
@@ -305,11 +312,12 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
                 {/* Dashboard Footer */}
                 <div className="dashboard-footer">
-                    <p>Your current plan: <strong>{plan || 'Free Plan'}</strong></p>
+                    <p>Your current plan: <strong>{plan || 'Free Plan'}</strong></p>                    
                     {/* <Button
                         title="Take a Tour"
                         onClick={() => setShowTour(true)}
                     /> */}
+
                 </div>
             </div>
 
