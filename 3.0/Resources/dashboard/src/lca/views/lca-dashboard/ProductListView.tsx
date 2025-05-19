@@ -11,6 +11,7 @@ const ProductListView: React.FC<ProductListViewProps> = ({ currentItems, selectP
         <div className="product-list">
             <div className="list-header">
                 <div className="list-col-image"></div>
+                <div className="list-col-name">Product Code</div>
                 <div className="list-col-name">Product Name</div>
                 <div className="list-col-category">Category</div>
                 <div className="list-col-subcategory">SubCategory</div>
@@ -31,10 +32,10 @@ const ProductListView: React.FC<ProductListViewProps> = ({ currentItems, selectP
                             {(!item.images || item.images.length === 0) && "No Image"}
                         </div>
                     </div>
+                    <div className="product-code">{item.code}</div>
                     <div className="list-col-name">
                         <div className="product-name-code">
                             <span className="product-name">{item.name}</span>
-                            <span className="product-code">{item.code}</span>
                         </div>
                     </div>
                     <div className="list-col-category">
