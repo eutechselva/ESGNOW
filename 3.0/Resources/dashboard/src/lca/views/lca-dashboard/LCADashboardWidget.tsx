@@ -654,7 +654,7 @@ const handleNext = () => {
             >
                 <div className="modal-content">
                     <div className="modal-stepper-container">
-                        <Stepper activeStep={activeStep} onStepChange={setActiveStep} />
+                        <Stepper activeStep={activeStep} onStepChange={() => {}} />
                     </div>
 
                     {steps[activeStep]?.content}
