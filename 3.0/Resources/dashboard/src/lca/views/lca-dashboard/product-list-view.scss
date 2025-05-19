@@ -1,17 +1,26 @@
 // Product List View Styles
 
-.product-list {
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
-  margin-bottom: 24px;
+// .product-list {
+//   background-color: white;
+//   border-radius: 8px;
+//   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+//   overflow: hidden;
+//   margin-bottom: 24px;
+// }
+.product-list{
+  width: 100%;
+    padding: 24px;
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    font-family: "Comfortaa", sans-serif;
 }
+
 
 .list-header {
   display: grid;
-  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;
-  padding: 10px 12px;
+  grid-template-columns: 60px 0.8fr 1.2fr 1fr 1fr 0.8fr 0.8fr;
+  column-gap: 16px;
+  padding: 12px 16px;
   background-color: #f5f5f5;
   border-bottom: 1px solid #eee;
   font-weight: 600;
@@ -21,8 +30,9 @@
 
 .list-item {
   display: grid;
-  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;
-  padding: 8px 12px;
+  grid-template-columns: 60px 0.8fr 1.2fr 1fr 1fr 0.8fr 0.8fr;
+  column-gap: 16px;
+  padding: 10px 12px;
   border-bottom: 1px solid #eee;
   transition: background-color 0.2s ease;
   align-items: center;
@@ -32,7 +42,7 @@
   &:hover {
     background-color: #f9f9f9;
   }
-  
+
   &:last-child {
     border-bottom: none;
   }
@@ -80,15 +90,14 @@
   font-weight: 600;
   color: #333;
   margin-bottom: 2px;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.product-name-code .product-code {
+.product-code {
   font-size: 12px;
-  color: #999;
-  white-space: nowrap;
+  color: #333;
+  background-color: #f9f9f9;
   overflow: hidden;
   text-overflow: ellipsis;
 }
@@ -96,14 +105,13 @@
 .list-col-category, .list-col-subcategory, .list-col-weight {
   font-size: 13px;
   color: #333;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.list-col-actions {
-  text-align: right;
-}
+// .list-col-actions {
+//   text-align: right;
+// }
 
 .view-details-button {
   background-color: #0056D2;
@@ -115,7 +123,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
-  white-space: nowrap;
+  // white-space: nowrap;
   
   &:hover {
     background-color: #003E99;
