@@ -15,6 +15,14 @@ import ProductGridView from "./ProductGridView";
 import ProductListView from "./ProductListView";
 import Pagination from "./Pagination";
 import './lca-dashboard.scss';
+// Add new interfaces for error state
+interface ValidationError {
+    originCountry?: boolean;
+    destinationCountry?: boolean;
+    originGateway?: boolean;
+    destinationGateway?: boolean;
+    transportMode?: boolean;
+}
 
 export interface TransportLeg {
     id: number;
@@ -59,6 +67,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     const [categories, setCategories] = useState<{ label: string, value: string }[]>([]);
     const [subCategories, setSubCategories] = useState<{ label: string, value: string }[]>([]);
     const [viewMode, setViewMode] = useState<"grid" | "list">("grid");
+    const [transportErrors, setTransportErrors] = useState<ValidationError[]>([{}]);
     const [transportLegs, setTransportLegs] = useState<TransportLeg[]>([{
         id: 1,
         originCountry: "",
@@ -270,7 +279,30 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     };
-
+// Add validation function
+const validateTransportLegs = (): boolean => {
+    const newErrors: ValidationError[] = transportLegs.map(leg => {
+        const legErrors: ValidationError = {};
+        
+        // Check required fields for all plans
+        if (!leg.originCountry) legErrors.originCountry = true;
+        if (!leg.destinationCountry) legErrors.destinationCountry = true;
+        if (!leg.transportMode) legErrors.transportMode = true;
+        
+        // Check additional fields for professional plan
+        if (plan === 'professional') {
+            if (!leg.originGateway) legErrors.originGateway = true;
+            if (!leg.destinationGateway) legErrors.destinationGateway = true;
+        }
+        
+        return legErrors;
+    });
+    
+    setTransportErrors(newErrors);
+    
+    // Return true if there are no errors (all fields are valid)
+    return newErrors.every(error => Object.keys(error).length === 0);
+};
     const calculateTransportationEmission = async () => {
         try {
             const updatedLegs = [...transportLegs];
@@ -304,15 +336,24 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         }
     };
 
-    const handleNext = () => {
-        if (activeStep < steps.length - 1) {
-            setActiveStep(activeStep + 1);
+// Update handleNext function to validate before proceeding
+const handleNext = () => {
+    // If we're on the transport selection step (step 1)
+    if (activeStep === 1) {
+        const isValid = validateTransportLegs();
+        if (!isValid) {
+            // If validation fails, don't proceed
+            return;
         }
-        if (activeStep === 2) {
-            calculateTransportationEmission();
-        }
-    };
-
+    }
+    
+    if (activeStep < steps.length - 1) {
+        setActiveStep(activeStep + 1);
+    }
+    if (activeStep === 2) {
+        calculateTransportationEmission();
+    }
+};
     const handlePrevious = () => {
         if (activeStep > 0) {
             setActiveStep(activeStep - 1);
@@ -338,6 +379,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     transportDatabase={transportDatabase}
                     plan={plan}
                     uxpContext={uxpContext}
+                    errors={transportErrors}
                 />
             ),
         },
@@ -600,6 +642,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         originGateways: [],
                         destinationGateways: []
                     }]);
+                    setTransportErrors([]);
                     setIsPackagingManual(false);
                     setIsPalletManual(false);
                     setIncludePallet(false);

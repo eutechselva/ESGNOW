@@ -14,14 +14,32 @@ interface TransportSelectionStepProps {
     plan: string;
     uxpContext: IContextProvider;
 }
+interface ValidationError {
+    originCountry?: boolean;
+    destinationCountry?: boolean;
+    originGateway?: boolean;
+    destinationGateway?: boolean;
+    transportMode?: boolean;
+}
 
+interface TransportSelectionStepProps {
+    transportLegs: TransportLeg[];
+    setTransportLegs: React.Dispatch<React.SetStateAction<TransportLeg[]>>;
+    countries: any[];
+    transportDatabase: { [key: string]: any };
+    plan: string;
+    uxpContext: IContextProvider;
+    errors: ValidationError[]; // Add errors prop
+    setErrors?: React.Dispatch<React.SetStateAction<ValidationError[]>>; // Optional setter for errors
+}
 const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({ 
     transportLegs, 
     setTransportLegs, 
     countries, 
     transportDatabase,
     plan,
-    uxpContext
+    uxpContext,
+    errors
 }) => {
     const addTransportLeg = () => {
         setTransportLegs([...transportLegs, {
@@ -166,55 +184,67 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                     <FormField>
                         <Label><span className="label-text">Origin Country</span></Label>
                         <Select
-                            className="highlighted-select"
+                            className={`highlighted-select ${errors[index]?.originCountry ? 'error-field' : ''}`}
                             options={countries}
                             placeholder="Select Origin Country"
                             selected={leg.originCountry}
                             onChange={(value) => updateTransportLeg(leg.id, 'originCountry', value)}
                         />
+                        {errors[index]?.originCountry && (
+                            <span className="error-text">Origin country is required</span>
+                        )}
                     </FormField>
 
                     <FormField>
                         <Label><span className="label-text">Destination Country</span></Label>
                         <Select
-                            className="highlighted-select"
+                            className={`highlighted-select ${errors[index]?.destinationCountry ? 'error-field' : ''}`}
                             options={countries}
                             placeholder="Select Destination Country"
                             selected={leg.destinationCountry}
                             onChange={(value) => updateTransportLeg(leg.id, 'destinationCountry', value)}
                         />
+                        {errors[index]?.destinationCountry && (
+                            <span className="error-text">Destination country is required</span>
+                        )}
                     </FormField>
-
                     {plan === 'professional' && (
                         <FormField>
                             <Label><span className="label-text">Origin Gateway</span></Label>
                             <Select
-                                className="highlighted-select"
+                                className={`highlighted-select ${errors[index]?.originGateway ? 'error-field' : ''}`}
                                 options={leg.originGateways}
                                 placeholder="Select Origin Gateway"
                                 selected={leg.originGateway}
                                 onChange={(value) => updateTransportLeg(leg.id, 'originGateway', value)}
                             />
+                            {errors[index]?.originGateway && (
+                                <span className="error-text">Origin gateway is required</span>
+                            )}
                         </FormField>
                     )}
+
 
                     {plan === 'professional' && (
                         <FormField>
                             <Label><span className="label-text">Destination Gateway</span></Label>
                             <Select
-                                className="highlighted-select"
+                                className={`highlighted-select ${errors[index]?.destinationGateway ? 'error-field' : ''}`}
                                 options={leg.destinationGateways}
                                 placeholder="Select Destination Gateway"
                                 selected={leg.destinationGateway}
                                 onChange={(value) => updateTransportLeg(leg.id, 'destinationGateway', value)}
                             />
+                            {errors[index]?.destinationGateway && (
+                                <span className="error-text">Destination gateway is required</span>
+                            )}
                         </FormField>
                     )}
 
-                    <FormField>
+<FormField>
                         <Label><span className="label-text">Transport Mode</span></Label>
                         <Select
-                            className="highlighted-select"
+                            className={`highlighted-select ${errors[index]?.transportMode ? 'error-field' : ''}`}
                             options={[
                                 { label: "Sea Freight", value: "SeaFreight" },
                                 // Additional transport modes could be added here
@@ -223,6 +253,9 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                             selected={leg.transportMode}
                             onChange={(value) => updateTransportLeg(leg.id, 'transportMode', value)}
                         />
+                        {errors[index]?.transportMode && (
+                            <span className="error-text">Transport mode is required</span>
+                        )}
                     </FormField>
                 </div>
             ))}
