@@ -1,5 +1,5 @@
 .material-summary {
-    margin: 20px;
+    // margin: 20px;
     width: auto !important;
     padding: 10px;
     background-color: #f9f9f9;
@@ -104,3 +104,12 @@
     
 }
 
+.summary-actions {
+    margin-top: 16px;
+    display: flex;
+    justify-content: flex-end;
+
+    .edit-all-button {
+        min-width: 150px;
+    }
+}

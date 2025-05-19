@@ -11,6 +11,7 @@ import ProductWizard from './product-wizard';
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'; // Import the CSS for styling
 import { canRunCalculator } from '@utils';
+import ESGNowFAQ from './faq';
 
 interface IHomeDashboardWidgetProps {
     uxpContext: IContextProvider;
@@ -44,6 +45,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = useState<ProductInfoSummary | null>(null);
     const [showTour, setShowTour] = useState(false);
     const [showCloseWarning, setShowCloseWarning] = React.useState(true);
+    const [showFAQModal, setShowFAQModal] = useState(false);
 
     const alerts = useAlert();
 
@@ -203,7 +205,15 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                     });
                 }}
             />
-
+            {/* FAQ Modal */}
+            <Modal
+                title="Frequently Asked Questions"
+                show={showFAQModal}
+                onClose={() => setShowFAQModal(false)}
+                // size="large"
+            >
+                <ESGNowFAQ />
+            </Modal>
 
             {/* Main Dashboard */}
             <div className="dashboard-container">
@@ -271,14 +281,11 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                         <h2>Getting Started</h2>
                         <p>Get answers to common questions about ESG NOW</p>
                         <a
-                            href="/Resources/ESGNOW/pdf/Esgfaq.pdf"
+                            onClick={() => setShowFAQModal(true)}
                             className="esgnow-faq-link"
-                            target="_blank"
-                            rel="noopener noreferrer"
                         >
                             Frequently Asked Questions
                         </a>
-
                     </div>
 
                 </div>

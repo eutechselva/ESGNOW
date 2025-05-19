@@ -361,6 +361,8 @@
     display: inline-flex;
     align-items: center;
     transition: color 0.2s ease;
+    cursor: pointer;
+    
 
     &::before {
         font-weight: bold;
