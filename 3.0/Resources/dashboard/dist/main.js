@@ -143,6 +143,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/faq.scss":
+/*!*************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/faq.scss ***!
+  \*************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".esgnow-container {\n  line-height: 1.5;\n  color: #424242;\n  max-width: 800px;\n  margin: 0 auto;\n  padding: 20px;\n  position: relative;\n  padding-top: 60px;\n}\n\n.esgnow-header-image {\n  position: absolute;\n  top: 0;\n  right: 0;\n}\n\n.esgnow-header-image img {\n  width: 100px;\n  height: auto;\n}\n\n.esgnow-h1 {\n  font-size: 24px;\n  border-bottom: 1px solid #ddd;\n  padding-bottom: 10px;\n  margin-top: 30px;\n}\n\n.esgnow-question {\n  font-weight: bold;\n  margin: 20px 0 10px 0;\n  font-size: 16px;\n}\n\n.esgnow-answer {\n  margin-left: 15px;\n}\n\n.esgnow-material-list {\n  columns: 1;\n  margin: 15px 0;\n}\n\n.esgnow-table {\n  width: 100%;\n  border-collapse: collapse;\n  margin: 15px 0;\n  font-size: 14px;\n}\n\n.esgnow-table th,\n.esgnow-table td {\n  border: 1px solid #ccc;\n  padding: 8px;\n  text-align: left;\n}\n\n.esgnow-note {\n  font-style: italic;\n  margin: 15px 0;\n}\n\n.esgnow-footer {\n  margin-top: 40px;\n  font-size: 12px;\n  color: #424242;\n}\n\n.esgnow-footer-title {\n  font-weight: bold;\n  margin: 10px 0 5px 0;\n}\n\n.esgnow-image {\n  width: 100%;\n  max-width: 600px;\n  margin: 1rem 0;\n  display: block;\n}\n\n.esgnow-footer-title {\n  display: flex;\n  align-items: center;\n  font-weight: bold;\n  margin-top: 2rem;\n}\n\n.esgnow-footer-iviva-image {\n  width: 110px;\n  height: 40px;\n  margin-right: 0.5rem;\n}\n\n.esgnow-footer-ecoinvent-image {\n  width: 110px;\n  height: 20px;\n  margin-right: 0.5rem;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss":
 /*!**************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/home.scss ***!
@@ -153,7 +170,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "@charset \"UTF-8\";\n.dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n  gap: 16px;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  max-width: 300px;\n  min-width: 200px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  grid-column: 1/-1;\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.esgnow-getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .esgnow-getting-started {\n    flex: 1;\n  }\n}\n.esgnow-getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.esgnow-getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.esgnow-getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container,\n.error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}\n\n.uxpcore_datatable__header-cell {\n  background-color: #0066ff;\n  color: white;\n}\n\n.esgnow-add-product-button {\n  background-color: #0056D2;\n  font-size: 14px;\n  color: white;\n  border-radius: 4px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  cursor: pointer;\n  border: none;\n}\n.esgnow-add-product-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n\n.faq-section {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: right;\n  text-align: right;\n}\n.faq-section h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.faq-section p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n\n.esgnow-faq-link {\n  color: #0056D2;\n  text-decoration: none;\n  font-weight: 500;\n  display: inline-flex;\n  align-items: center;\n  transition: color 0.2s ease;\n}\n.esgnow-faq-link::before {\n  font-weight: bold;\n  content: \"• \";\n  margin-right: 4px;\n}\n.esgnow-faq-link:hover {\n  color: #003E99;\n  text-decoration: underline;\n}", ""]);
+exports.push([module.id, "@charset \"UTF-8\";\n.dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n  gap: 16px;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  width: 300px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  grid-column: 1/-1;\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.esgnow-getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .esgnow-getting-started {\n    flex: 1;\n  }\n}\n.esgnow-getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.esgnow-getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.esgnow-getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container,\n.error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}\n\n.uxpcore_datatable__header-cell {\n  background-color: #0066ff;\n  color: white;\n}\n\n.esgnow-add-product-button {\n  background-color: #0056D2;\n  font-size: 14px;\n  color: white;\n  border-radius: 4px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  cursor: pointer;\n  border: none;\n}\n.esgnow-add-product-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n\n.faq-section {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: right;\n  text-align: right;\n}\n.faq-section h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.faq-section p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n\n.esgnow-faq-link {\n  color: #0056D2;\n  text-decoration: none;\n  font-weight: 500;\n  display: inline-flex;\n  align-items: center;\n  transition: color 0.2s ease;\n  cursor: pointer;\n}\n.esgnow-faq-link::before {\n  font-weight: bold;\n  content: \"• \";\n  margin-right: 4px;\n}\n.esgnow-faq-link:hover {\n  color: #003E99;\n  text-decoration: underline;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -170,7 +187,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 16px 24px;\n  border-top: 1px solid #eee;\n  margin-top: auto;\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
+exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 16px 24px;\n  border-top: 1px solid #eee;\n  margin-top: auto;\n}\n\n.esgnow-pagination-wrapper {\n  display: flex;\n  justify-content: flex-end; /* Moves content to the right */\n  padding: 1rem; /* Optional: for spacing */\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -221,7 +238,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".product-list {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  overflow: hidden;\n  margin-bottom: 24px;\n}\n\n.list-header {\n  display: grid;\n  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;\n  padding: 10px 12px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n  font-weight: 600;\n  font-size: 14px;\n  color: #333;\n}\n\n.list-item {\n  display: grid;\n  grid-template-columns: 60px 3fr 1fr 1fr 1fr 1fr;\n  padding: 8px 12px;\n  border-bottom: 1px solid #eee;\n  transition: background-color 0.2s ease;\n  align-items: center;\n  min-height: 60px;\n  height: auto;\n}\n.list-item:hover {\n  background-color: #f9f9f9;\n}\n.list-item:last-child {\n  border-bottom: none;\n}\n\n.list-col-image {\n  width: 48px;\n  height: 48px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.list-item-thumbnail {\n  width: 44px;\n  height: 44px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-size: 8px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #999;\n  text-align: center;\n  line-height: 1.2;\n  flex-shrink: 0;\n}\n\n.list-col-name {\n  min-width: 0;\n  padding-right: 8px;\n}\n\n.product-name-code {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n}\n\n.product-name-code .product-name {\n  font-size: 14px;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 2px;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.product-name-code .product-code {\n  font-size: 12px;\n  color: #999;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.list-col-category, .list-col-subcategory, .list-col-weight {\n  font-size: 13px;\n  color: #333;\n  white-space: nowrap;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.list-col-actions {\n  text-align: right;\n}\n\n.view-details-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 6px 10px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n  white-space: nowrap;\n}\n.view-details-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);\n}\n\n@media (max-width: 992px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr 1fr 1fr;\n  }\n  .product-list .list-header .list-col-weight, .product-list .list-item .list-col-weight {\n    display: none;\n  }\n}\n@media (max-width: 768px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr 1fr;\n  }\n  .product-list .list-header .list-col-subcategory, .product-list .list-item .list-col-subcategory {\n    display: none;\n  }\n}\n@media (max-width: 576px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr;\n  }\n  .product-list .list-header .list-col-category, .product-list .list-item .list-col-category {\n    display: none;\n  }\n}", ""]);
+exports.push([module.id, ".product-list {\n  width: 100%;\n  padding: 24px;\n  background-color: #f9f9f9;\n  min-height: 100vh;\n  font-family: \"Comfortaa\", sans-serif;\n}\n\n.list-header {\n  display: grid;\n  grid-template-columns: 60px 0.8fr 1.2fr 1fr 1fr 0.8fr 0.8fr;\n  column-gap: 16px;\n  padding: 12px 16px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n  font-weight: 600;\n  font-size: 14px;\n  color: #333;\n}\n\n.list-item {\n  display: grid;\n  grid-template-columns: 60px 0.8fr 1.2fr 1fr 1fr 0.8fr 0.8fr;\n  column-gap: 16px;\n  padding: 10px 12px;\n  border-bottom: 1px solid #eee;\n  transition: background-color 0.2s ease;\n  align-items: center;\n  min-height: 60px;\n  height: auto;\n}\n.list-item:hover {\n  background-color: #f9f9f9;\n}\n.list-item:last-child {\n  border-bottom: none;\n}\n\n.list-col-image {\n  width: 48px;\n  height: 48px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.list-item-thumbnail {\n  width: 44px;\n  height: 44px;\n  border-radius: 4px;\n  background-color: #f0f0f0;\n  background-size: contain;\n  background-position: center;\n  background-repeat: no-repeat;\n  font-size: 8px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #999;\n  text-align: center;\n  line-height: 1.2;\n  flex-shrink: 0;\n}\n\n.list-col-name {\n  min-width: 0;\n  padding-right: 8px;\n}\n\n.product-name-code {\n  display: flex;\n  flex-direction: column;\n  min-width: 0;\n}\n\n.product-name-code .product-name {\n  font-size: 14px;\n  font-weight: 600;\n  color: #333;\n  margin-bottom: 2px;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.product-code {\n  font-size: 12px;\n  color: #333;\n  background-color: #f9f9f9;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.list-col-category, .list-col-subcategory, .list-col-weight {\n  font-size: 13px;\n  color: #333;\n  overflow: hidden;\n  text-overflow: ellipsis;\n}\n\n.view-details-button {\n  background-color: #0056D2;\n  color: white;\n  border: none;\n  padding: 6px 10px;\n  border-radius: 4px;\n  font-size: 12px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.view-details-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);\n}\n\n@media (max-width: 992px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr 1fr 1fr;\n  }\n  .product-list .list-header .list-col-weight, .product-list .list-item .list-col-weight {\n    display: none;\n  }\n}\n@media (max-width: 768px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr 1fr;\n  }\n  .product-list .list-header .list-col-subcategory, .product-list .list-item .list-col-subcategory {\n    display: none;\n  }\n}\n@media (max-width: 576px) {\n  .product-list .list-header, .product-list .list-item {\n    grid-template-columns: 60px 3fr 1fr;\n  }\n  .product-list .list-header .list-col-category, .product-list .list-item .list-col-category {\n    display: none;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -272,7 +289,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.add-transport-leg-button,\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.add-transport-leg-button:hover,\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}", ""]);
+exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.add-transport-leg-button,\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.add-transport-leg-button:hover,\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n  padding-left: 10px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -323,7 +340,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  margin: 20px;\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}", ""]);
+exports.push([module.id, ".material-summary {\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}\n\n.summary-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.summary-actions .edit-all-button {\n  min-width: 150px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -340,7 +357,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".process-entry-form {\n  padding: 16px;\n  margin-top: 12px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  border: 1px solid #e0e0e0;\n}\n\n.process-form-fields {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.form-field {\n  margin-top: 0;\n  margin-bottom: 16px;\n}\n.form-field label {\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #616161;\n  display: block;\n}\n\n.add-process-button {\n  align-self: flex-end;\n  background-color: #2196f3;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: all 0.2s ease;\n  margin-bottom: 10px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  transform: translateY(-1px);\n}\n.add-process-button:disabled {\n  background-color: #e0e0e0;\n  color: #9e9e9e;\n  cursor: not-allowed;\n  box-shadow: none;\n  transform: none;\n}\n\n.process-note {\n  font-size: 12px;\n  color: #757575;\n  font-style: italic;\n  margin-top: 8px;\n  text-align: center;\n  border-top: 1px dashed #e0e0e0;\n  padding-top: 8px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  padding: 8px;\n}\n\n.selected-process-summary {\n  margin-top: 16px;\n  padding: 12px;\n  background-color: #e3f2fd;\n  border-radius: 6px;\n  border: 1px solid #bbdefb;\n}\n.selected-process-summary .selected-manufacturing-process, .selected-process-summary .selected-sub-processes {\n  margin-bottom: 10px;\n}\n.selected-process-summary .selected-manufacturing-process:last-child, .selected-process-summary .selected-sub-processes:last-child {\n  margin-bottom: 0;\n}\n.selected-process-summary .selected-label {\n  font-weight: 500;\n  color: #1976d2;\n  margin-right: 8px;\n  font-size: 13px;\n}\n.selected-process-summary .selected-value {\n  color: #424242;\n  font-weight: 400;\n}\n.selected-process-summary .selected-chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-top: 6px;\n}\n.selected-process-summary .sub-process-chip {\n  background-color: #bbdefb;\n  color: #1565c0;\n  padding: 4px 8px;\n  border-radius: 16px;\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n}\n.loading-container p {\n  margin-top: 16px;\n  color: #757575;\n  font-size: 14px;\n}\n\n.error-message {\n  background-color: #ffebee;\n  border-left: 4px solid #f44336;\n  padding: 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n.error-message p {\n  color: #d32f2f;\n  margin: 0 0 16px 0;\n  font-size: 14px;\n}\n.error-message button {\n  background-color: #f44336;\n  color: white;\n  padding: 8px 16px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  transition: background-color 0.2s;\n}\n.error-message button:hover {\n  background-color: #d32f2f;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  background-color: #ffffff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: #f5f5f5;\n  color: #616161;\n  border: none;\n  padding: 6px 10px;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 12px;\n  transition: all 0.2s ease;\n}\n.process-entry-container .collapse-expand-button:hover {\n  background-color: #e0e0e0;\n}", ""]);
+exports.push([module.id, ".process-entry-form {\n  padding: 16px;\n  margin-top: 12px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  border: 1px solid #e0e0e0;\n}\n\n.process-form-fields {\n  display: flex;\n  flex-direction: column;\n  gap: 16px;\n}\n\n.form-field {\n  margin-top: 0;\n  margin-bottom: 8px;\n}\n.form-field label {\n  margin-bottom: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #616161;\n  display: block;\n}\n\n.add-process-button {\n  align-self: flex-end;\n  background-color: #2196f3;\n  color: white;\n  padding: 8px 16px;\n  border-radius: 4px;\n  transition: all 0.2s ease;\n  margin-bottom: 10px;\n}\n.add-process-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  transform: translateY(-1px);\n}\n.add-process-button:disabled {\n  background-color: #e0e0e0;\n  color: #9e9e9e;\n  cursor: not-allowed;\n  box-shadow: none;\n  transform: none;\n}\n\n.process-note {\n  font-size: 12px;\n  color: #757575;\n  font-style: italic;\n  margin-top: 8px;\n  text-align: center;\n  border-top: 1px dashed #e0e0e0;\n  padding-top: 8px;\n  background-color: #f9f9f9;\n  border-radius: 4px;\n  padding: 8px;\n}\n\n.selected-process-summary {\n  margin-top: 16px;\n  padding: 12px;\n  background-color: #e3f2fd;\n  border-radius: 6px;\n  border: 1px solid #bbdefb;\n}\n.selected-process-summary .selected-manufacturing-process, .selected-process-summary .selected-sub-processes {\n  margin-bottom: 10px;\n}\n.selected-process-summary .selected-manufacturing-process:last-child, .selected-process-summary .selected-sub-processes:last-child {\n  margin-bottom: 0;\n}\n.selected-process-summary .selected-label {\n  font-weight: 500;\n  color: #1976d2;\n  margin-right: 8px;\n  font-size: 13px;\n}\n.selected-process-summary .selected-value {\n  color: #424242;\n  font-weight: 400;\n}\n.selected-process-summary .selected-chips {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 6px;\n  margin-top: 6px;\n}\n.selected-process-summary .sub-process-chip {\n  background-color: #bbdefb;\n  color: #1565c0;\n  padding: 4px 8px;\n  border-radius: 16px;\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.sub-process-list {\n  margin-top: 16px;\n  padding: 8px;\n  background-color: #f0f8ff;\n  border-radius: 6px;\n}\n\n.sub-process-item {\n  margin: 4px 0;\n  font-size: 14px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 20px;\n  text-align: center;\n}\n.loading-container p {\n  margin-top: 16px;\n  color: #757575;\n  font-size: 14px;\n}\n\n.error-message {\n  background-color: #ffebee;\n  border-left: 4px solid #f44336;\n  padding: 16px;\n  margin: 16px 0;\n  border-radius: 4px;\n}\n.error-message p {\n  color: #d32f2f;\n  margin: 0 0 16px 0;\n  font-size: 14px;\n}\n.error-message button {\n  background-color: #f44336;\n  color: white;\n  padding: 8px 16px;\n  border: none;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 14px;\n  transition: background-color 0.2s;\n}\n.error-message button:hover {\n  background-color: #d32f2f;\n}\n\n.process-entry-container {\n  position: relative;\n  padding: 20px;\n  border: 1px solid #e0e0e0;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  background-color: #ffffff;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);\n}\n.process-entry-container .collapse-expand-button {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  background-color: #f5f5f5;\n  color: #616161;\n  border: none;\n  padding: 6px 10px;\n  cursor: pointer;\n  border-radius: 4px;\n  font-size: 12px;\n  transition: all 0.2s ease;\n}\n.process-entry-container .collapse-expand-button:hover {\n  background-color: #e0e0e0;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38522,6 +38539,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/faq.scss":
+/*!********************************!*\
+  !*** ./src/lca/views/faq.scss ***!
+  \********************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./faq.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/faq.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/home.scss":
 /*!*********************************!*\
   !*** ./src/lca/views/home.scss ***!
@@ -41681,6 +41726,133 @@ exports["default"] = EmissionSummary;
 
 /***/ }),
 
+/***/ "./src/lca/views/faq.tsx":
+/*!*******************************!*\
+  !*** ./src/lca/views/faq.tsx ***!
+  \*******************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importDefault(__webpack_require__(/*! react */ "react"));
+__webpack_require__(/*! ./faq.scss */ "./src/lca/views/faq.scss");
+const ESGNowFAQ = () => {
+    return (react_1.default.createElement("div", { className: "esgnow-container" },
+        react_1.default.createElement("div", { className: "esgnow-header-image" },
+            react_1.default.createElement("img", { src: "/public/assets/ESG_now_logo_login.png", alt: "FAQ Banner" })),
+        react_1.default.createElement("h1", { className: "esgnow-h1" }, "Frequently Asked Questions"),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "1. What is ESG Now?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "ESG Now is a software solution built on iviva, a Composable Integration Platform that enables the rapid development of modular, scalable applications. ESG Now leverages this capability to deliver dedicated tools for environmental reporting and product carbon footprint analysis. "),
+            react_1.default.createElement("p", null, "It offers two key modules:"),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Carbon Accounting:"),
+                    " For tracking and reporting organisational carbon emissions."),
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Procurement:"),
+                    " For calculating the product carbon footprint using Life Cycle Assessment.")),
+            react_1.default.createElement("p", null, "The Procurement module assists businesses in assessing product carbon footprints by leveraging AI to generate the Bill of Materials (BoM), identify manufacturing processes, and calculate emissions using emission factors from trusted sources like Ecoinvent. This enables businesses to compare products, make sustainable purchasing decisions, and meet Scope 3 reporting requirements. ")),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "2. What is the scope of the Life Cycle Assessment we are conducting?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "A Life Cycle Assessment (LCA) evaluates the environmental impacts associated with all stages of a product's life. For ESG Now, the assessment encompasses: "),
+            react_1.default.createElement("img", { src: "/public/assets/Cradle-to-Grave Chart - Neutral BK.png", alt: "Life Cycle Assessment scope diagram", className: "esgnow-image" }),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Cradle to Gate:"),
+                    " This phase includes the environmental impacts from the extraction and transportation of raw materials, through material processing and manufacturing, up to the point where the finished product leaves the factory."),
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Transportation (Port to Port):"),
+                    " We also account for the environmental impacts from shipping the finished product from the origin port (e.g., Port of Shanghai) to the destination port (e.g., Port of Le Havre)."))),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "3. Which environmental impact categories are assessed?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "The primary environmental impact category currently assessed in ESG Now is climate change, specifically Global Warming Potential over 100 years (GWP 100), which measures greenhouse gas emissions (such as carbon dioxide, methane, and nitrous oxide) over a 100-year period. The GWP 100 values are sourced from the Ecoinvent database, which applies the Global Warming Potentials defined in the Intergovernmental Panel on Climate Change (IPCC) Fifth Assessment Report (AR5), as required by the European Product Environmental Footprint (PEF) methodology.")),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "4. What is the functional unit used in the life cycle assessment?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "A functional unit defines the reference to which environmental impacts are related, ensuring that results can be consistently compared across different products and assessments. For ESG Now, the functional unit is one unit of product. The assessed climate change impact is reported as the total kilograms of carbon dioxide equivalent (kg CO2e) emitted per product unit. This approach aligns with the European PEF methodology, which requires the functional unit to be clearly defined in terms of the product's function, performance, and duration. By specifying the functional unit as one product unit, ESG Now ensures that the environmental impact assessments are consistent, reproducible, and comparable across different products and sectors.")),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "5. What material categories are included?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "The platform covers 11 main material groups, with over 150 sub-materials:"),
+            react_1.default.createElement("div", { className: "esgnow-material-list" },
+                react_1.default.createElement("ul", null,
+                    react_1.default.createElement("li", null, "Wood"),
+                    react_1.default.createElement("li", null, "Metal"),
+                    react_1.default.createElement("li", null, "Plastic"),
+                    react_1.default.createElement("li", null, "Glass"),
+                    react_1.default.createElement("li", null, "Fabric"),
+                    react_1.default.createElement("li", null, "Leather"),
+                    react_1.default.createElement("li", null, "Laminate"),
+                    react_1.default.createElement("li", null, "Mesh"),
+                    react_1.default.createElement("li", null, "Foam"),
+                    react_1.default.createElement("li", null, "Stone")))),
+        react_1.default.createElement("p", null, "These categories reflect the materials commonly used in furniture, interior fit-outs, and hospitality industry products."),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "6. Which emission factors are used in our life cycle assessments?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "We use emission factors from reliable and widely accepted sources that provide detailed data on emissions related to raw materials, manufacturing processes, and transportation. Our approach follows a two-step hierarchy:"),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Primary source: "),
+                    "We subscribe to Ecoinvent, which is one of the world\u2019s most trusted life cycle inventory databases, offering comprehensive and peer-reviewed emission factors"),
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Secondary sources:"),
+                    " If Ecoinvent does not contain data for a particular material or process, we use AI to help identify alternate sources such as EPDs, peer-reviewed scientific literature, or verified manufacturing reports to ensure the calculation can be completed."))),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "7. How does the platform select emission factors for materials?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "Emission factors for materials are selected using a clear hierarchy and fallback logic to ensure consistency, transparency, and completeness. The AI reviews the materials database and, when an exact match is not available, recommends either:"),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null, "A proxy emission factor based on a material with similar properties, or"),
+                react_1.default.createElement("li", null, "A category average factor where no close proxy exists.")),
+            react_1.default.createElement("p", null, "The AI analyses the material composition and associated attributes to select the most appropriate emission factor from the available data."),
+            react_1.default.createElement("img", { src: "/public/assets/iviva - ESG Now for ECF.png", alt: "Life Cycle Assessment scope diagram", className: "esgnow-image" })),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "8. How is artificial intelligence (AI) used in the platform?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null, "The platform uses advanced foundational models - large language models trained on diverse datasets - to assist with key data selection and generation tasks. This approach allows the platform to process complex product information and suggest relevant categories, materials, and processes with speed and scalability. Using the product information provided, the AI supports users in three main ways:"),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Product categorisation: "),
+                    "The AI suggests the most appropriate category from the platform's predefined category structure."),
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "BoM generation:"),
+                    "The AI generates a list of likely materials, from the platform's material databases, and assigns approximate weights, following industry norms."),
+                react_1.default.createElement("li", null,
+                    react_1.default.createElement("strong", null, "Manufacturing process selection:"),
+                    "The AI recommends manufacturing processes that align with the selected materials and product type, using logic informed by industrial practices.")),
+            react_1.default.createElement("p", null, "While AI assists in streamlining these steps, reducing the time and effort required for life cycle assessment setup, users retain full control and can review and adjust any AI-generated outputs.")),
+        react_1.default.createElement("div", { className: "esgnow-question" }, "9. How accurate are the emission results provided by the platform?"),
+        react_1.default.createElement("div", { className: "esgnow-answer" },
+            react_1.default.createElement("p", null,
+                "Based on initial testing, the platform's emission results have achieved approximately ",
+                react_1.default.createElement("strong", null, "70% alignment"),
+                " with results typically obtained through conventional LCAs. However, the level of accuracy can vary depending on several factors:"),
+            react_1.default.createElement("ul", null,
+                react_1.default.createElement("li", null, "Whether the assessment relies on specific primary data provided by the user or relies on AI when primary data is unavailable."),
+                react_1.default.createElement("li", null, "The quality and completeness of information provided by the user when using AI assistance (for example, product descriptions and images)."),
+                react_1.default.createElement("li", null, "The platform uses proxy energy data based on the material or similar products, which may differ from the primary energy data used in conventional LCAs.")),
+            react_1.default.createElement("div", { className: "esgnow-note" },
+                react_1.default.createElement("strong", null, "Note:"),
+                " The platform is designed to provide reliable estimates suitable for supporting procurement decisions and reporting. However, if results are to be submitted for ecolabelling, certification, or regulatory disclosure, third-party verified assessments may be required to meet formal compliance standards.")),
+        react_1.default.createElement("div", { className: "esgnow-footer" },
+            react_1.default.createElement("div", { className: "esgnow-footer-title" },
+                react_1.default.createElement("img", { src: "/public/assets/iviva_logo.png", alt: "iviva logo", className: "esgnow-footer-iviva-image" })),
+            react_1.default.createElement("p", null,
+                react_1.default.createElement("strong", null, "iviva"),
+                " is a global software company offering a Composable Integration Platform designed to rapidly develop modular, scalable applications for smart workplaces, facilities management, and sustainability initiatives. By leveraging pre-built connectors and a low-code environment, iviva enables seamless integration of building operations, asset management, ESG reporting, and carbon footprint tracking. This approach empowers organisations to enhance efficiency, achieve sustainability goals, and drive digital transformation."),
+            react_1.default.createElement("div", { className: "esgnow-footer-title" },
+                react_1.default.createElement("div", { className: "esgnow-footer-title" },
+                    react_1.default.createElement("img", { src: "/public/assets/ecoinvent_logo.png", alt: "ecoinvent logo", className: "esgnow-footer-ecoinvent-image" }))),
+            react_1.default.createElement("p", null,
+                react_1.default.createElement("strong", null, "Ecoinvent"),
+                " is a Switzerland-based non-profit organisation that provides one of the world\u2019s most comprehensive and trusted life cycle inventory (LCI) databases. It offers peer-reviewed data covering raw materials, manufacturing processes, transportation, and waste management, supporting robust life cycle assessments (LCA), carbon footprint calculations, and sustainability reporting. Ecoinvent\u2019s data is widely recognised for its transparency, scientific rigour, and alignment with international standards such as ISO 14040, ISO 14044, the GHG Protocol, and the European Product Environmental Footprint (PEF) methodology."))));
+};
+exports["default"] = ESGNowFAQ;
+
+
+/***/ }),
+
 /***/ "./src/lca/views/home.tsx":
 /*!********************************!*\
   !*** ./src/lca/views/home.tsx ***!
@@ -41728,7 +41900,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./home.scss */ "./src/lca/views/home.scss");
-const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts"); // Import getAllProjects
 const product_info_summary_1 = __importDefault(__webpack_require__(/*! ./product-info-summary */ "./src/lca/views/product-info-summary.tsx"));
 const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
@@ -41736,6 +41908,7 @@ const product_wizard_1 = __importDefault(__webpack_require__(/*! ./product-wizar
 // Import react-tooltip
 const react_tooltip_1 = __webpack_require__(/*! react-tooltip */ "./node_modules/react-tooltip/dist/react-tooltip.min.cjs");
 __webpack_require__(/*! react-tooltip/dist/react-tooltip.css */ "./node_modules/react-tooltip/dist/react-tooltip.min.css"); // Import the CSS for styling
+const faq_1 = __importDefault(__webpack_require__(/*! ./faq */ "./src/lca/views/faq.tsx"));
 const HomeDashboard = ({ uxpContext }) => {
     // State management
     const [searchValue, setSearchValue] = (0, react_1.useState)('');
@@ -41755,6 +41928,7 @@ const HomeDashboard = ({ uxpContext }) => {
     const [selectedProduct, setSelectedProduct] = (0, react_1.useState)(null);
     const [showTour, setShowTour] = (0, react_1.useState)(false);
     const [showCloseWarning, setShowCloseWarning] = react_1.default.useState(true);
+    const [showFAQModal, setShowFAQModal] = (0, react_1.useState)(false);
     const alerts = (0, components_1.useAlert)();
     // Search config
     const searchConfig = (0, react_1.useMemo)(() => ({
@@ -41764,13 +41938,14 @@ const HomeDashboard = ({ uxpContext }) => {
     // Fetch dashboard data (combined API calls)
     (0, react_1.useEffect)(() => {
         const fetchDashboardData = () => __awaiter(void 0, void 0, void 0, function* () {
-            var _a;
+            var _a, _b;
             setIsLoading(true);
             try {
-                // Fetch products and stats in parallel
-                const [productsResponse, statsResponse] = yield Promise.all([
+                // Fetch products, projects and stats in parallel
+                const [productsResponse, statsResponse, projectsResponse] = yield Promise.all([
                     (0, esgnow_service_1.getAllProducts)(uxpContext),
-                    (0, esgnow_service_1.home)(uxpContext)
+                    (0, esgnow_service_1.home)(uxpContext),
+                    (0, esgnow_service_1.getAllProjects)(uxpContext, {})
                 ]);
                 // Handle products data
                 const productsData = productsResponse.data;
@@ -41778,10 +41953,14 @@ const HomeDashboard = ({ uxpContext }) => {
                 setPlan(((_a = productsData.plan) === null || _a === void 0 ? void 0 : _a.plan) || 'Free');
                 // Handle dashboard stats
                 const statsData = statsResponse.data;
+                // Get the actual project count from getAllProjects response
+                const projectsCount = Array.isArray(projectsResponse.data)
+                    ? projectsResponse.data.length
+                    : (((_b = projectsResponse.data.projects) === null || _b === void 0 ? void 0 : _b.length) || 0);
                 setDashboardStats({
                     totalProducts: statsData.totalProducts || 0,
                     totalImpact: statsData.totalImpact || 0,
-                    totalProjects: statsData.totalProjects || 0,
+                    totalProjects: projectsCount,
                     totalCredits: statsData.totalCredits || 0
                 });
                 setHasError(false);
@@ -41856,6 +42035,8 @@ const HomeDashboard = ({ uxpContext }) => {
                     setProducts(response.data.products);
                 });
             } }),
+        react_1.default.createElement(components_1.Modal, { title: "Frequently Asked Questions", show: showFAQModal, onClose: () => setShowFAQModal(false) },
+            react_1.default.createElement(faq_1.default, null)),
         react_1.default.createElement("div", { className: "dashboard-container" },
             react_1.default.createElement("div", { className: "dashboard-header" },
                 react_1.default.createElement("div", null,
@@ -41886,7 +42067,7 @@ const HomeDashboard = ({ uxpContext }) => {
                 react_1.default.createElement("div", { className: "faq-section" },
                     react_1.default.createElement("h2", null, "Getting Started"),
                     react_1.default.createElement("p", null, "Get answers to common questions about ESG NOW"),
-                    react_1.default.createElement("a", { href: "/Resources/ESGNOW/pdf/Esgfaq.pdf", className: "esgnow-faq-link", target: "_blank", rel: "noopener noreferrer" }, "Frequently Asked Questions"))),
+                    react_1.default.createElement("a", { onClick: () => setShowFAQModal(true), className: "esgnow-faq-link" }, "Frequently Asked Questions"))),
             react_1.default.createElement("div", { className: "recent-products-container" },
                 react_1.default.createElement(components_1.CRUDComponent, { list: {
                         title: 'Recent Products',
@@ -42009,6 +42190,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
     const [categories, setCategories] = (0, react_1.useState)([]);
     const [subCategories, setSubCategories] = (0, react_1.useState)([]);
     const [viewMode, setViewMode] = (0, react_1.useState)("grid");
+    const [transportErrors, setTransportErrors] = (0, react_1.useState)([{}]);
     const [transportLegs, setTransportLegs] = (0, react_1.useState)([{
             id: 1,
             originCountry: "",
@@ -42194,6 +42376,30 @@ const LCADashboardWidget = ({ uxpContext }) => {
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     });
+    // Add validation function
+    const validateTransportLegs = () => {
+        const newErrors = transportLegs.map(leg => {
+            const legErrors = {};
+            // Check required fields for all plans
+            if (!leg.originCountry)
+                legErrors.originCountry = true;
+            if (!leg.destinationCountry)
+                legErrors.destinationCountry = true;
+            if (!leg.transportMode)
+                legErrors.transportMode = true;
+            // Check additional fields for professional plan
+            if (plan === 'professional') {
+                if (!leg.originGateway)
+                    legErrors.originGateway = true;
+                if (!leg.destinationGateway)
+                    legErrors.destinationGateway = true;
+            }
+            return legErrors;
+        });
+        setTransportErrors(newErrors);
+        // Return true if there are no errors (all fields are valid)
+        return newErrors.every(error => Object.keys(error).length === 0);
+    };
     const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
             const updatedLegs = [...transportLegs];
@@ -42222,7 +42428,16 @@ const LCADashboardWidget = ({ uxpContext }) => {
             console.error("Error calculating transport emission:", error);
         }
     });
+    // Update handleNext function to validate before proceeding
     const handleNext = () => {
+        // If we're on the transport selection step (step 1)
+        if (activeStep === 1) {
+            const isValid = validateTransportLegs();
+            if (!isValid) {
+                // If validation fails, don't proceed
+                return;
+            }
+        }
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
@@ -42244,7 +42459,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         {
             id: "step-2",
             title: "TRANSPORT SELECTION",
-            content: (React.createElement(TransportSelectionStep_1.default, { transportLegs: transportLegs, setTransportLegs: setTransportLegs, countries: countries, transportDatabase: transportDatabase, plan: plan, uxpContext: uxpContext })),
+            content: (React.createElement(TransportSelectionStep_1.default, { transportLegs: transportLegs, setTransportLegs: setTransportLegs, countries: countries, transportDatabase: transportDatabase, plan: plan, uxpContext: uxpContext, errors: transportErrors })),
         },
         {
             id: "step-3",
@@ -42377,6 +42592,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         originGateways: [],
                         destinationGateways: []
                     }]);
+                setTransportErrors([]);
                 setIsPackagingManual(false);
                 setIsPalletManual(false);
                 setIncludePallet(false);
@@ -42385,7 +42601,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
             }, title: "Calculate Impact", className: "lgs-calculate-impact-modal" },
             React.createElement("div", { className: "modal-content" },
                 React.createElement("div", { className: "modal-stepper-container" },
-                    React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: setActiveStep })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
+                    React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: () => { } })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
                 _a.content,
                 React.createElement("div", { className: "modal-footer" },
                     activeStep > 0 && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: handlePrevious })),
@@ -42557,6 +42773,7 @@ const ProductListView = ({ currentItems, selectProduct }) => {
     return (React.createElement("div", { className: "product-list" },
         React.createElement("div", { className: "list-header" },
             React.createElement("div", { className: "list-col-image" }),
+            React.createElement("div", { className: "list-col-name" }, "Product Code"),
             React.createElement("div", { className: "list-col-name" }, "Product Name"),
             React.createElement("div", { className: "list-col-category" }, "Category"),
             React.createElement("div", { className: "list-col-subcategory" }, "SubCategory"),
@@ -42568,10 +42785,10 @@ const ProductListView = ({ currentItems, selectProduct }) => {
                         backgroundImage: item.images && item.images.length > 0 ?
                             `url(${item.images[0]})` : 'none'
                     } }, (!item.images || item.images.length === 0) && "No Image")),
+            React.createElement("div", { className: "product-code" }, item.code),
             React.createElement("div", { className: "list-col-name" },
                 React.createElement("div", { className: "product-name-code" },
-                    React.createElement("span", { className: "product-name" }, item.name),
-                    React.createElement("span", { className: "product-code" }, item.code))),
+                    React.createElement("span", { className: "product-name" }, item.name))),
             React.createElement("div", { className: "list-col-category" },
                 React.createElement("div", null, item.category || "Uncategorized")),
             React.createElement("div", { className: "list-col-subcategory" },
@@ -42817,7 +43034,7 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const esgnow_service_1 = __webpack_require__(/*! ../../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./transport-selection-step.scss */ "./src/lca/views/lca-dashboard/transport-selection-step.scss");
-const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, transportDatabase, plan, uxpContext }) => {
+const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, transportDatabase, plan, uxpContext, errors }) => {
     const addTransportLeg = () => {
         setTransportLegs([...transportLegs, {
                 id: transportLegs.length + 1,
@@ -42904,35 +43121,43 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
         });
     });
     return (React.createElement("div", { className: "transport-selection-container" },
-        transportLegs.map((leg, index) => (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
-            React.createElement("div", { className: "transport-leg-header" },
-                React.createElement("h3", null,
-                    "Transport Leg ",
-                    index + 1)),
-            React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
-            React.createElement(components_1.FormField, null,
-                React.createElement(components_1.Label, null,
-                    React.createElement("span", { className: "label-text" }, "Origin Country")),
-                React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) })),
-            React.createElement(components_1.FormField, null,
-                React.createElement(components_1.Label, null,
-                    React.createElement("span", { className: "label-text" }, "Destination Country")),
-                React.createElement(components_1.Select, { className: "highlighted-select", options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) })),
-            plan === 'professional' && (React.createElement(components_1.FormField, null,
-                React.createElement(components_1.Label, null,
-                    React.createElement("span", { className: "label-text" }, "Origin Gateway")),
-                React.createElement(components_1.Select, { className: "highlighted-select", options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) }))),
-            plan === 'professional' && (React.createElement(components_1.FormField, null,
-                React.createElement(components_1.Label, null,
-                    React.createElement("span", { className: "label-text" }, "Destination Gateway")),
-                React.createElement(components_1.Select, { className: "highlighted-select", options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }))),
-            React.createElement(components_1.FormField, null,
-                React.createElement(components_1.Label, null,
-                    React.createElement("span", { className: "label-text" }, "Transport Mode")),
-                React.createElement(components_1.Select, { className: "highlighted-select", options: [
-                        { label: "Sea Freight", value: "SeaFreight" },
-                        // Additional transport modes could be added here
-                    ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }))))),
+        transportLegs.map((leg, index) => {
+            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+            return (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
+                React.createElement("div", { className: "transport-leg-header" },
+                    React.createElement("h3", null,
+                        "Transport Leg ",
+                        index + 1)),
+                React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
+                React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Origin Country")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_a = errors[index]) === null || _a === void 0 ? void 0 : _a.originCountry) ? 'error-field' : ''}`, options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) }),
+                    ((_b = errors[index]) === null || _b === void 0 ? void 0 : _b.originCountry) && (React.createElement("span", { className: "error-text" }, "Origin country is required"))),
+                React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Destination Country")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_c = errors[index]) === null || _c === void 0 ? void 0 : _c.destinationCountry) ? 'error-field' : ''}`, options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) }),
+                    ((_d = errors[index]) === null || _d === void 0 ? void 0 : _d.destinationCountry) && (React.createElement("span", { className: "error-text" }, "Destination country is required"))),
+                plan === 'professional' && (React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Origin Gateway")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_e = errors[index]) === null || _e === void 0 ? void 0 : _e.originGateway) ? 'error-field' : ''}`, options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) }),
+                    ((_f = errors[index]) === null || _f === void 0 ? void 0 : _f.originGateway) && (React.createElement("span", { className: "error-text" }, "Origin gateway is required")))),
+                plan === 'professional' && (React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Destination Gateway")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_g = errors[index]) === null || _g === void 0 ? void 0 : _g.destinationGateway) ? 'error-field' : ''}`, options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }),
+                    ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required")))),
+                React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Transport Mode")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_j = errors[index]) === null || _j === void 0 ? void 0 : _j.transportMode) ? 'error-field' : ''}`, options: [
+                            { label: "Sea Freight", value: "SeaFreight" },
+                            // Additional transport modes could be added here
+                        ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }),
+                    ((_k = errors[index]) === null || _k === void 0 ? void 0 : _k.transportMode) && (React.createElement("span", { className: "error-text" }, "Transport mode is required")))));
+        }),
         React.createElement("div", { className: "add-transport-leg-container" },
             React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg }))));
 };
