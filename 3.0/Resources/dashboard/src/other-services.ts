@@ -28,7 +28,7 @@ export async function getAllLocations(uxpContext: IContextProvider): Promise<{ d
 export async function getAllApps(uxpContext: IContextProvider): Promise<{ data: App[], error?: string }> {
     try {
 
-        const res = await uxpContext.executeService('UMS', 'GetAllApps', {}, { json: true })
+        const res = await uxpContext.executeService('ESGNOW', 'GetAllApps', {}, { json: true })
         console.log(res, 'installed_apps')
         return { data: res, error: null }
     }
@@ -40,7 +40,7 @@ export async function getAllApps(uxpContext: IContextProvider): Promise<{ data: 
 
 export async function getLayoutConfigurationsById(uxpContext: IContextProvider, id: string): Promise<{ data: any, error?: string }> {
     try {
-        const res = await uxpContext.executeService('UMS', 'LayoutConfiguration:GetConfigurationByID', { 'ID': id }, { json: true })
+        const res = await uxpContext.executeService('ESGNOW', 'LayoutConfiguration:GetConfigurationByID', { 'ID': id }, { json: true })
         return { data: res?.[0], error: null }
     }
     catch (e) {
@@ -55,7 +55,7 @@ export async function saveLayoutConfigurationsById(uxpContext: IContextProvider,
             ID: id,
             Configuration: JSON.stringify(configuration)
         }
-        const res = await uxpContext.executeService('UMS', 'LayoutConfiguration:SaveLayoutConfig', paramas, { json: true })
+        const res = await uxpContext.executeService('ESGNOW', 'LayoutConfiguration:SaveLayoutConfig', paramas, { json: true })
         return { data: res, error: null }
     }
     catch (e) {
@@ -66,7 +66,7 @@ export async function saveLayoutConfigurationsById(uxpContext: IContextProvider,
 
 export async function getSavedPageConfigurations(uxpContext: IContextProvider): Promise<{ data: any[], error?: string }> {
     try {
-        const res = await uxpContext.executeService('UMS', 'PageConfig:All', {}, { json: true })
+        const res = await uxpContext.executeService('ESGNOW', 'PageConfig:All', {}, { json: true })
         return { data: res, error: null }
     }
     catch (e) {
@@ -81,7 +81,7 @@ export async function savePageConfiguration(uxpContext: IContextProvider, route:
             Route: route,
             Configuration: JSON.stringify(configuration)
         }
-        const res = await uxpContext.executeService('UMS', 'PageConfig:SavePageConfig', paramas, { json: true })
+        const res = await uxpContext.executeService('ESGNOW', 'PageConfig:SavePageConfig', paramas, { json: true })
         return { data: res, error: null }
     }
     catch (e) {

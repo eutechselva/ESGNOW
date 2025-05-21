@@ -98,7 +98,7 @@ export const usePageConfiguration = () => {
     }
 
     function getCurrentPageRoute() {
-        const path = (currentLocation?.pathname || '').toLowerCase().replace('/apps/ESGNOW/dashboard', '')
+        const path = (currentLocation?.pathname || '').toLowerCase().replace('/apps/esgnow/dashboard', '')
         const _page = hasValue(path) ? path : '__home__'
         return _page
     }

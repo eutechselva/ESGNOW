@@ -1,5 +1,5 @@
 <Data>
-    <Table name='UMSPageConfigs'>
+    <Table name='ESGNOWPageConfigs'>
         <Columns>
             <Column name='Key' type='pk' nullable='false' />
             <Column name='Route' type='varchar(255)' />
@@ -11,7 +11,7 @@
         </Columns>
     </Table>
 
-    <Table name='UMSLayoutConfigurations'>
+    <Table name='ESGNOWLayoutConfigurations'>
         <Columns>
             <Column name='Key' type='pk' nullable='false' />
             <Column name='ID' type='varchar(255)' />

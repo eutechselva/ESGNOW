@@ -2,7 +2,7 @@ import { UMSContext } from "@components/dashboard/UMSContext";
 import { WidgetLayout } from "@types";
 import { getRegisteredWidgets, roundOffValue } from "@utils";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { appendDummyWidgets, calculateNumberOfCells, Changes, getModuleIdFromWidget, hasValue, IWidgetInstance, toNum, useDashboardUtils, WidgetContainerBlock, WidgetDrawerModal } from "uxp/components";
+import { appendDummyWidgets, calculateNumberOfCells, Changes, getModuleIdFromWidget, hasValue, IWidgetInstance, removeDummyWidgets, toNum, useDashboardUtils, WidgetContainerBlock, WidgetDrawerModal } from "uxp/components";
 import _ from 'lodash'
 
 interface GridSize {
@@ -89,7 +89,7 @@ export const WidgetLayoutPage: React.FC<WidgetLayoutPageProps> = (props) => {
     }
 
     function commitWidgetChanges(_widgets: IWidgetInstance[]) {
-        onLayoutChange({ type: layout.type, widgets: _widgets })
+        onLayoutChange({ type: layout.type, widgets: removeDummyWidgets(_widgets) })
     }
 
     function findAndLoadWidgetScripts() {

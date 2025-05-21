@@ -79,8 +79,8 @@
         }
 
 
-        function getUMSSelectedTheme() {
-            const response = tryParseJSON(document.querySelector("#selected_theme_ums").innerText, [])
+        function getSelectedTheme() {
+            const response = tryParseJSON(document.querySelector("#selected_theme_esg").innerText, [])
             const config = tryParseJSON(response?.[0]?.Configuration || {})
             if (!!config && !!config.themeName) return config.themeName
             return null
@@ -175,7 +175,7 @@
             },
             appRoles: userAppRoles,
             customThemes: customThemes,
-            themeName: getUMSSelectedTheme()
+            themeName: getSelectedTheme()
         };
 
         let toolbars = [];

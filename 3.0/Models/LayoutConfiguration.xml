@@ -1,4 +1,4 @@
-<Model name='LayoutConfiguration' table='UMSLayoutConfigurations' record_created="true" record_modified="true" activities='true'>
+<Model name='LayoutConfiguration' table='ESGNOWLayoutConfigurations' record_created="true" record_modified="true" activities='true'>
     <PrimaryAttribute id='Key' />
     <Attribute id='ID' type='text' />
     <Attribute id='Configuration' type='text' />

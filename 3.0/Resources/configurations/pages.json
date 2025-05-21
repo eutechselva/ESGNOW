@@ -7,19 +7,46 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/lca-widget",
+                "configs": {
+                    "layout": {
+                        "w": 30,
+                        "h": 20
+                    },
+                    "configPanel": null
+                },
                 "name": "LCA Widget",
-                "_id": "173399910764348127",
-                "key": "173399910764348127",
+                "description": "LCA Widget",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753049181545306",
+                "key": "173753049181545306",
                 "layout": {
                     "w": 30,
-                    "h": 10,
+                    "h": 21,
                     "x": 0,
                     "y": 0,
-                    "i": "173399910764348127",
+                    "i": "173753049181545306",
                     "moved": false,
                     "static": false
                 },
-                "hasConfigured": true
+                "hasConfigured": true,
+                "isNotAvalable": false,
+                "configurations": {
+                    "layout": {
+                        "fixedHeight": true,
+                        "height": 100
+                    }
+                }
             }
         ]
     },
@@ -28,19 +55,44 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/product-dashboard",
+                "configs": {
+                    "layout": {
+                        "w": 30,
+                        "h": 20
+                    }
+                },
                 "name": "Product Dashboard",
-                "_id": "173399910764348128",
-                "key": "173399910764348128",
+                "description": "Shows the List of reports",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753055493181321",
+                "key": "173753055493181321",
                 "layout": {
                     "w": 30,
-                    "h": 10,
+                    "h": 20,
                     "x": 0,
                     "y": 0,
-                    "i": "173399910764348128",
+                    "i": "173753055493181321",
                     "moved": false,
                     "static": false
                 },
-                "hasConfigured": true
+                "hasConfigured": true,
+                "configurations": {
+                    "layout": {
+                        "fixedHeight": true,
+                        "height": 100
+                    }
+                }
             }
         ]
     },
@@ -49,19 +101,44 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/lca-dashboard",
-                "name": "lca dashboard",
-                "_id": "173399910764348129",
-                "key": "173399910764348129",
+                "configs": {
+                    "layout": {
+                        "w": 30,
+                        "h": 20
+                    }
+                },
+                "name": "LCA Dashboard",
+                "description": "LCA Dashboard",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753056549846364",
+                "key": "173753056549846364",
                 "layout": {
                     "w": 30,
-                    "h": 10,
+                    "h": 20,
                     "x": 0,
                     "y": 0,
-                    "i": "173399910764348129",
+                    "i": "173753056549846364",
                     "moved": false,
                     "static": false
                 },
-                "hasConfigured": true
+                "hasConfigured": true,
+                "configurations": {
+                    "layout": {
+                        "fixedHeight": true,
+                        "height": 100
+                    }
+                }
             }
         ]
     }

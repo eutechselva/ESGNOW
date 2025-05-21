@@ -39699,7 +39699,7 @@ const usePageConfiguration = () => {
         });
     }
     function getCurrentPageRoute() {
-        const path = ((currentLocation === null || currentLocation === void 0 ? void 0 : currentLocation.pathname) || '').toLowerCase().replace('/apps/ESGNOW/dashboard', '');
+        const path = ((currentLocation === null || currentLocation === void 0 ? void 0 : currentLocation.pathname) || '').toLowerCase().replace('/apps/esgnow/dashboard', '');
         const _page = (0, components_1.hasValue)(path) ? path : '__home__';
         return _page;
     }
@@ -40108,7 +40108,7 @@ const WidgetLayoutPage = (props) => {
         });
     }
     function commitWidgetChanges(_widgets) {
-        onLayoutChange({ type: layout.type, widgets: _widgets });
+        onLayoutChange({ type: layout.type, widgets: (0, components_1.removeDummyWidgets)(_widgets) });
     }
     function findAndLoadWidgetScripts() {
         if (hasAllScriptsLoaded)
@@ -41775,7 +41775,7 @@ const WrappedDashboard = (props) => {
     const contextValue = {
         uxpContext,
         userGroup: (user === null || user === void 0 ? void 0 : user.userGroup) || null,
-        allowToEditPages: !!user && uxpContext.hasAppRole('UMS', 'canconfigurepages'),
+        allowToEditPages: !!user && uxpContext.hasAppRole('ESGNOW', 'canconfigurepages'),
         editPage: editPage || false,
         onToggleEdit: () => { setEditPage(prev => (!prev)); },
         addWidgets: addWidgets,
@@ -44012,7 +44012,7 @@ exports.getAllLocations = getAllLocations;
 function getAllApps(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const res = yield uxpContext.executeService('UMS', 'GetAllApps', {}, { json: true });
+            const res = yield uxpContext.executeService('ESGNOW', 'GetAllApps', {}, { json: true });
             console.log(res, 'installed_apps');
             return { data: res, error: null };
         }
@@ -44026,7 +44026,7 @@ exports.getAllApps = getAllApps;
 function getLayoutConfigurationsById(uxpContext, id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const res = yield uxpContext.executeService('UMS', 'LayoutConfiguration:GetConfigurationByID', { 'ID': id }, { json: true });
+            const res = yield uxpContext.executeService('ESGNOW', 'LayoutConfiguration:GetConfigurationByID', { 'ID': id }, { json: true });
             return { data: res === null || res === void 0 ? void 0 : res[0], error: null };
         }
         catch (e) {
@@ -44043,7 +44043,7 @@ function saveLayoutConfigurationsById(uxpContext, id, configuration) {
                 ID: id,
                 Configuration: JSON.stringify(configuration)
             };
-            const res = yield uxpContext.executeService('UMS', 'LayoutConfiguration:SaveLayoutConfig', paramas, { json: true });
+            const res = yield uxpContext.executeService('ESGNOW', 'LayoutConfiguration:SaveLayoutConfig', paramas, { json: true });
             return { data: res, error: null };
         }
         catch (e) {
@@ -44056,7 +44056,7 @@ exports.saveLayoutConfigurationsById = saveLayoutConfigurationsById;
 function getSavedPageConfigurations(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const res = yield uxpContext.executeService('UMS', 'PageConfig:All', {}, { json: true });
+            const res = yield uxpContext.executeService('ESGNOW', 'PageConfig:All', {}, { json: true });
             return { data: res, error: null };
         }
         catch (e) {
@@ -44073,7 +44073,7 @@ function savePageConfiguration(uxpContext, route, configuration) {
                 Route: route,
                 Configuration: JSON.stringify(configuration)
             };
-            const res = yield uxpContext.executeService('UMS', 'PageConfig:SavePageConfig', paramas, { json: true });
+            const res = yield uxpContext.executeService('ESGNOW', 'PageConfig:SavePageConfig', paramas, { json: true });
             return { data: res, error: null };
         }
         catch (e) {
@@ -106549,7 +106549,7 @@ const version = XLSX.version;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","name":"LCA Widget","_id":"173399910764348127","key":"173399910764348127","layout":{"w":30,"h":10,"x":0,"y":0,"i":"173399910764348127","moved":false,"static":false},"hasConfigured":true}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","name":"Product Dashboard","_id":"173399910764348128","key":"173399910764348128","layout":{"w":30,"h":10,"x":0,"y":0,"i":"173399910764348128","moved":false,"static":false},"hasConfigured":true}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"lca dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":10,"x":0,"y":0,"i":"173399910764348129","moved":false,"static":false},"hasConfigured":true}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-widget","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"LCA Widget","description":"LCA Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"LCA Dashboard","description":"LCA Dashboard","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753056549846364","key":"173753056549846364","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]}}');
 
 /***/ }),
 
