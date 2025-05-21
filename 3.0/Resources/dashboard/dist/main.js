@@ -102338,7 +102338,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","aut
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"ums.title":{"en":"Utility Management System"},"ums.sidebarlink.heatmap":{"en":"Energy Heatmap"},"ums.sidebarlink.building-performance":{"en":"Building Wise Utility Performance"},"ums.sidebarlink.electricity":{"en":"Electricity"},"ums.sidebarlink.water":{"en":"Water"},"ums.sidebarlink.chilled-water":{"en":"Chilled Water"},"ums.sidebarlink.gas":{"en":"Gas"},"ums.sidebarlink.portfolio-performance":{"en":"Portfolio Performance"},"ums.sidebarlink.reporting":{"en":"Utility Reporting"},"ums.sidebarlink.configurations":{"en":"Configuration"}}');
+module.exports = /*#__PURE__*/JSON.parse('{"esgnow.title":{"en":"ESG NOW"}}');
 
 /***/ })
 
