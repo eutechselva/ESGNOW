@@ -5,12 +5,11 @@ import MaterialSummary from "./material-summary";
 import "./bill-materials.scss";
 import { BillMaterial } from "../types/bill-material-type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle, faRobot, faPenToSquare, faLightbulb, faEdit } from "@fortawesome/free-solid-svg-icons";
+import { faRobot, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
 import { IContextProvider } from "@uxp";
 import { classifyBOM, getAccountPlan } from "../../esgnow-service";
-import { set } from "lodash";
 
 interface BillMaterialProps {
     productCategoryData: ProductCategoryInfo;
@@ -19,16 +18,36 @@ interface BillMaterialProps {
     uxpContext: IContextProvider;
 }
 
-const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, productData, onNext ,uxpContext }) => {
-    // Check if we have materials data from a previous visit to this step
-    const prevMaterialsData = sessionStorage.getItem(`product_${productData.code}_materials`);
+const BillMaterials: React.FC<BillMaterialProps> = ({
+    productCategoryData,
+    productData,
+    onNext,
+    uxpContext
+}) => {
     const prevEntryType = sessionStorage.getItem(`product_${productData.code}_entry_type`);
-    
+    const prevAIMaterialsData = sessionStorage.getItem(`product_${productData.code}_ai_materials`);
+    const prevManualMaterialsData = sessionStorage.getItem(`product_${productData.code}_manual_materials`);
+
     const [showMaterialEntry, setShowMaterialEntry] = useState(false);
-    const [materials, setMaterials] = useState<BillMaterial[]>(prevMaterialsData ? JSON.parse(prevMaterialsData) : []);
+    const [showBulkEditor, setShowBulkEditor] = useState(false);
     const [entryType, setEntryType] = useState<string>(prevEntryType || "ai");
+
+    // Separate state for AI and manual 
+    const [aiMaterials, setAIMaterials] = useState<BillMaterial[]>(
+        prevAIMaterialsData ? JSON.parse(prevAIMaterialsData) : []
+    );
+    const [manualMaterials, setManualMaterials] = useState<BillMaterial[]>(
+        prevManualMaterialsData ? JSON.parse(prevManualMaterialsData) : []
+    );
+
+    const materials = entryType === "ai" ? aiMaterials : manualMaterials;
+
+    useEffect(() => {
+        setShowBulkEditor(false);
+        setShowMaterialEntry(false);
+    }, [entryType]);
+
     const [editIndex, setEditIndex] = useState<number | null>(null);
-    const [showTooltip, setShowTooltip] = useState<boolean>(false);
     const [aiGeneratingBOM, setAIGeneratingBOM] = useState<boolean>(false);
     const [plan, setPlan] = useState<string>(null);
     const [validationError, setValidationError] = useState<string>("");
@@ -40,10 +59,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
 
     useEffect(() => {
         getAccountPlanFromAPI();
-        
-        // Add cleanup when component unmounts
         return () => {
-            // Reset the local state only (session storage is handled by wizard)
             setEditIndex(null);
             setShowMaterialEntry(false);
             setValidationError("");
@@ -51,7 +67,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     }, []);
 
     const getAccountPlanFromAPI = async () => {
-        const response = await  getAccountPlan( uxpContext);
+        const response = await getAccountPlan(uxpContext);
         setPlan(response.data.plan);
     }
 
@@ -60,11 +76,9 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
         try {
             let imageUrl = '';
             if (productCategoryData.images && productCategoryData.images.length > 0) {
-                // Check if the image URL already contains a host
                 if (productCategoryData.images[0].startsWith('http')) {
                     imageUrl = productCategoryData.images[0];
                 } else {
-                    // Use window.location.origin to get the base URL
                     const baseUrl = window.location.origin;
                     imageUrl = baseUrl + (productCategoryData.images[0].startsWith('/') ? '' : '/') + productCategoryData.images[0];
                 }
@@ -77,8 +91,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 weight: productCategoryData.totalWeight,
                 imageUrl: imageUrl
             };
-            const response = await  classifyBOM( uxpContext, classifyBOMPayload);
-            
+            const response = await classifyBOM(uxpContext, classifyBOMPayload);
 
             if (!response.data) {
                 throw new Error("Failed to fetch materials from API");
@@ -92,14 +105,15 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 specificMaterial: material.specificMaterial,
                 weight: material.weight,
                 unit: "kg",
-                reasoning : material.reasoning
+                reasoning: material.reasoning
             }));
 
-            setMaterials(apiMaterials);
-            saveMaterialsToStorage(apiMaterials);
+            setAIMaterials(apiMaterials);
+            saveAIMaterialsToStorage(apiMaterials);
             setAIGeneratingBOM(false);
         } catch (error) {
             console.error("Error fetching materials from API:", error);
+            setAIGeneratingBOM(false);
         }
     };
 
@@ -116,39 +130,49 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
         }
     };
 
-    // Helper function to save materials to session storage
-    const saveMaterialsToStorage = (updatedMaterials: BillMaterial[]) => {
-        sessionStorage.setItem(`product_${productData.code}_materials`, JSON.stringify(updatedMaterials));
+    // Separate save functions for AI and manual materials
+    const saveAIMaterialsToStorage = (updatedMaterials: BillMaterial[]) => {
+        sessionStorage.setItem(`product_${productData.code}_ai_materials`, JSON.stringify(updatedMaterials));
     };
-    
+
+    const saveManualMaterialsToStorage = (updatedMaterials: BillMaterial[]) => {
+        sessionStorage.setItem(`product_${productData.code}_manual_materials`, JSON.stringify(updatedMaterials));
+    };
+
     const handleMaterialAdd = (newMaterials: BillMaterial[]) => {
-        let updatedMaterials: BillMaterial[];
-        
-        if (editIndex !== null) {
-            // Replace the material being edited
-            updatedMaterials = [...materials];
-            updatedMaterials.splice(editIndex, 1, ...newMaterials);
-            // Reset edit index
-            setEditIndex(null);
-        } else {
-            // Add new materials to existing ones
-            updatedMaterials = [...materials, ...newMaterials];
+        if (entryType === "manual") {
+            let updatedMaterials: BillMaterial[];
+
+            if (editIndex !== null) {
+                updatedMaterials = [...manualMaterials];
+                updatedMaterials.splice(editIndex, 1, ...newMaterials);
+                setEditIndex(null);
+            } else {
+                updatedMaterials = [...manualMaterials, ...newMaterials];
+            }
+
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
         }
-        
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
+
         setShowMaterialEntry(false);
-        setValidationError(""); // Clear validation errors when materials are updated
+        setValidationError("");
     };
 
     const handleMaterialEdit = (index: number, material: BillMaterial) => {
-        // When the user edits in the summary table, update the material directly
-        // without showing the material entry form
-        const updatedMaterials = [...materials];
-        updatedMaterials[index] = {...material};
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
-        setValidationError(""); // Clear validation errors when materials are updated
+        if (entryType === "ai") {
+            const updatedMaterials = [...aiMaterials];
+            updatedMaterials[index] = { ...material };
+            setAIMaterials(updatedMaterials);
+            saveAIMaterialsToStorage(updatedMaterials);
+        } else {
+            const updatedMaterials = [...manualMaterials];
+            updatedMaterials[index] = { ...material };
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
+        }
+
+        setValidationError("");
     };
 
     const handleOpenFullEditor = (index: number) => {
@@ -159,94 +183,99 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
     };
 
     const handleMaterialDelete = (index: number) => {
-        const updatedMaterials = materials.filter((_, i) => i !== index);
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
-        setValidationError(""); // Clear validation errors when materials are updated
+        if (entryType === "ai") {
+            const updatedMaterials = aiMaterials.filter((_, i) => i !== index);
+            setAIMaterials(updatedMaterials);
+            saveAIMaterialsToStorage(updatedMaterials);
+        } else {
+            const updatedMaterials = manualMaterials.filter((_, i) => i !== index);
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
+        }
+
+        setValidationError("");
     };
 
     const handleEntryTypeChange = (newValue: string) => {
         setEntryType(newValue);
         sessionStorage.setItem(`product_${productData.code}_entry_type`, newValue);
-        
-        if (newValue === "manual") {
-            setMaterials([]);
-            saveMaterialsToStorage([]);
+
+        // Reset editing states when changing entry type
+        setShowMaterialEntry(false);
+        setShowBulkEditor(false);
+        setEditIndex(null);
+        setValidationError("");
+    };
+
+    const handleEditAllMaterials = () => {
+        setShowBulkEditor(true);
+    };
+
+    const handleBulkEditDone = (editedMaterials: BillMaterial[]) => {
+        if (entryType === "ai") {
+            setAIMaterials(editedMaterials);
+            saveAIMaterialsToStorage(editedMaterials);
+        } else {
+            setManualMaterials(editedMaterials);
+            saveManualMaterialsToStorage(editedMaterials);
         }
-        setValidationError(""); // Clear validation errors when entry type changes
+
+        setShowBulkEditor(false);
+        setValidationError("");
+    };
+
+    const handleBulkEditCancel = () => {
+        setShowBulkEditor(false);
     };
 
     const handleNext = () => {
-        // Clear previous validation errors
         setValidationError("");
-        
-        // Check for validation errors
-        if (materials.length === 0) {
+        const currentMaterials = entryType === "ai" ? aiMaterials : manualMaterials;
+
+        if (currentMaterials.length === 0) {
             setValidationError("Please add at least one material");
             return;
         }
-        
-        // Check for total weight matching
-        const totalMaterialWeight = materials.reduce((sum, material) => {
+
+        const totalMaterialWeight = currentMaterials.reduce((sum, material) => {
             return sum + (parseFloat(material.weight) || 0);
         }, 0);
-        
+
         const productTotalWeight = parseFloat(productCategoryData.totalWeight) || 0;
-        
-        // Allow a small rounding tolerance (0.01 kg)
+
         if (Math.abs(totalMaterialWeight - productTotalWeight) > 0.01) {
             setValidationError(`Total material weight (${totalMaterialWeight.toFixed(2)} kg) must match product weight (${productTotalWeight.toFixed(2)} kg)`);
             return;
         }
-        
-        // Check for duplicates based on plan
+
         if (plan === "basic") {
-            // For basic plan, check for duplicate material classes
-            const materialClasses = materials.map(m => m.materialClass);
+            const materialClasses = currentMaterials.map(m => m.materialClass);
             const uniqueClasses = new Set(materialClasses);
-            
+
             if (uniqueClasses.size !== materialClasses.length) {
                 setValidationError("Duplicate material classes detected. Please ensure each material class is unique.");
                 return;
             }
         } else if (plan === "professional") {
-            // For professional plan, check for duplicate specific materials
-            const specificMaterials = materials.map(m => m.specificMaterial);
+            const specificMaterials = currentMaterials.map(m => m.specificMaterial);
             const uniqueSpecificMaterials = new Set(specificMaterials);
-            
+
             if (uniqueSpecificMaterials.size !== specificMaterials.length) {
                 setValidationError("Duplicate specific materials detected. Please ensure each specific material is unique.");
                 return;
             }
         }
-        
-        // If validation passes, proceed to next step
-        // Keep the storage so when the user goes back, they keep their data
-        // We'll rely on the wizard's reset function to clean everything at the end
-        onNext(materials);
+
+        onNext(currentMaterials);
     };
 
     return (
         <div className="bill-materials">
             <div className="entry-method-container">
-                <h3 className="entry-method-title">
-                    How would you like to add materials?
-                    {/* <span
-                        className="info-icon"
-                        onMouseEnter={() => setShowTooltip(true)}
-                        onMouseLeave={() => setShowTooltip(false)}
-                    >
-                        <FontAwesomeIcon icon={faInfoCircle} />
-                        {showTooltip && (
-                            <div className="tooltip">
-                                Choose how you want to add materials to your product.
-                            </div>
-                        )}
-                    </span> */}
-                </h3>
-                
+                <h3 className="entry-method-title">How would you like to add materials?</h3>
+
                 <div className="entry-method-options">
-                    <div 
+                    <div
                         className={`entry-method-card ${entryType === "ai" ? "active" : ""}`}
                         onClick={() => handleEntryTypeChange("ai")}
                     >
@@ -265,8 +294,8 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                             )}
                         </div>
                     </div>
-                    
-                    <div 
+
+                    <div
                         className={`entry-method-card ${entryType === "manual" ? "active" : ""}`}
                         onClick={() => handleEntryTypeChange("manual")}
                     >
@@ -281,7 +310,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 </div>
             </div>
 
-            {entryType === "manual" && !showMaterialEntry && !materials.length && (
+            {entryType === "manual" && !showMaterialEntry && !manualMaterials.length && (
                 <div className="manual-entry-prompt">
                     <p>Click the button below to start adding materials to your product.</p>
                     <Button
@@ -306,59 +335,61 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                 <div className="material-entry-container">
                     <div className="material-entry-header">
                         <h3>{editIndex !== null ? "Edit Material" : "Add Material"}</h3>
-                        <Button 
-                            title="Cancel" 
-                            className="cancel-button"
-                            onClick={() => setShowMaterialEntry(false)}
-                        />
                     </div>
                     <MaterialEntry
                         onAddMaterial={handleMaterialAdd}
                         isEditable={true}
-                        initialMaterial={editIndex !== null ? materials[editIndex] : undefined}
-                        existingMaterials={materials}
+                        initialMaterial={editIndex !== null ? manualMaterials[editIndex] : undefined}
+                        existingMaterials={manualMaterials}
                         uxpContext={uxpContext}
+                        onCancel={() => setShowMaterialEntry(false)}
                     />
                 </div>
             )}
 
-            {materials.length > 0 ? (
+            {showBulkEditor ? (
+                <div className="bulk-edit-container">
+                    <div className="bulk-edit-header">
+                        <h3>Edit Materials</h3>
+                    </div>
+                    <MaterialEntry
+                        onAddMaterial={handleBulkEditDone}
+                        isEditable={true}
+                        initialMaterials={entryType === "ai" ? aiMaterials : manualMaterials}
+                        existingMaterials={[]}
+                        uxpContext={uxpContext}
+                        isBulkEdit={true}
+                        onCancel={handleBulkEditCancel}
+                    />
+                </div>
+            ) : materials.length > 0 ? (
                 <>
-                 <div className="materials-weight-summary">
-                    <div className="weight-info">
-                        Total Material Weight: {materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2)} kg
+                    <div className="materials-weight-summary">
+                        <div className="weight-info">
+                            Total Material Weight: {materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2)} kg
+                        </div>
+                        <div className="weight-info">
+                            Target Product Weight: {parseFloat(productCategoryData.totalWeight).toFixed(2)} kg
+                        </div>
                     </div>
-                    <div className="weight-info">
-                        Target Product Weight: {parseFloat(productCategoryData.totalWeight).toFixed(2)} kg
-                    </div>
-                 </div>
-                 
-                 <div className="materials-list-header">
-                    {/* <h3>Material List</h3>
-                    <p>The materials below will be used to calculate the environmental impact of your product.</p> */}
-                 </div>
-                 
-                 <MaterialSummary
+
+                    <MaterialSummary
                         plan={plan}
                         materials={materials}
                         onEdit={handleMaterialEdit}
                         onDelete={handleMaterialDelete}
                         onOpenFullEditor={handleOpenFullEditor}
+                        onEditAll={handleEditAllMaterials}
+                        entryType={entryType}
                     />
+
                     {validationError && (
                         <div className="validation-error">
                             {validationError}
                         </div>
                     )}
-                    
+
                     <div className="materials-actions">
-                        {entryType === "manual" && !showMaterialEntry && (
-                            <Button
-                                className="add-more-materials-button"
-                                title="Add"
-                                onClick={handleAddMaterials}
-                            />
-                        )}
                         <Button
                             className="esgnow-next-button"
                             title="Next"
@@ -367,7 +398,6 @@ const BillMaterials: React.FC<BillMaterialProps> = ({ productCategoryData, produ
                     </div>
                 </>
             ) : (
-                // Only show the empty container for AI mode or when no specific prompts are shown
                 !showMaterialEntry && (entryType === "ai") && (
                     <div className="empty-materials-container">
                         <p>No materials added yet. Generate materials using AI or switch to manual entry.</p>

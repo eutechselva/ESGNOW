@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./material-summary.scss";
-import { Button, Input, Select, IconButton } from "uxp/components";
+import { Button, IconButton } from "uxp/components";
 
 type Material = {
     materialClass: string;
@@ -16,28 +16,33 @@ interface MaterialSummaryProps {
     onEdit: (index: number, updatedMaterial: Material) => void;
     onDelete: (index: number) => void;
     onOpenFullEditor?: (index: number) => void;
+    onEditAll?: () => void;
+    entryType?: string;
 }
 
-const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }) => {
-
+const MaterialSummary: React.FC<MaterialSummaryProps> = ({
+    materials,
+    onEdit,
+    onDelete,
+    plan,
+    onOpenFullEditor,
+    onEditAll,
+    entryType
+}) => {
     const [editingIndex, setEditingIndex] = useState<number | null>(null);
     const [editedData, setEditedData] = useState<Material | null>(null);
-    
-    // Reset state when materials prop changes (like when reopening)
+
     useEffect(() => {
         setEditingIndex(null);
         setEditedData(null);
     }, [materials]);
-    
-    // Add cleanup effect
+
     useEffect(() => {
         return () => {
-            // Clean up state when component unmounts
             setEditingIndex(null);
             setEditedData(null);
         };
     }, []);
-
 
     return (
         <div className="material-summary">
@@ -45,51 +50,41 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({ materials, onEdit, on
                 <thead>
                     <tr>
                         <th>Material Class</th>
-                        {plan == "professional" && (<th>Specific Material</th>)}
-                        <th> Weight</th>
+                        {plan === "professional" && <th>Specific Material</th>}
+                        <th>Weight</th>
                         <th>Reasoning</th>
-                        {/* <th>Actions</th> */}
                     </tr>
                 </thead>
                 <tbody>
                     {materials.map((material, index) => (
                         <tr key={index}>
-                            <td>
-                                {material.materialClass}
-                            </td>
-
-                            {plan == "professional" && (
-                                <td>
-                                    {material.specificMaterial}
-                                </td>
-                            )}
-                            
-                            <td>
-                                {`${material.weight} ${material.unit}`}
-                            </td>
-                            <td className="reasoning-cell">
-                                {material.reasoning || "-"}
-                            </td>
-                            {/* <td>
-                                {onOpenFullEditor && (
-                                    <IconButton
-                                        type="edit"
-                                        onClick={() => onOpenFullEditor(index)}
-                                        className="edit-button"
-                                    />
-                                )}
-                                <IconButton
-                                    type="delete"
-                                    onClick={() => onDelete(index)}
-                                    className="delete-button"
-                                />
-                            </td> */}
+                            <td>{material.materialClass}</td>
+                            {plan === "professional" && <td>{material.specificMaterial}</td>}
+                            <td>{`${material.weight} ${material.unit}`}</td>
+                            <td className="reasoning-cell">{material.reasoning || "-"}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+
+            {entryType === "ai" && onEditAll && (
+                <div className="edit-all-materials-container">
+                    {/* <Button
+                        title="Edit Materials"
+                        className="edit-all-materials-button"
+                        onClick={onEditAll}
+                    /> */}
+                    <IconButton
+                        type="edit"
+                        onClick={onEditAll}
+                        className="edit-all-materials-icon"
+                    />
+                </div>
+            )}
         </div>
+
     );
+
 };
 
 export default MaterialSummary;
