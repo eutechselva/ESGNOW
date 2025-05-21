@@ -8,7 +8,10 @@ import { UMSDashboard } from '@components/dashboard/UMSDashboard';
 import {  saveLayoutConfigurationsById, savePageConfiguration } from '@other-services';
 import ProductDashboardWidget from './lca/views/product-dashboard';
 import LCAWidget from './lca/views/products';
-import LCADashboardWidget from './lca/views/LCA-dashboard';
+import LCADashboardWidget from './lca/views/lca-dashboard/LCADashboardWidget';
+import ProjectsWidget from './lca/views/projects';
+import BulkUploadWidget from './lca/views/bulk-upload';
+import HomeDashboard from './lca/views/home';
 
 const WrappedDashboard: React.FC<BaseUXPProps> = (props) => {
 
@@ -78,7 +81,7 @@ registerWidget({
     configs: {
         layout: {
             w: 30,
-            h: 20,
+            h: 10000,
         }
     }
 })
@@ -100,7 +103,40 @@ registerWidget({
     configs: {
         layout: {
             w: 30,
+            h: 40,
+        }
+    }
+})
+
+registerWidget({
+    id: 'projects-widget',
+    widget: ProjectsWidget,
+    configs: {
+        layout: {
+            w: 30,
             h: 20,
+        }
+    }
+})
+
+registerWidget({
+    id: 'bulk-upload-widget',
+    widget: BulkUploadWidget,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+})
+
+registerWidget({
+    id: 'home-dashboard',
+    widget: HomeDashboard,
+    configs: {
+        layout: {
+            w: 30,
+            h: 10000,
         }
     }
 })

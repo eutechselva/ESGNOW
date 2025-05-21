@@ -6,7 +6,7 @@
         "type": "widgets",
         "widgets": [
             {
-                "id": "iviva-esg-now-application/widget/lca-widget",
+                "id": "iviva-esg-now-application/widget/home-dashboard",
                 "configs": {
                     "layout": {
                         "w": 30,
@@ -14,8 +14,8 @@
                     },
                     "configPanel": null
                 },
-                "name": "LCA Widget",
-                "description": "LCA Widget",
+                "name": "Home Dashboard",
+                "description": "Home Dashboard",
                 "definitionPath": null,
                 "icon": "",
                 "category": "user-defined",
@@ -42,10 +42,7 @@
                 "hasConfigured": true,
                 "isNotAvalable": false,
                 "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
+                    
                 }
             }
         ]
@@ -101,14 +98,38 @@
         "widgets": [
             {
                 "id": "iviva-esg-now-application/widget/lca-dashboard",
+                "name": "LCA Dashboard",
+                "_id": "173399910764348129",
+                "key": "173399910764348129",
+                "layout": {
+                    "w": 30,
+                    "h": 100,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173753056549846364",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true,
+                "configurations": {
+                    
+                }
+            }
+        ]
+    },
+    "/projects": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/projects-widget",
                 "configs": {
                     "layout": {
                         "w": 30,
                         "h": 20
                     }
                 },
-                "name": "LCA Dashboard",
-                "description": "LCA Dashboard",
+                "name": "Projects Widget",
+                "description": "Projects Widget",
                 "definitionPath": null,
                 "icon": "",
                 "category": "user-defined",
@@ -121,23 +142,62 @@
                 "props": "{}",
                 "templateKey": "",
                 "usecaseId": null,
-                "_id": "173753056549846364",
-                "key": "173753056549846364",
+                "_id": "173753055493181332",
+                "key": "173753055493181332",
                 "layout": {
                     "w": 30,
                     "h": 20,
                     "x": 0,
                     "y": 0,
-                    "i": "173753056549846364",
+                    "i": "173753055493181332",
                     "moved": false,
                     "static": false
                 },
                 "hasConfigured": true,
                 "configurations": {
+                    
+                }
+            }
+        ]
+    },"/bulkupload": {
+        "type": "widgets",
+        "widgets": [
+            {
+                "id": "iviva-esg-now-application/widget/bulk-upload-widget",
+                "configs": {
                     "layout": {
-                        "fixedHeight": true,
-                        "height": 100
+                        "w": 30,
+                        "h": 20
                     }
+                },
+                "name": "Bulk Upload Widget",
+                "description": "Bulk Upload Widget",
+                "definitionPath": null,
+                "icon": "",
+                "category": "user-defined",
+                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
+                "tags": [],
+                "isTemplate": false,
+                "isDefaultTemplate": false,
+                "usecaseName": null,
+                "installed": false,
+                "props": "{}",
+                "templateKey": "",
+                "usecaseId": null,
+                "_id": "173753055493181547",
+                "key": "173753055493181547",
+                "layout": {
+                    "w": 30,
+                    "h": 20,
+                    "x": 0,
+                    "y": 0,
+                    "i": "173753055493181547",
+                    "moved": false,
+                    "static": false
+                },
+                "hasConfigured": true,
+                "configurations": {
+                    
                 }
             }
         ]

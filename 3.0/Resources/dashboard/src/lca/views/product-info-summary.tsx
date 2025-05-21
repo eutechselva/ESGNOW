@@ -1,44 +1,60 @@
 import React, { useState } from 'react';
 import './product-info-summary.scss';
-import { Button } from 'uxp/components';
+import { Button, Modal } from 'uxp/components';
 import { ProductInfoSummary } from '../types/product-info-summary.type';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official';
+import { deleteProductByID } from "../../esgnow-service";
+import { IContextProvider } from '@uxp';
 
 interface ProductInfoSummaryProps {
-    product: ProductInfoSummary
-    ;
+    product: ProductInfoSummary;
     onClose: () => void;
+    onDelete: () => void;
+    hideHeader?: boolean;
+    hideDelete?: boolean;
+    uxpContext: IContextProvider;
+    plan: string;
+    show?: boolean; 
 }
 
-const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose }) => {
+const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete, plan }) => {
     const [isExpanded, setIsExpanded] = useState(true);
     const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
+    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+    const [activeTab, setActiveTab] = useState<'overview' | 'materials' | 'manufacturing' | 'inventory'>('overview');
 
     const toggleExpand = () => setIsExpanded(!isExpanded);
 
-    const handleViewToggle = (mode: 'list' | 'tree') => setViewMode(mode);
+    const deleteProduct = async () => {
+        setShowDeleteConfirm(true);
+    }
+
+    const confirmDelete = async () => {
+        await deleteProductByID(uxpContext, { _id: product._id });
+        onDelete();
+        setShowDeleteConfirm(false);
+    }
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 300,
-            width: 600,
+            height: 280,
+            width: 500,
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = 60 + 40; // Replace with dynamic calculation 
-    
+
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
-                                `${totalValue} KgCO₂e`,
+                                `${product.co2Emission} <br> KgCO₂e`,
                                 chart.plotWidth / 2 + chart.plotLeft,
                                 chart.plotHeight / 2 + chart.plotTop
                             )
                             .css({
-                                fontSize: '16px',
+                                fontSize: '18px',
                                 fontWeight: 'bold',
                                 fontFamily: 'Comfortaa',
                                 color: '#424242',
@@ -51,7 +67,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             .add();
                     } else {
                         chart.customText.attr({
-                            text: `${totalValue} KgCO₂e`,
+                            text: `${product.co2Emission} KgCO₂e`,
                         });
                     }
                 },
@@ -80,8 +96,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 name: 'Contribution',
                 type: 'pie',
                 data: [
-                    { name: 'Raw Materials', y: 60, color: '#78BE7C' },
-                    { name: 'Manufacturing', y: 40, color: '#ffaa00' },
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses), color: '#ffaa00' },
                 ],
             },
         ],
@@ -89,7 +105,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'bottom',
-            symbolRadius: 0, // Makes the symbols square (for circles, remove this line)
+            symbolRadius: 0,
             symbolHeight: 10,
             symbolWidth: 10,
             itemStyle: {
@@ -105,266 +121,392 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             enabled: false,
         },
     };
-    
-    return (
-        <>
-            <div className="title-container">
-                <h1 className="dashboard-title">Product Summary</h1>
-                <p className="subheading">{product.name}</p>
-                <Button
-                    title="Go back"
-                    onClick={onClose}
-                    className="back-button"
-                />
-            </div>
-            <div className="product-info-summary">
+
+    const renderOverviewTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-product-info-summary">
                 <div
-                    className="summary-image"
+                    className="esgnow-summary-image"
                     style={{
-                        backgroundImage: product.icon ? `url(${product.icon})` : 'none',
+                        backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
                     }}
                 >
-                    {!product.icon && <div className="image-placeholder">Image Unavailable</div>}
-                    <div className="image-label">160.51 Kg CO₂e</div>
+                    {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
+                    <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
-                <div className="summary-details">
-                    <div className="details-left">
-                        <div className="detail-item">
-                            <strong>Product Code:</strong>
-                            <p>{product.productCode}</p>
-                        </div>
 
-                        <div className="detail-item">
-                            <strong>Weight:</strong>
-                            <p>{product.weight}</p>
+                <div className="esgnow-summary-details">
+                    <div className="esgnow-detail-grid">
+                        <div className="esgnow-detail-item">
+                            <strong>Project Code</strong>
+                            <p>{product.code}</p>
                         </div>
-                        <div className="detail-item">
-                            <strong>Category:</strong>
+                        <div className="esgnow-detail-item">
+                            <strong>Product Category</strong>
                             <p>{product.category}</p>
                         </div>
-                        <div className="detail-item">
-                            <strong>SubCategory:</strong>
+                        <div className="esgnow-detail-item">
+                            <strong>Sub Category</strong>
                             <p>{product.subCategory}</p>
                         </div>
-                        
-                    </div>
-                    <div className="details-right">
-                    <div className="description-field">
-                            <strong>Description:</strong>
-                            <p>{product.description}</p>
+                        <div className="esgnow-detail-item">
+                            <strong>Weight</strong>
+                            <p>{product.weight} Kg</p>
                         </div>
-                   
-                      
-                       
+                        <div className="esgnow-detail-item">
+                            <strong>Country of Manufacture</strong>
+                            <p>
+                                {product.countryOfOrigin === "CN" ? "China" :
+                                product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="esgnow-description-field">
+                        <strong>Product Description</strong>
+                        <div className="esgnow-rich-text-editor">
+                            <textarea 
+                                defaultValue={product.description}
+                                className="esgnow-editable-description"
+                                rows={4}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div className="widgets-section">
-    <div className="widget product-footprint">
-        <h3>Product Footprint</h3>
-        <div className="widget-content">
-            <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
-        </div>
-    </div>
-    <div className="widgets-row">
-        <div className="widget contribution-raw-material">
-            <h3>Contribution by Raw Material</h3>
-            <div className="widget-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material Class</th>
-                            <th>Specific Material</th>
-                            <th>Contribution</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Metal</td>
-                            <td>Aluminum</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <div className="esgnow-widget esgnow-product-footprint">
+                <h3>Product Carbon Footprint Breakdown</h3>
+                <div className="esgnow-widget-content">
+                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                </div>
             </div>
         </div>
-        <div className="widget contribution-manufacturing">
-            <h3>Contribution by Manufacturing</h3>
-            <div className="widget-content">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Material Class</th>
-                            <th>Specific Material</th>
-                            <th>Contribution</th>
-                            <th>Percentage</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                        <tr>
-                            <td>Wood Working</td>
-                            <td>Sawing</td>
-                            <td>20 KgCO₂e</td>
-                            <td>25%</td>
-                        </tr>
-                    </tbody>
-                </table>
+    );
+
+    const renderMaterialsTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
+                <h3>Contribution by Raw Material</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Material Class</th>
+                                {plan === 'professional' && (<th>Specific Material</th>)}
+                                <th>Contribution</th>
+                                {/* <th>Reasoning</th> */}
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                const totalEmissionFactor = product.materials.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
+
+                                const sortedMaterials = product.materials.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                return sortedMaterials.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                            <td> {parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e ({parseFloat(item.weight).toFixed(2)} Kg)</td>
+                                            {/* <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td> */}
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
+                                                    <div 
+                                                        className="esgnow-percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    );
 
+    const renderManufacturingTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-manufacturing">
+                <h3>Contribution by Manufacturing Process</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th> Material</th>
+                                {/* <th>Manufacturing Process</th> */}
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                const totalEmissionFactor = product.productManufacturingProcess.reduce(
+                                    (sum: number, item: any) => sum + item.emissionFactor,
+                                    0
+                                );
 
-            <div className="inventory-section">
-                <div className="inventory-header">
+                                const sortedProcess = product.productManufacturingProcess.sort((a: any, b: any) => b.emissionFactor - a.emissionFactor);
+
+                                return sortedProcess.map((item: any) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            {/* <td>{item.manufacturingProcesses[0].category}</td> */}
+                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
+                                                    <div 
+                                                        className="esgnow-percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderInventoryTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-inventory-info">
+                <div className="esgnow-inventory-header">
                     <h3>Inventory Information</h3>
-                    {/* <div className="view-toggle">
-                        <button
-                            className={`toggle-button ${viewMode === 'list' ? 'active' : ''}`}
-                            onClick={() => handleViewToggle('list')}
+                    <div className="esgnow-view-toggle">
+                        {/* <button
+                            className={`esgnow-toggle-button ${viewMode === 'list' ? 'active' : ''}`}
+                            onClick={() => setViewMode('list')}
                         >
-                            List
+                            List View
                         </button>
                         <button
-                            className={`toggle-button ${viewMode === 'tree' ? 'active' : ''}`}
-                            onClick={() => handleViewToggle('tree')}
+                            className={`esgnow-toggle-button ${viewMode === 'tree' ? 'active' : ''}`}
+                            onClick={() => setViewMode('tree')}
                         >
-                            Tree
-                        </button>
-                    </div> */}
+                            Tree View
+                        </button> */}
+                    </div>
                 </div>
 
                 {viewMode === 'tree' ? (
-                    <div className="inventory-tree">
-                        <div className="tree-item" onClick={toggleExpand}>
-                            <span>{isExpanded ? '▼' : '▶'} Single - Pane aluminium window (Finished Good)</span>
+                    <div className="esgnow-inventory-tree">
+                        <div className="esgnow-tree-item" onClick={toggleExpand}>
+                            <span className="esgnow-expand-icon">{isExpanded ? '▼' : '▶'}</span>
+                            <span>Single - Pane aluminium window (Finished Good)</span>
                         </div>
                         {isExpanded && (
-                            <div className="tree-children">
-                                <div className="tree-sub-item">Aluminium Frame</div>
-                                <div className="tree-sub-item">Glass pane</div>
-                                <div className="tree-sub-item">Latch</div>
+                            <div className="esgnow-tree-children">
+                                {(() => {
+                                    // Create a map to merge processes with materials
+                                    const mergedItems = new Map();
+                                    
+                                    // First, add all manufacturing processes
+                                    product.productManufacturingProcess.forEach((item: any) => {
+                                        const key = `${item.materialClass}-${item.specificMaterial}`;
+                                        mergedItems.set(key, {
+                                            ...item,
+                                            reasoning: "" // Default empty reasoning
+                                        });
+                                    });
+                                    
+                                    // Then, merge with materials data (including reasoning)
+                                    product.materials.forEach((material: any) => {
+                                        const key = `${material.materialClass}-${material.specificMaterial}`;
+                                        if (mergedItems.has(key)) {
+                                            // Update existing item with reasoning from materials
+                                            const existingItem = mergedItems.get(key);
+                                            mergedItems.set(key, {
+                                                ...existingItem,
+                                                reasoning: material.reasoning || "-"
+                                            });
+                                        }
+                                    });
+                                    
+                                    // Convert map values to array and render
+                                    return Array.from(mergedItems.values()).map((item: any) => (
+                                        <div key={`${item.materialClass}-${item.specificMaterial}`} className="esgnow-tree-sub-item">
+                                            <div className="esgnow-tree-main-content">
+                                                <span className="esgnow-material-dot"></span>
+                                                <span>{item.materialClass} - {item.specificMaterial} ({item.weight} Kg)</span>
+                                            </div>
+                                            {item.reasoning && <div className="esgnow-tree-reasoning">{item.reasoning}</div>}
+                                        </div>
+                                    ));
+                                })()}
                             </div>
                         )}
                     </div>
                 ) : (
-                    <div className="inventory-list">
-                        <table>
+                    <div className="esgnow-widget-content">
+                        <table className="esgnow-inventory-table">
                             <thead>
                                 <tr>
                                     <th>Material Class</th>
-                                    <th>Specific Material</th>
+                                    {plan === 'professional' && (<th>Specific Material</th>)}
                                     <th>Weight</th>
-                                    <th>Manufacturing Process</th>
-                                    <th>Sub Process</th>
+                                    {/* <th>Manufacturing Process</th>
+                                    <th>Sub Process</th> */}
+                                    <th>Reasoning</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Metal</td>
-                                    <td>Steel</td>
-                                    <td>6.5 kg</td>
-                                    <td>MetalProcesssing</td>
-                                    <td>Cutting,Welding</td>
-                                </tr>
-                                <tr>
-                                    <td>Plastic</td>
-                                    <td>Polypropylene</td>
-                                    <td>4 kg</td>
-                                    <td>PlasticProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Fabric</td>
-                                    <td>Polyester</td>
-                                    <td>2.5 kg</td>
-                                    <td>FabricProcesssing</td>
-                                    <td>Cutting,Sewing</td>
-                                </tr>
-
-                                <tr>
-                                    <td>Leather</td>
-                                    <td>Genuine Leather</td>
-                                    <td>4.5 kg</td>
-                                    <td>LeatherProcesssing</td>
-                                    <td>Cutting,Sewing</td>
-                                </tr>
-                                <tr>
-                                    <td>Plastic</td>
-                                    <td>Polyurethane (PU)</td>
-                                    <td>1.5 kg</td>
-                                    <td>PlastcProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
-                                <tr>
-                                    <td>Nylon (Polyamide)</td>
-                                    <td>Polyurethane (PU)</td>
-                                    <td>1 kg</td>
-                                    <td>PlastcProcesssing</td>
-                                    <td>Injection Molding</td>
-                                </tr>
-                                <tr>
-                                    <td>Metal</td>
-                                    <td>Aluminuium (PU)</td>
-                                    <td>2 kg</td>
-                                    <td>MetalProcesssing</td>
-                                    <td>Cutting,Welding </td>
-                                </tr>
-                                <tr>
-                                    <td>Foam</td>
-                                    <td>Polyurethane Foam</td>
-                                    <td>0.5 kg</td>
-                                    <td>FoamProcesssing</td>
-                                    <td>Foam Molding</td>
-                                </tr>
-
-
+                                {(() => {
+                                    // Create a map to merge processes with materials based on materialClass and specificMaterial
+                                    const mergedItems = new Map();
+                                    
+                                    // First, add all manufacturing processes
+                                    product.productManufacturingProcess.forEach((item: any) => {
+                                        const key = `${item.materialClass}-${item.specificMaterial}`;
+                                        mergedItems.set(key, {
+                                            ...item,
+                                            reasoning: "" // Default empty reasoning
+                                        });
+                                    });
+                                    
+                                    // Then, merge with materials data (including reasoning)
+                                    product.materials.forEach((material: any) => {
+                                        const key = `${material.materialClass}-${material.specificMaterial}`;
+                                        if (mergedItems.has(key)) {
+                                            // Update existing item with reasoning from materials
+                                            const existingItem = mergedItems.get(key);
+                                            mergedItems.set(key, {
+                                                ...existingItem,
+                                                reasoning: material.reasoning || "-"
+                                            });
+                                        }
+                                    });
+                                    
+                                    // Convert map values to array and render
+                                    return Array.from(mergedItems.values()).map((item: any) => (
+                                        <tr key={`${item.materialClass}-${item.specificMaterial}`}>
+                                            <td>{item.materialClass}</td>
+                                            {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                            <td>{item.weight} Kg</td>
+                                            {/* <td>{item.manufacturingProcesses[0].category}</td>
+                                            <td>{item.manufacturingProcesses[0].processes.join(', ')}</td> */}
+                                            <td className="esgnow-reasoning-cell">{item.reasoning}</td>
+                                        </tr>
+                                    ));
+                                })()}
                             </tbody>
                         </table>
                     </div>
                 )}
             </div>
-        </>
+        </div>
+    );
+
+    return (
+        <div className="esgnow-product-summary-container">
+            <div className="esgnow-header-container">
+                {!hideHeader && (
+                    <>
+                        <div className="esgnow-title-section">
+                            <h1 className="esgnow-dashboard-title">Product Summary</h1>
+                            <p className="esgnow-subheading">Product: {product.name}</p>
+                        </div>
+                        <div className="esgnow-action-buttons">
+                            {/* <Button
+                                title="Back"
+                                onClick={onClose}
+                                className="esgnow-back-button"
+                            >
+                                <span className="esgnow-back-icon">←</span>
+                                Back
+                            </Button> */}
+                            {!hideDelete && (
+                                <Button 
+                                    title="Delete" 
+                                    onClick={deleteProduct} 
+                                    className="esgnow-delete-button"
+                                >
+                                    <span className="esgnow-delete-icon">×</span>
+                                    Delete
+                                </Button>
+                            )}
+                        </div>
+                    </>
+                )}
+            </div>
+
+            <div className="esgnow-tabs-container">
+                <div className="esgnow-tabs">
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'overview' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('overview')}
+                    >
+                        Overview
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'materials' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('materials')}
+                    >
+                        Raw Materials
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('manufacturing')}
+                    >
+                        Manufacturing
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'inventory' ? 'active' : ''}`}
+                        onClick={() => setActiveTab('inventory')}
+                    >
+                        Inventory
+                    </button>
+                </div>
+
+                {activeTab === 'overview' && renderOverviewTab()}
+                {activeTab === 'materials' && renderMaterialsTab()}
+                {activeTab === 'manufacturing' && renderManufacturingTab()}
+                {activeTab === 'inventory' && renderInventoryTab()}
+            </div>
+
+            {showDeleteConfirm && (
+                <Modal
+                    show={showDeleteConfirm}
+                    title="Confirm Deletion"
+                    onClose={() => setShowDeleteConfirm(false)}
+                    className="esgnow-delete-modal"
+                >
+                    <div className="esgnow-delete-confirmation">
+                        <div className="esgnow-warning-icon">⚠️</div>
+                        <p>Are you sure you want to delete this product?</p>
+                        <p className="esgnow-delete-warning">This action cannot be undone.</p>
+                        <div className="esgnow-modal-actions">
+                            <Button title="Cancel" onClick={() => setShowDeleteConfirm(false)} className="esgnow-cancel-button">Cancel</Button>
+                            <Button title="Delete" onClick={confirmDelete} className="esgnow-confirm-button">Delete</Button>
+                        </div>
+                    </div>
+                </Modal>
+            )}
+        </div>
     );
 };
 

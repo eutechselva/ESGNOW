@@ -1,4 +1,4 @@
-import './UMSDashboard.scss';
+import './ESGNOWDashboard.scss';
 import React, { useContext, useState } from "react";
 import classNames from "classnames";
 import { Button, Loading, SearchBox, SideBar, ThemeChanger, UserProfile } from "uxp/components";
@@ -73,7 +73,7 @@ export const UMSDashboard: React.FC<UMSDashboardProps> = (props) => {
                     <AppLauncher uxpContext={context.uxpContext} />
 
                     <div className="ums__header_logo_container" onClick={() => { window.location.href = '/' }} >
-                        <div className="ums__header_logo"></div>
+                        <div className="esgnow__header_logo"></div>
                     </div>
 
                 </div>

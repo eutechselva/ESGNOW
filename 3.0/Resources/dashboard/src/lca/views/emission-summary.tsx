@@ -1,0 +1,773 @@
+import React, { useState, useEffect, useRef } from 'react';
+import { Button, Input, FormField, Label, Select } from 'uxp/components';
+import { Modal } from 'uxp/components';
+import { ProductInfoSummary } from '../types/product-info-summary.type';
+import { TransportLeg } from '../types/transport-leg.type';
+import Highcharts from 'highcharts';
+import HighchartsReact from 'highcharts-react-official'
+import { createProject, createProjectProductMap, projectProductMapping } from "../../esgnow-service";
+import { IContextProvider } from '@uxp';
+import './emission-summary.scss';
+
+interface SaveResultsModalProps {
+    onClose: () => void;
+    hasExistingProjects: boolean;
+    product: ProductInfoSummary;
+    packageWeight: Number;
+    palletWeight: Number;
+    transportationEmission: string;
+    transportLegs: TransportLeg[];
+    uxpContext: IContextProvider;
+    className?: string; // Added className property
+}
+
+interface ProjectOption {
+    label: string;
+    value: string;
+}
+
+const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
+    onClose,
+    hasExistingProjects,
+    product,
+    packageWeight,
+    palletWeight,
+    transportationEmission,
+    transportLegs,
+    uxpContext
+}) => {
+    // Create a safety check for context
+    const mockContextRef = useRef<IContextProvider | null>(null);
+    
+    // Initialize fallback mock context if needed
+    useEffect(() => {
+        if (!uxpContext && !mockContextRef.current) {
+            console.warn("SaveResultsModal: Creating fallback mock context");
+            mockContextRef.current = createMockContext();
+        }
+    }, [uxpContext]);
+    const [selectedCard, setSelectedCard] = useState<string | null>(null);
+    const [projectName, setProjectName] = useState('');
+    const [projectId, setProjectId] = useState('');
+    const [selectedProject, setSelectedProject] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+
+    const projectOptions: ProjectOption[] = [
+        { label: "Project Alpha", value: "alpha" },
+        { label: "Project Beta", value: "beta" },
+        { label: "Project Gamma", value: "gamma" },
+    ];
+
+    const handleSave = async () => {
+        // Debug log to check uxpContext right before we use it
+        console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
+        
+        // Use mock context as a fallback if real context is missing
+        const effectiveContext = uxpContext || mockContextRef.current;
+        
+        if (!effectiveContext) {
+            console.error("Both uxpContext and mockContextRef.current are undefined in SaveResultsModal handleSave");
+            setError('System error: Missing context. Please try again later.');
+            return;
+        }
+        
+        // Add warning if using mock context
+        if (!uxpContext && mockContextRef.current) {
+            console.warn("Using mock context for API calls - changes will not persist!");
+        }
+        
+        if (selectedCard === 'new') {
+            if (!projectName || !projectId) {
+                setError('Please fill in both project name and code');
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                const createProjectPayload = {
+                    code: projectId,
+                    name: projectName,
+                };
+                
+                console.log("About to call createProject with context:", !!uxpContext);
+                const projectResponse = await createProject(effectiveContext, createProjectPayload);
+
+                const createProjectProductMapPayload = {
+                    projectID: projectResponse.data._id,
+                    productID: product._id,
+                    packagingWeight : packageWeight,
+                    palletWeight : palletWeight,
+                    transportationLegs: transportLegs,
+                    totalTransportationEmission: transportationEmission
+                };
+
+                // Then create the project-product mapping
+                const mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
+
+                if (!mappingResponse.data) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+
+                const savedMapping = await mappingResponse.data;
+                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
+                onClose();
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
+            } finally {
+                setIsLoading(false);
+            }
+        } else if (selectedCard === 'existing') {
+            if (!selectedProject) {
+                setError('Please select a project');
+                return;
+            }
+
+            setIsLoading(true);
+            setError(null);
+
+            try {
+                
+                const mappingResponse = await projectProductMapping(effectiveContext, {
+                    projectCode: selectedProject,
+                    product,
+                    transportationEmission,
+                    transportLegs
+                });
+
+                if (!mappingResponse.data) {
+                    throw new Error('Failed to save project-product mapping');
+                }
+
+                const savedMapping = await mappingResponse.data;
+                console.log('Mapping saved successfully:', savedMapping);
+                onClose();
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to save mapping');
+            } finally {
+                setIsLoading(false);
+            }
+        }
+    };
+
+    return (
+        <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
+            <div className="esgnow-save-results-modal">
+                {/* {hasExistingProjects ? (
+                    <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
+                ) : (
+                    <p>No existing projects found. Please create a new project.</p>
+                )} */}
+
+                <div className="esgnow-card-container">
+                    <div
+                        className={`esgnow-option-card ${selectedCard === 'new' ? 'esgnow-selected' : ''}`}
+                        onClick={() => setSelectedCard('new')}
+                    >
+                        <h3>Create New Project</h3>
+                        <p>Start a fresh project with these results.</p>
+                    </div>
+                    {/* {hasExistingProjects && (
+                        <div
+                            className={`esgnow-option-card ${selectedCard === 'existing' ? 'esgnow-selected' : ''}`}
+                            onClick={() => setSelectedCard('existing')}
+                        >
+                            <h3>Add to Existing Project</h3>
+                            <p>Include these results in one of your existing projects.</p>
+                        </div>
+                    )} */}
+                </div>
+
+                {selectedCard === 'new' && (
+                    <div className="esgnow-new-project-inputs">
+                        <FormField>
+                            <Label><span style={{ fontSize: '12px' }}>Project Name</span></Label>
+                            <Input
+                                type="text"
+                                value={projectName}
+                                onChange={(value) => setProjectName(value)}
+                                placeholder="Enter project name"
+                            />
+                        </FormField>
+                        <FormField>
+                            <Label><span style={{ fontSize: '12px' }}>Project Code</span></Label>
+                            <Input
+                                type="text"
+                                value={projectId}
+                                onChange={(value) => setProjectId(value)}
+                                placeholder="Enter project ID"
+                            />
+                        </FormField>
+                    </div>
+                )}
+
+                {selectedCard === 'existing' && (
+                    <div className="esgnow-existing-project-selection">
+                        <FormField>
+                            <Label><span style={{ fontSize: '12px' }}>Select an existing project</span></Label>
+                            <Select
+                                options={projectOptions}
+                                selected={selectedProject}
+                                onChange={(newValue) => setSelectedProject(newValue)}
+                                placeholder="Select a project"
+                            />
+                        </FormField>
+                    </div>
+                )}
+
+                {error && (
+                    <div className="esgnow-error-message" style={{ color: 'red', marginBottom: '10px' }}>
+                        {error}
+                    </div>
+                )}
+
+                <div className="esgnow-save-button-container">
+                    <Button
+                        title={isLoading ? "Saving..." : "Save"}
+                        onClick={handleSave}
+                        className="esgnow-save-results"
+                        disabled={isLoading}
+                    />
+                </div>
+            </div>
+        </Modal>
+    );
+};
+
+
+// Create a mock context as a fallback when real context is missing
+const createMockContext = () => {
+    console.warn("Creating mock UXP context as a fallback");
+    // Create a simpler mock with just the essential methods we need
+    return {
+        executeComponent: (serviceName, route, method, params, body, headers, config) => {
+            console.warn(`MOCK executeComponent called: ${serviceName} - ${route}`);
+            return Promise.resolve({
+                data: { 
+                    _id: "mock_" + Math.random().toString(36).substring(2),
+                    mockGenerated: true,
+                    timestamp: new Date().toISOString()
+                }
+            });
+        },
+        getUserDetails: () => Promise.resolve({
+            name: "Mock User",
+            id: "mock-user-id",
+            key: "mock-user-key",
+            email: "mock@example.com",
+            userGroup: "user"
+        })
+        // We're using type assertion below to avoid implementing the full interface
+    } as IContextProvider;
+};
+
+const EmissionSummary: React.FC<{
+    product: ProductInfoSummary;
+    transportationEmission: string;
+    onBack: () => void;
+    transportLegs: TransportLeg[];
+    uxpContext: IContextProvider;
+    packageWeight: Number;
+    palletWeight: Number;
+    hideHeader?: boolean;
+    plan :string;
+}> = ({ product, onBack, transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
+    
+    // Create a ref to persist the uxpContext across renders
+    const contextRef = useRef<IContextProvider | null>(null);
+    
+    // Debug logs to check if uxpContext is defined
+    console.log("EmissionSummary - uxpContext received:", uxpContext);
+    
+    // Initialize with a mock context if needed
+    useEffect(() => {
+        if (!contextRef.current && !uxpContext) {
+            console.warn("No context available, creating mock context");
+            contextRef.current = createMockContext();
+        }
+    }, []);
+    
+    // Update the ref whenever uxpContext changes and is not null
+    useEffect(() => {
+        if (uxpContext) {
+            console.log("EmissionSummary - Storing real uxpContext in ref");
+            contextRef.current = uxpContext;
+        }
+    }, [uxpContext]);
+    
+    // Log current ref value after update
+    useEffect(() => {
+        console.log("EmissionSummary - contextRef.current status:", !!contextRef.current);
+    }, [contextRef.current]);
+
+    const transportationEmissionEx = parseFloat(transportationEmission);
+    const [isExpanded, setIsExpanded] = useState(true);
+    const [viewMode, setViewMode] = useState<'list' | 'tree'>('list');
+
+    const toggleExpand = () => setIsExpanded(!isExpanded);
+
+    const handleViewToggle = (mode: 'list' | 'tree') => setViewMode(mode);
+    const [showModal, setShowModal] = useState(false);
+    const [hasExistingProjects, setHasExistingProjects] = useState(true);
+    const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
+    const [activeTab, setActiveTab] = useState<'overview'|'materials' | 'manufacturing' | 'transportation'>('overview');
+
+    const donutChartOptions: Highcharts.Options = {
+        chart: {
+            type: 'pie',
+            backgroundColor: null,
+            height: 350,
+            width: 600,
+            events: {
+                render() {
+                    const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
+                    const totalValue = (
+                        Number(product.co2EmissionRawMaterials || 0) + 
+                        Number(product.co2EmissionFromProcesses || 0) + 
+                        Number(transportationEmission || 0)
+                    ).toFixed(2);
+                    if (!chart.customText) {
+                        chart.customText = chart.renderer
+                            .text(
+                                `${totalValue} KgCO₂e`,
+                                chart.plotWidth / 2 + chart.plotLeft,
+                                chart.plotHeight / 2 + chart.plotTop
+                            )
+                            .css({
+                                fontSize: '16px',
+                                fontWeight: 'bold',
+                                fontFamily: 'Comfortaa',
+                                color: '#424242',
+                                textAlign: 'center',
+                            })
+                            .attr({
+                                align: 'center',
+                                zIndex: 5,
+                            })
+                            .add();
+                    } else {
+                        chart.customText.attr({
+                            text: `${totalValue} KgCO₂e`,
+                        });
+                    }
+                },
+            },
+        },
+        title: {
+            text: '',
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '60%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Comfortaa',
+                        color: '#424242',
+                    },
+                },
+            },
+        },
+        series: [
+            {
+                name: 'Contribution',
+                type: 'pie',
+                data: [
+                    { name: 'Raw Materials', y: Number(product.co2EmissionRawMaterials || 0), color: '#78BE7C' },
+                    { name: 'Manufacturing', y: Number(product.co2EmissionFromProcesses || 0), color: '#ffaa00' },
+                    { name: 'Transportation', y: Number(transportationEmission || 0), color: '#2A9D8F' },
+                ],
+            },
+        ],
+        legend: {
+            enabled: true,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            symbolRadius: 5,
+            symbolHeight: 10,
+            symbolWidth: 10,
+            itemMarginTop: 5,
+            itemStyle: {
+                fontFamily: 'Comfortaa',
+                fontWeight: 'bold',
+                fontSize: '12px',
+            },
+        },
+        tooltip: {
+            pointFormat: '<b>{point.name}</b>: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+        },
+        credits: {
+            enabled: false,
+        },
+    };
+    const renderOverviewTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-product-info-summary">
+            <div
+                className="esgnow-summary-image"
+                style={{
+                    backgroundImage: Array.isArray(product.images) && product.images.length > 0 ? `url(${product.images[0]})` : 'none',
+                }}
+                >
+                {!(Array.isArray(product.images) && product.images.length > 0) && (
+                    <div className="esgnow-image-placeholder">Image Unavailable</div>
+                )}
+            </div>
+
+
+                <div className="esgnow-summary-details">
+                    <div className="esgnow-detail-grid">
+                        <div className="esgnow-detail-item">
+                            <strong>Project Code</strong>
+                            <p>{product.code}</p>
+                        </div>
+                        <div className="esgnow-detail-item">
+                            <strong>Product Category</strong>
+                            <p>{product.category}</p>
+                        </div>
+                        <div className="esgnow-detail-item">
+                            <strong>Sub Category</strong>
+                            <p>{product.subCategory}</p>
+                        </div>
+                        <div className="esgnow-detail-item">
+                            <strong>Weight</strong>
+                            <p>{product.weight} Kg</p>
+                        </div>
+                        <div className="esgnow-detail-item">
+                            <strong>Country of Manufacture</strong>
+                            <p>
+                                {product.countryOfOrigin === "CN" ? "China" :
+                                product.countryOfOrigin === "VN" ? "Vietnam" :
+                                product.countryOfOrigin}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="esgnow-description-field">
+                        <strong>Product Description</strong>
+                        <div className="esgnow-rich-text-editor">
+                            <textarea 
+                                defaultValue={product.description}
+                                className="esgnow-editable-description"
+                                rows={4}
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="esgnow-widget esgnow-product-footprint">
+                <h3>Product Carbon Footprint Breakdowns</h3>
+                <div className="esgnow-widget-content">
+                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderMaterialsTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
+                <h3>Contribution by Raw Material</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Material Class</th>
+                                { (plan == 'professional' &&  <th>Specific Material</th>)  }
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Define material type
+                                interface Material {
+                                    materialClass: string;
+                                    specificMaterial?: string;
+                                    emissionFactor: number;
+                                    quantity?: number;
+                                }
+                                
+                                // Calculate the total emission factor
+                                const materials: Material[] = Array.isArray(product.materials) ? product.materials : [];
+                                const totalEmissionFactor = materials.reduce(
+                                    (sum: number, item: Material) => sum + (item.emissionFactor || 0),
+                                    0
+                                );
+
+                                // Sort the materials by emissionFactor in descending order
+                                const sortedMaterials = [...materials].sort((a: Material, b: Material) => 
+                                    (b.emissionFactor || 0) - (a.emissionFactor || 0));
+
+                                // Map through the sorted materials and calculate percentage
+                                return sortedMaterials.map((item: Material) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
+                                            <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
+                                                    <div 
+                                                        className="esgnow-percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderManufacturingTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-manufacturing">
+                <h3>Contribution by Manufacturing</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                { plan == 'basic' ? <th> Material</th> : <th>Specific Material</th>  }
+                                <th>Manufacturing Process</th>
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Define manufacturing process type
+                                interface ManufacturingProcess {
+                                    materialClass: string;
+                                    emissionFactor: number;
+                                    manufacturingProcesses: Array<{
+                                        category: string;
+                                        process?: string;
+                                        emissionFactor: number;
+                                    }>;
+                                }
+                                
+                                // Calculate the total emission factor
+                                const manufacturingProcesses: ManufacturingProcess[] = Array.isArray(product.productManufacturingProcess) ? 
+                                    product.productManufacturingProcess : [];
+                                const totalEmissionFactor = manufacturingProcesses.reduce(
+                                    (sum: number, item: ManufacturingProcess) => sum + (item.emissionFactor || 0),
+                                    0
+                                );
+
+                                // Sort the productManufacturingProcess by emissionFactor in descending order
+                                const sortedProcess = [...manufacturingProcesses].sort((a: ManufacturingProcess, b: ManufacturingProcess) => 
+                                    (b.emissionFactor || 0) - (a.emissionFactor || 0));
+
+                                // Map through the sorted materials and calculate percentage
+                                return sortedProcess.map((item: ManufacturingProcess) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.materialClass}>
+                                            <td>{item.materialClass}</td>
+                                            <td>{item.manufacturingProcesses && item.manufacturingProcesses[0] ? 
+                                                item.manufacturingProcesses[0].category : 'Unknown'}</td>
+                                            <td>{parseFloat(item.emissionFactor.toString()).toFixed(2)} KgCO₂e</td>
+                                            <td>
+                                                <div className="esgnow-percentage-bar">
+                                                    <div 
+                                                        className="esgnow-percentage-fill" 
+                                                        style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
+                                                    ></div>
+                                                    <span>{percentage}%</span>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    const renderTransportationTab = () => (
+        <div className="esgnow-tab-content">
+            <div className="esgnow-widget esgnow-contribution-raw-material">
+                <h3>Contribution by Transportation</h3>
+                <div className="esgnow-widget-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Mode</th>
+                                <th>Origin</th>
+                                <th>Destination</th>
+                                <th>Contribution</th>
+                                <th>Percentage</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {(() => {
+                                // Use the TransportLeg type from props
+                                
+                                // Calculate the total emission factor
+                                const legs: TransportLeg[] = Array.isArray(transportLegs) ? transportLegs : [];
+                                const totalEmissionFactor = legs.reduce(
+                                    (sum: number, item: TransportLeg) => sum + (item.transportEmission || 0),
+                                    0
+                                );
+
+                                // Sort the legs by transportEmission in descending order
+                                const sortedLegs = [...legs].sort((a: TransportLeg, b: TransportLeg) => 
+                                    (b.transportEmission || 0) - (a.transportEmission || 0));
+                 
+                                // Map through the sorted legs and calculate percentage
+                                return sortedLegs.map((item: TransportLeg) => {
+                                    const percentage =
+                                        totalEmissionFactor > 0
+                                            ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                            : 0;
+                                    return (
+                                        <tr key={item.id}>
+                                            <td>{item.transportMode || 'Unknown'}</td>
+                                            { plan == 'professional' ? 
+                                              <td>{item.originCountry || 'Unknown'}</td> : 
+                                              <td>{item.originGateway || 'Unknown'}</td>
+                                            } 
+                                            { plan == 'professional' ? 
+                                              <td>{item.destinationCountry || 'Unknown'}</td> : 
+                                              <td>{item.destinationGateway || 'Unknown'}</td>
+                                            } 
+                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(2)} KgCO₂e</td>
+                                            <td>{percentage} %</td>
+                                        </tr>
+                                    );
+                                });
+                            })()}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    );
+
+    function onSave(): void {
+        setShowModal(true);
+    }
+
+    return (
+        <>
+            <div className="esgnow-header-container">
+                {!hideHeader && (
+                    <>
+                        <div className="esgnow-title-section">
+                            <h1 className="esgnow-dashboard-title">Transport Summary</h1>
+                            <p className="esgnow-subheading">Product: {product?.name}</p>
+                        </div>
+                        <div className="esgnow-action-buttons">
+                            <Button
+                                title="Save"
+                                onClick={() => setShowModal(true)}
+                                className="esgnow-save-results-button"
+                            >
+                                <span className="esgnow-back-icon">←</span>
+                                Back
+                            </Button>
+                                
+                            <Button
+                                title="< Back"
+                                onClick={onBack}
+                                className="esgnow-back-button"
+                            >
+                                <span className="esgnow-delete-icon">×</span>
+                                Delete
+                            </Button>
+                        </div>
+                    </>
+                )}
+            </div>
+            <div className="esgnow-tabs-container">
+                <div className="esgnow-tabs">
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'overview' ? 'esgnow-active' : ''}`}
+                        onClick={() => setActiveTab('overview')}
+                    >
+                        Overview
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'materials' ? 'esgnow-active' : ''}`}
+                        onClick={() => setActiveTab('materials')}
+                    >
+                        Raw Materials
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'manufacturing' ? 'esgnow-active' : ''}`}
+                        onClick={() => setActiveTab('manufacturing')}
+                    >
+                        Manufacturing
+                    </button>
+                    <button 
+                        className={`esgnow-tab-button ${activeTab === 'transportation' ? 'esgnow-active' : ''}`}
+                        onClick={() => setActiveTab('transportation')}
+                    >
+                        Transportation
+                    </button>
+                </div>
+
+                {activeTab === 'overview' && renderOverviewTab()}
+                {activeTab === 'materials' && renderMaterialsTab()}
+                {activeTab === 'manufacturing' && renderManufacturingTab()}
+                {activeTab === 'transportation' && renderTransportationTab()}
+            </div>
+
+            {showModal && (
+                <>
+                    {(!uxpContext && !contextRef.current) && (
+                        <div style={{ 
+                            position: 'fixed', 
+                            top: 0, 
+                            left: 0, 
+                            right: 0, 
+                            backgroundColor: '#ffdddd', 
+                            padding: '10px', 
+                            textAlign: 'center',
+                            zIndex: 9999,
+                            color: 'red',
+                            fontWeight: 'bold'
+                        }}>
+                            System data connection issue detected. Your changes will be saved temporarily but may not persist after page refresh.
+                        </div>
+                    )}
+                    <SaveResultsModal
+                        onClose={() => setShowModal(false)}
+                        hasExistingProjects={hasExistingProjects}
+                        product={product}
+                        transportationEmission={transportationEmission}
+                        transportLegs={transportLegs}
+                        packageWeight={packageWeight}
+                        palletWeight={palletWeight}
+                        uxpContext={uxpContext || contextRef.current}
+                    />
+                </>
+            )}
+        </>
+    );
+};
+
+export default EmissionSummary;

@@ -5,15 +5,17 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import './product-categorization.scss';
 import { ProductCategoryInfo } from "../types/product-category-info.type";
 import { ProductInfo } from "../types/product-info.type";
-import API_BASE_URL from "../config";
+import { classifyProduct, productCategories } from "../../esgnow-service";
+import { IContextProvider } from "@uxp";
 
 interface ProductCategorizationProps {
     productCategoryData: ProductCategoryInfo;
     productData: ProductInfo;
     onNext?: (productCategory: ProductCategoryInfo) => void;
+    uxpContext: IContextProvider;
 }
 
-const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext }) => {
+const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCategoryData, productData, onNext, uxpContext }) => {
     const [productCategory, setProductCategory] = useState<string>("");
     const [productSubCategory, setProductSubCategory] = useState<string>("");
     const [categoryOptions, setCategoryOptions] = useState<{ label: string, value: string }[]>([]);
@@ -24,19 +26,29 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     const [supplierName, setSupplierName] = useState<string>(productCategoryData.supplierName);
     const [country, setCountry] = useState<string>(productCategoryData.country);
     const [showTooltip, setShowTooltip] = useState(false);
+    const [aiGenerating, setAIGenerating] = useState(false);
+
+    const [errorTotalWeight, setErrorTotalWeight] = useState<string>("");
 
     const [categoryData, setCategoryData] = useState<{ [key: string]: string[] }>({}); // Store the entire category data
+
+    const handleTotalWeightChange = (value: string) => {
+        setTotalWeight(value);
+        if (parseFloat(value) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+        } else {
+            setErrorTotalWeight("");
+        }
+    };
 
     useEffect(() => {
         const fetchCategoryDataAndClassify = async () => {
             try {
-                // Fetch category data
-                const response = await fetch(`${API_BASE_URL}/api/productCategories`, {
-                    method: 'GET',
-                    headers: { 'Content-Type': 'application/json' }
-                });
 
-                const data = await response.json();
+                // Fetch category data
+                const response = await productCategories(uxpContext);
+
+                const data = await response.data;
                 console.log("Fetched Category Data:", data);
 
                 setCategoryData(data); // Store the full category data
@@ -48,25 +60,37 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 setCategoryOptions(formattedCategories);
 
                 // Call classifyProduct after setting options
-                await classifyProduct(data);
+                await fetchClassifyProduct(data);
             } catch (error) {
                 console.error("Error fetching category data:", error);
             }
         };
 
-        const classifyProduct = async (data: { [key: string]: string[] }) => {
+        const fetchClassifyProduct = async (data: { [key: string]: string[] }) => {
             try {
-                const response = await fetch(`${API_BASE_URL}/api/classify-product`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: productData.name,
-                        description: productData.description,
-                        productCode: productData.code
-                    })
-                });
+                setAIGenerating(true);
+                let imageUrl = '';
+                if (productData.uploadedImages && productData.uploadedImages.length > 0) {
+                    // Check if the image URL already contains a host
+                    if (productData.uploadedImages[0].startsWith('http')) {
+                        imageUrl = productData.uploadedImages[0];
+                    } else {
+                        // Use window.location.origin to get the base URL
+                        const baseUrl = window.location.origin;
+                        imageUrl = baseUrl + (productData.uploadedImages[0].startsWith('/') ? '' : '/') + productData.uploadedImages[0];
+                    }
+                }
 
-                const classificationData = await response.json();
+                const classifyProductPayload = {
+                    name: productData.name,
+                    description: productData.description,
+                    productCode: productData.code,
+                    imageUrl: imageUrl
+                };
+
+                const response = await classifyProduct(uxpContext, classifyProductPayload);
+
+                const classificationData = await response.data;
                 console.log("Classified Product Data:", classificationData);
 
                 // Set default category and subcategory
@@ -79,6 +103,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                     label: String(subcategory),
                     value: String(subcategory)
                 })));
+                setAIGenerating(false);
             } catch (error) {
                 console.error("Error classifying product:", error);
             }
@@ -100,20 +125,28 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     };
 
     const handleNext = () => {
-        const productData: ProductCategoryInfo = {
+        if (totalWeight === "" || parseFloat(totalWeight) <= 0) {
+            setErrorTotalWeight("Total weight must be a positive number");
+            return
+
+        }
+        const categoryData: ProductCategoryInfo = {
             category: productCategory,
             subCategory: productSubCategory,
             numberOfUnits: numberOfUnits,
             totalWeight: totalWeight,
             brandName: productBrandName,
             supplierName: supplierName,
-            country: country
+            country: country,
+            images: productData.uploadedImages || []
         };
-        onNext?.(productData);
+        onNext?.(categoryData);
     };
 
     return (
         <div className="modal-content">
+
+            {aiGenerating && (<div className="loading-overlay"></div>)}
 
             <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField>
@@ -122,7 +155,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         onMouseEnter={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
                     >
-                        {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                        <FontAwesomeIcon icon={faInfoCircle} />
                         {showTooltip && (
                             <div className="tooltip">
                                 Category and Sub Category are AI-generated based on your input and can be edited as needed.
@@ -133,6 +166,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={categoryOptions}
                         selected={productCategory}
                         onChange={(value) => handleCategoryChange(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
@@ -143,7 +177,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         onMouseEnter={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
                     >
-                        {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                        <FontAwesomeIcon icon={faInfoCircle} />
                         {showTooltip && (
                             <div className="tooltip">
                                 Category and Sub Category are AI-generated based on your input and can be edited as needed.
@@ -154,6 +188,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         options={subcategoryOptions}
                         selected={productSubCategory}
                         onChange={(value) => setProductSubCategory(value)}
+                        className="custom-select"
                     />
                 </FormField>
 
@@ -175,10 +210,12 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                     <Input
                         type="number"
                         value={totalWeight}
-                        onChange={(value) => setTotalWeight(value)}
+                        onChange={(value) => handleTotalWeightChange(value)}
                         placeholder="Enter total weight"
                     />
+                    {errorTotalWeight && <div className="error-text">{errorTotalWeight}</div>}
                 </FormField>
+
             </div>
 
 
@@ -186,11 +223,18 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 <Label><span style={{ fontSize: '12px' }}>Country of Manufacture</span></Label>
                 <Select
                     options={[
-                        { label: 'United States', value: 'US' },
-                        { label: 'United Kingdom', value: 'UK' },
+
                         { label: 'China', value: 'CN' },
-                        { label: 'India', value: 'IN' },
-                        { label: 'Germany', value: 'DE' },
+                        { label: 'Czech Republic', value: 'CZ' },
+                        { label: 'France', value: 'FR' },
+                        { label: 'Global', value: 'RoW' },
+                        { label: 'Netherlands', value: 'NL' },
+                        { label: 'Poland', value: 'PL' },
+                        { label: 'Spain', value: 'ES' },
+                        { label: 'Taiwan', value: 'TW' },
+                        { label: 'United Kingdom', value: 'UK' },
+                        { label: 'United States', value: 'US' },
+                        { label: 'Vietnam', value: 'VN' },
                         // Add more countries as needed
                     ]}
                     selected={country}
@@ -200,7 +244,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
 
 
 
-            <Button className="button-container" title="Next" onClick={handleNext} />
+            <Button className="esgnow-next-button" title="Next" onClick={handleNext} />
         </div>
     );
 };

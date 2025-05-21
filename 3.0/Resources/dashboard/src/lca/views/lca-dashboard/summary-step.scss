@@ -1,0 +1,58 @@
+// File: summary-step.scss
+
+.summary-container {
+    padding: 15px;
+  }
+  
+  .summary-section {
+    margin-bottom: 20px;
+  }
+  
+  .summary-section h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .summary-section h4 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .summary-box {
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+  }
+  
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+  }
+  
+  .summary-row:last-child {
+    border-bottom: none;
+  }
+  
+  .confirm-button {
+    margin-top: 30px;
+    padding: 8px 6px;
+    background-color: #4caf50;
+    color: white;
+    font-size: 14px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .confirm-button:hover {
+    background-color: #45a049;
+  }

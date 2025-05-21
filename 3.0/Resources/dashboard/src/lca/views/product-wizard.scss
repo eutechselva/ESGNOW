@@ -1,5 +1,65 @@
 .done-button-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 20px;
+    
+    button {
+
+        color: white;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #2196f3;
+        color: white;
+        padding: 10px 20px;
+
+        
+        &:hover {
+            background-color: #1976d2;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: white;
+        }
+        
+        &:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            
+            &:hover {
+                box-shadow: none;
+                background-color: #ccc;
+            }
+        }
+    }
+    
+    .button-helper-text {
+        color: #f44336;
+        font-size: 14px;
+        margin-top: 8px;
+        font-style: italic;
+    }
+}
+
+.modal-container {
+    &.lgs-create-product-modal{
+
+       .modal-panel {
+        width: 50% ;
+        min-width: 50% ;
+        max-width: 50% ;
+        height: 80%;
+
+       }
+       .modal-header {
+        background-color: #0066ff;
+        color: white;
+        text-align: center;
+        font-size: 16px;
+        font-weight: bold;
+      }
+
+    }
 }

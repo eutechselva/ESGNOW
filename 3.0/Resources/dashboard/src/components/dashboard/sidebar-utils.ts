@@ -235,7 +235,7 @@ export const useSidebarLinks = () => {
     }
 
     function handleSidebarLinkClick(page: string) {
-        history.push(`/Apps/ESGNOW/dashboard/${page}`)
+        history.push(`/Apps/esgnow/dashboard/${page}`)
     }
 
     return { loading, sidebarLinks }

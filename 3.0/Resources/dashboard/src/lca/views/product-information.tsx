@@ -4,34 +4,107 @@ import './product-information.scss';
 import { Button } from 'uxp/components';
 import { ProductInfo } from "../types/product-info.type";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons/faInfoCircle";
+import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { IContextProvider } from "@uxp";
+
+
 
 
 
 interface ProductInformationProps {
     productData: ProductInfo;
     onNext: (productData: ProductInfo) => void;
+    uxpContext: IContextProvider;
 }
 
-const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext }) => {
+const ProductInformation: React.FC<ProductInformationProps> = ({ productData, onNext, uxpContext }) => {
     const [productCode, setProductCode] = React.useState(productData.code);
     const [productName, setProductName] = React.useState(productData.name);
     const [productDescription, setProductDescription] = React.useState(productData.description);
     const [productImages, setProductImages] = React.useState<File[]>(productData.images);
+    const [productUploadedImages, setProductUploadedImages] = React.useState<string[]>(productData.uploadedImages);
     const [imagePreviews, setImagePreviews] = React.useState<string[]>(
         productData.images.map((file) => URL.createObjectURL(file))
     );
     const [document, setDocument] = React.useState<File | null>(productData.document);
     const [showTooltip, setShowTooltip] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
+    const [errors, setErrors] = React.useState<{ [key: string]: string }>({});
+
+    const validate = () => {
+        let tempErrors: { [key: string]: string } = {};
+        if (!productCode.trim()) tempErrors.productCode = "Product Code is required";
+        if (!productName.trim()) tempErrors.productName = "Product Name is required";
+        if (!productDescription.trim()) tempErrors.productDescription = "Product Description is required";
+        setErrors(tempErrors);
+        return Object.keys(tempErrors).length === 0;
+    };
 
     const fileInputRef = React.useRef<HTMLInputElement | null>(null);
+
+    async function uploadFile(url: string, filename: string, apikey: string, buffer: Blob) {
+        const form = new FormData();
+        form.append('file', buffer, filename);
+
+        let response = await fetch(url, {
+            method: "POST",
+            headers: {
+                "Authorization": `${apikey}`
+            },
+            body: form
+        })
+
+        let responseText = await response.text();
+
+        // something went wrong, no point proceeding
+        if (response.status !== 200) {
+            throw responseText;
+        }
+
+        return responseText;
+    }
+
+    function generateUUID() {
+        var d = new Date().getTime();
+        var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = (d + Math.random() * 16) % 16 | 0;
+            d = Math.floor(d / 16);
+            return (c == 'x' ? r : (r & 0x7 | 0x8)).toString(16);
+        });
+        return uuid;
+    }
+
+    function addQSToURL(url: string, qs: any) {
+        let result = url.lastIndexOf("?") === -1 ? url + "?" : url;
+        let qsArray = [];
+
+        if (!!url && !!qs) {
+            for (let key in qs) {
+                qsArray.push(`${key}=${qs[key]}`);
+            }
+        }
+        return result + qsArray.join("&");
+    }
 
     // Handler for image upload
     const handleImageUpload = (files: FileList) => {
         const fileArray = Array.from(files);
         if (fileArray.length + productImages.length <= 3) {
-            const newImagePreviews = fileArray.map((file) => URL.createObjectURL(file));
+            const newImagePreviews = fileArray.map((file) => {
+
+                let name = file.name
+                let ext = name.slice((Math.max(0, name.lastIndexOf(".")) || Infinity) + 1)
+                name = "file-" + generateUUID() + '.' + ext
+                let baseUrl = uxpContext.lucyUrl + 'uploadcontent/notes/uploads/images/';
+                let url = addQSToURL(baseUrl, { filename: name })
+
+                let apikey = uxpContext.apiKey
+
+                uploadFile(url, name, apikey, file);
+                let downloadUrl = uxpContext.lucyUrl + 'content/notes/uploads/images/' + name;
+                setProductUploadedImages([...productUploadedImages, downloadUrl]);
+                return URL.createObjectURL(file);
+            });
             setProductImages([...productImages, ...fileArray]);
             setImagePreviews([...imagePreviews, ...newImagePreviews]);
         } else {
@@ -90,22 +163,25 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
 
     const handleNext = () => {
-        const productData = {
-            code: productCode,
-            name: productName,
-            description: productDescription,
-            images: productImages,
-            document,
-        };
-        onNext(productData);
+        if (validate()) {
+            const productData = {
+                code: productCode,
+                name: productName,
+                description: productDescription,
+                images: productImages,
+                uploadedImages: productUploadedImages,
+                document,
+            };
+            onNext(productData);
+        }
     };
 
     return (
         <div className="modal-content">
-            {/* <h3>Product Profile</h3> */}
+            <h3>Fill in the details to run your assessment.</h3>
 
             <div style={{ display: 'flex', gap: '16px' }}>
-                <FormField>
+                <FormField className="form-field">
                     <Label><span style={{ fontSize: '12px' }}>Product Code</span></Label>
                     <Input
                         type="text"
@@ -113,9 +189,10 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         onChange={(value) => setProductCode(value)}
                         placeholder="Enter product code"
                     />
+                    {errors.productCode && <span className="error-text">{errors.productCode}</span>}
                 </FormField>
 
-                <FormField>
+                <FormField className="form-field">
                     <Label><span style={{ fontSize: '12px' }}>Product Name</span></Label>
                     <Input
                         type="text"
@@ -123,11 +200,27 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         onChange={(value) => setProductName(value)}
                         placeholder="Enter product name"
                     />
+                    {errors.productName && <span className="error-text">{errors.productName}</span>}
                 </FormField>
             </div>
 
-            <FormField>
-                <Label><span style={{ fontSize: '12px' }}>Product Description</span></Label>
+            <FormField className="form-field">
+                <Label>
+                    <span style={{ fontSize: '12px' }}>Product Description</span>
+                    <span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Provide key product details such as size, material, use case, and physical characteristics. The more descriptive your input, the better the AI can assist with categorisation and material generation. 
+                            </div>
+                        )}
+                    </span>
+                </Label>
+
                 <textarea
                     value={productDescription}
                     onChange={(event) => setProductDescription(event.target.value)}
@@ -139,27 +232,28 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         fontSize: '12px',
                         borderRadius: '4px',
                         border: '1px solid #ccc',
-                        fontFamily:'comfortaa'
+                        fontFamily: 'comfortaa'
                     }}
                 />
+                {errors.productDescription && <span className="error-text">{errors.productDescription}</span>}
             </FormField>
 
 
             {/* Drag and Drop Area for Images */}
-            <FormField>
+            <FormField className="form-field">
                 <Label><span style={{ fontSize: '12px' }}>Product Images</span>
-                <span
-                                className="info-icon"
-                                onMouseEnter={() => setShowTooltip(true)}
-                                onMouseLeave={() => setShowTooltip(false)}
-                            >
-                                {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
-                                {showTooltip && (
-                                    <div className="tooltip">
-                                       Upload up to 3 images in JPG, PNG, or compatible formats to provide visual details.
-                                    </div>
-                                )}
-                            </span>
+                    <span
+                        className="info-icon"
+                        onMouseEnter={() => setShowTooltip(true)}
+                        onMouseLeave={() => setShowTooltip(false)}
+                    >
+                        <FontAwesomeIcon icon={faInfoCircle} />
+                        {showTooltip && (
+                            <div className="tooltip">
+                                Upload up to 3 images in JPG, PNG, or compatible formats to provide visual details.
+                            </div>
+                        )}
+                    </span>
                 </Label>
                 <div
                     className={`drop-zone ${isDragging ? 'drag-over' : ''}`}
@@ -192,14 +286,14 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                 </div>
             </FormField>
 
-            <FormField>
+            {/* <FormField className="form-field">
                 <Label><span style={{ fontSize: '12px' }}>Evidence Document</span>
                 <span
                                 className="info-icon"
                                 onMouseEnter={() => setShowTooltip(true)}
                                 onMouseLeave={() => setShowTooltip(false)}
                             >
-                                {/* <FontAwesomeIcon icon={faInfoCircle} /> */}
+                                <FontAwesomeIcon   icon={faInfoCircle} />
                                 {showTooltip && (
                                     <div className="tooltip">
                                        Add any files that substantiate product data, like certification documents or audit reports, in accepted formats: PDF, DOC, JPG, PNG.
@@ -221,11 +315,11 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
                         </button>
                     )}
                 </div>
-            </FormField>
+            </FormField> */}
 
             {/* Next Button */}
             <Button
-                className="button-container"
+                className="esgnow-next-button"
                 title="Next"
                 onClick={handleNext}
             />

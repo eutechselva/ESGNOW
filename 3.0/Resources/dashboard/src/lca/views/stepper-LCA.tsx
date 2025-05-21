@@ -7,7 +7,7 @@ interface StepperProps {
     onStepChange: (step: number) => void;
 }
 
-const steps = ["Product Selection", "Transport Selection", "Transport Weight"];
+const steps = ["Product Selection", "Transport Selection", "Transport Weight", "Summary"];
 
 const Stepper: React.FC<StepperProps> = ({ activeStep, onStepChange }) => {
     return (

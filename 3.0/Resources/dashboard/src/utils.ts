@@ -1,11 +1,10 @@
-import { Aggregation, Bucket, Group } from "@components/widgets/consumption/Consumption";
 import { BaselineType } from "@types";
-import { IWidgetObject } from "@uxp";
+import { IContextProvider, IWidgetObject } from "@uxp";
 import { addDays, addHours, addSeconds, differenceInHours, eachDayOfInterval, eachHourOfInterval, endOfDay, formatDate, formatDistanceToNow, getDate, getDay, getHours, isValid, startOfDay } from "date-fns";
 import _ from 'lodash'
 import pluralize from 'pluralize'
-import tinycolor from "tinycolor2";
 import { hasValue, isRelativeDate, toDate, toNum } from "uxp/components";
+import axios from "axios";
 
 export function getRegisteredWidgets(): IWidgetObject[] {
     return (window as any).Widgets || []
@@ -134,96 +133,6 @@ export function convertJSONToLowercase(obj: any): any {
     }, {});
 }
 
-const bucketToHours: Record<Bucket, number> = {
-    [Bucket.FiveMinutes]: 5 / 60,
-    [Bucket.FifteenMinutes]: 15 / 60,
-    [Bucket.ThirtyMinutes]: 30 / 60,
-    [Bucket.Hour]: 1,
-    [Bucket.Day]: 24,
-    [Bucket.Week]: 24 * 7,
-    [Bucket.Month]: 24 * 30, // Approximation for a month
-    [Bucket.Year]: 24 * 365, // Approximation for a year
-};
-
-const groupToBucketMapping: Record<Group, Bucket> = {
-    [Group.DayOfMonth]: Bucket.Day,
-    [Group.DayOfWeek]: Bucket.Day,
-    [Group.HourOfDay]: Bucket.Hour,
-
-}
-
-function getDaysOrHoursCount(group: Group, dateRange: { start: string | Date, end: string | Date }) {
-    const { start, end } = dateRange;
-
-    if ([Group.DayOfMonth, Group.DayOfWeek].includes(group)) {
-
-        const daysInRange = eachDayOfInterval({ start: toDate(start), end: toDate(end) });
-
-        if (group === Group.DayOfMonth) {
-            return daysInRange.reduce((counts, date) => {
-                const dayOfMonth = getDate(date);
-                counts[dayOfMonth] = (counts[dayOfMonth] || 0) + 1;
-                return counts;
-            }, {} as Record<number, number>);
-        }
-
-        if (group === Group.DayOfWeek) {
-            return daysInRange.reduce((counts, date) => {
-                const dayOfWeek = getDay(date); // 0 (Sunday) to 6 (Saturday)
-                counts[dayOfWeek] = (counts[dayOfWeek] || 0) + 1;
-                return counts;
-            }, {} as Record<number, number>);
-        }
-    }
-
-    const hoursInRange = eachHourOfInterval({ start: toDate(start), end: toDate(end) })
-    return hoursInRange.reduce((counts, date) => {
-        const hourOfDay = getHours(date); // 0 to 23
-        counts[hourOfDay] = (counts[hourOfDay] || 0) + 1;
-        return counts;
-    }, {} as Record<number, number>);
-}
-
-export function calculateBaselineValueBasedOnBucket(
-    baseLineType: BaselineType,
-    baselineValue: number,
-    bucket: Bucket,
-    group?: Group,
-    aggregation?: Aggregation,
-    dateRange?: { start: string | Date; end: string | Date }
-): number | Record<number, number> {
-    if (
-        !baseLineType
-        || !hasValue(baselineValue)
-        || (!hasValue(group) && !hasValue(bucket))
-        || ((hasValue(group) && hasValue(aggregation) && aggregation == Aggregation.Sum) && (!dateRange || !dateRange?.start || !dateRange?.end))
-    ) return baselineValue || 0;
-
-    // Default baseline is configured for 24 hours
-    const baselineFactor = baselineValue / baseLineType.duration;
-
-    if (hasValue(group) && aggregation === Aggregation.Sum) {
-
-        const daysOrHoursCount = getDaysOrHoursCount(group, dateRange)
-
-        // Compute baseline for each day of the month
-        const factor = bucketToHours[groupToBucketMapping[group]]
-        return Object.fromEntries(
-            Object.entries(daysOrHoursCount).map(([dayOrHour, count]) => [
-                Number(dayOrHour),
-                baselineFactor * factor * count,
-            ])
-        );
-
-    } else {
-        const factor = hasValue(group)
-            ? bucketToHours[groupToBucketMapping[group]] // Get bucket from group and convert to hours
-            : bucketToHours[bucket]; // Convert bucket to hours
-
-        return baselineFactor * factor;
-    }
-}
-
 export function getStartDate(d: string | Date) {
     const date = toDate(d)
     if (!date) return null
@@ -313,4 +222,38 @@ export function sortByKeys<T>(array: T[], sortKeys: Partial<Record<keyof T, 'asc
     const keys = Object.keys(sortKeys) as (keyof T)[];
     const orders = keys.map((key) => sortKeys[key]);
     return _.orderBy(array, keys, orders);
+}
+
+type ServiceMethod = 'get' | 'post' | 'put' | 'patch' | 'delete';
+
+export async function executeComponent(context: IContextProvider, component: string, route: string, method: ServiceMethod, parameters: any, body?: any) {
+    if (!route.startsWith('/')) route = '/' + route;
+    try {
+
+        let config: any = {
+            url: `/components/${component}${route}`,
+            method: method,
+            headers: {
+                'Authorization': `APIKEY ${context.apiKey}`,
+                'Content-Type': 'application/json',
+            }
+        }
+
+        if (['patch', 'post', 'put'].includes(method)) {
+            config.data = body || {}
+        }
+        else {
+            config.params = parameters
+        }
+
+        let resp = await axios(config)
+        return resp.data
+    } catch (e) {
+        let obj = e?.response?.data || e;
+        throw obj;
+    }
+}
+
+export function canRunCalculator(uxpContext: IContextProvider) {
+    return uxpContext.hasAppRole('ESGNOW', 'canruncalculator');
 }
