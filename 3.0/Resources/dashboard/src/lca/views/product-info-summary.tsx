@@ -55,14 +55,17 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             )
                             .css({
                                 fontSize: '18px',
+                                display: 'block',
                                 fontWeight: 'bold',
-                                fontFamily: 'Comfortaa',
+                                fontFamily: 'poppins',
                                 color: '#424242',
                                 textAlign: 'center',
+                            
                             })
                             .attr({
                                 align: 'center',
                                 zIndex: 5,
+                                
                             })
                             .add();
                     } else {
@@ -176,7 +179,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             </div>
 
             <div className="esgnow-widget esgnow-product-footprint">
-                <h3>Product Carbon Footprint Breakdown</h3>
+                <h3>Product Carbon Footprint</h3>
                 <div className="esgnow-widget-content">
                     <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
                 </div>
@@ -295,7 +298,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     const renderInventoryTab = () => (
         <div className="esgnow-tab-content">
             <div className="esgnow-widget esgnow-inventory-info">
-                <div className="esgnow-inventory-header">
+              
                     <h3>Inventory Information</h3>
                     <div className="esgnow-view-toggle">
                         {/* <button
@@ -311,7 +314,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             Tree View
                         </button> */}
                     </div>
-                </div>
+               
 
                 {viewMode === 'tree' ? (
                     <div className="esgnow-inventory-tree">

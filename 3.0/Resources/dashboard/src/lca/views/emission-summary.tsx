@@ -462,7 +462,7 @@ const EmissionSummary: React.FC<{
             </div>
 
             <div className="esgnow-widget esgnow-product-footprint">
-                <h3>Product Carbon Footprint Breakdowns</h3>
+                <h3>Product Carbon Footprint Breakdown</h3>
                 <div className="esgnow-widget-content">
                     <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
                 </div>
