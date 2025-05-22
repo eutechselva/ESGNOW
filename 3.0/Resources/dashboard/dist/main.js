@@ -43929,6 +43929,7 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                     { label: 'Czech Republic', value: 'CZ' },
                     { label: 'France', value: 'FR' },
                     { label: 'Global', value: 'RoW' },
+                    { label: 'India', value: 'IN' },
                     { label: 'Netherlands', value: 'NL' },
                     { label: 'Poland', value: 'PL' },
                     { label: 'Spain', value: 'ES' },
@@ -43936,7 +43937,6 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                     { label: 'United Kingdom', value: 'UK' },
                     { label: 'United States', value: 'US' },
                     { label: 'Vietnam', value: 'VN' },
-                    { label: 'India', value: 'IN' },
                     // Add more countries as needed
                 ], selected: country, onChange: (value) => setCountry(value) })),
         react_1.default.createElement(components_1.Button, { className: "esgnow-next-button", title: "Next", onClick: handleNext })));
