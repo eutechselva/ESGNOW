@@ -19,7 +19,7 @@ const ProductGridView: React.FC<ProductGridViewProps> = ({ currentItems, selectP
                         <div className="product-code">{item.code}</div>
                         {item.emission && (
                             <div className="co2-emission">
-                                <span className="co2-value">{(item.emission || 0).toFixed(2)}</span>
+                                <span className="co2-value">{(item.emission || 0).toFixed(3)}</span>
                                 <span className="co2-unit">Kg CO₂e</span>
                             </div>
                         )}

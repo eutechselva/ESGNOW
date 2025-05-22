@@ -327,7 +327,7 @@ const EmissionSummary: React.FC<{
                         Number(product.co2EmissionRawMaterials || 0) + 
                         Number(product.co2EmissionFromProcesses || 0) + 
                         Number(transportationEmission || 0)
-                    ).toFixed(2);
+                    ).toFixed(3);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(
@@ -509,13 +509,13 @@ const EmissionSummary: React.FC<{
                                 return sortedMaterials.map((item: Material) => {
                                     const percentage =
                                         totalEmissionFactor > 0
-                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                             : 0;
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             { (plan == 'professional' && <td>{item.specificMaterial}</td> )}
-                                            <td>{item.emissionFactor.toFixed(2)} KgCO₂e</td>
+                                            <td>{item.emissionFactor.toFixed(3)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 
@@ -579,14 +579,14 @@ const EmissionSummary: React.FC<{
                                 return sortedProcess.map((item: ManufacturingProcess) => {
                                     const percentage =
                                         totalEmissionFactor > 0
-                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                             : 0;
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             <td>{item.manufacturingProcesses && item.manufacturingProcesses[0] ? 
                                                 item.manufacturingProcesses[0].category : 'Unknown'}</td>
-                                            <td>{parseFloat(item.emissionFactor.toString()).toFixed(2)} KgCO₂e</td>
+                                            <td>{parseFloat(item.emissionFactor.toString()).toFixed(3)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 
@@ -641,7 +641,7 @@ const EmissionSummary: React.FC<{
                                 return sortedLegs.map((item: TransportLeg) => {
                                     const percentage =
                                         totalEmissionFactor > 0
-                                            ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                            ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(3)
                                             : 0;
                                     return (
                                         <tr key={item.id}>
@@ -654,7 +654,7 @@ const EmissionSummary: React.FC<{
                                               <td>{item.destinationCountry || 'Unknown'}</td> : 
                                               <td>{item.destinationGateway || 'Unknown'}</td>
                                             } 
-                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(2)} KgCO₂e</td>
+                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(3)} KgCO₂e</td>
                                             <td>{percentage} %</td>
                                         </tr>
                                     );

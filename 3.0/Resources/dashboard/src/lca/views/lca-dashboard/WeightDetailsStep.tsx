@@ -42,7 +42,7 @@ const WeightDetailsStep: React.FC<WeightDetailsStepProps> = ({
                 <div className="input-group-top">
                     <Label><span className="label-text">Product Weight:</span></Label>
                     <span className="weight-display">
-                        {parseFloat(selectedProduct?.weight).toFixed(2)} Kg
+                        {parseFloat(selectedProduct?.weight).toFixed(3)} Kg
                     </span>
                 </div>
             </div>
@@ -88,14 +88,14 @@ const WeightDetailsStep: React.FC<WeightDetailsStepProps> = ({
                         {isPackagingManual ? (
                             <Input
                                 type="number"
-                                value={packagingWeight.toFixed(2)}
+                                value={packagingWeight.toFixed(3)}
                                 onChange={(value) => setPackagingWeight(parseFloat(value))}
                                 inputAttr={{ step: "0.01" }}
                             />
                         ) : (
                             <Input
                                 type="number"
-                                value={packagingWeight.toFixed(2)}
+                                value={packagingWeight.toFixed(3)}
                                 onChange={() => { }}
                                 inputAttr={{ step: "0.01" }}
                                 className="disabled-input"
@@ -160,14 +160,14 @@ const WeightDetailsStep: React.FC<WeightDetailsStepProps> = ({
                             {isPalletManual ? (
                                 <Input
                                     type="number"
-                                    value={palletWeight.toFixed(2)}
+                                    value={palletWeight.toFixed(3)}
                                     onChange={(value) => setPalletWeight(parseFloat(value))}
                                     inputAttr={{ step: "0.01" }}
                                 />
                             ) : (
                                 <Input
                                     type="number"
-                                    value={palletWeight.toFixed(2)}
+                                    value={palletWeight.toFixed(3)}
                                     onChange={() => { }}
                                     inputAttr={{ step: "0.01" }}
                                     className="disabled-input"
@@ -181,7 +181,7 @@ const WeightDetailsStep: React.FC<WeightDetailsStepProps> = ({
 
             <div className="total-weight">
                 <Label><span className="label-text">Total Transport Weight</span></Label>
-                <div className="weight-display">{totalTransportWeight.toFixed(2)} Kg</div>
+                <div className="weight-display">{totalTransportWeight.toFixed(3)} Kg</div>
             </div>
         </div>
     );

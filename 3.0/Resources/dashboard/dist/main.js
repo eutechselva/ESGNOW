@@ -40486,18 +40486,18 @@ const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Raw Materials"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2EmissionRawMaterials.toFixed(2),
+                        newlyCreatedProduct.co2EmissionRawMaterials.toFixed(3),
                         " KgCO\u2082e")),
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Manufacturing"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2EmissionFromProcesses.toFixed(2),
+                        newlyCreatedProduct.co2EmissionFromProcesses.toFixed(3),
                         " KgCO\u2082e")),
                 react_1.default.createElement("div", { className: "divider" }),
                 react_1.default.createElement("p", { className: "carbon-total" },
                     react_1.default.createElement("span", null, "Total Carbon Footprint"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2Emission.toFixed(2),
+                        newlyCreatedProduct.co2Emission.toFixed(3),
                         " KgCO\u2082e")))),
         react_1.default.createElement("p", { className: "calculation-subtext" }, "Complete the analysis by calculating transportation emissions, or save your progress and do it later?"),
         react_1.default.createElement("div", { className: "button-group" },
@@ -40748,7 +40748,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
         }, 0);
         const productTotalWeight = parseFloat(productCategoryData.totalWeight) || 0;
         if (Math.abs(totalMaterialWeight - productTotalWeight) > 0.01) {
-            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(2)} kg) must match product weight (${productTotalWeight.toFixed(2)} kg)`);
+            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(4)} kg) must match product weight (${productTotalWeight.toFixed(3)} kg)`);
             return;
         }
         if (plan === "basic") {
@@ -40805,11 +40805,11 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             react_1.default.createElement("div", { className: "materials-weight-summary" },
                 react_1.default.createElement("div", { className: "weight-info" },
                     "Total Material Weight: ",
-                    materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2),
+                    materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(3),
                     " kg"),
                 react_1.default.createElement("div", { className: "weight-info" },
                     "Target Product Weight: ",
-                    parseFloat(productCategoryData.totalWeight).toFixed(2),
+                    parseFloat(productCategoryData.totalWeight).toFixed(3),
                     " kg")),
             react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete, onOpenFullEditor: handleOpenFullEditor, onEditAll: handleEditAllMaterials, entryType: entryType }),
             validationError && (react_1.default.createElement("div", { className: "validation-error" }, validationError)),
@@ -41481,7 +41481,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                     const chart = this;
                     const totalValue = (Number(product.co2EmissionRawMaterials || 0) +
                         Number(product.co2EmissionFromProcesses || 0) +
-                        Number(transportationEmission || 0)).toFixed(2);
+                        Number(transportationEmission || 0)).toFixed(3);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
@@ -41611,13 +41611,13 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted materials and calculate percentage
                         return sortedMaterials.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
                                 react_1.default.createElement("td", null,
-                                    item.emissionFactor.toFixed(2),
+                                    item.emissionFactor.toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -41648,14 +41648,14 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted materials and calculate percentage
                         return sortedProcess.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 react_1.default.createElement("td", null, item.manufacturingProcesses && item.manufacturingProcesses[0] ?
                                     item.manufacturingProcesses[0].category : 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.emissionFactor.toString()).toFixed(2),
+                                    parseFloat(item.emissionFactor.toString()).toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -41687,7 +41687,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted legs and calculate percentage
                         return sortedLegs.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.id },
                                 react_1.default.createElement("td", null, item.transportMode || 'Unknown'),
@@ -41698,7 +41698,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                     react_1.default.createElement("td", null, item.destinationCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.destinationGateway || 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.transportEmission.toString() || '0').toFixed(2),
+                                    parseFloat(item.transportEmission.toString() || '0').toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     percentage,
@@ -42736,7 +42736,7 @@ const ProductGridView = ({ currentItems, selectProduct }) => {
         React.createElement("div", { className: "product-card-header" },
             React.createElement("div", { className: "product-code" }, item.code),
             item.emission && (React.createElement("div", { className: "co2-emission" },
-                React.createElement("span", { className: "co2-value" }, (item.emission || 0).toFixed(2)),
+                React.createElement("span", { className: "co2-value" }, (item.emission || 0).toFixed(3)),
                 React.createElement("span", { className: "co2-unit" }, "Kg CO\u2082e")))),
         React.createElement("div", { className: "product-image-container", style: {
                 backgroundImage: item.images && item.images.length > 0 ?
@@ -42935,7 +42935,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
     // Calculate total transportation emission
     React.useEffect(() => {
         const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toFixed(2));
+        setTransportationEmission(totalEmission.toFixed(3));
     }, [transportLegs]);
     const handleCalculate = () => {
         setShowEmissionSummary(true);
@@ -42979,7 +42979,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Carbon Footprint - Transportation"),
                     React.createElement("span", null,
-                        leg.transportEmission.toFixed(2),
+                        leg.transportEmission.toFixed(3),
                         " Kg CO2e")))))),
         React.createElement("div", { className: "summary-section" },
             React.createElement("h3", null, "WEIGHT DETAILS"),
@@ -42987,23 +42987,23 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Product Weight"),
                     React.createElement("span", null,
-                        parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                        parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Packaging Weight"),
                     React.createElement("span", null,
-                        packagingWeight.toFixed(2),
+                        packagingWeight.toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Pallet Weight"),
                     React.createElement("span", null,
-                        (includePallet ? palletWeight : 0).toFixed(2),
+                        (includePallet ? palletWeight : 0).toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Total Weight"),
                     React.createElement("span", null,
                         (parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight +
-                            (includePallet ? palletWeight : 0)).toFixed(2),
+                            (includePallet ? palletWeight : 0)).toFixed(3),
                         " Kg")))),
         React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: handleCalculate }),
         React.createElement(components_1.Modal, { show: showEmissionSummary, onClose: () => setShowEmissionSummary(false), title: "Emission Summary", className: "emission-summary-modal" },
@@ -43238,7 +43238,7 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                 React.createElement(components_1.Label, null,
                     React.createElement("span", { className: "label-text" }, "Product Weight:")),
                 React.createElement("span", { className: "weight-display" },
-                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(3),
                     " Kg"))),
         React.createElement("div", { className: "weight-section" },
             React.createElement(components_1.Label, null,
@@ -43255,7 +43255,7 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                         React.createElement("input", { type: "radio", checked: isPackagingManual, onChange: () => setIsPackagingManual(true) }),
                         "Manual Entry")),
                 React.createElement("div", { className: "input-group" },
-                    isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(3), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(3), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
                     React.createElement("span", { className: "unit" }, "Kg")))),
         React.createElement("div", { className: "weight-toggle" },
             React.createElement(components_1.Label, null,
@@ -43278,13 +43278,13 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                         React.createElement("input", { type: "radio", checked: isPalletManual, onChange: () => setIsPalletManual(true) }),
                         "Manual Entry")),
                 React.createElement("div", { className: "input-group" },
-                    isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(3), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(3), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
                     React.createElement("span", { className: "unit" }, "Kg"))))),
         React.createElement("div", { className: "total-weight" },
             React.createElement(components_1.Label, null,
                 React.createElement("span", { className: "label-text" }, "Total Transport Weight")),
             React.createElement("div", { className: "weight-display" },
-                totalTransportWeight.toFixed(2),
+                totalTransportWeight.toFixed(3),
                 " Kg"))));
 };
 exports["default"] = WeightDetailsStep;
@@ -44258,7 +44258,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     React.createElement("div", { className: "esgnow-product-card-header" },
                         React.createElement("div", { className: "esgnow-product-code" }, item.code),
                         React.createElement("div", { className: "esgnow-co2-emission" },
-                            React.createElement("span", { className: "esgnow-co2-value" }, parseFloat(item.co2Emission).toFixed(2)),
+                            React.createElement("span", { className: "esgnow-co2-value" }, parseFloat(item.co2Emission).toFixed(3)),
                             React.createElement("span", { className: "esgnow-co2-unit" }, "Kg CO\u2082e"))),
                     React.createElement("div", { className: "esgnow-product-image-container", style: {
                             backgroundImage: item.images && item.images.length > 0 ?
@@ -44318,7 +44318,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                 item.countryOfOrigin),
                         React.createElement("div", { className: "esgnow-list-col-co2" },
                             React.createElement("div", { className: "esgnow-co2-badge" },
-                                parseFloat(item.co2Emission).toFixed(2),
+                                parseFloat(item.co2Emission).toFixed(3),
                                 " Kg CO\u2082e")),
                         React.createElement("div", { className: "esgnow-list-col-date" }, new Date(item.modifiedDate).toLocaleDateString()),
                         React.createElement("div", { className: "esgnow-list-col-actions" },
@@ -44557,16 +44557,16 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                         const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
                         return sortedMaterials.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
                                 react_1.default.createElement("td", null,
                                     " ",
-                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    parseFloat(item.emissionFactor).toFixed(3),
                                     " KgCO\u2082e (",
-                                    parseFloat(item.weight).toFixed(2),
+                                    parseFloat(item.weight).toFixed(3),
                                     " Kg)"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -44591,12 +44591,12 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                         const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
                         return sortedProcess.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    parseFloat(item.emissionFactor).toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -45713,22 +45713,22 @@ const Projects = (props) => {
         {
             id: "totalProjectImpact",
             label: "Carbon Footprint (KgCO2e)",
-            render: (row) => `${row.totalProjectImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalProjectImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalMaterialsImpact",
             label: "Materials (KgCO2e)",
-            render: (row) => `${row.totalMaterialsImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalMaterialsImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalManufacturingImpact",
             label: "Manufacturing (KgCO2e)",
-            render: (row) => `${row.totalManufacturingImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalManufacturingImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalTransportationImpact",
             label: "Transportation (KgCO2e)",
-            render: (row) => `${row.totalTransportationImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalTransportationImpact.toFixed(3)} KgCO2e`
         },
     ];
     if (isLoading) {
