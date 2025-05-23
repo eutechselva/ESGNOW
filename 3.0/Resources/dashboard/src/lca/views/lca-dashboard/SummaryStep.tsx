@@ -14,6 +14,7 @@ interface SummaryStepProps {
     plan: string;
     onConfirm: () => void;
     uxpContext: any;
+    onPrevious?: () => void;
 }
 
 const SummaryStep: React.FC<SummaryStepProps> = ({
@@ -24,7 +25,9 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     includePallet,
     plan,
     onConfirm,
-    uxpContext
+    uxpContext,
+    onPrevious
+    
 }) => {
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
     const [transportationEmission, setTransportationEmission] = React.useState("0");
@@ -124,11 +127,20 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                 </div>
             </div>
 
-            <Button
-                title="Calculate"
-                className="confirm-button"
-                onClick={handleCalculate}
-            />
+            <div className="summary-buttons">
+                {onPrevious && (
+                    <Button
+                        className="button-secondary"
+                        title="Previous"
+                        onClick={onPrevious}
+                    />
+                )}
+                <Button
+                    title="Calculate"
+                    className="button-primary-confirm-button"
+                    onClick={handleCalculate}
+                />
+            </div>
 
             {/* Emission Summary Modal */}
             <Modal

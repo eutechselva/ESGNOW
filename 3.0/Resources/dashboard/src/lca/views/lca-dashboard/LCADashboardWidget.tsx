@@ -279,30 +279,30 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     };
-// Add validation function
-const validateTransportLegs = (): boolean => {
-    const newErrors: ValidationError[] = transportLegs.map(leg => {
-        const legErrors: ValidationError = {};
-        
-        // Check required fields for all plans
-        if (!leg.originCountry) legErrors.originCountry = true;
-        if (!leg.destinationCountry) legErrors.destinationCountry = true;
-        if (!leg.transportMode) legErrors.transportMode = true;
-        
-        // Check additional fields for professional plan
-        if (plan === 'professional') {
-            if (!leg.originGateway) legErrors.originGateway = true;
-            if (!leg.destinationGateway) legErrors.destinationGateway = true;
-        }
-        
-        return legErrors;
-    });
-    
-    setTransportErrors(newErrors);
-    
-    // Return true if there are no errors (all fields are valid)
-    return newErrors.every(error => Object.keys(error).length === 0);
-};
+    // Add validation function
+    const validateTransportLegs = (): boolean => {
+        const newErrors: ValidationError[] = transportLegs.map(leg => {
+            const legErrors: ValidationError = {};
+
+            // Check required fields for all plans
+            if (!leg.originCountry) legErrors.originCountry = true;
+            if (!leg.destinationCountry) legErrors.destinationCountry = true;
+            if (!leg.transportMode) legErrors.transportMode = true;
+
+            // Check additional fields for professional plan
+            if (plan === 'professional') {
+                if (!leg.originGateway) legErrors.originGateway = true;
+                if (!leg.destinationGateway) legErrors.destinationGateway = true;
+            }
+
+            return legErrors;
+        });
+
+        setTransportErrors(newErrors);
+
+        // Return true if there are no errors (all fields are valid)
+        return newErrors.every(error => Object.keys(error).length === 0);
+    };
     const calculateTransportationEmission = async () => {
         try {
             const updatedLegs = [...transportLegs];
@@ -336,24 +336,24 @@ const validateTransportLegs = (): boolean => {
         }
     };
 
-// Update handleNext function to validate before proceeding
-const handleNext = () => {
-    // If we're on the transport selection step (step 1)
-    if (activeStep === 1) {
-        const isValid = validateTransportLegs();
-        if (!isValid) {
-            // If validation fails, don't proceed
-            return;
+    // Update handleNext function to validate before proceeding
+    const handleNext = () => {
+        // If we're on the transport selection step (step 1)
+        if (activeStep === 1) {
+            const isValid = validateTransportLegs();
+            if (!isValid) {
+                // If validation fails, don't proceed
+                return;
+            }
         }
-    }
-    
-    if (activeStep < steps.length - 1) {
-        setActiveStep(activeStep + 1);
-    }
-    if (activeStep === 2) {
-        calculateTransportationEmission();
-    }
-};
+
+        if (activeStep < steps.length - 1) {
+            setActiveStep(activeStep + 1);
+        }
+        if (activeStep === 2) {
+            calculateTransportationEmission();
+        }
+    };
     const handlePrevious = () => {
         if (activeStep > 0) {
             setActiveStep(activeStep - 1);
@@ -415,6 +415,7 @@ const handleNext = () => {
                     includePallet={includePallet}
                     plan={plan}
                     onConfirm={handleConfirmCalculate}
+                    onPrevious={handlePrevious}
                     uxpContext={uxpContext}
                 />
             ),
@@ -494,8 +495,8 @@ const handleNext = () => {
                                                 const filtered = products.filter(item => {
                                                     const matchesSearch = searchValue ?
                                                         (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                        item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                        item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                            item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
                                                     const matchesCategory = value ? item.category === value : true;
                                                     const matchesSubCategory = selectedSubCategory ? item.subCategory === selectedSubCategory : true;
 
@@ -517,8 +518,8 @@ const handleNext = () => {
                                                 const filtered = products.filter(item => {
                                                     const matchesSearch = searchValue ?
                                                         (item.name.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                        item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
-                                                        item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
+                                                            item.code.toLowerCase().includes(searchValue.toLowerCase()) ||
+                                                            item.category.toLowerCase().includes(searchValue.toLowerCase())) : true;
                                                     const matchesCategory = selectedCategory ? item.category === selectedCategory : true;
                                                     const matchesSubCategory = value ? item.subCategory === value : true;
 
@@ -654,13 +655,13 @@ const handleNext = () => {
             >
                 <div className="modal-content">
                     <div className="modal-stepper-container">
-                        <Stepper activeStep={activeStep} onStepChange={() => {}} />
+                        <Stepper activeStep={activeStep} onStepChange={() => { }} />
                     </div>
 
                     {steps[activeStep]?.content}
 
                     <div className="modal-footer">
-                        {activeStep > 0 && (
+                        {activeStep > 0 && activeStep < steps.length - 1 && (
                             <Button
                                 className="button-secondary"
                                 title="Previous"
@@ -669,7 +670,7 @@ const handleNext = () => {
                         )}
                         {activeStep < steps.length - 1 && (
                             <Button
-                                className="button-primary"
+                                className="button-primary-next-button"
                                 title="Next"
                                 onClick={handleNext}
                             />
