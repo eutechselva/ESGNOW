@@ -1,6 +1,6 @@
 // File: TransportSelectionStep.tsx
 import * as React from "react";
-import { Button, FormField, Label, Select } from "uxp/components";
+import { Button, FormField, IconButton, Label, Select } from "uxp/components";
 import { IContextProvider } from "@uxp";
 import { calculateTransportDistance } from "../../../esgnow-service";
 import { TransportLeg } from "./LCADashboardWidget";
@@ -32,10 +32,10 @@ interface TransportSelectionStepProps {
     errors: ValidationError[]; // Add errors prop
     setErrors?: React.Dispatch<React.SetStateAction<ValidationError[]>>; // Optional setter for errors
 }
-const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({ 
-    transportLegs, 
-    setTransportLegs, 
-    countries, 
+const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
+    transportLegs,
+    setTransportLegs,
+    countries,
     transportDatabase,
     plan,
     uxpContext,
@@ -64,9 +64,9 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
 
     const distance = async (origin: string, destination: string): Promise<number> => {
         try {
-            const response = await calculateTransportDistance(uxpContext, { 
-                origin: origin, 
-                destination: destination 
+            const response = await calculateTransportDistance(uxpContext, {
+                origin: origin,
+                destination: destination
             });
             return response.data.distance_in_km;
         } catch (error) {
@@ -170,11 +170,11 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                     <div className="transport-leg-header">
                         <h3>Transport Leg {index + 1}</h3>
                     </div>
-                    
+
                     <div className="remove-leg-container">
                         {transportLegs.length > 1 && (
-                            <Button
-                                title="Remove"
+                            <IconButton
+                                type="delete"
                                 className="remove-leg-button"
                                 onClick={() => removeTransportLeg(leg.id)}
                             />
@@ -241,7 +241,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         </FormField>
                     )}
 
-<FormField>
+                    <FormField>
                         <Label><span className="label-text">Transport Mode</span></Label>
                         <Select
                             className={`highlighted-select ${errors[index]?.transportMode ? 'error-field' : ''}`}
@@ -261,8 +261,8 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
             ))}
 
             <div className="add-transport-leg-container">
-                <Button
-                    title="Add Transport Leg"
+                <IconButton
+                    type="plus"
                     className="add-transport-leg-button"
                     onClick={addTransportLeg}
                 />
