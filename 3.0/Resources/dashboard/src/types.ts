@@ -50,7 +50,8 @@ export interface Widget extends IWidgetInstance {
 
 export enum PageLayoutType {
     Tabs = 'tabs',
-    Widgets = 'widgets'
+    Widgets = 'widgets',
+    UI = 'ui'
 }
 export interface IBaseLayout {
     type: PageLayoutType
@@ -68,7 +69,12 @@ export interface WidgetLayout extends IBaseLayout {
     widgets: Widget[]
 }
 
-export type PageLayout = TabLayout | WidgetLayout
+export interface UILayout extends IBaseLayout {
+    ui: string
+}
+
+
+export type PageLayout = TabLayout | WidgetLayout | UILayout
 export interface PageConfigMapping {
     [id: string]: PageLayout
 }

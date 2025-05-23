@@ -38,6 +38,9 @@
   "uis": [
     {
       "id": "esg-now-dashboard"
+    },
+    {
+      "id":"product-dashboard"
     }
   ],
   "menuItems": []

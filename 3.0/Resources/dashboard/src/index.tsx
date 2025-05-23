@@ -5,7 +5,7 @@ import { BaseUXPProps, Changes, IUMSContext, LayoutChange, PageChange } from '@t
 import { BrowserRouter as Router, } from 'react-router-dom';
 import { UMSContext } from '@components/dashboard/UMSContext';
 import { UMSDashboard } from '@components/dashboard/UMSDashboard';
-import {  saveLayoutConfigurationsById, savePageConfiguration } from '@other-services';
+import { saveLayoutConfigurationsById, savePageConfiguration } from '@other-services';
 import ProductDashboardWidget from './lca/views/product-dashboard';
 import LCAWidget from './lca/views/products';
 import LCADashboardWidget from './lca/views/lca-dashboard/LCADashboardWidget';
@@ -84,6 +84,11 @@ registerWidget({
             h: 10000,
         }
     }
+})
+
+registerUI({
+    id: 'product-dashboard',
+    component: ProductDashboardWidget
 })
 
 registerWidget({

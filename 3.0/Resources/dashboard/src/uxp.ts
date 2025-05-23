@@ -66,7 +66,7 @@ interface IMenuItem {
 export interface ICustomUIProps {
     uxpContext: IContextProvider
 }
-interface IRenderUIItemProps {
+export interface IRenderUIItemProps {
     id: string,
     component: React.FunctionComponent<ICustomUIProps> | React.Component<ICustomUIProps, {}>,
     uiProps?: any,

@@ -41,57 +41,13 @@
                 },
                 "hasConfigured": true,
                 "isNotAvalable": false,
-                "configurations": {
-                    
-                }
+                "configurations": {}
             }
         ]
     },
     "/products": {
-        "type": "widgets",
-        "widgets": [
-            {
-                "id": "iviva-esg-now-application/widget/product-dashboard",
-                "configs": {
-                    "layout": {
-                        "w": 30,
-                        "h": 20
-                    }
-                },
-                "name": "Product Dashboard",
-                "description": "Shows the List of reports",
-                "definitionPath": null,
-                "icon": "",
-                "category": "user-defined",
-                "sourceUrl": "http://local-v4.ivivacloud.com/api/UXP/module?key=6",
-                "tags": [],
-                "isTemplate": false,
-                "isDefaultTemplate": false,
-                "usecaseName": null,
-                "installed": false,
-                "props": "{}",
-                "templateKey": "",
-                "usecaseId": null,
-                "_id": "173753055493181321",
-                "key": "173753055493181321",
-                "layout": {
-                    "w": 30,
-                    "h": 20,
-                    "x": 0,
-                    "y": 0,
-                    "i": "173753055493181321",
-                    "moved": false,
-                    "static": false
-                },
-                "hasConfigured": true,
-                "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
-                }
-            }
-        ]
+        "type": "ui",
+        "ui": "iviva-esg-now-application/ui/product-dashboard"
     },
     "/lca": {
         "type": "widgets",
@@ -111,9 +67,7 @@
                     "static": false
                 },
                 "hasConfigured": true,
-                "configurations": {
-                    
-                }
+                "configurations": {}
             }
         ]
     },
@@ -154,12 +108,11 @@
                     "static": false
                 },
                 "hasConfigured": true,
-                "configurations": {
-                    
-                }
+                "configurations": {}
             }
         ]
-    },"/bulkupload": {
+    },
+    "/bulkupload": {
         "type": "widgets",
         "widgets": [
             {
@@ -196,9 +149,7 @@
                     "static": false
                 },
                 "hasConfigured": true,
-                "configurations": {
-                    
-                }
+                "configurations": {}
             }
         ]
     }
