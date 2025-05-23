@@ -85,10 +85,7 @@
                 },
                 "hasConfigured": true,
                 "configurations": {
-                    "layout": {
-                        "fixedHeight": true,
-                        "height": 100
-                    }
+                   
                 }
             }
         ]
