@@ -416,7 +416,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             <p>Loading products...</p>
                         </div>
                     ) : filteredData.length === 0 ? (
-                        <>
+                        
                         <div className="esgnow-no-results">
                             <div className="esgnow-no-results-icon">🔍</div>
                             <h3>No products found</h3>
@@ -428,40 +428,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 Clear All Filters
                             </button>
                         </div>
-                         <div className="esgnow-no-results">
-                            <div className="esgnow-no-results-icon">🔍</div>
-                            <h3>No products found</h3>
-                            <p>Try adjusting your search criteria or filters</p>
-                            <button
-                                onClick={handleClearFilters}
-                                className="esgnow-clear-filters-button"
-                            >
-                                Clear All Filters
-                            </button>
-                        </div>
-                         <div className="esgnow-no-results">
-                            <div className="esgnow-no-results-icon">🔍</div>
-                            <h3>No products found</h3>
-                            <p>Try adjusting your search criteria or filters</p>
-                            <button
-                                onClick={handleClearFilters}
-                                className="esgnow-clear-filters-button"
-                            >
-                                Clear All Filters
-                            </button>
-                        </div>
-                         <div className="esgnow-no-results">
-                            <div className="esgnow-no-results-icon">🔍</div>
-                            <h3>No products found</h3>
-                            <p>Try adjusting your search criteria or filters</p>
-                            <button
-                                onClick={handleClearFilters}
-                                className="esgnow-clear-filters-button"
-                            >
-                                Clear All Filters
-                            </button>
-                        </div>
-                        </>
+                         
                     ) : viewMode === 'grid' ? (
                         <>
                             <div className="esgnow-product-grid">
