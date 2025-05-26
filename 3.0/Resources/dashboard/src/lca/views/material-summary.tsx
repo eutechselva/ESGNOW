@@ -45,7 +45,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({
     }, []);
 
     return (
-        <div className="material-summary">
+        <div className="material-summary-container">
             <table className="material-summary-table">
                 <thead>
                     <tr>
