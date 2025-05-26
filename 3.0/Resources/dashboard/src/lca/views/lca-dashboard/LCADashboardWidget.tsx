@@ -4,6 +4,7 @@ import { Button, SearchBox, FilterPanel, FormField, Label, Select, DataGrid, Mod
 import { IContextProvider } from "@uxp";
 import { getAllProducts, transportDB, calculateTransportEmission } from "../../../esgnow-service";
 import ProductSelectionStep from "./ProductSelectionStep";
+
 import TransportSelectionStep from "./TransportSelectionStep";
 import EmissionSummary from '../emission-summary';
 import Stepper from '../stepper-LCA';
@@ -277,7 +278,6 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
 
     const handleConfirmCalculate = async () => {
         setIsEmissionSummaryVisible(true);
-        setShowModal(false);
     };
 // Add validation function
 const validateTransportLegs = (): boolean => {
@@ -334,6 +334,37 @@ const validateTransportLegs = (): boolean => {
         } catch (error) {
             console.error("Error calculating transport emission:", error);
         }
+    };
+
+    // Remove useCallback entirely (simpler and often better)
+    const handleEmissionSummaryBack = () => {
+
+        console.log("setting Emission Summary to false")
+        setIsEmissionSummaryVisible(false);
+        
+        // Close the main Calculate Impact modal
+        setShowModal(false);
+        // Reset all data when going back
+        setActiveStep(0);
+        setTransportLegs([{
+            id: 1,
+            originCountry: "",
+            destinationCountry: "",
+            originGateway: "",
+            destinationGateway: "",
+            transportMode: "",
+            transportDistance: 0,
+            transportEmission: 0,
+            originGateways: [],
+            destinationGateways: []
+        }]);
+        setIsPackagingManual(false);
+        setIsPalletManual(false);
+        setIncludePallet(false);
+        setPalletWeight(20);
+        setTransportationEmission("");
+        
+        console.log("=== ONBACK COMPLETED - States should be reset ===");
     };
 
 // Update handleNext function to validate before proceeding
@@ -420,8 +451,8 @@ const handleNext = () => {
             ),
         },
     ];
-
     if (isEmissionSummaryVisible) {
+
         return (
             <EmissionSummary
                 packageWeight={packagingWeight}
@@ -430,29 +461,11 @@ const handleNext = () => {
                 transportationEmission={transportationEmission}
                 product={selectedProduct}
                 onBack={() => {
+                    console.log("=== handleEmissionSummaryBack INLINE ===");
                     setIsEmissionSummaryVisible(false);
-                    // Reset all data when going back
-                    setActiveStep(0);
-                    setTransportLegs([{
-                        id: 1,
-                        originCountry: "",
-                        destinationCountry: "",
-                        originGateway: "",
-                        destinationGateway: "",
-                        transportMode: "",
-                        transportDistance: 0,
-                        transportEmission: 0,
-                        originGateways: [],
-                        destinationGateways: []
-                    }]);
-                    setIsPackagingManual(false);
-                    setIsPalletManual(false);
-                    setIncludePallet(false);
-                    setPalletWeight(20);
-                    setTransportationEmission("");
-                }}
+                  }}
                 uxpContext={uxpContext}
-                plan={plan}
+                plan={plan}               
             />
         );
     }
@@ -626,7 +639,7 @@ const handleNext = () => {
 
             <Modal
                 show={showModal}
-                onClose={() => {
+                onClose={() =>{
                     // Reset all data before closing the modal
                     setShowModal(false);
                     setActiveStep(0);
@@ -648,6 +661,7 @@ const handleNext = () => {
                     setIncludePallet(false);
                     setPalletWeight(20);
                     setTransportationEmission("");
+                
                 }}
                 title="Calculate Impact"
                 className="lgs-calculate-impact-modal"
