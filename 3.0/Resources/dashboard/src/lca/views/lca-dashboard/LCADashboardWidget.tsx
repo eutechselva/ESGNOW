@@ -663,7 +663,7 @@ const handleNext = () => {
 
                     {steps[activeStep]?.content}
 
-                    <div className="modal-footer">
+                    <div className="esgnow-modal-footer">
                         {activeStep > 0 && activeStep < steps.length - 1 && (
                             <Button
                                 className="button-secondary"
