@@ -11,6 +11,7 @@ import './emission-summary.scss';
 
 interface SaveResultsModalProps {
     onClose: () => void;
+    onSaveComplete: () => void; 
     hasExistingProjects: boolean;
     product: ProductInfoSummary;
     packageWeight: Number;
@@ -28,6 +29,7 @@ interface ProjectOption {
 
 const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     onClose,
+    onSaveComplete,
     hasExistingProjects,
     product,
     packageWeight,
@@ -36,6 +38,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     transportLegs,
     uxpContext
 }) => {
+
     // Create a safety check for context
     const mockContextRef = useRef<IContextProvider | null>(null);
     
@@ -46,6 +49,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
             mockContextRef.current = createMockContext();
         }
     }, [uxpContext]);
+    
     const [selectedCard, setSelectedCard] = useState<string | null>(null);
     const [projectName, setProjectName] = useState('');
     const [projectId, setProjectId] = useState('');
@@ -59,99 +63,118 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
         { label: "Project Gamma", value: "gamma" },
     ];
 
-    const handleSave = async () => {
-        // Debug log to check uxpContext right before we use it
-        console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
-        
-        // Use mock context as a fallback if real context is missing
-        const effectiveContext = uxpContext || mockContextRef.current;
-        
-        if (!effectiveContext) {
-            console.error("Both uxpContext and mockContextRef.current are undefined in SaveResultsModal handleSave");
-            setError('System error: Missing context. Please try again later.');
+// In SaveResultsModal, add detailed debugging to handleSave:
+
+const handleSave = async () => {
+    
+    // Debug log to check uxpContext right before we use it
+    console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
+    
+    // Use mock context as a fallback if real context is missing
+    const effectiveContext = uxpContext || mockContextRef.current;
+    
+    if (!effectiveContext) {
+        console.error("Both uxpContext and mockContextRef.current are undefined in SaveResultsModal handleSave");
+        setError('System error: Missing context. Please try again later.');
+        return;
+    }
+    
+    // Add warning if using mock context
+    if (!uxpContext && mockContextRef.current) {
+        console.warn("Using mock context for API calls - changes will not persist!");
+    }
+    
+    if (selectedCard === 'new') {
+        console.log("Taking 'new' project path");
+        if (!projectName || !projectId) {
+            console.log("Validation failed: missing projectName or projectId");
+            setError('Please fill in both project name and code');
             return;
         }
-        
-        // Add warning if using mock context
-        if (!uxpContext && mockContextRef.current) {
-            console.warn("Using mock context for API calls - changes will not persist!");
+
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            const createProjectPayload = {
+                code: projectId,
+                name: projectName,
+            };
+            
+            const projectResponse = await createProject(effectiveContext, createProjectPayload);
+            console.log("Project created successfully:", projectResponse);
+
+            const createProjectProductMapPayload = {
+                projectID: projectResponse.data._id,
+                productID: product._id,
+                packagingWeight : packageWeight,
+                palletWeight : palletWeight,
+                transportationLegs: transportLegs,
+                totalTransportationEmission: transportationEmission
+            };
+
+
+            // Then create the project-product mapping
+            const mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
+            console.log("Mapping created successfully:", mappingResponse);
+
+            if (!mappingResponse.data) {
+                throw new Error('Failed to save project-product mapping');
+            }
+
+            const savedMapping = await mappingResponse.data;
+            onClose();
+            console.log("About to call onSaveComplete");
+            onSaveComplete();
+            console.log("Callbacks completed");
+            
+        } catch (err) {
+            console.error("Error in save process:", err);
+            setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
+        } finally {
+            setIsLoading(false);
         }
-        
-        if (selectedCard === 'new') {
-            if (!projectName || !projectId) {
-                setError('Please fill in both project name and code');
-                return;
-            }
-
-            setIsLoading(true);
-            setError(null);
-
-            try {
-                const createProjectPayload = {
-                    code: projectId,
-                    name: projectName,
-                };
-                
-                console.log("About to call createProject with context:", !!uxpContext);
-                const projectResponse = await createProject(effectiveContext, createProjectPayload);
-
-                const createProjectProductMapPayload = {
-                    projectID: projectResponse.data._id,
-                    productID: product._id,
-                    packagingWeight : packageWeight,
-                    palletWeight : palletWeight,
-                    transportationLegs: transportLegs,
-                    totalTransportationEmission: transportationEmission
-                };
-
-                // Then create the project-product mapping
-                const mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
-
-                if (!mappingResponse.data) {
-                    throw new Error('Failed to save project-product mapping');
-                }
-
-                const savedMapping = await mappingResponse.data;
-                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
-                onClose();
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
-            } finally {
-                setIsLoading(false);
-            }
-        } else if (selectedCard === 'existing') {
-            if (!selectedProject) {
-                setError('Please select a project');
-                return;
-            }
-
-            setIsLoading(true);
-            setError(null);
-
-            try {
-                
-                const mappingResponse = await projectProductMapping(effectiveContext, {
-                    projectCode: selectedProject,
-                    product,
-                    transportationEmission,
-                    transportLegs
-                });
-
-                if (!mappingResponse.data) {
-                    throw new Error('Failed to save project-product mapping');
-                }
-
-                const savedMapping = await mappingResponse.data;
-                console.log('Mapping saved successfully:', savedMapping);
-                onClose();
-            } catch (err) {
-                setError(err instanceof Error ? err.message : 'Failed to save mapping');
-            } finally {
-                setIsLoading(false);
-            }
+    } else if (selectedCard === 'existing') {
+        console.log("Taking 'existing' project path");
+        // ... similar debugging for existing project path
+        if (!selectedProject) {
+            console.log("Validation failed: no project selected");
+            setError('Please select a project');
+            return;
         }
-    };
 
+        setIsLoading(true);
+        setError(null);
+
+        try {
+            console.log("About to call projectProductMapping");
+            const mappingResponse = await projectProductMapping(effectiveContext, {
+                projectCode: selectedProject,
+                product,
+                transportationEmission,
+                transportLegs
+            });
+
+            if (!mappingResponse.data) {
+                throw new Error('Failed to save project-product mapping');
+            }
+
+            const savedMapping = await mappingResponse.data;
+            console.log('Mapping saved successfully:', savedMapping);
+            console.log("About to call callbacks for existing project");
+            onClose();
+            onSaveComplete();
+            console.log("Callbacks completed for existing project");
+        } catch (err) {
+            console.error("Error in existing project save:", err);
+            setError(err instanceof Error ? err.message : 'Failed to save mapping');
+        } finally {
+            setIsLoading(false);
+        }
+    } else {
+        console.log("No card selected - this shouldn't happen");
+    }
+};
     return (
         <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
             <div className="esgnow-save-results-modal">
@@ -273,8 +296,8 @@ const EmissionSummary: React.FC<{
     palletWeight: Number;
     hideHeader?: boolean;
     plan :string;
-}> = ({ product, onBack, transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
-    
+}> = ({ product, onBack , transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
+
     // Create a ref to persist the uxpContext across renders
     const contextRef = useRef<IContextProvider | null>(null);
     
@@ -667,10 +690,32 @@ const EmissionSummary: React.FC<{
         </div>
     );
 
-    function onSave(): void {
-        setShowModal(true);
-    }
+        // // Add this function to handle complete closure
+        // const handleSaveComplete = () => {
+        //     console.log("Executing onSaveComplete")
+        //     setShowModal(false); // Close the SaveResultsModal
+        //     onBack(); // Go back to the main screen (this will close EmissionSummary)
+        // };
+// In EmissionSummary.tsx, add more detailed debugging to handleSaveComplete:
 
+// const handleSaveComplete = () => {
+    
+//     setShowModal(false); // Close the SaveResultsModal
+    
+//     console.log("About to call onBack()");
+//     try {
+//         onBack(); // Go back to the main screen
+//         console.log("onBack() called successfully");
+//     } catch (error) {
+//         console.error("Error calling onBack:", error);
+//     }
+
+// };
+
+const handleSaveComplete = () => {
+    setShowModal(false); // Close SaveResultsModal
+    onBack();            // Callback to parent to close EmissionSummary (and now Calculate Impact)
+};
     return (
         <>
             <div className="esgnow-header-container">
@@ -756,6 +801,7 @@ const EmissionSummary: React.FC<{
                     )}
                     <SaveResultsModal
                         onClose={() => setShowModal(false)}
+                        onSaveComplete={handleSaveComplete}
                         hasExistingProjects={hasExistingProjects}
                         product={product}
                         transportationEmission={transportationEmission}
