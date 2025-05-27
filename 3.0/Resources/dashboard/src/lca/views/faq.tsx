@@ -1,11 +1,16 @@
 import React from 'react';
 import './faq.scss';
+import Logo from '../../images/ESG_now_logo.png';
+import Ecoinventlogo from '../../images/ecoinvent_logo.png';
+import Chartimage from '../../images/chartimage.png';
+import EmissionFactorImage from '../../images/emission_factor_image.png';
+import Ivivalogo from '../../images/iviva_logo.png';
 
 const ESGNowFAQ: React.FC = () => {
     return (
         <div className="esgnow-container">
             <div className="esgnow-header-image">
-                <img src="/public/assets/ESG_now_logo_login.png" 
+                <img src={Logo} 
                 alt="FAQ Banner" />
             </div>
 
@@ -14,7 +19,7 @@ const ESGNowFAQ: React.FC = () => {
             <div className="esgnow-question">1. What is ESG Now?</div>
             <div className="esgnow-answer">
                 <p>ESG Now is a software solution built on iviva, a Composable Integration Platform that enables the rapid development of modular, scalable applications. ESG Now leverages this capability to deliver dedicated tools for environmental reporting and product carbon footprint analysis. </p>
-                <p>It offers two key modules:</p>
+                <p>It offers two key modules:</p>ESG_now_logo
                 <ul>
                     <li><strong>Carbon Accounting:</strong> For tracking and reporting organisational carbon emissions.</li>
                     <li><strong>Procurement:</strong> For calculating the product carbon footprint using Life Cycle Assessment.</li>
@@ -26,7 +31,7 @@ const ESGNowFAQ: React.FC = () => {
             <div className="esgnow-answer">
                 <p>A Life Cycle Assessment (LCA) evaluates the environmental impacts associated with all stages of a product's life. For ESG Now, the assessment encompasses: </p>
                 <img
-                    src="/public/assets/Cradle-to-Grave Chart - Neutral BK.png"
+                    src={Chartimage}
                     alt="Life Cycle Assessment scope diagram"
                     className="esgnow-image"
                 />
@@ -106,7 +111,7 @@ const ESGNowFAQ: React.FC = () => {
                 </ul>
                 <p>The AI analyses the material composition and associated attributes to select the most appropriate emission factor from the available data.</p>
                 <img
-                    src="/public/assets/iviva - ESG Now for ECF.png"
+                    src={EmissionFactorImage}
                     alt="Life Cycle Assessment scope diagram"
                     className="esgnow-image"
                 />
@@ -138,7 +143,7 @@ const ESGNowFAQ: React.FC = () => {
 
             <div className="esgnow-footer">
                 <div className="esgnow-footer-title"><img
-                    src="/public/assets/iviva_logo.png"
+                    src={Ivivalogo}
                     alt="iviva logo"
                     className="esgnow-footer-iviva-image"
                 /></div>
@@ -153,7 +158,7 @@ const ESGNowFAQ: React.FC = () => {
 
                 <div className="esgnow-footer-title">
                     <div className="esgnow-footer-title"><img
-                        src="/public/assets/ecoinvent_logo.png"
+                        src={Ecoinventlogo}
                         alt="ecoinvent logo"
                         className="esgnow-footer-ecoinvent-image"
                     /></div>
