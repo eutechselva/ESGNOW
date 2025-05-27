@@ -289,14 +289,15 @@ const createMockContext = () => {
 const EmissionSummary: React.FC<{
     product: ProductInfoSummary;
     transportationEmission: string;
-    onBack: () => void;
+    onBack ?: () => void;
+    onCloseModal ?: ()=>void;
     transportLegs: TransportLeg[];
     uxpContext: IContextProvider;
     packageWeight: Number;
     palletWeight: Number;
     hideHeader?: boolean;
     plan :string;
-}> = ({ product, onBack , transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
+}> = ({ product, onBack , onCloseModal,transportationEmission, transportLegs, uxpContext , packageWeight,palletWeight ,hideHeader ,plan}) => {
 
     // Create a ref to persist the uxpContext across renders
     const contextRef = useRef<IContextProvider | null>(null);
@@ -690,31 +691,12 @@ const EmissionSummary: React.FC<{
         </div>
     );
 
-        // // Add this function to handle complete closure
-        // const handleSaveComplete = () => {
-        //     console.log("Executing onSaveComplete")
-        //     setShowModal(false); // Close the SaveResultsModal
-        //     onBack(); // Go back to the main screen (this will close EmissionSummary)
-        // };
-// In EmissionSummary.tsx, add more detailed debugging to handleSaveComplete:
-
-// const handleSaveComplete = () => {
-    
-//     setShowModal(false); // Close the SaveResultsModal
-    
-//     console.log("About to call onBack()");
-//     try {
-//         onBack(); // Go back to the main screen
-//         console.log("onBack() called successfully");
-//     } catch (error) {
-//         console.error("Error calling onBack:", error);
-//     }
-
-// };
-
 const handleSaveComplete = () => {
-    setShowModal(false); // Close SaveResultsModal
-    onBack();            // Callback to parent to close EmissionSummary (and now Calculate Impact)
+        setShowModal(false);
+        if (onCloseModal) {
+            onCloseModal(); // Close parent modal
+        }
+        onBack(); // Keep existing functionality
 };
     return (
         <>
