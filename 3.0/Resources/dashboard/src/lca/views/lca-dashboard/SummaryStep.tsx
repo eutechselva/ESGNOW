@@ -13,6 +13,7 @@ interface SummaryStepProps {
     includePallet: boolean;
     plan: string;
     onConfirm: () => void;
+    onCloseAll ?: () =>void;
     uxpContext: any;
 }
 
@@ -24,6 +25,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     includePallet,
     plan,
     onConfirm,
+    onCloseAll,
     uxpContext
 }) => {
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
@@ -38,7 +40,6 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     const handleCalculate = () => {
         setShowEmissionSummary(true);
     };
-
     return (
         <div className="summary-container">
             {/* Product Details */}
@@ -147,6 +148,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     packageWeight={packagingWeight}
                     palletWeight={includePallet ? palletWeight : 0}
                     plan={plan}
+                    onCloseModal={onCloseAll}
                 />
             </Modal>
         </div>

@@ -41261,7 +41261,7 @@ const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./no
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
-const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
+const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
     // Create a safety check for context
     const mockContextRef = (0, react_1.useRef)(null);
     // Initialize fallback mock context if needed
@@ -41282,6 +41282,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
         { label: "Project Beta", value: "beta" },
         { label: "Project Gamma", value: "gamma" },
     ];
+    // In SaveResultsModal, add detailed debugging to handleSave:
     const handleSave = () => __awaiter(void 0, void 0, void 0, function* () {
         // Debug log to check uxpContext right before we use it
         console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
@@ -41297,7 +41298,9 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             console.warn("Using mock context for API calls - changes will not persist!");
         }
         if (selectedCard === 'new') {
+            console.log("Taking 'new' project path");
             if (!projectName || !projectId) {
+                console.log("Validation failed: missing projectName or projectId");
                 setError('Please fill in both project name and code');
                 return;
             }
@@ -41308,8 +41311,8 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                     code: projectId,
                     name: projectName,
                 };
-                console.log("About to call createProject with context:", !!uxpContext);
                 const projectResponse = yield (0, esgnow_service_1.createProject)(effectiveContext, createProjectPayload);
+                console.log("Project created successfully:", projectResponse);
                 const createProjectProductMapPayload = {
                     projectID: projectResponse.data._id,
                     productID: product._id,
@@ -41320,14 +41323,18 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                 };
                 // Then create the project-product mapping
                 const mappingResponse = yield (0, esgnow_service_1.createProjectProductMap)(effectiveContext, createProjectProductMapPayload);
+                console.log("Mapping created successfully:", mappingResponse);
                 if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
                 const savedMapping = yield mappingResponse.data;
-                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
+                console.log("About to call onSaveComplete");
+                onSaveComplete();
+                console.log("Callbacks completed");
             }
             catch (err) {
+                console.error("Error in save process:", err);
                 setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
             }
             finally {
@@ -41335,13 +41342,17 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             }
         }
         else if (selectedCard === 'existing') {
+            console.log("Taking 'existing' project path");
+            // ... similar debugging for existing project path
             if (!selectedProject) {
+                console.log("Validation failed: no project selected");
                 setError('Please select a project');
                 return;
             }
             setIsLoading(true);
             setError(null);
             try {
+                console.log("About to call projectProductMapping");
                 const mappingResponse = yield (0, esgnow_service_1.projectProductMapping)(effectiveContext, {
                     projectCode: selectedProject,
                     product,
@@ -41353,14 +41364,21 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                 }
                 const savedMapping = yield mappingResponse.data;
                 console.log('Mapping saved successfully:', savedMapping);
+                console.log("About to call callbacks for existing project");
                 onClose();
+                onSaveComplete();
+                console.log("Callbacks completed for existing project");
             }
             catch (err) {
+                console.error("Error in existing project save:", err);
                 setError(err instanceof Error ? err.message : 'Failed to save mapping');
             }
             finally {
                 setIsLoading(false);
             }
+        }
+        else {
+            console.log("No card selected - this shouldn't happen");
         }
     });
     return (react_1.default.createElement(components_2.Modal, { className: "esgnow-save-results", show: true, onClose: onClose, title: "Save Transportation-Footprint Results" },
@@ -41412,7 +41430,7 @@ const createMockContext = () => {
         // We're using type assertion below to avoid implementing the full interface
     };
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxpContext, packageWeight, palletWeight, hideHeader, plan }) => {
+const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission, transportLegs, uxpContext, packageWeight, palletWeight, hideHeader, plan }) => {
     // Create a ref to persist the uxpContext across renders
     const contextRef = (0, react_1.useRef)(null);
     // Debug logs to check if uxpContext is defined
@@ -41679,9 +41697,38 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                     " %")));
                         });
                     })()))))));
-    function onSave() {
-        setShowModal(true);
-    }
+    // // Add this function to handle complete closure
+    // const handleSaveComplete = () => {
+    //     console.log("Executing onSaveComplete")
+    //     setShowModal(false); // Close the SaveResultsModal
+    //     onBack(); // Go back to the main screen (this will close EmissionSummary)
+    // };
+    // In EmissionSummary.tsx, add more detailed debugging to handleSaveComplete:
+    // const handleSaveComplete = () => {
+    //     setShowModal(false); // Close the SaveResultsModal
+    //     console.log("About to call onBack()");
+    //     try {
+    //         onBack(); // Go back to the main screen
+    //         console.log("onBack() called successfully");
+    //     } catch (error) {
+    //         console.error("Error calling onBack:", error);
+    //     }
+    // };
+    const handleSaveComplete = () => {
+        console.log("1. handleSaveComplete started");
+        setShowModal(false);
+        console.log("2. Modal closed, about to call callbacks");
+        if (onCloseModal) {
+            console.log("3.3 About to call onCloseModal");
+            onCloseModal();
+        }
+        else {
+            console.log("3.3 onCloseModal is undefined/null");
+        }
+        console.log("3.5 About to call onBack");
+        onBack();
+        console.log("4. Callbacks completed");
+    };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("div", { className: "esgnow-title-section" },
@@ -41719,7 +41766,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                     color: 'red',
                     fontWeight: 'bold'
                 } }, "System data connection issue detected. Your changes will be saved temporarily but may not persist after page refresh.")),
-            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
+            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), onSaveComplete: handleSaveComplete, hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
 };
 exports["default"] = EmissionSummary;
 
@@ -42374,7 +42421,6 @@ const LCADashboardWidget = ({ uxpContext }) => {
     };
     const handleConfirmCalculate = () => __awaiter(void 0, void 0, void 0, function* () {
         setIsEmissionSummaryVisible(true);
-        setShowModal(false);
     });
     // Add validation function
     const validateTransportLegs = () => {
@@ -42428,6 +42474,33 @@ const LCADashboardWidget = ({ uxpContext }) => {
             console.error("Error calculating transport emission:", error);
         }
     });
+    // Remove useCallback entirely (simpler and often better)
+    const handleEmissionSummaryBack = () => {
+        console.log("setting Emission Summary to false");
+        setIsEmissionSummaryVisible(false);
+        // Close the main Calculate Impact modal
+        setShowModal(false);
+        // Reset all data when going back
+        setActiveStep(0);
+        setTransportLegs([{
+                id: 1,
+                originCountry: "",
+                destinationCountry: "",
+                originGateway: "",
+                destinationGateway: "",
+                transportMode: "",
+                transportDistance: 0,
+                transportEmission: 0,
+                originGateways: [],
+                destinationGateways: []
+            }]);
+        setIsPackagingManual(false);
+        setIsPalletManual(false);
+        setIncludePallet(false);
+        setPalletWeight(20);
+        setTransportationEmission("");
+        console.log("=== ONBACK COMPLETED - States should be reset ===");
+    };
     // Update handleNext function to validate before proceeding
     const handleNext = () => {
         // If we're on the transport selection step (step 1)
@@ -42473,27 +42546,10 @@ const LCADashboardWidget = ({ uxpContext }) => {
         },
     ];
     if (isEmissionSummaryVisible) {
-        return (React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: () => {
-                setIsEmissionSummaryVisible(false);
-                // Reset all data when going back
-                setActiveStep(0);
-                setTransportLegs([{
-                        id: 1,
-                        originCountry: "",
-                        destinationCountry: "",
-                        originGateway: "",
-                        destinationGateway: "",
-                        transportMode: "",
-                        transportDistance: 0,
-                        transportEmission: 0,
-                        originGateways: [],
-                        destinationGateways: []
-                    }]);
-                setIsPackagingManual(false);
-                setIsPalletManual(false);
-                setIncludePallet(false);
-                setPalletWeight(20);
-                setTransportationEmission("");
+        return (React.createElement(emission_summary_1.default, { packageWeight: packagingWeight, palletWeight: palletWeight, transportLegs: transportLegs, transportationEmission: transportationEmission, product: selectedProduct, onBack: handleEmissionSummaryBack, onCloseModal: () => {
+                console.log("=== PARENT onCloseModal EXECUTED ===");
+                setIsEmissionSummaryVisible(false); // ← Close emission summary
+                setShowModal(false); // ← Close main modal
             }, uxpContext: uxpContext, plan: plan }));
     }
     return (React.createElement("div", { className: "lca-content" },
