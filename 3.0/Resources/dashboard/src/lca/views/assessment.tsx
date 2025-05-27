@@ -56,16 +56,16 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
         <div className="carbon-details">
           <p className="carbon-item">
             <span>Raw Materials</span>
-            <span>{newlyCreatedProduct.co2EmissionRawMaterials.toFixed(2)} KgCO₂e</span>
+            <span>{newlyCreatedProduct.co2EmissionRawMaterials.toFixed(3)} KgCO₂e</span>
           </p>
           <p className="carbon-item">
             <span>Manufacturing</span>
-            <span>{ newlyCreatedProduct.co2EmissionFromProcesses.toFixed(2)} KgCO₂e</span>
+            <span>{ newlyCreatedProduct.co2EmissionFromProcesses.toFixed(3)} KgCO₂e</span>
           </p>
           <div className="divider"></div>
           <p className="carbon-total">
             <span>Total Carbon Footprint</span>
-            <span>{ newlyCreatedProduct.co2Emission.toFixed(2) } KgCO₂e</span>
+            <span>{ newlyCreatedProduct.co2Emission.toFixed(3) } KgCO₂e</span>
           </p>
         </div>
       </div>

@@ -187,7 +187,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 16px 24px;\n  border-top: 1px solid #eee;\n  margin-top: auto;\n}\n\n.esgnow-pagination-wrapper {\n  display: flex;\n  justify-content: flex-end; /* Moves content to the right */\n  padding: 1rem; /* Optional: for spacing */\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
+exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 12px;\n}\n\n.button-primary-next-button {\n  margin: 0;\n  background-color: #2196f3;\n  color: white;\n}\n.button-primary-next-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  color: white;\n}\n\n.button-secondary {\n  margin: 0;\n}\n\n.esgnow-pagination-wrapper {\n  display: flex;\n  justify-content: flex-end; /* Moves content to the right */\n  padding: 1rem; /* Optional: for spacing */\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -272,7 +272,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".summary-container {\n  padding: 15px;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-section h4 {\n  font-size: 14px;\n  font-weight: bold;\n  margin: 10px 0;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n  margin-bottom: 15px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.confirm-button {\n  margin-top: 30px;\n  padding: 8px 6px;\n  background-color: #4caf50;\n  color: white;\n  font-size: 14px;\n  padding-left: 20px;\n  padding-right: 20px;\n  border: none;\n  border-radius: 8px;\n  cursor: pointer;\n  margin-bottom: 10px;\n}\n\n.confirm-button:hover {\n  background-color: #45a049;\n}", ""]);
+exports.push([module.id, ".summary-container {\n  padding: 15px;\n}\n\n.summary-section {\n  margin-bottom: 20px;\n}\n\n.summary-section h3 {\n  font-size: 16px;\n  font-weight: bold;\n  margin-bottom: 10px;\n}\n\n.summary-section h4 {\n  font-size: 14px;\n  font-weight: bold;\n  margin: 10px 0;\n}\n\n.summary-box {\n  background-color: #f0f0f0;\n  padding: 15px;\n  border-radius: 8px;\n  margin-bottom: 15px;\n}\n\n.summary-row {\n  display: flex;\n  justify-content: space-between;\n  padding: 8px 0;\n  border-bottom: 1px solid #e0e0e0;\n  font-size: 14px;\n}\n\n.summary-row:last-child {\n  border-bottom: none;\n}\n\n.summary-buttons {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 12px;\n}\n\n.button-primary-confirm-button {\n  margin: 0;\n  background-color: #4caf50;\n  color: white;\n}\n.button-primary-confirm-button:hover {\n  background-color: #45a049;\n  color: white;\n}\n\n.button-secondary {\n  margin: 0;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -289,7 +289,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 30px;\n}\n\n.add-transport-leg-button,\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.add-transport-leg-button:hover,\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n  padding-left: 10px;\n}", ""]);
+exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.add-transport-leg-container {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n}\n\n.add-transport-leg-button {\n  margin: 0;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n}\n.add-transport-leg-button:hover {\n  background-color: #0056D2;\n}\n\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n  padding-left: 10px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -323,7 +323,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".esgnow-material-card {\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  padding: 16px;\n  margin-bottom: 16px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);\n}\n.esgnow-material-card:hover {\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}\n\n.esgnow-material-card-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #f0f0f0;\n}\n\n.esgnow-material-number {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.esgnow-remove-material-button {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  font-size: 16px;\n  padding: 4px 8px;\n  border-radius: 50%;\n}\n.esgnow-remove-material-button:hover {\n  background-color: #f5f5f5;\n  color: #d32f2f;\n}\n\n.esgnow-material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n}\n\n.esgnow-material-field {\n  flex: 1;\n}\n\n.esgnow-specific-material-field {\n  flex: 2;\n}\n\n.esgnow-material-weight-field {\n  flex: 0.7;\n}\n\n.esgnow-unit-field {\n  flex: 0.3;\n}\n\n.esgnow-material-select,\n.esgnow-specific-material-select,\n.esgnow-weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.esgnow-weight-input {\n  max-width: 180px;\n}\n\n.esgnow-weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .esgnow-material-field,\n  .esgnow-specific-material-field,\n  .esgnow-material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.esgnow-actions-container {\n  display: flex;\n  justify-content: flex-end;\n  gap: 16px;\n  margin-top: 20px;\n  width: 100%;\n}\n\n.esgnow-done-button {\n  background-color: #2196f3;\n  color: white;\n  font-weight: 500;\n}\n.esgnow-done-button:hover {\n  background-color: #1976d2;\n  color: white;\n}\n\n.esgnow-add-another-material-button {\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  background-color: transparent;\n}\n.esgnow-add-another-material-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n  color: #2196f3;\n}\n\n.esgnow-material-entry-label,\n.esgnow-specific-material-label,\n.esgnow-material-weight-field-label,\n.esgnow-material-reasoning-label {\n  font-size: 12px;\n}\n\n.esgnow-material-reasoning-field {\n  width: 100%;\n}\n\n.esgnow-reasoning-textarea {\n  width: 100%;\n  min-height: 80px;\n  padding: 8px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-family: inherit;\n  font-size: 14px;\n  resize: vertical;\n}\n.esgnow-reasoning-textarea:focus {\n  outline: none;\n  border-color: #2196f3;\n}", ""]);
+exports.push([module.id, ".esgnow-material-card {\n  background-color: white;\n  border: 1px solid #e0e0e0;\n  border-radius: 4px;\n  padding: 16px;\n  margin-bottom: 16px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);\n}\n.esgnow-material-card:hover {\n  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);\n}\n\n.esgnow-material-card-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 12px;\n  padding-bottom: 8px;\n  border-bottom: 1px solid #f0f0f0;\n}\n\n.esgnow-material-number {\n  font-size: 14px;\n  font-weight: 500;\n  color: #424242;\n}\n\n.esgnow-remove-material-button {\n  background-color: transparent;\n  border: none;\n  color: #757575;\n  cursor: pointer;\n  font-size: 16px;\n  padding: 4px 8px;\n  border-radius: 50%;\n}\n.esgnow-remove-material-button:hover {\n  background-color: #f5f5f5;\n  color: #d32f2f;\n}\n\n.esgnow-material-row {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 13px;\n  align-items: center;\n}\n\n.esgnow-material-field {\n  flex: 1;\n}\n\n.esgnow-specific-material-field {\n  flex: 2;\n}\n\n.esgnow-material-weight-field {\n  flex: 0.7;\n}\n\n.esgnow-unit-field {\n  flex: 0.3;\n}\n\n.esgnow-material-select,\n.esgnow-specific-material-select,\n.esgnow-weight-input,\n.unit-select {\n  width: 100%;\n}\n\n.unit-select {\n  max-width: 100px;\n}\n\n.esgnow-weight-input {\n  max-width: 180px;\n}\n\n.esgnow-weight-input input {\n  background-color: transparent;\n  padding: 8px;\n  box-sizing: border-box;\n}\n\n@media (max-width: 768px) {\n  .material-row {\n    flex-direction: column;\n  }\n  .esgnow-material-field,\n  .esgnow-specific-material-field,\n  .esgnow-material-weight-field,\n  .unit-field {\n    flex: 1;\n    min-width: 100%;\n  }\n}\n.esgnow-actions-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n.esgnow-done-button {\n  background-color: #2196f3;\n  color: white;\n  font-weight: 500;\n  margin: 0;\n}\n.esgnow-done-button:hover {\n  background-color: #1976d2;\n  color: white;\n}\n\n.esgnow-add-another-material-button {\n  color: #2196f3;\n  border: 1px solid #2196f3;\n  background-color: transparent;\n}\n.esgnow-add-another-material-button:hover {\n  background-color: rgba(33, 150, 243, 0.08);\n  color: #2196f3;\n}\n\n.esgnow-material-entry-label,\n.esgnow-specific-material-label,\n.esgnow-material-weight-field-label,\n.esgnow-material-reasoning-label {\n  font-size: 12px;\n}\n\n.esgnow-material-reasoning-field {\n  width: 100%;\n}\n\n.esgnow-reasoning-textarea {\n  width: 100%;\n  min-height: 80px;\n  padding: 8px;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  font-family: inherit;\n  font-size: 14px;\n  resize: vertical;\n}\n.esgnow-reasoning-textarea:focus {\n  outline: none;\n  border-color: #2196f3;\n}\n\n.cancel-button {\n  margin: 0;\n  margin-right: 10px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -340,7 +340,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}\n\n.summary-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.summary-actions .edit-all-button {\n  min-width: 150px;\n}", ""]);
+exports.push([module.id, ".material-summary {\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}\n\n.summary-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.summary-actions .edit-all-button {\n  min-width: 150px;\n}\n\n.edit-all-materials-container {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -408,7 +408,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".esgnow-product-summary-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: \"Comfortaa\", sans-serif;\n}\n\n.esgnow-header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 24px;\n  border-bottom: 1px solid #e0e0e0;\n  padding-bottom: 16px;\n}\n.esgnow-header-container .esgnow-title-section .esgnow-dashboard-title {\n  font-size: 24px;\n  font-weight: bold;\n  margin: 0;\n  color: #333;\n}\n.esgnow-header-container .esgnow-title-section .esgnow-subheading {\n  font-size: 16px;\n  color: #666;\n  margin: 4px 0 0 0;\n}\n.esgnow-header-container .esgnow-action-buttons {\n  display: flex;\n  gap: 12px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button .esgnow-back-icon {\n  font-size: 18px;\n  line-height: 1;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button {\n  background-color: #fff;\n  color: #d32f2f;\n  border: 1px solid #d32f2f;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button .esgnow-delete-icon {\n  font-size: 20px;\n  font-weight: bold;\n  line-height: 1;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button:hover {\n  background-color: #ffebee;\n}\n\n.esgnow-tabs-container {\n  margin-top: 16px;\n}\n.esgnow-tabs-container .esgnow-tabs {\n  display: flex;\n  border-bottom: 1px solid #e0e0e0;\n  margin-bottom: 24px;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button {\n  padding: 12px 24px;\n  border: none;\n  background: none;\n  cursor: pointer;\n  font-size: 16px;\n  font-weight: 500;\n  color: #666;\n  position: relative;\n  transition: color 0.3s;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button:hover {\n  color: #0066ff;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button.active {\n  color: #0066ff;\n  font-weight: 600;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button.active:after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  background-color: #0066ff;\n  border-top-left-radius: 3px;\n  border-top-right-radius: 3px;\n}\n\n.esgnow-product-info-summary {\n  display: flex;\n  gap: 24px;\n  margin-bottom: 24px;\n  background-color: white;\n  padding: 24px;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n}\n.esgnow-product-info-summary .esgnow-summary-image {\n  position: relative;\n  width: 250px;\n  height: 250px;\n  border-radius: 8px;\n  overflow: hidden;\n  background-color: #fafafa;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  border: 1px solid #e0e0e0;\n}\n.esgnow-product-info-summary .esgnow-summary-image .esgnow-image-placeholder {\n  color: #aaa;\n  font-size: 16px;\n  text-align: center;\n}\n.esgnow-product-info-summary .esgnow-summary-image .esgnow-image-label {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  bottom: 12px;\n  background-color: rgba(255, 255, 255, 0.9);\n  color: #0066ff;\n  padding: 8px 12px;\n  border-radius: 20px;\n  font-size: 14px;\n  font-weight: bold;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  height: fit-content;\n  width: fit-content;\n  text-align: center;\n}\n.esgnow-product-info-summary .esgnow-summary-details {\n  flex: 1;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n  margin-bottom: 20px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-item strong {\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 6px;\n  display: block;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-item p {\n  margin: 0;\n  color: #333;\n  font-weight: 500;\n  font-size: 16px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field {\n  margin-top: 16px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field strong {\n  display: block;\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 8px;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor {\n  position: relative;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description {\n  width: 100%;\n  min-height: 100px;\n  max-height: 120px;\n  overflow-y: auto;\n  color: #333;\n  line-height: 1.6;\n  font-size: 15px;\n  background-color: #f9f9f9;\n  padding: 16px;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n  resize: none;\n  font-family: inherit;\n  transition: border-color 0.3s ease;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description:focus {\n  outline: none;\n  border-color: #0066ff;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description:hover:not(:focus) {\n  border-color: #ccc;\n}\n\n.esgnow-tab-content {\n  animation: fadeIn 0.3s ease-in-out;\n}\n\n.esgnow-widget {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  overflow: hidden;\n}\n.esgnow-widget h3 {\n  font-size: 18px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n}\n.esgnow-widget .esgnow-widget-content {\n  padding: 24px;\n}\n.esgnow-widget.esgnow-product-footprint {\n  text-align: center;\n}\n.esgnow-widget.esgnow-product-footprint .esgnow-widget-content {\n  display: flex;\n  justify-content: center;\n}\n.esgnow-widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.esgnow-widget table th,\n.esgnow-widget table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #eee;\n}\n.esgnow-widget table th {\n  background-color: #f9f9f9;\n  font-weight: 600;\n  color: #333;\n  font-size: 14px;\n}\n.esgnow-widget table td {\n  font-size: 14px;\n  color: #555;\n}\n.esgnow-widget table .esgnow-reasoning-cell {\n  max-width: 300px;\n  white-space: normal;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #666;\n}\n.esgnow-widget table tr:last-child td {\n  border-bottom: none;\n}\n.esgnow-widget table tr:hover td {\n  background-color: #f5f5f5;\n}\n\n.esgnow-percentage-bar {\n  position: relative;\n  width: 100%;\n  height: 20px;\n  background-color: #f0f0f0;\n  border-radius: 10px;\n  overflow: hidden;\n}\n.esgnow-percentage-bar .esgnow-percentage-fill {\n  height: 100%;\n  border-radius: 10px;\n}\n.esgnow-percentage-bar span {\n  position: absolute;\n  right: 8px;\n  top: 0;\n  line-height: 20px;\n  font-size: 12px;\n  font-weight: 600;\n  color: #333;\n}\n\n.esgnow-inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n}\n.esgnow-inventory-header h3 {\n  margin: 0;\n  padding: 0;\n  border: none;\n}\n.esgnow-inventory-header .esgnow-view-toggle {\n  display: flex;\n  gap: 8px;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button {\n  padding: 8px 16px;\n  border: 1px solid #ddd;\n  background-color: white;\n  color: #666;\n  border-radius: 4px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button.active {\n  background-color: #0066ff;\n  color: white;\n  border-color: #0066ff;\n}\n\n.esgnow-inventory-tree {\n  padding: 24px;\n}\n.esgnow-inventory-tree .esgnow-tree-item {\n  display: flex;\n  align-items: center;\n  font-weight: 600;\n  font-size: 16px;\n  color: #333;\n  cursor: pointer;\n  padding: 10px;\n  border-radius: 4px;\n}\n.esgnow-inventory-tree .esgnow-tree-item:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-tree .esgnow-tree-item .esgnow-expand-icon {\n  margin-right: 8px;\n  font-size: 12px;\n  color: #666;\n}\n.esgnow-inventory-tree .esgnow-tree-children {\n  margin-left: 24px;\n  margin-top: 12px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 12px;\n  padding: 8px;\n  font-size: 14px;\n  color: #555;\n  border-radius: 4px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-tree-main-content {\n  display: flex;\n  align-items: center;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-material-dot {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background-color: #0066ff;\n  margin-right: 12px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-tree-reasoning {\n  margin-top: 6px;\n  margin-left: 20px;\n  padding: 8px;\n  background-color: #f8f8f8;\n  border-left: 3px solid #0066ff;\n  font-size: 13px;\n  line-height: 1.4;\n  color: #666;\n  border-radius: 0 4px 4px 0;\n}\n\n.esgnow-delete-modal.modal-container .modal-panel {\n  min-width: 40%;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation {\n  text-align: center;\n  padding: 16px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-warning-icon {\n  font-size: 48px;\n  margin-bottom: 16px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation p {\n  font-size: 16px;\n  margin-bottom: 8px;\n  color: #333;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-delete-warning {\n  color: #d32f2f;\n  font-size: 14px;\n  margin-bottom: 24px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions {\n  display: flex;\n  justify-content: center;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-cancel-button {\n  margin-right: 12px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-confirm-button {\n  margin-left: 12px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-cancel-button {\n  background-color: #f0f0f0;\n  color: #333;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-confirm-button {\n  background-color: #d32f2f;\n  color: white;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (max-width: 992px) {\n  .esgnow-product-info-summary {\n    flex-direction: column;\n  }\n  .esgnow-product-info-summary .esgnow-summary-image {\n    width: 100%;\n    height: 100%;\n  }\n  .esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 768px) {\n  .esgnow-header-container {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .esgnow-header-container .esgnow-action-buttons {\n    margin-top: 16px;\n    width: 100%;\n    justify-content: space-between;\n  }\n  .esgnow-tabs .esgnow-tab-button {\n    padding: 12px 16px;\n    font-size: 14px;\n  }\n  .esgnow-summary-details .esgnow-detail-grid {\n    grid-template-columns: 1fr;\n  }\n}", ""]);
+exports.push([module.id, ".esgnow-product-summary-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 20px;\n  font-family: \"Comfortaa\", sans-serif;\n}\n\n.esgnow-header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 24px;\n  border-bottom: 1px solid #e0e0e0;\n  padding-bottom: 16px;\n}\n.esgnow-header-container .esgnow-title-section .esgnow-dashboard-title {\n  font-size: 24px;\n  font-weight: bold;\n  margin: 0;\n  color: #333;\n}\n.esgnow-header-container .esgnow-title-section .esgnow-subheading {\n  font-size: 16px;\n  color: #666;\n  margin: 4px 0 0 0;\n}\n.esgnow-header-container .esgnow-action-buttons {\n  display: flex;\n  gap: 12px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button .esgnow-back-icon {\n  font-size: 18px;\n  line-height: 1;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-back-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button {\n  background-color: #fff;\n  color: #d32f2f;\n  border: 1px solid #d32f2f;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button .esgnow-delete-icon {\n  font-size: 20px;\n  font-weight: bold;\n  line-height: 1;\n}\n.esgnow-header-container .esgnow-action-buttons .esgnow-delete-button:hover {\n  background-color: #ffebee;\n}\n\n.esgnow-tabs-container {\n  margin-top: 16px;\n}\n.esgnow-tabs-container .esgnow-tabs {\n  display: flex;\n  border-bottom: 1px solid #e0e0e0;\n  margin-bottom: 24px;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button {\n  padding: 12px 24px;\n  border: none;\n  background: none;\n  cursor: pointer;\n  font-size: 16px;\n  font-weight: 500;\n  color: #666;\n  position: relative;\n  transition: color 0.3s;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button:hover {\n  color: #0066ff;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button.active {\n  color: #0066ff;\n  font-weight: 600;\n}\n.esgnow-tabs-container .esgnow-tabs .esgnow-tab-button.active:after {\n  content: \"\";\n  position: absolute;\n  bottom: -1px;\n  left: 0;\n  width: 100%;\n  height: 3px;\n  background-color: #0066ff;\n  border-top-left-radius: 3px;\n  border-top-right-radius: 3px;\n}\n\n.esgnow-product-info-summary {\n  display: flex;\n  gap: 24px;\n  margin-bottom: 24px;\n  background-color: white;\n  padding: 24px;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n}\n.esgnow-product-info-summary .esgnow-summary-image {\n  position: relative;\n  width: 250px;\n  height: 250px;\n  border-radius: 8px;\n  overflow: hidden;\n  background-color: #fafafa;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  background-size: cover;\n  background-position: center;\n  border: 1px solid #e0e0e0;\n}\n.esgnow-product-info-summary .esgnow-summary-image .esgnow-image-placeholder {\n  color: #aaa;\n  font-size: 16px;\n  text-align: center;\n}\n.esgnow-product-info-summary .esgnow-summary-image .esgnow-image-label {\n  position: absolute;\n  top: 12px;\n  right: 12px;\n  bottom: 12px;\n  background-color: rgba(255, 255, 255, 0.9);\n  color: #0066ff;\n  padding: 8px 12px;\n  border-radius: 20px;\n  font-size: 14px;\n  font-weight: bold;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  height: fit-content;\n  width: fit-content;\n  text-align: center;\n}\n.esgnow-product-info-summary .esgnow-summary-details {\n  flex: 1;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n  margin-bottom: 20px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-item strong {\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 6px;\n  display: block;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-item p {\n  margin: 0;\n  color: #333;\n  font-weight: 500;\n  font-size: 16px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field {\n  margin-top: 16px;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field strong {\n  display: block;\n  font-weight: 600;\n  color: #666;\n  margin-bottom: 8px;\n  font-size: 14px;\n  text-transform: uppercase;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor {\n  position: relative;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description {\n  width: 100%;\n  min-height: 100px;\n  max-height: 120px;\n  overflow-y: auto;\n  color: #333;\n  line-height: 1.6;\n  font-size: 15px;\n  background-color: #f9f9f9;\n  padding: 16px;\n  border-radius: 6px;\n  border: 1px solid #e0e0e0;\n  resize: none;\n  font-family: inherit;\n  transition: border-color 0.3s ease;\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description:focus {\n  outline: none;\n  border-color: #0066ff;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-product-info-summary .esgnow-summary-details .esgnow-description-field .esgnow-rich-text-editor .esgnow-editable-description:hover:not(:focus) {\n  border-color: #ccc;\n}\n\n.esgnow-tab-content {\n  animation: fadeIn 0.3s ease-in-out;\n}\n\n.esgnow-widget {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  overflow: hidden;\n}\n.esgnow-widget h3 {\n  font-size: 18px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n  text-align: left;\n}\n.esgnow-widget .esgnow-widget-content {\n  padding: 24px;\n}\n.esgnow-widget.esgnow-product-footprint {\n  text-align: center;\n}\n.esgnow-widget.esgnow-product-footprint .esgnow-widget-content {\n  display: flex;\n  justify-content: center;\n}\n.esgnow-widget table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.esgnow-widget table th,\n.esgnow-widget table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #eee;\n}\n.esgnow-widget table th {\n  background-color: #f9f9f9;\n  font-weight: 600;\n  color: #333;\n  font-size: 14px;\n}\n.esgnow-widget table td {\n  font-size: 14px;\n  color: #555;\n}\n.esgnow-widget table .esgnow-reasoning-cell {\n  max-width: 300px;\n  white-space: normal;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #666;\n}\n.esgnow-widget table tr:last-child td {\n  border-bottom: none;\n}\n.esgnow-widget table tr:hover td {\n  background-color: #f5f5f5;\n}\n\n.esgnow-percentage-bar {\n  position: relative;\n  width: 100%;\n  height: 20px;\n  background-color: #f0f0f0;\n  border-radius: 10px;\n  overflow: hidden;\n}\n.esgnow-percentage-bar .esgnow-percentage-fill {\n  height: 100%;\n  border-radius: 10px;\n}\n.esgnow-percentage-bar span {\n  position: absolute;\n  right: 8px;\n  top: 0;\n  line-height: 20px;\n  font-size: 12px;\n  font-weight: 600;\n  color: #333;\n}\n\n.esgnow-inventory-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 20px 24px;\n  border-bottom: 1px solid #eee;\n}\n.esgnow-inventory-header h3 {\n  margin: 0;\n  padding: 0;\n  border: none;\n}\n.esgnow-inventory-header .esgnow-view-toggle {\n  display: flex;\n  gap: 8px;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button {\n  padding: 8px 16px;\n  border: 1px solid #ddd;\n  background-color: white;\n  color: #666;\n  border-radius: 4px;\n  font-size: 14px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-header .esgnow-view-toggle .esgnow-toggle-button.active {\n  background-color: #0066ff;\n  color: white;\n  border-color: #0066ff;\n}\n\n.esgnow-inventory-tree {\n  padding: 24px;\n}\n.esgnow-inventory-tree .esgnow-tree-item {\n  display: flex;\n  align-items: center;\n  font-weight: 600;\n  font-size: 16px;\n  color: #333;\n  cursor: pointer;\n  padding: 10px;\n  border-radius: 4px;\n}\n.esgnow-inventory-tree .esgnow-tree-item:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-tree .esgnow-tree-item .esgnow-expand-icon {\n  margin-right: 8px;\n  font-size: 12px;\n  color: #666;\n}\n.esgnow-inventory-tree .esgnow-tree-children {\n  margin-left: 24px;\n  margin-top: 12px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 12px;\n  padding: 8px;\n  font-size: 14px;\n  color: #555;\n  border-radius: 4px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item:hover {\n  background-color: #f5f5f5;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-tree-main-content {\n  display: flex;\n  align-items: center;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-material-dot {\n  width: 8px;\n  height: 8px;\n  border-radius: 50%;\n  background-color: #0066ff;\n  margin-right: 12px;\n}\n.esgnow-inventory-tree .esgnow-tree-children .esgnow-tree-sub-item .esgnow-tree-reasoning {\n  margin-top: 6px;\n  margin-left: 20px;\n  padding: 8px;\n  background-color: #f8f8f8;\n  border-left: 3px solid #0066ff;\n  font-size: 13px;\n  line-height: 1.4;\n  color: #666;\n  border-radius: 0 4px 4px 0;\n}\n\n.esgnow-delete-modal.modal-container .modal-panel {\n  min-width: 40%;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation {\n  text-align: center;\n  padding: 16px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-warning-icon {\n  font-size: 48px;\n  margin-bottom: 16px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation p {\n  font-size: 16px;\n  margin-bottom: 8px;\n  color: #333;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-delete-warning {\n  color: #d32f2f;\n  font-size: 14px;\n  margin-bottom: 24px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions {\n  display: flex;\n  justify-content: center;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-cancel-button {\n  margin-right: 12px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-confirm-button {\n  margin-left: 12px;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-cancel-button {\n  background-color: #f0f0f0;\n  color: #333;\n}\n.esgnow-delete-modal.modal-container .modal-panel .esgnow-delete-confirmation .esgnow-modal-actions .esgnow-confirm-button {\n  background-color: #d32f2f;\n  color: white;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n@media (max-width: 992px) {\n  .esgnow-product-info-summary {\n    flex-direction: column;\n  }\n  .esgnow-product-info-summary .esgnow-summary-image {\n    width: 100%;\n    height: 100%;\n  }\n  .esgnow-product-info-summary .esgnow-summary-details .esgnow-detail-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n@media (max-width: 768px) {\n  .esgnow-header-container {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n  .esgnow-header-container .esgnow-action-buttons {\n    margin-top: 16px;\n    width: 100%;\n    justify-content: space-between;\n  }\n  .esgnow-tabs .esgnow-tab-button {\n    padding: 12px 16px;\n    font-size: 14px;\n  }\n  .esgnow-summary-details .esgnow-detail-grid {\n    grid-template-columns: 1fr;\n  }\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -510,7 +510,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".step {\n  cursor: pointer;\n  transition: opacity 0.3s;\n}\n\n.step.disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n  pointer-events: none;\n}\n\n.modal-stepper-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 20px;\n}\n\n.stepper {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  padding: 10px 0;\n}\n\n.step {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  cursor: pointer;\n}\n\n.step-number {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background-color: #ddd;\n  color: #333;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 5px;\n  transition: background-color 0.3s ease;\n}\n\n.step.active .step-number {\n  background-color: #4CAF50;\n  color: white;\n}\n\n.step.completed .step-number {\n  background-color: #2196F3;\n  color: white;\n}\n\n.step-label {\n  font-size: 14px;\n  color: #666;\n}\n\n.step.active .step-label,\n.step.completed .step-label {\n  color: #333;\n}", ""]);
+exports.push([module.id, ".step {\n  cursor: pointer;\n  transition: opacity 0.3s;\n}\n\n.step.disabled {\n  cursor: not-allowed;\n  opacity: 0.5;\n  pointer-events: none;\n}\n\n.modal-stepper-container {\n  display: flex;\n  justify-content: center;\n  margin-bottom: 20px;\n}\n\n.stepper {\n  display: flex;\n  justify-content: space-around;\n  width: 100%;\n  padding: 10px 0;\n}\n\n.step {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  cursor: pointer;\n}\n\n.step-number {\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background-color: #ddd;\n  color: #333;\n  font-weight: bold;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  margin-bottom: 5px;\n  transition: background-color 0.3s ease;\n}\n\n.step.active .step-number {\n  background-color: #0066ff;\n  color: white;\n}\n\n.step.completed .step-number {\n  background-color: #2196F3;\n  color: white;\n}\n\n.step-label {\n  font-size: 14px;\n  color: #666;\n}\n\n.step.active .step-label,\n.step.completed .step-label {\n  color: #333;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -40486,18 +40486,18 @@ const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Raw Materials"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2EmissionRawMaterials.toFixed(2),
+                        newlyCreatedProduct.co2EmissionRawMaterials.toFixed(3),
                         " KgCO\u2082e")),
                 react_1.default.createElement("p", { className: "carbon-item" },
                     react_1.default.createElement("span", null, "Manufacturing"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2EmissionFromProcesses.toFixed(2),
+                        newlyCreatedProduct.co2EmissionFromProcesses.toFixed(3),
                         " KgCO\u2082e")),
                 react_1.default.createElement("div", { className: "divider" }),
                 react_1.default.createElement("p", { className: "carbon-total" },
                     react_1.default.createElement("span", null, "Total Carbon Footprint"),
                     react_1.default.createElement("span", null,
-                        newlyCreatedProduct.co2Emission.toFixed(2),
+                        newlyCreatedProduct.co2Emission.toFixed(3),
                         " KgCO\u2082e")))),
         react_1.default.createElement("p", { className: "calculation-subtext" }, "Complete the analysis by calculating transportation emissions, or save your progress and do it later?"),
         react_1.default.createElement("div", { className: "button-group" },
@@ -40564,14 +40564,21 @@ const react_fontawesome_1 = __webpack_require__(/*! @fortawesome/react-fontaweso
 const free_solid_svg_icons_1 = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.js");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext }) => {
-    // Check if we have materials data from a previous visit to this step
-    const prevMaterialsData = sessionStorage.getItem(`product_${productData.code}_materials`);
     const prevEntryType = sessionStorage.getItem(`product_${productData.code}_entry_type`);
+    const prevAIMaterialsData = sessionStorage.getItem(`product_${productData.code}_ai_materials`);
+    const prevManualMaterialsData = sessionStorage.getItem(`product_${productData.code}_manual_materials`);
     const [showMaterialEntry, setShowMaterialEntry] = (0, react_1.useState)(false);
-    const [materials, setMaterials] = (0, react_1.useState)(prevMaterialsData ? JSON.parse(prevMaterialsData) : []);
+    const [showBulkEditor, setShowBulkEditor] = (0, react_1.useState)(false);
     const [entryType, setEntryType] = (0, react_1.useState)(prevEntryType || "ai");
+    // Separate state for AI and manual 
+    const [aiMaterials, setAIMaterials] = (0, react_1.useState)(prevAIMaterialsData ? JSON.parse(prevAIMaterialsData) : []);
+    const [manualMaterials, setManualMaterials] = (0, react_1.useState)(prevManualMaterialsData ? JSON.parse(prevManualMaterialsData) : []);
+    const materials = entryType === "ai" ? aiMaterials : manualMaterials;
+    (0, react_1.useEffect)(() => {
+        setShowBulkEditor(false);
+        setShowMaterialEntry(false);
+    }, [entryType]);
     const [editIndex, setEditIndex] = (0, react_1.useState)(null);
-    const [showTooltip, setShowTooltip] = (0, react_1.useState)(false);
     const [aiGeneratingBOM, setAIGeneratingBOM] = (0, react_1.useState)(false);
     const [plan, setPlan] = (0, react_1.useState)(null);
     const [validationError, setValidationError] = (0, react_1.useState)("");
@@ -40581,9 +40588,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
     ];
     (0, react_1.useEffect)(() => {
         getAccountPlanFromAPI();
-        // Add cleanup when component unmounts
         return () => {
-            // Reset the local state only (session storage is handled by wizard)
             setEditIndex(null);
             setShowMaterialEntry(false);
             setValidationError("");
@@ -40598,12 +40603,10 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
         try {
             let imageUrl = '';
             if (productCategoryData.images && productCategoryData.images.length > 0) {
-                // Check if the image URL already contains a host
                 if (productCategoryData.images[0].startsWith('http')) {
                     imageUrl = productCategoryData.images[0];
                 }
                 else {
-                    // Use window.location.origin to get the base URL
                     const baseUrl = window.location.origin;
                     imageUrl = baseUrl + (productCategoryData.images[0].startsWith('/') ? '' : '/') + productCategoryData.images[0];
                 }
@@ -40628,12 +40631,13 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
                 unit: "kg",
                 reasoning: material.reasoning
             }));
-            setMaterials(apiMaterials);
-            saveMaterialsToStorage(apiMaterials);
+            setAIMaterials(apiMaterials);
+            saveAIMaterialsToStorage(apiMaterials);
             setAIGeneratingBOM(false);
         }
         catch (error) {
             console.error("Error fetching materials from API:", error);
+            setAIGeneratingBOM(false);
         }
     });
     const handleAddMaterials = () => {
@@ -40647,36 +40651,44 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             fetchMaterialsFromAPI();
         }
     };
-    // Helper function to save materials to session storage
-    const saveMaterialsToStorage = (updatedMaterials) => {
-        sessionStorage.setItem(`product_${productData.code}_materials`, JSON.stringify(updatedMaterials));
+    // Separate save functions for AI and manual materials
+    const saveAIMaterialsToStorage = (updatedMaterials) => {
+        sessionStorage.setItem(`product_${productData.code}_ai_materials`, JSON.stringify(updatedMaterials));
+    };
+    const saveManualMaterialsToStorage = (updatedMaterials) => {
+        sessionStorage.setItem(`product_${productData.code}_manual_materials`, JSON.stringify(updatedMaterials));
     };
     const handleMaterialAdd = (newMaterials) => {
-        let updatedMaterials;
-        if (editIndex !== null) {
-            // Replace the material being edited
-            updatedMaterials = [...materials];
-            updatedMaterials.splice(editIndex, 1, ...newMaterials);
-            // Reset edit index
-            setEditIndex(null);
+        if (entryType === "manual") {
+            let updatedMaterials;
+            if (editIndex !== null) {
+                updatedMaterials = [...manualMaterials];
+                updatedMaterials.splice(editIndex, 1, ...newMaterials);
+                setEditIndex(null);
+            }
+            else {
+                updatedMaterials = [...manualMaterials, ...newMaterials];
+            }
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
         }
-        else {
-            // Add new materials to existing ones
-            updatedMaterials = [...materials, ...newMaterials];
-        }
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
         setShowMaterialEntry(false);
-        setValidationError(""); // Clear validation errors when materials are updated
+        setValidationError("");
     };
     const handleMaterialEdit = (index, material) => {
-        // When the user edits in the summary table, update the material directly
-        // without showing the material entry form
-        const updatedMaterials = [...materials];
-        updatedMaterials[index] = Object.assign({}, material);
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
-        setValidationError(""); // Clear validation errors when materials are updated
+        if (entryType === "ai") {
+            const updatedMaterials = [...aiMaterials];
+            updatedMaterials[index] = Object.assign({}, material);
+            setAIMaterials(updatedMaterials);
+            saveAIMaterialsToStorage(updatedMaterials);
+        }
+        else {
+            const updatedMaterials = [...manualMaterials];
+            updatedMaterials[index] = Object.assign({}, material);
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
+        }
+        setValidationError("");
     };
     const handleOpenFullEditor = (index) => {
         if (entryType === "manual") {
@@ -40685,42 +40697,62 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
         }
     };
     const handleMaterialDelete = (index) => {
-        const updatedMaterials = materials.filter((_, i) => i !== index);
-        setMaterials(updatedMaterials);
-        saveMaterialsToStorage(updatedMaterials);
-        setValidationError(""); // Clear validation errors when materials are updated
+        if (entryType === "ai") {
+            const updatedMaterials = aiMaterials.filter((_, i) => i !== index);
+            setAIMaterials(updatedMaterials);
+            saveAIMaterialsToStorage(updatedMaterials);
+        }
+        else {
+            const updatedMaterials = manualMaterials.filter((_, i) => i !== index);
+            setManualMaterials(updatedMaterials);
+            saveManualMaterialsToStorage(updatedMaterials);
+        }
+        setValidationError("");
     };
     const handleEntryTypeChange = (newValue) => {
         setEntryType(newValue);
         sessionStorage.setItem(`product_${productData.code}_entry_type`, newValue);
-        if (newValue === "manual") {
-            setMaterials([]);
-            saveMaterialsToStorage([]);
+        // Reset editing states when changing entry type
+        setShowMaterialEntry(false);
+        setShowBulkEditor(false);
+        setEditIndex(null);
+        setValidationError("");
+    };
+    const handleEditAllMaterials = () => {
+        setShowBulkEditor(true);
+    };
+    const handleBulkEditDone = (editedMaterials) => {
+        if (entryType === "ai") {
+            setAIMaterials(editedMaterials);
+            saveAIMaterialsToStorage(editedMaterials);
         }
-        setValidationError(""); // Clear validation errors when entry type changes
+        else {
+            setManualMaterials(editedMaterials);
+            saveManualMaterialsToStorage(editedMaterials);
+        }
+        setShowBulkEditor(false);
+        setValidationError("");
+    };
+    const handleBulkEditCancel = () => {
+        setShowBulkEditor(false);
     };
     const handleNext = () => {
-        // Clear previous validation errors
         setValidationError("");
-        // Check for validation errors
-        if (materials.length === 0) {
+        const currentMaterials = entryType === "ai" ? aiMaterials : manualMaterials;
+        if (currentMaterials.length === 0) {
             setValidationError("Please add at least one material");
             return;
         }
-        // Check for total weight matching
-        const totalMaterialWeight = materials.reduce((sum, material) => {
+        const totalMaterialWeight = currentMaterials.reduce((sum, material) => {
             return sum + (parseFloat(material.weight) || 0);
         }, 0);
         const productTotalWeight = parseFloat(productCategoryData.totalWeight) || 0;
-        // Allow a small rounding tolerance (0.01 kg)
         if (Math.abs(totalMaterialWeight - productTotalWeight) > 0.01) {
-            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(2)} kg) must match product weight (${productTotalWeight.toFixed(2)} kg)`);
+            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(4)} kg) must match product weight (${productTotalWeight.toFixed(3)} kg)`);
             return;
         }
-        // Check for duplicates based on plan
         if (plan === "basic") {
-            // For basic plan, check for duplicate material classes
-            const materialClasses = materials.map(m => m.materialClass);
+            const materialClasses = currentMaterials.map(m => m.materialClass);
             const uniqueClasses = new Set(materialClasses);
             if (uniqueClasses.size !== materialClasses.length) {
                 setValidationError("Duplicate material classes detected. Please ensure each material class is unique.");
@@ -40728,18 +40760,14 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             }
         }
         else if (plan === "professional") {
-            // For professional plan, check for duplicate specific materials
-            const specificMaterials = materials.map(m => m.specificMaterial);
+            const specificMaterials = currentMaterials.map(m => m.specificMaterial);
             const uniqueSpecificMaterials = new Set(specificMaterials);
             if (uniqueSpecificMaterials.size !== specificMaterials.length) {
                 setValidationError("Duplicate specific materials detected. Please ensure each specific material is unique.");
                 return;
             }
         }
-        // If validation passes, proceed to next step
-        // Keep the storage so when the user goes back, they keep their data
-        // We'll rely on the wizard's reset function to clean everything at the end
-        onNext(materials);
+        onNext(currentMaterials);
     };
     return (react_1.default.createElement("div", { className: "bill-materials" },
         react_1.default.createElement("div", { className: "entry-method-container" },
@@ -40758,7 +40786,7 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
                     react_1.default.createElement("div", { className: "entry-card-content" },
                         react_1.default.createElement("h4", null, "Manual Entry"),
                         react_1.default.createElement("p", null, "Manually add and customize materials for your product."))))),
-        entryType === "manual" && !showMaterialEntry && !materials.length && (react_1.default.createElement("div", { className: "manual-entry-prompt" },
+        entryType === "manual" && !showMaterialEntry && !manualMaterials.length && (react_1.default.createElement("div", { className: "manual-entry-prompt" },
             react_1.default.createElement("p", null, "Click the button below to start adding materials to your product."),
             react_1.default.createElement(components_1.Button, { title: "Add First Material", className: "add-first-material-button", onClick: handleAddMaterials }))),
         aiGeneratingBOM && (react_1.default.createElement("div", { className: "ai-generating-bom" },
@@ -40768,27 +40796,25 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
                 react_1.default.createElement("p", null, "Analyzing product information and identifying suitable materials...")))),
         showMaterialEntry && entryType === "manual" && (react_1.default.createElement("div", { className: "material-entry-container" },
             react_1.default.createElement("div", { className: "material-entry-header" },
-                react_1.default.createElement("h3", null, editIndex !== null ? "Edit Material" : "Add Material"),
-                react_1.default.createElement(components_1.Button, { title: "Cancel", className: "cancel-button", onClick: () => setShowMaterialEntry(false) })),
-            react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? materials[editIndex] : undefined, existingMaterials: materials, uxpContext: uxpContext }))),
-        materials.length > 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement("h3", null, editIndex !== null ? "Edit Material" : "Add Material")),
+            react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleMaterialAdd, isEditable: true, initialMaterial: editIndex !== null ? manualMaterials[editIndex] : undefined, existingMaterials: manualMaterials, uxpContext: uxpContext, onCancel: () => setShowMaterialEntry(false) }))),
+        showBulkEditor ? (react_1.default.createElement("div", { className: "bulk-edit-container" },
+            react_1.default.createElement("div", { className: "bulk-edit-header" },
+                react_1.default.createElement("h3", null, "Edit Materials")),
+            react_1.default.createElement(material_entry_1.default, { onAddMaterial: handleBulkEditDone, isEditable: true, initialMaterials: entryType === "ai" ? aiMaterials : manualMaterials, existingMaterials: [], uxpContext: uxpContext, isBulkEdit: true, onCancel: handleBulkEditCancel }))) : materials.length > 0 ? (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("div", { className: "materials-weight-summary" },
                 react_1.default.createElement("div", { className: "weight-info" },
                     "Total Material Weight: ",
-                    materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2),
+                    materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(3),
                     " kg"),
                 react_1.default.createElement("div", { className: "weight-info" },
                     "Target Product Weight: ",
-                    parseFloat(productCategoryData.totalWeight).toFixed(2),
+                    parseFloat(productCategoryData.totalWeight).toFixed(3),
                     " kg")),
-            react_1.default.createElement("div", { className: "materials-list-header" }),
-            react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete, onOpenFullEditor: handleOpenFullEditor }),
+            react_1.default.createElement(material_summary_1.default, { plan: plan, materials: materials, onEdit: handleMaterialEdit, onDelete: handleMaterialDelete, onOpenFullEditor: handleOpenFullEditor, onEditAll: handleEditAllMaterials, entryType: entryType }),
             validationError && (react_1.default.createElement("div", { className: "validation-error" }, validationError)),
             react_1.default.createElement("div", { className: "materials-actions" },
-                entryType === "manual" && !showMaterialEntry && (react_1.default.createElement(components_1.Button, { className: "add-more-materials-button", title: "Add", onClick: handleAddMaterials })),
-                react_1.default.createElement(components_1.Button, { className: "esgnow-next-button", title: "Next", onClick: handleNext })))) : (
-        // Only show the empty container for AI mode or when no specific prompts are shown
-        !showMaterialEntry && (entryType === "ai") && (react_1.default.createElement("div", { className: "empty-materials-container" },
+                react_1.default.createElement(components_1.Button, { className: "esgnow-next-button", title: "Next", onClick: handleNext })))) : (!showMaterialEntry && (entryType === "ai") && (react_1.default.createElement("div", { className: "empty-materials-container" },
             react_1.default.createElement("p", null, "No materials added yet. Generate materials using AI or switch to manual entry."))))));
 };
 exports["default"] = BillMaterials;
@@ -41455,7 +41481,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                     const chart = this;
                     const totalValue = (Number(product.co2EmissionRawMaterials || 0) +
                         Number(product.co2EmissionFromProcesses || 0) +
-                        Number(transportationEmission || 0)).toFixed(2);
+                        Number(transportationEmission || 0)).toFixed(3);
                     if (!chart.customText) {
                         chart.customText = chart.renderer
                             .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
@@ -41562,7 +41588,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                     react_1.default.createElement("div", { className: "esgnow-rich-text-editor" },
                         react_1.default.createElement("textarea", { defaultValue: product.description, className: "esgnow-editable-description", rows: 4 }))))),
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-footprint" },
-            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdowns"),
+            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdown"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
                 react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
     const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
@@ -41585,13 +41611,13 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted materials and calculate percentage
                         return sortedMaterials.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 (plan == 'professional' && react_1.default.createElement("td", null, item.specificMaterial)),
                                 react_1.default.createElement("td", null,
-                                    item.emissionFactor.toFixed(2),
+                                    item.emissionFactor.toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -41622,14 +41648,14 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted materials and calculate percentage
                         return sortedProcess.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 react_1.default.createElement("td", null, item.manufacturingProcesses && item.manufacturingProcesses[0] ?
                                     item.manufacturingProcesses[0].category : 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.emissionFactor.toString()).toFixed(2),
+                                    parseFloat(item.emissionFactor.toString()).toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -41661,7 +41687,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                         // Map through the sorted legs and calculate percentage
                         return sortedLegs.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.id },
                                 react_1.default.createElement("td", null, item.transportMode || 'Unknown'),
@@ -41672,7 +41698,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                     react_1.default.createElement("td", null, item.destinationCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.destinationGateway || 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.transportEmission.toString() || '0').toFixed(2),
+                                    parseFloat(item.transportEmission.toString() || '0').toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     percentage,
@@ -42469,7 +42495,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         {
             id: "step-4",
             title: "SUMMARY",
-            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate, uxpContext: uxpContext })),
+            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate, onPrevious: handlePrevious, uxpContext: uxpContext })),
         },
     ];
     if (isEmissionSummaryVisible) {
@@ -42604,8 +42630,8 @@ const LCADashboardWidget = ({ uxpContext }) => {
                     React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: () => { } })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
                 _a.content,
                 React.createElement("div", { className: "modal-footer" },
-                    activeStep > 0 && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: handlePrevious })),
-                    activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-primary", title: "Next", onClick: handleNext })))))));
+                    activeStep > 0 && activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: handlePrevious })),
+                    activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-primary-next-button", title: "Next", onClick: handleNext })))))));
 };
 exports["default"] = LCADashboardWidget;
 
@@ -42710,7 +42736,7 @@ const ProductGridView = ({ currentItems, selectProduct }) => {
         React.createElement("div", { className: "product-card-header" },
             React.createElement("div", { className: "product-code" }, item.code),
             item.emission && (React.createElement("div", { className: "co2-emission" },
-                React.createElement("span", { className: "co2-value" }, (item.emission || 0).toFixed(2)),
+                React.createElement("span", { className: "co2-value" }, (item.emission || 0).toFixed(3)),
                 React.createElement("span", { className: "co2-unit" }, "Kg CO\u2082e")))),
         React.createElement("div", { className: "product-image-container", style: {
                 backgroundImage: item.images && item.images.length > 0 ?
@@ -42903,13 +42929,13 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./summary-step.scss */ "./src/lca/views/lca-dashboard/summary-step.scss");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ../emission-summary */ "./src/lca/views/emission-summary.tsx"));
-const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, uxpContext }) => {
+const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, uxpContext, onPrevious }) => {
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
     const [transportationEmission, setTransportationEmission] = React.useState("0");
     // Calculate total transportation emission
     React.useEffect(() => {
         const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toFixed(2));
+        setTransportationEmission(totalEmission.toFixed(3));
     }, [transportLegs]);
     const handleCalculate = () => {
         setShowEmissionSummary(true);
@@ -42953,7 +42979,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Carbon Footprint - Transportation"),
                     React.createElement("span", null,
-                        leg.transportEmission.toFixed(2),
+                        leg.transportEmission.toFixed(3),
                         " Kg CO2e")))))),
         React.createElement("div", { className: "summary-section" },
             React.createElement("h3", null, "WEIGHT DETAILS"),
@@ -42961,25 +42987,27 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Product Weight"),
                     React.createElement("span", null,
-                        parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                        parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Packaging Weight"),
                     React.createElement("span", null,
-                        packagingWeight.toFixed(2),
+                        packagingWeight.toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Pallet Weight"),
                     React.createElement("span", null,
-                        (includePallet ? palletWeight : 0).toFixed(2),
+                        (includePallet ? palletWeight : 0).toFixed(3),
                         " Kg")),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Total Weight"),
                     React.createElement("span", null,
                         (parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight) + packagingWeight +
-                            (includePallet ? palletWeight : 0)).toFixed(2),
+                            (includePallet ? palletWeight : 0)).toFixed(3),
                         " Kg")))),
-        React.createElement(components_1.Button, { title: "Calculate", className: "confirm-button", onClick: handleCalculate }),
+        React.createElement("div", { className: "summary-buttons" },
+            onPrevious && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: onPrevious })),
+            React.createElement(components_1.Button, { title: "Calculate", className: "button-primary-confirm-button", onClick: handleCalculate })),
         React.createElement(components_1.Modal, { show: showEmissionSummary, onClose: () => setShowEmissionSummary(false), title: "Emission Summary", className: "emission-summary-modal" },
             React.createElement(emission_summary_1.default, { product: selectedProduct, transportationEmission: transportationEmission, onBack: () => setShowEmissionSummary(false), transportLegs: transportLegs, uxpContext: uxpContext, packageWeight: packagingWeight, palletWeight: includePallet ? palletWeight : 0, plan: plan }))));
 };
@@ -43128,7 +43156,7 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                     React.createElement("h3", null,
                         "Transport Leg ",
                         index + 1)),
-                React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.Button, { title: "Remove", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
+                React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.IconButton, { type: "delete", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Origin Country")),
@@ -43159,7 +43187,7 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                     ((_k = errors[index]) === null || _k === void 0 ? void 0 : _k.transportMode) && (React.createElement("span", { className: "error-text" }, "Transport mode is required")))));
         }),
         React.createElement("div", { className: "add-transport-leg-container" },
-            React.createElement(components_1.Button, { title: "Add Transport Leg", className: "add-transport-leg-button", onClick: addTransportLeg }))));
+            React.createElement(components_1.IconButton, { type: "plus", className: "add-transport-leg-button", onClick: addTransportLeg }))));
 };
 exports["default"] = TransportSelectionStep;
 
@@ -43212,7 +43240,7 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                 React.createElement(components_1.Label, null,
                     React.createElement("span", { className: "label-text" }, "Product Weight:")),
                 React.createElement("span", { className: "weight-display" },
-                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(2),
+                    parseFloat(selectedProduct === null || selectedProduct === void 0 ? void 0 : selectedProduct.weight).toFixed(3),
                     " Kg"))),
         React.createElement("div", { className: "weight-section" },
             React.createElement(components_1.Label, null,
@@ -43229,7 +43257,7 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                         React.createElement("input", { type: "radio", checked: isPackagingManual, onChange: () => setIsPackagingManual(true) }),
                         "Manual Entry")),
                 React.createElement("div", { className: "input-group" },
-                    isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    isPackagingManual ? (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(3), onChange: (value) => setPackagingWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: packagingWeight.toFixed(3), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
                     React.createElement("span", { className: "unit" }, "Kg")))),
         React.createElement("div", { className: "weight-toggle" },
             React.createElement(components_1.Label, null,
@@ -43252,13 +43280,13 @@ const WeightDetailsStep = ({ selectedProduct, packagingWeight, setPackagingWeigh
                         React.createElement("input", { type: "radio", checked: isPalletManual, onChange: () => setIsPalletManual(true) }),
                         "Manual Entry")),
                 React.createElement("div", { className: "input-group" },
-                    isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(2), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
+                    isPalletManual ? (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(3), onChange: (value) => setPalletWeight(parseFloat(value)), inputAttr: { step: "0.01" } })) : (React.createElement(components_1.Input, { type: "number", value: palletWeight.toFixed(3), onChange: () => { }, inputAttr: { step: "0.01" }, className: "disabled-input" })),
                     React.createElement("span", { className: "unit" }, "Kg"))))),
         React.createElement("div", { className: "total-weight" },
             React.createElement(components_1.Label, null,
                 React.createElement("span", { className: "label-text" }, "Total Transport Weight")),
             React.createElement("div", { className: "weight-display" },
-                totalTransportWeight.toFixed(2),
+                totalTransportWeight.toFixed(3),
                 " Kg"))));
 };
 exports["default"] = WeightDetailsStep;
@@ -43311,19 +43339,36 @@ const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./material-entry.scss */ "./src/lca/views/material-entry.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
-const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMaterials, uxpContext }) => {
-    // Start with either the initial material for editing, or a blank material for adding
-    const [materials, setMaterials] = (0, react_1.useState)([{
-            materialClass: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.materialClass) || "",
-            specificMaterial: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.specificMaterial) || "",
-            weight: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.weight) || "",
-            unit: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.unit) || "kg",
-            reasoning: (initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.reasoning) || ""
-        }]);
-    // Reset materials when initialMaterial changes
+const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, initialMaterials, existingMaterials, uxpContext, isBulkEdit = false, onCancel // Receive onCancel prop
+ }) => {
+    const componentsKey = react_1.default.useMemo(() => {
+        var _a, _b;
+        return isBulkEdit
+            ? `bulk-${(_a = initialMaterials === null || initialMaterials === void 0 ? void 0 : initialMaterials.length) !== null && _a !== void 0 ? _a : 0}-${Date.now()}`
+            : `single-${(_b = initialMaterial === null || initialMaterial === void 0 ? void 0 : initialMaterial.materialClass) !== null && _b !== void 0 ? _b : ""}-${Date.now()}`;
+    }, [initialMaterial, initialMaterials, isBulkEdit]);
+    const [materials, setMaterials] = (0, react_1.useState)(isBulkEdit && initialMaterials
+        ?
+            JSON.parse(JSON.stringify(initialMaterials))
+        : initialMaterial
+            ? [{
+                    materialClass: initialMaterial.materialClass || "",
+                    specificMaterial: initialMaterial.specificMaterial || "",
+                    weight: initialMaterial.weight || "",
+                    unit: initialMaterial.unit || "kg",
+                    reasoning: initialMaterial.reasoning || ""
+                }]
+            : [{
+                    materialClass: "",
+                    specificMaterial: "",
+                    weight: "",
+                    unit: "kg",
+                    reasoning: ""
+                }]);
+    const [materialOptions, setMaterialOptions] = (0, react_1.useState)({});
+    const [classOptions, setClassOptions] = (0, react_1.useState)([]);
     (0, react_1.useEffect)(() => {
-        if (initialMaterial) {
-            // If editing an existing material
+        if (initialMaterial && !isBulkEdit) {
             setMaterials([{
                     materialClass: initialMaterial.materialClass || "",
                     specificMaterial: initialMaterial.specificMaterial || "",
@@ -43332,9 +43377,7 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMat
                     reasoning: initialMaterial.reasoning || ""
                 }]);
         }
-    }, [initialMaterial]);
-    const [materialOptions, setMaterialOptions] = (0, react_1.useState)({});
-    const [classOptions, setClassOptions] = (0, react_1.useState)([]);
+    }, [initialMaterial, isBulkEdit]);
     (0, react_1.useEffect)(() => {
         const fetchMaterials = () => __awaiter(void 0, void 0, void 0, function* () {
             try {
@@ -43344,15 +43387,11 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMat
                     return;
                 }
                 if (data && (error == undefined)) {
-                    // Convert API response to the format needed for the component
                     const options = {};
                     const classes = [];
                     const sortedCategories = Object.keys(data).sort((a, b) => a.localeCompare(b));
-                    // Transform data into the format needed for the dropdowns
                     sortedCategories.forEach(category => {
-                        // Add sorted category to classes
                         classes.push({ label: category, value: category });
-                        // Sort materials within each category
                         const sortedMaterials = data[category]
                             .map((material) => ({
                             label: material,
@@ -43371,36 +43410,40 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMat
         });
         fetchMaterials();
     }, [uxpContext]);
-    // Using only API data, no fallback options
     const handleAddAnother = () => {
-        setMaterials([...materials, { materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
+        setMaterials([...materials, {
+                materialClass: "",
+                specificMaterial: "",
+                weight: "",
+                unit: "kg",
+                reasoning: ""
+            }]);
     };
     const handleInputChange = (index, field, value) => {
         const updatedMaterials = [...materials];
+        if ((field === "materialClass" || field === "specificMaterial") &&
+            value !== updatedMaterials[index][field]) {
+            updatedMaterials[index].reasoning = "user edited";
+        }
         updatedMaterials[index][field] = value;
         setMaterials(updatedMaterials);
     };
     const handleAddMaterial = () => {
-        // Filter out materials with empty required fields
-        const validMaterials = materials.filter(m => m.materialClass.trim() !== "" && m.weight.trim() !== "");
+        const validMaterials = materials.filter(m => m.materialClass.trim() !== "" && m.weight !== null && m.weight !== undefined && m.weight !== "");
         if (validMaterials.length > 0) {
-            // If editing a specific material, replace it; otherwise add new materials
-            if (initialMaterial) {
-                onAddMaterial(validMaterials);
+            onAddMaterial(validMaterials);
+            if (!isBulkEdit) {
+                setMaterials([{
+                        materialClass: "",
+                        specificMaterial: "",
+                        weight: "",
+                        unit: "kg",
+                        reasoning: ""
+                    }]);
             }
-            else {
-                // Add only the new materials without replacing existing ones
-                onAddMaterial(validMaterials);
-            }
-            // Reset the entry form
-            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
-        }
-        else {
-            // If no valid materials, at least require one form entry
-            setMaterials([{ materialClass: "", specificMaterial: "", weight: "", unit: "kg", reasoning: "" }]);
         }
     };
-    return (react_1.default.createElement(react_1.default.Fragment, null,
+    return (react_1.default.createElement("div", { key: componentsKey },
         materials.map((material, index) => (react_1.default.createElement("div", { key: index, className: "esgnow-material-card" },
             react_1.default.createElement("div", { className: "esgnow-material-card-header" },
                 react_1.default.createElement("span", { className: "esgnow-material-number" },
@@ -43421,15 +43464,16 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, existingMat
                             ? (materialOptions[material.materialClass] || [])
                             : [{ label: "Select Material Class first", value: "" }], selected: material.specificMaterial, onChange: (value) => handleInputChange(index, "specificMaterial", value), placeholder: "Select specific material", className: "esgnow-specific-material-select" })),
                 react_1.default.createElement(components_1.FormField, { className: "esgnow-material-weight-field" },
-                    react_1.default.createElement(components_1.Label, { className: "esgnow-material-weight-field-label" }, " Weight (Kg)"),
+                    react_1.default.createElement(components_1.Label, { className: "esgnow-material-weight-field-label" }, "Weight (Kg)"),
                     react_1.default.createElement(components_1.Input, { type: "number", value: material.weight, onChange: (value) => handleInputChange(index, "weight", value), placeholder: "Enter weight", inputAttr: { step: "0.01" }, className: "esgnow-weight-input" }))),
             react_1.default.createElement("div", { className: "esgnow-material-row" },
                 react_1.default.createElement(components_1.FormField, { className: "esgnow-material-reasoning-field" },
                     react_1.default.createElement(components_1.Label, { className: "esgnow-material-reasoning-label" }, "Reasoning"),
                     react_1.default.createElement("textarea", { value: material.reasoning || "", onChange: (e) => handleInputChange(index, "reasoning", e.target.value), placeholder: "Enter reasoning for this material selection", className: "esgnow-reasoning-textarea", rows: 3 })))))),
         react_1.default.createElement("div", { className: "esgnow-actions-container" },
-            react_1.default.createElement(components_1.Button, { title: "Done", className: "esgnow-done-button", onClick: handleAddMaterial }),
-            react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "esgnow-add-another-material-button", onClick: handleAddAnother }))));
+            onCancel && (react_1.default.createElement(components_1.Button, { title: "Cancel", className: "cancel-button", onClick: onCancel })),
+            react_1.default.createElement(components_1.Button, { title: isBulkEdit ? "Save" : "Done", className: "esgnow-done-button", onClick: handleAddMaterial }),
+            !isBulkEdit && (react_1.default.createElement(components_1.Button, { title: "Add Another Material", className: "esgnow-add-another-material-button", onClick: handleAddAnother })))));
 };
 exports["default"] = MaterialEntry;
 
@@ -43470,18 +43514,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 __webpack_require__(/*! ./material-summary.scss */ "./src/lca/views/material-summary.scss");
-const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }) => {
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor, onEditAll, entryType }) => {
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
     const [editedData, setEditedData] = (0, react_1.useState)(null);
-    // Reset state when materials prop changes (like when reopening)
     (0, react_1.useEffect)(() => {
         setEditingIndex(null);
         setEditedData(null);
     }, [materials]);
-    // Add cleanup effect
     (0, react_1.useEffect)(() => {
         return () => {
-            // Clean up state when component unmounts
             setEditingIndex(null);
             setEditedData(null);
         };
@@ -43491,14 +43533,16 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor }
             react_1.default.createElement("thead", null,
                 react_1.default.createElement("tr", null,
                     react_1.default.createElement("th", null, "Material Class"),
-                    plan == "professional" && (react_1.default.createElement("th", null, "Specific Material")),
-                    react_1.default.createElement("th", null, " Weight"),
+                    plan === "professional" && react_1.default.createElement("th", null, "Specific Material"),
+                    react_1.default.createElement("th", null, "Weight"),
                     react_1.default.createElement("th", null, "Reasoning"))),
             react_1.default.createElement("tbody", null, materials.map((material, index) => (react_1.default.createElement("tr", { key: index },
                 react_1.default.createElement("td", null, material.materialClass),
-                plan == "professional" && (react_1.default.createElement("td", null, material.specificMaterial)),
+                plan === "professional" && react_1.default.createElement("td", null, material.specificMaterial),
                 react_1.default.createElement("td", null, `${material.weight} ${material.unit}`),
-                react_1.default.createElement("td", { className: "reasoning-cell" }, material.reasoning || "-"))))))));
+                react_1.default.createElement("td", { className: "reasoning-cell" }, material.reasoning || "-")))))),
+        entryType === "ai" && onEditAll && (react_1.default.createElement("div", { className: "edit-all-materials-container" },
+            react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: onEditAll, className: "edit-all-materials-icon" })))));
 };
 exports["default"] = MaterialSummary;
 
@@ -43887,6 +43931,7 @@ const ProductCategorization = ({ productCategoryData, productData, onNext, uxpCo
                     { label: 'Czech Republic', value: 'CZ' },
                     { label: 'France', value: 'FR' },
                     { label: 'Global', value: 'RoW' },
+                    { label: 'India', value: 'IN' },
                     { label: 'Netherlands', value: 'NL' },
                     { label: 'Poland', value: 'PL' },
                     { label: 'Spain', value: 'ES' },
@@ -44215,7 +44260,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     React.createElement("div", { className: "esgnow-product-card-header" },
                         React.createElement("div", { className: "esgnow-product-code" }, item.code),
                         React.createElement("div", { className: "esgnow-co2-emission" },
-                            React.createElement("span", { className: "esgnow-co2-value" }, parseFloat(item.co2Emission).toFixed(2)),
+                            React.createElement("span", { className: "esgnow-co2-value" }, parseFloat(item.co2Emission).toFixed(3)),
                             React.createElement("span", { className: "esgnow-co2-unit" }, "Kg CO\u2082e"))),
                     React.createElement("div", { className: "esgnow-product-image-container", style: {
                             backgroundImage: item.images && item.images.length > 0 ?
@@ -44275,7 +44320,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                 item.countryOfOrigin),
                         React.createElement("div", { className: "esgnow-list-col-co2" },
                             React.createElement("div", { className: "esgnow-co2-badge" },
-                                parseFloat(item.co2Emission).toFixed(2),
+                                parseFloat(item.co2Emission).toFixed(3),
                                 " Kg CO\u2082e")),
                         React.createElement("div", { className: "esgnow-list-col-date" }, new Date(item.modifiedDate).toLocaleDateString()),
                         React.createElement("div", { className: "esgnow-list-col-actions" },
@@ -44394,8 +44439,9 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                             .text(`${product.co2Emission} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
                             .css({
                             fontSize: '18px',
+                            display: 'block',
                             fontWeight: 'bold',
-                            fontFamily: 'Comfortaa',
+                            fontFamily: 'poppins',
                             color: '#424242',
                             textAlign: 'center',
                         })
@@ -44494,7 +44540,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     react_1.default.createElement("div", { className: "esgnow-rich-text-editor" },
                         react_1.default.createElement("textarea", { defaultValue: product.description, className: "esgnow-editable-description", rows: 4 }))))),
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-footprint" },
-            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdown"),
+            react_1.default.createElement("h3", null, "Product Carbon Footprint"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
                 react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
     const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
@@ -44513,16 +44559,16 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                         const sortedMaterials = product.materials.sort((a, b) => b.emissionFactor - a.emissionFactor);
                         return sortedMaterials.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
                                 react_1.default.createElement("td", null,
                                     " ",
-                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    parseFloat(item.emissionFactor).toFixed(3),
                                     " KgCO\u2082e (",
-                                    parseFloat(item.weight).toFixed(2),
+                                    parseFloat(item.weight).toFixed(3),
                                     " Kg)"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -44547,12 +44593,12 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                         const sortedProcess = product.productManufacturingProcess.sort((a, b) => b.emissionFactor - a.emissionFactor);
                         return sortedProcess.map((item) => {
                             const percentage = totalEmissionFactor > 0
-                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.materialClass },
                                 react_1.default.createElement("td", null, item.materialClass),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.emissionFactor).toFixed(2),
+                                    parseFloat(item.emissionFactor).toFixed(3),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     react_1.default.createElement("div", { className: "esgnow-percentage-bar" },
@@ -44564,9 +44610,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     })()))))));
     const renderInventoryTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-inventory-info" },
-            react_1.default.createElement("div", { className: "esgnow-inventory-header" },
-                react_1.default.createElement("h3", null, "Inventory Information"),
-                react_1.default.createElement("div", { className: "esgnow-view-toggle" })),
+            react_1.default.createElement("h3", null, "Inventory Information"),
+            react_1.default.createElement("div", { className: "esgnow-view-toggle" }),
             viewMode === 'tree' ? (react_1.default.createElement("div", { className: "esgnow-inventory-tree" },
                 react_1.default.createElement("div", { className: "esgnow-tree-item", onClick: toggleExpand },
                     react_1.default.createElement("span", { className: "esgnow-expand-icon" }, isExpanded ? '▼' : '▶'),
@@ -45670,22 +45715,22 @@ const Projects = (props) => {
         {
             id: "totalProjectImpact",
             label: "Carbon Footprint (KgCO2e)",
-            render: (row) => `${row.totalProjectImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalProjectImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalMaterialsImpact",
             label: "Materials (KgCO2e)",
-            render: (row) => `${row.totalMaterialsImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalMaterialsImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalManufacturingImpact",
             label: "Manufacturing (KgCO2e)",
-            render: (row) => `${row.totalManufacturingImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalManufacturingImpact.toFixed(3)} KgCO2e`
         },
         {
             id: "totalTransportationImpact",
             label: "Transportation (KgCO2e)",
-            render: (row) => `${row.totalTransportationImpact.toFixed(2)} KgCO2e`
+            render: (row) => `${row.totalTransportationImpact.toFixed(3)} KgCO2e`
         },
     ];
     if (isLoading) {
@@ -102305,7 +102350,7 @@ const version = XLSX.version;
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/home-dashboard","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"Home Dashboard","description":"Home Dashboard","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{"layout":{"fixedHeight":true,"height":100}}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/bulkupload":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/bulk-upload-widget","configs":{"layout":{"w":30,"h":20}},"name":"Bulk Upload Widget","description":"Bulk Upload Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181547","key":"173753055493181547","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181547","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
+module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/home-dashboard","configs":{"layout":{"w":30,"h":20},"configPanel":null},"name":"Home Dashboard","description":"Home Dashboard","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753049181545306","key":"173753049181545306","layout":{"w":30,"h":21,"x":0,"y":0,"i":"173753049181545306","moved":false,"static":false},"hasConfigured":true,"isNotAvalable":false,"configurations":{}}]},"/products":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/product-dashboard","configs":{"layout":{"w":30,"h":20}},"name":"Product Dashboard","description":"Shows the List of reports","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181321","key":"173753055493181321","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181321","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/lca":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/lca-dashboard","name":"LCA Dashboard","_id":"173399910764348129","key":"173399910764348129","layout":{"w":30,"h":100,"x":0,"y":0,"i":"173753056549846364","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/projects":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/projects-widget","configs":{"layout":{"w":30,"h":20}},"name":"Projects Widget","description":"Projects Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181332","key":"173753055493181332","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181332","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]},"/bulkupload":{"type":"widgets","widgets":[{"id":"iviva-esg-now-application/widget/bulk-upload-widget","configs":{"layout":{"w":30,"h":20}},"name":"Bulk Upload Widget","description":"Bulk Upload Widget","definitionPath":null,"icon":"","category":"user-defined","sourceUrl":"http://local-v4.ivivacloud.com/api/UXP/module?key=6","tags":[],"isTemplate":false,"isDefaultTemplate":false,"usecaseName":null,"installed":false,"props":"{}","templateKey":"","usecaseId":null,"_id":"173753055493181547","key":"173753055493181547","layout":{"w":30,"h":20,"x":0,"y":0,"i":"173753055493181547","moved":false,"static":false},"hasConfigured":true,"configurations":{}}]}}');
 
 /***/ }),
 

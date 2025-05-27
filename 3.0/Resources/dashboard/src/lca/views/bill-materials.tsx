@@ -244,7 +244,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({
         const productTotalWeight = parseFloat(productCategoryData.totalWeight) || 0;
 
         if (Math.abs(totalMaterialWeight - productTotalWeight) > 0.01) {
-            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(2)} kg) must match product weight (${productTotalWeight.toFixed(2)} kg)`);
+            setValidationError(`Total material weight (${totalMaterialWeight.toFixed(4)} kg) must match product weight (${productTotalWeight.toFixed(3)} kg)`);
             return;
         }
 
@@ -366,10 +366,10 @@ const BillMaterials: React.FC<BillMaterialProps> = ({
                 <>
                     <div className="materials-weight-summary">
                         <div className="weight-info">
-                            Total Material Weight: {materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(2)} kg
+                            Total Material Weight: {materials.reduce((sum, material) => sum + (parseFloat(material.weight) || 0), 0).toFixed(3)} kg
                         </div>
                         <div className="weight-info">
-                            Target Product Weight: {parseFloat(productCategoryData.totalWeight).toFixed(2)} kg
+                            Target Product Weight: {parseFloat(productCategoryData.totalWeight).toFixed(3)} kg
                         </div>
                     </div>
 

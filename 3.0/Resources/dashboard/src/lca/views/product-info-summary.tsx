@@ -214,13 +214,13 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 return sortedMaterials.map((item: any) => {
                                     const percentage =
                                         totalEmissionFactor > 0
-                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                             : 0;
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
-                                            <td> {parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e ({parseFloat(item.weight).toFixed(2)} Kg)</td>
+                                            <td> {parseFloat(item.emissionFactor).toFixed(3)} KgCO₂e ({parseFloat(item.weight).toFixed(3)} Kg)</td>
                                             {/* <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td> */}
                                             <td>
                                                 <div className="esgnow-percentage-bar">
@@ -268,13 +268,13 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 return sortedProcess.map((item: any) => {
                                     const percentage =
                                         totalEmissionFactor > 0
-                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(2)
+                                            ? ((item.emissionFactor / totalEmissionFactor) * 100).toFixed(3)
                                             : 0;
                                     return (
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             {/* <td>{item.manufacturingProcesses[0].category}</td> */}
-                                            <td>{parseFloat(item.emissionFactor).toFixed(2)} KgCO₂e</td>
+                                            <td>{parseFloat(item.emissionFactor).toFixed(3)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
                                                     <div 

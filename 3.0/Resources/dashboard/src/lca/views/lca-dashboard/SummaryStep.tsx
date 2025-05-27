@@ -35,7 +35,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     // Calculate total transportation emission
     React.useEffect(() => {
         const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
-        setTransportationEmission(totalEmission.toFixed(2));
+        setTransportationEmission(totalEmission.toFixed(3));
     }, [transportLegs]);
 
     const handleCalculate = () => {
@@ -95,7 +95,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                         </div>
                         <div className="summary-row">
                             <span>Carbon Footprint - Transportation</span>
-                            <span>{leg.transportEmission.toFixed(2)} Kg CO2e</span>
+                            <span>{leg.transportEmission.toFixed(3)} Kg CO2e</span>
                         </div>
                     </div>
                 ))}
@@ -107,21 +107,21 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                 <div className="summary-box">
                     <div className="summary-row">
                         <span>Product Weight</span>
-                        <span>{parseFloat(selectedProduct?.weight).toFixed(2)} Kg</span>
+                        <span>{parseFloat(selectedProduct?.weight).toFixed(3)} Kg</span>
                     </div>
                     <div className="summary-row">
                         <span>Packaging Weight</span>
-                        <span>{packagingWeight.toFixed(2)} Kg</span>
+                        <span>{packagingWeight.toFixed(3)} Kg</span>
                     </div>
                     <div className="summary-row">
                         <span>Pallet Weight</span>
-                        <span>{(includePallet ? palletWeight : 0).toFixed(2)} Kg</span>
+                        <span>{(includePallet ? palletWeight : 0).toFixed(3)} Kg</span>
                     </div>
                     <div className="summary-row">
                         <span>Total Weight</span>
                         <span>
                             {(parseFloat(selectedProduct?.weight) + packagingWeight +
-                                (includePallet ? palletWeight : 0)).toFixed(2)} Kg
+                                (includePallet ? palletWeight : 0)).toFixed(3)} Kg
                         </span>
                     </div>
                 </div>

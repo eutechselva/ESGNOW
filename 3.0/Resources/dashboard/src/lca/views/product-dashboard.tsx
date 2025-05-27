@@ -439,7 +439,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                         <div className="esgnow-product-card-header">
                                             <div className="esgnow-product-code">{item.code}</div>
                                             <div className="esgnow-co2-emission">
-                                                <span className="esgnow-co2-value">{parseFloat(item.co2Emission).toFixed(2)}</span>
+                                                <span className="esgnow-co2-value">{parseFloat(item.co2Emission).toFixed(3)}</span>
                                                 <span className="esgnow-co2-unit">Kg CO₂e</span>
                                             </div>
                                         </div>
@@ -546,7 +546,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                         </div>
                                         <div className="esgnow-list-col-co2">
                                             <div className="esgnow-co2-badge">
-                                                {parseFloat(item.co2Emission).toFixed(2)} Kg CO₂e
+                                                {parseFloat(item.co2Emission).toFixed(3)} Kg CO₂e
                                             </div>
                                         </div>
                                         <div className="esgnow-list-col-date">
