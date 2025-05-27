@@ -45,7 +45,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({
     }, []);
 
     return (
-        <div className="material-summary-container">
+        <div className="esgnow-material-summary-container">
             <table className="material-summary-table">
                 <thead>
                     <tr>
@@ -68,7 +68,7 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({
             </table>
 
             {entryType === "ai" && onEditAll && (
-                <div className="edit-all-materials-container">
+                <div className="esgnow-edit-all-materials-container">
                     {/* <Button
                         title="Edit Materials"
                         className="edit-all-materials-button"
