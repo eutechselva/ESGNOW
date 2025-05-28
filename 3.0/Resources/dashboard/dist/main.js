@@ -187,7 +187,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.modal-footer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 12px;\n}\n\n.button-primary-next-button {\n  margin: 0;\n  background-color: #2196f3;\n  color: white;\n}\n.button-primary-next-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  color: white;\n}\n\n.button-secondary {\n  margin: 0;\n}\n\n.esgnow-pagination-wrapper {\n  display: flex;\n  justify-content: flex-end; /* Moves content to the right */\n  padding: 1rem; /* Optional: for spacing */\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
+exports.push([module.id, ".lca-content {\n  width: 100%;\n  padding: 24px;\n  background-color: #f8f9fa;\n}\n\nh3,\n.h3 {\n  font-size: 14px;\n  margin-bottom: 8px;\n}\n\n.dashboard-title {\n  font-size: 24px;\n  font-weight: 700;\n  margin-bottom: 8px;\n  color: #333;\n}\n\n.subheading {\n  font-size: 16px;\n  margin-bottom: 24px;\n  color: #666;\n  font-weight: normal;\n}\n\n.label-text {\n  font-size: 12px;\n  font-weight: 500;\n}\n\n.esgnow-search-filter-container {\n  background-color: white;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);\n  margin-bottom: 24px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper {\n  display: flex;\n  gap: 12px;\n  flex: 1;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field {\n  position: relative;\n  display: flex;\n  align-items: center;\n  flex: 1;\n  max-width: 500px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-icon {\n  position: absolute;\n  left: 12px;\n  color: #999;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input {\n  width: 100%;\n  height: 40px;\n  padding: 8px 16px 8px 36px;\n  border-radius: 25px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .search-field .search-input:focus {\n  border-color: #0056D2;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));\n  gap: 16px;\n  padding: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field {\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field label {\n  display: block;\n  font-size: 14px;\n  color: #666;\n  margin-bottom: 6px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select {\n  width: 100%;\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-search-filter-panel-wrapper .esgnow-filter-section .esgnow-filter-panel .esgnow-filter-grid .esgnow-filter-field select:focus {\n  border-color: #0056D2;\n  outline: none;\n  box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.1);\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options {\n  display: flex;\n  align-items: center;\n  gap: 16px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown label {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select {\n  height: 40px;\n  padding: 8px 12px;\n  border-radius: 4px;\n  border: 1px solid #ddd;\n  font-size: 14px;\n  min-width: 160px;\n  background-color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-sort-dropdown select:focus {\n  border-color: #0056D2;\n  outline: none;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle {\n  display: flex;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  overflow: hidden;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button {\n  background: #f5f5f5;\n  border: none;\n  padding: 8px 12px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button:hover {\n  background-color: #e0e0e0;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button.active {\n  background-color: #0056D2;\n  color: white;\n}\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-grid-icon,\n.esgnow-search-filter-container .esgnow-search-section .esgnow-view-options .esgnow-view-mode-toggle .esgnow-view-mode-button .esgnow-list-icon {\n  display: block;\n  line-height: 1;\n}\n\n.results-summary {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 16px;\n  font-size: 14px;\n  color: #666;\n}\n\n.clear-all-btn {\n  padding: 6px 12px;\n  font-size: 13px;\n}\n\n.loading-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  padding: 60px 0;\n  color: #666;\n}\n\n.loading-spinner {\n  border: 4px solid rgba(0, 0, 0, 0.1);\n  border-radius: 50%;\n  border-top: 4px solid #0056D2;\n  width: 40px;\n  height: 40px;\n  animation: spin 1s linear infinite;\n  margin-bottom: 16px;\n}\n\n@keyframes spin {\n  0% {\n    transform: rotate(0deg);\n  }\n  100% {\n    transform: rotate(360deg);\n  }\n}\n.no-results {\n  text-align: center;\n  padding: 40px 0;\n  color: #666;\n}\n.no-results p {\n  margin-bottom: 16px;\n  font-size: 16px;\n}\n\n.modal-content {\n  display: flex;\n  flex-direction: column;\n}\n\n.modal-container.lgs-calculate-impact-modal .modal-panel {\n  width: 60%;\n  min-width: 600px;\n  max-width: 800px;\n  height: 80%;\n  max-height: 800px;\n  border-radius: 12px;\n  overflow: hidden;\n}\n.modal-container.lgs-calculate-impact-modal .modal-header {\n  background-color: #0056D2;\n  color: white;\n  text-align: center;\n  font-size: 18px;\n  font-weight: bold;\n  padding: 16px;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton {\n  color: white;\n}\n.modal-container.lgs-calculate-impact-modal .modal-closeButton:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n}\n\n.modal-stepper-container {\n  margin-bottom: 24px;\n  padding: 0 16px;\n}\n\n.esgnow-modal-footer {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 12px;\n}\n\n.button-primary-next-button {\n  margin: 0;\n  background-color: #2196f3;\n  color: white;\n}\n.button-primary-next-button:hover {\n  background-color: #1976d2;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);\n  color: white;\n}\n\n.button-secondary {\n  margin: 0;\n}\n\n.esgnow-pagination-wrapper {\n  display: flex;\n  justify-content: flex-end; /* Moves content to the right */\n  padding: 1rem; /* Optional: for spacing */\n}\n\n@media (max-width: 992px) {\n  .search-filter-section .uxp-search-box-container {\n    flex-direction: column;\n    gap: 16px;\n  }\n  .search-filter-section .uxp-search-box-container .search-filter-group {\n    width: 100%;\n  }\n  .search-filter-section .uxp-search-box-container .sort-control, .search-filter-section .uxp-search-box-container .view-mode-toggle {\n    width: 100%;\n  }\n}\n@media (max-width: 768px) {\n  .lca-content {\n    padding: 16px;\n  }\n  .search-filter-group {\n    flex-direction: column;\n    gap: 10px;\n  }\n  .search-filter-group .search-field, .search-filter-group .inline-filter {\n    width: 100%;\n  }\n}\nlabel {\n  font-size: 14px;\n  color: #666;\n  margin: 0;\n}\n\n.search-input-filter-container {\n  width: 80%;\n}\n\n.search-field {\n  gap: 10px;\n}\n\n.sort-view-controls {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.sort-control {\n  display: flex;\n  align-items: center;\n  gap: 8px;\n}\n\n.sort-control .uxp-select {\n  min-width: 150px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -340,7 +340,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".material-summary {\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n}\n.material-summary table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.material-summary table th,\n.material-summary table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.material-summary table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.material-summary table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.material-summary table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.material-summary table tr:hover {\n  background-color: #ffffff;\n}\n.material-summary table td {\n  color: #333;\n}\n.material-summary table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}\n\n.summary-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.summary-actions .edit-all-button {\n  min-width: 150px;\n}\n\n.edit-all-materials-container {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n}", ""]);
+exports.push([module.id, ".esgnow-material-summary-container {\n  width: auto !important;\n  padding: 10px;\n  background-color: #f9f9f9;\n  border-radius: 8px;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n  overflow-x: auto;\n  flex-direction: column;\n}\n.esgnow-material-summary-container table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.esgnow-material-summary-container table th,\n.esgnow-material-summary-container table td {\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n  white-space: nowrap;\n}\n.esgnow-material-summary-container table .reasoning-cell {\n  white-space: normal;\n  max-width: 300px;\n  min-width: 200px;\n  word-wrap: break-word;\n  font-size: 0.9em;\n  line-height: 1.4;\n  color: #555;\n}\n.esgnow-material-summary-container table th {\n  background-color: #ffffff;\n  color: #424242;\n  font-weight: bold;\n}\n.esgnow-material-summary-container table tr:nth-child(even) {\n  background-color: #f2f2f2;\n}\n.esgnow-material-summary-container table tr:hover {\n  background-color: #ffffff;\n}\n.esgnow-material-summary-container table td {\n  color: #333;\n}\n.esgnow-material-summary-container table .actions {\n  display: flex;\n  gap: 8px;\n}\n\n.action-button {\n  width: 80px;\n  text-align: center;\n}\n\n.delete-button {\n  font-size: 12px;\n}\n\n.actions-cell {\n  gap: 10px;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.save-materials-button {\n  background-color: #4caf50;\n  color: white;\n}\n.save-materials-button:hover {\n  background-color: #439845;\n  color: white;\n}\n\n.materialclass {\n  width: 100px;\n}\n\n.weight-unit-input {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.weight-input-field {\n  width: 100px;\n}\n\n.unit-select-field {\n  max-width: 80px !important;\n}\n\n.summary-actions {\n  margin-top: 16px;\n  display: flex;\n  justify-content: flex-end;\n}\n.summary-actions .edit-all-button {\n  min-width: 150px;\n}\n\n.esgnow-edit-all-materials-container {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 0.5rem;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -41287,7 +41287,7 @@ const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./no
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
-const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
+const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
     // Create a safety check for context
     const mockContextRef = (0, react_1.useRef)(null);
     // Initialize fallback mock context if needed
@@ -41308,6 +41308,7 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
         { label: "Project Beta", value: "beta" },
         { label: "Project Gamma", value: "gamma" },
     ];
+    // In SaveResultsModal, add detailed debugging to handleSave:
     const handleSave = () => __awaiter(void 0, void 0, void 0, function* () {
         // Debug log to check uxpContext right before we use it
         console.log("SaveResultsModal handleSave - uxpContext before API call:", uxpContext);
@@ -41323,7 +41324,9 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             console.warn("Using mock context for API calls - changes will not persist!");
         }
         if (selectedCard === 'new') {
+            console.log("Taking 'new' project path");
             if (!projectName || !projectId) {
+                console.log("Validation failed: missing projectName or projectId");
                 setError('Please fill in both project name and code');
                 return;
             }
@@ -41334,8 +41337,8 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                     code: projectId,
                     name: projectName,
                 };
-                console.log("About to call createProject with context:", !!uxpContext);
                 const projectResponse = yield (0, esgnow_service_1.createProject)(effectiveContext, createProjectPayload);
+                console.log("Project created successfully:", projectResponse);
                 const createProjectProductMapPayload = {
                     projectID: projectResponse.data._id,
                     productID: product._id,
@@ -41346,14 +41349,18 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                 };
                 // Then create the project-product mapping
                 const mappingResponse = yield (0, esgnow_service_1.createProjectProductMap)(effectiveContext, createProjectProductMapPayload);
+                console.log("Mapping created successfully:", mappingResponse);
                 if (!mappingResponse.data) {
                     throw new Error('Failed to save project-product mapping');
                 }
                 const savedMapping = yield mappingResponse.data;
-                //console.log('Project and mapping saved successfully:', { savedProject, savedMapping });
                 onClose();
+                console.log("About to call onSaveComplete");
+                onSaveComplete();
+                console.log("Callbacks completed");
             }
             catch (err) {
+                console.error("Error in save process:", err);
                 setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
             }
             finally {
@@ -41361,13 +41368,17 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
             }
         }
         else if (selectedCard === 'existing') {
+            console.log("Taking 'existing' project path");
+            // ... similar debugging for existing project path
             if (!selectedProject) {
+                console.log("Validation failed: no project selected");
                 setError('Please select a project');
                 return;
             }
             setIsLoading(true);
             setError(null);
             try {
+                console.log("About to call projectProductMapping");
                 const mappingResponse = yield (0, esgnow_service_1.projectProductMapping)(effectiveContext, {
                     projectCode: selectedProject,
                     product,
@@ -41379,14 +41390,21 @@ const SaveResultsModal = ({ onClose, hasExistingProjects, product, packageWeight
                 }
                 const savedMapping = yield mappingResponse.data;
                 console.log('Mapping saved successfully:', savedMapping);
+                console.log("About to call callbacks for existing project");
                 onClose();
+                onSaveComplete();
+                console.log("Callbacks completed for existing project");
             }
             catch (err) {
+                console.error("Error in existing project save:", err);
                 setError(err instanceof Error ? err.message : 'Failed to save mapping');
             }
             finally {
                 setIsLoading(false);
             }
+        }
+        else {
+            console.log("No card selected - this shouldn't happen");
         }
     });
     return (react_1.default.createElement(components_2.Modal, { className: "esgnow-save-results", show: true, onClose: onClose, title: "Save Transportation-Footprint Results" },
@@ -41438,7 +41456,7 @@ const createMockContext = () => {
         // We're using type assertion below to avoid implementing the full interface
     };
 };
-const EmissionSummary = ({ product, onBack, transportationEmission, transportLegs, uxpContext, packageWeight, palletWeight, hideHeader, plan }) => {
+const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission, transportLegs, uxpContext, packageWeight, palletWeight, hideHeader, plan }) => {
     // Create a ref to persist the uxpContext across renders
     const contextRef = (0, react_1.useRef)(null);
     // Debug logs to check if uxpContext is defined
@@ -41705,9 +41723,13 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                                     " %")));
                         });
                     })()))))));
-    function onSave() {
-        setShowModal(true);
-    }
+    const handleSaveComplete = () => {
+        setShowModal(false);
+        if (onCloseModal) {
+            onCloseModal(); // Close parent modal
+        }
+        onBack(); // Keep existing functionality
+    };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("div", { className: "esgnow-title-section" },
@@ -41745,7 +41767,7 @@ const EmissionSummary = ({ product, onBack, transportationEmission, transportLeg
                     color: 'red',
                     fontWeight: 'bold'
                 } }, "System data connection issue detected. Your changes will be saved temporarily but may not persist after page refresh.")),
-            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
+            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), onSaveComplete: handleSaveComplete, hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
 };
 exports["default"] = EmissionSummary;
 
@@ -42495,7 +42517,10 @@ const LCADashboardWidget = ({ uxpContext }) => {
         {
             id: "step-4",
             title: "SUMMARY",
-            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate, onPrevious: handlePrevious, uxpContext: uxpContext })),
+            content: (React.createElement(SummaryStep_1.default, { selectedProduct: selectedProduct, transportLegs: transportLegs, packagingWeight: packagingWeight, palletWeight: palletWeight, includePallet: includePallet, plan: plan, onConfirm: handleConfirmCalculate, onCloseAll: () => {
+                    setShowModal(false);
+                    setIsEmissionSummaryVisible(false);
+                }, uxpContext: uxpContext })),
         },
     ];
     if (isEmissionSummaryVisible) {
@@ -42629,7 +42654,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 React.createElement("div", { className: "modal-stepper-container" },
                     React.createElement(stepper_LCA_1.default, { activeStep: activeStep, onStepChange: () => { } })), (_a = steps[activeStep]) === null || _a === void 0 ? void 0 :
                 _a.content,
-                React.createElement("div", { className: "modal-footer" },
+                React.createElement("div", { className: "esgnow-modal-footer" },
                     activeStep > 0 && activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: handlePrevious })),
                     activeStep < steps.length - 1 && (React.createElement(components_1.Button, { className: "button-primary-next-button", title: "Next", onClick: handleNext })))))));
 };
@@ -42929,7 +42954,7 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 __webpack_require__(/*! ./summary-step.scss */ "./src/lca/views/lca-dashboard/summary-step.scss");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ../emission-summary */ "./src/lca/views/emission-summary.tsx"));
-const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, uxpContext, onPrevious }) => {
+const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, onCloseAll, uxpContext, onPrevious }) => {
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
     const [transportationEmission, setTransportationEmission] = React.useState("0");
     // Calculate total transportation emission
@@ -43009,7 +43034,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
             onPrevious && (React.createElement(components_1.Button, { className: "button-secondary", title: "Previous", onClick: onPrevious })),
             React.createElement(components_1.Button, { title: "Calculate", className: "button-primary-confirm-button", onClick: handleCalculate })),
         React.createElement(components_1.Modal, { show: showEmissionSummary, onClose: () => setShowEmissionSummary(false), title: "Emission Summary", className: "emission-summary-modal" },
-            React.createElement(emission_summary_1.default, { product: selectedProduct, transportationEmission: transportationEmission, onBack: () => setShowEmissionSummary(false), transportLegs: transportLegs, uxpContext: uxpContext, packageWeight: packagingWeight, palletWeight: includePallet ? palletWeight : 0, plan: plan }))));
+            React.createElement(emission_summary_1.default, { product: selectedProduct, transportationEmission: transportationEmission, onBack: () => setShowEmissionSummary(false), transportLegs: transportLegs, uxpContext: uxpContext, packageWeight: packagingWeight, palletWeight: includePallet ? palletWeight : 0, plan: plan, onCloseModal: onCloseAll }))));
 };
 exports["default"] = SummaryStep;
 
@@ -43528,7 +43553,7 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor, 
             setEditedData(null);
         };
     }, []);
-    return (react_1.default.createElement("div", { className: "material-summary" },
+    return (react_1.default.createElement("div", { className: "esgnow-material-summary-container" },
         react_1.default.createElement("table", { className: "material-summary-table" },
             react_1.default.createElement("thead", null,
                 react_1.default.createElement("tr", null,
@@ -43541,7 +43566,7 @@ const MaterialSummary = ({ materials, onEdit, onDelete, plan, onOpenFullEditor, 
                 plan === "professional" && react_1.default.createElement("td", null, material.specificMaterial),
                 react_1.default.createElement("td", null, `${material.weight} ${material.unit}`),
                 react_1.default.createElement("td", { className: "reasoning-cell" }, material.reasoning || "-")))))),
-        entryType === "ai" && onEditAll && (react_1.default.createElement("div", { className: "edit-all-materials-container" },
+        entryType === "ai" && onEditAll && (react_1.default.createElement("div", { className: "esgnow-edit-all-materials-container" },
             react_1.default.createElement(components_1.IconButton, { type: "edit", onClick: onEditAll, className: "edit-all-materials-icon" })))));
 };
 exports["default"] = MaterialSummary;
