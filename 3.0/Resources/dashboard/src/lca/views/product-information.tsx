@@ -145,9 +145,10 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
     const handleRemoveImage = (index: number) => {
         const updatedImages = productImages.filter((_, i) => i !== index);
         const updatedPreviews = imagePreviews.filter((_, i) => i !== index);
-
+        const updatedUploadedImages = productUploadedImages.filter((_, i) => i !== index);
         setProductImages(updatedImages);
         setImagePreviews(updatedPreviews);
+        setProductUploadedImages(updatedUploadedImages);
     };
 
     // Handler for document upload
