@@ -1,16 +1,19 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
-import { CRUDComponent, Modal, TableComponent, TitleBar, WidgetWrapper } from 'uxp/components';
+import { CRUDComponent, Modal, TitleBar, WidgetWrapper } from 'uxp/components';
 import './projects.scss';
 import { IContextProvider } from "@uxp";
 import { getAllProjects, getProjectImpacts } from "../../esgnow-service";
 import EmissionSummary from "./emission-summary";
 import { ProductInfoSummary } from "../types/product-info-summary.type";
+import ProjectEmissionSummary from "./project-emissions";
+import { TransportLeg } from "../types/transport-leg.type";
 
 interface IProjectProps {
     uxpContext?: IContextProvider;
 }
 
 interface ProjectImpact {
+    _id: string;
     projectCode: string;
     projectName: string;
     totalProjectImpact: number;
@@ -18,9 +21,15 @@ interface ProjectImpact {
     totalManufacturingImpact: number;
     totalTransportationImpact: number;
     products: Array<{
+        _id: string;
+        productID: string;
         productName: string;
         productCode: string;
         productImage: string;
+        packagingWeight: number;
+        palletWeight: number;
+        transportationLegs: TransportLeg[];
+        totalTransportationEmission: number;
         impacts: {
             totalImpact: number;
             impactByMaterials: number;
@@ -30,14 +39,56 @@ interface ProjectImpact {
     }>;
 }
 
+// Format project data to match the ProjectEmissionSummary expected structure
+const formatProjectForEmissionSummary = (project: ProjectImpact) => {
+    return {
+        _id: {
+            $oid: project._id
+        },
+        projectID: {
+            $oid: project._id
+        },
+        projectName: project.projectName,
+        projectCode: project.projectCode,
+        products: project.products.map(product => ({
+            productID: {
+                $oid: product.productID || product._id
+            },
+            packagingWeight: product.packagingWeight || 0,
+            palletWeight: product.palletWeight || 0,
+            totalTransportationEmission: product.totalTransportationEmission || product.impacts?.impactByTransportation || 0,
+            transportationLegs: product.transportationLegs || [{
+                id: 1,
+                transportMode: "Unknown",
+                originCountry: "Unknown",
+                originGateway: "Unknown",
+                destinationCountry: "Unknown",
+                destinationGateway: "Unknown",
+                transportEmission: product.impacts?.impactByTransportation || 0
+            }],
+            _id: {
+                $oid: product._id
+            },
+            productDetails: createProductFromAPI(product, project)
+        })),
+        createdDate: {
+            $date: new Date().toISOString()
+        },
+        modifiedDate: {
+            $date: new Date().toISOString()
+        },
+        __v: 0
+    };
+};
+
 // Create product info from API data for EmissionSummary
-const createProductFromAPI = (item: any): ProductInfoSummary => {
-    if (!item || !item.products || item.products.length === 0) {
+const createProductFromAPI = (product: any, project?: any): ProductInfoSummary => {
+    if (!product) {
         // Return empty data with proper project code if available
         return {
-            _id: item?._id || 'unknown_id',
+            _id: project?._id || 'unknown_id',
             name: 'Unknown Product',
-            code: item?.projectCode || 'Unknown Code',
+            code: project?.projectCode || 'Unknown Code',
             category: 'Unknown Category',
             subCategory: 'Unknown Subcategory',
             weight: 0,
@@ -48,39 +99,30 @@ const createProductFromAPI = (item: any): ProductInfoSummary => {
             co2Emission: 0,
             co2EmissionRawMaterials: 0,
             co2EmissionFromProcesses: 0,
-            materials: [] ,
-            productManufacturingProcess: [] 
+            materials: [],
+            productManufacturingProcess: []
         };
     }
     
-    // Get the product data
-    const product = item.products[0];
-    console.log('[DEBUG] Creating product from API data:', JSON.stringify(product, null, 2));
-    
     // Log exact field values to check what's available
-    console.log('[DEBUG] Available top-level fields in item:', Object.keys(item).join(', '));
-    console.log('[DEBUG] Project code from item:', item.projectCode);
+    console.log('[DEBUG] Available product fields:', Object.keys(product).join(', '));
     
     // Get the product code from various possible sources
-    console.log('[DEBUG] Looking for product code in product:', product.code, product.productCode);
-    console.log('[DEBUG] Looking for project code in item:', item.projectCode);
+    console.log('[DEBUG] Looking for product code:', product.code, product.productCode);
     
     // Try various ways to get the code
     let code = 'Unknown Code';
     if (product.code && product.code !== '') {
         code = product.code;
-        console.log('[DEBUG] Using product.code:', code);
     } else if (product.productCode && product.productCode !== '') {
         code = product.productCode;
-        console.log('[DEBUG] Using product.productCode:', code);
-    } else if (item.projectCode && item.projectCode !== '') {
-        code = item.projectCode;
-        console.log('[DEBUG] Using item.projectCode as fallback:', code);
+    } else if (project?.projectCode && project.projectCode !== '') {
+        code = project.projectCode;
     }
     
     // Create a ProductInfoSummary object with all required fields
     return {
-        _id: product._id || product.productId || item._id || 'unknown_id',
+        _id: product._id || product.productID || 'unknown_id',
         name: product.name || product.productName || 'Unknown Product',
         code: code,
         category: product.category || product.productCategory || 'Unknown Category',
@@ -123,15 +165,16 @@ const createProductFromAPI = (item: any): ProductInfoSummary => {
                 }>
             }>
     };
-}
+};
 
 const Projects: React.FC<IProjectProps> = (props) => {
     const [projects, setProjects] = useState<ProjectImpact[]>([]);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
     const [showModal, setShowModal] = useState(false);
-    const [item, setItem] = useState<any>();
-    const [plan,setPlan] =  useState<string | null>(null);
+    const [selectedProject, setSelectedProject] = useState<any>(null);
+    const [plan, setPlan] = useState<string | null>(null);
+    const [useMultiProductView, setUseMultiProductView] = useState(true);
 
     const memorizedSearch = useMemo(() => ({ enabled: true }), [])
 
@@ -157,12 +200,6 @@ const Projects: React.FC<IProjectProps> = (props) => {
                     }
                     console.log(`[DEBUG] Detailed project impact for ${project.code}:`, 
                         JSON.stringify(impactResponse.data, null, 2));
-                    
-                    // Log product structure details if available
-                    if (impactResponse.data.products && impactResponse.data.products.length > 0) {
-                        console.log(`[DEBUG] First product structure for ${project.code}:`, 
-                            Object.keys(impactResponse.data.products[0]).join(', '));
-                    }
                     
                     return await impactResponse.data;
                 })
@@ -192,31 +229,15 @@ const Projects: React.FC<IProjectProps> = (props) => {
                 }
                 console.log(`[DEBUG] getProjects - Impact data for ${project.code}:`, JSON.stringify(impactResponse.data, null, 2));
                 
-                // Log field structure
-                if (impactResponse.data.products && impactResponse.data.products.length > 0) {
-                    console.log(`[DEBUG] Project ${project.code} product fields:`, 
-                        Object.keys(impactResponse.data.products[0]).join(', '));
-                    
-                    // Check if code is present
-                    console.log(`[DEBUG] Project ${project.code} has product with code:`, 
-                        impactResponse.data.products[0].code || 
-                        impactResponse.data.products[0].productCode || 
-                        'NO_CODE_FOUND');
-                }
-                
                 return await impactResponse.data;
             })
         );
         if (!!error) return { items: [] };
         
-        console.log('[DEBUG] getProjects - All project codes:', 
-            projectsWithImpacts.map(p => p.projectCode).join(', '));
-        
         return { items: projectsWithImpacts };
     }, [])
 
     const columns = [
-
         { id: "projectCode", label: "Project Code" },
         { id: "projectName", label: "Project Name" },
         {
@@ -258,38 +279,51 @@ const Projects: React.FC<IProjectProps> = (props) => {
             </WidgetWrapper>
         );
     }
-
-    console.log('[DEBUG] Rendering Projects component, showModal =', showModal);
     
     return (
         <>
-            <Modal title="Emission Summary"  show={showModal} onClose={() => setShowModal(false)}>
-                {console.log('[DEBUG] Modal is showing:', showModal)}
-                {item && console.log('[DEBUG] Raw item data:', JSON.stringify(item, null, 2))}
-                {item?.products?.length > 0 && console.log('[DEBUG] Raw product data:', JSON.stringify(item.products[0], null, 2))}
-                {item?.products?.length > 0 && console.log('[DEBUG] Available product fields:', 
-                    Object.keys(item.products[0]).join(', '))}
-                <EmissionSummary
-                    plan={plan || 'basic'}
-                    product={createProductFromAPI(item)}
-                    transportationEmission={
-                        item?.products?.[0]?.impacts?.impactByTransportation?.toString() || 
-                        item?.totalTransportationImpact?.toString() || 
-                        "0"
-                    }
-                    onBack={() => setShowModal(false)}
-                    transportLegs={item?.products?.[0]?.transportationLegs || [{
-                        id: 1,
-                        transportMode: "Unknown",
-                        originGateway: "Unknown", 
-                        destinationGateway: "Unknown",
-                        transportEmission: item?.totalTransportationImpact || 0
-                    }]}
-                    uxpContext={props.uxpContext}
-                    packageWeight={item?.products?.[0]?.packagingWeight || 0}
-                    palletWeight={item?.products?.[0]?.palletWeight || 0}
-                    hideHeader={true}
-                />
+            <Modal 
+                title="Project Emission Summary" 
+                show={showModal} 
+                onClose={() => setShowModal(false)}
+                className="esgnow-project-modal"
+            >
+                {useMultiProductView && selectedProject && selectedProject.products && selectedProject.products.length > 0 ? (
+                    <ProjectEmissionSummary
+                        project={formatProjectForEmissionSummary(selectedProject)}
+                        uxpContext={props.uxpContext}
+                        onBack={() => setShowModal(false)}
+                        hideHeader={true}
+                        plan={plan || 'basic'}
+                    />
+                ) : (
+                    selectedProject && selectedProject.products && selectedProject.products.length > 0 && (
+                        <EmissionSummary
+                            plan={plan || 'basic'}
+                            product={createProductFromAPI(selectedProject.products[0], selectedProject)}
+                            transportationEmission={
+                                selectedProject?.products[0]?.totalTransportationEmission?.toString() || 
+                                selectedProject?.products[0]?.impacts?.impactByTransportation?.toString() || 
+                                selectedProject?.totalTransportationImpact?.toString() || 
+                                "0"
+                            }
+                            onBack={() => setShowModal(false)}
+                            transportLegs={selectedProject?.products[0]?.transportationLegs || [{
+                                id: 1,
+                                transportMode: "Unknown",
+                                originCountry: "Unknown",
+                                originGateway: "Unknown", 
+                                destinationCountry: "Unknown",
+                                destinationGateway: "Unknown",
+                                transportEmission: selectedProject?.totalTransportationImpact || 0
+                            }]}
+                            uxpContext={props.uxpContext}
+                            packageWeight={selectedProject?.products[0]?.packagingWeight || 0}
+                            palletWeight={selectedProject?.products[0]?.palletWeight || 0}
+                            hideHeader={true}
+                        />
+                    )
+                )}
             </Modal>
             <CRUDComponent
                 list={{
@@ -303,18 +337,16 @@ const Projects: React.FC<IProjectProps> = (props) => {
                     onClickRow: (e, item: any) => { 
                         console.log('[DEBUG] Row clicked, raw item data:', JSON.stringify(item, null, 2));
                         
-                        // Create a direct product info object for debugging
-                        if (item.products && item.products.length > 0) {
-                            console.log('[DEBUG] Product fields from API:', 
-                                Object.keys(item.products[0]).map(key => `${key}: ${JSON.stringify(item.products[0][key])}`).join('\n'));
-                        }
+                        // Check if this project has multiple products
+                        const hasMultipleProducts = item.products && item.products.length > 1;
+                        console.log(`[DEBUG] Project has ${item.products?.length || 0} products. Using multi-product view: ${hasMultipleProducts}`);
                         
-                        // Create a very simple reference to just the original item
-                        setItem(item);
+                        // Use the multi-product view for projects with multiple products
+                        setUseMultiProductView(hasMultipleProducts);
+                        setSelectedProject(item);
                         setShowModal(true);
                     }
-                }
-                }
+                }}
             />
         </>
     );

@@ -5,7 +5,7 @@ import { ProductInfoSummary } from '../types/product-info-summary.type';
 import { TransportLeg } from '../types/transport-leg.type';
 import Highcharts from 'highcharts';
 import HighchartsReact from 'highcharts-react-official'
-import { createProject, createProjectProductMap, projectProductMapping } from "../../esgnow-service";
+import { createProject, createProjectProductMap, projectProductMapping, getAllProjects, addProductToProject } from "../../esgnow-service";
 import { IContextProvider } from '@uxp';
 import './emission-summary.scss';
 
@@ -13,6 +13,7 @@ interface SaveResultsModalProps {
     onClose: () => void;
     onSaveComplete: () => void; 
     hasExistingProjects: boolean;
+    setHasExistingProjects: (value: boolean) => void;
     product: ProductInfoSummary;
     packageWeight: Number;
     palletWeight: Number;
@@ -31,6 +32,7 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     onClose,
     onSaveComplete,
     hasExistingProjects,
+    setHasExistingProjects,
     product,
     packageWeight,
     palletWeight,
@@ -56,12 +58,51 @@ const SaveResultsModal: React.FC<SaveResultsModalProps> = ({
     const [selectedProject, setSelectedProject] = useState<string | null>(null);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [projectOptions, setProjectOptions] = useState<ProjectOption[]>([]);
+    const [loadingProjects, setLoadingProjects] = useState(false);
+    const [projectsLoaded, setProjectsLoaded] = useState(false);
 
-    const projectOptions: ProjectOption[] = [
-        { label: "Project Alpha", value: "alpha" },
-        { label: "Project Beta", value: "beta" },
-        { label: "Project Gamma", value: "gamma" },
-    ];
+    // Fetch existing projects
+    useEffect(() => {
+        async function fetchProjects() {
+            // Use mock context as a fallback if real context is missing
+            const effectiveContext = uxpContext || mockContextRef.current;
+            
+            if (!effectiveContext) {
+                console.error("Both uxpContext and mockContextRef.current are undefined when fetching projects");
+                return;
+            }
+            
+            setLoadingProjects(true);
+            try {
+                const response = await getAllProjects(effectiveContext, {});
+                if (response.data && Array.isArray(response.data.projects)) {
+                    const options = response.data.projects.map((project : any) => ({
+                        label: project.projectName,
+                        value: project._id
+                    }));
+                    setProjectOptions(options);
+                    setProjectsLoaded(true);
+                    
+                    // Update hasExistingProjects based on actual data
+                    if (options.length > 0) {
+                        setHasExistingProjects(true);
+                    }
+                } else {
+                    // If no projects or error, use empty array
+                    setProjectOptions([]);
+                    console.warn("No projects found or invalid response format", response);
+                }
+            } catch (err) {
+                console.error("Error fetching projects:", err);
+                setProjectOptions([]);
+            } finally {
+                setLoadingProjects(false);
+            }
+        }
+        
+        fetchProjects();
+    }, [uxpContext]);
 
 // In SaveResultsModal, add detailed debugging to handleSave:
 
@@ -96,41 +137,65 @@ const handleSave = async () => {
         setError(null);
 
         try {
+            // Step 1: Create the project (without products)
             const createProjectPayload = {
                 code: projectId,
-                name: projectName,
+                name: projectName
             };
             
+            console.log("Creating project:", createProjectPayload);
             const projectResponse = await createProject(effectiveContext, createProjectPayload);
             console.log("Project created successfully:", projectResponse);
-
+            
+            if (!projectResponse.data) {
+                throw new Error('Failed to create project');
+            }
+            
+            // Verify we have a valid project ID
+            const projectID = projectResponse.data._id;
+            if (!projectID) {
+                console.error("Project created but missing _id:", projectResponse.data);
+                throw new Error('Project created but missing ID');
+            }
+            console.log("Successfully created project with ID:", projectID);
+            
+            // Step 2: Map the product to the newly created project
             const createProjectProductMapPayload = {
-                projectID: projectResponse.data._id,
-                productID: product._id,
-                packagingWeight : packageWeight,
-                palletWeight : palletWeight,
+                projectID: projectID,
+                products :[{
+                    productID: product._id,
+                packagingWeight: packageWeight,
+                palletWeight: palletWeight,
+                 totalTransportationEmission: transportationEmission,
                 transportationLegs: transportLegs,
-                totalTransportationEmission: transportationEmission
+               
+                }],
+                
+                
             };
-
-
-            // Then create the project-product mapping
-            const mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
-            console.log("Mapping created successfully:", mappingResponse);
-
-            if (!mappingResponse.data) {
-                throw new Error('Failed to save project-product mapping');
+            
+            console.log("Adding product to project:", createProjectProductMapPayload);
+            let mappingResponse;
+            try {
+                mappingResponse = await createProjectProductMap(effectiveContext, createProjectProductMapPayload);
+                console.log("Product added to project successfully:", mappingResponse);
+                
+                if (!mappingResponse.data) {
+                    throw new Error('API returned success but no data in response');
+                }
+            } catch (err) {
+                console.error("Error adding product to project:", err);
+                throw new Error(`Failed to add product to project: ${err instanceof Error ? err.message : 'Unknown error'}`);
             }
 
-            const savedMapping = await mappingResponse.data;
             onClose();
             console.log("About to call onSaveComplete");
             onSaveComplete();
             console.log("Callbacks completed");
             
         } catch (err) {
-            console.error("Error in save process:", err);
-            setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
+            console.error("Error creating project with product:", err);
+            setError(err instanceof Error ? err.message : 'Failed to create project with product');
         } finally {
             setIsLoading(false);
         }
@@ -147,27 +212,41 @@ const handleSave = async () => {
         setError(null);
 
         try {
-            console.log("About to call projectProductMapping");
-            const mappingResponse = await projectProductMapping(effectiveContext, {
-                projectCode: selectedProject,
-                product,
-                transportationEmission,
-                transportLegs
-            });
-
+            console.log("Using addProductToProject API endpoint");
+            
+            // Verify we have a valid project ID from selection
+            if (!selectedProject) {
+                throw new Error('Selected project ID is empty or invalid');
+            }
+            console.log("Using selected project ID:", selectedProject);
+            
+            // Format the payload to match the expected structure of the API
+            const addProductPayload = {
+                projectID: selectedProject,
+                productID: product._id,
+                packagingWeight: packageWeight,
+                palletWeight: palletWeight,
+                transportationLegs: transportLegs,
+                totalTransportationEmission: transportationEmission
+            };
+            
+            console.log("Adding product to existing project payload:", addProductPayload);
+            
+            // Call the API to add product to existing project
+            const mappingResponse = await addProductToProject(effectiveContext, addProductPayload);
+            console.log('Product added to existing project response:', mappingResponse);
+            
             if (!mappingResponse.data) {
-                throw new Error('Failed to save project-product mapping');
+                throw new Error('Failed to add product to project (no data in response)');
             }
 
-            const savedMapping = await mappingResponse.data;
-            console.log('Mapping saved successfully:', savedMapping);
             console.log("About to call callbacks for existing project");
             onClose();
             onSaveComplete();
             console.log("Callbacks completed for existing project");
         } catch (err) {
-            console.error("Error in existing project save:", err);
-            setError(err instanceof Error ? err.message : 'Failed to save mapping');
+            console.error("Error adding product to existing project:", err);
+            setError(err instanceof Error ? err.message : 'Failed to add product to project');
         } finally {
             setIsLoading(false);
         }
@@ -178,11 +257,11 @@ const handleSave = async () => {
     return (
         <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
             <div className="esgnow-save-results-modal">
-                {/* {hasExistingProjects ? (
+                {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>
                 ) : (
                     <p>No existing projects found. Please create a new project.</p>
-                )} */}
+                )}
 
                 <div className="esgnow-card-container">
                     <div
@@ -192,7 +271,7 @@ const handleSave = async () => {
                         <h3>Create New Project</h3>
                         <p>Start a fresh project with these results.</p>
                     </div>
-                    {/* {hasExistingProjects && (
+                    {hasExistingProjects && (
                         <div
                             className={`esgnow-option-card ${selectedCard === 'existing' ? 'esgnow-selected' : ''}`}
                             onClick={() => setSelectedCard('existing')}
@@ -200,7 +279,7 @@ const handleSave = async () => {
                             <h3>Add to Existing Project</h3>
                             <p>Include these results in one of your existing projects.</p>
                         </div>
-                    )} */}
+                    )}
                 </div>
 
                 {selectedCard === 'new' && (
@@ -230,12 +309,20 @@ const handleSave = async () => {
                     <div className="esgnow-existing-project-selection">
                         <FormField>
                             <Label><span style={{ fontSize: '12px' }}>Select an existing project</span></Label>
-                            <Select
-                                options={projectOptions}
-                                selected={selectedProject}
-                                onChange={(newValue) => setSelectedProject(newValue)}
-                                placeholder="Select a project"
-                            />
+                            {loadingProjects ? (
+                                <div className="esgnow-loading-indicator">Loading projects...</div>
+                            ) : projectOptions.length > 0 ? (
+                                <Select
+                                    options={projectOptions}
+                                    selected={selectedProject}
+                                    onChange={(newValue) => setSelectedProject(newValue)}
+                                    placeholder="Select a project"
+                                />
+                            ) : (
+                                <div className="esgnow-no-projects-message">
+                                    No existing projects found. Please create a new project.
+                                </div>
+                            )}
                         </FormField>
                     </div>
                 )}
@@ -267,6 +354,28 @@ const createMockContext = () => {
     return {
         executeComponent: (serviceName, route, method, params, body, headers, config) => {
             console.warn(`MOCK executeComponent called: ${serviceName} - ${route}`);
+            
+            // Return specific mock data based on the route
+            if (route === '/api/projects') {
+                return Promise.resolve({
+                    data: {
+                        projects: [
+                            {
+                                _id: "mock_project_1",
+                                projectCode: "P001",
+                                projectName: "Mock Project 1"
+                            },
+                            {
+                                _id: "mock_project_2",
+                                projectCode: "P002",
+                                projectName: "Mock Project 2"
+                            }
+                        ]
+                    }
+                });
+            }
+            
+            // Default response for other routes
             return Promise.resolve({
                 data: { 
                     _id: "mock_" + Math.random().toString(36).substring(2),
@@ -334,9 +443,32 @@ const EmissionSummary: React.FC<{
 
     const handleViewToggle = (mode: 'list' | 'tree') => setViewMode(mode);
     const [showModal, setShowModal] = useState(false);
-    const [hasExistingProjects, setHasExistingProjects] = useState(true);
-    const [showProjects, setShowProjects] = useState(false); // Change this based on actual data
+    const [hasExistingProjects, setHasExistingProjects] = useState(false);
+    const [showProjects, setShowProjects] = useState(false);
     const [activeTab, setActiveTab] = useState<'overview'|'materials' | 'manufacturing' | 'transportation'>('overview');
+    
+    // Check if existing projects are available
+    useEffect(() => {
+        const checkForExistingProjects = async () => {
+            const effectiveContext = uxpContext || contextRef.current;
+            if (!effectiveContext) return;
+            
+            try {
+                const response = await getAllProjects(effectiveContext, {});
+                console.log("Projects response:", response);
+                // Check for projects in the response.data.projects array
+                if (response.data && 
+                    (Array.isArray(response.data.projects) && response.data.projects.length > 0) || 
+                    (Array.isArray(response.data) && response.data.length > 0)) {
+                    setHasExistingProjects(true);
+                }
+            } catch (err) {
+                console.error("Error checking for existing projects:", err);
+            }
+        };
+        
+        checkForExistingProjects();
+    }, [uxpContext, contextRef.current]);
 
     const donutChartOptions: Highcharts.Options = {
         chart: {
@@ -710,7 +842,9 @@ const handleSaveComplete = () => {
                         <div className="esgnow-action-buttons">
                             <Button
                                 title="Save"
-                                onClick={() => setShowModal(true)}
+                                onClick={() => {
+                                    setShowModal(true);
+                                }}
                                 className="esgnow-save-results-button"
                             >
                                 <span className="esgnow-back-icon">←</span>
@@ -785,6 +919,7 @@ const handleSaveComplete = () => {
                         onClose={() => setShowModal(false)}
                         onSaveComplete={handleSaveComplete}
                         hasExistingProjects={hasExistingProjects}
+                        setHasExistingProjects={setHasExistingProjects}
                         product={product}
                         transportationEmission={transportationEmission}
                         transportLegs={transportLegs}

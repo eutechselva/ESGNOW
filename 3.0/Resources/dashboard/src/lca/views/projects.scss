@@ -42,4 +42,16 @@
         object-fit: cover;
       }
     }
+}
+
+// Styles for the project modal
+.esgnow-project-modal {
+  max-width: 90%;
+  width: 1200px;
+  max-height: 90vh;
+  
+  .uxp-modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
   }
+}

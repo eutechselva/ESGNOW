@@ -483,6 +483,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/project-emissions.scss":
+/*!***************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/project-emissions.scss ***!
+  \***************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".esgnow-project-info-summary {\n  display: flex;\n  flex-direction: column;\n  margin-bottom: 20px;\n  background-color: #fff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  padding: 16px;\n}\n\n.esgnow-detail-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 20px;\n  margin-bottom: 20px;\n}\n\n.esgnow-detail-item {\n  display: flex;\n  flex-direction: column;\n  gap: 4px;\n}\n.esgnow-detail-item strong {\n  font-size: 14px;\n  color: #757575;\n}\n.esgnow-detail-item p {\n  font-size: 16px;\n  margin: 0;\n  font-weight: 500;\n}\n\n.esgnow-header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.esgnow-title-section h1 {\n  margin: 0;\n  font-size: 24px;\n  font-weight: 700;\n}\n.esgnow-title-section .esgnow-subheading {\n  margin: 4px 0 0;\n  color: #6b7280;\n  font-size: 14px;\n}\n\n.esgnow-action-buttons {\n  display: flex;\n  gap: 10px;\n}\n\n.esgnow-back-button {\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  background-color: #f3f4f6;\n  color: #4b5563;\n  border: none;\n  padding: 8px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n  transition: background-color 0.2s;\n}\n.esgnow-back-button:hover {\n  background-color: #e5e7eb;\n}\n.esgnow-back-button .esgnow-back-icon {\n  font-size: 16px;\n}\n\n.esgnow-tabs-container {\n  background-color: #fff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n}\n\n.esgnow-tabs {\n  display: flex;\n  border-bottom: 1px solid #e5e7eb;\n  background-color: #f9fafb;\n}\n\n.esgnow-tab-button {\n  padding: 12px 16px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  font-size: 14px;\n  font-weight: 500;\n  color: #6b7280;\n  transition: color 0.2s, background-color 0.2s;\n}\n.esgnow-tab-button:hover {\n  background-color: #f3f4f6;\n}\n.esgnow-tab-button.esgnow-active {\n  color: #0f766e;\n  border-bottom: 2px solid #0f766e;\n}\n\n.esgnow-tab-content {\n  padding: 20px;\n}\n\n.esgnow-widget {\n  margin-bottom: 24px;\n}\n.esgnow-widget h3 {\n  font-size: 18px;\n  margin: 0 0 12px;\n  font-weight: 600;\n  color: #111827;\n}\n.esgnow-widget .esgnow-widget-content {\n  background-color: #fff;\n  border-radius: 8px;\n  padding: 16px;\n  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);\n}\n\n.esgnow-emission-metrics-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));\n  gap: 16px;\n}\n\n.esgnow-metric-card {\n  background-color: #f9fafb;\n  border-radius: 8px;\n  padding: 16px;\n  text-align: center;\n}\n.esgnow-metric-card h4 {\n  font-size: 14px;\n  color: #6b7280;\n  margin: 0 0 8px;\n  font-weight: 500;\n}\n.esgnow-metric-card .esgnow-metric-value {\n  font-size: 24px;\n  font-weight: 700;\n  margin: 0 0 4px;\n  color: #111827;\n}\n.esgnow-metric-card .esgnow-metric-percentage {\n  font-size: 14px;\n  color: #6b7280;\n  margin: 0;\n}\n\n.esgnow-products-table {\n  width: 100%;\n  border-collapse: collapse;\n}\n.esgnow-products-table th, .esgnow-products-table td {\n  padding: 12px;\n  text-align: left;\n  border-bottom: 1px solid #e5e7eb;\n}\n.esgnow-products-table th {\n  font-weight: 600;\n  font-size: 14px;\n  color: #6b7280;\n  background-color: #f9fafb;\n}\n.esgnow-products-table td {\n  font-size: 14px;\n}\n.esgnow-products-table tr:hover {\n  background-color: #f3f4f6;\n}\n\n.esgnow-view-product-button {\n  background-color: #0f766e;\n  color: white;\n  border: none;\n  padding: 6px 12px;\n  border-radius: 4px;\n  cursor: pointer;\n  font-size: 12px;\n  transition: background-color 0.2s;\n}\n.esgnow-view-product-button:hover {\n  background-color: #0e6b63;\n}\n\n.esgnow-product-details {\n  background-color: #fff;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n}\n\n.esgnow-product-details-header {\n  padding: 16px;\n  border-bottom: 1px solid #e5e7eb;\n  background-color: #f9fafb;\n  display: flex;\n  justify-content: flex-start;\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss":
 /*!******************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/projects.scss ***!
@@ -493,7 +510,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".projects-container {\n  padding: 20px;\n}\n.projects-container h2 {\n  color: #333;\n  margin-bottom: 20px;\n}\n.projects-container .projects-table {\n  width: 100%;\n  border-collapse: collapse;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n}\n.projects-container .projects-table th,\n.projects-container .projects-table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n.projects-container .projects-table th {\n  background-color: #f8f9fa;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  font-size: 14px;\n}\n.projects-container .projects-table td {\n  color: #555;\n  font-size: 14px;\n}\n.projects-container .projects-table tr:hover {\n  background-color: #f1f1f1;\n}\n.projects-container .projects-table .product-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 4px;\n  object-fit: cover;\n}", ""]);
+exports.push([module.id, ".projects-container {\n  padding: 20px;\n}\n.projects-container h2 {\n  color: #333;\n  margin-bottom: 20px;\n}\n.projects-container .projects-table {\n  width: 100%;\n  border-collapse: collapse;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);\n}\n.projects-container .projects-table th,\n.projects-container .projects-table td {\n  padding: 12px 15px;\n  text-align: left;\n  border-bottom: 1px solid #ddd;\n}\n.projects-container .projects-table th {\n  background-color: #f8f9fa;\n  font-weight: bold;\n  color: #333;\n  text-transform: uppercase;\n  font-size: 14px;\n}\n.projects-container .projects-table td {\n  color: #555;\n  font-size: 14px;\n}\n.projects-container .projects-table tr:hover {\n  background-color: #f1f1f1;\n}\n.projects-container .projects-table .product-image {\n  width: 50px;\n  height: 50px;\n  border-radius: 4px;\n  object-fit: cover;\n}\n\n.esgnow-project-modal {\n  max-width: 90%;\n  width: 1200px;\n  max-height: 90vh;\n}\n.esgnow-project-modal .uxp-modal-content {\n  max-height: 80vh;\n  overflow-y: auto;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -39099,6 +39116,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/project-emissions.scss":
+/*!**********************************************!*\
+  !*** ./src/lca/views/project-emissions.scss ***!
+  \**********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./project-emissions.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/project-emissions.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/projects.scss":
 /*!*************************************!*\
   !*** ./src/lca/views/projects.scss ***!
@@ -40018,7 +40063,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.addProductToProject = exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
@@ -40182,23 +40227,29 @@ function projectProductMapping(uxpContext, payload) {
         // Force-fix for context issue - simulate the request if context is missing
         if (!uxpContext) {
             console.error("projectProductMapping called with undefined context - using emergency workaround");
+            // Log the received payload to help with debugging
+            console.log("projectProductMapping mock received payload:", JSON.stringify(payload));
             // Create a simulated response to prevent UI errors
             // This is a temporary fix - the API won't actually be called
             return new Promise((resolve) => {
                 setTimeout(() => {
-                    var _a;
                     resolve({
                         data: {
                             _id: "temp_mapping_" + Math.random().toString(36).substring(2),
                             projectCode: payload.projectCode,
-                            product: ((_a = payload.product) === null || _a === void 0 ? void 0 : _a._id) || "unknown_product",
-                            transportationEmission: payload.transportationEmission,
+                            productID: payload.productID || (payload.product && payload.product._id) || "unknown_product",
+                            packagingWeight: payload.packagingWeight || 0,
+                            palletWeight: payload.palletWeight || 0,
+                            transportationEmission: payload.totalTransportationEmission || payload.transportationEmission || "0",
+                            transportationLegs: payload.transportationLegs || [],
                             createdAt: new Date().toISOString()
                         }
                     });
                 }, 500);
             });
         }
+        // Log the payload for debugging
+        console.log("projectProductMapping API payload:", JSON.stringify(payload));
         return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping`, _uxp_1.RequestMethod.POST, {}, payload);
     });
 }
@@ -40250,6 +40301,38 @@ function updateLocationData(uxpContext, location, locationData) {
     });
 }
 exports.updateLocationData = updateLocationData;
+function addProductToProject(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        // Force-fix for context issue - simulate the request if context is missing
+        if (!uxpContext) {
+            console.error("addProductToProject called with undefined context - using emergency workaround");
+            // Log the received payload to help with debugging
+            console.log("addProductToProject mock received payload:", JSON.stringify(payload));
+            // Create a simulated response to prevent UI errors
+            // This is a temporary fix - the API won't actually be called
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve({
+                        data: {
+                            _id: "temp_project_product_" + Math.random().toString(36).substring(2),
+                            projectID: payload.projectID,
+                            productID: payload.productID,
+                            packagingWeight: payload.packagingWeight || 0,
+                            palletWeight: payload.palletWeight || 0,
+                            transportationEmission: payload.totalTransportationEmission,
+                            transportationLegs: payload.transportationLegs || [],
+                            createdAt: new Date().toISOString()
+                        }
+                    });
+                }, 500);
+            });
+        }
+        // Log the payload for debugging
+        console.log("addProductToProject API payload:", JSON.stringify(payload));
+        return executeRequest(uxpContext, `${BaseEndPoint}/project-product-mapping/project/${payload.projectID}/product`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.addProductToProject = addProductToProject;
 
 
 /***/ }),
@@ -41287,7 +41370,7 @@ const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./no
 const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./emission-summary.scss */ "./src/lca/views/emission-summary.scss");
-const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
+const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, setHasExistingProjects, product, packageWeight, palletWeight, transportationEmission, transportLegs, uxpContext }) => {
     // Create a safety check for context
     const mockContextRef = (0, react_1.useRef)(null);
     // Initialize fallback mock context if needed
@@ -41303,11 +41386,51 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, produc
     const [selectedProject, setSelectedProject] = (0, react_1.useState)(null);
     const [isLoading, setIsLoading] = (0, react_1.useState)(false);
     const [error, setError] = (0, react_1.useState)(null);
-    const projectOptions = [
-        { label: "Project Alpha", value: "alpha" },
-        { label: "Project Beta", value: "beta" },
-        { label: "Project Gamma", value: "gamma" },
-    ];
+    const [projectOptions, setProjectOptions] = (0, react_1.useState)([]);
+    const [loadingProjects, setLoadingProjects] = (0, react_1.useState)(false);
+    const [projectsLoaded, setProjectsLoaded] = (0, react_1.useState)(false);
+    // Fetch existing projects
+    (0, react_1.useEffect)(() => {
+        function fetchProjects() {
+            return __awaiter(this, void 0, void 0, function* () {
+                // Use mock context as a fallback if real context is missing
+                const effectiveContext = uxpContext || mockContextRef.current;
+                if (!effectiveContext) {
+                    console.error("Both uxpContext and mockContextRef.current are undefined when fetching projects");
+                    return;
+                }
+                setLoadingProjects(true);
+                try {
+                    const response = yield (0, esgnow_service_1.getAllProjects)(effectiveContext, {});
+                    if (response.data && Array.isArray(response.data.projects)) {
+                        const options = response.data.projects.map((project) => ({
+                            label: project.projectName,
+                            value: project._id
+                        }));
+                        setProjectOptions(options);
+                        setProjectsLoaded(true);
+                        // Update hasExistingProjects based on actual data
+                        if (options.length > 0) {
+                            setHasExistingProjects(true);
+                        }
+                    }
+                    else {
+                        // If no projects or error, use empty array
+                        setProjectOptions([]);
+                        console.warn("No projects found or invalid response format", response);
+                    }
+                }
+                catch (err) {
+                    console.error("Error fetching projects:", err);
+                    setProjectOptions([]);
+                }
+                finally {
+                    setLoadingProjects(false);
+                }
+            });
+        }
+        fetchProjects();
+    }, [uxpContext]);
     // In SaveResultsModal, add detailed debugging to handleSave:
     const handleSave = () => __awaiter(void 0, void 0, void 0, function* () {
         // Debug log to check uxpContext right before we use it
@@ -41333,35 +41456,56 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, produc
             setIsLoading(true);
             setError(null);
             try {
+                // Step 1: Create the project (without products)
                 const createProjectPayload = {
                     code: projectId,
-                    name: projectName,
+                    name: projectName
                 };
+                console.log("Creating project:", createProjectPayload);
                 const projectResponse = yield (0, esgnow_service_1.createProject)(effectiveContext, createProjectPayload);
                 console.log("Project created successfully:", projectResponse);
-                const createProjectProductMapPayload = {
-                    projectID: projectResponse.data._id,
-                    productID: product._id,
-                    packagingWeight: packageWeight,
-                    palletWeight: palletWeight,
-                    transportationLegs: transportLegs,
-                    totalTransportationEmission: transportationEmission
-                };
-                // Then create the project-product mapping
-                const mappingResponse = yield (0, esgnow_service_1.createProjectProductMap)(effectiveContext, createProjectProductMapPayload);
-                console.log("Mapping created successfully:", mappingResponse);
-                if (!mappingResponse.data) {
-                    throw new Error('Failed to save project-product mapping');
+                if (!projectResponse.data) {
+                    throw new Error('Failed to create project');
                 }
-                const savedMapping = yield mappingResponse.data;
+                // Verify we have a valid project ID
+                const projectID = projectResponse.data._id;
+                if (!projectID) {
+                    console.error("Project created but missing _id:", projectResponse.data);
+                    throw new Error('Project created but missing ID');
+                }
+                console.log("Successfully created project with ID:", projectID);
+                // Step 2: Map the product to the newly created project
+                const createProjectProductMapPayload = {
+                    projectID: projectID,
+                    products: [{
+                            productID: product._id,
+                            packagingWeight: packageWeight,
+                            palletWeight: palletWeight,
+                            totalTransportationEmission: transportationEmission,
+                            transportationLegs: transportLegs,
+                        }],
+                };
+                console.log("Adding product to project:", createProjectProductMapPayload);
+                let mappingResponse;
+                try {
+                    mappingResponse = yield (0, esgnow_service_1.createProjectProductMap)(effectiveContext, createProjectProductMapPayload);
+                    console.log("Product added to project successfully:", mappingResponse);
+                    if (!mappingResponse.data) {
+                        throw new Error('API returned success but no data in response');
+                    }
+                }
+                catch (err) {
+                    console.error("Error adding product to project:", err);
+                    throw new Error(`Failed to add product to project: ${err instanceof Error ? err.message : 'Unknown error'}`);
+                }
                 onClose();
                 console.log("About to call onSaveComplete");
                 onSaveComplete();
                 console.log("Callbacks completed");
             }
             catch (err) {
-                console.error("Error in save process:", err);
-                setError(err instanceof Error ? err.message : 'Failed to save project and mapping');
+                console.error("Error creating project with product:", err);
+                setError(err instanceof Error ? err.message : 'Failed to create project with product');
             }
             finally {
                 setIsLoading(false);
@@ -41378,26 +41522,36 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, produc
             setIsLoading(true);
             setError(null);
             try {
-                console.log("About to call projectProductMapping");
-                const mappingResponse = yield (0, esgnow_service_1.projectProductMapping)(effectiveContext, {
-                    projectCode: selectedProject,
-                    product,
-                    transportationEmission,
-                    transportLegs
-                });
-                if (!mappingResponse.data) {
-                    throw new Error('Failed to save project-product mapping');
+                console.log("Using addProductToProject API endpoint");
+                // Verify we have a valid project ID from selection
+                if (!selectedProject) {
+                    throw new Error('Selected project ID is empty or invalid');
                 }
-                const savedMapping = yield mappingResponse.data;
-                console.log('Mapping saved successfully:', savedMapping);
+                console.log("Using selected project ID:", selectedProject);
+                // Format the payload to match the expected structure of the API
+                const addProductPayload = {
+                    projectID: selectedProject,
+                    productID: product._id,
+                    packagingWeight: packageWeight,
+                    palletWeight: palletWeight,
+                    transportationLegs: transportLegs,
+                    totalTransportationEmission: transportationEmission
+                };
+                console.log("Adding product to existing project payload:", addProductPayload);
+                // Call the API to add product to existing project
+                const mappingResponse = yield (0, esgnow_service_1.addProductToProject)(effectiveContext, addProductPayload);
+                console.log('Product added to existing project response:', mappingResponse);
+                if (!mappingResponse.data) {
+                    throw new Error('Failed to add product to project (no data in response)');
+                }
                 console.log("About to call callbacks for existing project");
                 onClose();
                 onSaveComplete();
                 console.log("Callbacks completed for existing project");
             }
             catch (err) {
-                console.error("Error in existing project save:", err);
-                setError(err instanceof Error ? err.message : 'Failed to save mapping');
+                console.error("Error adding product to existing project:", err);
+                setError(err instanceof Error ? err.message : 'Failed to add product to project');
             }
             finally {
                 setIsLoading(false);
@@ -41409,10 +41563,14 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, produc
     });
     return (react_1.default.createElement(components_2.Modal, { className: "esgnow-save-results", show: true, onClose: onClose, title: "Save Transportation-Footprint Results" },
         react_1.default.createElement("div", { className: "esgnow-save-results-modal" },
+            hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found. Please create a new project.")),
             react_1.default.createElement("div", { className: "esgnow-card-container" },
                 react_1.default.createElement("div", { className: `esgnow-option-card ${selectedCard === 'new' ? 'esgnow-selected' : ''}`, onClick: () => setSelectedCard('new') },
                     react_1.default.createElement("h3", null, "Create New Project"),
-                    react_1.default.createElement("p", null, "Start a fresh project with these results."))),
+                    react_1.default.createElement("p", null, "Start a fresh project with these results.")),
+                hasExistingProjects && (react_1.default.createElement("div", { className: `esgnow-option-card ${selectedCard === 'existing' ? 'esgnow-selected' : ''}`, onClick: () => setSelectedCard('existing') },
+                    react_1.default.createElement("h3", null, "Add to Existing Project"),
+                    react_1.default.createElement("p", null, "Include these results in one of your existing projects.")))),
             selectedCard === 'new' && (react_1.default.createElement("div", { className: "esgnow-new-project-inputs" },
                 react_1.default.createElement(components_1.FormField, null,
                     react_1.default.createElement(components_1.Label, null,
@@ -41426,7 +41584,7 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, produc
                 react_1.default.createElement(components_1.FormField, null,
                     react_1.default.createElement(components_1.Label, null,
                         react_1.default.createElement("span", { style: { fontSize: '12px' } }, "Select an existing project")),
-                    react_1.default.createElement(components_1.Select, { options: projectOptions, selected: selectedProject, onChange: (newValue) => setSelectedProject(newValue), placeholder: "Select a project" })))),
+                    loadingProjects ? (react_1.default.createElement("div", { className: "esgnow-loading-indicator" }, "Loading projects...")) : projectOptions.length > 0 ? (react_1.default.createElement(components_1.Select, { options: projectOptions, selected: selectedProject, onChange: (newValue) => setSelectedProject(newValue), placeholder: "Select a project" })) : (react_1.default.createElement("div", { className: "esgnow-no-projects-message" }, "No existing projects found. Please create a new project."))))),
             error && (react_1.default.createElement("div", { className: "esgnow-error-message", style: { color: 'red', marginBottom: '10px' } }, error)),
             react_1.default.createElement("div", { className: "esgnow-save-button-container" },
                 react_1.default.createElement(components_1.Button, { title: isLoading ? "Saving..." : "Save", onClick: handleSave, className: "esgnow-save-results", disabled: isLoading })))));
@@ -41438,6 +41596,26 @@ const createMockContext = () => {
     return {
         executeComponent: (serviceName, route, method, params, body, headers, config) => {
             console.warn(`MOCK executeComponent called: ${serviceName} - ${route}`);
+            // Return specific mock data based on the route
+            if (route === '/api/projects') {
+                return Promise.resolve({
+                    data: {
+                        projects: [
+                            {
+                                _id: "mock_project_1",
+                                projectCode: "P001",
+                                projectName: "Mock Project 1"
+                            },
+                            {
+                                _id: "mock_project_2",
+                                projectCode: "P002",
+                                projectName: "Mock Project 2"
+                            }
+                        ]
+                    }
+                });
+            }
+            // Default response for other routes
             return Promise.resolve({
                 data: {
                     _id: "mock_" + Math.random().toString(36).substring(2),
@@ -41485,9 +41663,31 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
     const toggleExpand = () => setIsExpanded(!isExpanded);
     const handleViewToggle = (mode) => setViewMode(mode);
     const [showModal, setShowModal] = (0, react_1.useState)(false);
-    const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(true);
-    const [showProjects, setShowProjects] = (0, react_1.useState)(false); // Change this based on actual data
+    const [hasExistingProjects, setHasExistingProjects] = (0, react_1.useState)(false);
+    const [showProjects, setShowProjects] = (0, react_1.useState)(false);
     const [activeTab, setActiveTab] = (0, react_1.useState)('overview');
+    // Check if existing projects are available
+    (0, react_1.useEffect)(() => {
+        const checkForExistingProjects = () => __awaiter(void 0, void 0, void 0, function* () {
+            const effectiveContext = uxpContext || contextRef.current;
+            if (!effectiveContext)
+                return;
+            try {
+                const response = yield (0, esgnow_service_1.getAllProjects)(effectiveContext, {});
+                console.log("Projects response:", response);
+                // Check for projects in the response.data.projects array
+                if (response.data &&
+                    (Array.isArray(response.data.projects) && response.data.projects.length > 0) ||
+                    (Array.isArray(response.data) && response.data.length > 0)) {
+                    setHasExistingProjects(true);
+                }
+            }
+            catch (err) {
+                console.error("Error checking for existing projects:", err);
+            }
+        });
+        checkForExistingProjects();
+    }, [uxpContext, contextRef.current]);
     const donutChartOptions = {
         chart: {
             type: 'pie',
@@ -41738,7 +41938,9 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                     "Product: ", product === null || product === void 0 ? void 0 :
                     product.name)),
             react_1.default.createElement("div", { className: "esgnow-action-buttons" },
-                react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => setShowModal(true), className: "esgnow-save-results-button" },
+                react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => {
+                        setShowModal(true);
+                    }, className: "esgnow-save-results-button" },
                     react_1.default.createElement("span", { className: "esgnow-back-icon" }, "\u2190"),
                     "Back"),
                 react_1.default.createElement(components_1.Button, { title: "< Back", onClick: onBack, className: "esgnow-back-button" },
@@ -41767,7 +41969,7 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                     color: 'red',
                     fontWeight: 'bold'
                 } }, "System data connection issue detected. Your changes will be saved temporarily but may not persist after page refresh.")),
-            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), onSaveComplete: handleSaveComplete, hasExistingProjects: hasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
+            react_1.default.createElement(SaveResultsModal, { onClose: () => setShowModal(false), onSaveComplete: handleSaveComplete, hasExistingProjects: hasExistingProjects, setHasExistingProjects: setHasExistingProjects, product: product, transportationEmission: transportationEmission, transportLegs: transportLegs, packageWeight: packageWeight, palletWeight: palletWeight, uxpContext: uxpContext || contextRef.current })))));
 };
 exports["default"] = EmissionSummary;
 
@@ -45533,6 +45735,325 @@ exports["default"] = LCAWidget;
 
 /***/ }),
 
+/***/ "./src/lca/views/project-emissions.tsx":
+/*!*********************************************!*\
+  !*** ./src/lca/views/project-emissions.tsx ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const highcharts_1 = __importDefault(__webpack_require__(/*! highcharts */ "./node_modules/highcharts/highcharts.js"));
+const highcharts_react_official_1 = __importDefault(__webpack_require__(/*! highcharts-react-official */ "./node_modules/highcharts-react-official/dist/highcharts-react.min.js"));
+__webpack_require__(/*! ./project-emissions.scss */ "./src/lca/views/project-emissions.scss");
+const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
+const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = false, plan = 'basic' }) => {
+    // Reference to persist context
+    const contextRef = (0, react_1.useRef)(null);
+    // State for UI
+    const [activeTab, setActiveTab] = (0, react_1.useState)('overview');
+    const [selectedProductIndex, setSelectedProductIndex] = (0, react_1.useState)(null);
+    const [totalEmissions, setTotalEmissions] = (0, react_1.useState)({
+        materials: 0,
+        manufacturing: 0,
+        transportation: 0,
+        total: 0
+    });
+    // Update context ref
+    (0, react_1.useEffect)(() => {
+        if (uxpContext) {
+            contextRef.current = uxpContext;
+        }
+    }, [uxpContext]);
+    // Calculate total emissions from all products
+    (0, react_1.useEffect)(() => {
+        if (project && project.products) {
+            let materialsTotal = 0;
+            let manufacturingTotal = 0;
+            let transportationTotal = 0;
+            project.products.forEach(product => {
+                // Add transportation emissions
+                transportationTotal += product.totalTransportationEmission || 0;
+                // Add materials and manufacturing emissions if product details are available
+                if (product.productDetails) {
+                    materialsTotal += Number(product.productDetails.co2EmissionRawMaterials || 0);
+                    manufacturingTotal += Number(product.productDetails.co2EmissionFromProcesses || 0);
+                }
+            });
+            const totalEmission = materialsTotal + manufacturingTotal + transportationTotal;
+            setTotalEmissions({
+                materials: materialsTotal,
+                manufacturing: manufacturingTotal,
+                transportation: transportationTotal,
+                total: totalEmission
+            });
+        }
+    }, [project]);
+    // Chart options for the donut chart showing emission breakdown
+    const getDonutChartOptions = () => ({
+        chart: {
+            type: 'pie',
+            backgroundColor: null,
+            height: 350,
+            width: 600,
+            events: {
+                render() {
+                    const chart = this;
+                    const totalValue = totalEmissions.total.toFixed(3);
+                    if (!chart.customText) {
+                        chart.customText = chart.renderer
+                            .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
+                            .css({
+                            fontSize: '16px',
+                            fontWeight: 'bold',
+                            fontFamily: 'Comfortaa',
+                            color: '#424242',
+                            textAlign: 'center',
+                        })
+                            .attr({
+                            align: 'center',
+                            zIndex: 5,
+                        })
+                            .add();
+                    }
+                    else {
+                        chart.customText.attr({
+                            text: `${totalValue} KgCO₂e`,
+                        });
+                    }
+                },
+            },
+        },
+        title: {
+            text: '',
+        },
+        plotOptions: {
+            pie: {
+                innerSize: '60%',
+                dataLabels: {
+                    enabled: true,
+                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 'bold',
+                        fontFamily: 'Comfortaa',
+                        color: '#424242',
+                    },
+                },
+            },
+        },
+        series: [
+            {
+                name: 'Contribution',
+                type: 'pie',
+                data: [
+                    { name: 'Raw Materials', y: totalEmissions.materials, color: '#78BE7C' },
+                    { name: 'Manufacturing', y: totalEmissions.manufacturing, color: '#ffaa00' },
+                    { name: 'Transportation', y: totalEmissions.transportation, color: '#2A9D8F' },
+                ],
+            },
+        ],
+        legend: {
+            enabled: true,
+            layout: 'horizontal',
+            align: 'center',
+            verticalAlign: 'bottom',
+            symbolRadius: 5,
+            symbolHeight: 10,
+            symbolWidth: 10,
+            itemMarginTop: 5,
+            itemStyle: {
+                fontFamily: 'Comfortaa',
+                fontWeight: 'bold',
+                fontSize: '12px',
+            },
+        },
+        tooltip: {
+            pointFormat: '<b>{point.name}</b>: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+        },
+        credits: {
+            enabled: false,
+        },
+    });
+    // Render overview tab with project summary
+    const renderOverviewTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
+        react_1.default.createElement("div", { className: "esgnow-project-info-summary" },
+            react_1.default.createElement("div", { className: "esgnow-summary-details" },
+                react_1.default.createElement("div", { className: "esgnow-detail-grid" },
+                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
+                        react_1.default.createElement("strong", null, "Project Code"),
+                        react_1.default.createElement("p", null, project.projectCode || 'N/A')),
+                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
+                        react_1.default.createElement("strong", null, "Project Name"),
+                        react_1.default.createElement("p", null, project.projectName || 'N/A')),
+                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
+                        react_1.default.createElement("strong", null, "Number of Products"),
+                        react_1.default.createElement("p", null, project.products.length)),
+                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
+                        react_1.default.createElement("strong", null, "Created Date"),
+                        react_1.default.createElement("p", null, new Date(project.createdDate.$date).toLocaleDateString())),
+                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
+                        react_1.default.createElement("strong", null, "Last Modified"),
+                        react_1.default.createElement("p", null, new Date(project.modifiedDate.$date).toLocaleDateString()))))),
+        react_1.default.createElement("div", { className: "esgnow-widget esgnow-project-footprint" },
+            react_1.default.createElement("h3", null, "Project Carbon Footprint Breakdown"),
+            react_1.default.createElement("div", { className: "esgnow-widget-content" },
+                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: getDonutChartOptions() }))),
+        react_1.default.createElement("div", { className: "esgnow-widget esgnow-emission-metrics" },
+            react_1.default.createElement("h3", null, "Emission Metrics"),
+            react_1.default.createElement("div", { className: "esgnow-widget-content" },
+                react_1.default.createElement("div", { className: "esgnow-emission-metrics-grid" },
+                    react_1.default.createElement("div", { className: "esgnow-metric-card" },
+                        react_1.default.createElement("h4", null, "Total Carbon Footprint"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-value" },
+                            totalEmissions.total.toFixed(3),
+                            " KgCO\u2082e")),
+                    react_1.default.createElement("div", { className: "esgnow-metric-card" },
+                        react_1.default.createElement("h4", null, "Raw Materials"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-value" },
+                            totalEmissions.materials.toFixed(3),
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-percentage" },
+                            totalEmissions.total > 0
+                                ? ((totalEmissions.materials / totalEmissions.total) * 100).toFixed(1)
+                                : '0',
+                            "%")),
+                    react_1.default.createElement("div", { className: "esgnow-metric-card" },
+                        react_1.default.createElement("h4", null, "Manufacturing"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-value" },
+                            totalEmissions.manufacturing.toFixed(3),
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-percentage" },
+                            totalEmissions.total > 0
+                                ? ((totalEmissions.manufacturing / totalEmissions.total) * 100).toFixed(1)
+                                : '0',
+                            "%")),
+                    react_1.default.createElement("div", { className: "esgnow-metric-card" },
+                        react_1.default.createElement("h4", null, "Transportation"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-value" },
+                            totalEmissions.transportation.toFixed(3),
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("p", { className: "esgnow-metric-percentage" },
+                            totalEmissions.total > 0
+                                ? ((totalEmissions.transportation / totalEmissions.total) * 100).toFixed(1)
+                                : '0',
+                            "%")))))));
+    // Render products tab with list of products
+    const renderProductsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
+        react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-list" },
+            react_1.default.createElement("h3", null, "Products in this Project"),
+            react_1.default.createElement("div", { className: "esgnow-widget-content" },
+                react_1.default.createElement("table", { className: "esgnow-products-table" },
+                    react_1.default.createElement("thead", null,
+                        react_1.default.createElement("tr", null,
+                            react_1.default.createElement("th", null, "Product"),
+                            react_1.default.createElement("th", null, "Raw Materials"),
+                            react_1.default.createElement("th", null, "Manufacturing"),
+                            react_1.default.createElement("th", null, "Transportation"),
+                            react_1.default.createElement("th", null, "Total Impact"),
+                            react_1.default.createElement("th", null, "Actions"))),
+                    react_1.default.createElement("tbody", null, project.products.map((product, index) => {
+                        const productDetails = product.productDetails;
+                        const materialImpact = productDetails ? Number(productDetails.co2EmissionRawMaterials || 0) : 0;
+                        const manufacturingImpact = productDetails ? Number(productDetails.co2EmissionFromProcesses || 0) : 0;
+                        const transportImpact = product.totalTransportationEmission || 0;
+                        const totalImpact = materialImpact + manufacturingImpact + transportImpact;
+                        return (react_1.default.createElement("tr", { key: product._id.$oid },
+                            react_1.default.createElement("td", null, (productDetails === null || productDetails === void 0 ? void 0 : productDetails.name) || `Product ${index + 1}`),
+                            react_1.default.createElement("td", null,
+                                materialImpact.toFixed(3),
+                                " KgCO\u2082e"),
+                            react_1.default.createElement("td", null,
+                                manufacturingImpact.toFixed(3),
+                                " KgCO\u2082e"),
+                            react_1.default.createElement("td", null,
+                                transportImpact.toFixed(3),
+                                " KgCO\u2082e"),
+                            react_1.default.createElement("td", null,
+                                totalImpact.toFixed(3),
+                                " KgCO\u2082e"),
+                            react_1.default.createElement("td", null,
+                                react_1.default.createElement(components_1.Button, { title: "View Details", onClick: () => setSelectedProductIndex(index), className: "esgnow-view-product-button" }))));
+                    })))))));
+    // Render individual product details
+    const renderProductDetails = () => {
+        if (selectedProductIndex === null || !project.products[selectedProductIndex]) {
+            return null;
+        }
+        const selectedProduct = project.products[selectedProductIndex];
+        const productDetails = selectedProduct.productDetails;
+        if (!productDetails) {
+            return (react_1.default.createElement("div", { className: "esgnow-product-details" },
+                react_1.default.createElement("h3", null, "Product Details Not Available"),
+                react_1.default.createElement(components_1.Button, { title: "Back to Products", onClick: () => setSelectedProductIndex(null), className: "esgnow-back-button" })));
+        }
+        return (react_1.default.createElement("div", { className: "esgnow-product-details" },
+            react_1.default.createElement("div", { className: "esgnow-product-details-header" },
+                react_1.default.createElement(components_1.Button, { title: "Back to Products", onClick: () => setSelectedProductIndex(null), className: "esgnow-back-button" },
+                    react_1.default.createElement("span", { className: "esgnow-back-icon" }, "\u2190"),
+                    "Back to Products")),
+            react_1.default.createElement(emission_summary_1.default, { product: productDetails, transportationEmission: selectedProduct.totalTransportationEmission.toString(), transportLegs: selectedProduct.transportationLegs || [], uxpContext: uxpContext || contextRef.current, packageWeight: selectedProduct.packagingWeight, palletWeight: selectedProduct.palletWeight, hideHeader: true, plan: plan })));
+    };
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("div", { className: "esgnow-title-section" },
+                react_1.default.createElement("h1", { className: "esgnow-dashboard-title" }, "Project Emission Summary"),
+                react_1.default.createElement("p", { className: "esgnow-subheading" },
+                    "Project: ",
+                    project.projectName || project.projectCode || 'N/A')),
+            react_1.default.createElement("div", { className: "esgnow-action-buttons" },
+                react_1.default.createElement(components_1.Button, { title: "Back", onClick: onBack, className: "esgnow-back-button" },
+                    react_1.default.createElement("span", { className: "esgnow-back-icon" }, "\u2190"),
+                    "Back"))))),
+        selectedProductIndex !== null ? (
+        // Show individual product details
+        renderProductDetails()) : (
+        // Show project tabs
+        react_1.default.createElement(react_1.default.Fragment, null,
+            react_1.default.createElement("div", { className: "esgnow-tabs-container" },
+                react_1.default.createElement("div", { className: "esgnow-tabs" },
+                    react_1.default.createElement("button", { className: `esgnow-tab-button ${activeTab === 'overview' ? 'esgnow-active' : ''}`, onClick: () => setActiveTab('overview') }, "Project Overview"),
+                    react_1.default.createElement("button", { className: `esgnow-tab-button ${activeTab === 'products' ? 'esgnow-active' : ''}`, onClick: () => setActiveTab('products') },
+                        "Products (",
+                        project.products.length,
+                        ")")),
+                activeTab === 'overview' && renderOverviewTab(),
+                activeTab === 'products' && renderProductsTab())))));
+};
+exports["default"] = ProjectEmissionSummary;
+
+
+/***/ }),
+
 /***/ "./src/lca/views/projects.tsx":
 /*!************************************!*\
   !*** ./src/lca/views/projects.tsx ***!
@@ -45582,15 +46103,60 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
+const project_emissions_1 = __importDefault(__webpack_require__(/*! ./project-emissions */ "./src/lca/views/project-emissions.tsx"));
+// Format project data to match the ProjectEmissionSummary expected structure
+const formatProjectForEmissionSummary = (project) => {
+    return {
+        _id: {
+            $oid: project._id
+        },
+        projectID: {
+            $oid: project._id
+        },
+        projectName: project.projectName,
+        projectCode: project.projectCode,
+        products: project.products.map(product => {
+            var _a, _b;
+            return ({
+                productID: {
+                    $oid: product.productID || product._id
+                },
+                packagingWeight: product.packagingWeight || 0,
+                palletWeight: product.palletWeight || 0,
+                totalTransportationEmission: product.totalTransportationEmission || ((_a = product.impacts) === null || _a === void 0 ? void 0 : _a.impactByTransportation) || 0,
+                transportationLegs: product.transportationLegs || [{
+                        id: 1,
+                        transportMode: "Unknown",
+                        originCountry: "Unknown",
+                        originGateway: "Unknown",
+                        destinationCountry: "Unknown",
+                        destinationGateway: "Unknown",
+                        transportEmission: ((_b = product.impacts) === null || _b === void 0 ? void 0 : _b.impactByTransportation) || 0
+                    }],
+                _id: {
+                    $oid: product._id
+                },
+                productDetails: createProductFromAPI(product, project)
+            });
+        }),
+        createdDate: {
+            $date: new Date().toISOString()
+        },
+        modifiedDate: {
+            $date: new Date().toISOString()
+        },
+        __v: 0
+    };
+};
 // Create product info from API data for EmissionSummary
-const createProductFromAPI = (item) => {
+const createProductFromAPI = (product, project) => {
     var _a, _b, _c, _d, _e, _f;
-    if (!item || !item.products || item.products.length === 0) {
+    if (!product) {
         // Return empty data with proper project code if available
         return {
-            _id: (item === null || item === void 0 ? void 0 : item._id) || 'unknown_id',
+            _id: (project === null || project === void 0 ? void 0 : project._id) || 'unknown_id',
             name: 'Unknown Product',
-            code: (item === null || item === void 0 ? void 0 : item.projectCode) || 'Unknown Code',
+            code: (project === null || project === void 0 ? void 0 : project.projectCode) || 'Unknown Code',
             category: 'Unknown Category',
             subCategory: 'Unknown Subcategory',
             weight: 0,
@@ -45605,32 +46171,24 @@ const createProductFromAPI = (item) => {
             productManufacturingProcess: []
         };
     }
-    // Get the product data
-    const product = item.products[0];
-    console.log('[DEBUG] Creating product from API data:', JSON.stringify(product, null, 2));
     // Log exact field values to check what's available
-    console.log('[DEBUG] Available top-level fields in item:', Object.keys(item).join(', '));
-    console.log('[DEBUG] Project code from item:', item.projectCode);
+    console.log('[DEBUG] Available product fields:', Object.keys(product).join(', '));
     // Get the product code from various possible sources
-    console.log('[DEBUG] Looking for product code in product:', product.code, product.productCode);
-    console.log('[DEBUG] Looking for project code in item:', item.projectCode);
+    console.log('[DEBUG] Looking for product code:', product.code, product.productCode);
     // Try various ways to get the code
     let code = 'Unknown Code';
     if (product.code && product.code !== '') {
         code = product.code;
-        console.log('[DEBUG] Using product.code:', code);
     }
     else if (product.productCode && product.productCode !== '') {
         code = product.productCode;
-        console.log('[DEBUG] Using product.productCode:', code);
     }
-    else if (item.projectCode && item.projectCode !== '') {
-        code = item.projectCode;
-        console.log('[DEBUG] Using item.projectCode as fallback:', code);
+    else if ((project === null || project === void 0 ? void 0 : project.projectCode) && project.projectCode !== '') {
+        code = project.projectCode;
     }
     // Create a ProductInfoSummary object with all required fields
     return {
-        _id: product._id || product.productId || item._id || 'unknown_id',
+        _id: product._id || product.productID || 'unknown_id',
         name: product.name || product.productName || 'Unknown Product',
         code: code,
         category: product.category || product.productCategory || 'Unknown Category',
@@ -45667,13 +46225,14 @@ const createProductFromAPI = (item) => {
     };
 };
 const Projects = (props) => {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o;
+    var _a, _b, _c, _d, _e, _f, _g, _h, _j;
     const [projects, setProjects] = (0, react_1.useState)([]);
     const [isLoading, setIsLoading] = (0, react_1.useState)(true);
     const [error, setError] = (0, react_1.useState)(null);
     const [showModal, setShowModal] = (0, react_1.useState)(false);
-    const [item, setItem] = (0, react_1.useState)();
+    const [selectedProject, setSelectedProject] = (0, react_1.useState)(null);
     const [plan, setPlan] = (0, react_1.useState)(null);
+    const [useMultiProductView, setUseMultiProductView] = (0, react_1.useState)(true);
     const memorizedSearch = (0, react_1.useMemo)(() => ({ enabled: true }), []);
     (0, react_1.useEffect)(() => {
         fetchProjects();
@@ -45692,10 +46251,6 @@ const Projects = (props) => {
                     throw new Error(`Failed to fetch impacts for project ${project.code}`);
                 }
                 console.log(`[DEBUG] Detailed project impact for ${project.code}:`, JSON.stringify(impactResponse.data, null, 2));
-                // Log product structure details if available
-                if (impactResponse.data.products && impactResponse.data.products.length > 0) {
-                    console.log(`[DEBUG] First product structure for ${project.code}:`, Object.keys(impactResponse.data.products[0]).join(', '));
-                }
                 return yield impactResponse.data;
             })));
             console.log('[DEBUG] All projects with impacts:', projectsWithImpacts);
@@ -45719,19 +46274,10 @@ const Projects = (props) => {
                 throw new Error(`Failed to fetch impacts for project ${project.code}`);
             }
             console.log(`[DEBUG] getProjects - Impact data for ${project.code}:`, JSON.stringify(impactResponse.data, null, 2));
-            // Log field structure
-            if (impactResponse.data.products && impactResponse.data.products.length > 0) {
-                console.log(`[DEBUG] Project ${project.code} product fields:`, Object.keys(impactResponse.data.products[0]).join(', '));
-                // Check if code is present
-                console.log(`[DEBUG] Project ${project.code} has product with code:`, impactResponse.data.products[0].code ||
-                    impactResponse.data.products[0].productCode ||
-                    'NO_CODE_FOUND');
-            }
             return yield impactResponse.data;
         })));
         if (!!error)
             return { items: [] };
-        console.log('[DEBUG] getProjects - All project codes:', projectsWithImpacts.map(p => p.projectCode).join(', '));
         return { items: projectsWithImpacts };
     }), []);
     const columns = [
@@ -45768,22 +46314,19 @@ const Projects = (props) => {
             react_1.default.createElement(components_1.TitleBar, { title: 'My Projects' }),
             react_1.default.createElement("div", { style: { color: 'red' } }, error)));
     }
-    console.log('[DEBUG] Rendering Projects component, showModal =', showModal);
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(components_1.Modal, { title: "Emission Summary", show: showModal, onClose: () => setShowModal(false) },
-            console.log('[DEBUG] Modal is showing:', showModal),
-            item && console.log('[DEBUG] Raw item data:', JSON.stringify(item, null, 2)),
-            ((_a = item === null || item === void 0 ? void 0 : item.products) === null || _a === void 0 ? void 0 : _a.length) > 0 && console.log('[DEBUG] Raw product data:', JSON.stringify(item.products[0], null, 2)),
-            ((_b = item === null || item === void 0 ? void 0 : item.products) === null || _b === void 0 ? void 0 : _b.length) > 0 && console.log('[DEBUG] Available product fields:', Object.keys(item.products[0]).join(', ')),
-            react_1.default.createElement(emission_summary_1.default, { plan: plan || 'basic', product: createProductFromAPI(item), transportationEmission: ((_f = (_e = (_d = (_c = item === null || item === void 0 ? void 0 : item.products) === null || _c === void 0 ? void 0 : _c[0]) === null || _d === void 0 ? void 0 : _d.impacts) === null || _e === void 0 ? void 0 : _e.impactByTransportation) === null || _f === void 0 ? void 0 : _f.toString()) ||
-                    ((_g = item === null || item === void 0 ? void 0 : item.totalTransportationImpact) === null || _g === void 0 ? void 0 : _g.toString()) ||
-                    "0", onBack: () => setShowModal(false), transportLegs: ((_j = (_h = item === null || item === void 0 ? void 0 : item.products) === null || _h === void 0 ? void 0 : _h[0]) === null || _j === void 0 ? void 0 : _j.transportationLegs) || [{
-                        id: 1,
-                        transportMode: "Unknown",
-                        originGateway: "Unknown",
-                        destinationGateway: "Unknown",
-                        transportEmission: (item === null || item === void 0 ? void 0 : item.totalTransportationImpact) || 0
-                    }], uxpContext: props.uxpContext, packageWeight: ((_l = (_k = item === null || item === void 0 ? void 0 : item.products) === null || _k === void 0 ? void 0 : _k[0]) === null || _l === void 0 ? void 0 : _l.packagingWeight) || 0, palletWeight: ((_o = (_m = item === null || item === void 0 ? void 0 : item.products) === null || _m === void 0 ? void 0 : _m[0]) === null || _o === void 0 ? void 0 : _o.palletWeight) || 0, hideHeader: true })),
+        react_1.default.createElement(components_1.Modal, { title: "Project Emission Summary", show: showModal, onClose: () => setShowModal(false), className: "esgnow-project-modal" }, useMultiProductView && selectedProject && selectedProject.products && selectedProject.products.length > 0 ? (react_1.default.createElement(project_emissions_1.default, { project: formatProjectForEmissionSummary(selectedProject), uxpContext: props.uxpContext, onBack: () => setShowModal(false), hideHeader: true, plan: plan || 'basic' })) : (selectedProject && selectedProject.products && selectedProject.products.length > 0 && (react_1.default.createElement(emission_summary_1.default, { plan: plan || 'basic', product: createProductFromAPI(selectedProject.products[0], selectedProject), transportationEmission: ((_b = (_a = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _a === void 0 ? void 0 : _a.totalTransportationEmission) === null || _b === void 0 ? void 0 : _b.toString()) ||
+                ((_e = (_d = (_c = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _c === void 0 ? void 0 : _c.impacts) === null || _d === void 0 ? void 0 : _d.impactByTransportation) === null || _e === void 0 ? void 0 : _e.toString()) ||
+                ((_f = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.totalTransportationImpact) === null || _f === void 0 ? void 0 : _f.toString()) ||
+                "0", onBack: () => setShowModal(false), transportLegs: ((_g = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _g === void 0 ? void 0 : _g.transportationLegs) || [{
+                    id: 1,
+                    transportMode: "Unknown",
+                    originCountry: "Unknown",
+                    originGateway: "Unknown",
+                    destinationCountry: "Unknown",
+                    destinationGateway: "Unknown",
+                    transportEmission: (selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.totalTransportationImpact) || 0
+                }], uxpContext: props.uxpContext, packageWeight: ((_h = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _h === void 0 ? void 0 : _h.packagingWeight) || 0, palletWeight: ((_j = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _j === void 0 ? void 0 : _j.palletWeight) || 0, hideHeader: true })))),
         react_1.default.createElement(components_1.CRUDComponent, { list: {
                 title: 'My Projects',
                 columns: columns,
@@ -45793,13 +46336,14 @@ const Projects = (props) => {
                 },
                 search: memorizedSearch,
                 onClickRow: (e, item) => {
+                    var _a;
                     console.log('[DEBUG] Row clicked, raw item data:', JSON.stringify(item, null, 2));
-                    // Create a direct product info object for debugging
-                    if (item.products && item.products.length > 0) {
-                        console.log('[DEBUG] Product fields from API:', Object.keys(item.products[0]).map(key => `${key}: ${JSON.stringify(item.products[0][key])}`).join('\n'));
-                    }
-                    // Create a very simple reference to just the original item
-                    setItem(item);
+                    // Check if this project has multiple products
+                    const hasMultipleProducts = item.products && item.products.length > 1;
+                    console.log(`[DEBUG] Project has ${((_a = item.products) === null || _a === void 0 ? void 0 : _a.length) || 0} products. Using multi-product view: ${hasMultipleProducts}`);
+                    // Use the multi-product view for projects with multiple products
+                    setUseMultiProductView(hasMultipleProducts);
+                    setSelectedProject(item);
                     setShowModal(true);
                 }
             } })));
