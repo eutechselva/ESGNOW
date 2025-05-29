@@ -15,7 +15,7 @@ interface ProductInfoSummaryProps {
     hideDelete?: boolean;
     uxpContext: IContextProvider;
     plan: string;
-    show?: boolean; 
+    show?: boolean;
 }
 
 const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClose, onDelete, hideHeader, uxpContext, hideDelete, plan }) => {
@@ -60,12 +60,12 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 fontFamily: 'poppins',
                                 color: '#424242',
                                 textAlign: 'center',
-                            
+
                             })
                             .attr({
                                 align: 'center',
                                 zIndex: 5,
-                                
+
                             })
                             .add();
                     } else {
@@ -160,15 +160,15 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             <strong>Country of Manufacture</strong>
                             <p>
                                 {product.countryOfOrigin === "CN" ? "China" :
-                                product.countryOfOrigin === "VN" ? "Vietnam" :
-                                product.countryOfOrigin}
+                                    product.countryOfOrigin === "VN" ? "Vietnam" :
+                                        product.countryOfOrigin}
                             </p>
                         </div>
                     </div>
                     <div className="esgnow-description-field">
                         <strong>Product Description</strong>
                         <div className="esgnow-rich-text-editor">
-                            <textarea 
+                            <textarea
                                 defaultValue={product.description}
                                 className="esgnow-editable-description"
                                 rows={4}
@@ -220,13 +220,15 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                         <tr key={item.materialClass}>
                                             <td>{item.materialClass}</td>
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
-                                            <td> {parseFloat(item.emissionFactor).toFixed(3)} KgCO₂e ({parseFloat(item.weight).toFixed(3)} Kg)</td>
+                                            <td> {parseFloat(item.emissionFactor).toFixed(3)} KgCO₂e
+                                                {/* ({parseFloat(item.weight).toFixed(3)} Kg) */}
+                                            </td>
                                             {/* <td className="esgnow-reasoning-cell">{item.reasoning || "-"}</td> */}
                                             <td>
                                                 <div className="esgnow-percentage-bar">
-                                                    <div 
-                                                        className="esgnow-percentage-fill" 
-                                                        style={{width: `${percentage}%`, backgroundColor: '#78BE7C'}}
+                                                    <div
+                                                        className="esgnow-percentage-fill"
+                                                        style={{ width: `${percentage}%`, backgroundColor: '#78BE7C' }}
                                                     ></div>
                                                     <span>{percentage}%</span>
                                                 </div>
@@ -277,9 +279,9 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             <td>{parseFloat(item.emissionFactor).toFixed(3)} KgCO₂e</td>
                                             <td>
                                                 <div className="esgnow-percentage-bar">
-                                                    <div 
-                                                        className="esgnow-percentage-fill" 
-                                                        style={{width: `${percentage}%`, backgroundColor: '#ffaa00'}}
+                                                    <div
+                                                        className="esgnow-percentage-fill"
+                                                        style={{ width: `${percentage}%`, backgroundColor: '#ffaa00' }}
                                                     ></div>
                                                     <span>{percentage}%</span>
                                                 </div>
@@ -298,10 +300,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     const renderInventoryTab = () => (
         <div className="esgnow-tab-content">
             <div className="esgnow-widget esgnow-inventory-info">
-              
-                    <h3>Inventory Information</h3>
-                    <div className="esgnow-view-toggle">
-                        {/* <button
+
+                <h3>Inventory Information</h3>
+                <div className="esgnow-view-toggle">
+                    {/* <button
                             className={`esgnow-toggle-button ${viewMode === 'list' ? 'active' : ''}`}
                             onClick={() => setViewMode('list')}
                         >
@@ -313,8 +315,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         >
                             Tree View
                         </button> */}
-                    </div>
-               
+                </div>
+
 
                 {viewMode === 'tree' ? (
                     <div className="esgnow-inventory-tree">
@@ -327,7 +329,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 {(() => {
                                     // Create a map to merge processes with materials
                                     const mergedItems = new Map();
-                                    
+
                                     // First, add all manufacturing processes
                                     product.productManufacturingProcess.forEach((item: any) => {
                                         const key = `${item.materialClass}-${item.specificMaterial}`;
@@ -336,7 +338,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             reasoning: "" // Default empty reasoning
                                         });
                                     });
-                                    
+
                                     // Then, merge with materials data (including reasoning)
                                     product.materials.forEach((material: any) => {
                                         const key = `${material.materialClass}-${material.specificMaterial}`;
@@ -349,7 +351,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             });
                                         }
                                     });
-                                    
+
                                     // Convert map values to array and render
                                     return Array.from(mergedItems.values()).map((item: any) => (
                                         <div key={`${item.materialClass}-${item.specificMaterial}`} className="esgnow-tree-sub-item">
@@ -381,7 +383,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 {(() => {
                                     // Create a map to merge processes with materials based on materialClass and specificMaterial
                                     const mergedItems = new Map();
-                                    
+
                                     // First, add all manufacturing processes
                                     product.productManufacturingProcess.forEach((item: any) => {
                                         const key = `${item.materialClass}-${item.specificMaterial}`;
@@ -390,7 +392,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             reasoning: "" // Default empty reasoning
                                         });
                                     });
-                                    
+
                                     // Then, merge with materials data (including reasoning)
                                     product.materials.forEach((material: any) => {
                                         const key = `${material.materialClass}-${material.specificMaterial}`;
@@ -403,7 +405,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             });
                                         }
                                     });
-                                    
+
                                     // Convert map values to array and render
                                     return Array.from(mergedItems.values()).map((item: any) => (
                                         <tr key={`${item.materialClass}-${item.specificMaterial}`}>
@@ -443,9 +445,9 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                 Back
                             </Button> */}
                             {!hideDelete && (
-                                <Button 
-                                    title="Delete" 
-                                    onClick={deleteProduct} 
+                                <Button
+                                    title="Delete"
+                                    onClick={deleteProduct}
                                     className="esgnow-delete-button"
                                 >
                                     <span className="esgnow-delete-icon">×</span>
@@ -459,25 +461,25 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
 
             <div className="esgnow-tabs-container">
                 <div className="esgnow-tabs">
-                    <button 
+                    <button
                         className={`esgnow-tab-button ${activeTab === 'overview' ? 'active' : ''}`}
                         onClick={() => setActiveTab('overview')}
                     >
                         Overview
                     </button>
-                    <button 
+                    <button
                         className={`esgnow-tab-button ${activeTab === 'materials' ? 'active' : ''}`}
                         onClick={() => setActiveTab('materials')}
                     >
                         Raw Materials
                     </button>
-                    <button 
+                    <button
                         className={`esgnow-tab-button ${activeTab === 'manufacturing' ? 'active' : ''}`}
                         onClick={() => setActiveTab('manufacturing')}
                     >
                         Manufacturing
                     </button>
-                    <button 
+                    <button
                         className={`esgnow-tab-button ${activeTab === 'inventory' ? 'active' : ''}`}
                         onClick={() => setActiveTab('inventory')}
                     >
