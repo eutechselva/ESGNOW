@@ -160,6 +160,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                     palletWeight={includePallet ? palletWeight : 0}
                     plan={plan}
                     onCloseModal={onCloseAll}
+                 
                 />
             </Modal>
         </div>
