@@ -19,7 +19,7 @@ const ESGNowFAQ: React.FC = () => {
             <div className="esgnow-question">1. What is ESG Now?</div>
             <div className="esgnow-answer">
                 <p>ESG Now is a software solution built on iviva, a Composable Integration Platform that enables the rapid development of modular, scalable applications. ESG Now leverages this capability to deliver dedicated tools for environmental reporting and product carbon footprint analysis. </p>
-                <p>It offers two key modules:</p>ESG_now_logo
+                <p>It offers two key modules:</p>
                 <ul>
                     <li><strong>Carbon Accounting:</strong> For tracking and reporting organisational carbon emissions.</li>
                     <li><strong>Procurement:</strong> For calculating the product carbon footprint using Life Cycle Assessment.</li>

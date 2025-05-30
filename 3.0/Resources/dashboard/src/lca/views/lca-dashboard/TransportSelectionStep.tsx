@@ -260,10 +260,10 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                 </div>
             ))}
 
-            <div className="add-transport-leg-container">
+            <div className="esgnow-add-transport-leg-container">
                 <IconButton
                     type="plus"
-                    className="add-transport-leg-button"
+                    className="esgnow-add-transport-leg-button"
                     onClick={addTransportLeg}
                 />
             </div>

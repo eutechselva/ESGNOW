@@ -420,6 +420,7 @@ const handleNext = () => {
                       setIsEmissionSummaryVisible(false);
                     }}
                     uxpContext={uxpContext}
+                    onPrevious={handlePrevious}
                 />
             ),
         },
