@@ -29,6 +29,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     const [aiGenerating, setAIGenerating] = useState(false);
 
     const [errorTotalWeight, setErrorTotalWeight] = useState<string>("");
+    const [errorCountry, setErrorCountry] = useState<string>("");
 
     const [categoryData, setCategoryData] = useState<{ [key: string]: string[] }>({}); // Store the entire category data
 
@@ -125,11 +126,24 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
     };
 
     const handleNext = () => {
+        let hasError = false;
+
         if (totalWeight === "" || parseFloat(totalWeight) <= 0) {
             setErrorTotalWeight("Total weight must be a positive number");
-            return
-
+            hasError = true;
+        } else {
+            setErrorTotalWeight("");
         }
+
+        if (!country) {
+            setErrorCountry("Country of Manufacture is required");
+            hasError = true;
+        } else {
+            setErrorCountry("");
+        }
+
+        if (hasError) return;
+
         const categoryData: ProductCategoryInfo = {
             category: productCategory,
             subCategory: productSubCategory,
@@ -142,6 +156,7 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
         };
         onNext?.(categoryData);
     };
+
 
     return (
         <div className="modal-content">
@@ -223,7 +238,6 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                 <Label><span style={{ fontSize: '12px' }}>Country of Manufacture</span></Label>
                 <Select
                     options={[
-
                         { label: 'China', value: 'CN' },
                         { label: 'Czech Republic', value: 'CZ' },
                         { label: 'France', value: 'FR' },
@@ -236,13 +250,16 @@ const ProductCategorization: React.FC<ProductCategorizationProps> = ({ productCa
                         { label: 'United Kingdom', value: 'UK' },
                         { label: 'United States', value: 'US' },
                         { label: 'Vietnam', value: 'VN' },
-                        
-                        // Add more countries as needed
                     ]}
                     selected={country}
-                    onChange={(value) => setCountry(value)}
+                    onChange={(value) => {
+                        setCountry(value);
+                        setErrorCountry("");
+                    }}
                 />
+                {errorCountry && <div className="error-text">{errorCountry}</div>}
             </FormField>
+
 
 
 
