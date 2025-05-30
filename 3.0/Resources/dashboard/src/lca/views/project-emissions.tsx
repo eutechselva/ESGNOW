@@ -13,9 +13,18 @@ interface ProjectProduct {
   productID: {
     $oid: string;
   };
+  productCode : string;
   productName : string;
+  description : string;
+  countryOfOrigin : string;
+  category : string;
+  subCategory : string;
+  images : [];
+  materials : [];
+  productManufacturingProcess : [];
   packagingWeight: number;
   palletWeight: number;
+  weight : number;
   totalTransportationEmission: number;
   co2EmissionFromProcesses: number;
   co2EmissionRawMaterials: number;
@@ -190,6 +199,27 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
     },
   });
 
+  // Convert ProjectProduct to ProductInfoSummary for EmissionSummary component
+  const convertProjectProductToProductInfo = (projectProduct: ProjectProduct): ProductInfoSummary => {
+    return {
+      _id: projectProduct._id.$oid,
+      icon: '',
+      code: projectProduct.productCode || 'Unknown Code',
+      name: projectProduct.productName || 'Unknown Product',
+      description: projectProduct.description || 'Product from project',
+      countryOfOrigin: projectProduct.countryOfOrigin || 'Unknown',
+      category: projectProduct.category || 'Unknown Category',
+      subCategory: projectProduct.subCategory || 'Unknown Subcategory',
+      weight: projectProduct.weight || 0,
+      images: projectProduct.images || [],
+      co2Emission: projectProduct.co2EmissionRawMaterials + projectProduct.co2EmissionFromProcesses + projectProduct.transportationEmission,
+      co2EmissionRawMaterials: projectProduct.co2EmissionRawMaterials,
+      co2EmissionFromProcesses: projectProduct.co2EmissionFromProcesses,
+      productManufacturingProcess: projectProduct.productManufacturingProcess || [],
+      materials: projectProduct.materials ||[]
+    } as ProductInfoSummary;
+  };
+
   // Render overview tab with project summary
   const renderOverviewTab = () => (
     <div className="esgnow-tab-content">
@@ -313,7 +343,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
     }
 
     const selectedProduct = project.products[selectedProductIndex];
-    const productDetails = selectedProduct;
+    const productDetails = convertProjectProductToProductInfo(selectedProduct);
 
     if (!productDetails) {
       return (
@@ -343,7 +373,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
 
         <EmissionSummary
           product={productDetails}
-          transportationEmission={selectedProduct.totalTransportationEmission.toString()}
+          transportationEmission={selectedProduct.transportationEmission.toString()}
           transportLegs={selectedProduct.transportationLegs || []}
           uxpContext={uxpContext || contextRef.current}
           packageWeight={selectedProduct.packagingWeight}

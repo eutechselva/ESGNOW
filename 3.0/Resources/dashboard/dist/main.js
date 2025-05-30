@@ -45895,6 +45895,26 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
             enabled: false,
         },
     });
+    // Convert ProjectProduct to ProductInfoSummary for EmissionSummary component
+    const convertProjectProductToProductInfo = (projectProduct) => {
+        return {
+            _id: projectProduct._id.$oid,
+            icon: '',
+            code: projectProduct.productCode || 'Unknown Code',
+            name: projectProduct.productName || 'Unknown Product',
+            description: projectProduct.description || 'Product from project',
+            countryOfOrigin: projectProduct.countryOfOrigin || 'Unknown',
+            category: projectProduct.category || 'Unknown Category',
+            subCategory: projectProduct.subCategory || 'Unknown Subcategory',
+            weight: projectProduct.weight || 0,
+            images: projectProduct.images || [],
+            co2Emission: projectProduct.co2EmissionRawMaterials + projectProduct.co2EmissionFromProcesses + projectProduct.transportationEmission,
+            co2EmissionRawMaterials: projectProduct.co2EmissionRawMaterials,
+            co2EmissionFromProcesses: projectProduct.co2EmissionFromProcesses,
+            productManufacturingProcess: projectProduct.productManufacturingProcess || [],
+            materials: projectProduct.materials || []
+        };
+    };
     // Render overview tab with project summary
     const renderOverviewTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-project-info-summary" },
@@ -45991,7 +46011,7 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
             return null;
         }
         const selectedProduct = project.products[selectedProductIndex];
-        const productDetails = selectedProduct;
+        const productDetails = convertProjectProductToProductInfo(selectedProduct);
         if (!productDetails) {
             return (react_1.default.createElement("div", { className: "esgnow-product-details" },
                 react_1.default.createElement("h3", null, "Product Details Not Available"),
@@ -46002,7 +46022,7 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
                 react_1.default.createElement(components_1.Button, { title: "Back to Products", onClick: () => setSelectedProductIndex(null), className: "esgnow-back-button" },
                     react_1.default.createElement("span", { className: "esgnow-back-icon" }, "\u2190"),
                     "Back to Products")),
-            react_1.default.createElement(emission_summary_1.default, { product: productDetails, transportationEmission: selectedProduct.totalTransportationEmission.toString(), transportLegs: selectedProduct.transportationLegs || [], uxpContext: uxpContext || contextRef.current, packageWeight: selectedProduct.packagingWeight, palletWeight: selectedProduct.palletWeight, hideHeader: true, plan: plan })));
+            react_1.default.createElement(emission_summary_1.default, { product: productDetails, transportationEmission: selectedProduct.transportationEmission.toString(), transportLegs: selectedProduct.transportationLegs || [], uxpContext: uxpContext || contextRef.current, packageWeight: selectedProduct.packagingWeight, palletWeight: selectedProduct.palletWeight, hideHeader: true, plan: plan })));
     };
     return (react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
