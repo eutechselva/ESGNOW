@@ -13,16 +13,22 @@ interface ProjectProduct {
   productID: {
     $oid: string;
   };
+  productName : string;
   packagingWeight: number;
   palletWeight: number;
   totalTransportationEmission: number;
+  co2EmissionFromProcesses: number;
+  co2EmissionRawMaterials: number;
+  transportationEmission: number;
+  impacts : [];
   transportationLegs: TransportLeg[];
   _id: {
     $oid: string;
   };
-  // These will be populated after fetching product details
-  productDetails?: ProductInfoSummary;
+
 }
+
+
 
 // Define the structure for a project with multiple products
 interface Project {
@@ -35,6 +41,10 @@ interface Project {
   projectName?: string;
   projectCode?: string;
   products: ProjectProduct[];
+  totalManufacturingImpact: number;
+  totalMaterialsImpact: number;
+  totalProjectImpact: number;
+  totalTransportationImpact: number;
   createdDate: {
     $date: string;
   };
@@ -61,7 +71,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
 }) => {
   // Reference to persist context
   const contextRef = useRef<IContextProvider | null>(null);
-  
+
   // State for UI
   const [activeTab, setActiveTab] = useState<'overview' | 'products'>('overview');
   const [selectedProductIndex, setSelectedProductIndex] = useState<number | null>(null);
@@ -81,31 +91,13 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
 
   // Calculate total emissions from all products
   useEffect(() => {
-    if (project && project.products) {
-      let materialsTotal = 0;
-      let manufacturingTotal = 0;
-      let transportationTotal = 0;
-      
-      project.products.forEach(product => {
-        // Add transportation emissions
-        transportationTotal += product.totalTransportationEmission || 0;
-        
-        // Add materials and manufacturing emissions if product details are available
-        if (product.productDetails) {
-          materialsTotal += Number(product.productDetails.co2EmissionRawMaterials || 0);
-          manufacturingTotal += Number(product.productDetails.co2EmissionFromProcesses || 0);
-        }
-      });
-      
-      const totalEmission = materialsTotal + manufacturingTotal + transportationTotal;
-      
-      setTotalEmissions({
-        materials: materialsTotal,
-        manufacturing: manufacturingTotal,
-        transportation: transportationTotal,
-        total: totalEmission
-      });
-    }
+
+    setTotalEmissions({
+      materials: project.totalMaterialsImpact,
+      manufacturing: project.totalManufacturingImpact,
+      transportation: project.totalTransportationImpact,
+      total: project.totalProjectImpact,
+    });
   }, [project]);
 
   // Chart options for the donut chart showing emission breakdown
@@ -216,14 +208,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
               <strong>Number of Products</strong>
               <p>{project.products.length}</p>
             </div>
-            <div className="esgnow-detail-item">
-              <strong>Created Date</strong>
-              <p>{new Date(project.createdDate.$date).toLocaleDateString()}</p>
-            </div>
-            <div className="esgnow-detail-item">
-              <strong>Last Modified</strong>
-              <p>{new Date(project.modifiedDate.$date).toLocaleDateString()}</p>
-            </div>
+
           </div>
         </div>
       </div>
@@ -234,7 +219,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
           <HighchartsReact highcharts={Highcharts} options={getDonutChartOptions()} />
         </div>
       </div>
-      
+
       <div className="esgnow-widget esgnow-emission-metrics">
         <h3>Emission Metrics</h3>
         <div className="esgnow-widget-content">
@@ -247,8 +232,8 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
               <h4>Raw Materials</h4>
               <p className="esgnow-metric-value">{totalEmissions.materials.toFixed(3)} KgCO₂e</p>
               <p className="esgnow-metric-percentage">
-                {totalEmissions.total > 0 
-                  ? ((totalEmissions.materials / totalEmissions.total) * 100).toFixed(1) 
+                {totalEmissions.total > 0
+                  ? ((totalEmissions.materials / totalEmissions.total) * 100).toFixed(1)
                   : '0'}%
               </p>
             </div>
@@ -256,8 +241,8 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
               <h4>Manufacturing</h4>
               <p className="esgnow-metric-value">{totalEmissions.manufacturing.toFixed(3)} KgCO₂e</p>
               <p className="esgnow-metric-percentage">
-                {totalEmissions.total > 0 
-                  ? ((totalEmissions.manufacturing / totalEmissions.total) * 100).toFixed(1) 
+                {totalEmissions.total > 0
+                  ? ((totalEmissions.manufacturing / totalEmissions.total) * 100).toFixed(1)
                   : '0'}%
               </p>
             </div>
@@ -265,8 +250,8 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
               <h4>Transportation</h4>
               <p className="esgnow-metric-value">{totalEmissions.transportation.toFixed(3)} KgCO₂e</p>
               <p className="esgnow-metric-percentage">
-                {totalEmissions.total > 0 
-                  ? ((totalEmissions.transportation / totalEmissions.total) * 100).toFixed(1) 
+                {totalEmissions.total > 0
+                  ? ((totalEmissions.transportation / totalEmissions.total) * 100).toFixed(1)
                   : '0'}%
               </p>
             </div>
@@ -295,18 +280,14 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
             </thead>
             <tbody>
               {project.products.map((product, index) => {
-                const productDetails = product.productDetails;
-                const materialImpact = productDetails ? Number(productDetails.co2EmissionRawMaterials || 0) : 0;
-                const manufacturingImpact = productDetails ? Number(productDetails.co2EmissionFromProcesses || 0) : 0;
-                const transportImpact = product.totalTransportationEmission || 0;
-                const totalImpact = materialImpact + manufacturingImpact + transportImpact;
+                let totalImpact = product.co2EmissionRawMaterials + product.co2EmissionFromProcesses + product.transportationEmission;
                 
                 return (
                   <tr key={product._id.$oid}>
-                    <td>{productDetails?.name || `Product ${index + 1}`}</td>
-                    <td>{materialImpact.toFixed(3)} KgCO₂e</td>
-                    <td>{manufacturingImpact.toFixed(3)} KgCO₂e</td>
-                    <td>{transportImpact.toFixed(3)} KgCO₂e</td>
+                    <td>{product?.productID || `Product ${index + 1}`}</td>
+                    <td>{product.co2EmissionRawMaterials.toFixed(3)} KgCO₂e</td>
+                    <td>{product.co2EmissionFromProcesses.toFixed(3)} KgCO₂e</td>
+                    <td>{product.transportationEmission.toFixed(3)} KgCO₂e</td>
                     <td>{totalImpact.toFixed(3)} KgCO₂e</td>
                     <td>
                       <Button
@@ -332,7 +313,7 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
     }
 
     const selectedProduct = project.products[selectedProductIndex];
-    const productDetails = selectedProduct.productDetails;
+    const productDetails = selectedProduct;
 
     if (!productDetails) {
       return (
@@ -405,13 +386,13 @@ const ProjectEmissionSummary: React.FC<ProjectEmissionSummaryProps> = ({
         <>
           <div className="esgnow-tabs-container">
             <div className="esgnow-tabs">
-              <button 
+              <button
                 className={`esgnow-tab-button ${activeTab === 'overview' ? 'esgnow-active' : ''}`}
                 onClick={() => setActiveTab('overview')}
               >
                 Project Overview
               </button>
-              <button 
+              <button
                 className={`esgnow-tab-button ${activeTab === 'products' ? 'esgnow-active' : ''}`}
                 onClick={() => setActiveTab('products')}
               >

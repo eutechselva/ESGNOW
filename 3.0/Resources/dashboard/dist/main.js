@@ -45802,27 +45802,12 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
     }, [uxpContext]);
     // Calculate total emissions from all products
     (0, react_1.useEffect)(() => {
-        if (project && project.products) {
-            let materialsTotal = 0;
-            let manufacturingTotal = 0;
-            let transportationTotal = 0;
-            project.products.forEach(product => {
-                // Add transportation emissions
-                transportationTotal += product.totalTransportationEmission || 0;
-                // Add materials and manufacturing emissions if product details are available
-                if (product.productDetails) {
-                    materialsTotal += Number(product.productDetails.co2EmissionRawMaterials || 0);
-                    manufacturingTotal += Number(product.productDetails.co2EmissionFromProcesses || 0);
-                }
-            });
-            const totalEmission = materialsTotal + manufacturingTotal + transportationTotal;
-            setTotalEmissions({
-                materials: materialsTotal,
-                manufacturing: manufacturingTotal,
-                transportation: transportationTotal,
-                total: totalEmission
-            });
-        }
+        setTotalEmissions({
+            materials: project.totalMaterialsImpact,
+            manufacturing: project.totalManufacturingImpact,
+            transportation: project.totalTransportationImpact,
+            total: project.totalProjectImpact,
+        });
     }, [project]);
     // Chart options for the donut chart showing emission breakdown
     const getDonutChartOptions = () => ({
@@ -45923,13 +45908,7 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
                         react_1.default.createElement("p", null, project.projectName || 'N/A')),
                     react_1.default.createElement("div", { className: "esgnow-detail-item" },
                         react_1.default.createElement("strong", null, "Number of Products"),
-                        react_1.default.createElement("p", null, project.products.length)),
-                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
-                        react_1.default.createElement("strong", null, "Created Date"),
-                        react_1.default.createElement("p", null, new Date(project.createdDate.$date).toLocaleDateString())),
-                    react_1.default.createElement("div", { className: "esgnow-detail-item" },
-                        react_1.default.createElement("strong", null, "Last Modified"),
-                        react_1.default.createElement("p", null, new Date(project.modifiedDate.$date).toLocaleDateString()))))),
+                        react_1.default.createElement("p", null, project.products.length))))),
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-project-footprint" },
             react_1.default.createElement("h3", null, "Project Carbon Footprint Breakdown"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
@@ -45988,21 +45967,17 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
                             react_1.default.createElement("th", null, "Total Impact"),
                             react_1.default.createElement("th", null, "Actions"))),
                     react_1.default.createElement("tbody", null, project.products.map((product, index) => {
-                        const productDetails = product.productDetails;
-                        const materialImpact = productDetails ? Number(productDetails.co2EmissionRawMaterials || 0) : 0;
-                        const manufacturingImpact = productDetails ? Number(productDetails.co2EmissionFromProcesses || 0) : 0;
-                        const transportImpact = product.totalTransportationEmission || 0;
-                        const totalImpact = materialImpact + manufacturingImpact + transportImpact;
+                        let totalImpact = product.co2EmissionRawMaterials + product.co2EmissionFromProcesses + product.transportationEmission;
                         return (react_1.default.createElement("tr", { key: product._id.$oid },
-                            react_1.default.createElement("td", null, (productDetails === null || productDetails === void 0 ? void 0 : productDetails.name) || `Product ${index + 1}`),
+                            react_1.default.createElement("td", null, (product === null || product === void 0 ? void 0 : product.productID) || `Product ${index + 1}`),
                             react_1.default.createElement("td", null,
-                                materialImpact.toFixed(3),
+                                product.co2EmissionRawMaterials.toFixed(3),
                                 " KgCO\u2082e"),
                             react_1.default.createElement("td", null,
-                                manufacturingImpact.toFixed(3),
+                                product.co2EmissionFromProcesses.toFixed(3),
                                 " KgCO\u2082e"),
                             react_1.default.createElement("td", null,
-                                transportImpact.toFixed(3),
+                                product.transportationEmission.toFixed(3),
                                 " KgCO\u2082e"),
                             react_1.default.createElement("td", null,
                                 totalImpact.toFixed(3),
@@ -46016,7 +45991,7 @@ const ProjectEmissionSummary = ({ project, uxpContext, onBack, hideHeader = fals
             return null;
         }
         const selectedProduct = project.products[selectedProductIndex];
-        const productDetails = selectedProduct.productDetails;
+        const productDetails = selectedProduct;
         if (!productDetails) {
             return (react_1.default.createElement("div", { className: "esgnow-product-details" },
                 react_1.default.createElement("h3", null, "Product Details Not Available"),
@@ -46110,50 +46085,6 @@ __webpack_require__(/*! ./projects.scss */ "./src/lca/views/projects.scss");
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 const emission_summary_1 = __importDefault(__webpack_require__(/*! ./emission-summary */ "./src/lca/views/emission-summary.tsx"));
 const project_emissions_1 = __importDefault(__webpack_require__(/*! ./project-emissions */ "./src/lca/views/project-emissions.tsx"));
-// Format project data to match the ProjectEmissionSummary expected structure
-const formatProjectForEmissionSummary = (project) => {
-    return {
-        _id: {
-            $oid: project._id
-        },
-        projectID: {
-            $oid: project._id
-        },
-        projectName: project.projectName,
-        projectCode: project.projectCode,
-        products: project.products.map(product => {
-            var _a, _b;
-            return ({
-                productID: {
-                    $oid: product.productID || product._id
-                },
-                packagingWeight: product.packagingWeight || 0,
-                palletWeight: product.palletWeight || 0,
-                totalTransportationEmission: product.totalTransportationEmission || ((_a = product.impacts) === null || _a === void 0 ? void 0 : _a.impactByTransportation) || 0,
-                transportationLegs: product.transportationLegs || [{
-                        id: 1,
-                        transportMode: "Unknown",
-                        originCountry: "Unknown",
-                        originGateway: "Unknown",
-                        destinationCountry: "Unknown",
-                        destinationGateway: "Unknown",
-                        transportEmission: ((_b = product.impacts) === null || _b === void 0 ? void 0 : _b.impactByTransportation) || 0
-                    }],
-                _id: {
-                    $oid: product._id
-                },
-                productDetails: createProductFromAPI(product, project)
-            });
-        }),
-        createdDate: {
-            $date: new Date().toISOString()
-        },
-        modifiedDate: {
-            $date: new Date().toISOString()
-        },
-        __v: 0
-    };
-};
 // Create product info from API data for EmissionSummary
 const createProductFromAPI = (product, project) => {
     var _a, _b, _c, _d, _e, _f;
@@ -46321,7 +46252,7 @@ const Projects = (props) => {
             react_1.default.createElement("div", { style: { color: 'red' } }, error)));
     }
     return (react_1.default.createElement(react_1.default.Fragment, null,
-        react_1.default.createElement(components_1.Modal, { title: "Project Emission Summary", show: showModal, onClose: () => setShowModal(false), className: "esgnow-project-modal" }, useMultiProductView && selectedProject && selectedProject.products && selectedProject.products.length > 0 ? (react_1.default.createElement(project_emissions_1.default, { project: formatProjectForEmissionSummary(selectedProject), uxpContext: props.uxpContext, onBack: () => setShowModal(false), hideHeader: true, plan: plan || 'basic' })) : (selectedProject && selectedProject.products && selectedProject.products.length > 0 && (react_1.default.createElement(emission_summary_1.default, { plan: plan || 'basic', product: createProductFromAPI(selectedProject.products[0], selectedProject), transportationEmission: ((_b = (_a = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _a === void 0 ? void 0 : _a.totalTransportationEmission) === null || _b === void 0 ? void 0 : _b.toString()) ||
+        react_1.default.createElement(components_1.Modal, { title: "Project Emission Summary", show: showModal, onClose: () => setShowModal(false), className: "esgnow-project-modal" }, useMultiProductView && selectedProject && selectedProject.products && selectedProject.products.length > 0 ? (react_1.default.createElement(project_emissions_1.default, { project: selectedProject, uxpContext: props.uxpContext, onBack: () => setShowModal(false), hideHeader: true, plan: plan || 'basic' })) : (selectedProject && selectedProject.products && selectedProject.products.length > 0 && (react_1.default.createElement(emission_summary_1.default, { plan: plan || 'basic', product: createProductFromAPI(selectedProject.products[0], selectedProject), transportationEmission: ((_b = (_a = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _a === void 0 ? void 0 : _a.totalTransportationEmission) === null || _b === void 0 ? void 0 : _b.toString()) ||
                 ((_e = (_d = (_c = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _c === void 0 ? void 0 : _c.impacts) === null || _d === void 0 ? void 0 : _d.impactByTransportation) === null || _e === void 0 ? void 0 : _e.toString()) ||
                 ((_f = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.totalTransportationImpact) === null || _f === void 0 ? void 0 : _f.toString()) ||
                 "0", onBack: () => setShowModal(false), transportLegs: ((_g = selectedProject === null || selectedProject === void 0 ? void 0 : selectedProject.products[0]) === null || _g === void 0 ? void 0 : _g.transportationLegs) || [{

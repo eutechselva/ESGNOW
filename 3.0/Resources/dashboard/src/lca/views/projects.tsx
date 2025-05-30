@@ -39,47 +39,6 @@ interface ProjectImpact {
     }>;
 }
 
-// Format project data to match the ProjectEmissionSummary expected structure
-const formatProjectForEmissionSummary = (project: ProjectImpact) => {
-    return {
-        _id: {
-            $oid: project._id
-        },
-        projectID: {
-            $oid: project._id
-        },
-        projectName: project.projectName,
-        projectCode: project.projectCode,
-        products: project.products.map(product => ({
-            productID: {
-                $oid: product.productID || product._id
-            },
-            packagingWeight: product.packagingWeight || 0,
-            palletWeight: product.palletWeight || 0,
-            totalTransportationEmission: product.totalTransportationEmission || product.impacts?.impactByTransportation || 0,
-            transportationLegs: product.transportationLegs || [{
-                id: 1,
-                transportMode: "Unknown",
-                originCountry: "Unknown",
-                originGateway: "Unknown",
-                destinationCountry: "Unknown",
-                destinationGateway: "Unknown",
-                transportEmission: product.impacts?.impactByTransportation || 0
-            }],
-            _id: {
-                $oid: product._id
-            },
-            productDetails: createProductFromAPI(product, project)
-        })),
-        createdDate: {
-            $date: new Date().toISOString()
-        },
-        modifiedDate: {
-            $date: new Date().toISOString()
-        },
-        __v: 0
-    };
-};
 
 // Create product info from API data for EmissionSummary
 const createProductFromAPI = (product: any, project?: any): ProductInfoSummary => {
@@ -290,7 +249,7 @@ const Projects: React.FC<IProjectProps> = (props) => {
             >
                 {useMultiProductView && selectedProject && selectedProject.products && selectedProject.products.length > 0 ? (
                     <ProjectEmissionSummary
-                        project={formatProjectForEmissionSummary(selectedProject)}
+                        project={selectedProject}
                         uxpContext={props.uxpContext}
                         onBack={() => setShowModal(false)}
                         hideHeader={true}
