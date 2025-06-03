@@ -221,7 +221,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                 <div className="dashboard-header">
                     <div>
                         <h1 className="dashboard-title">Welcome to ESG NOW!</h1>
-                        <p className="dashboard-subtitle">Your sustainability dashboard</p>
+                        <p className="dashboard-subtitle">Helping businesses decarbonise procurement</p>
                     </div>
                     {/* 
                     {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
