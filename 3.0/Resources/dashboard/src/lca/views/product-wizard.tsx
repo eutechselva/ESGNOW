@@ -97,7 +97,7 @@ export const ProductWizard = ({ show, onClose, uxpContext, onProductCreated ,set
             countryOfOrigin: productCategoryData.country,
             materials: billMaterialsData,
             productManufacturingProcess: productManufacturingProcess,
-
+            
         };
 
         try {
