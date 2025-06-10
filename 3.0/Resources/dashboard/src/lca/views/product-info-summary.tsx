@@ -362,7 +362,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                         )}
                     </div>
                 ) : (
-                    <div className="esgnow-widget-content">
+                    <>
+                                        <div className="esgnow-widget-content">
                         <table className="esgnow-inventory-table">
                             <thead>
                                 <tr>
@@ -416,6 +417,62 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             </tbody>
                         </table>
                     </div>
+                    
+                    <h3>Material Emission Summary</h3>
+                    
+                    <div className="esgnow-widget-content">
+                        <table className="esgnow-inventory-table">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Material Class</th>
+                                    {plan === 'professional' && (<th>Specific Material</th>)}
+                                    <th>Emission Factor</th>
+                                    <th>EF Source</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {(() => {
+                                    const mergedItems = new Map();
+                                    product.productManufacturingProcess.forEach((item: any) => {
+                                        const key = `${item.materialClass}-${item.specificMaterial}`;
+                                        mergedItems.set(key, { ...item, reasoning: "" });                                        
+                                    });
+                                    product.materials.forEach((material: any) => {
+                                        console.log("product",product)
+                                        console.log(`materials`,material)
+                                        const key = `${material.materialClass}-${material.specificMaterial}`;
+                                        if (mergedItems.has(key)) {
+                                            const existingItem = mergedItems.get(key);
+                                            mergedItems.set(key, {
+                                                ...existingItem,
+                                                reasoning: material.reasoning || "-",
+                                                emissionFactor: material.emissionFactor,
+                                                countryOfOrigin: material.countryOfOrigin,
+                                                EF_Source: material.EF_Source || "",
+                                            });
+                                        }
+                                    });
+
+                                    return Array.from(mergedItems.values()).map((item: any) => (
+                                        <tr key={`${item.materialClass}-${item.specificMaterial}`}>
+                                            <td>{item.materialClass}</td>
+                                            {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
+                                            <td>{item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-"} KgCO₂e</td>
+                                            <td>
+
+                                    {item.EF_Source || ""}
+                            </td>
+                                        </tr>
+                                    ));
+                                })()}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    </>
+
+                    
                 )}
             </div>
         </div>
