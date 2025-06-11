@@ -44893,41 +44893,74 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 item.weight,
                                 " Kg)")),
                         item.reasoning && react_1.default.createElement("div", { className: "esgnow-tree-reasoning" }, item.reasoning))));
-                })())))) : (react_1.default.createElement("div", { className: "esgnow-widget-content" },
-                react_1.default.createElement("table", { className: "esgnow-inventory-table" },
-                    react_1.default.createElement("thead", null,
-                        react_1.default.createElement("tr", null,
-                            react_1.default.createElement("th", null, "Material Class"),
-                            plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
-                            react_1.default.createElement("th", null, "Weight"),
-                            react_1.default.createElement("th", null, "Reasoning"))),
-                    react_1.default.createElement("tbody", null, (() => {
-                        // Create a map to merge processes with materials based on materialClass and specificMaterial
-                        const mergedItems = new Map();
-                        // First, add all manufacturing processes
-                        product.productManufacturingProcess.forEach((item) => {
-                            const key = `${item.materialClass}-${item.specificMaterial}`;
-                            mergedItems.set(key, Object.assign(Object.assign({}, item), { reasoning: "" // Default empty reasoning
-                             }));
-                        });
-                        // Then, merge with materials data (including reasoning)
-                        product.materials.forEach((material) => {
-                            const key = `${material.materialClass}-${material.specificMaterial}`;
-                            if (mergedItems.has(key)) {
-                                // Update existing item with reasoning from materials
-                                const existingItem = mergedItems.get(key);
-                                mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-" }));
-                            }
-                        });
-                        // Convert map values to array and render
-                        return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
-                            react_1.default.createElement("td", null, item.materialClass),
-                            plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
-                            react_1.default.createElement("td", null,
-                                item.weight,
-                                " Kg"),
-                            react_1.default.createElement("td", { className: "esgnow-reasoning-cell" }, item.reasoning))));
-                    })())))))));
+                })())))) : (react_1.default.createElement(react_1.default.Fragment, null,
+                react_1.default.createElement("div", { className: "esgnow-widget-content" },
+                    react_1.default.createElement("table", { className: "esgnow-inventory-table" },
+                        react_1.default.createElement("thead", null,
+                            react_1.default.createElement("tr", null,
+                                react_1.default.createElement("th", null, "Material Class"),
+                                plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
+                                react_1.default.createElement("th", null, "Weight"),
+                                react_1.default.createElement("th", null, "Reasoning"))),
+                        react_1.default.createElement("tbody", null, (() => {
+                            // Create a map to merge processes with materials based on materialClass and specificMaterial
+                            const mergedItems = new Map();
+                            // First, add all manufacturing processes
+                            product.productManufacturingProcess.forEach((item) => {
+                                const key = `${item.materialClass}-${item.specificMaterial}`;
+                                mergedItems.set(key, Object.assign(Object.assign({}, item), { reasoning: "" // Default empty reasoning
+                                 }));
+                            });
+                            // Then, merge with materials data (including reasoning)
+                            product.materials.forEach((material) => {
+                                const key = `${material.materialClass}-${material.specificMaterial}`;
+                                if (mergedItems.has(key)) {
+                                    // Update existing item with reasoning from materials
+                                    const existingItem = mergedItems.get(key);
+                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-" }));
+                                }
+                            });
+                            // Convert map values to array and render
+                            return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                                react_1.default.createElement("td", null,
+                                    item.weight,
+                                    " Kg"),
+                                react_1.default.createElement("td", { className: "esgnow-reasoning-cell" }, item.reasoning))));
+                        })()))),
+                react_1.default.createElement("h3", null, "Material Emission Summary"),
+                react_1.default.createElement("div", { className: "esgnow-widget-content" },
+                    react_1.default.createElement("table", { className: "esgnow-inventory-table" },
+                        react_1.default.createElement("thead", null,
+                            react_1.default.createElement("tr", null,
+                                react_1.default.createElement("th", null, "Material Class"),
+                                plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
+                                react_1.default.createElement("th", null, "Emission Factor"),
+                                react_1.default.createElement("th", null, "EF Source"))),
+                        react_1.default.createElement("tbody", null, (() => {
+                            const mergedItems = new Map();
+                            product.productManufacturingProcess.forEach((item) => {
+                                const key = `${item.materialClass}-${item.specificMaterial}`;
+                                mergedItems.set(key, Object.assign(Object.assign({}, item), { reasoning: "" }));
+                            });
+                            product.materials.forEach((material) => {
+                                console.log("product", product);
+                                console.log(`materials`, material);
+                                const key = `${material.materialClass}-${material.specificMaterial}`;
+                                if (mergedItems.has(key)) {
+                                    const existingItem = mergedItems.get(key);
+                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "" }));
+                                }
+                            });
+                            return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
+                                react_1.default.createElement("td", null, item.materialClass),
+                                plan === 'professional' && (react_1.default.createElement("td", null, item.specificMaterial)),
+                                react_1.default.createElement("td", null,
+                                    item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-",
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null, item.EF_Source || ""))));
+                        })()))))))));
     return (react_1.default.createElement("div", { className: "esgnow-product-summary-container" },
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
             react_1.default.createElement("div", { className: "esgnow-title-section" },
