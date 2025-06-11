@@ -44937,7 +44937,9 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 react_1.default.createElement("th", null, "Material Class"),
                                 plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
                                 react_1.default.createElement("th", null, "Emission Factor"),
-                                react_1.default.createElement("th", null, "EF Source"))),
+                                react_1.default.createElement("th", null, "EF Source"),
+                                react_1.default.createElement("th", null, "EF Type"),
+                                react_1.default.createElement("th", null, "Type Rational"))),
                         react_1.default.createElement("tbody", null, (() => {
                             const mergedItems = new Map();
                             product.productManufacturingProcess.forEach((item) => {
@@ -44945,12 +44947,10 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 mergedItems.set(key, Object.assign(Object.assign({}, item), { reasoning: "" }));
                             });
                             product.materials.forEach((material) => {
-                                console.log("product", product);
-                                console.log(`materials`, material);
                                 const key = `${material.materialClass}-${material.specificMaterial}`;
                                 if (mergedItems.has(key)) {
                                     const existingItem = mergedItems.get(key);
-                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "" }));
+                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "", EF_Type: material.EF_Type || "", Type_Rationale: material.Type_Rationale || "" }));
                                 }
                             });
                             return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
@@ -44959,7 +44959,9 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 react_1.default.createElement("td", null,
                                     item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-",
                                     " KgCO\u2082e"),
-                                react_1.default.createElement("td", null, item.EF_Source || ""))));
+                                react_1.default.createElement("td", null, item.EF_Source || ""),
+                                react_1.default.createElement("td", null, item.EF_Type || ""),
+                                react_1.default.createElement("td", null, item.Type_Rationale || ""))));
                         })()))))))));
     return (react_1.default.createElement("div", { className: "esgnow-product-summary-container" },
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
