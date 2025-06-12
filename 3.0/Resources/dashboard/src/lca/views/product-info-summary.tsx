@@ -40,41 +40,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 280,
-            width: 500,
-            events: {
-                render() {
-                    const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(
-                                `${product.co2Emission} <br> KgCO₂e`,
-                                chart.plotWidth / 2 + chart.plotLeft,
-                                chart.plotHeight / 2 + chart.plotTop
-                            )
-                            .css({
-                                fontSize: '18px',
-                                display: 'block',
-                                fontWeight: 'bold',
-                                fontFamily: 'poppins',
-                                color: '#424242',
-                                textAlign: 'center',
-
-                            })
-                            .attr({
-                                align: 'center',
-                                zIndex: 5,
-
-                            })
-                            .add();
-                    } else {
-                        chart.customText.attr({
-                            text: `${product.co2Emission} KgCO₂e`,
-                        });
-                    }
-                },
-            },
+            height: 350,
+            width: 600,
         },
         title: {
             text: '',
@@ -84,11 +51,10 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                 innerSize: '60%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    format: '<b>{point.name}</b><br>{point.y:.2f} KgCO₂e',
                     style: {
                         fontSize: '12px',
                         fontWeight: 'bold',
-                        fontFamily: 'Comfortaa',
                         color: '#424242',
                     },
                 },
@@ -105,14 +71,15 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             },
         ],
         legend: {
+            enabled: true,
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'bottom',
-            symbolRadius: 0,
+            symbolRadius: 5,
             symbolHeight: 10,
             symbolWidth: 10,
+            itemMarginTop: 5,
             itemStyle: {
-                fontFamily: 'Comfortaa',
                 fontWeight: 'bold',
                 fontSize: '12px',
             },
@@ -135,7 +102,6 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                     }}
                 >
                     {!product.images[0] && <div className="esgnow-image-placeholder">Image Unavailable</div>}
-                    <div className="esgnow-image-label">{`${product.co2Emission} Kg CO₂e`}</div>
                 </div>
 
                 <div className="esgnow-summary-details">
@@ -181,11 +147,39 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             <div className="esgnow-widget esgnow-product-footprint">
                 <h3>Product Carbon Footprint</h3>
                 <div className="esgnow-widget-content">
-                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                        <div 
+                            style={{
+                                border: '2px solid #e0e0e0',
+                                borderRadius: '8px',
+                                padding: '20px',
+                                backgroundColor: '#f9f9f9',
+                                textAlign: 'center',
+                                minWidth: '150px'
+                            }}
+                        >
+                            <div style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                            }}>
+                                {product.co2Emission} KgCO₂e
+                            </div>
+                            <div style={{
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                            }}>
+                                Total Footprint
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     );
+
 
     const renderMaterialsTab = () => (
         <div className="esgnow-tab-content">
