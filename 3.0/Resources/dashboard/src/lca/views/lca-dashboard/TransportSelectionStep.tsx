@@ -185,7 +185,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         <Label><span className="label-text">Origin Country</span></Label>
                         <Select
                             className={`highlighted-select ${errors[index]?.originCountry ? 'error-field' : ''}`}
-                            options={countries}
+                            options={[...countries].sort((a, b) => a.label.localeCompare(b.label))}
                             placeholder="Select Origin Country"
                             selected={leg.originCountry}
                             onChange={(value) => updateTransportLeg(leg.id, 'originCountry', value)}
@@ -199,7 +199,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         <Label><span className="label-text">Destination Country</span></Label>
                         <Select
                             className={`highlighted-select ${errors[index]?.destinationCountry ? 'error-field' : ''}`}
-                            options={countries}
+                            options={[...countries].sort((a, b) => a.label.localeCompare(b.label))}
                             placeholder="Select Destination Country"
                             selected={leg.destinationCountry}
                             onChange={(value) => updateTransportLeg(leg.id, 'destinationCountry', value)}
