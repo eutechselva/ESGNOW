@@ -429,8 +429,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     {plan === 'professional' && (<th>Specific Material</th>)}
                                     <th>Emission Factor</th>
                                     <th>EF Source</th>
-                                    <th>EF Type</th>
-                                    <th>Type Rational</th>
+                                    <th>Type Rationale</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -450,7 +449,6 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                                 emissionFactor: material.emissionFactor,
                                                 countryOfOrigin: material.countryOfOrigin,
                                                 EF_Source: material.EF_Source || "",
-                                                EF_Type: material.EF_Type || "",
                                                 Type_Rationale:material.Type_Rationale || ""
                                             });
                                         }
@@ -462,8 +460,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             {plan === 'professional' && (<td>{item.specificMaterial}</td>)}
                                             <td>{item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-"} KgCO₂e</td>
                                             <td>{item.EF_Source || ""}</td>
-                                            <td>{item.EF_Type || ""}</td>
-                                            <td>{item.Type_Rationale || ""}</td>
+
+                                            <td className='esgnow-reasoning-cell'>{item.Type_Rationale || ""}</td>
                                         </tr>
                                     ));
                                 })()}
