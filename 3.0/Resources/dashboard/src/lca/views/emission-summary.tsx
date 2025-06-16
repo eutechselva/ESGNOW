@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import { Button, Input, FormField, Label, Select } from 'uxp/components';
 import { Modal } from 'uxp/components';
@@ -470,46 +471,19 @@ const EmissionSummary: React.FC<{
         checkForExistingProjects();
     }, [uxpContext, contextRef.current]);
 
+    // Calculate total value for the display box
+    const totalValue = (
+        Number(product.co2EmissionRawMaterials || 0) + 
+        Number(product.co2EmissionFromProcesses || 0) + 
+        Number(transportationEmission || 0)
+    ).toFixed(2);
+
     const donutChartOptions: Highcharts.Options = {
         chart: {
             type: 'pie',
             backgroundColor: null,
             height: 350,
             width: 600,
-            events: {
-                render() {
-                    const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
-                    const totalValue = (
-                        Number(product.co2EmissionRawMaterials || 0) + 
-                        Number(product.co2EmissionFromProcesses || 0) + 
-                        Number(transportationEmission || 0)
-                    ).toFixed(3);
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(
-                                `${totalValue} KgCO₂e`,
-                                chart.plotWidth / 2 + chart.plotLeft,
-                                chart.plotHeight / 2 + chart.plotTop
-                            )
-                            .css({
-                                fontSize: '16px',
-                                fontWeight: 'bold',
-                                fontFamily: 'Comfortaa',
-                                color: '#424242',
-                                textAlign: 'center',
-                            })
-                            .attr({
-                                align: 'center',
-                                zIndex: 5,
-                            })
-                            .add();
-                    } else {
-                        chart.customText.attr({
-                            text: `${totalValue} KgCO₂e`,
-                        });
-                    }
-                },
-            },
         },
         title: {
             text: '',
@@ -519,11 +493,11 @@ const EmissionSummary: React.FC<{
                 innerSize: '60%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    format: '<b>{point.name}</b><br>{point.y:.2f} KgCO₂e',
                     style: {
                         fontSize: '12px',
                         fontWeight: 'bold',
-                        fontFamily: 'Comfortaa',
+                        
                         color: '#424242',
                     },
                 },
@@ -550,7 +524,7 @@ const EmissionSummary: React.FC<{
             symbolWidth: 10,
             itemMarginTop: 5,
             itemStyle: {
-                fontFamily: 'Comfortaa',
+                
                 fontWeight: 'bold',
                 fontSize: '12px',
             },
@@ -562,6 +536,7 @@ const EmissionSummary: React.FC<{
             enabled: false,
         },
     };
+
     const renderOverviewTab = () => (
         <div className="esgnow-tab-content">
             <div className="esgnow-product-info-summary">
@@ -620,7 +595,36 @@ const EmissionSummary: React.FC<{
             <div className="esgnow-widget esgnow-product-footprint">
                 <h3>Product Carbon Footprint Breakdown</h3>
                 <div className="esgnow-widget-content">
-                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                        <div 
+                            style={{
+                                border: '2px solid #e0e0e0',
+                                borderRadius: '8px',
+                                padding: '20px',
+                                backgroundColor: '#f9f9f9',
+                                textAlign: 'center',
+                                minWidth: '150px'
+                            }}
+                        >
+                            <div style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                               
+                            }}>
+                                {totalValue} KgCO₂e
+                            </div>
+                            <div style={{
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                                
+                            }}>
+                                Total Footprint
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
