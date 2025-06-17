@@ -41688,41 +41688,16 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
         });
         checkForExistingProjects();
     }, [uxpContext, contextRef.current]);
+    // Calculate total value for the display box
+    const totalValue = (Number(product.co2EmissionRawMaterials || 0) +
+        Number(product.co2EmissionFromProcesses || 0) +
+        Number(transportationEmission || 0)).toFixed(2);
     const donutChartOptions = {
         chart: {
             type: 'pie',
             backgroundColor: null,
             height: 350,
             width: 600,
-            events: {
-                render() {
-                    const chart = this;
-                    const totalValue = (Number(product.co2EmissionRawMaterials || 0) +
-                        Number(product.co2EmissionFromProcesses || 0) +
-                        Number(transportationEmission || 0)).toFixed(3);
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(`${totalValue} KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
-                            .css({
-                            fontSize: '16px',
-                            fontWeight: 'bold',
-                            fontFamily: 'Comfortaa',
-                            color: '#424242',
-                            textAlign: 'center',
-                        })
-                            .attr({
-                            align: 'center',
-                            zIndex: 5,
-                        })
-                            .add();
-                    }
-                    else {
-                        chart.customText.attr({
-                            text: `${totalValue} KgCO₂e`,
-                        });
-                    }
-                },
-            },
         },
         title: {
             text: '',
@@ -41732,11 +41707,10 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                 innerSize: '60%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    format: '<b>{point.name}</b><br>{point.y:.2f} KgCO₂e',
                     style: {
                         fontSize: '12px',
                         fontWeight: 'bold',
-                        fontFamily: 'Comfortaa',
                         color: '#424242',
                     },
                 },
@@ -41763,7 +41737,6 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
             symbolWidth: 10,
             itemMarginTop: 5,
             itemStyle: {
-                fontFamily: 'Comfortaa',
                 fontWeight: 'bold',
                 fontSize: '12px',
             },
@@ -41808,7 +41781,28 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-footprint" },
             react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdown"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
-                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
+                react_1.default.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '20px' } },
+                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }),
+                    react_1.default.createElement("div", { style: {
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            padding: '20px',
+                            backgroundColor: '#f9f9f9',
+                            textAlign: 'center',
+                            minWidth: '150px'
+                        } },
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                            } },
+                            totalValue,
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                            } }, "Total Footprint")))))));
     const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-contribution-raw-material" },
             react_1.default.createElement("h3", null, "Contribution by Raw Material"),
@@ -43392,12 +43386,12 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Origin Country")),
-                    React.createElement(components_1.Select, { className: `highlighted-select ${((_a = errors[index]) === null || _a === void 0 ? void 0 : _a.originCountry) ? 'error-field' : ''}`, options: countries, placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) }),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_a = errors[index]) === null || _a === void 0 ? void 0 : _a.originCountry) ? 'error-field' : ''}`, options: [...countries].sort((a, b) => a.label.localeCompare(b.label)), placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) }),
                     ((_b = errors[index]) === null || _b === void 0 ? void 0 : _b.originCountry) && (React.createElement("span", { className: "error-text" }, "Origin country is required"))),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Destination Country")),
-                    React.createElement(components_1.Select, { className: `highlighted-select ${((_c = errors[index]) === null || _c === void 0 ? void 0 : _c.destinationCountry) ? 'error-field' : ''}`, options: countries, placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) }),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_c = errors[index]) === null || _c === void 0 ? void 0 : _c.destinationCountry) ? 'error-field' : ''}`, options: [...countries].sort((a, b) => a.label.localeCompare(b.label)), placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) }),
                     ((_d = errors[index]) === null || _d === void 0 ? void 0 : _d.destinationCountry) && (React.createElement("span", { className: "error-text" }, "Destination country is required"))),
                 plan === 'professional' && (React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
@@ -44678,35 +44672,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 280,
-            width: 500,
-            events: {
-                render() {
-                    const chart = this;
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(`${product.co2Emission} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
-                            .css({
-                            fontSize: '18px',
-                            display: 'block',
-                            fontWeight: 'bold',
-                            fontFamily: 'poppins',
-                            color: '#424242',
-                            textAlign: 'center',
-                        })
-                            .attr({
-                            align: 'center',
-                            zIndex: 5,
-                        })
-                            .add();
-                    }
-                    else {
-                        chart.customText.attr({
-                            text: `${product.co2Emission} KgCO₂e`,
-                        });
-                    }
-                },
-            },
+            height: 350,
+            width: 600,
         },
         title: {
             text: '',
@@ -44716,11 +44683,10 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                 innerSize: '60%',
                 dataLabels: {
                     enabled: true,
-                    format: '{point.name}: {point.y} KgCO₂e ({point.percentage:.1f}%)',
+                    format: '<b>{point.name}</b><br>{point.y:.2f} KgCO₂e',
                     style: {
                         fontSize: '12px',
                         fontWeight: 'bold',
-                        fontFamily: 'Comfortaa',
                         color: '#424242',
                     },
                 },
@@ -44737,14 +44703,15 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
             },
         ],
         legend: {
+            enabled: true,
             layout: 'horizontal',
             align: 'center',
             verticalAlign: 'bottom',
-            symbolRadius: 0,
+            symbolRadius: 5,
             symbolHeight: 10,
             symbolWidth: 10,
+            itemMarginTop: 5,
             itemStyle: {
-                fontFamily: 'Comfortaa',
                 fontWeight: 'bold',
                 fontSize: '12px',
             },
@@ -44760,9 +44727,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
         react_1.default.createElement("div", { className: "esgnow-product-info-summary" },
             react_1.default.createElement("div", { className: "esgnow-summary-image", style: {
                     backgroundImage: product.images[0] ? `url(${product.images[0]})` : 'none',
-                } },
-                !product.images[0] && react_1.default.createElement("div", { className: "esgnow-image-placeholder" }, "Image Unavailable"),
-                react_1.default.createElement("div", { className: "esgnow-image-label" }, `${product.co2Emission} Kg CO₂e`)),
+                } }, !product.images[0] && react_1.default.createElement("div", { className: "esgnow-image-placeholder" }, "Image Unavailable")),
             react_1.default.createElement("div", { className: "esgnow-summary-details" },
                 react_1.default.createElement("div", { className: "esgnow-detail-grid" },
                     react_1.default.createElement("div", { className: "esgnow-detail-item" },
@@ -44791,7 +44756,28 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-footprint" },
             react_1.default.createElement("h3", null, "Product Carbon Footprint"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
-                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
+                react_1.default.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '20px' } },
+                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }),
+                    react_1.default.createElement("div", { style: {
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            padding: '20px',
+                            backgroundColor: '#f9f9f9',
+                            textAlign: 'center',
+                            minWidth: '150px'
+                        } },
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                            } },
+                            product.co2Emission,
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                            } }, "Total Footprint")))))));
     const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-contribution-raw-material" },
             react_1.default.createElement("h3", null, "Contribution by Raw Material"),
@@ -44938,8 +44924,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 plan === 'professional' && (react_1.default.createElement("th", null, "Specific Material")),
                                 react_1.default.createElement("th", null, "Emission Factor"),
                                 react_1.default.createElement("th", null, "EF Source"),
-                                react_1.default.createElement("th", null, "EF Type"),
-                                react_1.default.createElement("th", null, "Type Rational"))),
+                                react_1.default.createElement("th", null, "Type Rationale"))),
                         react_1.default.createElement("tbody", null, (() => {
                             const mergedItems = new Map();
                             product.productManufacturingProcess.forEach((item) => {
@@ -44950,7 +44935,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 const key = `${material.materialClass}-${material.specificMaterial}`;
                                 if (mergedItems.has(key)) {
                                     const existingItem = mergedItems.get(key);
-                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "", EF_Type: material.EF_Type || "", Type_Rationale: material.Type_Rationale || "" }));
+                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "", Type_Rationale: material.Type_Rationale || "" }));
                                 }
                             });
                             return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
@@ -44960,8 +44945,7 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                     item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-",
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null, item.EF_Source || ""),
-                                react_1.default.createElement("td", null, item.EF_Type || ""),
-                                react_1.default.createElement("td", null, item.Type_Rationale || ""))));
+                                react_1.default.createElement("td", { className: 'esgnow-reasoning-cell' }, item.Type_Rationale || ""))));
                         })()))))))));
     return (react_1.default.createElement("div", { className: "esgnow-product-summary-container" },
         react_1.default.createElement("div", { className: "esgnow-header-container" }, !hideHeader && (react_1.default.createElement(react_1.default.Fragment, null,
