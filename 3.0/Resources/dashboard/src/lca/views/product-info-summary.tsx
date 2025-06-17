@@ -446,7 +446,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                                 ...existingItem,
                                                 reasoning: material.reasoning || "-",
                                                 emissionFactor: material.emissionFactor,
-                                                countryOfOrigin: product.countryOfOrigin,
+                                                countryOfOrigin: material.countryOfOrigin,
                                                 EF_Source: material.EF_Source || "",
                                                 Type_Rationale: material.Type_Rationale || ""
                                             });
