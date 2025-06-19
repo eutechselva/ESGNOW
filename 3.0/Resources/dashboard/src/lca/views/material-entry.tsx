@@ -249,7 +249,7 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({
                     </div>
                 </div>
             ))}
-            {!isBulkEdit && (
+            {(!isBulkEdit || isEditable) && (
                 <div className="esgnow-add-another-material-container">
 
                     <IconButton
