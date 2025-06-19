@@ -40,8 +40,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 280,
-            width: 500,
+            height: 350,
+            width: 600,
             events: {
                 render() {
                     const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
@@ -176,9 +176,36 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             </div>
 
             <div className="esgnow-widget esgnow-product-footprint">
-                <h3>Product Carbon Footprint Breakdown</h3>
+                <h3>Product Carbon Footprint</h3>
                 <div className="esgnow-widget-content">
-                    <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+                        <HighchartsReact highcharts={Highcharts} options={donutChartOptions} />
+                        <div 
+                            style={{
+                                border: '2px solid #e0e0e0',
+                                borderRadius: '8px',
+                                padding: '20px',
+                                backgroundColor: '#f9f9f9',
+                                textAlign: 'center',
+                                minWidth: '150px'
+                            }}
+                        >
+                            <div style={{
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                            }}>
+                                {product.co2Emission} KgCO₂e
+                            </div>
+                            <div style={{
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                            }}>
+                                Total Footprint
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
