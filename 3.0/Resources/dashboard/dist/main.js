@@ -43696,7 +43696,7 @@ const MaterialEntry = ({ onAddMaterial, isEditable, initialMaterial, initialMate
                 react_1.default.createElement(components_1.FormField, { className: "esgnow-material-reasoning-field" },
                     react_1.default.createElement(components_1.Label, { className: "esgnow-material-reasoning-label" }, "Reasoning"),
                     react_1.default.createElement("textarea", { value: material.reasoning || "", onChange: (e) => handleInputChange(index, "reasoning", e.target.value), placeholder: "Enter reasoning for this material selection", className: "esgnow-reasoning-textarea", rows: 3 })))))),
-        !isBulkEdit && (react_1.default.createElement("div", { className: "esgnow-add-another-material-container" },
+        (!isBulkEdit || isEditable) && (react_1.default.createElement("div", { className: "esgnow-add-another-material-container" },
             react_1.default.createElement(components_1.IconButton, { type: "plus", className: "esgnow-add-another-material-button", onClick: handleAddAnother }))),
         react_1.default.createElement("div", { className: "esgnow-actions-container" },
             onCancel && (react_1.default.createElement(components_1.Button, { title: "Cancel", className: "cancel-button", onClick: onCancel })),
@@ -44673,8 +44673,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
         chart: {
             type: 'pie',
             backgroundColor: null,
-            height: 280,
-            width: 500,
+            height: 350,
+            width: 600,
             events: {
                 render() {
                     const chart = this;
@@ -44783,9 +44783,30 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     react_1.default.createElement("div", { className: "esgnow-rich-text-editor" },
                         react_1.default.createElement("textarea", { defaultValue: product.description, className: "esgnow-editable-description", rows: 4 }))))),
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-product-footprint" },
-            react_1.default.createElement("h3", null, "Product Carbon Footprint Breakdown"),
+            react_1.default.createElement("h3", null, "Product Carbon Footprint"),
             react_1.default.createElement("div", { className: "esgnow-widget-content" },
-                react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions })))));
+                react_1.default.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: '20px' } },
+                    react_1.default.createElement(highcharts_react_official_1.default, { highcharts: highcharts_1.default, options: donutChartOptions }),
+                    react_1.default.createElement("div", { style: {
+                            border: '2px solid #e0e0e0',
+                            borderRadius: '8px',
+                            padding: '20px',
+                            backgroundColor: '#f9f9f9',
+                            textAlign: 'center',
+                            minWidth: '150px'
+                        } },
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '24px',
+                                fontWeight: 'bold',
+                                color: '#424242',
+                            } },
+                            product.co2Emission,
+                            " KgCO\u2082e"),
+                        react_1.default.createElement("div", { style: {
+                                fontSize: '14px',
+                                color: '#666',
+                                marginTop: '5px',
+                            } }, "Total Footprint")))))));
     const renderMaterialsTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-contribution-raw-material" },
             react_1.default.createElement("h3", null, "Contribution by Raw Material"),
