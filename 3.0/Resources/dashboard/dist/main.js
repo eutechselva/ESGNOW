@@ -44967,13 +44967,13 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                                 const key = `${material.materialClass}-${material.specificMaterial}`;
                                 if (mergedItems.has(key)) {
                                     const existingItem = mergedItems.get(key);
-                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", emissionFactor: material.emissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "", Type_Rationale: material.Type_Rationale || "" }));
+                                    mergedItems.set(key, Object.assign(Object.assign({}, existingItem), { reasoning: material.reasoning || "-", specificMaterialEmissionFactor: material.specificMaterialEmissionFactor, countryOfOrigin: material.countryOfOrigin, EF_Source: material.EF_Source || "", Type_Rationale: material.Type_Rationale || "" }));
                                 }
                             });
                             return Array.from(mergedItems.values()).map((item) => (react_1.default.createElement("tr", { key: `${item.materialClass}-${item.specificMaterial}` },
                                 react_1.default.createElement("td", null, item.specificMaterial || "-"),
                                 react_1.default.createElement("td", null,
-                                    item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-",
+                                    item.specificMaterialEmissionFactor ? parseFloat(item.specificMaterialEmissionFactor).toFixed(2) : "-",
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null, item.EF_Source || "-"),
                                 react_1.default.createElement("td", null, item.countryOfOrigin || "-"),

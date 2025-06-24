@@ -472,7 +472,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                             mergedItems.set(key, {
                                                 ...existingItem,
                                                 reasoning: material.reasoning || "-",
-                                                emissionFactor: material.emissionFactor,
+                                                specificMaterialEmissionFactor: material.specificMaterialEmissionFactor,
                                                 countryOfOrigin: material.countryOfOrigin,
                                                 EF_Source: material.EF_Source || "",
                                                 Type_Rationale: material.Type_Rationale || ""
@@ -483,7 +483,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                                     return Array.from(mergedItems.values()).map((item: any) => (
                                         <tr key={`${item.materialClass}-${item.specificMaterial}`}>
                                             <td>{item.specificMaterial || "-"}</td>
-                                            <td>{item.emissionFactor ? parseFloat(item.emissionFactor).toFixed(2) : "-"} KgCO₂e</td>
+                                            <td>{item.specificMaterialEmissionFactor ? parseFloat(item.specificMaterialEmissionFactor).toFixed(2) : "-"} KgCO₂e</td>
                                             <td>{item.EF_Source || "-"}</td>
                                             <td>{item.countryOfOrigin || "-"}</td>
                                             <td className='esgnow-reasoning-cell'>{item.Type_Rationale || "-"}</td>
