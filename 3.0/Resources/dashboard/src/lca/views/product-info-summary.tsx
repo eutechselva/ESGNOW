@@ -42,36 +42,36 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
             backgroundColor: null,
             height: 350,
             width: 600,
-            events: {
-                render() {
-                    const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
+            // events: {
+            //     render() {
+            //         const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
 
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(
-                                `${product.co2Emission} <br> KgCO₂e`,
-                                chart.plotWidth / 2 + chart.plotLeft,
-                                chart.plotHeight / 2 + chart.plotTop
-                            )
-                            .css({
-                                fontSize: '18px',
-                                fontWeight: 'bold',
-                                fontFamily: 'Comfortaa',
-                                color: '#424242',
-                                textAlign: 'center',
-                            })
-                            .attr({
-                                align: 'center',
-                                zIndex: 5,
-                            })
-                            .add();
-                    } else {
-                        chart.customText.attr({
-                            text: `${product.co2Emission} KgCO₂e`,
-                        });
-                    }
-                },
-            },
+            //         if (!chart.customText) {
+            //             chart.customText = chart.renderer
+            //                 .text(
+            //                     `${product.co2Emission} <br> KgCO₂e`,
+            //                     chart.plotWidth / 2 + chart.plotLeft,
+            //                     chart.plotHeight / 2 + chart.plotTop
+            //                 )
+            //                 .css({
+            //                     fontSize: '18px',
+            //                     fontWeight: 'bold',
+            //                     fontFamily: 'Comfortaa',
+            //                     color: '#424242',
+            //                     textAlign: 'center',
+            //                 })
+            //                 .attr({
+            //                     align: 'center',
+            //                     zIndex: 5,
+            //                 })
+            //                 .add();
+            //         } else {
+            //             chart.customText.attr({
+            //                 text: `${product.co2Emission} KgCO₂e`,
+            //             });
+            //         }
+            //     },
+            // },
         },
         title: {
             text: '',
