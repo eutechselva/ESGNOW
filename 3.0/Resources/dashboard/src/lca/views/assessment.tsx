@@ -30,7 +30,7 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
 
   return (
     <div className="assessment-container">
-      <h1 className="assessment-title">Your PCF has been Successfully Calculated!</h1>
+      <h1 className="assessment-title">Product Carbon Footprint Complete!</h1>
 
       <div className="product-info">
         <p className="product-name">
@@ -74,7 +74,7 @@ const Assessment: React.FC<AssessmentProps> = ({ newlyCreatedProduct, onClose  ,
         Your PCF has been successfully calculated!
       </p> */}
       <p className="calculation-subtext">
-      Complete the analysis by calculating transportation emissions, or save your progress and do it later?
+      {/* Complete the analysis by calculating transportation emissions, or save your progress and do it later? */}
       </p>
 
       <div className="button-group">

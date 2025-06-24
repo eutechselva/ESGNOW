@@ -322,8 +322,8 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
     const renderInventoryTab = () => (
         <div className="esgnow-tab-content">
             <div className="esgnow-widget esgnow-inventory-info">
-                <div className="esgnow-inventory-header">
-                    <h3>Inventory Information</h3>
+             
+                    <h3>Material Inventory</h3>
                     <div className="esgnow-view-toggle">
                         {/* <button
                             className={`esgnow-toggle-button ${viewMode === 'list' ? 'active' : ''}`}
@@ -338,7 +338,7 @@ const ProductInfoSummary: React.FC<ProductInfoSummaryProps> = ({ product, onClos
                             Tree View
                         </button> */}
                     </div>
-                </div>
+             
 
                 {viewMode === 'tree' ? (
                     <div className="esgnow-inventory-tree">
