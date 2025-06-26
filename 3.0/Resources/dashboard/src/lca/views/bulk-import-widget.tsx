@@ -1,7 +1,9 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef,useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import './bulk-import-widget.scss';
-
+import JSZip from 'jszip';
+// Import logo
+import esgLogo from '../../images/ESG_now_logo.png';
 const XLSX = require("xlsx");
 
 interface BulkImportWidgetProps {
@@ -19,13 +21,47 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
   const [sheets, setSheets] = useState<string[]>([]);
   const [isSheetSelected, setIsSheetSelected] = useState(false);
   
+  const [message, setMessage] = useState<string | null>(null);
+  const [messageType, setMessageType] = useState<"success" | "error" | null>(null);
   const [productCodeField, setProductCodeField] = useState('');
   const [productNameField, setProductNameField] = useState('');
   const [productDescriptionField, setProductDescriptionField] = useState('');
-
+  const [productImageField, setProductImageField] = useState('');
+  const [productCategoryField, setProductCategoryField] = useState('');
+  const [productSubCategoryField, setProductSubCategoryField] = useState('');
+  const [logoImageData, setLogoImageData] = useState<Uint8Array | null>(null);
 
   const [showSkipped, setShowSkipped] = useState(true);
   const [showUnmapped, setShowUnmapped] = useState(true);
+
+
+      // Load the logo image when component mounts
+      useEffect(() => {
+        const loadLogoImage = async () => {
+            try {
+                // Create a simple 1x1 pixel image as fallback
+                const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+                const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+                const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+                
+                // Try to fetch the actual logo image
+                try {
+                    const response = await fetch(esgLogo);
+                    const blob = await response.blob();
+                    const arrayBuffer = await blob.arrayBuffer();
+                    setLogoImageData(new Uint8Array(arrayBuffer));
+                } catch (error) {
+                    console.error("Error loading logo image:", error);
+                    setLogoImageData(defaultImage);
+                }
+            } catch (error) {
+                console.error("Error in loadLogoImage:", error);
+            }
+        };
+        
+        loadLogoImage();
+    }, []);
+
     // Hardcoded mapping data to match Figma
     const mappingData = [
       {
@@ -145,40 +181,73 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
     const mappings = {
       productCode: '',
       productName: '',
-      productDescription: ''
+      productDescription: '',
+      productImage: '',
+      productCategory: '',
+      productSubCategory: ''
     };
-
-    // Auto-detect common field patterns
+  
     headers.forEach(header => {
       const lowerHeader = header.toLowerCase();
-      
+  
       if (!mappings.productCode && (
-        lowerHeader.includes('code') || 
-        lowerHeader.includes('product code') || 
+        lowerHeader.includes('code') ||
+        lowerHeader.includes('product code') ||
         lowerHeader.includes('prod') ||
         lowerHeader.includes('id')
       )) {
         mappings.productCode = header;
       }
-      
+  
       if (!mappings.productName && (
-        lowerHeader.includes('name') || 
-        lowerHeader.includes('title') ||
-        lowerHeader.includes('product name')
+        lowerHeader.includes('name') ||
+        lowerHeader.includes('product name') ||
+        lowerHeader.includes('title')
       )) {
         mappings.productName = header;
       }
-      
+  
       if (!mappings.productDescription && (
-        lowerHeader.includes('description') || 
+        lowerHeader.includes('description') ||
         lowerHeader.includes('desc') ||
         lowerHeader.includes('details')
       )) {
         mappings.productDescription = header;
       }
+  
+      if (!mappings.productImage && (
+        lowerHeader.includes('image') ||
+        lowerHeader.includes('photo') ||
+        lowerHeader.includes('picture')
+      )) {
+        mappings.productImage = header;
+      }
+  
+      if (!mappings.productCategory && (
+        lowerHeader.includes('category') &&
+        !lowerHeader.includes('sub')
+      )) {
+        mappings.productCategory = header;
+      }
+  
+      if (!mappings.productSubCategory && (
+        lowerHeader.includes('sub-category') ||
+        lowerHeader.includes('subcategory') ||
+        (lowerHeader.includes('category') && lowerHeader.includes('sub'))
+      )) {
+        mappings.productSubCategory = header;
+      }
     });
-
+  
+    // Set values in state
+    setProductCodeField(mappings.productCode);
+    setProductNameField(mappings.productName);
+    setProductDescriptionField(mappings.productDescription);
+    setProductImageField(mappings.productImage);
+    setProductCategoryField(mappings.productCategory);
+    setProductSubCategoryField(mappings.productSubCategory);
   };
+  
 
   const handleSheetChange = (sheetName: string) => {
     setSelectedSheet(sheetName);
@@ -235,10 +304,164 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
       setCurrentStep(currentStep - 1);
     }
   };
+    // Handle sample folder structure download
+    const handleDownloadFolderStructure = async () => {
+      try {
+          // Create a sample folder structure programmatically
+          // This creates a basic structure with product folders that matches what's needed
+          
+          // Create a new JSZip instance
+          const zip = new JSZip();
+          
+          // Create a default 1x1 pixel JPG as fallback
+          const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+          const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+          const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+          
+          // Use the loaded logo image or default if not available
+          const imageData = logoImageData || defaultImage;
+          
+          // Create product folders with sample images
+          // Product 1
+          const prod1Folder = zip.folder("OF001");
+          prod1Folder.file("main.jpg", imageData, {binary: true});
+          prod1Folder.file("alternate1.jpg", imageData, {binary: true});
+          prod1Folder.file("alternate2.jpg", imageData, {binary: true});
+          
+          // Product 2
+          const prod2Folder = zip.folder("OF002");
+          prod2Folder.file("main.jpg", imageData, {binary: true});
+          prod2Folder.file("side_view.jpg", imageData, {binary: true});
+          
+          
+          
+          // Add a README file explaining the structure
+          zip.file("README.txt", 
+              "PRODUCT IMAGES FOLDER STRUCTURE\n\n" +
+              "Each product should have its own folder named exactly as the product's Code.\n" +
+              "For example, if your product code is PROD001, create a folder named 'PROD001'.\n\n" +
+              "Inside each product folder, save the images with proper naming:\n" +
+              "- Main product image should be named 'main.jpg' or 'main.png'\n" +
+              "- Additional images can be named as desired (e.g., 'alternate1.jpg', 'side.png', etc.)\n\n" +
+              "Supported image formats: JPG, PNG (max 5MB per image)\n" +
+              "Ensure all images are high quality and properly represent the product.\n\n" +
+              "EXAMPLE STRUCTURE:\n" +
+              "- PROD001/\n" +
+              "  - main.jpg (Main product image)\n" +
+              "  - alternate1.jpg (Additional view)\n" +
+              "  - alternate2.jpg (Another view)\n" +
+              "- PROD002/\n" +
+              "  - main.jpg (Main product image)\n" +
+              "  - side_view.jpg (Side view of product)\n" +
+              "- PROD003/\n" +
+              "  - main.jpg (Main product image)\n\n" +
+              "Note: The sample images in this ZIP are 1x1 pixel placeholders. Replace them with your actual product images."
+          );
+          
+          // Generate zip file
+          const content = await zip.generateAsync({type: "blob"});
+          
+          // Create URL and download
+          const url = window.URL.createObjectURL(content);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'product_images_structure.zip';
+          document.body.appendChild(a);
+          a.click();
+          
+          // Clean up
+          window.URL.revokeObjectURL(url);
+          document.body.removeChild(a);
+          
+          setMessage("Folder structure downloaded successfully.");
+          setMessageType("success");
+      } catch (error) {
+          console.error("Download Error:", error);
+          setMessage("An error occurred while downloading the folder structure.");
+          setMessageType("error");
+      }
+  };
+  const handleDownloadSampleFile = () => {
+    try {
+      // Define the sample data
+      const sampleData = [
+          {
+              "code": "OF001",
+              "name": "Executive Desk",
+              "description": "Modern wooden executive desk with drawers",
+              "weight": 50,
+              "countryOfOrigin": "CN",
+              "supplierName": "OfficeFurnish Ltd"
+          },
+          {
+              "code": "OF002",
+              "name": "Ergonomic Chair",
+              "description": "Adjustable office chair with lumbar support",
+              "weight": 15,
+              "countryOfOrigin": "VN",
+              "supplierName": "ComfortSeating GmbH"
+          },
+          {
+              "code": "OF003",
+              "name": "Conference Table",
+              "description": "Large wooden conference table for meetings",
+              "weight": 80,
+              "countryOfOrigin": "Global",
+              "supplierName": "BoardRoom Supplies"
+          },
+          {
+              "code": "OF004",
+              "name": "Bookshelf",
+              "description": "5-tier wooden bookshelf for office storage",
+              "weight": 30,
+              "countryOfOrigin": "CN",
+              "supplierName": "ScandiOffice Solutions"
+          },
+          {
+              "code": "OF005",
+              "name": "File Cabinet",
+              "description": "Steel file cabinet with locking drawers",
+              "weight": 45,
+              "countryOfOrigin": "VN",
+              "supplierName": "SecureFiles Inc"
+          }
+      ]
+          ;
 
-  const handleDownloadSampleFile = (type: 'data' | 'images') => {
-    // Placeholder for download functionality
-    console.log(`Download sample ${type} file`);
+      // Create a new workbook
+      const workbook = XLSX.utils.book_new();
+
+      // Convert JSON data to worksheet
+      const worksheet = XLSX.utils.json_to_sheet(sampleData);
+
+      // Add the worksheet to the workbook
+      XLSX.utils.book_append_sheet(workbook, worksheet, "Products");
+
+      // Generate Excel file as array buffer
+      const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+
+      // Convert to Blob
+      const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+      // Create URL and trigger download
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'product_upload_template.xlsx';
+      document.body.appendChild(a);
+      a.click();
+
+      // Clean up
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      setMessage("Excel template downloaded successfully.");
+      setMessageType("success");
+  } catch (error) {
+      console.error("Download Error:", error);
+      setMessage("An error occurred while downloading the template.");
+      setMessageType("error");
+  }
   };
 
   const handleModalClose = () => {
@@ -323,7 +546,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   <div className="bulk-import__upload-icon">
                     <DataFileIcon />
                   </div>
-                  <p>Drag and drop your <strong>data file</strong> here in .csv or .xls format</p>
+                  <p>Drag and drop your <strong>data file</strong> <br />here in .csv or .xls format</p>
                   <p className="bulk-import__or-text">or</p>
                   <input
                     type="file"
@@ -343,7 +566,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   </button>
                   <button 
                     className="bulk-import__download-sample-btn"
-                    onClick={() => handleDownloadSampleFile('data')}
+                    onClick={() => handleDownloadSampleFile()}
                   >
                     Download sample file
                   </button>
@@ -366,21 +589,14 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                     />
                   </div>
                 )}
-                
-                {/* Show headers preview if available */}
-                {csvHeaders.length > 0 && (
-                  <div className="bulk-import__headers-preview">
-                    <h4>Detected Headers:</h4>
-                    <div className="bulk-import__headers-list">
-                      {csvHeaders.map((header, index) => (
-                        <span key={index} className="bulk-import__header-tag">{header}</span>
-                      ))}
-                    </div>
-                    <p>Found {csvRows.length} data rows</p>
-                  </div>
-                )}
+
                 
                 <div className="bulk-import__note">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M2.06296 9.99998C2.06296 6.26803 2.06296 4.40205 3.21099 3.24268C4.35902 2.08331 6.20675 2.08331 9.9022 2.08331C13.5976 2.08331 15.4454 2.08331 16.5934 3.24268C17.7414 4.40205 17.7414 6.26803 17.7414 9.99998C17.7414 13.7319 17.7414 15.5979 16.5934 16.7573C15.4454 17.9166 13.5976 17.9166 9.9022 17.9166C6.20675 17.9166 4.35902 17.9166 3.21099 16.7573C2.06296 15.5979 2.06296 13.7319 2.06296 9.99998Z" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.90221 13.3333V9.58331" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M9.90221 6.67642V6.66809" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                   <strong>Note:</strong> You can import upto 5000 records at a time
                 </div>
               </div>
@@ -392,7 +608,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   <div className="bulk-import__upload-icon">
                     <ImageFileIcon />
                   </div>
-                  <p>Drag and drop your <strong>images</strong> zip file</p>
+                  <p>Drag and drop your <strong>images</strong><br /> zip file</p>
                   <p className="bulk-import__or-text">or</p>
                   <input
                     type="file"
@@ -411,7 +627,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   </button>
                   <button 
                     className="bulk-import__download-sample-btn"
-                    onClick={() => handleDownloadSampleFile('images')}
+                    onClick={() => handleDownloadFolderStructure()}
                   >
                     Download sample file
                   </button>
@@ -419,6 +635,11 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   {imagesFile && <p className="bulk-import__selected-file">Selected: {imagesFile.name}</p>}
                 </div>
                 <div className="bulk-import__note">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10.5656 13.3333V9.58331" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M10.5656 6.67642V6.66809" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
                   <strong>Note:</strong> Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping
                 </div>
               </div>
@@ -462,6 +683,9 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
           field.esgField === 'Product Code' ? productCodeField :
           field.esgField === 'Product Name' ? productNameField :
           field.esgField === 'Product Description' ? productDescriptionField :
+          field.esgField === 'Product Image' ? productImageField :
+          field.esgField === 'Product Category' ? productCategoryField :
+          field.esgField === 'Product Sub-Category' ? productSubCategoryField :
           ''
         }
         options={csvHeaders.map(header => ({
@@ -472,6 +696,9 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
           if (field.esgField === 'Product Code') setProductCodeField(value);
           else if (field.esgField === 'Product Name') setProductNameField(value);
           else if (field.esgField === 'Product Description') setProductDescriptionField(value);
+          else if (field.esgField === 'Product Image') setProductImageField(value);
+          else if (field.esgField === 'Product Category') setProductCategoryField(value);
+          else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
         }}
         className="dropdown-select"
       />
@@ -639,27 +866,34 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
           </div>
         }
       >
-        {/* Progress Steps */}
-        <div className="bulk-import__progress-steps">
-          <div className={`bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">1</div>
-            <span className="bulk-import__step-text">Upload File</span>
-          </div>
+<div className="bulk-import__progress-steps">
+  {/* Step 1 */}
+  <div className={`bulk-import__step ${currentStep > 1 ? 'completed' : currentStep === 1 ? 'active' : ''}`}>
+    <div className="bulk-import__step-number">
+      {currentStep > 1 ? '✔' : '1'}
+    </div>
+    <span className="bulk-import__step-text">Upload File</span>
+  </div>
 
-          <div className="step-line" />
+  <div className="step-line" />
 
-          <div className={`bulk-import__step ${currentStep >= 2 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">2</div>
-            <span className="bulk-import__step-text">Map Fields & Assign Defaults</span>
-          </div>
+  {/* Step 2 */}
+  <div className={`bulk-import__step ${currentStep > 2 ? 'completed' : currentStep === 2 ? 'active' : ''}`}>
+    <div className="bulk-import__step-number">
+      {currentStep > 2 ? '✔' : '2'}
+    </div>
+    <span className="bulk-import__step-text">Map Fields & Assign Defaults</span>
+  </div>
 
-          <div className="step-line" />
+  <div className="step-line" />
 
-          <div className={`bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">3</div>
-            <span className="bulk-import__step-text">Review & Import</span>
-          </div>
-        </div>
+  {/* Step 3 */}
+  <div className={`bulk-import__step ${currentStep === 3 ? 'active' : ''}`}>
+    <div className="bulk-import__step-number">3</div>
+    <span className="bulk-import__step-text">Review & Import</span>
+  </div>
+</div>
+
 
         {/* Step Content */}
         {getStepContent()}

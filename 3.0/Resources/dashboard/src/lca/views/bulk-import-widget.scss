@@ -1,4 +1,6 @@
 // Bulk Import Widget Styles
+
+
 .bulk-import__modal .uxp-modal__body {
   min-height: 500px; // or whatever works best
   transition: none;  // disables awkward reflow animations
@@ -8,6 +10,9 @@
 
 .bulk-import-widget {
     display: inline-block;
+    * {
+      font-family: "Satoshi Variable" !important;
+    }
   }
   //new code
   .field-mapping-table {
@@ -85,7 +90,7 @@
     color: #535862;
     padding: 12px 16px;
     border-bottom: 1px solid #E9EAEB;
-    gap: 15px;
+    gap: 5px;
   }
   
   .field-mapping-row {
@@ -96,7 +101,7 @@
     border-bottom: 1px solid #F0F0F0;
     font-size: 16px;
     color: #181D27;
-    gap: 15px;
+    gap: 5px;
   }
   
   .field-label .required {
@@ -141,7 +146,7 @@
   }
   //new 3rd page
   .review-import {
-    font-family: 'Satoshi Variable', sans-serif;
+    font-family: "Satoshi Variable" !important;
   
     .review-section {
       margin-top: 24px;
@@ -325,7 +330,8 @@
     gap: 5px; // gives spacing between elements
     width: 50%;
   }
-  
+
+
   .bulk-import__step {
     display: flex;
     align-items: center;
@@ -335,9 +341,9 @@
   
     &--active {
       .bulk-import__step-number {
-        background-color: #0156D2;
+        background-color: #5072FF;
         color: white;
-        border-color: #0156D2;
+        border-color: #5072FF;
       }
   
       .bulk-import__step-text {
@@ -346,19 +352,19 @@
       }
   
       &::after {
-        background-color: #0156D2;
+        background-color: #5072FF;
       }
     }
   
     &:not(.bulk-import__step--active) {
       .bulk-import__step-number {
-        background-color: #f9fafb;
-        color: #9ca3af;
-        border-color: #e5e7eb;
+        background-color: #E9EAEB;
+        color: #A4A7AE;
+        border-color: #E9EAEB;
       }
   
       .bulk-import__step-text {
-        color: #9ca3af;
+        color: #A4A7AE;
         font-weight: 400;
       }
     }
@@ -402,7 +408,7 @@
     p {
       color: #181D27;
       font-size: 22px;
-      font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: "Satoshi Variable" !important;
       font-weight: 500;
       line-height: 24px;
       max-width: 667px;
@@ -410,6 +416,7 @@
       margin-right: auto;
     }
   }
+  //new 
   
   // Upload Sections
   .bulk-import__upload-sections {
@@ -439,7 +446,7 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-align: center;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Satoshi Variable" !important;
     line-height: 24px;
   }
   
@@ -459,6 +466,10 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    border-radius: 32px;
+    border: 2px dashed #CBC9D6;
+    background: #FFF;
+    flex-shrink: 0;
   
     &:hover {
       border-color: #0156D2;
@@ -470,7 +481,7 @@
       font-size: 18px;
       color: #181D27;
       line-height: 25px;
-      font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: "Satoshi Variable" !important;
       font-weight: 500;
   
       strong {
@@ -495,7 +506,7 @@
   .bulk-import__or-text {
     color: #181D27;
     font-size: 18px;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Satoshi Variable" !important;
     font-weight: 500;
     line-height: 22px;
     position: relative;
@@ -513,7 +524,7 @@
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Satoshi Variable" !important;
     cursor: pointer;
     margin-bottom: 16px;
     transition: all 0.2s ease;
@@ -547,7 +558,7 @@
     color: #0156D2;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Satoshi Variable" !important;
     cursor: pointer;
     text-decoration: underline;
     margin-bottom: 16px;
@@ -572,7 +583,7 @@
     font-size: 12px;
     color: #717680;
     font-weight: 500;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-family: "Satoshi Variable" !important;
     line-height: 20px;
     margin: 0 !important;
     margin-top: 16px !important;
@@ -600,23 +611,23 @@
     font-size: 12px;
     color: #414651;
     line-height: 18px;
-    font-family: "Satoshi Variable", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family:"Satoshi Variable" !important;
     font-weight: 500;
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 2px;
 
   
-    &::before {
-      content: '';
-      width: 20px;
-      height: 20px;
-      background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' fill='%23414651'/%3E%3C/svg%3E");
-      background-size: contain;
-      background-repeat: no-repeat;
-      flex-shrink: 0;
-      margin-top: 1px;
-    }
+    // &::before {
+    //   content: '';
+    //   width: 20px;
+    //   height: 20px;
+    //   background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' fill='%23414651'/%3E%3C/svg%3E");
+    //   background-size: contain;
+    //   background-repeat: no-repeat;
+    //   flex-shrink: 0;
+    //   margin-top: 1px;
+    // }
   
     strong {
       font-weight: 700;
@@ -630,9 +641,12 @@
     align-items: center;
   }
   .bulk-import__modal-title {
-    font-size: 14px;
-    width: 20%;
-    font-weight: 600;
+    font-family: "Satoshi Variable" !important;
+    color: var(--Gray-900, #181D27);
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 38px;
   }
   .bulk-import__modal-header {
     display: flex;
@@ -667,6 +681,7 @@
     background-color: #0156D2;
     color: white;
     border: none;
+    font-family: "Satoshi Variable" !important;
     padding: 12px 32px;
     border-radius: 8px;
     font-size: 14px;
@@ -677,6 +692,7 @@
   
     &:hover:not(:disabled) {
       background-color: #0146b8;
+      color:white
     }
   
     &:focus:not(:disabled) {
@@ -823,3 +839,19 @@
     }
   }
 
+  .bulk-import__step.completed .bulk-import__step-number {
+    background-color: #039855; /* Green */
+    border-color: #039855;
+    color: white;
+  }
+  .bulk-import__step.completed .bulk-import__step-text {/* Green */
+    color: #039855;
+  }
+  .bulk-import__step.active .bulk-import__step-number {
+    background-color: #5072FF; /* Blue */
+    border-color: #5072FF;
+    color: white;
+  }
+  .bulk-import__step.active .bulk-import__step-text {
+    color: #181D27
+  }
