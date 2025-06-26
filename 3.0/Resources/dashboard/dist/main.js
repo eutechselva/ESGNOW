@@ -109,6 +109,23 @@ module.exports = exports;
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-import-widget.scss":
+/*!****************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-import-widget.scss ***!
+  \****************************************************************************************************************************/
+/***/ ((module, exports, __webpack_require__) => {
+
+// Imports
+var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, ".bulk-import__modal .uxp-modal__body {\n  min-height: 500px;\n  transition: none;\n  overflow-y: auto;\n}\n\n.bulk-import-widget {\n  display: inline-block;\n}\n\n.field-mapping-table {\n  display: flex;\n  flex-direction: column;\n  margin-top: 24px;\n  border: 1px solid #E9EAEB;\n  border-radius: 16px;\n  overflow: hidden;\n  background: white;\n  box-shadow: 0 1px 2px rgba(10, 12, 18, 0.06);\n}\n\n.field-sample-columns {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n}\n\n.sample-column {\n  padding: 8px 12px;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  border-radius: 4px;\n  background-color: #F9FAFB;\n}\n.sample-column.with-divider {\n  border-left: 1px solid #E0E0E0;\n}\n\n.dropdown-select {\n  width: 100%;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n.dropdown-select .select__control {\n  border-radius: 8px;\n  border: 1px solid #CBC9D6;\n  background: white;\n  padding: 4px 8px;\n  min-height: 44px;\n}\n.dropdown-select .select__single-value {\n  color: #181D27;\n}\n.dropdown-select .select__placeholder {\n  color: #A4A7AE;\n}\n.dropdown-select .select__menu {\n  z-index: 10;\n}\n\n.bulk-import__modal-header-controls {\n  display: flex;\n  gap: 16px;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.field-mapping-header {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  background: #FAFAFA;\n  font-weight: 500;\n  font-size: 14px;\n  color: #535862;\n  padding: 12px 16px;\n  border-bottom: 1px solid #E9EAEB;\n  gap: 15px;\n}\n\n.field-mapping-row {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  padding: 16px;\n  align-items: center;\n  border-bottom: 1px solid #F0F0F0;\n  font-size: 16px;\n  color: #181D27;\n  gap: 15px;\n}\n\n.field-label .required {\n  color: #D92D20;\n  margin-left: 4px;\n}\n\n.field-dropdown Select {\n  width: 100%;\n}\n\n.field-default {\n  color: #717680;\n  /* text-align: center; */\n  border: 1px solid rgba(83, 88, 98, 0.1254901961);\n  border-radius: 5px;\n  padding: 7px;\n}\n\n.field-sample .sample-value {\n  color: #717680;\n  margin-bottom: 4px;\n}\n\n.field-sample {\n  display: flex;\n  gap: 16px;\n}\n.field-sample .sample-value {\n  flex: 1;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  padding-right: 16px;\n}\n.field-sample .sample-value.with-divider {\n  border-left: 1px solid #E0E0E0;\n  padding-left: 16px;\n}\n\n.review-import {\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n.review-import .review-section {\n  margin-top: 24px;\n}\n.review-import .review-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 16px 8px;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  color: #181D27;\n  font-weight: 500;\n}\n.review-import .review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-import .review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-import .review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  cursor: pointer;\n  margin-left: 16px;\n  font-weight: 600;\n}\n.review-import .review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-import .review-row .row-actions {\n  display: flex;\n  align-items: center;\n}\n.review-import .skipped-table {\n  margin: 12px 0;\n  border: 1px solid #E0E0E0;\n  border-radius: 8px;\n  overflow: hidden;\n  font-size: 14px;\n}\n.review-import .skipped-table .table-header,\n.review-import .skipped-table .table-row {\n  display: grid;\n  grid-template-columns: 10% 30% 60%;\n  padding: 12px 16px;\n}\n.review-import .skipped-table .table-header {\n  background: #FAFAFA;\n  font-weight: 600;\n  color: #535862;\n  border-bottom: 1px solid #E0E0E0;\n}\n.review-import .skipped-table .table-row {\n  background: white;\n  border-bottom: 1px solid #F5F5F5;\n  color: #181D27;\n}\n.review-import .skipped-table .table-row .code {\n  font-weight: 600;\n}\n.review-import .unmapped-info {\n  padding: 16px;\n  font-size: 14px;\n  color: #535862;\n}\n.review-import .unmapped-info ul {\n  margin-top: 8px;\n  padding-left: 20px;\n}\n.review-import .unmapped-info ul li {\n  margin-bottom: 4px;\n  color: #181D27;\n  font-weight: 500;\n}\n\n.review-row {\n  display: grid;\n  grid-template-columns: 1fr auto auto;\n  align-items: center;\n  padding: 16px 0;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  font-weight: 500;\n  column-gap: 16px;\n}\n.review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  font-weight: 600;\n  cursor: pointer;\n}\n.review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-row .row-actions {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n}\n\n.bulk-import__trigger-btn {\n  background-color: #2563eb;\n  color: white;\n  border: none;\n  padding: 12px 24px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.bulk-import__trigger-btn:hover {\n  background-color: #1d4ed8;\n}\n.bulk-import__trigger-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.step-line {\n  flex: 1;\n  height: 2px;\n  background-color: #e5e7eb;\n  margin: 0 8px;\n  min-width: 40px;\n}\n\n.bulk-import__progress-steps {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 5px;\n  width: 50%;\n}\n\n.bulk-import__step {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  position: relative;\n}\n.bulk-import__step--active .bulk-import__step-number {\n  background-color: #0156D2;\n  color: white;\n  border-color: #0156D2;\n}\n.bulk-import__step--active .bulk-import__step-text {\n  color: #181D27;\n  font-weight: 500;\n}\n.bulk-import__step--active::after {\n  background-color: #0156D2;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-number {\n  background-color: #f9fafb;\n  color: #9ca3af;\n  border-color: #e5e7eb;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-text {\n  color: #9ca3af;\n  font-weight: 400;\n}\n\n.bulk-import__step-number {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 2px solid #e5e7eb;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 600;\n  font-size: 16px;\n  position: relative;\n  z-index: 2;\n  transition: all 0.2s ease;\n  flex-shrink: 0;\n}\n\n.bulk-import__step-text {\n  font-size: 14px;\n  font-weight: 400;\n  transition: all 0.2s ease;\n}\n@media (max-width: 640px) {\n  .bulk-import__step-text {\n    font-size: 12px;\n  }\n}\n\n.bulk-import__step-content {\n  margin-bottom: 32px;\n}\n\n.bulk-import__content-header {\n  text-align: center;\n  margin-bottom: 10px;\n}\n.bulk-import__content-header p {\n  color: #181D27;\n  font-size: 22px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  line-height: 24px;\n  max-width: 667px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.bulk-import__upload-sections {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 40px;\n}\n@media (max-width: 768px) {\n  .bulk-import__upload-sections {\n    grid-template-columns: 1fr;\n    gap: 32px;\n  }\n}\n\n.bulk-import__upload-section {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  align-items: center;\n}\n\n.bulk-import__section-title {\n  font-size: 16px;\n  font-weight: 700;\n  color: #181D27;\n  margin: 0 0 14px 0;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n  text-align: center;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  line-height: 24px;\n}\n\n.bulk-import__upload-area {\n  border: 2px dotted #CBC9D6;\n  border-radius: 32px;\n  padding: 40px 32px;\n  text-align: center;\n  background-color: #ffffff;\n  height: 472px;\n  width: 491px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n}\n.bulk-import__upload-area:hover {\n  border-color: #0156D2;\n  background-color: #f8faff;\n}\n.bulk-import__upload-area p {\n  margin: 0 0 16px 0;\n  font-size: 18px;\n  color: #181D27;\n  line-height: 25px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n}\n.bulk-import__upload-area p strong {\n  color: #181D27;\n  font-weight: 700;\n}\n\n.bulk-import__upload-icon {\n  color: #181D27;\n  margin-bottom: 24px;\n  display: flex;\n  justify-content: center;\n}\n.bulk-import__upload-icon svg {\n  width: 82px;\n  height: 82px;\n}\n\n.bulk-import__or-text {\n  color: #181D27;\n  font-size: 18px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  line-height: 22px;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.bulk-import__browse-btn {\n  background-color: #0156D2;\n  color: #EBF1FF;\n  border: 1px solid #0156D2;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  cursor: pointer;\n  margin-bottom: 16px;\n  transition: all 0.2s ease;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  min-width: 200px;\n  height: 40px;\n  box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05);\n  line-height: 20px;\n}\n.bulk-import__browse-btn:hover {\n  background-color: #0146b8;\n}\n.bulk-import__browse-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__browse-btn svg {\n  width: 20px;\n  height: 20px;\n}\n\n.bulk-import__download-sample-btn {\n  background: none;\n  border: none;\n  color: #0156D2;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  cursor: pointer;\n  text-decoration: underline;\n  margin-bottom: 16px;\n  padding: 8px 16px;\n  border-radius: 6px;\n  transition: all 0.2s ease;\n  line-height: 20px;\n}\n.bulk-import__download-sample-btn:hover {\n  color: #0146b8;\n  background-color: #f0f7ff;\n  text-decoration: none;\n}\n.bulk-import__download-sample-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\np.bulk-import__file-limit {\n  font-size: 12px;\n  color: #717680;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  line-height: 20px;\n  margin: 0 !important;\n  margin-top: 16px !important;\n}\n\n.bulk-import__selected-file {\n  font-size: 14px;\n  color: #059669;\n  font-weight: 500;\n  margin-top: 16px !important;\n  padding: 12px 16px;\n  background-color: #ecfdf5;\n  border-radius: 8px;\n  border: 1px solid #a7f3d0;\n  max-width: 100%;\n  word-break: break-all;\n}\n\n.bulk-import__note {\n  padding: 16px 20px;\n  background-color: transparent;\n  border: none;\n  width: 80%;\n  font-size: 12px;\n  color: #414651;\n  line-height: 18px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  display: flex;\n  justify-content: center;\n  gap: 12px;\n}\n.bulk-import__note::before {\n  content: \"\";\n  width: 20px;\n  height: 20px;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' fill='%23414651'/%3E%3C/svg%3E\");\n  background-size: contain;\n  background-repeat: no-repeat;\n  flex-shrink: 0;\n  margin-top: 1px;\n}\n.bulk-import__note strong {\n  font-weight: 700;\n}\n\n.bulk-import__modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.bulk-import__modal-title {\n  font-size: 14px;\n  width: 20%;\n  font-weight: 600;\n}\n\n.bulk-import__modal-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 95%;\n}\n\n.bulk-import__back-btn {\n  background-color: #ffffff;\n  color: #374151;\n  border: 1px solid #d1d5db;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.bulk-import__back-btn:hover {\n  background-color: #f9fafb;\n  border-color: #9ca3af;\n}\n.bulk-import__back-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.bulk-import__next-btn,\n.bulk-import__import-btn {\n  background-color: #0156D2;\n  color: white;\n  border: none;\n  padding: 12px 32px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n  margin-left: auto;\n}\n.bulk-import__next-btn:hover:not(:disabled),\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #0146b8;\n}\n.bulk-import__next-btn:focus:not(:disabled),\n.bulk-import__import-btn:focus:not(:disabled) {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__next-btn:disabled,\n.bulk-import__import-btn:disabled {\n  background-color: #d1d5db;\n  color: #9ca3af;\n  cursor: not-allowed;\n}\n\n.bulk-import__import-btn {\n  background-color: #059669;\n}\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #047857;\n}\n\n@media (max-width: 768px) {\n  .bulk-import__content-header p {\n    font-size: 20px;\n    line-height: 28px;\n  }\n  .bulk-import__upload-area {\n    min-height: 400px;\n    padding: 32px 24px;\n  }\n}\n@media (max-width: 640px) {\n  .bulk-import__progress-steps {\n    padding: 16px 0;\n    margin-bottom: 32px;\n  }\n  .bulk-import__step {\n    padding: 0 12px;\n  }\n  .bulk-import__step:not(:last-child)::after {\n    right: -40px;\n    width: 80px;\n  }\n  .bulk-import__content-header {\n    margin-bottom: 32px;\n  }\n  .bulk-import__content-header p {\n    font-size: 18px;\n    line-height: 26px;\n  }\n  .bulk-import__upload-area {\n    padding: 24px 16px;\n    min-height: 350px;\n  }\n  .bulk-import__upload-area p {\n    font-size: 16px;\n    line-height: 22px;\n  }\n  .bulk-import__step-content {\n    margin-bottom: 24px;\n  }\n  .bulk-import__upload-sections {\n    gap: 24px;\n  }\n  .bulk-import__browse-btn {\n    min-width: 180px;\n    font-size: 14px;\n  }\n  .bulk-import__download-sample-btn {\n    font-size: 14px;\n  }\n}\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.bulk-import__selected-file {\n  animation: fadeInUp 0.3s ease;\n}\n\n.bulk-import__upload-area.dragover {\n  border-color: #0156D2;\n  background-color: #f0f7ff;\n}\n.bulk-import__upload-area.dragover .bulk-import__upload-icon {\n  color: #0156D2;\n}\n\n.bulk-import__loading .bulk-import__browse-btn,\n.bulk-import__loading .bulk-import__next-btn,\n.bulk-import__loading .bulk-import__import-btn {\n  position: relative;\n}\n.bulk-import__loading .bulk-import__browse-btn::after,\n.bulk-import__loading .bulk-import__next-btn::after,\n.bulk-import__loading .bulk-import__import-btn::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 16px;\n  height: 16px;\n  margin: -8px 0 0 -8px;\n  border: 2px solid transparent;\n  border-top-color: currentColor;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}", ""]);
+// Exports
+module.exports = exports;
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-upload.scss":
 /*!*********************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-upload.scss ***!
@@ -136,7 +153,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".esgnow-save-go-back-buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.esgnow-save-results-button {\n  background-color: #0066ff;\n  color: #fff;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-save-results-button:hover {\n  color: white;\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n.esgnow-save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.esgnow-back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-back-button:hover {\n  background-color: black;\n  color: white;\n}\n\n@keyframes esgnow-pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.esgnow-save-results-modal .esgnow-card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.esgnow-save-results-modal .esgnow-option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.esgnow-save-results-modal .esgnow-option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.esgnow-save-results-modal .esgnow-option-card.esgnow-selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.esgnow-new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.esgnow-existing-project-selection {\n  margin-top: 20px;\n}\n\n.esgnow-save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.esgnow-card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}\n\n.esgnow-modal-container .esgnow-modal-panel .esgnow-modal-header {\n  background-color: #0066ff;\n  color: white;\n  font-size: 16px;\n}\n\n.esgnow-save-results .esgnow-modal-panel {\n  width: 50%;\n  min-width: auto;\n}\n\n.esgnow-header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.esgnow-title-section {\n  display: flex;\n  flex-direction: column;\n}\n\n.esgnow-dashboard-title {\n  margin: 0;\n  font-size: 24px;\n}\n\n.esgnow-subheading {\n  margin: 5px 0 0 0;\n  color: #666;\n}\n\n.esgnow-action-buttons {\n  display: flex;\n  gap: 10px;\n}\n\n.esgnow-tabs-container {\n  margin-top: 20px;\n}\n\n.esgnow-tabs {\n  display: flex;\n  border-bottom: 1px solid #ddd;\n  margin-bottom: 20px;\n}\n\n.esgnow-tab-button {\n  padding: 10px 20px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  font-weight: 500;\n  border-bottom: 3px solid transparent;\n}\n.esgnow-tab-button.esgnow-active {\n  border-bottom-color: #0066ff;\n  color: #0066ff;\n}\n.esgnow-tab-button:hover {\n  background-color: #f5f5f5;\n}\n\n.esgnow-tab-content {\n  margin-top: 20px;\n}\n\n.esgnow-product-info-summary {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 30px;\n}\n\n.esgnow-summary-image {\n  width: 200px;\n  height: 200px;\n  background-size: cover;\n  background-position: center;\n  border-radius: 8px;\n  position: relative;\n}\n\n.esgnow-image-placeholder {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n  background-color: #f0f0f0;\n  border-radius: 8px;\n  color: #666;\n}\n\n.esgnow-image-label {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.7);\n  color: white;\n  padding: 5px 10px;\n  border-radius: 0 0 8px 0;\n}\n\n.esgnow-summary-details {\n  flex: 1;\n}\n\n.esgnow-detail-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 15px;\n  margin-bottom: 20px;\n}\n\n.esgnow-detail-item strong {\n  display: block;\n  margin-bottom: 5px;\n  color: #555;\n}\n.esgnow-detail-item p {\n  margin: 0;\n  font-weight: 500;\n}\n\n.esgnow-description-field strong {\n  display: block;\n  margin-bottom: 10px;\n  color: #555;\n}\n\n.esgnow-editable-description {\n  width: 100%;\n  padding: 10px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  resize: vertical;\n}\n\n.esgnow-widget {\n  margin-bottom: 30px;\n  border: 1px solid #eee;\n  border-radius: 8px;\n  overflow: hidden;\n}\n.esgnow-widget h3 {\n  margin: 0;\n  padding: 15px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n}\n\n.esgnow-widget-content {\n  padding: 20px;\n}\n\n.esgnow-percentage-bar {\n  width: 100%;\n  height: 20px;\n  background-color: #f0f0f0;\n  border-radius: 10px;\n  position: relative;\n  overflow: hidden;\n}\n.esgnow-percentage-bar .esgnow-percentage-fill {\n  height: 100%;\n  border-radius: 10px;\n}\n.esgnow-percentage-bar span {\n  position: absolute;\n  right: 10px;\n  top: 0;\n  bottom: 0;\n  display: flex;\n  align-items: center;\n  font-weight: 500;\n  color: #333;\n}", ""]);
+exports.push([module.id, ".esgnow-save-go-back-buttons {\n  display: flex;\n  justify-content: space-between;\n}\n\n.esgnow-save-results-button {\n  background-color: #0066ff;\n  color: #fff;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-save-results-button:hover {\n  color: white;\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n.esgnow-save-results-button:active {\n  transform: scale(0.95);\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.esgnow-back-button {\n  background-color: #f0f0f0;\n  color: #333;\n  border: 1px solid #ddd;\n  transition: all 0.2s ease;\n  padding: 8px 16px;\n  font-weight: 500;\n  border-radius: 4px;\n  display: flex;\n  align-items: center;\n  gap: 6px;\n}\n.esgnow-back-button:hover {\n  background-color: black;\n  color: white;\n}\n\n@keyframes esgnow-pulse {\n  0% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n  50% {\n    transform: scale(1.03);\n    box-shadow: 0 0 20px rgba(76, 175, 80, 0.7);\n  }\n  100% {\n    transform: scale(1);\n    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);\n  }\n}\n.esgnow-save-results-modal .esgnow-card-container {\n  display: flex;\n  gap: 16px;\n  margin-top: 16px;\n}\n.esgnow-save-results-modal .esgnow-option-card {\n  width: 250px;\n  padding: 16px;\n  border-radius: 8px;\n  background-color: #f9f9f9;\n  cursor: pointer;\n  transition: border 0.3s ease, box-shadow 0.3s ease;\n  border: 2px solid transparent;\n  text-align: center;\n  margin-top: 20px;\n}\n.esgnow-save-results-modal .esgnow-option-card:hover {\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);\n}\n.esgnow-save-results-modal .esgnow-option-card.esgnow-selected {\n  border: 2px solid #007bff;\n  background-color: #e3f2fd;\n}\n\n.esgnow-new-project-inputs {\n  margin-top: 20px;\n  display: flex;\n  flex-direction: column;\n  gap: 12px;\n}\n\n.esgnow-existing-project-selection {\n  margin-top: 20px;\n}\n\n.esgnow-save-button-container {\n  display: flex;\n  justify-content: center;\n  margin-top: 80px;\n}\n\n.esgnow-card-container {\n  display: flex;\n  justify-content: center;\n  gap: 20px;\n  margin-top: 20px;\n}\n\n.esgnow-modal-container .esgnow-modal-panel .esgnow-modal-header {\n  background-color: #0066ff;\n  color: white;\n  font-size: 16px;\n}\n\n.esgnow-save-results .esgnow-modal-panel {\n  width: 50%;\n  min-width: auto;\n}\n\n.esgnow-header-container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.esgnow-title-section {\n  display: flex;\n  flex-direction: column;\n}\n\n.esgnow-dashboard-title {\n  margin: 0;\n  font-size: 24px;\n}\n\n.esgnow-subheading {\n  margin: 5px 0 0 0;\n  color: #666;\n}\n\n.esgnow-action-buttons {\n  display: flex;\n  gap: 10px;\n}\n\n.esgnow-tabs-container {\n  margin-top: 20px;\n}\n\n.esgnow-tabs {\n  display: flex;\n  border-bottom: 1px solid #ddd;\n  margin-bottom: 20px;\n}\n\n.esgnow-tab-button {\n  padding: 10px 20px;\n  background: none;\n  border: none;\n  cursor: pointer;\n  font-weight: 500;\n  border-bottom: 3px solid transparent;\n}\n.esgnow-tab-button.esgnow-active {\n  border-bottom-color: #0066ff;\n  color: #0066ff;\n}\n.esgnow-tab-button:hover {\n  background-color: #f5f5f5;\n}\n\n.esgnow-tab-content {\n  margin-top: 20px;\n}\n\n.esgnow-product-info-summary {\n  display: flex;\n  gap: 20px;\n  margin-bottom: 30px;\n}\n\n.esgnow-summary-image {\n  width: 200px;\n  height: 200px;\n  background-size: cover;\n  background-position: center;\n  border-radius: 8px;\n  position: relative;\n}\n\n.esgnow-image-placeholder {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: 100%;\n  background-color: #f0f0f0;\n  border-radius: 8px;\n  color: #666;\n}\n\n.esgnow-image-label {\n  position: absolute;\n  bottom: 0;\n  right: 0;\n  background-color: rgba(0, 0, 0, 0.7);\n  color: white;\n  padding: 5px 10px;\n  border-radius: 0 0 8px 0;\n}\n\n.esgnow-summary-details {\n  flex: 1;\n}\n\n.esgnow-detail-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 15px;\n  margin-bottom: 20px;\n}\n\n.esgnow-detail-item strong {\n  display: block;\n  margin-bottom: 5px;\n  color: #555;\n}\n.esgnow-detail-item p {\n  margin: 0;\n  font-weight: 500;\n}\n\n.esgnow-description-field strong {\n  display: block;\n  margin-bottom: 10px;\n  color: #555;\n}\n\n.esgnow-editable-description {\n  width: 100%;\n  padding: 10px;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  resize: vertical;\n}\n\n.esgnow-widget {\n  margin-bottom: 30px;\n  border: 1px solid #eee;\n  border-radius: 8px;\n  overflow: hidden;\n}\n.esgnow-widget h3 {\n  margin: 0;\n  padding: 15px;\n  background-color: #f5f5f5;\n  border-bottom: 1px solid #eee;\n}\n\n.esgnow-widget-content {\n  padding: 20px;\n}\n\n.esgnow-percentage-bar {\n  width: 100%;\n  height: 20px;\n  background-color: #f0f0f0;\n  border-radius: 10px;\n  position: relative;\n  overflow: hidden;\n}\n.esgnow-percentage-bar .esgnow-percentage-fill {\n  height: 100%;\n  border-radius: 10px;\n}\n.esgnow-percentage-bar span {\n  position: absolute;\n  right: 10px;\n  top: 0;\n  bottom: 0;\n  display: flex;\n  align-items: center;\n  font-weight: 500;\n  color: #333;\n}\n\n.modal-container .modal-panel {\n  min-width: 0;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -38500,6 +38517,34 @@ module.exports = content.locals || {};
 
 /***/ }),
 
+/***/ "./src/lca/views/bulk-import-widget.scss":
+/*!***********************************************!*\
+  !*** ./src/lca/views/bulk-import-widget.scss ***!
+  \***********************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+var api = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+            var content = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js!../../../node_modules/sass-loader/dist/cjs.js!./bulk-import-widget.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/dist/cjs.js!./src/lca/views/bulk-import-widget.scss");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = api(content, options);
+
+
+
+module.exports = content.locals || {};
+
+/***/ }),
+
 /***/ "./src/lca/views/bulk-upload.scss":
 /*!****************************************!*\
   !*** ./src/lca/views/bulk-upload.scss ***!
@@ -40393,6 +40438,7 @@ const products_1 = __importDefault(__webpack_require__(/*! ./lca/views/products 
 const LCADashboardWidget_1 = __importDefault(__webpack_require__(/*! ./lca/views/lca-dashboard/LCADashboardWidget */ "./src/lca/views/lca-dashboard/LCADashboardWidget.tsx"));
 const projects_1 = __importDefault(__webpack_require__(/*! ./lca/views/projects */ "./src/lca/views/projects.tsx"));
 const bulk_upload_1 = __importDefault(__webpack_require__(/*! ./lca/views/bulk-upload */ "./src/lca/views/bulk-upload.tsx"));
+const bulk_import_widget_1 = __importDefault(__webpack_require__(/*! ./lca/views/bulk-import-widget */ "./src/lca/views/bulk-import-widget.tsx"));
 const home_1 = __importDefault(__webpack_require__(/*! ./lca/views/home */ "./src/lca/views/home.tsx"));
 const WrappedDashboard = (props) => {
     const { uxpContext } = props;
@@ -40496,6 +40542,16 @@ const WrappedDashboard = (props) => {
     }
 });
 (0, uxp_1.registerWidget)({
+    id: 'bulk-import-widget',
+    widget: bulk_import_widget_1.default,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+});
+(0, uxp_1.registerWidget)({
     id: 'home-dashboard',
     widget: home_1.default,
     configs: {
@@ -40555,7 +40611,7 @@ const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
         }
     }, [pendingClose]); // Triggered when `pendingClose` is updated
     return (react_1.default.createElement("div", { className: "assessment-container" },
-        react_1.default.createElement("h1", { className: "assessment-title" }, "Your PCF has been Successfully Calculated!"),
+        react_1.default.createElement("h1", { className: "assessment-title" }, "Product Carbon Footprint Complete!"),
         react_1.default.createElement("div", { className: "product-info" },
             react_1.default.createElement("p", { className: "product-name" }, newlyCreatedProduct.name),
             react_1.default.createElement("p", { className: "product-code" },
@@ -40582,7 +40638,7 @@ const Assessment = ({ newlyCreatedProduct, onClose, setShowCloseWarning }) => {
                     react_1.default.createElement("span", null,
                         newlyCreatedProduct.co2Emission.toFixed(3),
                         " KgCO\u2082e")))),
-        react_1.default.createElement("p", { className: "calculation-subtext" }, "Complete the analysis by calculating transportation emissions, or save your progress and do it later?"),
+        react_1.default.createElement("p", { className: "calculation-subtext" }),
         react_1.default.createElement("div", { className: "button-group" },
             react_1.default.createElement(components_1.Button, { title: "Save", onClick: () => {
                     setShowCloseWarning(false);
@@ -40901,6 +40957,477 @@ const BillMaterials = ({ productCategoryData, productData, onNext, uxpContext })
             react_1.default.createElement("p", null, "No materials added yet. Generate materials using AI or switch to manual entry."))))));
 };
 exports["default"] = BillMaterials;
+
+
+/***/ }),
+
+/***/ "./src/lca/views/bulk-import-widget.tsx":
+/*!**********************************************!*\
+  !*** ./src/lca/views/bulk-import-widget.tsx ***!
+  \**********************************************/
+/***/ (function(__unused_webpack_module, exports, __webpack_require__) {
+
+"use strict";
+
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
+const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+__webpack_require__(/*! ./bulk-import-widget.scss */ "./src/lca/views/bulk-import-widget.scss");
+const XLSX = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.mjs");
+const BulkImportWidget = ({ className = '' }) => {
+    const [isModalOpen, setIsModalOpen] = (0, react_1.useState)(false);
+    const [currentStep, setCurrentStep] = (0, react_1.useState)(1);
+    const [dataFile, setDataFile] = (0, react_1.useState)(null);
+    const [imagesFile, setImagesFile] = (0, react_1.useState)(null);
+    const [csvHeaders, setCsvHeaders] = (0, react_1.useState)([]);
+    const [csvRows, setCsvRows] = (0, react_1.useState)([]);
+    const [selectedSheet, setSelectedSheet] = (0, react_1.useState)("");
+    const [sheets, setSheets] = (0, react_1.useState)([]);
+    const [isSheetSelected, setIsSheetSelected] = (0, react_1.useState)(false);
+    const [productCodeField, setProductCodeField] = (0, react_1.useState)('');
+    const [productNameField, setProductNameField] = (0, react_1.useState)('');
+    const [productDescriptionField, setProductDescriptionField] = (0, react_1.useState)('');
+    const [showSkipped, setShowSkipped] = (0, react_1.useState)(true);
+    const [showUnmapped, setShowUnmapped] = (0, react_1.useState)(true);
+    // Hardcoded mapping data to match Figma
+    const mappingData = [
+        {
+            esgField: 'Product Code',
+            required: true,
+            importedHeader: 'Prod. Code',
+            defaultValue: 'N/A',
+            sampleData: ['PC-002', 'PC-104']
+        },
+        {
+            esgField: 'Product Name',
+            required: true,
+            importedHeader: 'Name',
+            defaultValue: 'N/A',
+            sampleData: ['Office Chair', 'Employee Locker']
+        },
+        {
+            esgField: 'Product Description',
+            required: false,
+            importedHeader: 'Description',
+            defaultValue: 'No Description available for this product',
+            sampleData: [
+                'This is a luxury office chair with plush ergonomic cushion',
+                'This is a generic plywood office desk with socket provision'
+            ]
+        },
+        {
+            esgField: 'Product Image',
+            required: false,
+            importedHeader: 'Image',
+            defaultValue: 'N/A',
+            sampleData: ['', '']
+        },
+        {
+            esgField: 'Product Category',
+            required: true,
+            importedHeader: 'AI Generated',
+            defaultValue: 'N/A',
+            sampleData: ['-', '-']
+        },
+        {
+            esgField: 'Product Sub-Category',
+            required: true,
+            importedHeader: 'Sub-Category',
+            defaultValue: 'N/A',
+            sampleData: ['Office supplies', 'Office supplies']
+        }
+    ];
+    const fileInputRef = (0, react_1.useRef)(null);
+    const handleDataFileChange = (event) => {
+        const file = event.target.files ? event.target.files[0] : null;
+        if (!file)
+            return;
+        const fileName = file.name.toLowerCase();
+        if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".csv")) {
+            console.error("Invalid file extension. Please upload a .xlsx or .csv file.");
+            // You can add toast notification here
+            return;
+        }
+        setDataFile(file);
+        setSheets([]);
+        setIsSheetSelected(false);
+        setCsvHeaders([]);
+        setCsvRows([]);
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: "array" });
+                    // Get the sheet names and populate the dropdown options
+                    const sheetNames = workbook.SheetNames;
+                    setSheets(sheetNames);
+                    // Auto-select the sheet if there's only one sheet
+                    if (sheetNames.length === 1) {
+                        setSelectedSheet(sheetNames[0]);
+                        setIsSheetSelected(true);
+                        processSelectedSheet(workbook, sheetNames[0]);
+                    }
+                }
+                catch (error) {
+                    console.error("Error reading the Excel file:", error);
+                    // Add toast notification here
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+    };
+    const processSelectedSheet = (workbook, sheetName) => {
+        const sheet = workbook.Sheets[sheetName];
+        if (sheet) {
+            // Get headers (first row)
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+            const sheetHeaders = jsonData[0];
+            const sheetData = XLSX.utils.sheet_to_json(sheet);
+            // Filter out empty headers
+            const filteredHeaders = (sheetHeaders === null || sheetHeaders === void 0 ? void 0 : sheetHeaders.filter((x) => x)) || [];
+            setCsvHeaders(filteredHeaders);
+            setCsvRows(sheetData);
+            // Auto-map common fields
+            autoMapFields(filteredHeaders);
+        }
+    };
+    const autoMapFields = (headers) => {
+        const mappings = {
+            productCode: '',
+            productName: '',
+            productDescription: ''
+        };
+        // Auto-detect common field patterns
+        headers.forEach(header => {
+            const lowerHeader = header.toLowerCase();
+            if (!mappings.productCode && (lowerHeader.includes('code') ||
+                lowerHeader.includes('product code') ||
+                lowerHeader.includes('prod') ||
+                lowerHeader.includes('id'))) {
+                mappings.productCode = header;
+            }
+            if (!mappings.productName && (lowerHeader.includes('name') ||
+                lowerHeader.includes('title') ||
+                lowerHeader.includes('product name'))) {
+                mappings.productName = header;
+            }
+            if (!mappings.productDescription && (lowerHeader.includes('description') ||
+                lowerHeader.includes('desc') ||
+                lowerHeader.includes('details'))) {
+                mappings.productDescription = header;
+            }
+        });
+    };
+    const handleSheetChange = (sheetName) => {
+        setSelectedSheet(sheetName);
+        if (sheetName && dataFile) {
+            setIsSheetSelected(true);
+            // Re-read the file to process the selected sheet
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: "array" });
+                    processSelectedSheet(workbook, sheetName);
+                }
+                catch (error) {
+                    console.error("Error reading the Excel file:", error);
+                }
+            };
+            reader.readAsArrayBuffer(dataFile);
+        }
+        else {
+            setIsSheetSelected(false);
+        }
+    };
+    const handleImagesFileChange = (event) => {
+        if (event.target.files && event.target.files[0]) {
+            setImagesFile(event.target.files[0]);
+        }
+    };
+    const handleNext = () => {
+        if (currentStep === 1) {
+            // Validate that we have the necessary data before proceeding
+            if (!dataFile) {
+                alert("Please upload a data file before proceeding");
+                return;
+            }
+            if (sheets.length > 1 && !selectedSheet) {
+                alert("Please select a sheet from your uploaded file");
+                return;
+            }
+            if (csvHeaders.length === 0) {
+                alert("No headers found in the uploaded file");
+                return;
+            }
+        }
+        if (currentStep < 3) {
+            setCurrentStep(currentStep + 1);
+        }
+    };
+    const handleBack = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
+    const handleDownloadSampleFile = (type) => {
+        // Placeholder for download functionality
+        console.log(`Download sample ${type} file`);
+    };
+    const handleModalClose = () => {
+        setIsModalOpen(false);
+        // Reset form state when modal closes
+        setCurrentStep(1);
+        setDataFile(null);
+        setImagesFile(null);
+        setCsvHeaders([]);
+        setCsvRows([]);
+        setSelectedSheet("");
+        setSheets([]);
+        setIsSheetSelected(false);
+    };
+    const getSampleData = (headerName) => {
+        if (csvRows.length > 0 && headerName) {
+            const sampleValues = csvRows
+                .slice(0, 3) // Get first 3 rows as sample
+                .map(row => row[headerName])
+                .filter(val => val !== undefined && val !== null && val !== '')
+                .join(', ');
+            return sampleValues || 'No sample data';
+        }
+        return 'No sample data';
+    };
+    const DataFileIcon = () => (react_1.default.createElement("svg", { width: "82", height: "82", viewBox: "0 0 24 24", fill: "none" },
+        react_1.default.createElement("path", { d: "M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z", stroke: "currentColor", strokeWidth: "1.5", fill: "currentColor" }),
+        react_1.default.createElement("polyline", { points: "14,2 14,8 20,8", stroke: "white", strokeWidth: "1.5" }),
+        react_1.default.createElement("line", { x1: "16", y1: "13", x2: "8", y2: "13", stroke: "white", strokeWidth: "1.5" }),
+        react_1.default.createElement("line", { x1: "16", y1: "17", x2: "8", y2: "17", stroke: "white", strokeWidth: "1.5" }),
+        react_1.default.createElement("polyline", { points: "10,9 9,9 8,9", stroke: "white", strokeWidth: "1.5" })));
+    const ImageFileIcon = () => (react_1.default.createElement("svg", { width: "82", height: "82", viewBox: "0 0 24 24", fill: "none" },
+        react_1.default.createElement("rect", { x: "3", y: "3", width: "18", height: "18", rx: "2", ry: "2", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("circle", { cx: "8.5", cy: "8.5", r: "1.5", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("polyline", { points: "21,15 16,10 5,21", stroke: "currentColor", strokeWidth: "2" })));
+    const UploadIcon = () => (react_1.default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 24 24", fill: "none" },
+        react_1.default.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("polyline", { points: "17,8 12,3 7,8", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("line", { x1: "12", y1: "3", x2: "12", y2: "15", stroke: "currentColor", strokeWidth: "2" })));
+    const DownloadIcon = () => (react_1.default.createElement("svg", { width: "14", height: "14", viewBox: "0 0 24 24", fill: "none" },
+        react_1.default.createElement("path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("polyline", { points: "7,10 12,15 17,10", stroke: "currentColor", strokeWidth: "2" }),
+        react_1.default.createElement("line", { x1: "12", y1: "15", x2: "12", y2: "3", stroke: "currentColor", strokeWidth: "2" })));
+    const DropdownIcon = () => (react_1.default.createElement("svg", { width: "15", height: "14", viewBox: "0 0 15 14", fill: "none" },
+        react_1.default.createElement("path", { d: "M7.39 3.5L3.70 5.25L7.39 7L11.08 5.25L7.39 3.5Z", stroke: "#181D27", strokeWidth: "1.67", fill: "none" })));
+    const getStepContent = () => {
+        switch (currentStep) {
+            case 1:
+                return (react_1.default.createElement("div", { className: "bulk-import__step-content" },
+                    react_1.default.createElement("div", { className: "bulk-import__content-header" },
+                        react_1.default.createElement("p", null, "Download the sample files and compare it with your import files to ensure you have them perfect for import.")),
+                    react_1.default.createElement("div", { className: "bulk-import__upload-sections" },
+                        react_1.default.createElement("div", { className: "bulk-import__upload-section" },
+                            react_1.default.createElement("h3", { className: "bulk-import__section-title" }, "A. Data File"),
+                            react_1.default.createElement("div", { className: "bulk-import__upload-area" },
+                                react_1.default.createElement("div", { className: "bulk-import__upload-icon" },
+                                    react_1.default.createElement(DataFileIcon, null)),
+                                react_1.default.createElement("p", null,
+                                    "Drag and drop your ",
+                                    react_1.default.createElement("strong", null, "data file"),
+                                    " here in .csv or .xls format"),
+                                react_1.default.createElement("p", { className: "bulk-import__or-text" }, "or"),
+                                react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".csv,.xlsx,.xls", onChange: handleDataFileChange, style: { display: 'none' }, ref: fileInputRef }),
+                                react_1.default.createElement("button", { className: "bulk-import__browse-btn", onClick: () => { var _a; return (_a = document.getElementById('data-file-input')) === null || _a === void 0 ? void 0 : _a.click(); } },
+                                    react_1.default.createElement(UploadIcon, null),
+                                    "Browse File for upload",
+                                    react_1.default.createElement(DownloadIcon, null)),
+                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('data') }, "Download sample file"),
+                                react_1.default.createElement("p", { className: "bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
+                                dataFile && react_1.default.createElement("p", { className: "bulk-import__selected-file" },
+                                    "Selected: ",
+                                    dataFile.name)),
+                            sheets.length > 1 && (react_1.default.createElement("div", { className: "bulk-import__sheet-selection" },
+                                react_1.default.createElement("label", null, "Select Sheet:"),
+                                react_1.default.createElement(components_1.Select, { placeholder: "Select a Sheet", options: [
+                                        { value: "", label: "-- Select a sheet --" },
+                                        ...sheets.map((sheet) => ({ value: sheet, label: sheet })),
+                                    ], selected: selectedSheet, onChange: (newValue) => handleSheetChange(newValue) }))),
+                            csvHeaders.length > 0 && (react_1.default.createElement("div", { className: "bulk-import__headers-preview" },
+                                react_1.default.createElement("h4", null, "Detected Headers:"),
+                                react_1.default.createElement("div", { className: "bulk-import__headers-list" }, csvHeaders.map((header, index) => (react_1.default.createElement("span", { key: index, className: "bulk-import__header-tag" }, header)))),
+                                react_1.default.createElement("p", null,
+                                    "Found ",
+                                    csvRows.length,
+                                    " data rows"))),
+                            react_1.default.createElement("div", { className: "bulk-import__note" },
+                                react_1.default.createElement("strong", null, "Note:"),
+                                " You can import upto 5000 records at a time")),
+                        react_1.default.createElement("div", { className: "bulk-import__upload-section" },
+                            react_1.default.createElement("h3", { className: "bulk-import__section-title" }, "B. Images Zip File"),
+                            react_1.default.createElement("div", { className: "bulk-import__upload-area" },
+                                react_1.default.createElement("div", { className: "bulk-import__upload-icon" },
+                                    react_1.default.createElement(ImageFileIcon, null)),
+                                react_1.default.createElement("p", null,
+                                    "Drag and drop your ",
+                                    react_1.default.createElement("strong", null, "images"),
+                                    " zip file"),
+                                react_1.default.createElement("p", { className: "bulk-import__or-text" }, "or"),
+                                react_1.default.createElement("input", { type: "file", id: "images-file-input", accept: ".zip", onChange: handleImagesFileChange, style: { display: 'none' } }),
+                                react_1.default.createElement("button", { className: "bulk-import__browse-btn", onClick: () => { var _a; return (_a = document.getElementById('images-file-input')) === null || _a === void 0 ? void 0 : _a.click(); } },
+                                    react_1.default.createElement(UploadIcon, null),
+                                    "Browse File for upload",
+                                    react_1.default.createElement(DownloadIcon, null)),
+                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('images') }, "Download sample file"),
+                                react_1.default.createElement("p", { className: "bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
+                                imagesFile && react_1.default.createElement("p", { className: "bulk-import__selected-file" },
+                                    "Selected: ",
+                                    imagesFile.name)),
+                            react_1.default.createElement("div", { className: "bulk-import__note" },
+                                react_1.default.createElement("strong", null, "Note:"),
+                                " Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping")))));
+            case 2:
+                return (react_1.default.createElement("div", { className: "bulk-import__step-content" },
+                    react_1.default.createElement("h3", null, "Field Mapping & Assigning Defaults"),
+                    csvHeaders.length === 0 ? (react_1.default.createElement("div", { className: "bulk-import__no-data" },
+                        react_1.default.createElement("p", null, "No headers available. Please go back and upload a valid file."))) : (react_1.default.createElement(react_1.default.Fragment, null,
+                        react_1.default.createElement("div", { className: "bulk-import__mapping-info" },
+                            react_1.default.createElement("p", null,
+                                react_1.default.createElement("strong", null, "File Selected:"),
+                                " ", dataFile === null || dataFile === void 0 ? void 0 :
+                                dataFile.name)),
+                        react_1.default.createElement("div", { className: "field-mapping-table" },
+                            react_1.default.createElement("div", { className: "field-mapping-header" },
+                                react_1.default.createElement("div", null, "ESG Now Field Labels"),
+                                react_1.default.createElement("div", null, "Imported File Headers"),
+                                react_1.default.createElement("div", null, "Default Field Values"),
+                                react_1.default.createElement("div", null, "Sample Data from File")),
+                            mappingData.map((field, idx) => (react_1.default.createElement("div", { className: "field-mapping-row", key: idx },
+                                react_1.default.createElement("div", { className: "field-label" },
+                                    field.esgField,
+                                    " ",
+                                    field.required && react_1.default.createElement("span", { className: "required" }, "*")),
+                                react_1.default.createElement("div", { className: "field-dropdown" },
+                                    react_1.default.createElement(components_1.Select, { selected: field.esgField === 'Product Code' ? productCodeField :
+                                            field.esgField === 'Product Name' ? productNameField :
+                                                field.esgField === 'Product Description' ? productDescriptionField :
+                                                    '', options: csvHeaders.map(header => ({
+                                            value: header,
+                                            label: header
+                                        })), onChange: (value) => {
+                                            if (field.esgField === 'Product Code')
+                                                setProductCodeField(value);
+                                            else if (field.esgField === 'Product Name')
+                                                setProductNameField(value);
+                                            else if (field.esgField === 'Product Description')
+                                                setProductDescriptionField(value);
+                                        }, className: "dropdown-select" })),
+                                react_1.default.createElement("div", { className: "field-default" }, field.defaultValue),
+                                react_1.default.createElement("div", { className: "field-sample-columns" },
+                                    react_1.default.createElement("div", { className: "sample-column" }, field.sampleData[0] || '-'),
+                                    react_1.default.createElement("div", { className: "sample-column with-divider" }, field.sampleData[1] || '-'))))))))));
+            case 3:
+                const skippedRows = [
+                    { row: 7, code: '#P - 0291', name: 'Wrist Cooling Pad', reason: 'There seems to be a mismatch between the corresponding image mapped and the product information specified.' },
+                    { row: 13, code: '#P - 0873', name: '-', reason: 'Insufficient information - Product details are missing.' }
+                ];
+                const unmappedFields = ['Sub-Category level 2', 'Product Price', 'Date of purchase'];
+                return (react_1.default.createElement("div", { className: "bulk-import__step-content review-import" },
+                    react_1.default.createElement("h3", null, "Review & Import"),
+                    react_1.default.createElement("div", { className: "review-section" },
+                        react_1.default.createElement("div", { className: "review-row" },
+                            react_1.default.createElement("div", { className: "review-toggle" },
+                                react_1.default.createElement("span", { className: "icon" }, "\uD83D\uDCE6"),
+                                react_1.default.createElement("span", null, "Product records ready for Import")),
+                            react_1.default.createElement("span", null, ": 500"),
+                            react_1.default.createElement("a", { className: "toggle-link" }, "View Details")),
+                        react_1.default.createElement("div", { className: "review-row" },
+                            react_1.default.createElement("div", { className: "review-toggle", onClick: () => setShowSkipped(!showSkipped) },
+                                react_1.default.createElement("span", { className: "icon" }, showSkipped ? '▼' : '▶'),
+                                react_1.default.createElement("span", null, "No. of Records Skipped")),
+                            react_1.default.createElement("span", null, ": 2"),
+                            react_1.default.createElement("div", { className: "row-actions" },
+                                showSkipped && (react_1.default.createElement("a", { className: "download-link", onClick: () => alert('Download skipped rows') }, "Download skipped rows")),
+                                react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowSkipped(!showSkipped) }, showSkipped ? 'Hide Details ▲' : 'View Details ▼'))),
+                        showSkipped && (react_1.default.createElement("div", { className: "skipped-table" },
+                            react_1.default.createElement("div", { className: "table-header" },
+                                react_1.default.createElement("div", null, "ROW NO."),
+                                react_1.default.createElement("div", null, "PRODUCT DETAILS"),
+                                react_1.default.createElement("div", null, "SKIPPED REASON")),
+                            skippedRows.map((item, idx) => (react_1.default.createElement("div", { className: "table-row", key: idx },
+                                react_1.default.createElement("div", null, item.row),
+                                react_1.default.createElement("div", null,
+                                    react_1.default.createElement("div", { className: "code" }, item.code),
+                                    react_1.default.createElement("div", null, item.name)),
+                                react_1.default.createElement("div", null, item.reason)))))),
+                        react_1.default.createElement("div", { className: "review-row" },
+                            react_1.default.createElement("div", { className: "review-toggle", onClick: () => setShowUnmapped(!showUnmapped) },
+                                react_1.default.createElement("span", { className: "icon" }, showUnmapped ? '▼' : '▶'),
+                                react_1.default.createElement("span", null, "Unmapped Fields")),
+                            react_1.default.createElement("span", null,
+                                ": ",
+                                unmappedFields.length),
+                            react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowUnmapped(!showUnmapped) }, showUnmapped ? 'Hide Details ▲' : 'View Details ▼')),
+                        showUnmapped && (react_1.default.createElement("div", { className: "unmapped-info" },
+                            react_1.default.createElement("p", null,
+                                "The following fields in your upload file have not been mapped to any of IVIVA\u2019s ESG NOW fields. Please create ",
+                                react_1.default.createElement("strong", null, "\u2018New Custom Fields\u2019"),
+                                " for these fields and map them to the relevant field labels in your import file. If not, they will be ignored during import."),
+                            react_1.default.createElement("ul", null, unmappedFields.map((field, idx) => (react_1.default.createElement("li", { key: idx }, field)))))))));
+            default:
+                return null;
+        }
+    };
+    return (react_1.default.createElement("div", { className: `bulk-import-widget ${className}` },
+        react_1.default.createElement("button", { className: "bulk-import__trigger-btn", onClick: () => setIsModalOpen(true) }, "Bulk Upload Products"),
+        react_1.default.createElement(components_1.Modal, { show: isModalOpen, onClose: handleModalClose, title: "Bulk Upload Products", className: "bulk-import__modal", headerContent: react_1.default.createElement("div", { className: "bulk-import__modal-header" },
+                react_1.default.createElement("span", { className: "bulk-import__modal-title" }, "Bulk Upload Products"),
+                react_1.default.createElement("div", { className: "bulk-import__modal-header-controls" },
+                    currentStep > 1 && (react_1.default.createElement(components_1.Button, { title: "Previous", className: "bulk-import__back-btn", onClick: handleBack })),
+                    currentStep < 3 ? (react_1.default.createElement(components_1.Button, { title: "Next", onClick: handleNext, className: "bulk-import__next-btn" })) : (react_1.default.createElement(components_1.Button, { className: "bulk-import__import-btn", title: "Start Import", onClick: () => {
+                            if (!productCodeField || !productNameField) {
+                                alert('Please map the required fields (Product Code and Product Name) before importing.');
+                                return;
+                            }
+                            console.log('Data rows:', csvRows);
+                            handleModalClose();
+                        }, disabled: !productCodeField || !productNameField })))) },
+            react_1.default.createElement("div", { className: "bulk-import__progress-steps" },
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}` },
+                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, "1"),
+                    react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Upload File")),
+                react_1.default.createElement("div", { className: "step-line" }),
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 2 ? 'bulk-import__step--active' : ''}` },
+                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, "2"),
+                    react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Map Fields & Assign Defaults")),
+                react_1.default.createElement("div", { className: "step-line" }),
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}` },
+                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, "3"),
+                    react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Review & Import"))),
+            getStepContent())));
+};
+exports["default"] = BulkImportWidget;
 
 
 /***/ }),
@@ -41561,7 +42088,7 @@ const SaveResultsModal = ({ onClose, onSaveComplete, hasExistingProjects, setHas
             console.log("No card selected - this shouldn't happen");
         }
     });
-    return (react_1.default.createElement(components_2.Modal, { className: "esgnow-save-results", show: true, onClose: onClose, title: "Save Transportation-Footprint Results" },
+    return (react_1.default.createElement(components_2.Modal, { className: "esgnow-save-results", show: true, onClose: onClose, title: "Save Transportation Results" },
         react_1.default.createElement("div", { className: "esgnow-save-results-modal" },
             hasExistingProjects ? (react_1.default.createElement("p", null, "Would you like to save these results by creating a new project or adding them to an existing one?")) : (react_1.default.createElement("p", null, "No existing projects found. Please create a new project.")),
             react_1.default.createElement("div", { className: "esgnow-card-container" },
@@ -44675,32 +45202,35 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
             backgroundColor: null,
             height: 350,
             width: 600,
-            events: {
-                render() {
-                    const chart = this;
-                    if (!chart.customText) {
-                        chart.customText = chart.renderer
-                            .text(`${product.co2Emission} <br> KgCO₂e`, chart.plotWidth / 2 + chart.plotLeft, chart.plotHeight / 2 + chart.plotTop)
-                            .css({
-                            fontSize: '18px',
-                            fontWeight: 'bold',
-                            fontFamily: 'Comfortaa',
-                            color: '#424242',
-                            textAlign: 'center',
-                        })
-                            .attr({
-                            align: 'center',
-                            zIndex: 5,
-                        })
-                            .add();
-                    }
-                    else {
-                        chart.customText.attr({
-                            text: `${product.co2Emission} KgCO₂e`,
-                        });
-                    }
-                },
-            },
+            // events: {
+            //     render() {
+            //         const chart = this as Highcharts.Chart & { customText?: Highcharts.SVGElement };
+            //         if (!chart.customText) {
+            //             chart.customText = chart.renderer
+            //                 .text(
+            //                     `${product.co2Emission} <br> KgCO₂e`,
+            //                     chart.plotWidth / 2 + chart.plotLeft,
+            //                     chart.plotHeight / 2 + chart.plotTop
+            //                 )
+            //                 .css({
+            //                     fontSize: '18px',
+            //                     fontWeight: 'bold',
+            //                     fontFamily: 'Comfortaa',
+            //                     color: '#424242',
+            //                     textAlign: 'center',
+            //                 })
+            //                 .attr({
+            //                     align: 'center',
+            //                     zIndex: 5,
+            //                 })
+            //                 .add();
+            //         } else {
+            //             chart.customText.attr({
+            //                 text: `${product.co2Emission} KgCO₂e`,
+            //             });
+            //         }
+            //     },
+            // },
         },
         title: {
             text: '',
@@ -44874,9 +45404,8 @@ const ProductInfoSummary = ({ product, onClose, onDelete, hideHeader, uxpContext
                     })()))))));
     const renderInventoryTab = () => (react_1.default.createElement("div", { className: "esgnow-tab-content" },
         react_1.default.createElement("div", { className: "esgnow-widget esgnow-inventory-info" },
-            react_1.default.createElement("div", { className: "esgnow-inventory-header" },
-                react_1.default.createElement("h3", null, "Inventory Information"),
-                react_1.default.createElement("div", { className: "esgnow-view-toggle" })),
+            react_1.default.createElement("h3", null, "Material Inventory"),
+            react_1.default.createElement("div", { className: "esgnow-view-toggle" }),
             viewMode === 'tree' ? (react_1.default.createElement("div", { className: "esgnow-inventory-tree" },
                 react_1.default.createElement("div", { className: "esgnow-tree-item", onClick: toggleExpand },
                     react_1.default.createElement("span", { className: "esgnow-expand-icon" }, isExpanded ? '▼' : '▶'),
@@ -103029,7 +103558,7 @@ module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"f
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"},{"id":"bulk-upload-widget","name":"Bulk Upload Widget","description":"Bulk Upload Widget"},{"id":"home-dashboard","name":"Home Dashboard","description":"Home Dashboard"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
+module.exports = /*#__PURE__*/JSON.parse('{"id":"iviva-esg-now-application","author":"selva","widgets":[{"id":"product-dashboard","name":"Product Dashboard","description":"Shows the List of reports"},{"id":"lca-widget","name":"LCA Widget","description":"LCA Widget"},{"id":"lca-dashboard","name":"LCA Dashboard","description":"LCA Dashboard"},{"id":"projects-widget","name":"Projects Widget","description":"Projects Widget"},{"id":"bulk-upload-widget","name":"Bulk Upload Widget","description":"Bulk Upload Widget"},{"id":"bulk-import-widget","name":"Bulk Upload Widget v2","description":"Bulk Upload Widget"},{"id":"home-dashboard","name":"Home Dashboard","description":"Home Dashboard"}],"sidebarLinks":[],"uis":[{"id":"esg-now-dashboard"}],"menuItems":[]}');
 
 /***/ }),
 
