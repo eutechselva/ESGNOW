@@ -28,6 +28,11 @@
       "description": "Bulk Upload Widget"
     },
     {
+      "id": "bulk-import-widget",
+      "name": "Bulk Upload Widget v2",
+      "description": "Bulk Upload Widget"
+    },
+    {
         "id": "home-dashboard",
         "name": "Home Dashboard",
         "description": "Home Dashboard"

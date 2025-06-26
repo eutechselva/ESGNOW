@@ -11,6 +11,7 @@ import LCAWidget from './lca/views/products';
 import LCADashboardWidget from './lca/views/lca-dashboard/LCADashboardWidget';
 import ProjectsWidget from './lca/views/projects';
 import BulkUploadWidget from './lca/views/bulk-upload';
+import BulkImportWidget from './lca/views/bulk-import-widget';
 import HomeDashboard from './lca/views/home';
 
 const WrappedDashboard: React.FC<BaseUXPProps> = (props) => {
@@ -129,6 +130,16 @@ registerWidget({
         }
     }
 })
+registerWidget({
+    id: 'bulk-import-widget',
+    widget: BulkImportWidget,
+    configs: {
+        layout: {
+            w: 30,
+            h: 20,
+        }
+    }
+});
 
 registerWidget({
     id: 'home-dashboard',
