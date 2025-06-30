@@ -67,24 +67,18 @@ const MaterialSummary: React.FC<MaterialSummaryProps> = ({
                 </tbody>
             </table>
 
-            {entryType === "ai" && onEditAll && (
+            {(entryType === "ai" || entryType === "manual") && onEditAll && (
                 <div className="esgnow-edit-all-materials-container">
-                    {/* <Button
-                        title="Edit Materials"
-                        className="edit-all-materials-button"
-                        onClick={onEditAll}
-                    /> */}
                     <IconButton
                         type="edit"
                         onClick={onEditAll}
                         className="edit-all-materials-icon"
+
                     />
                 </div>
             )}
         </div>
-
     );
-
 };
 
 export default MaterialSummary;

@@ -256,7 +256,7 @@ const handleSave = async () => {
     }
 };
     return (
-        <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation-Footprint Results" > 
+        <Modal className="esgnow-save-results" show={true} onClose={onClose} title="Save Transportation Results" > 
             <div className="esgnow-save-results-modal">
                 {hasExistingProjects ? (
                     <p>Would you like to save these results by creating a new project or adding them to an existing one?</p>

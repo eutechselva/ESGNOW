@@ -123,16 +123,19 @@
         color: white;
     }
 }
+.esgnow-add-another-material-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
 
 .esgnow-add-another-material-button {
-    color: #2196f3;
-    border: 1px solid #2196f3;
-    background-color: transparent;
-    
+    margin: 0;
+    background-color: #0058d200;
+    border: 2px solid #0056D2;
     &:hover {
-        background-color: rgba(33, 150, 243, 0.08);
-        color: #2196f3;
-    }
+      background-color: #0056D2;
+  }
 }
 
 .esgnow-material-entry-label,

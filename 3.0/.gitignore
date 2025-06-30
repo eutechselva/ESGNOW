@@ -4,9 +4,14 @@
 
 # Node.js dependencies
 node_modules/
+**/node_modules/
+Microservice/node_modules/
 
 # Build outputs
 dist/
+**/dist/
+build/
+**/build/
 
 # Environment variables
 .env
@@ -28,3 +33,53 @@ yarn-error.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Package manager files
+package-lock.json*
+yarn.lock*
+pnpm-lock.yaml*
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage directory used by tools like istanbul
+coverage/
+*.lcov
+
+# nyc test coverage
+.nyc_output/
+
+# Dependency directories
+jspm_packages/
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# dotenv environment variables file
+.env.test
+.env.production
+
+# Temporary folders
+tmp/
+temp/

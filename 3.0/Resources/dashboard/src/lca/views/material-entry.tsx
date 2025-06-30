@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Select, FormField, Label, Input, Button } from "uxp/components";
+import { Select, FormField, Label, Input, Button, IconButton } from "uxp/components";
 import "./material-entry.scss";
 import { getBillOfMaterials } from "../../esgnow-service";
 import { IContextProvider } from "@uxp";
@@ -249,7 +249,17 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({
                     </div>
                 </div>
             ))}
+            {(!isBulkEdit || isEditable) && (
+                <div className="esgnow-add-another-material-container">
 
+                    <IconButton
+                        type="plus"
+                        className="esgnow-add-another-material-button"
+                        onClick={handleAddAnother}
+                    />
+                </div>
+
+            )}
             <div className="esgnow-actions-container">
                 {onCancel && (
                     <Button
@@ -263,14 +273,9 @@ const MaterialEntry: React.FC<MaterialEntryProps> = ({
                     className="esgnow-done-button"
                     onClick={handleAddMaterial}
                 />
-                {!isBulkEdit && (
-                    <Button
-                        title="Add Another Material"
-                        className="esgnow-add-another-material-button"
-                        onClick={handleAddAnother}
-                    />
-                )}
             </div>
+
+
 
         </div>
     );

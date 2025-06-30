@@ -335,6 +335,16 @@ export async function bulkImageUpload(uxpContext: IContextProvider, payload: any
   );
 }
 
+export async function triggerAIProcessing(uxpContext: IContextProvider) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/trigger-ai-processing`,
+    RequestMethod.POST,
+    {},
+    {}
+  );
+}
+
 export async function getBillOfMaterials(uxpContext: IContextProvider) {
   return executeRequest(
     uxpContext,
