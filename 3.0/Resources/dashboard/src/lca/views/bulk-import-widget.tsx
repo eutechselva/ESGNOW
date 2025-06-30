@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
-import { bulkUpload, bulkImageUpload } from '../../esgnow-service';
+import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
 const XLSX = require("xlsx");
@@ -38,6 +38,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
   const [uploadMessageType, setUploadMessageType] = useState<"success" | "error" | null>(null);
+  const [showPostUploadAlert, setShowPostUploadAlert] = useState(false);
     // Mapping data aligned with microservice expected fields
     const mappingData = [
       {
@@ -303,8 +304,86 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   };
 
   const handleDownloadSampleFile = (type: 'data' | 'images') => {
-    // Placeholder for download functionality
-    console.log(`Download sample ${type} file`);
+    if (type === 'data') {
+      // Create sample CSV data
+      const sampleData = [
+        ['code', 'name', 'description', 'weight', 'country of origin', 'supplier name', 'category', 'subcategory'],
+        ['PC-001', 'Executive Office Chair', 'Ergonomic leather executive chair with lumbar support', '25.5', 'China', 'OfficeFurnish Ltd', 'Furniture', 'Office Chairs'],
+        ['PC-002', 'Standing Desk', 'Height adjustable standing desk with electric motor', '45.0', 'Germany', 'ErgoDesk GmbH', 'Furniture', 'Desks'],
+        ['PC-003', 'LED Monitor 27"', '27-inch 4K LED monitor with USB-C connectivity', '8.2', 'South Korea', 'TechDisplay Co', 'Electronics', 'Monitors'],
+        ['PC-004', 'Office Storage Cabinet', 'Metal filing cabinet with 4 drawers and lock', '35.8', 'India', 'MetalWorks Inc', 'Furniture', 'Storage'],
+        ['PC-005', 'Wireless Keyboard', 'Bluetooth wireless keyboard with backlight', '0.8', 'Taiwan', 'KeyTech Solutions', 'Electronics', 'Peripherals']
+      ];
+
+      // Convert to CSV format
+      const csvContent = sampleData.map(row => 
+        row.map(field => `"${field}"`).join(',')
+      ).join('\n');
+
+      // Create and download file
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'sample_product_data.csv');
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    } else if (type === 'images') {
+      // For images, provide instructions since we can't create actual images
+      const instructionsContent = `PRODUCT IMAGES ZIP FILE STRUCTURE
+
+Create a ZIP file with product images organized in folders by product code:
+
+my_product_images.zip
+├── PC-001/
+│   ├── image1.jpg
+│   ├── image2.png
+│   └── product_photo.jpeg
+├── PC-002/
+│   └── main_image.jpg
+├── PC-003/
+│   ├── front_view.png
+│   └── side_view.jpg
+├── PC-004/
+│   └── cabinet.jpeg
+└── PC-005/
+    └── keyboard.png
+
+IMPORTANT GUIDELINES:
+1. Create a folder for each product using the EXACT product code from your data file
+2. Place all images for that product inside its folder
+3. Supported formats: PNG, JPG, JPEG, GIF (case-insensitive)
+4. Maximum file size: 25MB for the entire ZIP file
+5. Image dimensions: Recommended 800x600 or higher for best quality
+6. Multiple images per product are supported
+
+FOLDER NAMING EXAMPLES:
+- Data file has product code "PC-001" → Create folder named "PC-001"
+- Data file has product code "CHAIR-ABC" → Create folder named "CHAIR-ABC"
+- Folder names must match product codes EXACTLY (case-sensitive)
+
+AUTOMATIC PROCESSING:
+After upload, images will be automatically:
+- Uploaded to the image storage system
+- Linked to the corresponding products
+- Made available in the product gallery
+
+This folder-based structure ensures proper mapping between products and their images during bulk import.`;
+
+      const blob = new Blob([instructionsContent], { type: 'text/plain;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', 'image_zip_instructions.txt');
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
   };
 
   const handleModalClose = () => {
@@ -370,11 +449,45 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
       const response = await bulkUpload(uxpContext, formData);
 
       if (response.data) {
-        setUploadMessage(`Successfully imported ${csvRows.length} products!`);
+        setUploadMessage(`Successfully imported ${csvRows.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
         setUploadMessageType("success");
-        // Close modal after successful upload
+        
+        // If images file is provided, upload it after successful data upload
+        if (imagesFile) {
+          try {
+            const imageFormData = new FormData();
+            imageFormData.append("file", imagesFile);
+            
+            const imageResponse = await bulkImageUpload(uxpContext, imageFormData);
+            
+            if (imageResponse.data) {
+              setUploadMessage(`Successfully imported ${csvRows.length} products and uploaded images!`);
+            } else {
+              setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+            }
+          } catch (imageError) {
+            console.error("Image upload error:", imageError);
+            setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageError.message}`);
+          }
+        } else {
+          // If no images file, trigger AI processing directly
+          try {
+            await triggerAIProcessing(uxpContext);
+            setUploadMessage(`Successfully imported ${csvRows.length} products! AI processing started.`);
+          } catch (aiError) {
+            console.error("AI processing trigger error:", aiError);
+            setUploadMessage(`Successfully imported ${csvRows.length} products, but AI processing failed to start: ${aiError.message}`);
+          }
+        }
+        
+        // Close modal after successful upload and show post-upload alert
         setTimeout(() => {
           handleModalClose();
+          setShowPostUploadAlert(true);
+          // Auto-hide the alert after 10 seconds
+          setTimeout(() => {
+            setShowPostUploadAlert(false);
+          }, 10000);
         }, 2000);
       } else {
         const errorMessage = response.error || "Upload failed. Please try again.";
@@ -809,6 +922,26 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
 
   return (
     <div className={`bulk-import-widget ${className}`}>
+      {/* Post-upload alert notification */}
+      {showPostUploadAlert && (
+        <div className="bulk-import__post-upload-alert">
+          <div className="alert-content">
+            <div className="alert-icon">⚡</div>
+            <div className="alert-text">
+              <strong>Import Process in Progress</strong>
+              <p>Your products and images have been uploaded successfully. AI classification, emission calculations, and image processing are being handled in the background. Please check back in a few minutes to see the complete product data with images.</p>
+            </div>
+            <button 
+              className="alert-close-btn"
+              onClick={() => setShowPostUploadAlert(false)}
+              aria-label="Close notification"
+            >
+              ✕
+            </button>
+          </div>
+        </div>
+      )}
+
       <button 
         className="bulk-import__trigger-btn"
         onClick={() => setIsModalOpen(true)}
