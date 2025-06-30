@@ -40992,12 +40992,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./bulk-import-widget.scss */ "./src/lca/views/bulk-import-widget.scss");
 const XLSX = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.mjs");
-const BulkImportWidget = ({ className = '' }) => {
+const BulkImportWidget = ({ className = '', uxpContext }) => {
     const [isModalOpen, setIsModalOpen] = (0, react_1.useState)(false);
     const [currentStep, setCurrentStep] = (0, react_1.useState)(1);
     const [dataFile, setDataFile] = (0, react_1.useState)(null);
@@ -41010,9 +41020,18 @@ const BulkImportWidget = ({ className = '' }) => {
     const [productCodeField, setProductCodeField] = (0, react_1.useState)('');
     const [productNameField, setProductNameField] = (0, react_1.useState)('');
     const [productDescriptionField, setProductDescriptionField] = (0, react_1.useState)('');
+    const [productCategoryField, setProductCategoryField] = (0, react_1.useState)('');
+    const [productSubCategoryField, setProductSubCategoryField] = (0, react_1.useState)('');
+    const [weightField, setWeightField] = (0, react_1.useState)('');
+    const [countryOfOriginField, setCountryOfOriginField] = (0, react_1.useState)('');
+    const [supplierNameField, setSupplierNameField] = (0, react_1.useState)('');
     const [showSkipped, setShowSkipped] = (0, react_1.useState)(true);
     const [showUnmapped, setShowUnmapped] = (0, react_1.useState)(true);
-    // Hardcoded mapping data to match Figma
+    const [showReadyRecords, setShowReadyRecords] = (0, react_1.useState)(false);
+    const [isUploading, setIsUploading] = (0, react_1.useState)(false);
+    const [uploadMessage, setUploadMessage] = (0, react_1.useState)(null);
+    const [uploadMessageType, setUploadMessageType] = (0, react_1.useState)(null);
+    // Mapping data aligned with microservice expected fields
     const mappingData = [
         {
             esgField: 'Product Code',
@@ -41030,7 +41049,7 @@ const BulkImportWidget = ({ className = '' }) => {
         },
         {
             esgField: 'Product Description',
-            required: false,
+            required: true,
             importedHeader: 'Description',
             defaultValue: 'No Description available for this product',
             sampleData: [
@@ -41039,25 +41058,39 @@ const BulkImportWidget = ({ className = '' }) => {
             ]
         },
         {
-            esgField: 'Product Image',
+            esgField: 'Weight (kg)',
             required: false,
-            importedHeader: 'Image',
-            defaultValue: 'N/A',
-            sampleData: ['', '']
+            importedHeader: 'Weight',
+            defaultValue: '0',
+            sampleData: ['15.5', '25.0']
+        },
+        {
+            esgField: 'Country Of Origin',
+            required: false,
+            importedHeader: 'Country',
+            defaultValue: 'Unknown',
+            sampleData: ['CN', 'IN']
+        },
+        {
+            esgField: 'Supplier Name',
+            required: false,
+            importedHeader: 'Supplier',
+            defaultValue: 'Unknown',
+            sampleData: ['OfficeFurnish Ltd', 'Industrial Supplies Co']
         },
         {
             esgField: 'Product Category',
-            required: true,
-            importedHeader: 'AI Generated',
-            defaultValue: 'N/A',
-            sampleData: ['-', '-']
+            required: false,
+            importedHeader: 'Category',
+            defaultValue: 'Uncategorized',
+            sampleData: ['Furniture', 'Office Equipment']
         },
         {
             esgField: 'Product Sub-Category',
-            required: true,
+            required: false,
             importedHeader: 'Sub-Category',
-            defaultValue: 'N/A',
-            sampleData: ['Office supplies', 'Office supplies']
+            defaultValue: 'Uncategorized',
+            sampleData: ['Office supplies', 'Storage']
         }
     ];
     const fileInputRef = (0, react_1.useRef)(null);
@@ -41116,29 +41149,55 @@ const BulkImportWidget = ({ className = '' }) => {
         }
     };
     const autoMapFields = (headers) => {
-        const mappings = {
-            productCode: '',
-            productName: '',
-            productDescription: ''
-        };
-        // Auto-detect common field patterns
+        // Auto-detect common field patterns and set field mappings
         headers.forEach(header => {
             const lowerHeader = header.toLowerCase();
-            if (!mappings.productCode && (lowerHeader.includes('code') ||
+            // Product Code mapping
+            if (!productCodeField && (lowerHeader.includes('code') ||
                 lowerHeader.includes('product code') ||
                 lowerHeader.includes('prod') ||
                 lowerHeader.includes('id'))) {
-                mappings.productCode = header;
+                setProductCodeField(header);
             }
-            if (!mappings.productName && (lowerHeader.includes('name') ||
+            // Product Name mapping
+            if (!productNameField && (lowerHeader.includes('name') ||
                 lowerHeader.includes('title') ||
                 lowerHeader.includes('product name'))) {
-                mappings.productName = header;
+                setProductNameField(header);
             }
-            if (!mappings.productDescription && (lowerHeader.includes('description') ||
+            // Product Description mapping
+            if (!productDescriptionField && (lowerHeader.includes('description') ||
                 lowerHeader.includes('desc') ||
                 lowerHeader.includes('details'))) {
-                mappings.productDescription = header;
+                setProductDescriptionField(header);
+            }
+            // Weight mapping
+            if (!weightField && (lowerHeader.includes('weight') ||
+                lowerHeader.includes('kg') ||
+                lowerHeader.includes('mass'))) {
+                setWeightField(header);
+            }
+            // Country of Origin mapping
+            if (!countryOfOriginField && (lowerHeader.includes('country') ||
+                lowerHeader.includes('origin') ||
+                lowerHeader.includes('country of origin'))) {
+                setCountryOfOriginField(header);
+            }
+            // Supplier Name mapping
+            if (!supplierNameField && (lowerHeader.includes('supplier') ||
+                lowerHeader.includes('vendor') ||
+                lowerHeader.includes('manufacturer'))) {
+                setSupplierNameField(header);
+            }
+            // Category mapping
+            if (!productCategoryField && (lowerHeader.includes('category') && !lowerHeader.includes('sub'))) {
+                setProductCategoryField(header);
+            }
+            // Sub-Category mapping
+            if (!productSubCategoryField && (lowerHeader.includes('subcategory') ||
+                lowerHeader.includes('sub-category') ||
+                lowerHeader.includes('sub category'))) {
+                setProductSubCategoryField(header);
             }
         });
     };
@@ -41209,7 +41268,78 @@ const BulkImportWidget = ({ className = '' }) => {
         setSelectedSheet("");
         setSheets([]);
         setIsSheetSelected(false);
+        setUploadMessage(null);
+        setUploadMessageType(null);
+        setIsUploading(false);
+        // Reset field mappings
+        setProductCodeField('');
+        setProductNameField('');
+        setProductDescriptionField('');
+        setWeightField('');
+        setCountryOfOriginField('');
+        setSupplierNameField('');
+        setProductCategoryField('');
+        setProductSubCategoryField('');
     };
+    const handleBulkImport = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!dataFile || !uxpContext) {
+            setUploadMessage("Missing required data or context for import");
+            setUploadMessageType("error");
+            return;
+        }
+        if (!productCodeField || !productNameField || !productDescriptionField) {
+            setUploadMessage('Please map the required fields (Product Code, Product Name, and Product Description) before importing.');
+            setUploadMessageType("error");
+            return;
+        }
+        setIsUploading(true);
+        setUploadMessage("Uploading products...");
+        setUploadMessageType(null);
+        try {
+            // Create FormData for the API call
+            const formData = new FormData();
+            formData.append("file", dataFile);
+            // Add field mappings to the FormData - aligned with microservice expected field names
+            formData.append("codeField", productCodeField);
+            formData.append("nameField", productNameField);
+            formData.append("descriptionField", productDescriptionField);
+            if (weightField)
+                formData.append("weightField", weightField);
+            if (countryOfOriginField)
+                formData.append("countryOfOriginField", countryOfOriginField);
+            if (supplierNameField)
+                formData.append("supplierNameField", supplierNameField);
+            if (productCategoryField)
+                formData.append("categoryField", productCategoryField);
+            if (productSubCategoryField)
+                formData.append("subCategoryField", productSubCategoryField);
+            // Add selected sheet info if applicable
+            if (selectedSheet)
+                formData.append("selectedSheet", selectedSheet);
+            const response = yield (0, esgnow_service_1.bulkUpload)(uxpContext, formData);
+            if (response.data) {
+                setUploadMessage(`Successfully imported ${csvRows.length} products!`);
+                setUploadMessageType("success");
+                // Close modal after successful upload
+                setTimeout(() => {
+                    handleModalClose();
+                }, 2000);
+            }
+            else {
+                const errorMessage = response.error || "Upload failed. Please try again.";
+                setUploadMessage(`Upload failed: ${errorMessage}`);
+                setUploadMessageType("error");
+            }
+        }
+        catch (error) {
+            console.error("Bulk upload error:", error);
+            setUploadMessage(`An error occurred during upload: ${error.message}`);
+            setUploadMessageType("error");
+        }
+        finally {
+            setIsUploading(false);
+        }
+    });
     const getSampleData = (headerName) => {
         if (csvRows.length > 0 && headerName) {
             const sampleValues = csvRows
@@ -41332,7 +41462,12 @@ const BulkImportWidget = ({ className = '' }) => {
                                     react_1.default.createElement(components_1.Select, { selected: field.esgField === 'Product Code' ? productCodeField :
                                             field.esgField === 'Product Name' ? productNameField :
                                                 field.esgField === 'Product Description' ? productDescriptionField :
-                                                    '', options: csvHeaders.map(header => ({
+                                                    field.esgField === 'Weight (kg)' ? weightField :
+                                                        field.esgField === 'Country Of Origin' ? countryOfOriginField :
+                                                            field.esgField === 'Supplier Name' ? supplierNameField :
+                                                                field.esgField === 'Product Category' ? productCategoryField :
+                                                                    field.esgField === 'Product Sub-Category' ? productSubCategoryField :
+                                                                        '', options: csvHeaders.map(header => ({
                                             value: header,
                                             label: header
                                         })), onChange: (value) => {
@@ -41342,17 +41477,62 @@ const BulkImportWidget = ({ className = '' }) => {
                                                 setProductNameField(value);
                                             else if (field.esgField === 'Product Description')
                                                 setProductDescriptionField(value);
+                                            else if (field.esgField === 'Weight (kg)')
+                                                setWeightField(value);
+                                            else if (field.esgField === 'Country Of Origin')
+                                                setCountryOfOriginField(value);
+                                            else if (field.esgField === 'Supplier Name')
+                                                setSupplierNameField(value);
+                                            else if (field.esgField === 'Product Category')
+                                                setProductCategoryField(value);
+                                            else if (field.esgField === 'Product Sub-Category')
+                                                setProductSubCategoryField(value);
                                         }, className: "dropdown-select" })),
                                 react_1.default.createElement("div", { className: "field-default" }, field.defaultValue),
                                 react_1.default.createElement("div", { className: "field-sample-columns" },
                                     react_1.default.createElement("div", { className: "sample-column" }, field.sampleData[0] || '-'),
                                     react_1.default.createElement("div", { className: "sample-column with-divider" }, field.sampleData[1] || '-'))))))))));
             case 3:
-                const skippedRows = [
-                    { row: 7, code: '#P - 0291', name: 'Wrist Cooling Pad', reason: 'There seems to be a mismatch between the corresponding image mapped and the product information specified.' },
-                    { row: 13, code: '#P - 0873', name: '-', reason: 'Insufficient information - Product details are missing.' }
-                ];
-                const unmappedFields = ['Sub-Category level 2', 'Product Price', 'Date of purchase'];
+                // Calculate skipped rows based on real data validation
+                const skippedRows = csvRows.map((row, index) => {
+                    const issues = [];
+                    // Check for missing required fields
+                    if (productCodeField && (!row[productCodeField] || String(row[productCodeField]).trim() === '')) {
+                        issues.push('Missing Product Code');
+                    }
+                    if (productNameField && (!row[productNameField] || String(row[productNameField]).trim() === '')) {
+                        issues.push('Missing Product Name');
+                    }
+                    // Check for invalid data patterns
+                    if (productCodeField && row[productCodeField] && String(row[productCodeField]).includes('undefined')) {
+                        issues.push('Invalid Product Code format');
+                    }
+                    if (issues.length > 0) {
+                        return {
+                            row: index + 2,
+                            code: row[productCodeField] || 'N/A',
+                            name: row[productNameField] || '-',
+                            reason: issues.join(', ')
+                        };
+                    }
+                    return null;
+                }).filter(row => row !== null);
+                // Calculate actual unmapped fields
+                const mappedHeaders = [
+                    productCodeField,
+                    productNameField,
+                    productDescriptionField,
+                    weightField,
+                    countryOfOriginField,
+                    supplierNameField,
+                    productCategoryField,
+                    productSubCategoryField
+                ].filter(field => field); // Remove empty values
+                const unmappedFields = csvHeaders.filter(header => !mappedHeaders.includes(header));
+                // Calculate valid records (records that are not skipped)
+                const validRecords = csvRows.filter((row, index) => {
+                    return !skippedRows.some(skippedRow => skippedRow.row === index + 2);
+                });
                 return (react_1.default.createElement("div", { className: "bulk-import__step-content review-import" },
                     react_1.default.createElement("h3", null, "Review & Import"),
                     react_1.default.createElement("div", { className: "review-section" },
@@ -41360,13 +41540,38 @@ const BulkImportWidget = ({ className = '' }) => {
                             react_1.default.createElement("div", { className: "review-toggle" },
                                 react_1.default.createElement("span", { className: "icon" }, "\uD83D\uDCE6"),
                                 react_1.default.createElement("span", null, "Product records ready for Import")),
-                            react_1.default.createElement("span", null, ": 500"),
-                            react_1.default.createElement("a", { className: "toggle-link" }, "View Details")),
+                            react_1.default.createElement("span", null,
+                                ": ",
+                                validRecords.length),
+                            react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowReadyRecords(!showReadyRecords) }, showReadyRecords ? 'Hide Details ▲' : 'View Details ▼')),
+                        showReadyRecords && (react_1.default.createElement("div", { className: "ready-records-section" },
+                            react_1.default.createElement(components_1.TableComponent, { data: validRecords.slice(0, 10).map((row) => {
+                                    const actualRowIndex = csvRows.findIndex(r => r === row) + 2;
+                                    return {
+                                        rowNo: actualRowIndex,
+                                        productCode: row[productCodeField] || '-',
+                                        productName: row[productNameField] || '-',
+                                        category: row[productCategoryField] || '-',
+                                        subCategory: row[productSubCategoryField] || '-'
+                                    };
+                                }), columns: [
+                                    { id: 'rowNo', label: 'ROW NO.', minWidth: 80 },
+                                    { id: 'productCode', label: 'PRODUCT CODE', minWidth: 150 },
+                                    { id: 'productName', label: 'PRODUCT NAME', minWidth: 200 },
+                                    { id: 'category', label: 'CATEGORY', minWidth: 150 },
+                                    { id: 'subCategory', label: 'SUB-CATEGORY', minWidth: 150 }
+                                ], pageSize: 10, total: Math.min(validRecords.length, 10) }),
+                            validRecords.length > 10 && (react_1.default.createElement("div", { className: "table-footer" },
+                                react_1.default.createElement("p", null,
+                                    "Showing first 10 records. Total ready records: ",
+                                    validRecords.length))))),
                         react_1.default.createElement("div", { className: "review-row" },
                             react_1.default.createElement("div", { className: "review-toggle", onClick: () => setShowSkipped(!showSkipped) },
                                 react_1.default.createElement("span", { className: "icon" }, showSkipped ? '▼' : '▶'),
                                 react_1.default.createElement("span", null, "No. of Records Skipped")),
-                            react_1.default.createElement("span", null, ": 2"),
+                            react_1.default.createElement("span", null,
+                                ": ",
+                                skippedRows.length),
                             react_1.default.createElement("div", { className: "row-actions" },
                                 showSkipped && (react_1.default.createElement("a", { className: "download-link", onClick: () => alert('Download skipped rows') }, "Download skipped rows")),
                                 react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowSkipped(!showSkipped) }, showSkipped ? 'Hide Details ▲' : 'View Details ▼'))),
@@ -41405,14 +41610,7 @@ const BulkImportWidget = ({ className = '' }) => {
                 react_1.default.createElement("span", { className: "bulk-import__modal-title" }, "Bulk Upload Products"),
                 react_1.default.createElement("div", { className: "bulk-import__modal-header-controls" },
                     currentStep > 1 && (react_1.default.createElement(components_1.Button, { title: "Previous", className: "bulk-import__back-btn", onClick: handleBack })),
-                    currentStep < 3 ? (react_1.default.createElement(components_1.Button, { title: "Next", onClick: handleNext, className: "bulk-import__next-btn" })) : (react_1.default.createElement(components_1.Button, { className: "bulk-import__import-btn", title: "Start Import", onClick: () => {
-                            if (!productCodeField || !productNameField) {
-                                alert('Please map the required fields (Product Code and Product Name) before importing.');
-                                return;
-                            }
-                            console.log('Data rows:', csvRows);
-                            handleModalClose();
-                        }, disabled: !productCodeField || !productNameField })))) },
+                    currentStep < 3 ? (react_1.default.createElement(components_1.Button, { title: "Next", onClick: handleNext, className: "bulk-import__next-btn" })) : (react_1.default.createElement(components_1.Button, { className: "bulk-import__import-btn", title: isUploading ? "Importing..." : "Start Import", onClick: handleBulkImport, disabled: !productCodeField || !productNameField || !productDescriptionField || isUploading })))) },
             react_1.default.createElement("div", { className: "bulk-import__progress-steps" },
                 react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}` },
                     react_1.default.createElement("div", { className: "bulk-import__step-number" }, "1"),
@@ -41425,6 +41623,13 @@ const BulkImportWidget = ({ className = '' }) => {
                 react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}` },
                     react_1.default.createElement("div", { className: "bulk-import__step-number" }, "3"),
                     react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Review & Import"))),
+            uploadMessage && (react_1.default.createElement("div", { className: `bulk-import__upload-message ${uploadMessageType || ''}` },
+                react_1.default.createElement("span", { className: "message-icon" }, uploadMessageType === "success" ? "✓" : uploadMessageType === "error" ? "✗" : "ℹ"),
+                react_1.default.createElement("span", { className: "message-text" }, uploadMessage),
+                uploadMessageType === "error" && (react_1.default.createElement("button", { className: "dismiss-btn", onClick: () => {
+                        setUploadMessage(null);
+                        setUploadMessageType(null);
+                    } }, "Dismiss")))),
             getStepContent())));
 };
 exports["default"] = BulkImportWidget;

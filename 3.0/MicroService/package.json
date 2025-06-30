@@ -1,0 +1,29 @@
+{
+  "name": "lca-microservice",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "axios": "^1.7.9",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.2",
+    "extract-zip": "^2.0.1",
+    "fs-extra": "^11.3.0",
+    "fuse.js": "^7.1.0",
+    "mongoose": "^8.8.1",
+    "multer": "^1.4.5-lts.1",
+    "node-unrar-js": "^2.0.2",
+    "openai": "^4.83.0",
+    "papaparse": "^5.5.2",
+    "winston": "^3.17.0",
+    "xlsx": "^0.18.5",
+    "zod": "^3.24.2"
+  }
+}
