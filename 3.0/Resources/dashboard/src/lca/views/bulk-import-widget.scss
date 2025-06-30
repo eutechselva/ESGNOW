@@ -962,3 +962,47 @@
     }
   }
 
+  .bulk-import__mapping-info {
+    margin-top: 16px;
+    font-size: 14px;
+  
+    strong {
+      font-weight: 600;
+    }
+  
+    a, .bulk-import__selected-file {
+      color: #0066cc;
+      font-weight: 500;
+      text-decoration: none;
+  
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  .bulk-import__auto-map-info {
+    font-size: 13px;
+    color: #5a5a5a;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+  .unmapped-info {
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+  }
+  
+  .unmapped-info.hidden {
+    max-height: 0;
+    opacity: 0;
+    visibility: hidden;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .unmapped-info.visible {
+    max-height: 500px; // adjust based on your real content height
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  

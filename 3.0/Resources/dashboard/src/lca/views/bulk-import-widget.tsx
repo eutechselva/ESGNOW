@@ -63,7 +63,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
     }, []);
 
     // Hardcoded mapping data to match Figma
-    const mappingData = [
+    const SampleDataArray = [
       {
         esgField: 'Product Code',
         required: true,
@@ -110,6 +110,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
         sampleData: ['Office supplies', 'Office supplies']
       }
     ];
+    const [mappingData, setMappingData] = useState(SampleDataArray);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -661,9 +662,17 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
               </div>
             ) : (
               <>
-                <div className="bulk-import__mapping-info">
-                  <p><strong>File Selected:</strong> {dataFile?.name}</p>
-                </div>
+            <div className="bulk-import__mapping-info">
+              <p>
+                <strong>File Selected:</strong>{' '}
+                <span className="bulk-import__selected-file">{dataFile?.name}</span>
+              </p>
+              <p className="bulk-import__auto-map-info">
+                Review Auto-mapped Field Labels in Iviva’s ESG Now to that of your imported file headers
+                and let our agentic AI do all the heavy lifting for you: importing and calculating
+                the carbon footprint of all the products.
+              </p>
+            </div>
 
                 <div className="field-mapping-table">
   <div className="field-mapping-header">
@@ -704,9 +713,19 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
       />
 
       </div>
-                  <div className="field-default">
-                    {field.defaultValue}
-                  </div>
+                
+                    <input 
+                      type="text"
+                      value={field.defaultValue}
+                      onChange={(e) => {
+                        const updatedMapping = [...mappingData];
+                        updatedMapping[idx].defaultValue = e.target.value;
+                        setMappingData(updatedMapping);
+                        // Update your state if mappingData is stateful — for now it's constant
+                      }}
+                      className="field-default"
+                    />
+                 
                   <div className="field-sample-columns">
                     <div className="sample-column">{field.sampleData[0] || '-'}</div>
                     <div className="sample-column with-divider">{field.sampleData[1] || '-'}</div>
@@ -791,20 +810,21 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '' }) =
                   </a>
                 </div>
         
-                {showUnmapped && (
-                  <div className="unmapped-info">
-                    <p>
-                      The following fields in your upload file have not been mapped to any of IVIVA’s ESG NOW fields.
-                      Please create <strong>‘New Custom Fields’</strong> for these fields and map them to the relevant field labels in your import file.
-                      If not, they will be ignored during import.
-                    </p>
-                    <ul>
-                      {unmappedFields.map((field, idx) => (
-                        <li key={idx}>{field}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
+                <div
+                  className={`unmapped-info ${showUnmapped ? 'visible' : 'hidden'}`}
+                >
+                  <p>
+                    The following fields in your upload file have not been mapped to any of IVIVA’s ESG NOW fields.
+                    Please create <strong>‘New Custom Fields’</strong> for these fields and map them to the relevant field labels in your import file.
+                    If not, they will be ignored during import.
+                  </p>
+                  <ul>
+                    {unmappedFields.map((field, idx) => (
+                      <li key={idx}>{field}</li>
+                    ))}
+                  </ul>
+                </div>
+
               </div>
             </div>
           );
