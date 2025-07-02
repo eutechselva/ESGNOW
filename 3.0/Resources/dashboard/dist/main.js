@@ -119,7 +119,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".bulk-import__modal .uxp-modal__body {\n  min-height: 500px;\n  transition: none;\n  overflow-y: auto;\n}\n\n.bulk-import-widget {\n  display: inline-block;\n}\n\n.field-mapping-table {\n  display: flex;\n  flex-direction: column;\n  margin-top: 24px;\n  border: 1px solid #E9EAEB;\n  border-radius: 16px;\n  overflow: hidden;\n  background: white;\n  box-shadow: 0 1px 2px rgba(10, 12, 18, 0.06);\n}\n\n.field-sample-columns {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n}\n\n.sample-column {\n  padding: 8px 12px;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  border-radius: 4px;\n  background-color: #F9FAFB;\n}\n.sample-column.with-divider {\n  border-left: 1px solid #E0E0E0;\n}\n\n.dropdown-select {\n  width: 100%;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n.dropdown-select .select__control {\n  border-radius: 8px;\n  border: 1px solid #CBC9D6;\n  background: white;\n  padding: 4px 8px;\n  min-height: 44px;\n}\n.dropdown-select .select__single-value {\n  color: #181D27;\n}\n.dropdown-select .select__placeholder {\n  color: #A4A7AE;\n}\n.dropdown-select .select__menu {\n  z-index: 10;\n}\n\n.bulk-import__modal-header-controls {\n  display: flex;\n  gap: 16px;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.field-mapping-header {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  background: #FAFAFA;\n  font-weight: 500;\n  font-size: 14px;\n  color: #535862;\n  padding: 12px 16px;\n  border-bottom: 1px solid #E9EAEB;\n  gap: 15px;\n}\n\n.field-mapping-row {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  padding: 16px;\n  align-items: center;\n  border-bottom: 1px solid #F0F0F0;\n  font-size: 16px;\n  color: #181D27;\n  gap: 15px;\n}\n\n.field-label .required {\n  color: #D92D20;\n  margin-left: 4px;\n}\n\n.field-dropdown Select {\n  width: 100%;\n}\n\n.field-default {\n  color: #717680;\n  /* text-align: center; */\n  border: 1px solid rgba(83, 88, 98, 0.1254901961);\n  border-radius: 5px;\n  padding: 7px;\n}\n\n.field-sample .sample-value {\n  color: #717680;\n  margin-bottom: 4px;\n}\n\n.field-sample {\n  display: flex;\n  gap: 16px;\n}\n.field-sample .sample-value {\n  flex: 1;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  padding-right: 16px;\n}\n.field-sample .sample-value.with-divider {\n  border-left: 1px solid #E0E0E0;\n  padding-left: 16px;\n}\n\n.review-import {\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n.review-import .review-section {\n  margin-top: 24px;\n}\n.review-import .review-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 16px 8px;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  color: #181D27;\n  font-weight: 500;\n}\n.review-import .review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-import .review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-import .review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  cursor: pointer;\n  margin-left: 16px;\n  font-weight: 600;\n}\n.review-import .review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-import .review-row .row-actions {\n  display: flex;\n  align-items: center;\n}\n.review-import .skipped-table {\n  margin: 12px 0;\n  border: 1px solid #E0E0E0;\n  border-radius: 8px;\n  overflow: hidden;\n  font-size: 14px;\n}\n.review-import .skipped-table .table-header,\n.review-import .skipped-table .table-row {\n  display: grid;\n  grid-template-columns: 10% 30% 60%;\n  padding: 12px 16px;\n}\n.review-import .skipped-table .table-header {\n  background: #FAFAFA;\n  font-weight: 600;\n  color: #535862;\n  border-bottom: 1px solid #E0E0E0;\n}\n.review-import .skipped-table .table-row {\n  background: white;\n  border-bottom: 1px solid #F5F5F5;\n  color: #181D27;\n}\n.review-import .skipped-table .table-row .code {\n  font-weight: 600;\n}\n.review-import .unmapped-info {\n  padding: 16px;\n  font-size: 14px;\n  color: #535862;\n}\n.review-import .unmapped-info ul {\n  margin-top: 8px;\n  padding-left: 20px;\n}\n.review-import .unmapped-info ul li {\n  margin-bottom: 4px;\n  color: #181D27;\n  font-weight: 500;\n}\n\n.review-row {\n  display: grid;\n  grid-template-columns: 1fr auto auto;\n  align-items: center;\n  padding: 16px 0;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  font-weight: 500;\n  column-gap: 16px;\n}\n.review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  font-weight: 600;\n  cursor: pointer;\n}\n.review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-row .row-actions {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n}\n\n.bulk-import__trigger-btn {\n  background-color: #2563eb;\n  color: white;\n  border: none;\n  padding: 12px 24px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.bulk-import__trigger-btn:hover {\n  background-color: #1d4ed8;\n}\n.bulk-import__trigger-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.step-line {\n  flex: 1;\n  height: 2px;\n  background-color: #e5e7eb;\n  margin: 0 8px;\n  min-width: 40px;\n}\n\n.bulk-import__progress-steps {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 5px;\n  width: 50%;\n}\n\n.bulk-import__step {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  position: relative;\n}\n.bulk-import__step--active .bulk-import__step-number {\n  background-color: #0156D2;\n  color: white;\n  border-color: #0156D2;\n}\n.bulk-import__step--active .bulk-import__step-text {\n  color: #181D27;\n  font-weight: 500;\n}\n.bulk-import__step--active::after {\n  background-color: #0156D2;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-number {\n  background-color: #f9fafb;\n  color: #9ca3af;\n  border-color: #e5e7eb;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-text {\n  color: #9ca3af;\n  font-weight: 400;\n}\n\n.bulk-import__step-number {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 2px solid #e5e7eb;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 600;\n  font-size: 16px;\n  position: relative;\n  z-index: 2;\n  transition: all 0.2s ease;\n  flex-shrink: 0;\n}\n\n.bulk-import__step-text {\n  font-size: 14px;\n  font-weight: 400;\n  transition: all 0.2s ease;\n}\n@media (max-width: 640px) {\n  .bulk-import__step-text {\n    font-size: 12px;\n  }\n}\n\n.bulk-import__step-content {\n  margin-bottom: 32px;\n}\n\n.bulk-import__content-header {\n  text-align: center;\n  margin-bottom: 10px;\n}\n.bulk-import__content-header p {\n  color: #181D27;\n  font-size: 22px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  line-height: 24px;\n  max-width: 667px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.bulk-import__upload-sections {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 40px;\n}\n@media (max-width: 768px) {\n  .bulk-import__upload-sections {\n    grid-template-columns: 1fr;\n    gap: 32px;\n  }\n}\n\n.bulk-import__upload-section {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  align-items: center;\n}\n\n.bulk-import__section-title {\n  font-size: 16px;\n  font-weight: 700;\n  color: #181D27;\n  margin: 0 0 14px 0;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n  text-align: center;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  line-height: 24px;\n}\n\n.bulk-import__upload-area {\n  border: 2px dotted #CBC9D6;\n  border-radius: 32px;\n  padding: 40px 32px;\n  text-align: center;\n  background-color: #ffffff;\n  height: 472px;\n  width: 491px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n}\n.bulk-import__upload-area:hover {\n  border-color: #0156D2;\n  background-color: #f8faff;\n}\n.bulk-import__upload-area p {\n  margin: 0 0 16px 0;\n  font-size: 18px;\n  color: #181D27;\n  line-height: 25px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n}\n.bulk-import__upload-area p strong {\n  color: #181D27;\n  font-weight: 700;\n}\n\n.bulk-import__upload-icon {\n  color: #181D27;\n  margin-bottom: 24px;\n  display: flex;\n  justify-content: center;\n}\n.bulk-import__upload-icon svg {\n  width: 82px;\n  height: 82px;\n}\n\n.bulk-import__or-text {\n  color: #181D27;\n  font-size: 18px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  line-height: 22px;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.bulk-import__browse-btn {\n  background-color: #0156D2;\n  color: #EBF1FF;\n  border: 1px solid #0156D2;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  cursor: pointer;\n  margin-bottom: 16px;\n  transition: all 0.2s ease;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  min-width: 200px;\n  height: 40px;\n  box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05);\n  line-height: 20px;\n}\n.bulk-import__browse-btn:hover {\n  background-color: #0146b8;\n}\n.bulk-import__browse-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__browse-btn svg {\n  width: 20px;\n  height: 20px;\n}\n\n.bulk-import__download-sample-btn {\n  background: none;\n  border: none;\n  color: #0156D2;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  cursor: pointer;\n  text-decoration: underline;\n  margin-bottom: 16px;\n  padding: 8px 16px;\n  border-radius: 6px;\n  transition: all 0.2s ease;\n  line-height: 20px;\n}\n.bulk-import__download-sample-btn:hover {\n  color: #0146b8;\n  background-color: #f0f7ff;\n  text-decoration: none;\n}\n.bulk-import__download-sample-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\np.bulk-import__file-limit {\n  font-size: 12px;\n  color: #717680;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  line-height: 20px;\n  margin: 0 !important;\n  margin-top: 16px !important;\n}\n\n.bulk-import__selected-file {\n  font-size: 14px;\n  color: #059669;\n  font-weight: 500;\n  margin-top: 16px !important;\n  padding: 12px 16px;\n  background-color: #ecfdf5;\n  border-radius: 8px;\n  border: 1px solid #a7f3d0;\n  max-width: 100%;\n  word-break: break-all;\n}\n\n.bulk-import__note {\n  padding: 16px 20px;\n  background-color: transparent;\n  border: none;\n  width: 80%;\n  font-size: 12px;\n  color: #414651;\n  line-height: 18px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  font-weight: 500;\n  display: flex;\n  justify-content: center;\n  gap: 12px;\n}\n.bulk-import__note::before {\n  content: \"\";\n  width: 20px;\n  height: 20px;\n  background-image: url(\"data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z' fill='%23414651'/%3E%3C/svg%3E\");\n  background-size: contain;\n  background-repeat: no-repeat;\n  flex-shrink: 0;\n  margin-top: 1px;\n}\n.bulk-import__note strong {\n  font-weight: 700;\n}\n\n.bulk-import__modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.bulk-import__modal-title {\n  font-size: 14px;\n  width: 20%;\n  font-weight: 600;\n}\n\n.bulk-import__modal-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 95%;\n}\n\n.bulk-import__back-btn {\n  background-color: #ffffff;\n  color: #374151;\n  border: 1px solid #d1d5db;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.bulk-import__back-btn:hover {\n  background-color: #f9fafb;\n  border-color: #9ca3af;\n}\n.bulk-import__back-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.bulk-import__next-btn,\n.bulk-import__import-btn {\n  background-color: #0156D2;\n  color: white;\n  border: none;\n  padding: 12px 32px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n  margin-left: auto;\n}\n.bulk-import__next-btn:hover:not(:disabled),\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #0146b8;\n}\n.bulk-import__next-btn:focus:not(:disabled),\n.bulk-import__import-btn:focus:not(:disabled) {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__next-btn:disabled,\n.bulk-import__import-btn:disabled {\n  background-color: #d1d5db;\n  color: #9ca3af;\n  cursor: not-allowed;\n}\n\n.bulk-import__import-btn {\n  background-color: #059669;\n}\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #047857;\n}\n\n@media (max-width: 768px) {\n  .bulk-import__content-header p {\n    font-size: 20px;\n    line-height: 28px;\n  }\n  .bulk-import__upload-area {\n    min-height: 400px;\n    padding: 32px 24px;\n  }\n}\n@media (max-width: 640px) {\n  .bulk-import__progress-steps {\n    padding: 16px 0;\n    margin-bottom: 32px;\n  }\n  .bulk-import__step {\n    padding: 0 12px;\n  }\n  .bulk-import__step:not(:last-child)::after {\n    right: -40px;\n    width: 80px;\n  }\n  .bulk-import__content-header {\n    margin-bottom: 32px;\n  }\n  .bulk-import__content-header p {\n    font-size: 18px;\n    line-height: 26px;\n  }\n  .bulk-import__upload-area {\n    padding: 24px 16px;\n    min-height: 350px;\n  }\n  .bulk-import__upload-area p {\n    font-size: 16px;\n    line-height: 22px;\n  }\n  .bulk-import__step-content {\n    margin-bottom: 24px;\n  }\n  .bulk-import__upload-sections {\n    gap: 24px;\n  }\n  .bulk-import__browse-btn {\n    min-width: 180px;\n    font-size: 14px;\n  }\n  .bulk-import__download-sample-btn {\n    font-size: 14px;\n  }\n}\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.bulk-import__selected-file {\n  animation: fadeInUp 0.3s ease;\n}\n\n.bulk-import__upload-area.dragover {\n  border-color: #0156D2;\n  background-color: #f0f7ff;\n}\n.bulk-import__upload-area.dragover .bulk-import__upload-icon {\n  color: #0156D2;\n}\n\n.bulk-import__loading .bulk-import__browse-btn,\n.bulk-import__loading .bulk-import__next-btn,\n.bulk-import__loading .bulk-import__import-btn {\n  position: relative;\n}\n.bulk-import__loading .bulk-import__browse-btn::after,\n.bulk-import__loading .bulk-import__next-btn::after,\n.bulk-import__loading .bulk-import__import-btn::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 16px;\n  height: 16px;\n  margin: -8px 0 0 -8px;\n  border: 2px solid transparent;\n  border-top-color: currentColor;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.bulk-import__post-upload-alert {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  z-index: 9999;\n  background: white;\n  border: 1px solid #E0E7FF;\n  border-radius: 12px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);\n  max-width: 400px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  animation: slideInRight 0.3s ease-out;\n}\n.bulk-import__post-upload-alert .alert-content {\n  display: flex;\n  align-items: flex-start;\n  padding: 16px 20px;\n  gap: 12px;\n}\n.bulk-import__post-upload-alert .alert-icon {\n  font-size: 24px;\n  color: #0156D2;\n  flex-shrink: 0;\n  margin-top: 2px;\n}\n.bulk-import__post-upload-alert .alert-text {\n  flex: 1;\n}\n.bulk-import__post-upload-alert .alert-text strong {\n  font-size: 16px;\n  font-weight: 600;\n  color: #181D27;\n  margin-bottom: 4px;\n  display: block;\n}\n.bulk-import__post-upload-alert .alert-text p {\n  font-size: 14px;\n  color: #717680;\n  line-height: 20px;\n  margin: 0;\n}\n.bulk-import__post-upload-alert .alert-close-btn {\n  background: none;\n  border: none;\n  color: #9CA3AF;\n  cursor: pointer;\n  font-size: 18px;\n  padding: 4px;\n  border-radius: 4px;\n  flex-shrink: 0;\n  line-height: 1;\n  transition: all 0.2s ease;\n}\n.bulk-import__post-upload-alert .alert-close-btn:hover {\n  background-color: #F3F4F6;\n  color: #6B7280;\n}\n.bulk-import__post-upload-alert .alert-close-btn:focus {\n  outline: 2px solid #93C5FD;\n  outline-offset: 2px;\n}\n\n@keyframes slideInRight {\n  from {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@media (max-width: 640px) {\n  .bulk-import__post-upload-alert {\n    top: 10px;\n    right: 10px;\n    left: 10px;\n    max-width: none;\n    margin: 0 10px;\n  }\n  .bulk-import__post-upload-alert .alert-content {\n    padding: 14px 16px;\n    gap: 10px;\n  }\n  .bulk-import__post-upload-alert .alert-text strong {\n    font-size: 15px;\n  }\n  .bulk-import__post-upload-alert .alert-text p {\n    font-size: 13px;\n    line-height: 18px;\n  }\n}", ""]);
+exports.push([module.id, ".bulk-import__modal .uxp-modal__body {\n  min-height: 500px;\n  transition: none;\n  overflow-y: auto;\n}\n\n.bulk-import-widget {\n  display: inline-block;\n}\n.bulk-import-widget * {\n  font-family: \"Satoshi Variable\" !important;\n}\n\n.field-mapping-table {\n  display: flex;\n  flex-direction: column;\n  margin-top: 24px;\n  border: 1px solid #E9EAEB;\n  border-radius: 16px;\n  overflow: hidden;\n  background: white;\n  box-shadow: 0 1px 2px rgba(10, 12, 18, 0.06);\n}\n\n.field-sample-columns {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 16px;\n}\n\n.sample-column {\n  padding: 8px 12px;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  border-radius: 4px;\n  background-color: #F9FAFB;\n}\n.sample-column.with-divider {\n  border-left: 1px solid #E0E0E0;\n}\n\n.dropdown-select {\n  width: 100%;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n.dropdown-select .select__control {\n  border-radius: 8px;\n  border: 1px solid #CBC9D6;\n  background: white;\n  padding: 4px 8px;\n  min-height: 44px;\n}\n.dropdown-select .select__single-value {\n  color: #181D27;\n}\n.dropdown-select .select__placeholder {\n  color: #A4A7AE;\n}\n.dropdown-select .select__menu {\n  z-index: 10;\n}\n\n.bulk-import__modal-header-controls {\n  display: flex;\n  gap: 16px;\n  justify-content: flex-end;\n  align-items: center;\n}\n\n.field-mapping-header {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  background: #FAFAFA;\n  font-weight: 500;\n  font-size: 14px;\n  color: #535862;\n  padding: 12px 16px;\n  border-bottom: 1px solid #E9EAEB;\n  gap: 5px;\n}\n\n.field-mapping-row {\n  display: grid;\n  grid-template-columns: 25% 25% 25% 25%;\n  padding: 16px;\n  align-items: center;\n  border-bottom: 1px solid #F0F0F0;\n  font-size: 16px;\n  color: #181D27;\n  gap: 5px;\n}\n\n.field-label .required {\n  color: #D92D20;\n  margin-left: 4px;\n}\n\n.field-dropdown Select {\n  width: 100%;\n}\n\n.field-default {\n  color: #717680;\n  /* text-align: center; */\n  border: 1px solid rgba(83, 88, 98, 0.1254901961);\n  border-radius: 5px;\n  padding: 7px;\n}\n\n.field-sample .sample-value {\n  color: #717680;\n  margin-bottom: 4px;\n}\n\n.field-sample {\n  display: flex;\n  gap: 16px;\n}\n.field-sample .sample-value {\n  flex: 1;\n  color: #717680;\n  font-size: 16px;\n  font-weight: 500;\n  line-height: 24px;\n  padding-right: 16px;\n}\n.field-sample .sample-value.with-divider {\n  border-left: 1px solid #E0E0E0;\n  padding-left: 16px;\n}\n\n.review-import {\n  font-family: \"Satoshi Variable\" !important;\n}\n.review-import .review-section {\n  margin-top: 24px;\n}\n.review-import .review-row {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 16px 8px;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  color: #181D27;\n  font-weight: 500;\n}\n.review-import .review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-import .review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-import .review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  cursor: pointer;\n  margin-left: 16px;\n  font-weight: 600;\n}\n.review-import .review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-import .review-row .row-actions {\n  display: flex;\n  align-items: center;\n}\n.review-import .skipped-table {\n  margin: 12px 0;\n  border: 1px solid #E0E0E0;\n  border-radius: 8px;\n  overflow: hidden;\n  font-size: 14px;\n}\n.review-import .skipped-table .table-header,\n.review-import .skipped-table .table-row {\n  display: grid;\n  grid-template-columns: 10% 30% 60%;\n  padding: 12px 16px;\n}\n.review-import .skipped-table .table-header {\n  background: #FAFAFA;\n  font-weight: 600;\n  color: #535862;\n  border-bottom: 1px solid #E0E0E0;\n}\n.review-import .skipped-table .table-row {\n  background: white;\n  border-bottom: 1px solid #F5F5F5;\n  color: #181D27;\n}\n.review-import .skipped-table .table-row .code {\n  font-weight: 600;\n}\n.review-import .unmapped-info {\n  padding: 16px;\n  font-size: 14px;\n  color: #535862;\n}\n.review-import .unmapped-info ul {\n  margin-top: 8px;\n  padding-left: 20px;\n}\n.review-import .unmapped-info ul li {\n  margin-bottom: 4px;\n  color: #181D27;\n  font-weight: 500;\n}\n\n.review-row {\n  display: grid;\n  grid-template-columns: 1fr auto auto;\n  align-items: center;\n  padding: 16px 0;\n  border-bottom: 1px solid #E9EAEB;\n  font-size: 16px;\n  font-weight: 500;\n  column-gap: 16px;\n}\n.review-row .icon {\n  margin-right: 8px;\n  font-size: 14px;\n}\n.review-row .review-toggle {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n}\n.review-row .toggle-link {\n  font-size: 14px;\n  color: #0156D2;\n  font-weight: 600;\n  cursor: pointer;\n}\n.review-row .download-link {\n  font-size: 14px;\n  color: #027A48;\n  font-weight: 600;\n  margin-right: 16px;\n  cursor: pointer;\n}\n.review-row .row-actions {\n  display: flex;\n  align-items: center;\n  justify-content: flex-end;\n  gap: 12px;\n}\n\n.bulk-import__trigger-btn {\n  background-color: #2563eb;\n  color: white;\n  border: none;\n  padding: 12px 24px;\n  border-radius: 6px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n}\n.bulk-import__trigger-btn:hover {\n  background-color: #1d4ed8;\n}\n.bulk-import__trigger-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.step-line {\n  flex: 1;\n  height: 2px;\n  background-color: #e5e7eb;\n  margin: 0 8px;\n  min-width: 40px;\n}\n\n.bulk-import__progress-steps {\n  display: flex;\n  align-items: center;\n  justify-content: flex-start;\n  gap: 5px;\n  width: 50%;\n}\n\n.bulk-import__step {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  position: relative;\n}\n.bulk-import__step--active .bulk-import__step-number {\n  background-color: #5072FF;\n  color: white;\n  border-color: #5072FF;\n}\n.bulk-import__step--active .bulk-import__step-text {\n  color: #181D27;\n  font-weight: 500;\n}\n.bulk-import__step--active::after {\n  background-color: #5072FF;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-number {\n  background-color: #E9EAEB;\n  color: #A4A7AE;\n  border-color: #E9EAEB;\n}\n.bulk-import__step:not(.bulk-import__step--active) .bulk-import__step-text {\n  color: #A4A7AE;\n  font-weight: 400;\n}\n\n.bulk-import__step-number {\n  width: 40px;\n  height: 40px;\n  border-radius: 50%;\n  border: 2px solid #e5e7eb;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  font-weight: 600;\n  font-size: 16px;\n  position: relative;\n  z-index: 2;\n  transition: all 0.2s ease;\n  flex-shrink: 0;\n}\n\n.bulk-import__step-text {\n  font-size: 14px;\n  font-weight: 400;\n  transition: all 0.2s ease;\n}\n@media (max-width: 640px) {\n  .bulk-import__step-text {\n    font-size: 12px;\n  }\n}\n\n.bulk-import__step-content {\n  margin-bottom: 32px;\n}\n\n.bulk-import__content-header {\n  text-align: center;\n  margin-bottom: 10px;\n}\n.bulk-import__content-header p {\n  color: #181D27;\n  font-size: 22px;\n  font-family: \"Satoshi Variable\" !important;\n  font-weight: 500;\n  line-height: 24px;\n  max-width: 667px;\n  margin-left: auto;\n  margin-right: auto;\n}\n\n.bulk-import__upload-sections {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 40px;\n}\n@media (max-width: 768px) {\n  .bulk-import__upload-sections {\n    grid-template-columns: 1fr;\n    gap: 32px;\n  }\n}\n\n.bulk-import__upload-section {\n  display: flex;\n  flex-direction: column;\n  height: 100%;\n  align-items: center;\n}\n\n.bulk-import__section-title {\n  font-size: 16px;\n  font-weight: 700;\n  color: #181D27;\n  margin: 0 0 14px 0;\n  letter-spacing: 0.5px;\n  text-transform: uppercase;\n  text-align: center;\n  font-family: \"Satoshi Variable\" !important;\n  line-height: 24px;\n}\n\n.bulk-import__upload-area {\n  border: 2px dotted #CBC9D6;\n  border-radius: 32px;\n  padding: 40px 32px;\n  text-align: center;\n  background-color: #ffffff;\n  height: 472px;\n  width: 491px;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  position: relative;\n  border-radius: 32px;\n  border: 2px dashed #CBC9D6;\n  background: #FFF;\n  flex-shrink: 0;\n}\n.bulk-import__upload-area:hover {\n  border-color: #0156D2;\n  background-color: #f8faff;\n}\n.bulk-import__upload-area p {\n  margin: 0 0 16px 0;\n  font-size: 18px;\n  color: #181D27;\n  line-height: 25px;\n  font-family: \"Satoshi Variable\" !important;\n  font-weight: 500;\n}\n.bulk-import__upload-area p strong {\n  color: #181D27;\n  font-weight: 700;\n}\n\n.bulk-import__upload-icon {\n  color: #181D27;\n  margin-bottom: 24px;\n  display: flex;\n  justify-content: center;\n}\n.bulk-import__upload-icon svg {\n  width: 82px;\n  height: 82px;\n}\n\n.bulk-import__or-text {\n  color: #181D27;\n  font-size: 18px;\n  font-family: \"Satoshi Variable\" !important;\n  font-weight: 500;\n  line-height: 22px;\n  position: relative;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.bulk-import__browse-btn {\n  background-color: #0156D2;\n  color: #EBF1FF;\n  border: 1px solid #0156D2;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\" !important;\n  cursor: pointer;\n  margin-bottom: 16px;\n  transition: all 0.2s ease;\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  gap: 8px;\n  min-width: 200px;\n  height: 40px;\n  box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05);\n  line-height: 20px;\n}\n.bulk-import__browse-btn:hover {\n  background-color: #0146b8;\n}\n.bulk-import__browse-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__browse-btn svg {\n  width: 20px;\n  height: 20px;\n}\n\n.bulk-import__download-sample-btn {\n  background: none;\n  border: none;\n  color: #0156D2;\n  font-size: 16px;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\" !important;\n  cursor: pointer;\n  text-decoration: underline;\n  margin-bottom: 16px;\n  padding: 8px 16px;\n  border-radius: 6px;\n  transition: all 0.2s ease;\n  line-height: 20px;\n}\n.bulk-import__download-sample-btn:hover {\n  color: #0146b8;\n  background-color: #f0f7ff;\n  text-decoration: none;\n}\n.bulk-import__download-sample-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\np.bulk-import__file-limit {\n  font-size: 12px;\n  color: #717680;\n  font-weight: 500;\n  font-family: \"Satoshi Variable\" !important;\n  line-height: 20px;\n  margin: 0 !important;\n  margin-top: 16px !important;\n}\n\n.bulk-import__selected-file {\n  font-size: 14px;\n  color: #059669;\n  font-weight: 500;\n  margin-top: 16px !important;\n  padding: 12px 16px;\n  background-color: #ecfdf5;\n  border-radius: 8px;\n  border: 1px solid #a7f3d0;\n  max-width: 100%;\n  word-break: break-all;\n}\n\n.bulk-import__note {\n  padding: 16px 20px;\n  background-color: transparent;\n  border: none;\n  width: 80%;\n  font-size: 12px;\n  color: #414651;\n  line-height: 18px;\n  font-family: \"Satoshi Variable\" !important;\n  font-weight: 500;\n  display: flex;\n  justify-content: center;\n  gap: 2px;\n}\n.bulk-import__note strong {\n  font-weight: 700;\n}\n\n.bulk-import__modal-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.bulk-import__modal-title {\n  font-family: \"Satoshi Variable\" !important;\n  color: var(--Gray-900, #181D27);\n  font-size: 25px;\n  font-style: normal;\n  font-weight: 500;\n  line-height: 38px;\n}\n\n.bulk-import__modal-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  width: 95%;\n}\n\n.bulk-import__back-btn {\n  background-color: #ffffff;\n  color: #374151;\n  border: 1px solid #d1d5db;\n  padding: 12px 24px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.2s ease;\n}\n.bulk-import__back-btn:hover {\n  background-color: #f9fafb;\n  border-color: #9ca3af;\n}\n.bulk-import__back-btn:focus {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n\n.bulk-import__next-btn,\n.bulk-import__import-btn {\n  background-color: #0156D2;\n  color: white;\n  border: none;\n  font-family: \"Satoshi Variable\" !important;\n  padding: 12px 32px;\n  border-radius: 8px;\n  font-size: 14px;\n  font-weight: 500;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n  margin-left: auto;\n}\n.bulk-import__next-btn:hover:not(:disabled),\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #0146b8;\n  color: white;\n}\n.bulk-import__next-btn:focus:not(:disabled),\n.bulk-import__import-btn:focus:not(:disabled) {\n  outline: 2px solid #93c5fd;\n  outline-offset: 2px;\n}\n.bulk-import__next-btn:disabled,\n.bulk-import__import-btn:disabled {\n  background-color: #d1d5db;\n  color: #9ca3af;\n  cursor: not-allowed;\n}\n\n.bulk-import__import-btn {\n  background-color: #059669;\n}\n.bulk-import__import-btn:hover:not(:disabled) {\n  background-color: #047857;\n}\n\n@media (max-width: 768px) {\n  .bulk-import__content-header p {\n    font-size: 20px;\n    line-height: 28px;\n  }\n  .bulk-import__upload-area {\n    min-height: 400px;\n    padding: 32px 24px;\n  }\n}\n@media (max-width: 640px) {\n  .bulk-import__progress-steps {\n    padding: 16px 0;\n    margin-bottom: 32px;\n  }\n  .bulk-import__step {\n    padding: 0 12px;\n  }\n  .bulk-import__step:not(:last-child)::after {\n    right: -40px;\n    width: 80px;\n  }\n  .bulk-import__content-header {\n    margin-bottom: 32px;\n  }\n  .bulk-import__content-header p {\n    font-size: 18px;\n    line-height: 26px;\n  }\n  .bulk-import__upload-area {\n    padding: 24px 16px;\n    min-height: 350px;\n  }\n  .bulk-import__upload-area p {\n    font-size: 16px;\n    line-height: 22px;\n  }\n  .bulk-import__step-content {\n    margin-bottom: 24px;\n  }\n  .bulk-import__upload-sections {\n    gap: 24px;\n  }\n  .bulk-import__browse-btn {\n    min-width: 180px;\n    font-size: 14px;\n  }\n  .bulk-import__download-sample-btn {\n    font-size: 14px;\n  }\n}\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n.bulk-import__selected-file {\n  animation: fadeInUp 0.3s ease;\n}\n\n.bulk-import__upload-area.dragover {\n  border-color: #0156D2;\n  background-color: #f0f7ff;\n}\n.bulk-import__upload-area.dragover .bulk-import__upload-icon {\n  color: #0156D2;\n}\n\n.bulk-import__loading .bulk-import__browse-btn,\n.bulk-import__loading .bulk-import__next-btn,\n.bulk-import__loading .bulk-import__import-btn {\n  position: relative;\n}\n.bulk-import__loading .bulk-import__browse-btn::after,\n.bulk-import__loading .bulk-import__next-btn::after,\n.bulk-import__loading .bulk-import__import-btn::after {\n  content: \"\";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  width: 16px;\n  height: 16px;\n  margin: -8px 0 0 -8px;\n  border: 2px solid transparent;\n  border-top-color: currentColor;\n  border-radius: 50%;\n  animation: spin 1s linear infinite;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n.bulk-import__step.completed .bulk-import__step-number {\n  background-color: #039855; /* Green */\n  border-color: #039855;\n  color: white;\n}\n\n.bulk-import__step.completed .bulk-import__step-text { /* Green */\n  color: #039855;\n}\n\n.bulk-import__step.active .bulk-import__step-number {\n  background-color: #5072FF; /* Blue */\n  border-color: #5072FF;\n  color: white;\n}\n\n.bulk-import__step.active .bulk-import__step-text {\n  color: #181D27;\n}\n\n.bulk-import__post-upload-alert {\n  position: fixed;\n  top: 20px;\n  right: 20px;\n  z-index: 9999;\n  background: white;\n  border: 1px solid #E0E7FF;\n  border-radius: 12px;\n  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);\n  max-width: 400px;\n  font-family: \"Satoshi Variable\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", sans-serif;\n  animation: slideInRight 0.3s ease-out;\n}\n.bulk-import__post-upload-alert .alert-content {\n  display: flex;\n  align-items: flex-start;\n  padding: 16px 20px;\n  gap: 12px;\n}\n.bulk-import__post-upload-alert .alert-icon {\n  font-size: 24px;\n  color: #0156D2;\n  flex-shrink: 0;\n  margin-top: 2px;\n}\n.bulk-import__post-upload-alert .alert-text {\n  flex: 1;\n}\n.bulk-import__post-upload-alert .alert-text strong {\n  font-size: 16px;\n  font-weight: 600;\n  color: #181D27;\n  margin-bottom: 4px;\n  display: block;\n}\n.bulk-import__post-upload-alert .alert-text p {\n  font-size: 14px;\n  color: #717680;\n  line-height: 20px;\n  margin: 0;\n}\n.bulk-import__post-upload-alert .alert-close-btn {\n  background: none;\n  border: none;\n  color: #9CA3AF;\n  cursor: pointer;\n  font-size: 18px;\n  padding: 4px;\n  border-radius: 4px;\n  flex-shrink: 0;\n  line-height: 1;\n  transition: all 0.2s ease;\n}\n.bulk-import__post-upload-alert .alert-close-btn:hover {\n  background-color: #F3F4F6;\n  color: #6B7280;\n}\n.bulk-import__post-upload-alert .alert-close-btn:focus {\n  outline: 2px solid #93C5FD;\n  outline-offset: 2px;\n}\n\n@keyframes slideInRight {\n  from {\n    transform: translateX(100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n@media (max-width: 640px) {\n  .bulk-import__post-upload-alert {\n    top: 10px;\n    right: 10px;\n    left: 10px;\n    max-width: none;\n    margin: 0 10px;\n  }\n  .bulk-import__post-upload-alert .alert-content {\n    padding: 14px 16px;\n    gap: 10px;\n  }\n  .bulk-import__post-upload-alert .alert-text strong {\n    font-size: 15px;\n  }\n  .bulk-import__post-upload-alert .alert-text p {\n    font-size: 13px;\n    line-height: 18px;\n  }\n}\n.bulk-import__mapping-info {\n  margin-top: 16px;\n  font-size: 14px;\n}\n.bulk-import__mapping-info strong {\n  font-weight: 600;\n}\n.bulk-import__mapping-info a, .bulk-import__mapping-info .bulk-import__selected-file {\n  color: #0066cc;\n  font-weight: 500;\n  text-decoration: none;\n}\n.bulk-import__mapping-info a:hover, .bulk-import__mapping-info .bulk-import__selected-file:hover {\n  text-decoration: underline;\n}\n\n.bulk-import__auto-map-info {\n  font-size: 13px;\n  color: #5a5a5a;\n  margin-top: 4px;\n  line-height: 1.4;\n}\n\n.unmapped-info {\n  transition: all 0.3s ease-in-out;\n  overflow: hidden;\n}\n\n.unmapped-info.hidden {\n  max-height: 0;\n  opacity: 0;\n  visibility: hidden;\n  padding: 0;\n  margin: 0;\n}\n\n.unmapped-info.visible {\n  max-height: 500px;\n  opacity: 1;\n  visibility: visible;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -187,7 +187,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, "@charset \"UTF-8\";\n.dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n  gap: 16px;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  width: 300px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  grid-column: 1/-1;\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.esgnow-getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .esgnow-getting-started {\n    flex: 1;\n  }\n}\n.esgnow-getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.esgnow-getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.esgnow-getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container,\n.error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}\n\n.uxpcore_datatable__header-cell {\n  background-color: #0066ff;\n  color: white;\n}\n\n.esgnow-add-product-button {\n  background-color: #0056D2;\n  font-size: 14px;\n  color: white;\n  border-radius: 4px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  cursor: pointer;\n  border: none;\n}\n.esgnow-add-product-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n\n.faq-section {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: right;\n  text-align: right;\n}\n.faq-section h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.faq-section p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n\n.esgnow-faq-link {\n  color: #0056D2;\n  text-decoration: none;\n  font-weight: 500;\n  display: inline-flex;\n  align-items: center;\n  transition: color 0.2s ease;\n  cursor: pointer;\n}\n.esgnow-faq-link::before {\n  font-weight: bold;\n  content: \"• \";\n  margin-right: 4px;\n}\n.esgnow-faq-link:hover {\n  color: #003E99;\n  text-decoration: underline;\n}", ""]);
+exports.push([module.id, "@charset \"UTF-8\";\n.dashboard-container {\n  width: 100%;\n  height: 100%;\n  padding: 24px;\n  display: flex;\n  flex-direction: column;\n  gap: 24px;\n}\n\n.dashboard-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 8px;\n}\n.dashboard-header .dashboard-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin: 0;\n  color: var(--textColor);\n}\n.dashboard-header .dashboard-subtitle {\n  font-size: 16px;\n  color: var(--textColorSecondary);\n  margin: 4px 0 0;\n}\n.dashboard-header .action-buttons {\n  display: flex;\n  gap: 12px;\n}\n\n.stats-container {\n  display: flex;\n  gap: 24px;\n}\n@media (max-width: 768px) {\n  .stats-container {\n    flex-direction: column;\n  }\n}\n\n.stats-cards {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  grid-template-rows: auto auto;\n  gap: 16px;\n  flex: 3;\n}\n@media (max-width: 1024px) {\n  .stats-cards {\n    flex: 2;\n  }\n}\n\n.stat-card {\n  background: var(--portalSidebarBGColor);\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  text-align: center;\n  flex: 1;\n  width: 300px;\n  color: white;\n  position: relative;\n  overflow: hidden;\n  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;\n}\n.stat-card:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);\n}\n.stat-card h2 {\n  font-size: 16px;\n  font-weight: 500;\n  margin-bottom: 8px;\n}\n.stat-card .stat-number {\n  font-size: 36px;\n  font-weight: 700;\n  margin: 12px 0 4px;\n}\n.stat-card .stat-label {\n  font-size: 14px;\n  opacity: 0.8;\n}\n.stat-card .stat-icon {\n  position: absolute;\n  top: 16px;\n  right: 16px;\n  opacity: 0.7;\n}\n.stat-card.products {\n  background: linear-gradient(135deg, #4e54c8, #8f94fb);\n}\n.stat-card.projects {\n  background: linear-gradient(135deg, #11998e, #38ef7d);\n}\n.stat-card.credits {\n  grid-column: 1/-1;\n  background: linear-gradient(135deg, #ff8008, #ffc837);\n}\n\n.esgnow-getting-started {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n}\n@media (max-width: 1024px) {\n  .esgnow-getting-started {\n    flex: 1;\n  }\n}\n.esgnow-getting-started h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.esgnow-getting-started p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n.esgnow-getting-started iframe {\n  width: 100%;\n  border-radius: 8px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.recent-products-container {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-list-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component table {\n  border-collapse: separate;\n  border-spacing: 0;\n  width: 100%;\n}\n.recent-products-container :global .uxp-crud-list-component table th {\n  background-color: #f5f7fa;\n  font-weight: 600;\n  padding: 12px 16px;\n  text-align: left;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table th:first-child {\n  border-top-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table th:last-child {\n  border-top-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table td {\n  padding: 12px 16px;\n  border-bottom: 1px solid #e0e6ed;\n}\n.recent-products-container :global .uxp-crud-list-component table tr {\n  transition: background-color 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:hover {\n  background-color: #f5f7fa;\n  cursor: pointer;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td {\n  border-bottom: none;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:first-child {\n  border-bottom-left-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component table tr:last-child td:last-child {\n  border-bottom-right-radius: 8px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search {\n  margin-bottom: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input {\n  border-radius: 8px;\n  padding: 10px 16px;\n  border: 1px solid #e0e6ed;\n  width: 100%;\n  max-width: 320px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-search input:focus {\n  outline: none;\n  border-color: var(--portalSidebarBGColor);\n  box-shadow: 0 0 0 2px rgba(78, 84, 200, 0.2);\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination {\n  margin-top: 16px;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button {\n  border-radius: 6px;\n  margin: 0 4px;\n  transition: all 0.2s ease;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:hover:not(:disabled) {\n  background-color: #f0f2f5;\n}\n.recent-products-container :global .uxp-crud-list-component .uxp-crud-pagination button:disabled {\n  opacity: 0.5;\n}\n\n.loading-container,\n.error-container {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  height: 100%;\n  padding: 48px;\n}\n\n.dashboard-footer {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-top: 8px;\n  padding: 16px 0;\n  border-top: 1px solid #e0e6ed;\n}\n.dashboard-footer p {\n  color: var(--textColorSecondary);\n}\n\n.text-green-500 {\n  color: #10b981;\n  font-weight: 500;\n}\n\n.text-yellow-500 {\n  color: #f59e0b;\n  font-weight: 500;\n}\n\n.text-red-500 {\n  color: #ef4444;\n  font-weight: 500;\n}\n\n.uxpcore_datatable__header-cell {\n  background-color: #0066ff;\n  color: white;\n}\n\n.esgnow-add-product-button {\n  background-color: #0056D2;\n  font-size: 14px;\n  color: white;\n  border-radius: 4px;\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  cursor: pointer;\n  border: none;\n}\n.esgnow-add-product-button:hover {\n  background-color: #003E99;\n  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);\n}\n\n.faq-section {\n  background: #ffffff;\n  padding: 24px;\n  border-radius: 12px;\n  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);\n  flex: 2;\n  min-width: 300px;\n  display: flex;\n  flex-direction: column;\n  align-items: flex-start;\n  justify-content: right;\n  text-align: right;\n}\n.faq-section h2 {\n  font-size: 18px;\n  font-weight: 600;\n  margin: 0 0 8px;\n}\n.faq-section p {\n  color: var(--textColorSecondary);\n  margin-bottom: 16px;\n}\n\n.esgnow-faq-link {\n  color: #0056D2;\n  text-decoration: none;\n  font-weight: 500;\n  display: inline-flex;\n  align-items: center;\n  transition: color 0.2s ease;\n  cursor: pointer;\n}\n.esgnow-faq-link::before {\n  font-weight: bold;\n  content: \"• \";\n  margin-right: 4px;\n}\n.esgnow-faq-link:hover {\n  color: #003E99;\n  text-decoration: underline;\n}\n\n.addproduct-wrapper {\n  position: relative;\n  display: inline-block;\n}\n.addproduct-wrapper .addproduct {\n  border-radius: 4px;\n  background: #0156d2;\n  box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);\n  color: white;\n  height: 33px;\n  padding: 0 40px;\n  font-weight: 500;\n}\n.addproduct-wrapper .addproduct-plus {\n  position: absolute;\n  left: 12px;\n  top: 5px;\n  font-size: 16px;\n  color: white;\n  pointer-events: none;\n}\n.addproduct-wrapper .addproduct-down {\n  position: absolute;\n  right: 12px;\n  top: 9px;\n  font-size: 12px;\n  color: white;\n  pointer-events: none;\n}\n\n.action-buttons {\n  position: relative;\n}\n.action-buttons .dropdown-menu {\n  position: absolute;\n  top: 110%;\n  right: 0;\n  min-width: 190px;\n  border-radius: 16px;\n  border: 1px solid #e9eaeb;\n  background: #fff;\n  box-shadow: 0px 12px 16px -4px rgba(10, 13, 18, 0.08), 0px 4px 6px -2px rgba(10, 13, 18, 0.03);\n  padding: 5px 0;\n  z-index: 1000;\n}\n.action-buttons .dropdown-item {\n  display: flex;\n  align-items: center;\n  padding: 8px 14px;\n  font-size: 14px;\n  font-weight: 500;\n  color: #181d27;\n  gap: 8px;\n  cursor: pointer;\n}\n.action-buttons .dropdown-item:hover {\n  background-color: #f5f9ff;\n}\n.action-buttons .dropdown-item .dropdown-icon {\n  width: 16px;\n  height: 16px;\n}\n.action-buttons .dropdown-item .svg-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 16px;\n  height: 16px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -562,7 +562,7 @@ var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../node_modules/css-lo
 exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.id, "@import url(https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,750;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);"]);
 // Module
-exports.push([module.id, "@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format(\"woff2\");\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format(\"woff2\");\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n/* latin-ext */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format(\"woff2\");\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format(\"woff2\");\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\nhtml *,\nbody *,\n#root * {\n  font-family: \"Poppins\" !important;\n}\n\n.uxpcore_treeview__node-container::before {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-head::before {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-container--last-child > .uxpcore_treeview__node-head::after {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-container--expanded .uxpcore_treeview__node::after {\n  height: 1px !important;\n  background-color: transparent;\n  border-top: 1px dotted var(--treeViewPathColor);\n}", ""]);
+exports.push([module.id, "@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJnecnFHGPezSQ.woff2) format(\"woff2\");\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 400;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiEyp8kv8JHgFVrJJfecnFHGPc.woff2) format(\"woff2\");\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n/* latin-ext */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1JlFd2JQEl8qw.woff2) format(\"woff2\");\n  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;\n}\n/* latin */\n@font-face {\n  font-family: \"Poppins\";\n  font-style: normal;\n  font-weight: 700;\n  font-display: swap;\n  src: url(https://fonts.gstatic.com/s/poppins/v21/pxiByp8kv8JHgFVrLGT9Z1xlFd2JQEk.woff2) format(\"woff2\");\n  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;\n}\n@font-face {\n  font-family: \"Satoshi Variable\";\n  src: url(\"/fonts/Satoshi-Variable.woff2\") format(\"woff2-variations\");\n  font-weight: 100 900;\n  font-display: swap;\n}\n.bulk-import-widget {\n  font-family: \"Satoshi Variable\", sans-serif;\n}\n\nhtml *,\nbody *,\n#root * {\n  font-family: \"Poppins\" !important;\n}\n\n.uxpcore_treeview__node-container::before {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-head::before {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-container--last-child > .uxpcore_treeview__node-head::after {\n  width: 1px !important;\n  background-color: transparent;\n  border-left: 1px dotted var(--treeViewPathColor);\n}\n\n.uxpcore_treeview__node-container--expanded .uxpcore_treeview__node::after {\n  height: 1px !important;\n  background-color: transparent;\n  border-top: 1px dotted var(--treeViewPathColor);\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -41007,13 +41007,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./bulk-import-widget.scss */ "./src/lca/views/bulk-import-widget.scss");
+const jszip_1 = __importDefault(__webpack_require__(/*! jszip */ "./node_modules/jszip/dist/jszip.min.js"));
+// Import logo
+const ESG_now_logo_png_1 = __importDefault(__webpack_require__(/*! ../../images/ESG_now_logo.png */ "./src/images/ESG_now_logo.png"));
 const XLSX = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.mjs");
-const BulkImportWidget = ({ className = '', uxpContext }) => {
+const BulkImportWidget = ({ className = '' }) => {
     const [isModalOpen, setIsModalOpen] = (0, react_1.useState)(false);
     const [currentStep, setCurrentStep] = (0, react_1.useState)(1);
     const [dataFile, setDataFile] = (0, react_1.useState)(null);
@@ -41023,23 +41028,45 @@ const BulkImportWidget = ({ className = '', uxpContext }) => {
     const [selectedSheet, setSelectedSheet] = (0, react_1.useState)("");
     const [sheets, setSheets] = (0, react_1.useState)([]);
     const [isSheetSelected, setIsSheetSelected] = (0, react_1.useState)(false);
+    const [message, setMessage] = (0, react_1.useState)(null);
+    const [messageType, setMessageType] = (0, react_1.useState)(null);
     const [productCodeField, setProductCodeField] = (0, react_1.useState)('');
     const [productNameField, setProductNameField] = (0, react_1.useState)('');
     const [productDescriptionField, setProductDescriptionField] = (0, react_1.useState)('');
+    const [productImageField, setProductImageField] = (0, react_1.useState)('');
     const [productCategoryField, setProductCategoryField] = (0, react_1.useState)('');
     const [productSubCategoryField, setProductSubCategoryField] = (0, react_1.useState)('');
-    const [weightField, setWeightField] = (0, react_1.useState)('');
-    const [countryOfOriginField, setCountryOfOriginField] = (0, react_1.useState)('');
-    const [supplierNameField, setSupplierNameField] = (0, react_1.useState)('');
+    const [logoImageData, setLogoImageData] = (0, react_1.useState)(null);
     const [showSkipped, setShowSkipped] = (0, react_1.useState)(true);
     const [showUnmapped, setShowUnmapped] = (0, react_1.useState)(true);
-    const [showReadyRecords, setShowReadyRecords] = (0, react_1.useState)(false);
-    const [isUploading, setIsUploading] = (0, react_1.useState)(false);
-    const [uploadMessage, setUploadMessage] = (0, react_1.useState)(null);
-    const [uploadMessageType, setUploadMessageType] = (0, react_1.useState)(null);
-    const [showPostUploadAlert, setShowPostUploadAlert] = (0, react_1.useState)(false);
-    // Mapping data aligned with microservice expected fields
-    const mappingData = [
+    // Load the logo image when component mounts
+    (0, react_1.useEffect)(() => {
+        const loadLogoImage = () => __awaiter(void 0, void 0, void 0, function* () {
+            try {
+                // Create a simple 1x1 pixel image as fallback
+                const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+                const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+                const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+                // Try to fetch the actual logo image
+                try {
+                    const response = yield fetch(ESG_now_logo_png_1.default);
+                    const blob = yield response.blob();
+                    const arrayBuffer = yield blob.arrayBuffer();
+                    setLogoImageData(new Uint8Array(arrayBuffer));
+                }
+                catch (error) {
+                    console.error("Error loading logo image:", error);
+                    setLogoImageData(defaultImage);
+                }
+            }
+            catch (error) {
+                console.error("Error in loadLogoImage:", error);
+            }
+        });
+        loadLogoImage();
+    }, []);
+    // Hardcoded mapping data to match Figma
+    const SampleDataArray = [
         {
             esgField: 'Product Code',
             required: true,
@@ -41056,7 +41083,7 @@ const BulkImportWidget = ({ className = '', uxpContext }) => {
         },
         {
             esgField: 'Product Description',
-            required: true,
+            required: false,
             importedHeader: 'Description',
             defaultValue: 'No Description available for this product',
             sampleData: [
@@ -41065,41 +41092,28 @@ const BulkImportWidget = ({ className = '', uxpContext }) => {
             ]
         },
         {
-            esgField: 'Weight (kg)',
+            esgField: 'Product Image',
             required: false,
-            importedHeader: 'Weight',
-            defaultValue: '0',
-            sampleData: ['15.5', '25.0']
-        },
-        {
-            esgField: 'Country Of Origin',
-            required: false,
-            importedHeader: 'Country',
-            defaultValue: 'Unknown',
-            sampleData: ['CN', 'IN']
-        },
-        {
-            esgField: 'Supplier Name',
-            required: false,
-            importedHeader: 'Supplier',
-            defaultValue: 'Unknown',
-            sampleData: ['OfficeFurnish Ltd', 'Industrial Supplies Co']
+            importedHeader: 'Image',
+            defaultValue: 'N/A',
+            sampleData: ['', '']
         },
         {
             esgField: 'Product Category',
-            required: false,
-            importedHeader: 'Category',
-            defaultValue: 'Uncategorized',
-            sampleData: ['Furniture', 'Office Equipment']
+            required: true,
+            importedHeader: 'AI Generated',
+            defaultValue: 'N/A',
+            sampleData: ['-', '-']
         },
         {
             esgField: 'Product Sub-Category',
-            required: false,
+            required: true,
             importedHeader: 'Sub-Category',
-            defaultValue: 'Uncategorized',
-            sampleData: ['Office supplies', 'Storage']
+            defaultValue: 'N/A',
+            sampleData: ['Office supplies', 'Office supplies']
         }
     ];
+    const [mappingData, setMappingData] = (0, react_1.useState)(SampleDataArray);
     const fileInputRef = (0, react_1.useRef)(null);
     const handleDataFileChange = (event) => {
         const file = event.target.files ? event.target.files[0] : null;
@@ -41156,57 +41170,54 @@ const BulkImportWidget = ({ className = '', uxpContext }) => {
         }
     };
     const autoMapFields = (headers) => {
-        // Auto-detect common field patterns and set field mappings
+        const mappings = {
+            productCode: '',
+            productName: '',
+            productDescription: '',
+            productImage: '',
+            productCategory: '',
+            productSubCategory: ''
+        };
         headers.forEach(header => {
             const lowerHeader = header.toLowerCase();
-            // Product Code mapping
-            if (!productCodeField && (lowerHeader.includes('code') ||
+            if (!mappings.productCode && (lowerHeader.includes('code') ||
                 lowerHeader.includes('product code') ||
                 lowerHeader.includes('prod') ||
                 lowerHeader.includes('id'))) {
-                setProductCodeField(header);
+                mappings.productCode = header;
             }
-            // Product Name mapping
-            if (!productNameField && (lowerHeader.includes('name') ||
-                lowerHeader.includes('title') ||
-                lowerHeader.includes('product name'))) {
-                setProductNameField(header);
+            if (!mappings.productName && (lowerHeader.includes('name') ||
+                lowerHeader.includes('product name') ||
+                lowerHeader.includes('title'))) {
+                mappings.productName = header;
             }
-            // Product Description mapping
-            if (!productDescriptionField && (lowerHeader.includes('description') ||
+            if (!mappings.productDescription && (lowerHeader.includes('description') ||
                 lowerHeader.includes('desc') ||
                 lowerHeader.includes('details'))) {
-                setProductDescriptionField(header);
+                mappings.productDescription = header;
             }
-            // Weight mapping
-            if (!weightField && (lowerHeader.includes('weight') ||
-                lowerHeader.includes('kg') ||
-                lowerHeader.includes('mass'))) {
-                setWeightField(header);
+            if (!mappings.productImage && (lowerHeader.includes('image') ||
+                lowerHeader.includes('photo') ||
+                lowerHeader.includes('picture'))) {
+                mappings.productImage = header;
             }
-            // Country of Origin mapping
-            if (!countryOfOriginField && (lowerHeader.includes('country') ||
-                lowerHeader.includes('origin') ||
-                lowerHeader.includes('country of origin'))) {
-                setCountryOfOriginField(header);
+            if (!mappings.productCategory && (lowerHeader.includes('category') &&
+                !lowerHeader.includes('sub'))) {
+                mappings.productCategory = header;
             }
-            // Supplier Name mapping
-            if (!supplierNameField && (lowerHeader.includes('supplier') ||
-                lowerHeader.includes('vendor') ||
-                lowerHeader.includes('manufacturer'))) {
-                setSupplierNameField(header);
-            }
-            // Category mapping
-            if (!productCategoryField && (lowerHeader.includes('category') && !lowerHeader.includes('sub'))) {
-                setProductCategoryField(header);
-            }
-            // Sub-Category mapping
-            if (!productSubCategoryField && (lowerHeader.includes('subcategory') ||
-                lowerHeader.includes('sub-category') ||
-                lowerHeader.includes('sub category'))) {
-                setProductSubCategoryField(header);
+            if (!mappings.productSubCategory && (lowerHeader.includes('sub-category') ||
+                lowerHeader.includes('subcategory') ||
+                (lowerHeader.includes('category') && lowerHeader.includes('sub')))) {
+                mappings.productSubCategory = header;
             }
         });
+        // Set values in state
+        setProductCodeField(mappings.productCode);
+        setProductNameField(mappings.productName);
+        setProductDescriptionField(mappings.productDescription);
+        setProductImageField(mappings.productImage);
+        setProductCategoryField(mappings.productCategory);
+        setProductSubCategoryField(mappings.productSubCategory);
     };
     const handleSheetChange = (sheetName) => {
         setSelectedSheet(sheetName);
@@ -41260,82 +41271,142 @@ const BulkImportWidget = ({ className = '', uxpContext }) => {
             setCurrentStep(currentStep - 1);
         }
     };
-    const handleDownloadSampleFile = (type) => {
-        if (type === 'data') {
-            // Create sample CSV data
-            const sampleData = [
-                ['code', 'name', 'description', 'weight', 'country of origin', 'supplier name', 'category', 'subcategory'],
-                ['PC-001', 'Executive Office Chair', 'Ergonomic leather executive chair with lumbar support', '25.5', 'China', 'OfficeFurnish Ltd', 'Furniture', 'Office Chairs'],
-                ['PC-002', 'Standing Desk', 'Height adjustable standing desk with electric motor', '45.0', 'Germany', 'ErgoDesk GmbH', 'Furniture', 'Desks'],
-                ['PC-003', 'LED Monitor 27"', '27-inch 4K LED monitor with USB-C connectivity', '8.2', 'South Korea', 'TechDisplay Co', 'Electronics', 'Monitors'],
-                ['PC-004', 'Office Storage Cabinet', 'Metal filing cabinet with 4 drawers and lock', '35.8', 'India', 'MetalWorks Inc', 'Furniture', 'Storage'],
-                ['PC-005', 'Wireless Keyboard', 'Bluetooth wireless keyboard with backlight', '0.8', 'Taiwan', 'KeyTech Solutions', 'Electronics', 'Peripherals']
-            ];
-            // Convert to CSV format
-            const csvContent = sampleData.map(row => row.map(field => `"${field}"`).join(',')).join('\n');
-            // Create and download file
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'sample_product_data.csv');
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+    // Handle sample folder structure download
+    const handleDownloadFolderStructure = () => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            // Create a sample folder structure programmatically
+            // This creates a basic structure with product folders that matches what's needed
+            // Create a new JSZip instance
+            const zip = new jszip_1.default();
+            // Create a default 1x1 pixel JPG as fallback
+            const sampleJpg = "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAIBAQIBAQICAgICAgICAwUDAwMDAwYEBAMFBwYHBwcGBwcICQsJCAgKCAcHCg0KCgsMDAwMBwkODw0MDgsMDAz/2wBDAQICAgMDAwYDAwYMCAcIDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAz/wAARCAABAAEDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD9/KKKKAP/2Q==";
+            const jpgBase64 = sampleJpg.replace(/^data:image\/jpeg;base64,/, '');
+            const defaultImage = new Uint8Array(Array.from(atob(jpgBase64), c => c.charCodeAt(0)));
+            // Use the loaded logo image or default if not available
+            const imageData = logoImageData || defaultImage;
+            // Create product folders with sample images
+            // Product 1
+            const prod1Folder = zip.folder("OF001");
+            prod1Folder.file("main.jpg", imageData, { binary: true });
+            prod1Folder.file("alternate1.jpg", imageData, { binary: true });
+            prod1Folder.file("alternate2.jpg", imageData, { binary: true });
+            // Product 2
+            const prod2Folder = zip.folder("OF002");
+            prod2Folder.file("main.jpg", imageData, { binary: true });
+            prod2Folder.file("side_view.jpg", imageData, { binary: true });
+            // Add a README file explaining the structure
+            zip.file("README.txt", "PRODUCT IMAGES FOLDER STRUCTURE\n\n" +
+                "Each product should have its own folder named exactly as the product's Code.\n" +
+                "For example, if your product code is PROD001, create a folder named 'PROD001'.\n\n" +
+                "Inside each product folder, save the images with proper naming:\n" +
+                "- Main product image should be named 'main.jpg' or 'main.png'\n" +
+                "- Additional images can be named as desired (e.g., 'alternate1.jpg', 'side.png', etc.)\n\n" +
+                "Supported image formats: JPG, PNG (max 5MB per image)\n" +
+                "Ensure all images are high quality and properly represent the product.\n\n" +
+                "EXAMPLE STRUCTURE:\n" +
+                "- PROD001/\n" +
+                "  - main.jpg (Main product image)\n" +
+                "  - alternate1.jpg (Additional view)\n" +
+                "  - alternate2.jpg (Another view)\n" +
+                "- PROD002/\n" +
+                "  - main.jpg (Main product image)\n" +
+                "  - side_view.jpg (Side view of product)\n" +
+                "- PROD003/\n" +
+                "  - main.jpg (Main product image)\n\n" +
+                "Note: The sample images in this ZIP are 1x1 pixel placeholders. Replace them with your actual product images.");
+            // Generate zip file
+            const content = yield zip.generateAsync({ type: "blob" });
+            // Create URL and download
+            const url = window.URL.createObjectURL(content);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product_images_structure.zip';
+            document.body.appendChild(a);
+            a.click();
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            setMessage("Folder structure downloaded successfully.");
+            setMessageType("success");
         }
-        else if (type === 'images') {
-            // For images, provide instructions since we can't create actual images
-            const instructionsContent = `PRODUCT IMAGES ZIP FILE STRUCTURE
-
-Create a ZIP file with product images organized in folders by product code:
-
-my_product_images.zip
-├── PC-001/
-│   ├── image1.jpg
-│   ├── image2.png
-│   └── product_photo.jpeg
-├── PC-002/
-│   └── main_image.jpg
-├── PC-003/
-│   ├── front_view.png
-│   └── side_view.jpg
-├── PC-004/
-│   └── cabinet.jpeg
-└── PC-005/
-    └── keyboard.png
-
-IMPORTANT GUIDELINES:
-1. Create a folder for each product using the EXACT product code from your data file
-2. Place all images for that product inside its folder
-3. Supported formats: PNG, JPG, JPEG, GIF (case-insensitive)
-4. Maximum file size: 25MB for the entire ZIP file
-5. Image dimensions: Recommended 800x600 or higher for best quality
-6. Multiple images per product are supported
-
-FOLDER NAMING EXAMPLES:
-- Data file has product code "PC-001" → Create folder named "PC-001"
-- Data file has product code "CHAIR-ABC" → Create folder named "CHAIR-ABC"
-- Folder names must match product codes EXACTLY (case-sensitive)
-
-AUTOMATIC PROCESSING:
-After upload, images will be automatically:
-- Uploaded to the image storage system
-- Linked to the corresponding products
-- Made available in the product gallery
-
-This folder-based structure ensures proper mapping between products and their images during bulk import.`;
-            const blob = new Blob([instructionsContent], { type: 'text/plain;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', 'image_zip_instructions.txt');
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            URL.revokeObjectURL(url);
+        catch (error) {
+            console.error("Download Error:", error);
+            setMessage("An error occurred while downloading the folder structure.");
+            setMessageType("error");
+        }
+    });
+    const handleDownloadSampleFile = () => {
+        try {
+            // Define the sample data
+            const sampleData = [
+                {
+                    "code": "OF001",
+                    "name": "Executive Desk",
+                    "description": "Modern wooden executive desk with drawers",
+                    "weight": 50,
+                    "countryOfOrigin": "CN",
+                    "supplierName": "OfficeFurnish Ltd"
+                },
+                {
+                    "code": "OF002",
+                    "name": "Ergonomic Chair",
+                    "description": "Adjustable office chair with lumbar support",
+                    "weight": 15,
+                    "countryOfOrigin": "VN",
+                    "supplierName": "ComfortSeating GmbH"
+                },
+                {
+                    "code": "OF003",
+                    "name": "Conference Table",
+                    "description": "Large wooden conference table for meetings",
+                    "weight": 80,
+                    "countryOfOrigin": "Global",
+                    "supplierName": "BoardRoom Supplies"
+                },
+                {
+                    "code": "OF004",
+                    "name": "Bookshelf",
+                    "description": "5-tier wooden bookshelf for office storage",
+                    "weight": 30,
+                    "countryOfOrigin": "CN",
+                    "supplierName": "ScandiOffice Solutions"
+                },
+                {
+                    "code": "OF005",
+                    "name": "File Cabinet",
+                    "description": "Steel file cabinet with locking drawers",
+                    "weight": 45,
+                    "countryOfOrigin": "VN",
+                    "supplierName": "SecureFiles Inc"
+                }
+            ];
+            // Create a new workbook
+            const workbook = XLSX.utils.book_new();
+            // Convert JSON data to worksheet
+            const worksheet = XLSX.utils.json_to_sheet(sampleData);
+            // Add the worksheet to the workbook
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Products");
+            // Generate Excel file as array buffer
+            const excelBuffer = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
+            // Convert to Blob
+            const blob = new Blob([excelBuffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+            // Create URL and trigger download
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'product_upload_template.xlsx';
+            document.body.appendChild(a);
+            a.click();
+            // Clean up
+            window.URL.revokeObjectURL(url);
+            document.body.removeChild(a);
+            setMessage("Excel template downloaded successfully.");
+            setMessageType("success");
+        }
+        catch (error) {
+            console.error("Download Error:", error);
+            setMessage("An error occurred while downloading the template.");
+            setMessageType("error");
         }
     };
     const handleModalClose = () => {
@@ -41349,112 +41420,7 @@ This folder-based structure ensures proper mapping between products and their im
         setSelectedSheet("");
         setSheets([]);
         setIsSheetSelected(false);
-        setUploadMessage(null);
-        setUploadMessageType(null);
-        setIsUploading(false);
-        // Reset field mappings
-        setProductCodeField('');
-        setProductNameField('');
-        setProductDescriptionField('');
-        setWeightField('');
-        setCountryOfOriginField('');
-        setSupplierNameField('');
-        setProductCategoryField('');
-        setProductSubCategoryField('');
     };
-    const handleBulkImport = () => __awaiter(void 0, void 0, void 0, function* () {
-        if (!dataFile || !uxpContext) {
-            setUploadMessage("Missing required data or context for import");
-            setUploadMessageType("error");
-            return;
-        }
-        if (!productCodeField || !productNameField || !productDescriptionField) {
-            setUploadMessage('Please map the required fields (Product Code, Product Name, and Product Description) before importing.');
-            setUploadMessageType("error");
-            return;
-        }
-        setIsUploading(true);
-        setUploadMessage("Uploading products...");
-        setUploadMessageType(null);
-        try {
-            // Create FormData for the API call
-            const formData = new FormData();
-            formData.append("file", dataFile);
-            // Add field mappings to the FormData - aligned with microservice expected field names
-            formData.append("codeField", productCodeField);
-            formData.append("nameField", productNameField);
-            formData.append("descriptionField", productDescriptionField);
-            if (weightField)
-                formData.append("weightField", weightField);
-            if (countryOfOriginField)
-                formData.append("countryOfOriginField", countryOfOriginField);
-            if (supplierNameField)
-                formData.append("supplierNameField", supplierNameField);
-            if (productCategoryField)
-                formData.append("categoryField", productCategoryField);
-            if (productSubCategoryField)
-                formData.append("subCategoryField", productSubCategoryField);
-            // Add selected sheet info if applicable
-            if (selectedSheet)
-                formData.append("selectedSheet", selectedSheet);
-            const response = yield (0, esgnow_service_1.bulkUpload)(uxpContext, formData);
-            if (response.data) {
-                setUploadMessage(`Successfully imported ${csvRows.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
-                setUploadMessageType("success");
-                // If images file is provided, upload it after successful data upload
-                if (imagesFile) {
-                    try {
-                        const imageFormData = new FormData();
-                        imageFormData.append("file", imagesFile);
-                        const imageResponse = yield (0, esgnow_service_1.bulkImageUpload)(uxpContext, imageFormData);
-                        if (imageResponse.data) {
-                            setUploadMessage(`Successfully imported ${csvRows.length} products and uploaded images!`);
-                        }
-                        else {
-                            setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
-                        }
-                    }
-                    catch (imageError) {
-                        console.error("Image upload error:", imageError);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageError.message}`);
-                    }
-                }
-                else {
-                    // If no images file, trigger AI processing directly
-                    try {
-                        yield (0, esgnow_service_1.triggerAIProcessing)(uxpContext);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products! AI processing started.`);
-                    }
-                    catch (aiError) {
-                        console.error("AI processing trigger error:", aiError);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products, but AI processing failed to start: ${aiError.message}`);
-                    }
-                }
-                // Close modal after successful upload and show post-upload alert
-                setTimeout(() => {
-                    handleModalClose();
-                    setShowPostUploadAlert(true);
-                    // Auto-hide the alert after 10 seconds
-                    setTimeout(() => {
-                        setShowPostUploadAlert(false);
-                    }, 10000);
-                }, 2000);
-            }
-            else {
-                const errorMessage = response.error || "Upload failed. Please try again.";
-                setUploadMessage(`Upload failed: ${errorMessage}`);
-                setUploadMessageType("error");
-            }
-        }
-        catch (error) {
-            console.error("Bulk upload error:", error);
-            setUploadMessage(`An error occurred during upload: ${error.message}`);
-            setUploadMessageType("error");
-        }
-        finally {
-            setIsUploading(false);
-        }
-    });
     const getSampleData = (headerName) => {
         if (csvRows.length > 0 && headerName) {
             const sampleValues = csvRows
@@ -41501,14 +41467,16 @@ This folder-based structure ensures proper mapping between products and their im
                                 react_1.default.createElement("p", null,
                                     "Drag and drop your ",
                                     react_1.default.createElement("strong", null, "data file"),
-                                    " here in .csv or .xls format"),
+                                    " ",
+                                    react_1.default.createElement("br", null),
+                                    "here in .csv or .xls format"),
                                 react_1.default.createElement("p", { className: "bulk-import__or-text" }, "or"),
                                 react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".csv,.xlsx,.xls", onChange: handleDataFileChange, style: { display: 'none' }, ref: fileInputRef }),
                                 react_1.default.createElement("button", { className: "bulk-import__browse-btn", onClick: () => { var _a; return (_a = document.getElementById('data-file-input')) === null || _a === void 0 ? void 0 : _a.click(); } },
                                     react_1.default.createElement(UploadIcon, null),
                                     "Browse File for upload",
                                     react_1.default.createElement(DownloadIcon, null)),
-                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('data') }, "Download sample file"),
+                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile() }, "Download sample file"),
                                 react_1.default.createElement("p", { className: "bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
                                 dataFile && react_1.default.createElement("p", { className: "bulk-import__selected-file" },
                                     "Selected: ",
@@ -41519,14 +41487,11 @@ This folder-based structure ensures proper mapping between products and their im
                                         { value: "", label: "-- Select a sheet --" },
                                         ...sheets.map((sheet) => ({ value: sheet, label: sheet })),
                                     ], selected: selectedSheet, onChange: (newValue) => handleSheetChange(newValue) }))),
-                            csvHeaders.length > 0 && (react_1.default.createElement("div", { className: "bulk-import__headers-preview" },
-                                react_1.default.createElement("h4", null, "Detected Headers:"),
-                                react_1.default.createElement("div", { className: "bulk-import__headers-list" }, csvHeaders.map((header, index) => (react_1.default.createElement("span", { key: index, className: "bulk-import__header-tag" }, header)))),
-                                react_1.default.createElement("p", null,
-                                    "Found ",
-                                    csvRows.length,
-                                    " data rows"))),
                             react_1.default.createElement("div", { className: "bulk-import__note" },
+                                react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
+                                    react_1.default.createElement("path", { d: "M2.06296 9.99998C2.06296 6.26803 2.06296 4.40205 3.21099 3.24268C4.35902 2.08331 6.20675 2.08331 9.9022 2.08331C13.5976 2.08331 15.4454 2.08331 16.5934 3.24268C17.7414 4.40205 17.7414 6.26803 17.7414 9.99998C17.7414 13.7319 17.7414 15.5979 16.5934 16.7573C15.4454 17.9166 13.5976 17.9166 9.9022 17.9166C6.20675 17.9166 4.35902 17.9166 3.21099 16.7573C2.06296 15.5979 2.06296 13.7319 2.06296 9.99998Z", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+                                    react_1.default.createElement("path", { d: "M9.90221 13.3333V9.58331", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+                                    react_1.default.createElement("path", { d: "M9.90221 6.67642V6.66809", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" })),
                                 react_1.default.createElement("strong", null, "Note:"),
                                 " You can import upto 5000 records at a time")),
                         react_1.default.createElement("div", { className: "bulk-import__upload-section" },
@@ -41537,6 +41502,7 @@ This folder-based structure ensures proper mapping between products and their im
                                 react_1.default.createElement("p", null,
                                     "Drag and drop your ",
                                     react_1.default.createElement("strong", null, "images"),
+                                    react_1.default.createElement("br", null),
                                     " zip file"),
                                 react_1.default.createElement("p", { className: "bulk-import__or-text" }, "or"),
                                 react_1.default.createElement("input", { type: "file", id: "images-file-input", accept: ".zip", onChange: handleImagesFileChange, style: { display: 'none' } }),
@@ -41544,12 +41510,16 @@ This folder-based structure ensures proper mapping between products and their im
                                     react_1.default.createElement(UploadIcon, null),
                                     "Browse File for upload",
                                     react_1.default.createElement(DownloadIcon, null)),
-                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('images') }, "Download sample file"),
+                                react_1.default.createElement("button", { className: "bulk-import__download-sample-btn", onClick: () => handleDownloadFolderStructure() }, "Download sample file"),
                                 react_1.default.createElement("p", { className: "bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
                                 imagesFile && react_1.default.createElement("p", { className: "bulk-import__selected-file" },
                                     "Selected: ",
                                     imagesFile.name)),
                             react_1.default.createElement("div", { className: "bulk-import__note" },
+                                react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
+                                    react_1.default.createElement("path", { d: "M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+                                    react_1.default.createElement("path", { d: "M10.5656 13.3333V9.58331", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }),
+                                    react_1.default.createElement("path", { d: "M10.5656 6.67642V6.66809", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" })),
                                 react_1.default.createElement("strong", null, "Note:"),
                                 " Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping")))));
             case 2:
@@ -41560,8 +41530,9 @@ This folder-based structure ensures proper mapping between products and their im
                         react_1.default.createElement("div", { className: "bulk-import__mapping-info" },
                             react_1.default.createElement("p", null,
                                 react_1.default.createElement("strong", null, "File Selected:"),
-                                " ", dataFile === null || dataFile === void 0 ? void 0 :
-                                dataFile.name)),
+                                ' ',
+                                react_1.default.createElement("span", { className: "bulk-import__selected-file" }, dataFile === null || dataFile === void 0 ? void 0 : dataFile.name)),
+                            react_1.default.createElement("p", { className: "bulk-import__auto-map-info" }, "Review Auto-mapped Field Labels in Iviva\u2019s ESG Now to that of your imported file headers and let our agentic AI do all the heavy lifting for you: importing and calculating the carbon footprint of all the products.")),
                         react_1.default.createElement("div", { className: "field-mapping-table" },
                             react_1.default.createElement("div", { className: "field-mapping-header" },
                                 react_1.default.createElement("div", null, "ESG Now Field Labels"),
@@ -41577,12 +41548,10 @@ This folder-based structure ensures proper mapping between products and their im
                                     react_1.default.createElement(components_1.Select, { selected: field.esgField === 'Product Code' ? productCodeField :
                                             field.esgField === 'Product Name' ? productNameField :
                                                 field.esgField === 'Product Description' ? productDescriptionField :
-                                                    field.esgField === 'Weight (kg)' ? weightField :
-                                                        field.esgField === 'Country Of Origin' ? countryOfOriginField :
-                                                            field.esgField === 'Supplier Name' ? supplierNameField :
-                                                                field.esgField === 'Product Category' ? productCategoryField :
-                                                                    field.esgField === 'Product Sub-Category' ? productSubCategoryField :
-                                                                        '', options: csvHeaders.map(header => ({
+                                                    field.esgField === 'Product Image' ? productImageField :
+                                                        field.esgField === 'Product Category' ? productCategoryField :
+                                                            field.esgField === 'Product Sub-Category' ? productSubCategoryField :
+                                                                '', options: csvHeaders.map(header => ({
                                             value: header,
                                             label: header
                                         })), onChange: (value) => {
@@ -41592,62 +41561,28 @@ This folder-based structure ensures proper mapping between products and their im
                                                 setProductNameField(value);
                                             else if (field.esgField === 'Product Description')
                                                 setProductDescriptionField(value);
-                                            else if (field.esgField === 'Weight (kg)')
-                                                setWeightField(value);
-                                            else if (field.esgField === 'Country Of Origin')
-                                                setCountryOfOriginField(value);
-                                            else if (field.esgField === 'Supplier Name')
-                                                setSupplierNameField(value);
+                                            else if (field.esgField === 'Product Image')
+                                                setProductImageField(value);
                                             else if (field.esgField === 'Product Category')
                                                 setProductCategoryField(value);
                                             else if (field.esgField === 'Product Sub-Category')
                                                 setProductSubCategoryField(value);
                                         }, className: "dropdown-select" })),
-                                react_1.default.createElement("div", { className: "field-default" }, field.defaultValue),
+                                react_1.default.createElement("input", { type: "text", value: field.defaultValue, onChange: (e) => {
+                                        const updatedMapping = [...mappingData];
+                                        updatedMapping[idx].defaultValue = e.target.value;
+                                        setMappingData(updatedMapping);
+                                        // Update your state if mappingData is stateful — for now it's constant
+                                    }, className: "field-default" }),
                                 react_1.default.createElement("div", { className: "field-sample-columns" },
                                     react_1.default.createElement("div", { className: "sample-column" }, field.sampleData[0] || '-'),
                                     react_1.default.createElement("div", { className: "sample-column with-divider" }, field.sampleData[1] || '-'))))))))));
             case 3:
-                // Calculate skipped rows based on real data validation
-                const skippedRows = csvRows.map((row, index) => {
-                    const issues = [];
-                    // Check for missing required fields
-                    if (productCodeField && (!row[productCodeField] || String(row[productCodeField]).trim() === '')) {
-                        issues.push('Missing Product Code');
-                    }
-                    if (productNameField && (!row[productNameField] || String(row[productNameField]).trim() === '')) {
-                        issues.push('Missing Product Name');
-                    }
-                    // Check for invalid data patterns
-                    if (productCodeField && row[productCodeField] && String(row[productCodeField]).includes('undefined')) {
-                        issues.push('Invalid Product Code format');
-                    }
-                    if (issues.length > 0) {
-                        return {
-                            row: index + 2,
-                            code: row[productCodeField] || 'N/A',
-                            name: row[productNameField] || '-',
-                            reason: issues.join(', ')
-                        };
-                    }
-                    return null;
-                }).filter(row => row !== null);
-                // Calculate actual unmapped fields
-                const mappedHeaders = [
-                    productCodeField,
-                    productNameField,
-                    productDescriptionField,
-                    weightField,
-                    countryOfOriginField,
-                    supplierNameField,
-                    productCategoryField,
-                    productSubCategoryField
-                ].filter(field => field); // Remove empty values
-                const unmappedFields = csvHeaders.filter(header => !mappedHeaders.includes(header));
-                // Calculate valid records (records that are not skipped)
-                const validRecords = csvRows.filter((row, index) => {
-                    return !skippedRows.some(skippedRow => skippedRow.row === index + 2);
-                });
+                const skippedRows = [
+                    { row: 7, code: '#P - 0291', name: 'Wrist Cooling Pad', reason: 'There seems to be a mismatch between the corresponding image mapped and the product information specified.' },
+                    { row: 13, code: '#P - 0873', name: '-', reason: 'Insufficient information - Product details are missing.' }
+                ];
+                const unmappedFields = ['Sub-Category level 2', 'Product Price', 'Date of purchase'];
                 return (react_1.default.createElement("div", { className: "bulk-import__step-content review-import" },
                     react_1.default.createElement("h3", null, "Review & Import"),
                     react_1.default.createElement("div", { className: "review-section" },
@@ -41655,38 +41590,13 @@ This folder-based structure ensures proper mapping between products and their im
                             react_1.default.createElement("div", { className: "review-toggle" },
                                 react_1.default.createElement("span", { className: "icon" }, "\uD83D\uDCE6"),
                                 react_1.default.createElement("span", null, "Product records ready for Import")),
-                            react_1.default.createElement("span", null,
-                                ": ",
-                                validRecords.length),
-                            react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowReadyRecords(!showReadyRecords) }, showReadyRecords ? 'Hide Details ▲' : 'View Details ▼')),
-                        showReadyRecords && (react_1.default.createElement("div", { className: "ready-records-section" },
-                            react_1.default.createElement(components_1.TableComponent, { data: validRecords.slice(0, 10).map((row) => {
-                                    const actualRowIndex = csvRows.findIndex(r => r === row) + 2;
-                                    return {
-                                        rowNo: actualRowIndex,
-                                        productCode: row[productCodeField] || '-',
-                                        productName: row[productNameField] || '-',
-                                        category: row[productCategoryField] || '-',
-                                        subCategory: row[productSubCategoryField] || '-'
-                                    };
-                                }), columns: [
-                                    { id: 'rowNo', label: 'ROW NO.', minWidth: 80 },
-                                    { id: 'productCode', label: 'PRODUCT CODE', minWidth: 150 },
-                                    { id: 'productName', label: 'PRODUCT NAME', minWidth: 200 },
-                                    { id: 'category', label: 'CATEGORY', minWidth: 150 },
-                                    { id: 'subCategory', label: 'SUB-CATEGORY', minWidth: 150 }
-                                ], pageSize: 10, total: Math.min(validRecords.length, 10) }),
-                            validRecords.length > 10 && (react_1.default.createElement("div", { className: "table-footer" },
-                                react_1.default.createElement("p", null,
-                                    "Showing first 10 records. Total ready records: ",
-                                    validRecords.length))))),
+                            react_1.default.createElement("span", null, ": 500"),
+                            react_1.default.createElement("a", { className: "toggle-link" }, "View Details")),
                         react_1.default.createElement("div", { className: "review-row" },
                             react_1.default.createElement("div", { className: "review-toggle", onClick: () => setShowSkipped(!showSkipped) },
                                 react_1.default.createElement("span", { className: "icon" }, showSkipped ? '▼' : '▶'),
                                 react_1.default.createElement("span", null, "No. of Records Skipped")),
-                            react_1.default.createElement("span", null,
-                                ": ",
-                                skippedRows.length),
+                            react_1.default.createElement("span", null, ": 2"),
                             react_1.default.createElement("div", { className: "row-actions" },
                                 showSkipped && (react_1.default.createElement("a", { className: "download-link", onClick: () => alert('Download skipped rows') }, "Download skipped rows")),
                                 react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowSkipped(!showSkipped) }, showSkipped ? 'Hide Details ▲' : 'View Details ▼'))),
@@ -41709,49 +41619,42 @@ This folder-based structure ensures proper mapping between products and their im
                                 ": ",
                                 unmappedFields.length),
                             react_1.default.createElement("a", { className: "toggle-link", onClick: () => setShowUnmapped(!showUnmapped) }, showUnmapped ? 'Hide Details ▲' : 'View Details ▼')),
-                        showUnmapped && (react_1.default.createElement("div", { className: "unmapped-info" },
+                        react_1.default.createElement("div", { className: `unmapped-info ${showUnmapped ? 'visible' : 'hidden'}` },
                             react_1.default.createElement("p", null,
                                 "The following fields in your upload file have not been mapped to any of IVIVA\u2019s ESG NOW fields. Please create ",
                                 react_1.default.createElement("strong", null, "\u2018New Custom Fields\u2019"),
                                 " for these fields and map them to the relevant field labels in your import file. If not, they will be ignored during import."),
-                            react_1.default.createElement("ul", null, unmappedFields.map((field, idx) => (react_1.default.createElement("li", { key: idx }, field)))))))));
+                            react_1.default.createElement("ul", null, unmappedFields.map((field, idx) => (react_1.default.createElement("li", { key: idx }, field))))))));
             default:
                 return null;
         }
     };
     return (react_1.default.createElement("div", { className: `bulk-import-widget ${className}` },
-        showPostUploadAlert && (react_1.default.createElement("div", { className: "bulk-import__post-upload-alert" },
-            react_1.default.createElement("div", { className: "alert-content" },
-                react_1.default.createElement("div", { className: "alert-icon" }, "\u26A1"),
-                react_1.default.createElement("div", { className: "alert-text" },
-                    react_1.default.createElement("strong", null, "Import Process in Progress"),
-                    react_1.default.createElement("p", null, "Your products and images have been uploaded successfully. AI classification, emission calculations, and image processing are being handled in the background. Please check back in a few minutes to see the complete product data with images.")),
-                react_1.default.createElement("button", { className: "alert-close-btn", onClick: () => setShowPostUploadAlert(false), "aria-label": "Close notification" }, "\u2715")))),
         react_1.default.createElement("button", { className: "bulk-import__trigger-btn", onClick: () => setIsModalOpen(true) }, "Bulk Upload Products"),
         react_1.default.createElement(components_1.Modal, { show: isModalOpen, onClose: handleModalClose, title: "Bulk Upload Products", className: "bulk-import__modal", headerContent: react_1.default.createElement("div", { className: "bulk-import__modal-header" },
                 react_1.default.createElement("span", { className: "bulk-import__modal-title" }, "Bulk Upload Products"),
                 react_1.default.createElement("div", { className: "bulk-import__modal-header-controls" },
                     currentStep > 1 && (react_1.default.createElement(components_1.Button, { title: "Previous", className: "bulk-import__back-btn", onClick: handleBack })),
-                    currentStep < 3 ? (react_1.default.createElement(components_1.Button, { title: "Next", onClick: handleNext, className: "bulk-import__next-btn" })) : (react_1.default.createElement(components_1.Button, { className: "bulk-import__import-btn", title: isUploading ? "Importing..." : "Start Import", onClick: handleBulkImport, disabled: !productCodeField || !productNameField || !productDescriptionField || isUploading })))) },
+                    currentStep < 3 ? (react_1.default.createElement(components_1.Button, { title: "Next", onClick: handleNext, className: "bulk-import__next-btn" })) : (react_1.default.createElement(components_1.Button, { className: "bulk-import__import-btn", title: "Start Import", onClick: () => {
+                            if (!productCodeField || !productNameField) {
+                                alert('Please map the required fields (Product Code and Product Name) before importing.');
+                                return;
+                            }
+                            console.log('Data rows:', csvRows);
+                            handleModalClose();
+                        }, disabled: !productCodeField || !productNameField })))) },
             react_1.default.createElement("div", { className: "bulk-import__progress-steps" },
-                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}` },
-                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, "1"),
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep > 1 ? 'completed' : currentStep === 1 ? 'active' : ''}` },
+                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, currentStep > 1 ? '✔' : '1'),
                     react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Upload File")),
                 react_1.default.createElement("div", { className: "step-line" }),
-                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 2 ? 'bulk-import__step--active' : ''}` },
-                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, "2"),
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep > 2 ? 'completed' : currentStep === 2 ? 'active' : ''}` },
+                    react_1.default.createElement("div", { className: "bulk-import__step-number" }, currentStep > 2 ? '✔' : '2'),
                     react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Map Fields & Assign Defaults")),
                 react_1.default.createElement("div", { className: "step-line" }),
-                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}` },
+                react_1.default.createElement("div", { className: `bulk-import__step ${currentStep === 3 ? 'active' : ''}` },
                     react_1.default.createElement("div", { className: "bulk-import__step-number" }, "3"),
                     react_1.default.createElement("span", { className: "bulk-import__step-text" }, "Review & Import"))),
-            uploadMessage && (react_1.default.createElement("div", { className: `bulk-import__upload-message ${uploadMessageType || ''}` },
-                react_1.default.createElement("span", { className: "message-icon" }, uploadMessageType === "success" ? "✓" : uploadMessageType === "error" ? "✗" : "ℹ"),
-                react_1.default.createElement("span", { className: "message-text" }, uploadMessage),
-                uploadMessageType === "error" && (react_1.default.createElement("button", { className: "dismiss-btn", onClick: () => {
-                        setUploadMessage(null);
-                        setUploadMessageType(null);
-                    } }, "Dismiss")))),
             getStepContent())));
 };
 exports["default"] = BulkImportWidget;
@@ -43033,6 +42936,28 @@ const HomeDashboard = ({ uxpContext }) => {
     const [showCloseWarning, setShowCloseWarning] = react_1.default.useState(true);
     const [showFAQModal, setShowFAQModal] = (0, react_1.useState)(false);
     const alerts = (0, components_1.useAlert)();
+    const [showDropdown, setShowDropdown] = (0, react_1.useState)(false);
+    const handleAddProduct = () => {
+        setShowDropdown(false);
+        setShowCreateProductModal(true); // This is your existing modal opener
+    };
+    const handleBulkImport = () => {
+        setShowDropdown(false);
+        alert("Bulk import not implemented yet.");
+    };
+    (0, react_1.useEffect)(() => {
+        const handleClickOutside = (event) => {
+            const target = event.target;
+            if (!target.closest('.addproduct-wrapper') &&
+                !target.closest('.dropdown-menu')) {
+                setShowDropdown(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     // Search config
     const searchConfig = (0, react_1.useMemo)(() => ({
         enabled: true,
@@ -43146,7 +43071,22 @@ const HomeDashboard = ({ uxpContext }) => {
                     react_1.default.createElement("h1", { className: "dashboard-title" }, "Welcome to ESG NOW!"),
                     react_1.default.createElement("p", { className: "dashboard-subtitle" }, "Helping businesses decarbonise procurement")),
                 react_1.default.createElement("div", { className: "action-buttons" },
-                    react_1.default.createElement("button", { className: "esgnow-add-product-button", onClick: () => setShowCreateProductModal(true) }, "+ Add Product"))),
+                    react_1.default.createElement("div", { className: "addproduct-wrapper" },
+                        react_1.default.createElement(components_1.Button, { title: "New", className: "addproduct", onClick: () => setShowDropdown((prev) => !prev) }),
+                        react_1.default.createElement("span", { className: "addproduct-plus" }, "\uFF0B"),
+                        react_1.default.createElement("span", { className: "addproduct-down" }, "\u25BE")),
+                    showDropdown && (react_1.default.createElement("div", { className: "dropdown-menu" },
+                        react_1.default.createElement("div", { className: "dropdown-item", onClick: handleAddProduct },
+                            react_1.default.createElement("span", { className: "svg-icon" },
+                                react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "16", height: "16", fill: "none", viewBox: "0 0 16 16" },
+                                    react_1.default.createElement("path", { d: "M8 3.33333V12.6667M3.33333 8H12.6667", stroke: "#0156D2", strokeWidth: "1.67", strokeLinecap: "round", strokeLinejoin: "round" }))),
+                            "Add New Product"),
+                        react_1.default.createElement("div", { className: "dropdown-item", onClick: handleBulkImport },
+                            react_1.default.createElement("span", { className: "svg-icon" },
+                                react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "19", height: "16", fill: "none", viewBox: "0 0 19 16" },
+                                    react_1.default.createElement("path", { d: "M13.4935 6.00737C13.4988 6.00735 13.5042 6.00734 13.5096 6.00734C15.2902 6.00734 16.7337 7.35293 16.7337 9.01287C16.7337 10.5599 15.4799 11.8339 13.8678 12M13.4935 6.00737C13.5041 5.89737 13.5096 5.78597 13.5096 5.67339C13.5096 3.64463 11.7453 2 9.56896 2C7.50783 2 5.8163 3.47511 5.64297 5.35461M13.4935 6.00737C13.4202 6.76507 13.1002 7.4564 12.6088 8.011M5.64297 5.35461C3.82568 5.51582 2.40421 6.9426 2.40421 8.67887C2.40421 10.2945 3.63494 11.6421 5.27011 11.9515M5.64297 5.35461C5.75606 5.34458 5.87068 5.33945 5.98658 5.33945C6.7932 5.33945 7.53756 5.58796 8.13636 6.00734", stroke: "#0156D2", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }),
+                                    react_1.default.createElement("path", { d: "M9.56896 8.66667V14M9.56896 8.66667C9.06728 8.66667 8.12994 9.99621 7.77777 10.3333M9.56896 8.66667C10.0706 8.66667 11.008 9.99621 11.3601 10.3333", stroke: "#0156D2", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }))),
+                            "Bulk Import Products"))))),
             react_1.default.createElement("div", { className: "stats-container" },
                 react_1.default.createElement("div", { className: "stats-cards" },
                     react_1.default.createElement("div", { className: "stat-card products" },
