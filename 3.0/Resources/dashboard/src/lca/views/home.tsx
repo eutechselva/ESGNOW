@@ -7,6 +7,7 @@ import ProductInfoSummary from './product-info-summary';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import ProductWizard from './product-wizard';
+import BulkImportWidget from './bulk-import-widget';
 // Import react-tooltip
 import { Tooltip } from 'react-tooltip';
 import 'react-tooltip/dist/react-tooltip.css'; // Import the CSS for styling
@@ -58,7 +59,9 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
 
         const handleBulkImport = () => {
             setShowDropdown(false);
-            alert("Bulk import not implemented yet.");
+            // Just trigger the BulkImportWidget - it has its own modal
+            const bulkImportEvent = new CustomEvent('open-bulk-import');
+            document.dispatchEvent(bulkImportEvent);
         };
         useEffect(() => {
             const handleClickOutside = (event: MouseEvent) => {
@@ -242,6 +245,9 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
             >
                 <ESGNowFAQ />
             </Modal>
+
+            {/* Bulk Import Widget - renders its own modal */}
+            <BulkImportWidget uxpContext={uxpContext} hideToggleButton={true} />
 
             {/* Main Dashboard */}
             <div className="dashboard-container">
