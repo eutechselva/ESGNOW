@@ -101,20 +101,20 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
         defaultValue: 'Unknown',
         sampleData: ['OfficeFurnish Ltd', 'Industrial Supplies Co']
       },
-      {
-        esgField: 'Product Category',
-        required: false,
-        importedHeader: 'Category',
-        defaultValue: 'Uncategorized',
-        sampleData: ['Furniture', 'Office Equipment']
-      },
-      {
-        esgField: 'Product Sub-Category',
-        required: false,
-        importedHeader: 'Sub-Category',
-        defaultValue: 'Uncategorized',
-        sampleData: ['Office supplies', 'Storage']
-      }
+      // {
+      //   esgField: 'Product Category',
+      //   required: false,
+      //   importedHeader: 'Category',
+      //   defaultValue: 'Uncategorized',
+      //   sampleData: ['Furniture', 'Office Equipment']
+      // },
+      // {
+      //   esgField: 'Product Sub-Category',
+      //   required: false,
+      //   importedHeader: 'Sub-Category',
+      //   defaultValue: 'Uncategorized',
+      //   sampleData: ['Office supplies', 'Storage']
+      // }
     ];
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -729,8 +729,8 @@ This folder-based structure ensures proper mapping between products and their im
           field.esgField === 'Weight (kg)' ? weightField :
           field.esgField === 'Country Of Origin' ? countryOfOriginField :
           field.esgField === 'Supplier Name' ? supplierNameField :
-          field.esgField === 'Product Category' ? productCategoryField :
-          field.esgField === 'Product Sub-Category' ? productSubCategoryField :
+          // field.esgField === 'Product Category' ? productCategoryField :
+          // field.esgField === 'Product Sub-Category' ? productSubCategoryField :
           ''
         }
         options={csvHeaders.map(header => ({
@@ -744,8 +744,8 @@ This folder-based structure ensures proper mapping between products and their im
           else if (field.esgField === 'Weight (kg)') setWeightField(value);
           else if (field.esgField === 'Country Of Origin') setCountryOfOriginField(value);
           else if (field.esgField === 'Supplier Name') setSupplierNameField(value);
-          else if (field.esgField === 'Product Category') setProductCategoryField(value);
-          else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
+          // else if (field.esgField === 'Product Category') setProductCategoryField(value);
+          // else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
         }}
         className="dropdown-select"
       />

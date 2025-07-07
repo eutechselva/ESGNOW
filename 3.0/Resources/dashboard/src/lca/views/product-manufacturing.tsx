@@ -402,14 +402,14 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
                                                     <div>
                                                         {selectedProcesses[item.materialClass].map((process, index) => (
                                                             <div key={index} className="ai-process-item">
-                                                                <div className="ai-process-header">
+                                                                {/* <div className="ai-process-header">
                                                                     <span className="ai-process-name">{process.category}</span>
                                                                     <Button
                                                                         title="Edit"
                                                                         className="edit-process-inline-button"
                                                                         onClick={() => setEditingMaterialId(item.materialClass)}
                                                                     />
-                                                                </div>
+                                                                </div> */}
                                                                 <div className="ai-subprocess-list">
                                                                     {process.processes.map((subProcess, subIndex) => (
                                                                         <span key={subIndex} className="ai-subprocess-item">{subProcess}</span>
