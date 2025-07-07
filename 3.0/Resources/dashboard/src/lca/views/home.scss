@@ -376,38 +376,71 @@
     }
 }
 
-//dropdown action button
+// Updated SCSS for the split button 
+
 .addproduct-wrapper {
     position: relative;
     display: inline-block;
   
-    .addproduct {
+    .addproduct-split-button {
+      display: flex;
       border-radius: 4px;
       background: #0156d2;
       box-shadow: 0px 1px 2px 0px rgba(10, 13, 18, 0.05);
       color: white;
       height: 33px;
-      padding: 0 40px;
-      font-weight: 500;
+      overflow: hidden;
+      
+      .addproduct-main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 24px;
+        cursor: pointer;
+        position: relative;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .addproduct-plus {
+          position: absolute;
+          left: 12px;
+          font-size: 16px;
+          color: white;
+          pointer-events: none;
+        }
+        
+        .addproduct-text {
+          font-weight: 500;
+          font-size: 14px;
+          margin-left: 8px;
+        }
+      }
+      
+      .addproduct-dropdown-trigger {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        border-left: 1px solid rgba(255, 255, 255, 0.2);
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .addproduct-down {
+          font-size: 12px;
+          color: white;
+          pointer-events: none;
+        }
+      }
     }
-  
-    .addproduct-plus {
-      position: absolute;
-      left: 12px;
-      top: 5px;
-      font-size: 16px;
-      color: white;
-      pointer-events: none;
-    }
-  
-    .addproduct-down {
-      position: absolute;
-      right: 12px;
-      top: 9px;
-      font-size: 12px;
-      color: white;
-      pointer-events: none;
-    }
+    
   }
   
   .action-buttons {
@@ -417,7 +450,7 @@
       position: absolute;
       top: 110%;
       right: 0;
-      min-width: 190px;
+      min-width: 205px;
       border-radius: 16px;
       border: 1px solid #e9eaeb;
       background: #fff;
@@ -428,18 +461,18 @@
     }
   
     .dropdown-item {
-        display: flex;
-        align-items: center;
-        padding: 8px 14px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #181d27;
-        gap: 8px;
-        cursor: pointer;
+      display: flex;
+      align-items: center;
+      padding: 8px 14px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #181d27;
+      gap: 8px;
+      cursor: pointer;
       
-        &:hover {
-          background-color: #f5f9ff;
-        }
+      &:hover {
+        background-color: #f5f9ff;
+      }
   
       .dropdown-icon {
         width: 16px;
@@ -455,4 +488,3 @@
       }
     }
   }
-  
