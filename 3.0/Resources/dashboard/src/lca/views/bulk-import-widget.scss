@@ -10,9 +10,7 @@
 
 .bulk-import-widget {
     display: inline-block;
-    * {
-      font-family: "Satoshi Variable" !important;
-    }
+
   }
   //new code
   .field-mapping-table {
@@ -51,7 +49,6 @@
     width: 100%;
     font-size: 16px;
     font-weight: 500;
-    font-family: 'Satoshi Variable', sans-serif;
   
     .select__control {
       border-radius: 8px;
@@ -146,7 +143,6 @@
   }
   //new 3rd page
   .review-import {
-    font-family: "Satoshi Variable" !important;
   
     .review-section {
       margin-top: 24px;
@@ -328,7 +324,7 @@
     align-items: center;
     justify-content: flex-start;
     gap: 5px; // gives spacing between elements
-    width: 50%;
+    width: 55%;
   }
 
 
@@ -407,8 +403,7 @@
   
     p {
       color: #181D27;
-      font-size: 22px;
-      font-family: "Satoshi Variable" !important;
+      font-size: 16px;
       font-weight: 500;
       line-height: 24px;
       max-width: 667px;
@@ -421,9 +416,17 @@
   // Upload Sections
   .bulk-import__upload-sections {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center; /* ✅ vertically center middle item */
+    justify-content: center; /* ✅ horizontally center whole layout */
+    gap: 2rem;
+    width: 100%;
+    .test-center {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+    }
   
     @media (max-width: 768px) {
       grid-template-columns: 1fr;
@@ -446,7 +449,6 @@
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-align: center;
-    font-family: "Satoshi Variable" !important;
     line-height: 24px;
   }
   
@@ -478,10 +480,9 @@
   
     p {
       margin: 0 0 16px 0;
-      font-size: 18px;
+      font-size: 16px;
       color: #181D27;
       line-height: 25px;
-      font-family: "Satoshi Variable" !important;
       font-weight: 500;
   
       strong {
@@ -506,7 +507,6 @@
   .bulk-import__or-text {
     color: #181D27;
     font-size: 18px;
-    font-family: "Satoshi Variable" !important;
     font-weight: 500;
     line-height: 22px;
     position: relative;
@@ -520,11 +520,10 @@
     background-color: #0156D2;
     color: #EBF1FF;
     border: 1px solid #0156D2;
-    padding: 12px 24px;
+    padding: 8px 24px;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Satoshi Variable" !important;
     cursor: pointer;
     margin-bottom: 16px;
     transition: all 0.2s ease;
@@ -558,7 +557,6 @@
     color: #0156D2;
     font-size: 16px;
     font-weight: 500;
-    font-family: "Satoshi Variable" !important;
     cursor: pointer;
     text-decoration: underline;
     margin-bottom: 16px;
@@ -583,7 +581,6 @@
     font-size: 12px;
     color: #717680;
     font-weight: 500;
-    font-family: "Satoshi Variable" !important;
     line-height: 20px;
     margin: 0 !important;
     margin-top: 16px !important;
@@ -611,7 +608,6 @@
     font-size: 12px;
     color: #414651;
     line-height: 18px;
-    font-family:"Satoshi Variable" !important;
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -641,9 +637,8 @@
     align-items: center;
   }
   .bulk-import__modal-title {
-    font-family: "Satoshi Variable" !important;
     color: var(--Gray-900, #181D27);
-    font-size: 25px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 38px;
@@ -681,7 +676,6 @@
     background-color: #0156D2;
     color: white;
     border: none;
-    font-family: "Satoshi Variable" !important;
     padding: 12px 32px;
     border-radius: 8px;
     font-size: 14px;
@@ -866,7 +860,6 @@
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-width: 400px;
-    font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     animation: slideInRight 0.3s ease-out;
 
     .alert-content {
@@ -1005,4 +998,38 @@
     visibility: visible;
   }
   
+  .bulk-import__plus-icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .plus-box {
+    position: relative;
+    width: 24px;
+    height: 24px;
+  }
+  
+  .outer-square {
+    width: 19px;
+    height: 19px;
+    border: 1.5px solid #414651;
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    box-sizing: border-box;
+    border-radius: 3px;
+  }
+  
+  .inner-square {
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid #414651;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    box-sizing: border-box;
+    border-radius: 2px;
+  }
   

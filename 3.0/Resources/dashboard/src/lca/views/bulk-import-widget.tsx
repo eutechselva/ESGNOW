@@ -297,6 +297,10 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
         alert("Please upload a data file before proceeding");
         return;
       }
+      if (!imagesFile) {
+        alert("Please upload a Images ZIP before proceeding");
+        return;
+      }
       if (sheets.length > 1 && !selectedSheet) {
         alert("Please select a sheet from your uploaded file");
         return;
@@ -648,7 +652,14 @@ This folder-based structure ensures proper mapping between products and their im
                   <strong>Note:</strong> You can import upto 5000 records at a time
                 </div>
               </div>
+                        <div className='bulk-import__upload-section test-center'>
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="#414651" stroke-width="1.5" stroke-linejoin="round"/>
+                            <path d="M12 8V16M16 12H8" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
 
+                          
+                        </div>
               {/* Images ZIP Section */}
               <div className="bulk-import__upload-section">
                 <h3 className="bulk-import__section-title">B. Images Zip File</h3>
