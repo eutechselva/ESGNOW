@@ -451,11 +451,28 @@
     flex-direction: column;
     height: 100%;
     align-items: center;
+
   }
-  
+  .bulk-import__upload-section {
+  position: relative;
+}
+
+.bulk-import__upload-section:hover .bulk-import__section-title {
+  font-weight: 700; /* Bold */
+}
+
+.bulk-import__upload-section:hover .bulk-import__section-title::after {
+  content: "";
+  display: block;
+  margin-top: 4px;
+  height: 2px;
+  background-color: #E9EAEB; /* or any color that suits your theme */
+  width: 100%;
+}
+
   .bulk-import__section-title {
     font-size: 16px;
-    font-weight: 700;
+    font-weight: 400;
     // color: #181D27;
     color: #424242;
     margin: 0 0 14px 0;
@@ -464,7 +481,9 @@
     text-align: center;
     // font-family: "Satoshi Variable" !important;
     line-height: 24px;
+
   }
+  
   
   // Upload Area
   .bulk-import__upload-area {
@@ -552,7 +571,7 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
-    min-width: 200px;
+    min-width: 296px;
     height: 40px;
     box-shadow: 0px 1px 2px rgba(10, 13, 18, 0.05);
     line-height: 20px;
@@ -1063,4 +1082,3 @@
     box-sizing: border-box;
     border-radius: 2px;
   }
-  

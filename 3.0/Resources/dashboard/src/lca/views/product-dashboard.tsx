@@ -8,6 +8,7 @@ import { getAllProducts } from "../../esgnow-service";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { canRunCalculator } from "@utils";
+import BulkImportWidget from "./bulk-import-widget";
 
 interface IWidgetProps {
     uxpContext: IContextProvider
@@ -33,7 +34,36 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
     const [selectedCountry, setSelectedCountry] = React.useState<string | null>(null);
 
     const alerts = useAlert();
+    const [showDropdown, setShowDropdown] = React.useState(false);
+    const [showCreateProductModal, setShowCreateProductModal] = React.useState(false);
 
+    const handleAddProduct = () => {
+        setShowDropdown(false);
+        setShowCreateProductModal(true); // This is your existing modal opener
+    };
+
+    const handleBulkImport = () => {
+        setShowDropdown(false);
+        // Just trigger the BulkImportWidget - it has its own modal
+        const bulkImportEvent = new CustomEvent('open-bulk-import');
+        document.dispatchEvent(bulkImportEvent);
+    };
+    React.useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            const target = event.target as HTMLElement;
+            if (
+                !target.closest('.addproduct-wrapper') &&
+                !target.closest('.dropdown-menu')
+            ) {
+                setShowDropdown(false);
+            }
+        };
+    
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
     // Pagination state
     const [currentPage, setCurrentPage] = React.useState(1);
     const [itemsPerPage, setItemsPerPage] = React.useState(6);
@@ -247,12 +277,58 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 {isLoading ? "Loading..." : "Refresh"}
                             </Button>
 
-                            {canRunCalculator(uxpContext) ? <button
+                            {/* {canRunCalculator(uxpContext) ?  */}
+                            {/* <button
                                 className="esgnow-add-product-button"
                                 onClick={() => setShowModal(true)}
                             >
                                 + Add Product
-                            </button> : null}
+                            </button>  */}
+                    <div className="action-buttons">
+                    <div className="addproduct-wrapper">
+                        <div className="addproduct-split-button">
+                        <div 
+                            className="addproduct-main"
+                            onClick={handleAddProduct}
+                        >
+                            <span className="addproduct-plus">＋</span>
+                            <span className="addproduct-text">New</span>
+                        </div>
+                        <div 
+                            className="addproduct-dropdown-trigger"
+                            onClick={(e) => {
+                            e.stopPropagation();
+                            setShowDropdown((prev) => !prev);
+                            }}
+                        >
+                            <span className="addproduct-down">▾</span>
+                        </div>
+                        </div>
+
+                        {showDropdown && (
+                        <div className="dropdown-menu">
+                            <div className="dropdown-item" onClick={handleAddProduct}>
+                            <span className="svg-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                <path d="M8 3.33333V12.6667M3.33333 8H12.6667" stroke="#0156D2" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
+                                </svg>
+                            </span>
+                            Add New Product
+                            </div>
+
+                            <div className="dropdown-item" onClick={handleBulkImport}>
+                            <span className="svg-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" fill="none" viewBox="0 0 19 16">
+                                <path d="M13.4935 6.00737C13.4988 6.00735 13.5042 6.00734 13.5096 6.00734C15.2902 6.00734 16.7337 7.35293 16.7337 9.01287C16.7337 10.5599 15.4799 11.8339 13.8678 12M13.4935 6.00737C13.5041 5.89737 13.5096 5.78597 13.5096 5.67339C13.5096 3.64463 11.7453 2 9.56896 2C7.50783 2 5.8163 3.47511 5.64297 5.35461M13.4935 6.00737C13.4202 6.76507 13.1002 7.4564 12.6088 8.011M5.64297 5.35461C3.82568 5.51582 2.40421 6.9426 2.40421 8.67887C2.40421 10.2945 3.63494 11.6421 5.27011 11.9515M5.64297 5.35461C5.75606 5.34458 5.87068 5.33945 5.98658 5.33945C6.7932 5.33945 7.53756 5.58796 8.13636 6.00734" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                <path d="M9.56896 8.66667V14M9.56896 8.66667C9.06728 8.66667 8.12994 9.99621 7.77777 10.3333M9.56896 8.66667C10.0706 8.66667 11.008 9.99621 11.3601 10.3333" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                                </svg>
+                            </span>
+                            Bulk Import Products
+                            </div>
+                        </div>
+                        )}
+                    </div>
+                    </div>
                         </div>
                     </div>
 
@@ -576,26 +652,29 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
             {/* Product Wizard Modal */}
             <ProductWizard
-                show={showModal}
+                show={showCreateProductModal}
                 setShowCloseWarning={setShowCloseWarning}
                 onClose={async () => {
-                    if (showModal) {
+                    if (showCreateProductModal) {
                         if (showCloseWarning) {
                             const confirmed = await alerts.confirm({
                                 title: 'Are you sure?',
                                 content: 'Are you sure you want to exit?'
                             });
-                            if (confirmed) setShowModal(false);
+                            if (confirmed) setShowCreateProductModal(false);
                         } else {
-                            setShowModal(false);
+                            setShowCreateProductModal(false);
                         }
                     } else {
-                        setShowModal(false);
+                        setShowCreateProductModal(false);
                     }
                 }}
                 uxpContext={uxpContext}
                 onProductCreated={() => {
-                    refreshProducts();
+                    // Refresh the product list after a new product is created
+                    getAllProducts(uxpContext).then(response => {
+                        setProducts(response.data.products);
+                    });
                 }}
             />
 
@@ -622,7 +701,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         }}
                     />
                 </Modal>
+                
             )}
+                        {/* Bulk Import Widget - renders its own modal */}
+                        <BulkImportWidget uxpContext={uxpContext} hideToggleButton={true} />
         </div>
     );
 };
