@@ -580,7 +580,8 @@ This folder-based structure ensures proper mapping between products and their im
         return (
           <div className="bulk-import__step-content">
             <div className="bulk-import__content-header">
-              <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p>
+              <p></p>
+              {/* <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p> */}
             </div>
 
             <div className="bulk-import__upload-sections">
@@ -694,7 +695,7 @@ This folder-based structure ensures proper mapping between products and their im
                   {imagesFile && <p className="bulk-import__selected-file">Selected: {imagesFile.name}</p>}
                 </div>
                 <div className="bulk-import__note">
-                  <strong>Note:</strong> Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping
+                  <strong>Note:</strong> Place each image (.png or .jpg) in its own folder named with the product code, then compress all folders into a .zip file for easy mapping.
                 </div>
               </div>
             </div>

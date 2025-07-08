@@ -10,7 +10,9 @@
 
 .bulk-import-widget {
     display: inline-block;
-
+    // * {
+    //   font-family: "Satoshi Variable" !important;
+    // }
   }
   //new code
   .field-mapping-table {
@@ -49,6 +51,7 @@
     width: 100%;
     font-size: 16px;
     font-weight: 500;
+    // font-family: 'Satoshi Variable', sans-serif;
   
     .select__control {
       border-radius: 8px;
@@ -59,7 +62,8 @@
     }
   
     .select__single-value {
-      color: #181D27;
+      // color: #181D27;
+       color: #424242;
     }
   
     .select__placeholder {
@@ -97,7 +101,8 @@
     align-items: center;
     border-bottom: 1px solid #F0F0F0;
     font-size: 16px;
-    color: #181D27;
+    // color: #181D27;
+    color: #424242;
     gap: 5px;
   }
   
@@ -143,6 +148,7 @@
   }
   //new 3rd page
   .review-import {
+    // font-family: "Satoshi Variable" !important;
   
     .review-section {
       margin-top: 24px;
@@ -155,7 +161,8 @@
       padding: 16px 8px;
       border-bottom: 1px solid #E9EAEB;
       font-size: 16px;
-      color: #181D27;
+      // color: #181D27;
+      color: #424242;
       font-weight: 500;
   
       .icon {
@@ -215,7 +222,8 @@
       .table-row {
         background: white;
         border-bottom: 1px solid #F5F5F5;
-        color: #181D27;
+        // color: #181D27;
+        color: #424242;
   
         .code {
           font-weight: 600;
@@ -234,7 +242,8 @@
   
         li {
           margin-bottom: 4px;
-          color: #181D27;
+          // color: #181D27;
+          color: #424242;
           font-weight: 500;
         }
       }
@@ -343,7 +352,8 @@
       }
   
       .bulk-import__step-text {
-        color: #181D27;
+        // color: #181D27;
+        color: #424242;
         font-weight: 500;
       }
   
@@ -402,8 +412,10 @@
     margin-bottom: 10px;
   
     p {
-      color: #181D27;
-      font-size: 16px;
+      // color: #181D27;
+      color: #424242;
+      font-size: 22px;
+      // font-family: "Satoshi Variable" !important;
       font-weight: 500;
       line-height: 24px;
       max-width: 667px;
@@ -444,11 +456,13 @@
   .bulk-import__section-title {
     font-size: 16px;
     font-weight: 700;
-    color: #181D27;
+    // color: #181D27;
+    color: #424242;
     margin: 0 0 14px 0;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     text-align: center;
+    // font-family: "Satoshi Variable" !important;
     line-height: 24px;
   }
   
@@ -481,19 +495,23 @@
     p {
       margin: 0 0 16px 0;
       font-size: 16px;
-      color: #181D27;
+      // color: #181D27;
+      color: #424242;
       line-height: 25px;
+      // font-family: "Satoshi Variable" !important;
       font-weight: 500;
   
       strong {
-        color: #181D27;
+        // color: #181D27;
+        color: #424242;
         font-weight: 700;
       }
     }
   }
   
   .bulk-import__upload-icon {
-    color: #181D27;
+    // color: #181D27;
+    color: #424242;
     margin-bottom: 24px;
     display: flex;
     justify-content: center;
@@ -505,8 +523,10 @@
   }
   
   .bulk-import__or-text {
-    color: #181D27;
+    // color: #181D27;
+    color: #424242;
     font-size: 18px;
+    // font-family: "Satoshi Variable" !important;
     font-weight: 500;
     line-height: 22px;
     position: relative;
@@ -524,6 +544,7 @@
     border-radius: 8px;
     font-size: 16px;
     font-weight: 500;
+    // font-family: "Satoshi Variable" !important;
     cursor: pointer;
     margin-bottom: 16px;
     transition: all 0.2s ease;
@@ -557,6 +578,7 @@
     color: #0156D2;
     font-size: 16px;
     font-weight: 500;
+    // font-family: "Satoshi Variable" !important;
     cursor: pointer;
     text-decoration: underline;
     margin-bottom: 16px;
@@ -581,6 +603,7 @@
     font-size: 12px;
     color: #717680;
     font-weight: 500;
+    // font-family: "Satoshi Variable" !important;
     line-height: 20px;
     margin: 0 !important;
     margin-top: 16px !important;
@@ -608,6 +631,7 @@
     font-size: 12px;
     color: #414651;
     line-height: 18px;
+    // font-family:"Satoshi Variable" !important;
     font-weight: 500;
     display: flex;
     justify-content: center;
@@ -637,7 +661,9 @@
     align-items: center;
   }
   .bulk-import__modal-title {
-    color: var(--Gray-900, #181D27);
+    // font-family: "Satoshi Variable" !important;
+    // color: var(--Gray-900, #181D27);
+      color: var(--Gray-900, #424242);
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
@@ -676,6 +702,7 @@
     background-color: #0156D2;
     color: white;
     border: none;
+    // font-family: "Satoshi Variable" !important;
     padding: 12px 32px;
     border-radius: 8px;
     font-size: 14px;
@@ -847,7 +874,9 @@
     color: white;
   }
   .bulk-import__step.active .bulk-import__step-text {
-    color: #181D27
+    // color: #181D27
+    color: #424242;
+    
   }
   // Post-upload alert notification
   .bulk-import__post-upload-alert {
@@ -860,6 +889,7 @@
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     max-width: 400px;
+    // font-family: 'Satoshi Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     animation: slideInRight 0.3s ease-out;
 
     .alert-content {
@@ -882,7 +912,8 @@
       strong {
         font-size: 16px;
         font-weight: 600;
-        color: #181D27;
+        // color: #181D27;
+        color: #424242;
         margin-bottom: 4px;
         display: block;
       }
