@@ -581,7 +581,7 @@ This folder-based structure ensures proper mapping between products and their im
           <div className="bulk-import__step-content">
             <div className="bulk-import__content-header">
               <p></p>
-              {/* <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p> */}
+              <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p>
             </div>
 
             <div className="bulk-import__upload-sections">

@@ -486,7 +486,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
                                         <div className="esgnow-product-card-footer">
                                             <div className="esgnow-product-date">
-                                                Modified: {new Date(item.modifiedDate).toLocaleDateString()}
+                                                Created On: {new Date(item.modifiedDate).toLocaleDateString()}
                                             </div>
                                             <button className="esgnow-view-details-button">
                                                 View Details
@@ -511,7 +511,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     <div className="esgnow-list-col-weight">Weight</div>
                                     <div className="esgnow-list-col-origin">Origin</div>
                                     <div className="esgnow-list-col-co2">CO₂ Emission</div>
-                                    <div className="esgnow-list-col-date">Modified Date</div>
+                                    <div className="esgnow-list-col-date">Created On</div>
                                     <div className="esgnow-list-col-actions">Actions</div>
                                 </div>
 

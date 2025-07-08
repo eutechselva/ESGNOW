@@ -248,7 +248,7 @@ const ProductManufacturing: React.FC<ProductManufacturingProps> = ({
         <div className="product-manufacturing">
             <div className="entry-method-container">
                 <h3 className="entry-method-title">
-                    How would you like to define manufacturing processes?
+                    {/* How would you like to define manufacturing processes? */}
                     {/* <span
                         className="info-icon"
                         onMouseEnter={() => setShowTooltip(true)}
