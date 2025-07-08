@@ -272,7 +272,7 @@ const BillMaterials: React.FC<BillMaterialProps> = ({
     return (
         <div className="bill-materials">
             <div className="entry-method-container">
-                <h3 className="entry-method-title">How would you like to add materials?</h3>
+                {/* <h3 className="entry-method-title">How would you like to add materials?</h3> */}
 
                 <div className="entry-method-options">
                     <div
