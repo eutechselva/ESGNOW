@@ -46298,7 +46298,6 @@ const ProductInformation = ({ productData, onNext, uxpContext }) => {
         }
     };
     return (React.createElement("div", { className: "modal-content" },
-        React.createElement("h3", null, "Fill in the details to run your assessment."),
         React.createElement("div", { style: { display: 'flex', gap: '16px' } },
             React.createElement(components_1.FormField, { className: "form-field" },
                 React.createElement(components_1.Label, null,
