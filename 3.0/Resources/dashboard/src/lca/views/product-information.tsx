@@ -179,7 +179,7 @@ const ProductInformation: React.FC<ProductInformationProps> = ({ productData, on
 
     return (
         <div className="modal-content">
-            <h3>Fill in the details to run your assessment.</h3>
+            {/* <h3>Fill in the details to run your assessment.</h3> */}
 
             <div style={{ display: 'flex', gap: '16px' }}>
                 <FormField className="form-field">
