@@ -41012,6 +41012,7 @@ const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components")
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./bulk-import-widget.scss */ "./src/lca/views/bulk-import-widget.scss");
 const XLSX = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.mjs");
+const JSZip = __webpack_require__(/*! jszip */ "./node_modules/jszip/dist/jszip.min.js");
 const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false }) => {
     const [isModalOpen, setIsModalOpen] = (0, react_1.useState)(false);
     const [currentStep, setCurrentStep] = (0, react_1.useState)(1);
@@ -41037,6 +41038,9 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
     const [uploadMessage, setUploadMessage] = (0, react_1.useState)(null);
     const [uploadMessageType, setUploadMessageType] = (0, react_1.useState)(null);
     const [showPostUploadAlert, setShowPostUploadAlert] = (0, react_1.useState)(false);
+    const [zipValidationMessage, setZipValidationMessage] = (0, react_1.useState)(null);
+    const [zipValidationStatus, setZipValidationStatus] = (0, react_1.useState)(null);
+    const [availableImageFolders, setAvailableImageFolders] = (0, react_1.useState)(new Set());
     // Listen for custom event from home component
     (0, react_1.useEffect)(() => {
         const handleOpenBulkImport = () => {
@@ -41162,6 +41166,13 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
             setCsvRows(sheetData);
             // Auto-map common fields
             autoMapFields(filteredHeaders);
+            // Re-validate ZIP file if it exists
+            if (imagesFile && filteredHeaders.length > 0) {
+                // Use setTimeout to ensure field mapping is complete
+                setTimeout(() => {
+                    validateZipFile(imagesFile);
+                }, 100);
+            }
         }
     };
     const autoMapFields = (headers) => {
@@ -41239,11 +41250,75 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
             setIsSheetSelected(false);
         }
     };
-    const handleImagesFileChange = (event) => {
+    const validateZipFile = (file) => __awaiter(void 0, void 0, void 0, function* () {
+        try {
+            const zip = new JSZip();
+            const zipContent = yield zip.loadAsync(file);
+            // Get all folder names from the zip file
+            const folderNames = new Set();
+            zipContent.forEach((relativePath, zipEntry) => {
+                if (zipEntry.dir) {
+                    // Remove trailing slash and get folder name
+                    const folderName = relativePath.replace(/\/$/, '');
+                    if (folderName) {
+                        folderNames.add(folderName);
+                    }
+                }
+                else {
+                    // If it's a file, get the parent folder name
+                    const pathParts = relativePath.split('/');
+                    if (pathParts.length > 1) {
+                        folderNames.add(pathParts[0]);
+                    }
+                }
+            });
+            // Get product codes from valid CSV records
+            const validRecords = csvRows.filter((row) => {
+                const hasProductCode = productCodeField && row[productCodeField] && String(row[productCodeField]).trim() !== '';
+                const hasProductName = productNameField && row[productNameField] && String(row[productNameField]).trim() !== '';
+                const hasProductDescription = productDescriptionField && row[productDescriptionField] && String(row[productDescriptionField]).trim() !== '';
+                const hasWeight = weightField && row[weightField] && String(row[weightField]).trim() !== '';
+                const hasValidProductCode = !productCodeField || !row[productCodeField] || !String(row[productCodeField]).includes('undefined');
+                return hasProductCode && hasProductName && hasProductDescription && hasWeight && hasValidProductCode;
+            });
+            const productCodes = validRecords.map(row => row[productCodeField]).filter(code => code);
+            const productCodeSet = new Set(productCodes);
+            // Store available image folders for later use
+            setAvailableImageFolders(folderNames);
+            // Check which product codes have matching folders
+            const matchingFolders = Array.from(folderNames).filter(folder => productCodeSet.has(folder));
+            const missingFolders = productCodes.filter(code => !folderNames.has(code));
+            if (missingFolders.length === 0) {
+                setZipValidationMessage(`✓ All ${productCodes.length} product codes have matching image folders`);
+                setZipValidationStatus("success");
+            }
+            else if (matchingFolders.length > 0) {
+                setZipValidationMessage(`⚠ ${matchingFolders.length}/${productCodes.length} product codes have matching folders. Missing: ${missingFolders.slice(0, 5).join(', ')}${missingFolders.length > 5 ? '...' : ''}`);
+                setZipValidationStatus("warning");
+            }
+            else {
+                //setZipValidationMessage(`❌ No matching folders found for product codes. ZIP contains: ${Array.from(folderNames).slice(0, 5).join(', ')}${folderNames.size > 5 ? '...' : ''}`);
+                //setZipValidationStatus("error");
+            }
+        }
+        catch (error) {
+            console.error("Error validating ZIP file:", error);
+            setZipValidationMessage("❌ Error reading ZIP file. Please ensure it's a valid ZIP file.");
+            setZipValidationStatus("error");
+        }
+    });
+    const handleImagesFileChange = (event) => __awaiter(void 0, void 0, void 0, function* () {
         if (event.target.files && event.target.files[0]) {
             setImagesFile(event.target.files[0]);
+            setZipValidationMessage(null);
+            setZipValidationStatus(null);
+            setAvailableImageFolders(new Set());
+            // Validate ZIP file if CSV data is available
+            if (csvRows.length > 0 && productCodeField) {
+                yield validateZipFile(event.target.files[0]);
+            }
         }
-    };
+    });
     const handleNext = () => {
         if (currentStep === 1) {
             // Validate that we have the necessary data before proceeding
@@ -41365,6 +41440,9 @@ This folder-based structure ensures proper mapping between products and their im
         setUploadMessage(null);
         setUploadMessageType(null);
         setIsUploading(false);
+        setZipValidationMessage(null);
+        setZipValidationStatus(null);
+        setAvailableImageFolders(new Set());
         // Reset field mappings
         setProductCodeField('');
         setProductNameField('');
@@ -41390,9 +41468,36 @@ This folder-based structure ensures proper mapping between products and their im
         setUploadMessage("Uploading products...");
         setUploadMessageType(null);
         try {
+            // Filter out invalid rows - only send validated records
+            const validRecords = csvRows.filter((row) => {
+                // Check if row has all mandatory fields
+                const hasProductCode = productCodeField && row[productCodeField] && String(row[productCodeField]).trim() !== '';
+                const hasProductName = productNameField && row[productNameField] && String(row[productNameField]).trim() !== '';
+                const hasProductDescription = productDescriptionField && row[productDescriptionField] && String(row[productDescriptionField]).trim() !== '';
+                const hasWeight = weightField && row[weightField] && String(row[weightField]).trim() !== '';
+                // Check for invalid data patterns
+                const hasValidProductCode = !productCodeField || !row[productCodeField] || !String(row[productCodeField]).includes('undefined');
+                // Check if image folder exists in ZIP file (only if ZIP file is provided)
+                const hasImageFolder = !imagesFile || !productCodeField || !row[productCodeField] || availableImageFolders.has(row[productCodeField]);
+                return hasProductCode && hasProductName && hasProductDescription && hasWeight && hasValidProductCode && hasImageFolder;
+            });
+            if (validRecords.length === 0) {
+                setUploadMessage('No valid records found to import. Please check your data and field mappings.');
+                setUploadMessageType("error");
+                return;
+            }
+            // Create a new CSV with only valid records
+            const headers = csvHeaders;
+            const csvContent = [
+                headers.join(','),
+                ...validRecords.map(row => headers.map(header => `"${row[header] || ''}"`).join(','))
+            ].join('\n');
+            // Create a new file with filtered data
+            const filteredFile = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const filteredDataFile = new File([filteredFile], dataFile.name, { type: 'text/csv' });
             // Create FormData for the API call
             const formData = new FormData();
-            formData.append("file", dataFile);
+            formData.append("file", filteredDataFile);
             // Add field mappings to the FormData - aligned with microservice expected field names
             formData.append("codeField", productCodeField);
             formData.append("nameField", productNameField);
@@ -41412,7 +41517,7 @@ This folder-based structure ensures proper mapping between products and their im
                 formData.append("selectedSheet", selectedSheet);
             const response = yield (0, esgnow_service_1.bulkUpload)(uxpContext, formData);
             if (response.data) {
-                setUploadMessage(`Successfully imported ${csvRows.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
+                setUploadMessage(`Successfully imported ${validRecords.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
                 setUploadMessageType("success");
                 // If images file is provided, upload it after successful data upload
                 if (imagesFile) {
@@ -41421,26 +41526,26 @@ This folder-based structure ensures proper mapping between products and their im
                         imageFormData.append("file", imagesFile);
                         const imageResponse = yield (0, esgnow_service_1.bulkImageUpload)(uxpContext, imageFormData);
                         if (imageResponse.data) {
-                            setUploadMessage(`Successfully imported ${csvRows.length} products and uploaded images!`);
+                            setUploadMessage(`Successfully imported ${validRecords.length} products and uploaded images!`);
                         }
                         else {
-                            setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+                            setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
                         }
                     }
                     catch (imageError) {
                         console.error("Image upload error:", imageError);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageError.message}`);
+                        setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageError.message}`);
                     }
                 }
                 else {
                     // If no images file, trigger AI processing directly
                     try {
                         yield (0, esgnow_service_1.triggerAIProcessing)(uxpContext);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products! AI processing started.`);
+                        setUploadMessage(`Successfully imported ${validRecords.length} products! AI processing started.`);
                     }
                     catch (aiError) {
                         console.error("AI processing trigger error:", aiError);
-                        setUploadMessage(`Successfully imported ${csvRows.length} products, but AI processing failed to start: ${aiError.message}`);
+                        setUploadMessage(`Successfully imported ${validRecords.length} products, but AI processing failed to start: ${aiError.message}`);
                     }
                 }
                 // Close modal after successful upload and show post-upload alert
@@ -41565,7 +41670,9 @@ This folder-based structure ensures proper mapping between products and their im
                                 react_1.default.createElement("p", { className: "bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
                                 imagesFile && react_1.default.createElement("p", { className: "bulk-import__selected-file" },
                                     "Selected: ",
-                                    imagesFile.name)),
+                                    imagesFile.name),
+                                zipValidationMessage && (react_1.default.createElement("div", { className: `bulk-import__zip-validation bulk-import__zip-validation--${zipValidationStatus}` },
+                                    react_1.default.createElement("span", { className: "validation-message" }, zipValidationMessage)))),
                             react_1.default.createElement("div", { className: "bulk-import__note" },
                                 react_1.default.createElement("svg", { width: "22", height: "20", viewBox: "0 0 22 20", fill: "none", xmlns: "http://www.w3.org/2000/svg", style: { marginRight: '6px', flexShrink: 0 } },
                                     react_1.default.createElement("path", { d: "M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z", stroke: "#414651", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }),
@@ -41608,8 +41715,13 @@ This folder-based structure ensures proper mapping between products and their im
                                             value: header,
                                             label: header
                                         })), onChange: (value) => {
-                                            if (field.esgField === 'Product Code')
+                                            if (field.esgField === 'Product Code') {
                                                 setProductCodeField(value);
+                                                // Re-validate ZIP file when product code field is changed
+                                                if (imagesFile && value && csvRows.length > 0) {
+                                                    setTimeout(() => validateZipFile(imagesFile), 100);
+                                                }
+                                            }
                                             else if (field.esgField === 'Product Name')
                                                 setProductNameField(value);
                                             else if (field.esgField === 'Product Description')
@@ -41631,16 +41743,26 @@ This folder-based structure ensures proper mapping between products and their im
                 // Calculate skipped rows based on real data validation
                 const skippedRows = csvRows.map((row, index) => {
                     const issues = [];
-                    // Check for missing required fields
+                    // Check for missing mandatory fields: product code, product name, description, and weight
                     if (productCodeField && (!row[productCodeField] || String(row[productCodeField]).trim() === '')) {
                         issues.push('Missing Product Code');
                     }
                     if (productNameField && (!row[productNameField] || String(row[productNameField]).trim() === '')) {
                         issues.push('Missing Product Name');
                     }
+                    if (productDescriptionField && (!row[productDescriptionField] || String(row[productDescriptionField]).trim() === '')) {
+                        issues.push('Missing Product Description');
+                    }
+                    if (weightField && (!row[weightField] || String(row[weightField]).trim() === '')) {
+                        issues.push('Missing Weight');
+                    }
                     // Check for invalid data patterns
                     if (productCodeField && row[productCodeField] && String(row[productCodeField]).includes('undefined')) {
                         issues.push('Invalid Product Code format');
+                    }
+                    // Check if image folder exists in ZIP file (only if ZIP file is provided)
+                    if (imagesFile && productCodeField && row[productCodeField] && !availableImageFolders.has(row[productCodeField])) {
+                        issues.push('Missing Image Folder');
                     }
                     if (issues.length > 0) {
                         return {
@@ -41686,15 +41808,19 @@ This folder-based structure ensures proper mapping between products and their im
                                         rowNo: actualRowIndex,
                                         productCode: row[productCodeField] || '-',
                                         productName: row[productNameField] || '-',
-                                        category: row[productCategoryField] || '-',
-                                        subCategory: row[productSubCategoryField] || '-'
+                                        productDescription: row[productDescriptionField] || '-',
+                                        weight: row[weightField] || '-',
+                                        countryOfOrigin: row[countryOfOriginField] || '-',
+                                        supplierName: row[supplierNameField] || '-'
                                     };
                                 }), columns: [
                                     { id: 'rowNo', label: 'ROW NO.', minWidth: 80 },
                                     { id: 'productCode', label: 'PRODUCT CODE', minWidth: 150 },
                                     { id: 'productName', label: 'PRODUCT NAME', minWidth: 200 },
-                                    { id: 'category', label: 'CATEGORY', minWidth: 150 },
-                                    { id: 'subCategory', label: 'SUB-CATEGORY', minWidth: 150 }
+                                    { id: 'productDescription', label: 'DESCRIPTION', minWidth: 200 },
+                                    { id: 'weight', label: 'WEIGHT (KG)', minWidth: 120 },
+                                    { id: 'countryOfOrigin', label: 'COUNTRY OF ORIGIN', minWidth: 150 },
+                                    { id: 'supplierName', label: 'SUPPLIER NAME', minWidth: 150 }
                                 ], pageSize: 10, total: Math.min(validRecords.length, 10) }),
                             validRecords.length > 10 && (react_1.default.createElement("div", { className: "table-footer" },
                                 react_1.default.createElement("p", null,

@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
-import { FileText, Info, ListX } from 'lucide-react';
 
 import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
 const XLSX = require("xlsx");
+const JSZip = require("jszip");
 
 interface BulkImportWidgetProps {
   className?: string;
@@ -42,6 +42,9 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
   const [uploadMessageType, setUploadMessageType] = useState<"success" | "error" | null>(null);
   const [showPostUploadAlert, setShowPostUploadAlert] = useState(false);
+  const [zipValidationMessage, setZipValidationMessage] = useState<string | null>(null);
+  const [zipValidationStatus, setZipValidationStatus] = useState<"success" | "warning" | "error" | null>(null);
+  const [availableImageFolders, setAvailableImageFolders] = useState<Set<string>>(new Set());
 
   // Listen for custom event from home component
   useEffect(() => {
@@ -182,6 +185,14 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
 
       // Auto-map common fields
       autoMapFields(filteredHeaders);
+
+      // Re-validate ZIP file if it exists
+      if (imagesFile && filteredHeaders.length > 0) {
+        // Use setTimeout to ensure field mapping is complete
+        setTimeout(() => {
+          validateZipFile(imagesFile);
+        }, 100);
+      }
     }
   };
 
@@ -286,9 +297,78 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
     }
   };
 
-  const handleImagesFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const validateZipFile = async (file: File) => {
+    try {
+      const zip = new JSZip();
+      const zipContent = await zip.loadAsync(file);
+      
+      // Get all folder names from the zip file
+      const folderNames = new Set<string>();
+      zipContent.forEach((relativePath: string, zipEntry: any) => {
+        if (zipEntry.dir) {
+          // Remove trailing slash and get folder name
+          const folderName = relativePath.replace(/\/$/, '');
+          if (folderName) {
+            folderNames.add(folderName);
+          }
+        } else {
+          // If it's a file, get the parent folder name
+          const pathParts = relativePath.split('/');
+          if (pathParts.length > 1) {
+            folderNames.add(pathParts[0]);
+          }
+        }
+      });
+
+      // Get product codes from valid CSV records
+      const validRecords = csvRows.filter((row) => {
+        const hasProductCode = productCodeField && row[productCodeField] && String(row[productCodeField]).trim() !== '';
+        const hasProductName = productNameField && row[productNameField] && String(row[productNameField]).trim() !== '';
+        const hasProductDescription = productDescriptionField && row[productDescriptionField] && String(row[productDescriptionField]).trim() !== '';
+        const hasWeight = weightField && row[weightField] && String(row[weightField]).trim() !== '';
+        const hasValidProductCode = !productCodeField || !row[productCodeField] || !String(row[productCodeField]).includes('undefined');
+        
+        return hasProductCode && hasProductName && hasProductDescription && hasWeight && hasValidProductCode;
+      });
+
+      const productCodes = validRecords.map(row => row[productCodeField]).filter(code => code);
+      const productCodeSet = new Set(productCodes);
+
+      // Store available image folders for later use
+      setAvailableImageFolders(folderNames);
+
+      // Check which product codes have matching folders
+      const matchingFolders = Array.from(folderNames).filter(folder => productCodeSet.has(folder));
+      const missingFolders = productCodes.filter(code => !folderNames.has(code));
+
+      if (missingFolders.length === 0) {
+        setZipValidationMessage(`✓ All ${productCodes.length} product codes have matching image folders`);
+        setZipValidationStatus("success");
+      } else if (matchingFolders.length > 0) {
+        setZipValidationMessage(`⚠ ${matchingFolders.length}/${productCodes.length} product codes have matching folders. Missing: ${missingFolders.slice(0, 5).join(', ')}${missingFolders.length > 5 ? '...' : ''}`);
+        setZipValidationStatus("warning");
+      } else {
+        //setZipValidationMessage(`❌ No matching folders found for product codes. ZIP contains: ${Array.from(folderNames).slice(0, 5).join(', ')}${folderNames.size > 5 ? '...' : ''}`);
+        //setZipValidationStatus("error");
+      }
+    } catch (error) {
+      console.error("Error validating ZIP file:", error);
+      setZipValidationMessage("❌ Error reading ZIP file. Please ensure it's a valid ZIP file.");
+      setZipValidationStatus("error");
+    }
+  };
+
+  const handleImagesFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       setImagesFile(event.target.files[0]);
+      setZipValidationMessage(null);
+      setZipValidationStatus(null);
+      setAvailableImageFolders(new Set());
+      
+      // Validate ZIP file if CSV data is available
+      if (csvRows.length > 0 && productCodeField) {
+        await validateZipFile(event.target.files[0]);
+      }
     }
   };
 
@@ -421,6 +501,9 @@ This folder-based structure ensures proper mapping between products and their im
     setUploadMessage(null);
     setUploadMessageType(null);
     setIsUploading(false);
+    setZipValidationMessage(null);
+    setZipValidationStatus(null);
+    setAvailableImageFolders(new Set());
     // Reset field mappings
     setProductCodeField('');
     setProductNameField('');
@@ -450,9 +533,45 @@ This folder-based structure ensures proper mapping between products and their im
     setUploadMessageType(null);
 
     try {
+      // Filter out invalid rows - only send validated records
+      const validRecords = csvRows.filter((row) => {
+        // Check if row has all mandatory fields
+        const hasProductCode = productCodeField && row[productCodeField] && String(row[productCodeField]).trim() !== '';
+        const hasProductName = productNameField && row[productNameField] && String(row[productNameField]).trim() !== '';
+        const hasProductDescription = productDescriptionField && row[productDescriptionField] && String(row[productDescriptionField]).trim() !== '';
+        const hasWeight = weightField && row[weightField] && String(row[weightField]).trim() !== '';
+        
+        // Check for invalid data patterns
+        const hasValidProductCode = !productCodeField || !row[productCodeField] || !String(row[productCodeField]).includes('undefined');
+        
+        // Check if image folder exists in ZIP file (only if ZIP file is provided)
+        const hasImageFolder = !imagesFile || !productCodeField || !row[productCodeField] || availableImageFolders.has(row[productCodeField]);
+        
+        return hasProductCode && hasProductName && hasProductDescription && hasWeight && hasValidProductCode && hasImageFolder;
+      });
+
+      if (validRecords.length === 0) {
+        setUploadMessage('No valid records found to import. Please check your data and field mappings.');
+        setUploadMessageType("error");
+        return;
+      }
+
+      // Create a new CSV with only valid records
+      const headers = csvHeaders;
+      const csvContent = [
+        headers.join(','),
+        ...validRecords.map(row => 
+          headers.map(header => `"${row[header] || ''}"`).join(',')
+        )
+      ].join('\n');
+
+      // Create a new file with filtered data
+      const filteredFile = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const filteredDataFile = new File([filteredFile], dataFile.name, { type: 'text/csv' });
+
       // Create FormData for the API call
       const formData = new FormData();
-      formData.append("file", dataFile);
+      formData.append("file", filteredDataFile);
       
       // Add field mappings to the FormData - aligned with microservice expected field names
       formData.append("codeField", productCodeField);
@@ -470,7 +589,7 @@ This folder-based structure ensures proper mapping between products and their im
       const response = await bulkUpload(uxpContext, formData);
 
       if (response.data) {
-        setUploadMessage(`Successfully imported ${csvRows.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
+        setUploadMessage(`Successfully imported ${validRecords.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
         setUploadMessageType("success");
         
         // If images file is provided, upload it after successful data upload
@@ -482,22 +601,22 @@ This folder-based structure ensures proper mapping between products and their im
             const imageResponse = await bulkImageUpload(uxpContext, imageFormData);
             
             if (imageResponse.data) {
-              setUploadMessage(`Successfully imported ${csvRows.length} products and uploaded images!`);
+              setUploadMessage(`Successfully imported ${validRecords.length} products and uploaded images!`);
             } else {
-              setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+              setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
             }
           } catch (imageError) {
             console.error("Image upload error:", imageError);
-            setUploadMessage(`Successfully imported ${csvRows.length} products, but image upload failed: ${imageError.message}`);
+            setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageError.message}`);
           }
         } else {
           // If no images file, trigger AI processing directly
           try {
             await triggerAIProcessing(uxpContext);
-            setUploadMessage(`Successfully imported ${csvRows.length} products! AI processing started.`);
+            setUploadMessage(`Successfully imported ${validRecords.length} products! AI processing started.`);
           } catch (aiError) {
             console.error("AI processing trigger error:", aiError);
-            setUploadMessage(`Successfully imported ${csvRows.length} products, but AI processing failed to start: ${aiError.message}`);
+            setUploadMessage(`Successfully imported ${validRecords.length} products, but AI processing failed to start: ${aiError.message}`);
           }
         }
         
@@ -722,6 +841,13 @@ This folder-based structure ensures proper mapping between products and their im
                   </button>
                   <p className="bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
                   {imagesFile && <p className="bulk-import__selected-file">Selected: {imagesFile.name}</p>}
+                  
+                  {/* ZIP Validation Message */}
+                  {zipValidationMessage && (
+                    <div className={`bulk-import__zip-validation bulk-import__zip-validation--${zipValidationStatus}`}>
+                      <span className="validation-message">{zipValidationMessage}</span>
+                    </div>
+                  )}
                 </div>
                 <div className="bulk-import__note">
                 <svg
@@ -810,7 +936,13 @@ This folder-based structure ensures proper mapping between products and their im
                         label: header
                       }))}
                       onChange={(value) => {
-                        if (field.esgField === 'Product Code') setProductCodeField(value);
+                        if (field.esgField === 'Product Code') {
+                          setProductCodeField(value);
+                          // Re-validate ZIP file when product code field is changed
+                          if (imagesFile && value && csvRows.length > 0) {
+                            setTimeout(() => validateZipFile(imagesFile), 100);
+                          }
+                        }
                         else if (field.esgField === 'Product Name') setProductNameField(value);
                         else if (field.esgField === 'Product Description') setProductDescriptionField(value);
                         else if (field.esgField === 'Weight (kg)') setWeightField(value);
@@ -846,17 +978,28 @@ This folder-based structure ensures proper mapping between products and their im
           const skippedRows = csvRows.map((row, index) => {
             const issues = [];
             
-            // Check for missing required fields
+            // Check for missing mandatory fields: product code, product name, description, and weight
             if (productCodeField && (!row[productCodeField] || String(row[productCodeField]).trim() === '')) {
               issues.push('Missing Product Code');
             }
             if (productNameField && (!row[productNameField] || String(row[productNameField]).trim() === '')) {
               issues.push('Missing Product Name');
             }
+            if (productDescriptionField && (!row[productDescriptionField] || String(row[productDescriptionField]).trim() === '')) {
+              issues.push('Missing Product Description');
+            }
+            if (weightField && (!row[weightField] || String(row[weightField]).trim() === '')) {
+              issues.push('Missing Weight');
+            }
             
             // Check for invalid data patterns
             if (productCodeField && row[productCodeField] && String(row[productCodeField]).includes('undefined')) {
               issues.push('Invalid Product Code format');
+            }
+            
+            // Check if image folder exists in ZIP file (only if ZIP file is provided)
+            if (imagesFile && productCodeField && row[productCodeField] && !availableImageFolders.has(row[productCodeField])) {
+              issues.push('Missing Image Folder');
             }
             
             if (issues.length > 0) {
@@ -914,16 +1057,20 @@ This folder-based structure ensures proper mapping between products and their im
                           rowNo: actualRowIndex,
                           productCode: row[productCodeField] || '-',
                           productName: row[productNameField] || '-',
-                          category: row[productCategoryField] || '-',
-                          subCategory: row[productSubCategoryField] || '-'
+                          productDescription: row[productDescriptionField] || '-',
+                          weight: row[weightField] || '-',
+                          countryOfOrigin: row[countryOfOriginField] || '-',
+                          supplierName: row[supplierNameField] || '-'
                         };
                       })}
                       columns={[
                         { id: 'rowNo', label: 'ROW NO.', minWidth: 80 },
                         { id: 'productCode', label: 'PRODUCT CODE', minWidth: 150 },
                         { id: 'productName', label: 'PRODUCT NAME', minWidth: 200 },
-                        { id: 'category', label: 'CATEGORY', minWidth: 150 },
-                        { id: 'subCategory', label: 'SUB-CATEGORY', minWidth: 150 }
+                        { id: 'productDescription', label: 'DESCRIPTION', minWidth: 200 },
+                        { id: 'weight', label: 'WEIGHT (KG)', minWidth: 120 },
+                        { id: 'countryOfOrigin', label: 'COUNTRY OF ORIGIN', minWidth: 150 },
+                        { id: 'supplierName', label: 'SUPPLIER NAME', minWidth: 150 }
                       ]}
                       pageSize={10}
                       total={Math.min(validRecords.length, 10)}
