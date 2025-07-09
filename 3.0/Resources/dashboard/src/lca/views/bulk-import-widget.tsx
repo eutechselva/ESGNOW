@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
-
 import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
@@ -45,6 +44,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [zipValidationMessage, setZipValidationMessage] = useState<string | null>(null);
   const [zipValidationStatus, setZipValidationStatus] = useState<"success" | "warning" | "error" | null>(null);
   const [availableImageFolders, setAvailableImageFolders] = useState<Set<string>>(new Set());
+  const [imageFolderCount, setImageFolderCount] = useState<number | null>(null);
 
   // Listen for custom event from home component
   useEffect(() => {
@@ -358,20 +358,36 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
     }
   };
 
-  const handleImagesFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      setImagesFile(event.target.files[0]);
-      setZipValidationMessage(null);
-      setZipValidationStatus(null);
-      setAvailableImageFolders(new Set());
-      
-      // Validate ZIP file if CSV data is available
-      if (csvRows.length > 0 && productCodeField) {
-        await validateZipFile(event.target.files[0]);
-      }
-    }
-  };
 
+const handleImagesFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+  if (event.target.files && event.target.files[0]) {
+    const zipFile = event.target.files[0];
+    setImagesFile(zipFile);
+    setZipValidationMessage(null);
+    setZipValidationStatus(null);
+    setAvailableImageFolders(new Set());
+    setImageFolderCount(null); // reset before reloading
+
+    const zip = new JSZip();
+    const contents = await zip.loadAsync(zipFile);
+
+    const folderSet = new Set<string>();
+
+    contents.forEach((relativePath:any, file:any) => {
+      if (!file.dir) {
+        const topLevelFolder = relativePath.split('/')[0];
+        folderSet.add(topLevelFolder);
+      }
+    });
+
+    setImageFolderCount(folderSet.size);
+
+    // Continue with validation if needed
+    if (csvRows.length > 0 && productCodeField) {
+      await validateZipFile(zipFile);
+    }
+  }
+};
   const handleNext = () => {
     if (currentStep === 1) {
       // Validate that we have the necessary data before proceeding
@@ -840,7 +856,17 @@ This folder-based structure ensures proper mapping between products and their im
                     Download sample file
                   </button>
                   <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
-                  {imagesFile && <p className="esgnow-bulk-import__selected-file">Selected: {imagesFile.name}</p>}
+                  {imagesFile && (
+                      <p className="esgnow-bulk-import__selected-file">
+                        Selected: {imagesFile.name}
+                        {imageFolderCount !== null && (
+                          <>
+                            <br />
+                            Contains: <strong>{imageFolderCount - 1}</strong> folder{imageFolderCount !== 1 && 's'}
+                          </>
+                        )}
+                      </p>
+                    )}
                   
                   {/* ZIP Validation Message */}
                   {zipValidationMessage && (
