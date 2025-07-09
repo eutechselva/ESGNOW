@@ -41041,6 +41041,7 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
     const [zipValidationMessage, setZipValidationMessage] = (0, react_1.useState)(null);
     const [zipValidationStatus, setZipValidationStatus] = (0, react_1.useState)(null);
     const [availableImageFolders, setAvailableImageFolders] = (0, react_1.useState)(new Set());
+    const [imageFolderCount, setImageFolderCount] = (0, react_1.useState)(null);
     // Listen for custom event from home component
     (0, react_1.useEffect)(() => {
         const handleOpenBulkImport = () => {
@@ -41309,13 +41310,25 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
     });
     const handleImagesFileChange = (event) => __awaiter(void 0, void 0, void 0, function* () {
         if (event.target.files && event.target.files[0]) {
-            setImagesFile(event.target.files[0]);
+            const zipFile = event.target.files[0];
+            setImagesFile(zipFile);
             setZipValidationMessage(null);
             setZipValidationStatus(null);
             setAvailableImageFolders(new Set());
-            // Validate ZIP file if CSV data is available
+            setImageFolderCount(null); // reset before reloading
+            const zip = new JSZip();
+            const contents = yield zip.loadAsync(zipFile);
+            const folderSet = new Set();
+            contents.forEach((relativePath, file) => {
+                if (!file.dir) {
+                    const topLevelFolder = relativePath.split('/')[0];
+                    folderSet.add(topLevelFolder);
+                }
+            });
+            setImageFolderCount(folderSet.size);
+            // Continue with validation if needed
             if (csvRows.length > 0 && productCodeField) {
-                yield validateZipFile(event.target.files[0]);
+                yield validateZipFile(zipFile);
             }
         }
     });
@@ -41666,9 +41679,15 @@ This folder-based structure ensures proper mapping between products and their im
                                     "Browse File for upload"),
                                 react_1.default.createElement("button", { className: "esgnow-bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('images') }, "Download sample file"),
                                 react_1.default.createElement("p", { className: "esgnow-bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
-                                imagesFile && react_1.default.createElement("p", { className: "esgnow-bulk-import__selected-file" },
+                                imagesFile && (react_1.default.createElement("p", { className: "esgnow-bulk-import__selected-file" },
                                     "Selected: ",
-                                    imagesFile.name),
+                                    imagesFile.name,
+                                    imageFolderCount !== null && (react_1.default.createElement(react_1.default.Fragment, null,
+                                        react_1.default.createElement("br", null),
+                                        "Contains: ",
+                                        react_1.default.createElement("strong", null, imageFolderCount - 1),
+                                        " folder",
+                                        imageFolderCount !== 1 && 's')))),
                                 zipValidationMessage && (react_1.default.createElement("div", { className: `esgnow-bulk-import__zip-validation esgnow-bulk-import__zip-validation--${zipValidationStatus}` },
                                     react_1.default.createElement("span", { className: "esgnow-validation-message" }, zipValidationMessage)))),
                             react_1.default.createElement("div", { className: "esgnow-bulk-import__note" },
