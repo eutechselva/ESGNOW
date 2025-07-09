@@ -695,22 +695,22 @@ This folder-based structure ensures proper mapping between products and their im
     switch (currentStep) {
       case 1:
         return (
-          <div className="bulk-import__step-content">
-            <div className="bulk-import__content-header">
+          <div className="esgnow-bulk-import__step-content">
+            <div className="esgnow-bulk-import__content-header">
               <p></p>
               <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p>
             </div>
 
-            <div className="bulk-import__upload-sections">
+            <div className="esgnow-bulk-import__upload-sections">
               {/* Data File Section */}
-              <div className="bulk-import__upload-section">
-                <h3 className="bulk-import__section-title">A. Data File</h3>
-                <div className="bulk-import__upload-area">
-                  <div className="bulk-import__upload-icon">
+              <div className="esgnow-bulk-import__upload-section">
+                <h3 className="esgnow-bulk-import__section-title">A. Data File</h3>
+                <div className="esgnow-bulk-import__upload-area">
+                  <div className="esgnow-bulk-import__upload-icon">
                     <DataFileIcon />
                   </div>
                   <p>Drag and drop your <strong>data file</strong> here in .csv or .xls format</p>
-                  <p className="bulk-import__or-text">or</p>
+                  <p className="esgnow-bulk-import__or-text">or</p>
                   <input
                     type="file"
                     id="data-file-input"
@@ -720,7 +720,7 @@ This folder-based structure ensures proper mapping between products and their im
                     ref={fileInputRef}
                   />
                   <button 
-                    className="bulk-import__browse-btn"
+                    className="esgnow-bulk-import__browse-btn"
                     onClick={() => document.getElementById('data-file-input')?.click()}
                   >
                     <UploadIcon />
@@ -728,16 +728,16 @@ This folder-based structure ensures proper mapping between products and their im
                   
                   </button>
                   <button 
-                    className="bulk-import__download-sample-btn"
+                    className="esgnow-bulk-import__download-sample-btn"
                     onClick={() => handleDownloadSampleFile('data')}
                   >
                     Download sample file
                   </button>
-                  <p className="bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
-                  {dataFile && <p className="bulk-import__selected-file">Selected: {dataFile.name}</p>}
+                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
+                  {dataFile && <p className="esgnow-bulk-import__selected-file">Selected: {dataFile.name}</p>}
                                   {/* Sheet Selection - Only show if multiple sheets */}
                 {sheets.length > 1 && (
-                  <div className="bulk-import__sheet-selection">
+                  <div className="esgnow-bulk-import__sheet-selection">
                     <label>Select Sheet:</label>
                     <Select
                       placeholder="Select a Sheet"
@@ -753,11 +753,11 @@ This folder-based structure ensures proper mapping between products and their im
                 
                 {/* Show headers preview if available */}
                 {csvHeaders.length > 0 && (
-                  <div className="bulk-import__headers-preview">
+                  <div className="esgnow-bulk-import__headers-preview">
                     <h4>Detected Headers:</h4>
-                    <div className="bulk-import__headers-list">
+                    <div className="esgnow-bulk-import__headers-list">
                       {csvHeaders.map((header, index) => (
-                        <span key={index} className="bulk-import__header-tag">{header},</span>
+                        <span key={index} className="esgnow-bulk-import__header-tag">{header},</span>
                       ))}
                     </div>
                     <h4>Found {csvRows.length} data rows</h4>
@@ -767,7 +767,7 @@ This folder-based structure ensures proper mapping between products and their im
                 
 
                 
-                <div className="bulk-import__note">
+                <div className="esgnow-bulk-import__note">
                 <svg
                   width="22"
                   height="20"
@@ -801,7 +801,7 @@ This folder-based structure ensures proper mapping between products and their im
                   <strong>Note: You can import upto 5000 records at a time</strong> 
                 </div>
               </div>
-                        <div className='bulk-import__upload-section test-center'>
+                        <div className='esgnow-bulk-import__upload-section esgnow-test-center'>
                           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z" stroke="#414651" stroke-width="1.5" stroke-linejoin="round"/>
                             <path d="M12 8V16M16 12H8" stroke="#414651" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -810,14 +810,14 @@ This folder-based structure ensures proper mapping between products and their im
                           
                         </div>
               {/* Images ZIP Section */}
-              <div className="bulk-import__upload-section">
-                <h3 className="bulk-import__section-title">B. Images Zip File</h3>
-                <div className="bulk-import__upload-area">
-                  <div className="bulk-import__upload-icon">
+              <div className="esgnow-bulk-import__upload-section">
+                <h3 className="esgnow-bulk-import__section-title">B. Images Zip File</h3>
+                <div className="esgnow-bulk-import__upload-area">
+                  <div className="esgnow-bulk-import__upload-icon">
                     <ImageFileIcon />
                   </div>
                   <p>Drag and drop your <strong>images</strong> zip file</p>
-                  <p className="bulk-import__or-text">or</p>
+                  <p className="esgnow-bulk-import__or-text">or</p>
                   <input
                     type="file"
                     id="images-file-input"
@@ -826,7 +826,7 @@ This folder-based structure ensures proper mapping between products and their im
                     style={{ display: 'none' }}
                   />
                   <button 
-                    className="bulk-import__browse-btn"
+                    className="esgnow-bulk-import__browse-btn"
                     onClick={() => document.getElementById('images-file-input')?.click()}
                   >
                     <UploadIcon />
@@ -834,22 +834,22 @@ This folder-based structure ensures proper mapping between products and their im
                    
                   </button>
                   <button 
-                    className="bulk-import__download-sample-btn"
+                    className="esgnow-bulk-import__download-sample-btn"
                     onClick={() => handleDownloadSampleFile('images')}
                   >
                     Download sample file
                   </button>
-                  <p className="bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
-                  {imagesFile && <p className="bulk-import__selected-file">Selected: {imagesFile.name}</p>}
+                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
+                  {imagesFile && <p className="esgnow-bulk-import__selected-file">Selected: {imagesFile.name}</p>}
                   
                   {/* ZIP Validation Message */}
                   {zipValidationMessage && (
-                    <div className={`bulk-import__zip-validation bulk-import__zip-validation--${zipValidationStatus}`}>
-                      <span className="validation-message">{zipValidationMessage}</span>
+                    <div className={`esgnow-bulk-import__zip-validation esgnow-bulk-import__zip-validation--${zipValidationStatus}`}>
+                      <span className="esgnow-validation-message">{zipValidationMessage}</span>
                     </div>
                   )}
                 </div>
-                <div className="bulk-import__note">
+                <div className="esgnow-bulk-import__note">
                 <svg
                   width="22"
                   height="20"
@@ -892,33 +892,33 @@ This folder-based structure ensures proper mapping between products and their im
 
 
         return (
-          <div className="bulk-import__step-content">
+          <div className="esgnow-bulk-import__step-content">
             <h3>Field Mapping & Assigning Defaults</h3>
             
             {csvHeaders.length === 0 ? (
-              <div className="bulk-import__no-data">
+              <div className="esgnow-bulk-import__no-data">
                 <p>No headers available. Please go back and upload a valid file.</p>
               </div>
             ) : (
               <>
-                <div className="bulk-import__mapping-info">
-                  <span className="bulk-import__file-label">File Selected:</span>
-                  <span className="bulk-import__selected-file"> {dataFile?.name}</span>
+                <div className="esgnow-bulk-import__mapping-info">
+                  <span className="esgnow-bulk-import__file-label">File Selected:</span>
+                  <span className="esgnow-bulk-import__selected-file"> {dataFile?.name}</span>
                 </div>
                 <h3>Review Auto-mapped Field Labels in Iviva’s ESG Now to that of your imported file headers and let our agentic AI do all the heavy lifting for you: importing and calculating the carbon footprint of all the products.</h3>
-                <div className="field-mapping-table">
-                <div className="field-mapping-header">
+                <div className="esgnow-field-mapping-table">
+                <div className="esgnow-field-mapping-header">
                   <div>ESG Now Field Labels</div>
                   <div>Imported File Headers</div>
                   <div>Default Field Values</div>
                   <div>Sample Data from File</div>
                 </div>
                 {mappingData.map((field, idx) => (
-                  <div className="field-mapping-row" key={idx}>
-                    <div className="field-label">
-                      {field.esgField} {field.required && <span className="required">*</span>}
+                  <div className="esgnow-field-mapping-row" key={idx}>
+                    <div className="esgnow-field-label">
+                      {field.esgField} {field.required && <span className="esgnow-required">*</span>}
                     </div>
-                    <div className="field-dropdown">
+                    <div className="esgnow-field-dropdown">
                     <Select
                     selected={
                         field.esgField === 'Product Code' ? productCodeField :
@@ -951,16 +951,16 @@ This folder-based structure ensures proper mapping between products and their im
                         // else if (field.esgField === 'Product Category') setProductCategoryField(value);
                         // else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
                       }}
-                      className="dropdown-select"
+                      className="esgnow-dropdown-select"
                     />
 
                     </div>
-                                <div className="field-default">
+                                <div className="esgnow-field-default">
                                   {field.defaultValue}
                                 </div>
-                                <div className="field-sample-columns">
-                                  <div className="sample-column">{field.sampleData[0] || '-'}</div>
-                                  <div className="sample-column with-divider">{field.sampleData[1] || '-'}</div>
+                                <div className="esgnow-field-sample-columns">
+                                  <div className="esgnow-sample-column">{field.sampleData[0] || '-'}</div>
+                                  <div className="esgnow-sample-column esgnow-with-divider">{field.sampleData[1] || '-'}</div>
                                 </div>
                               </div>
                             ))}
@@ -1033,23 +1033,23 @@ This folder-based structure ensures proper mapping between products and their im
           });
         
           return (
-            <div className="bulk-import__step-content review-import">
+            <div className="esgnow-bulk-import__step-content esgnow-review-import">
               <h3>Review & Import</h3>
           
-              <div className="review-section">
-                <div className="review-row">
-                  <div className="review-toggle">
-                    <span className="icon">📦</span>
+              <div className="esgnow-review-section">
+                <div className="esgnow-review-row">
+                  <div className="esgnow-review-toggle">
+                    <span className="esgnow-icon">📦</span>
                     <span>Product records ready for Import</span>
-                    <span className="count-value">: {validRecords.length}</span>
+                    <span className="esgnow-count-value">: {validRecords.length}</span>
                   </div>
-                  <a className="toggle-link" onClick={() => setShowReadyRecords(!showReadyRecords)}>
+                  <a className="esgnow-toggle-link" onClick={() => setShowReadyRecords(!showReadyRecords)}>
                     {showReadyRecords ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
                 
                 {showReadyRecords && (
-                  <div className="ready-records-section">
+                  <div className="esgnow-ready-records-section">
                     <TableComponent
                       data={validRecords.slice(0, 10).map((row) => {
                         const actualRowIndex = csvRows.findIndex(r => r === row) + 2;
@@ -1076,41 +1076,41 @@ This folder-based structure ensures proper mapping between products and their im
                       total={Math.min(validRecords.length, 10)}
                     />
                     {validRecords.length > 10 && (
-                      <div className="table-footer">
+                      <div className="esgnow-table-footer">
                         <p>Showing first 10 records. Total ready records: {validRecords.length}</p>
                       </div>
                     )}
                   </div>
                 )}
           
-                <div className="review-row">
-                  <div className="review-toggle">
-                    <span className="icon">📦</span>
+                <div className="esgnow-review-row">
+                  <div className="esgnow-review-toggle">
+                    <span className="esgnow-icon">📦</span>
                     <span>No. of Records Skipped</span>
-                    <span className="count-value">: {skippedRows.length}</span>
+                    <span className="esgnow-count-value">: {skippedRows.length}</span>
                   </div>
-                  <div className="row-actions">
+                  <div className="esgnow-row-actions">
                     {showSkipped && (
-                      <a className="download-link" onClick={() => alert('Download skipped rows')}>Download skipped rows</a>
+                      <a className="esgnow-download-link" onClick={() => alert('Download skipped rows')}>Download skipped rows</a>
                     )}
-                    <a className="toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
+                    <a className="esgnow-toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
                       {showSkipped ? 'Hide Details' : 'View Details'}
                     </a>
                   </div>
                 </div>
           
                 {showSkipped && (
-                  <div className="skipped-table">
-                    <div className="table-header">
+                  <div className="esgnow-skipped-table">
+                    <div className="esgnow-table-header">
                       <div>ROW NO.</div>
                       <div>PRODUCT DETAILS</div>
                       <div>SKIPPED REASON</div>
                     </div>
                     {skippedRows.map((item, idx) => (
-                      <div className="table-row" key={idx}>
+                      <div className="esgnow-table-row" key={idx}>
                         <div>{item.row}</div>
                         <div>
-                          <div className="code">{item.code}</div>
+                          <div className="esgnow-code">{item.code}</div>
                           <div>{item.name}</div>
                         </div>
                         <div>{item.reason}</div>
@@ -1119,19 +1119,19 @@ This folder-based structure ensures proper mapping between products and their im
                   </div>
                 )}
           
-                <div className="review-row">
-                  <div className="review-toggle">
-                    <span className="icon">📦</span>
+                <div className="esgnow-review-row">
+                  <div className="esgnow-review-toggle">
+                    <span className="esgnow-icon">📦</span>
                     <span>Unmapped Fields</span>
-                    <span className="count-value">: {unmappedFields.length}</span>
+                    <span className="esgnow-count-value">: {unmappedFields.length}</span>
                   </div>
-                  <a className="toggle-link" onClick={() => setShowUnmapped(!showUnmapped)}>
+                  <a className="esgnow-toggle-link" onClick={() => setShowUnmapped(!showUnmapped)}>
                     {showUnmapped ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
           
                 {showUnmapped && (
-                  <div className="unmapped-info">
+                  <div className="esgnow-unmapped-info">
                     <p>
                     The following fields in your uploaded file have not been mapped to any of IVIVA's ESG NOW fields and they will be ignored during import.
                     </p>
@@ -1151,18 +1151,18 @@ This folder-based structure ensures proper mapping between products and their im
   };
 
   return (
-    <div className={`bulk-import-widget ${className}`}>
+    <div className={`esgnow-bulk-import-widget ${className}`}>
       {/* Post-upload alert notification */}
       {showPostUploadAlert && (
-        <div className="bulk-import__post-upload-alert">
-          <div className="alert-content">
-            <div className="alert-icon">⚡</div>
-            <div className="alert-text">
+        <div className="esgnow-bulk-import__post-upload-alert">
+          <div className="esgnow-alert-content">
+            <div className="esgnow-alert-icon">⚡</div>
+            <div className="esgnow-alert-text">
               <strong>Import Process in Progress</strong>
               <p>Your products and images have been uploaded successfully. AI classification, emission calculations, and image processing are being handled in the background. Please check back in a few minutes to see the complete product data with images.</p>
             </div>
             <button 
-              className="alert-close-btn"
+              className="esgnow-alert-close-btn"
               onClick={() => setShowPostUploadAlert(false)}
               aria-label="Close notification"
             >
@@ -1174,7 +1174,7 @@ This folder-based structure ensures proper mapping between products and their im
 
       {!hideToggleButton && (
         <button 
-          className="bulk-import__trigger-btn"
+          className="esgnow-bulk-import__trigger-btn"
           onClick={() => setIsModalOpen(true)}
         >
           Bulk Upload Products
@@ -1185,15 +1185,15 @@ This folder-based structure ensures proper mapping between products and their im
         show={isModalOpen} 
         onClose={handleModalClose}
         title="Bulk Upload Products"
-        className="bulk-import__modal"
+        className="esgnow-bulk-import__modal"
         headerContent={
-          <div className="bulk-import__modal-header">
-            <span className="bulk-import__modal-title">Bulk Upload Products</span>
-            <div className="bulk-import__modal-header-controls">
+          <div className="esgnow-bulk-import__modal-header">
+            <span className="esgnow-bulk-import__modal-title">Bulk Upload Products</span>
+            <div className="esgnow-bulk-import__modal-header-controls">
               {currentStep > 1 && (
                 <Button 
                   title="Previous"
-                  className="bulk-import__back-btn"
+                  className="esgnow-bulk-import__back-btn"
                   onClick={handleBack}
                 />
               )}
@@ -1201,11 +1201,11 @@ This folder-based structure ensures proper mapping between products and their im
                 <Button
                   title="Next"
                   onClick={handleNext}
-                  className="bulk-import__next-btn"
+                  className="esgnow-bulk-import__next-btn"
                 />
               ) : (
                 <Button 
-                  className="bulk-import__import-btn"
+                  className="esgnow-bulk-import__import-btn"
                   title={isUploading ? "Importing..." : "Start Import"}
                   onClick={handleBulkImport}
                   disabled={!productCodeField || !productNameField || !productDescriptionField || isUploading}
@@ -1217,61 +1217,61 @@ This folder-based structure ensures proper mapping between products and their im
         }
       >
         {/* Progress Steps */}
-        {/* <div className="bulk-import__progress-steps">
-          <div className={`bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">1</div>
-            <span className="bulk-import__step-text">Upload File</span>
+        {/* <div className="esgnow-bulk-import__progress-steps">
+          <div className={`esgnow-bulk-import__step ${currentStep >= 1 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">1</div>
+            <span className="esgnow-bulk-import__step-text">Upload File</span>
           </div>
 
-          <div className="step-line" />
+          <div className="esgnow-step-line" />
 
-          <div className={`bulk-import__step ${currentStep >= 2 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">2</div>
-            <span className="bulk-import__step-text">Map Fields & Assign Defaults</span>
+          <div className={`esgnow-bulk-import__step ${currentStep >= 2 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">2</div>
+            <span className="esgnow-bulk-import__step-text">Map Fields & Assign Defaults</span>
           </div>
 
-          <div className="step-line" />
+          <div className="esgnow-step-line" />
 
-          <div className={`bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">3</div>
-            <span className="bulk-import__step-text">Review & Import</span>
+          <div className={`esgnow-bulk-import__step ${currentStep >= 3 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">3</div>
+            <span className="esgnow-bulk-import__step-text">Review & Import</span>
           </div>
         </div> */}
-        <div className="bulk-import__progress-steps">
-          <div className={`bulk-import__step ${currentStep > 1 ? 'bulk-import__step--completed' : currentStep === 1 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">
+        <div className="esgnow-bulk-import__progress-steps">
+          <div className={`esgnow-bulk-import__step ${currentStep > 1 ? 'esgnow-bulk-import__step--completed' : currentStep === 1 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">
               {currentStep > 1 ? '✔' : '1'}
             </div>
-            <span className="bulk-import__step-text">Upload File</span>
+            <span className="esgnow-bulk-import__step-text">Upload File</span>
           </div>
 
-          <div className="step-line" />
+          <div className="esgnow-step-line" />
 
-          <div className={`bulk-import__step ${currentStep > 2 ? 'bulk-import__step--completed' : currentStep === 2 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">
+          <div className={`esgnow-bulk-import__step ${currentStep > 2 ? 'esgnow-bulk-import__step--completed' : currentStep === 2 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">
               {currentStep > 2 ? '✔' : '2'}
             </div>
-            <span className="bulk-import__step-text">Map Fields & Assign Defaults</span>
+            <span className="esgnow-bulk-import__step-text">Map Fields & Assign Defaults</span>
           </div>
 
-          <div className="step-line" />
+          <div className="esgnow-step-line" />
 
-          <div className={`bulk-import__step ${currentStep === 3 ? 'bulk-import__step--active' : ''}`}>
-            <div className="bulk-import__step-number">3</div>
-            <span className="bulk-import__step-text">Review & Import</span>
+          <div className={`esgnow-bulk-import__step ${currentStep === 3 ? 'esgnow-bulk-import__step--active' : ''}`}>
+            <div className="esgnow-bulk-import__step-number">3</div>
+            <span className="esgnow-bulk-import__step-text">Review & Import</span>
           </div>
         </div>
 
         {/* Upload Status Message */}
         {uploadMessage && (
-          <div className={`bulk-import__upload-message ${uploadMessageType || ''}`}>
-            <span className="message-icon">
+          <div className={`esgnow-bulk-import__upload-message ${uploadMessageType || ''}`}>
+            <span className="esgnow-message-icon">
               {uploadMessageType === "success" ? "✓" : uploadMessageType === "error" ? "✗" : "ℹ"}
             </span>
-            <span className="message-text">{uploadMessage}</span>
+            <span className="esgnow-message-text">{uploadMessage}</span>
             {uploadMessageType === "error" && (
               <button 
-                className="dismiss-btn" 
+                className="esgnow-dismiss-btn" 
                 onClick={() => {
                   setUploadMessage(null);
                   setUploadMessageType(null);

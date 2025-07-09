@@ -15,7 +15,8 @@
       "Bash(find:*)",
       "Bash(npm install:*)",
       "Bash(python3:*)",
-      "Bash(rg:*)"
+      "Bash(rg:*)",
+      "Bash(sed:*)"
     ],
     "deny": []
   },
