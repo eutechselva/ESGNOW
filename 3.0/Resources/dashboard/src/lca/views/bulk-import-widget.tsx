@@ -725,7 +725,7 @@ This folder-based structure ensures proper mapping between products and their im
                   >
                     <UploadIcon />
                     Browse File for upload
-                    <DownloadIcon />
+                  
                   </button>
                   <button 
                     className="bulk-import__download-sample-btn"
@@ -831,7 +831,7 @@ This folder-based structure ensures proper mapping between products and their im
                   >
                     <UploadIcon />
                     Browse File for upload
-                    <DownloadIcon />
+                   
                   </button>
                   <button 
                     className="bulk-import__download-sample-btn"
@@ -1035,16 +1035,16 @@ This folder-based structure ensures proper mapping between products and their im
           return (
             <div className="bulk-import__step-content review-import">
               <h3>Review & Import</h3>
-        
+          
               <div className="review-section">
                 <div className="review-row">
                   <div className="review-toggle">
                     <span className="icon">📦</span>
                     <span>Product records ready for Import</span>
+                    <span className="count-value">: {validRecords.length}</span>
                   </div>
-                  <span>: {validRecords.length}</span>
                   <a className="toggle-link" onClick={() => setShowReadyRecords(!showReadyRecords)}>
-                    {showReadyRecords ? 'Hide Details ▲' : 'View Details ▼'}
+                    {showReadyRecords ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
                 
@@ -1082,24 +1082,23 @@ This folder-based structure ensures proper mapping between products and their im
                     )}
                   </div>
                 )}
-        
+          
                 <div className="review-row">
-                  <div className="review-toggle" onClick={() => setShowSkipped(!showSkipped)}>
-                    {/* <span className="icon">{showSkipped ? '▼' : '▶'}</span> */}
+                  <div className="review-toggle">
                     <span className="icon">📦</span>
                     <span>No. of Records Skipped</span>
+                    <span className="count-value">: {skippedRows.length}</span>
                   </div>
-                  <span>: {skippedRows.length}</span>
                   <div className="row-actions">
                     {showSkipped && (
                       <a className="download-link" onClick={() => alert('Download skipped rows')}>Download skipped rows</a>
                     )}
                     <a className="toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
-                      {showSkipped ? 'Hide Details ▲' : 'View Details ▼'}
+                      {showSkipped ? 'Hide Details' : 'View Details'}
                     </a>
                   </div>
                 </div>
-        
+          
                 {showSkipped && (
                   <div className="skipped-table">
                     <div className="table-header">
@@ -1119,23 +1118,22 @@ This folder-based structure ensures proper mapping between products and their im
                     ))}
                   </div>
                 )}
-        
+          
                 <div className="review-row">
-                  <div className="review-toggle" onClick={() => setShowUnmapped(!showUnmapped)}>
-                    {/* <span className="icon">{showUnmapped ? '▼' : '▶'}</span> */}
+                  <div className="review-toggle">
                     <span className="icon">📦</span>
                     <span>Unmapped Fields</span>
+                    <span className="count-value">: {unmappedFields.length}</span>
                   </div>
-                  <span>: {unmappedFields.length}</span>
                   <a className="toggle-link" onClick={() => setShowUnmapped(!showUnmapped)}>
-                    {showUnmapped ? 'Hide Details ▲' : 'View Details ▼'}
+                    {showUnmapped ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
-        
+          
                 {showUnmapped && (
                   <div className="unmapped-info">
                     <p>
-                    The following fields in your uploaded file have not been mapped to any of IVIVA’s ESG NOW fields and they will be ignored during import.
+                    The following fields in your uploaded file have not been mapped to any of IVIVA's ESG NOW fields and they will be ignored during import.
                     </p>
                     <ul>
                       {unmappedFields.map((field, idx) => (
@@ -1147,8 +1145,6 @@ This folder-based structure ensures proper mapping between products and their im
               </div>
             </div>
           );
-        
-
       default:
         return null;
     }
