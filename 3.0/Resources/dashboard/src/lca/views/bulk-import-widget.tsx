@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
+import { FileText, Info, ListX } from 'lucide-react';
+
 import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
@@ -535,21 +537,17 @@ This folder-based structure ensures proper mapping between products and their im
   };
 
   const DataFileIcon = () => (
-    <svg width="82" height="82" viewBox="0 0 24 24" fill="none">
-      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke="currentColor" strokeWidth="1.5" fill="currentColor"/>
-      <polyline points="14,2 14,8 20,8" stroke="white" strokeWidth="1.5"/>
-      <line x1="16" y1="13" x2="8" y2="13" stroke="white" strokeWidth="1.5"/>
-      <line x1="16" y1="17" x2="8" y2="17" stroke="white" strokeWidth="1.5"/>
-      <polyline points="10,9 9,9 8,9" stroke="white" strokeWidth="1.5"/>
-    </svg>
+<svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M39.0081 4.27084H42.9919C49.6578 4.27084 54.9093 4.27084 59.0093 4.79018C63.2083 5.32318 66.5908 6.44384 69.2695 8.97218C71.9721 11.5244 73.1816 14.7771 73.7556 18.8088C74.3125 22.7106 74.3125 27.6921 74.3125 33.9651V37.5833C74.3125 38.9978 73.1645 40.1458 71.75 40.1458C70.3355 40.1458 69.1875 38.9978 69.1875 37.5833V34.1667C69.1875 27.6477 69.1807 23.0318 68.6818 19.5331C68.1967 16.1233 67.2912 14.1518 65.7503 12.6998C64.1923 11.2272 62.0467 10.3423 58.3635 9.87418C54.6223 9.39926 49.6988 9.39584 42.8074 9.39584H39.1926C32.3012 9.39584 27.3778 9.39926 23.6365 9.87418C19.9533 10.3423 17.8077 11.2272 16.2463 12.6998C14.7088 14.1518 13.8033 16.1233 13.3182 19.5331C12.8193 23.0318 12.8125 27.6477 12.8125 34.1667V47.8333C12.8125 54.3523 12.8193 58.9683 13.3182 62.4669C13.8033 65.8768 14.7088 67.8482 16.2463 69.3003C17.8077 70.7729 19.9533 71.6578 23.6365 72.1258C27.3778 72.6008 32.3012 72.6042 39.1926 72.6042H41C42.4145 72.6042 43.5625 73.7522 43.5625 75.1667C43.5625 76.5812 42.4145 77.7292 41 77.7292H39.0081C32.3422 77.7292 27.0908 77.7292 22.9908 77.2098C18.7917 76.6734 15.4092 75.5562 12.7305 73.0278C10.0279 70.4756 8.81842 67.2229 8.24442 63.1913C7.6875 59.2894 7.6875 54.3079 7.6875 48.0349V33.9651C7.6875 27.6921 7.6875 22.7106 8.24442 18.8088C8.81842 14.7771 10.0279 11.5244 12.7305 8.97218C15.4092 6.44384 18.7917 5.32318 22.9908 4.79018C27.0908 4.27084 32.3422 4.27084 39.0081 4.27084ZM69.1875 58.0833C69.1875 56.4092 68.3743 54.4548 66.8915 52.8934C65.4223 51.3491 63.4988 50.3958 61.5 50.3958C59.5013 50.3958 57.5777 51.3491 56.1085 52.8934C54.6257 54.4548 53.8125 56.4092 53.8125 58.0833V70.0417C53.8125 71.135 55.0083 72.6042 56.8397 72.6042C58.671 72.6042 59.8703 71.135 59.8703 70.0417V60.6971C59.8703 59.2826 61.0148 58.1346 62.4328 58.1346C63.8473 58.1346 64.9953 59.2826 64.9953 60.6971V70.0417C64.9953 74.2749 61.1857 77.7292 56.8397 77.7292C52.4971 77.7292 48.6875 74.2749 48.6875 70.0417V58.0833C48.6875 54.8751 50.1703 51.7044 52.3946 49.3606C54.6359 47.0031 57.8408 45.2708 61.5 45.2708C65.1593 45.2708 68.3641 47.0031 70.6054 49.3606C72.8297 51.7044 74.3125 54.8751 74.3125 58.0833V70.5439C74.3125 71.9584 73.1645 73.1064 71.75 73.1064C70.3355 73.1064 69.1875 71.9584 69.1875 70.5439V58.0833ZM27.3333 21.3542H54.6667C56.0812 21.3542 57.2292 22.5022 57.2292 23.9167C57.2292 25.3312 56.0812 26.4792 54.6667 26.4792H27.3333C25.9188 26.4792 24.7708 25.3312 24.7708 23.9167C24.7708 22.5022 25.9188 21.3542 27.3333 21.3542ZM24.7708 41C24.7708 39.5855 25.9188 38.4375 27.3333 38.4375H44.4167C45.8312 38.4375 46.9792 39.5855 46.9792 41C46.9792 42.4145 45.8312 43.5625 44.4167 43.5625H27.3333C25.9188 43.5625 24.7708 42.4145 24.7708 41Z" fill="#181D27"/>
+</svg>
+
   );
 
   const ImageFileIcon = () => (
-    <svg width="82" height="82" viewBox="0 0 24 24" fill="none">
-      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
-      <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="2"/>
-      <polyline points="21,15 16,10 5,21" stroke="currentColor" strokeWidth="2"/>
-    </svg>
+<svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21.7812 71.75L54.4531 41L69.8281 56.375M21.7812 71.75H60.2188C66.5873 71.75 71.75 66.5873 71.75 60.2188V41M21.7812 71.75C15.4127 71.75 10.25 66.5873 10.25 60.2188V21.7813C10.25 15.4127 15.4127 10.25 21.7812 10.25H46.7656M56.375 18.0739L64.2363 10.25M64.2363 10.25L71.75 17.7202M64.2363 10.25V29.4688M33.3125 27.5469C33.3125 30.7311 30.7311 33.3125 27.5469 33.3125C24.3626 33.3125 21.7812 30.7311 21.7812 27.5469C21.7812 24.3626 24.3626 21.7813 27.5469 21.7813C30.7311 21.7813 33.3125 24.3626 33.3125 27.5469Z" stroke="#181D27" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+
   );
 
   const UploadIcon = () => (
@@ -617,9 +615,7 @@ This folder-based structure ensures proper mapping between products and their im
                   </button>
                   <p className="bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
                   {dataFile && <p className="bulk-import__selected-file">Selected: {dataFile.name}</p>}
-                </div>
-                
-                {/* Sheet Selection - Only show if multiple sheets */}
+                                  {/* Sheet Selection - Only show if multiple sheets */}
                 {sheets.length > 1 && (
                   <div className="bulk-import__sheet-selection">
                     <label>Select Sheet:</label>
@@ -641,45 +637,48 @@ This folder-based structure ensures proper mapping between products and their im
                     <h4>Detected Headers:</h4>
                     <div className="bulk-import__headers-list">
                       {csvHeaders.map((header, index) => (
-                        <span key={index} className="bulk-import__header-tag">{header}</span>
+                        <span key={index} className="bulk-import__header-tag">{header},</span>
                       ))}
                     </div>
-                    <p>Found {csvRows.length} data rows</p>
+                    <h4>Found {csvRows.length} data rows</h4>
                   </div>
                 )}
+                </div>
+                
+
                 
                 <div className="bulk-import__note">
                 <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ marginRight: '6px', flexShrink: 0 }}
-  >
-    <path
-      d="M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10.5656 13.3333V9.58331"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10.5656 6.67642V6.66809"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-                  <strong>Note:</strong> You can import upto 5000 records at a time
+                  width="22"
+                  height="20"
+                  viewBox="0 0 22 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ marginRight: '6px', flexShrink: 0 }}
+                >
+                  <path
+                    d="M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10.5656 13.3333V9.58331"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10.5656 6.67642V6.66809"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                  <strong>Note: You can import upto 5000 records at a time</strong> 
                 </div>
               </div>
                         <div className='bulk-import__upload-section test-center'>
@@ -725,36 +724,36 @@ This folder-based structure ensures proper mapping between products and their im
                 </div>
                 <div className="bulk-import__note">
                 <svg
-    width="22"
-    height="20"
-    viewBox="0 0 22 20"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ marginRight: '6px', flexShrink: 0 }}
-  >
-    <path
-      d="M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10.5656 13.3333V9.58331"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-    <path
-      d="M10.5656 6.67642V6.66809"
-      stroke="#414651"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-                  <strong>Note:</strong> Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping
+                  width="22"
+                  height="20"
+                  viewBox="0 0 22 20"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  style={{ marginRight: '6px', flexShrink: 0 }}
+                >
+                  <path
+                    d="M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10.5656 13.3333V9.58331"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <path
+                    d="M10.5656 6.67642V6.66809"
+                    stroke="#414651"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                  <strong>Note: Name each of your image (.png) files with the product code corresponding to that of the importing product for and compress it all into a .zip file for effective mapping</strong>
                 </div>
               </div>
             </div>
@@ -776,61 +775,62 @@ This folder-based structure ensures proper mapping between products and their im
             ) : (
               <>
                 <div className="bulk-import__mapping-info">
-                  <p><strong>File Selected:</strong> {dataFile?.name}</p>
+                  <span className="bulk-import__file-label">File Selected:</span>
+                  <span className="bulk-import__selected-file"> {dataFile?.name}</span>
                 </div>
-
+                <h3>Review Auto-mapped Field Labels in Iviva’s ESG Now to that of your imported file headers and let our agentic AI do all the heavy lifting for you: importing and calculating the carbon footprint of all the products.</h3>
                 <div className="field-mapping-table">
-  <div className="field-mapping-header">
-    <div>ESG Now Field Labels</div>
-    <div>Imported File Headers</div>
-    <div>Default Field Values</div>
-    <div>Sample Data from File</div>
-  </div>
-  {mappingData.map((field, idx) => (
-    <div className="field-mapping-row" key={idx}>
-      <div className="field-label">
-        {field.esgField} {field.required && <span className="required">*</span>}
-      </div>
-      <div className="field-dropdown">
-      <Select
-      selected={
-          field.esgField === 'Product Code' ? productCodeField :
-          field.esgField === 'Product Name' ? productNameField :
-          field.esgField === 'Product Description' ? productDescriptionField :
-          field.esgField === 'Weight (kg)' ? weightField :
-          field.esgField === 'Country Of Origin' ? countryOfOriginField :
-          field.esgField === 'Supplier Name' ? supplierNameField :
-          // field.esgField === 'Product Category' ? productCategoryField :
-          // field.esgField === 'Product Sub-Category' ? productSubCategoryField :
-          ''
-        }
-        options={csvHeaders.map(header => ({
-          value: header,
-          label: header
-        }))}
-        onChange={(value) => {
-          if (field.esgField === 'Product Code') setProductCodeField(value);
-          else if (field.esgField === 'Product Name') setProductNameField(value);
-          else if (field.esgField === 'Product Description') setProductDescriptionField(value);
-          else if (field.esgField === 'Weight (kg)') setWeightField(value);
-          else if (field.esgField === 'Country Of Origin') setCountryOfOriginField(value);
-          else if (field.esgField === 'Supplier Name') setSupplierNameField(value);
-          // else if (field.esgField === 'Product Category') setProductCategoryField(value);
-          // else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
-        }}
-        className="dropdown-select"
-      />
-
-      </div>
-                  <div className="field-default">
-                    {field.defaultValue}
-                  </div>
-                  <div className="field-sample-columns">
-                    <div className="sample-column">{field.sampleData[0] || '-'}</div>
-                    <div className="sample-column with-divider">{field.sampleData[1] || '-'}</div>
-                  </div>
+                <div className="field-mapping-header">
+                  <div>ESG Now Field Labels</div>
+                  <div>Imported File Headers</div>
+                  <div>Default Field Values</div>
+                  <div>Sample Data from File</div>
                 </div>
-              ))}
+                {mappingData.map((field, idx) => (
+                  <div className="field-mapping-row" key={idx}>
+                    <div className="field-label">
+                      {field.esgField} {field.required && <span className="required">*</span>}
+                    </div>
+                    <div className="field-dropdown">
+                    <Select
+                    selected={
+                        field.esgField === 'Product Code' ? productCodeField :
+                        field.esgField === 'Product Name' ? productNameField :
+                        field.esgField === 'Product Description' ? productDescriptionField :
+                        field.esgField === 'Weight (kg)' ? weightField :
+                        field.esgField === 'Country Of Origin' ? countryOfOriginField :
+                        field.esgField === 'Supplier Name' ? supplierNameField :
+                        // field.esgField === 'Product Category' ? productCategoryField :
+                        // field.esgField === 'Product Sub-Category' ? productSubCategoryField :
+                        ''
+                      }
+                      options={csvHeaders.map(header => ({
+                        value: header,
+                        label: header
+                      }))}
+                      onChange={(value) => {
+                        if (field.esgField === 'Product Code') setProductCodeField(value);
+                        else if (field.esgField === 'Product Name') setProductNameField(value);
+                        else if (field.esgField === 'Product Description') setProductDescriptionField(value);
+                        else if (field.esgField === 'Weight (kg)') setWeightField(value);
+                        else if (field.esgField === 'Country Of Origin') setCountryOfOriginField(value);
+                        else if (field.esgField === 'Supplier Name') setSupplierNameField(value);
+                        // else if (field.esgField === 'Product Category') setProductCategoryField(value);
+                        // else if (field.esgField === 'Product Sub-Category') setProductSubCategoryField(value);
+                      }}
+                      className="dropdown-select"
+                    />
+
+                    </div>
+                                <div className="field-default">
+                                  {field.defaultValue}
+                                </div>
+                                <div className="field-sample-columns">
+                                  <div className="sample-column">{field.sampleData[0] || '-'}</div>
+                                  <div className="sample-column with-divider">{field.sampleData[1] || '-'}</div>
+                                </div>
+                              </div>
+                            ))}
             </div>
 
               </>
@@ -937,7 +937,8 @@ This folder-based structure ensures proper mapping between products and their im
         
                 <div className="review-row">
                   <div className="review-toggle" onClick={() => setShowSkipped(!showSkipped)}>
-                    <span className="icon">{showSkipped ? '▼' : '▶'}</span>
+                    {/* <span className="icon">{showSkipped ? '▼' : '▶'}</span> */}
+                    <span className="icon">📦</span>
                     <span>No. of Records Skipped</span>
                   </div>
                   <span>: {skippedRows.length}</span>
@@ -973,7 +974,8 @@ This folder-based structure ensures proper mapping between products and their im
         
                 <div className="review-row">
                   <div className="review-toggle" onClick={() => setShowUnmapped(!showUnmapped)}>
-                    <span className="icon">{showUnmapped ? '▼' : '▶'}</span>
+                    {/* <span className="icon">{showUnmapped ? '▼' : '▶'}</span> */}
+                    <span className="icon">📦</span>
                     <span>Unmapped Fields</span>
                   </div>
                   <span>: {unmappedFields.length}</span>
@@ -985,9 +987,7 @@ This folder-based structure ensures proper mapping between products and their im
                 {showUnmapped && (
                   <div className="unmapped-info">
                     <p>
-                      The following fields in your upload file have not been mapped to any of IVIVA’s ESG NOW fields.
-                      Please create <strong>‘New Custom Fields’</strong> for these fields and map them to the relevant field labels in your import file.
-                      If not, they will be ignored during import.
+                    The following fields in your uploaded file have not been mapped to any of IVIVA’s ESG NOW fields and they will be ignored during import.
                     </p>
                     <ul>
                       {unmappedFields.map((field, idx) => (
@@ -1073,7 +1073,7 @@ This folder-based structure ensures proper mapping between products and their im
         }
       >
         {/* Progress Steps */}
-        <div className="bulk-import__progress-steps">
+        {/* <div className="bulk-import__progress-steps">
           <div className={`bulk-import__step ${currentStep >= 1 ? 'bulk-import__step--active' : ''}`}>
             <div className="bulk-import__step-number">1</div>
             <span className="bulk-import__step-text">Upload File</span>
@@ -1089,6 +1089,30 @@ This folder-based structure ensures proper mapping between products and their im
           <div className="step-line" />
 
           <div className={`bulk-import__step ${currentStep >= 3 ? 'bulk-import__step--active' : ''}`}>
+            <div className="bulk-import__step-number">3</div>
+            <span className="bulk-import__step-text">Review & Import</span>
+          </div>
+        </div> */}
+        <div className="bulk-import__progress-steps">
+          <div className={`bulk-import__step ${currentStep > 1 ? 'bulk-import__step--completed' : currentStep === 1 ? 'bulk-import__step--active' : ''}`}>
+            <div className="bulk-import__step-number">
+              {currentStep > 1 ? '✔' : '1'}
+            </div>
+            <span className="bulk-import__step-text">Upload File</span>
+          </div>
+
+          <div className="step-line" />
+
+          <div className={`bulk-import__step ${currentStep > 2 ? 'bulk-import__step--completed' : currentStep === 2 ? 'bulk-import__step--active' : ''}`}>
+            <div className="bulk-import__step-number">
+              {currentStep > 2 ? '✔' : '2'}
+            </div>
+            <span className="bulk-import__step-text">Map Fields & Assign Defaults</span>
+          </div>
+
+          <div className="step-line" />
+
+          <div className={`bulk-import__step ${currentStep === 3 ? 'bulk-import__step--active' : ''}`}>
             <div className="bulk-import__step-number">3</div>
             <span className="bulk-import__step-text">Review & Import</span>
           </div>
@@ -1124,3 +1148,4 @@ This folder-based structure ensures proper mapping between products and their im
 };
 
 export default BulkImportWidget;
+
