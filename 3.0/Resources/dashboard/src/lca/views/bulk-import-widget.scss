@@ -738,8 +738,8 @@
   .esgnow-bulk-import__modal-header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    width: 95%;
+    justify-content: space-between; 
+    width: 97%;
   }
   // .esgnow-bulk-import__back-btn {
   //   background-color: #ffffff;
@@ -800,7 +800,7 @@
     color: white;
     border: none;
     // font-family: "Satoshi Variable" !important;
-    padding: 12px 32px;
+    padding: 8px 24px;
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
@@ -1340,4 +1340,16 @@
   font-size: 14px;
   font-weight: 500;
   font-family: 'Satoshi Variable', sans-serif;
+}
+//vertical line
+.esgnow-bulk-import__modal-header-controls-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.esgnow-bulk-import__vertical-separator {
+  width: 1px;
+  height: 24px;
+  background-color: #E0E0E0;
 }
