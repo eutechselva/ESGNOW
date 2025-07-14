@@ -1296,7 +1296,12 @@ This folder-based structure ensures proper mapping between products and their im
                   title="Next"
                   onClick={handleNext}
                   className="esgnow-bulk-import__next-btn"
+                  styles={{
+                    opacity: currentStep === 1 && (!dataFile || !imagesFile) ? 0.5 : 1,
+                    pointerEvents: currentStep === 1 && (!dataFile || !imagesFile) ? "none" : "auto"
+                  }}
                 />
+
               ) : (
                 <Button 
                   className="esgnow-bulk-import__import-btn"
@@ -1305,9 +1310,9 @@ This folder-based structure ensures proper mapping between products and their im
                   disabled={!productCodeField || !productNameField || !productDescriptionField || isUploading}
                 />
               )}
+              <div className="esgnow-bulk-import__vertical-separator" />
             </div>
-
-          </div>
+          </div>  
         }
       >
         {/* Progress Steps */}
