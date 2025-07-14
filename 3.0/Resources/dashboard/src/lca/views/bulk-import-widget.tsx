@@ -659,6 +659,7 @@ This folder-based structure ensures proper mapping between products and their im
     }
   };
 
+  
   const getSampleData = (headerName: string) => {
     if (csvRows.length > 0 && headerName) {
       const sampleValues = csvRows
@@ -1057,7 +1058,52 @@ This folder-based structure ensures proper mapping between products and their im
           const validRecords = csvRows.filter((row, index) => {
             return !skippedRows.some(skippedRow => skippedRow.row === index + 2);
           });
-        
+          const handleDownloadSkippedRows = () => {
+            if (csvHeaders.length === 0 || skippedRows.length === 0) {
+              return;
+            }
+          
+            const allHeaders = csvHeaders.concat('Skipped Reason');
+            const skippedData = [allHeaders];
+          
+            // Convert all values to strings
+            skippedRows.forEach(item => {
+              const originalRow = csvRows[item.row - 2];
+              const rowData = csvHeaders.map(header => String(originalRow[header] || ''));
+              rowData.push(item.reason);
+              skippedData.push(rowData);
+            });
+          
+            const worksheet = XLSX.utils.aoa_to_sheet(skippedData);
+          
+            // Set column widths
+            const colWidths = allHeaders.map((_, colIdx) => {
+              const maxLength = skippedData.reduce((max, row) => {
+                const cell = row[colIdx];
+                return Math.max(max, cell ? cell.length : 0);
+              }, allHeaders[colIdx].length);
+              return { wch: maxLength + 2 };
+            });
+            worksheet['!cols'] = colWidths;
+          
+            // Force left-alignment on all cells
+            Object.keys(worksheet).forEach(cell => {
+              if (cell.startsWith('!')) return;
+              const value = worksheet[cell].v;
+              worksheet[cell].t = 's'; // force text type
+              worksheet[cell].s = {
+                alignment: { horizontal: 'left' }
+              };
+              worksheet[cell].v = String(value); // ensure string value
+            });
+          
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Skipped Rows");
+          
+            XLSX.writeFile(workbook, 'skipped_rows.xlsx');
+          };
+          
+          
           return (
             <div className="esgnow-bulk-import__step-content esgnow-review-import">
               <h3>Review & Import</h3>
@@ -1116,13 +1162,30 @@ This folder-based structure ensures proper mapping between products and their im
                     <span className="esgnow-count-value">: {skippedRows.length}</span>
                   </div>
                   <div className="esgnow-row-actions">
-                    {showSkipped && (
-                      <a className="esgnow-download-link" onClick={() => alert('Download skipped rows')}>Download skipped rows</a>
-                    )}
-                    <a className="esgnow-toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
-                      {showSkipped ? 'Hide Details' : 'View Details'}
-                    </a>
+                  {skippedRows.length > 0 ? (
+                    <>
+                      <button className="esgnow-download-btn" onClick={handleDownloadSkippedRows}>
+                        <span className="esgnow-download-icon">
+                          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M13.3332 4C13.3332 5.65467 12.9878 6 11.3332 6H4.6665C3.01184 6 2.6665 5.65467 2.6665 4" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M8.00033 14.6667L8.00033 7.99999M8.00033 14.6667C8.46713 14.6667 9.33931 13.3371 9.66699 13M8.00033 14.6667C7.53353 14.6667 6.66133 13.3371 6.33366 13" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                          </svg>
+                        </span>
+                        Download skipped rows
+                      </button>
+
+                      <div className="esgnow-divider" />
+
+                      <button className="esgnow-toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
+                        {showSkipped ? 'Hide Details' : 'View Details'}
+                      </button>
+                    </>
+                  ) : (
+                    <span className="esgnow-no-skipped-msg">No records have been skipped</span>
+                  )}
                   </div>
+
+
                 </div>
           
                 {showSkipped && (
@@ -1180,23 +1243,28 @@ This folder-based structure ensures proper mapping between products and their im
     <div className={`esgnow-bulk-import-widget ${className}`}>
       {/* Post-upload alert notification */}
       {showPostUploadAlert && (
-        <div className="esgnow-bulk-import__post-upload-alert">
-          <div className="esgnow-alert-content">
-            <div className="esgnow-alert-icon">⚡</div>
-            <div className="esgnow-alert-text">
-              <strong>Import Process in Progress</strong>
-              <p>Your products and images have been uploaded successfully. AI classification, emission calculations, and image processing are being handled in the background. Please check back in a few minutes to see the complete product data with images.</p>
+        <div className="esgnow-alert-overlay">
+          <div className="esgnow-alert-box">
+          <div className="esgnow-alert-icon-frame">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M37.3056 12.4974L36.4418 10.9984C35.7885 9.86468 35.462 9.29784 34.9062 9.07179C34.3504 8.84576 33.7218 9.02412 32.4648 9.38084L30.3294 9.98231C29.5269 10.1674 28.6848 10.0624 27.952 9.68588L27.3625 9.34573C26.734 8.94325 26.2507 8.34983 25.9831 7.65229L25.3988 5.90688C25.0145 4.75185 24.8223 4.17433 24.3649 3.844C23.9076 3.51367 23.3 3.51367 22.0848 3.51367H20.1339C18.9189 3.51367 18.3113 3.51367 17.8538 3.844C17.3965 4.17433 17.2044 4.75185 16.8201 5.90688L16.2357 7.65229C15.9681 8.34983 15.4848 8.94325 14.8564 9.34573L14.2669 9.68588C13.534 10.0624 12.692 10.1674 11.8895 9.98231L9.75406 9.38084C8.49697 9.02412 7.86844 8.84576 7.31267 9.07179C6.75691 9.29784 6.43029 9.86468 5.77701 10.9984L4.91325 12.4974C4.3009 13.5601 3.99472 14.0915 4.05415 14.6571C4.11357 15.2227 4.52345 15.6786 5.3432 16.5902L7.14752 18.6074C7.58852 19.1657 7.90162 20.1386 7.90162 21.0135C7.90162 21.8886 7.58863 22.8613 7.14758 23.4197L5.3432 25.437C4.52345 26.3487 4.11358 26.8044 4.05415 27.3702C3.99472 27.9358 4.3009 28.4671 4.91325 29.5297L5.77699 31.0287C6.43025 32.1624 6.75691 32.7294 7.31267 32.9553C7.86844 33.1814 8.49698 33.0031 9.7541 32.6463L11.8894 32.0448C12.6921 31.8596 13.5343 31.9648 14.2672 32.3414L14.8566 32.6816C15.4849 33.0841 15.9681 33.6773 16.2356 34.3749L16.8201 36.1205C17.2044 37.2755 17.3965 37.853 17.8538 38.1834C18.3113 38.5136 18.9189 38.5136 20.1339 38.5136H22.0848C23.3 38.5136 23.9076 38.5136 24.3649 38.1834C24.8223 37.853 25.0145 37.2755 25.3988 36.1205L25.9833 34.3749C26.2507 33.6773 26.7339 33.0841 27.3623 32.6816L27.9517 32.3414C28.6846 31.9648 29.5267 31.8596 30.3294 32.0448L32.4648 32.6463C33.7218 33.0031 34.3504 33.1814 34.9062 32.9553C35.462 32.7294 35.7885 32.1624 36.4418 31.0287L37.3056 29.5297C37.9179 28.4671 38.224 27.9358 38.1647 27.3702C38.1052 26.8044 37.6953 26.3487 36.8756 25.437L35.0712 23.4197C34.6302 22.8613 34.3171 21.8886 34.3171 21.0135C34.3171 20.1386 34.6304 19.1657 35.0712 18.6074L36.8756 16.5902C37.6953 15.6786 38.1052 15.2227 38.1647 14.6571C38.224 14.0915 37.9179 13.5601 37.3056 12.4974Z" stroke="black" strokeWidth="1.5" strokeLinecap="round"/>
+              <path d="M21 14V21L25.9065 23.625" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </div>
+
+            <div className="esgnow-alert-heading">
+            Products uploaded successfully. 
             </div>
-            <button 
-              className="esgnow-alert-close-btn"
-              onClick={() => setShowPostUploadAlert(false)}
-              aria-label="Close notification"
-            >
-              ✕
+            <div className="esgnow-alert-description">
+            AI is processing classifications and emissions. Please check back shortly for full results.
+            </div>
+            <button className="esgnow-alert-cta" onClick={() => setShowPostUploadAlert(false)}>
+              Okay, got it!
             </button>
           </div>
         </div>
       )}
+
 
       {!hideToggleButton && (
         <button 
@@ -1289,7 +1357,7 @@ This folder-based structure ensures proper mapping between products and their im
         </div>
 
         {/* Upload Status Message */}
-        {uploadMessage && (
+        {/* {uploadMessage && (
           <div className={`esgnow-bulk-import__upload-message ${uploadMessageType || ''}`}>
             <span className="esgnow-message-icon">
               {uploadMessageType === "success" ? "✓" : uploadMessageType === "error" ? "✗" : "ℹ"}
@@ -1307,7 +1375,7 @@ This folder-based structure ensures proper mapping between products and their im
               </button>
             )}
           </div>
-        )}
+        )} */}
 
         {/* Step Content */}
         {getStepContent()}
@@ -1318,4 +1386,5 @@ This folder-based structure ensures proper mapping between products and their im
 };
 
 export default BulkImportWidget;
+
 
