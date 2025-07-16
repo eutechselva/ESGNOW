@@ -46,6 +46,29 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [availableImageFolders, setAvailableImageFolders] = useState<Set<string>>(new Set());
   const [imageFolderCount, setImageFolderCount] = useState<number | null>(null);
 
+  const ChevronIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
+    <svg
+      width="16"
+      height="15"
+      viewBox="0 0 16 15"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{
+        transform: isOpen ? 'rotate(0deg)' : 'rotate(-90deg)',
+        transition: 'transform 0.2s ease-in-out'
+      }}
+    >
+      <path
+        d="M4.30371 5.64233L7.99988 9.14233L11.696 5.64233"
+        stroke="#181D27"
+        strokeWidth="1.67"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+  
+
   // Listen for custom event from home component
   useEffect(() => {
     const handleOpenBulkImport = () => {
@@ -1109,13 +1132,13 @@ This folder-based structure ensures proper mapping between products and their im
               <h3>Review & Import</h3>
           
               <div className="esgnow-review-section">
-                <div className="esgnow-review-row">
+                <div className="esgnow-review-row" onClick={() => setShowReadyRecords(!showReadyRecords)}>
                   <div className="esgnow-review-toggle">
-                    <span className="esgnow-icon">📦</span>
+                  <span className="esgnow-icon"><ChevronIcon isOpen={showReadyRecords} /></span>
                     <span>Product records ready for Import</span>
                     <span className="esgnow-count-value">: {validRecords.length}</span>
                   </div>
-                  <a className="esgnow-toggle-link" onClick={() => setShowReadyRecords(!showReadyRecords)}>
+                  <a className="esgnow-toggle-link">
                     {showReadyRecords ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
@@ -1155,9 +1178,9 @@ This folder-based structure ensures proper mapping between products and their im
                   </div>
                 )}
           
-                <div className="esgnow-review-row">
+                <div className="esgnow-review-row" onClick={() => setShowSkipped(!showSkipped)}>
                   <div className="esgnow-review-toggle">
-                    <span className="esgnow-icon">📦</span>
+                  <span className="esgnow-icon"><ChevronIcon isOpen={showSkipped} /></span>
                     <span>No. of Records Skipped</span>
                     <span className="esgnow-count-value">: {skippedRows.length}</span>
                   </div>
@@ -1176,7 +1199,7 @@ This folder-based structure ensures proper mapping between products and their im
 
                       <div className="esgnow-divider" />
 
-                      <button className="esgnow-toggle-link" onClick={() => setShowSkipped(!showSkipped)}>
+                      <button className="esgnow-toggle-link">
                         {showSkipped ? 'Hide Details' : 'View Details'}
                       </button>
                     </>
@@ -1208,13 +1231,13 @@ This folder-based structure ensures proper mapping between products and their im
                   </div>
                 )}
           
-                <div className="esgnow-review-row">
+                <div className="esgnow-review-row" onClick={() => setShowUnmapped(!showUnmapped)}>
                   <div className="esgnow-review-toggle">
-                    <span className="esgnow-icon">📦</span>
+                  <span className="esgnow-icon"><ChevronIcon isOpen={showSkipped} /></span>
                     <span>Unmapped Fields</span>
                     <span className="esgnow-count-value">: {unmappedFields.length}</span>
                   </div>
-                  <a className="esgnow-toggle-link" onClick={() => setShowUnmapped(!showUnmapped)}>
+                  <a className="esgnow-toggle-link">
                     {showUnmapped ? 'Hide Details' : 'View Details'}
                   </a>
                 </div>
@@ -1305,7 +1328,7 @@ This folder-based structure ensures proper mapping between products and their im
               ) : (
                 <Button 
                   className="esgnow-bulk-import__import-btn"
-                  title={isUploading ? "Importing..." : "Start Import"}
+                  title={isUploading ? "Importing..." : "Proceed to Import"}
                   onClick={handleBulkImport}
                   disabled={!productCodeField || !productNameField || !productDescriptionField || isUploading}
                 />
