@@ -3,7 +3,8 @@ require("dotenv").config();
 
 const productCategories = require("../data/productCategories.json");
 const materialsDatabase = require("../data/materials_database.json");
-const manufacturingProcesses = require("../data/manufacturingProcesses.json");
+const materialsDatabaseEnhanced = require("../data/esgnow.json");
+const manufacturingProcesses = require("../data/manufacturing_ef.json");
 const materialsDatabaseBasic = require("../data/materials_database_basic.json");
 const manufacturingProcessesBasic = require("../data/manufacturingProcesses_basic.json");
 
@@ -103,15 +104,68 @@ const ManufacturingSchemaBasic = z.object({
 
 // Format manufacturing processes as a string for the prompt
 const formatManufacturingProcesses = () => {
-  return Object.entries(manufacturingProcesses)
-    .map(
-      ([material, processes]) => {
-        const processesStr = Object.keys(processes)
-          .map(process => `${process} (${processes[process]} kWh/kg)`)
-          .join(", ");
-        return `- ${material}: ${processesStr || "No specific processes listed"}`;
+  const materialGroups = {};
+  
+  // Group by Material Class
+  manufacturingProcesses.forEach(item => {
+    const materialClass = item['Material Class'];
+    if (!materialGroups[materialClass]) {
+      materialGroups[materialClass] = [];
+    }
+    materialGroups[materialClass].push({
+      process: item['Process'],
+      materialType: item['Material Type'],
+      ef: item['EF (kgCO2) per 1 kg']
+    });
+  });
+  
+  return Object.entries(materialGroups)
+    .map(([material, processes]) => {
+      const processesStr = processes
+        .map(p => `${p.process} - ${p.materialType} (${p.ef} kgCO2/kg)`)
+        .join(", ");
+      return `- ${material}: ${processesStr || "No specific processes listed"}`;
+    })
+    .join("\n");
+};
+
+// Format filtered manufacturing processes based on BOM materials
+const formatFilteredManufacturingProcesses = (bomMaterials) => {
+  const materialGroups = {};
+  
+  // Create a map of BOM materials for quick lookup
+  const bomMap = new Map();
+  bomMaterials.forEach(bomItem => {
+    const key = `${bomItem.materialClass}|${bomItem.specificMaterial}`;
+    bomMap.set(key, bomItem);
+  });
+  
+  // Filter and group manufacturing processes based on BOM
+  manufacturingProcesses.forEach(item => {
+    const materialClass = item['Material Class'];
+    const materialType = item['Material Type'];
+    
+    // Check if this material class and type combination exists in BOM
+    const bomKey = `${materialClass}|${materialType}`;
+    if (bomMap.has(bomKey)) {
+      if (!materialGroups[materialClass]) {
+        materialGroups[materialClass] = [];
       }
-    )
+      materialGroups[materialClass].push({
+        process: item['Process'],
+        materialType: item['Material Type'],
+        ef: item['EF (kgCO2) per 1 kg']
+      });
+    }
+  });
+  
+  return Object.entries(materialGroups)
+    .map(([material, processes]) => {
+      const processesStr = processes
+        .map(p => `${p.process} - ${p.materialType} (${p.ef} kgCO2/kg)`)
+        .join(", ");
+      return `- ${material}: ${processesStr || "No specific processes listed"}`;
+    })
     .join("\n");
 };
 
@@ -623,6 +677,43 @@ const formatBOMList = () => {
     .join("\n");
 };
 
+// Function to format the enhanced materials database with use case information
+const formatEnhancedBOMList = () => {
+  // Group materials by materialClass with use case information
+  const materialsByClass = {};
+  
+  materialsDatabaseEnhanced.forEach(material => {
+    if (!materialsByClass[material.materialClass]) {
+      materialsByClass[material.materialClass] = new Map();
+    }
+    
+    // Store specific material with its use case
+    const existingUseCase = materialsByClass[material.materialClass].get(material.specificMaterial);
+    if (!existingUseCase && material.Use_Case) {
+      materialsByClass[material.materialClass].set(material.specificMaterial, material.Use_Case);
+    }
+  });
+  
+  // Convert to the required format with use case information
+  return Object.entries(materialsByClass)
+    .map(([materialClass, specificMaterials]) => {
+      const materialsWithUseCases = Array.from(specificMaterials.entries())
+        .map(([material, useCase]) => {
+          if (useCase && useCase.trim()) {
+            // Clean and summarize use case (first 200 characters)
+            const cleanUseCase = useCase.replace(/\n/g, ' ').replace(/\s+/g, ' ').trim();
+            const summary = cleanUseCase.length > 200 ? cleanUseCase.substring(0, 200) + '...' : cleanUseCase;
+            return `${material} (${summary})`;
+          }
+          return material;
+        })
+        .join(", ");
+      
+      return `- ${materialClass}: ${materialsWithUseCases}`;
+    })
+    .join("\n");
+};
+
 async function classifyProduct(productCode, name, description, imageUrl, req) {
   logger.info(`🚀 Starting classification for product: ${productCode}`);
   
@@ -997,59 +1088,55 @@ const classifyBOM = async (
     return cacheClassifyBOM.get(keyClassifyBOM);
   }
 
-  const bomList = formatBOMList();
+  const bomList = formatEnhancedBOMList();
   description = description.replace(';',' ');
   const prompt = `
 You are an assistant tasked with classifying products based on their description and analyzing an image to determine the composition of materials.
-
-### **Product Details**:
-- **Code**: ${productCode}
-- **Name**: ${name}
-- **Description**: ${description}
-- **Total Weight**: ${weight} kg
-
-### **Your Task**:
-1. Analyze the text description and image (if provided) to determine relevant materials. If the image shows materials that are missing from the description, you MUST add them to the BOM and allocate weight using realistic engineering assumptions.
-You MUST analyze the provided image alongside the text description to identify all visible materials used in the product. If the image shows materials that are not mentioned in the description, you MUST include them.
+Product Details:
+Code: ${productCode}
+Name: ${name}
+Description: ${description}
+Total Weight: ${weight} kg
+Available Materials with Use Cases:
+${bomList}
+Your Task:
+Analyze the text description and image (if provided) to determine relevant materials. If the image shows materials that are missing from the description, you MUST add them to the BOM and allocate weight using realistic engineering assumptions.
 Prioritize what is visually confirmed in the image if there is a discrepancy between text and image.
-2. Pay close attention to all parts of the product details, including the name, description, and material fields, as they may each indicate distinct materials. However, do not interpret color names or color fields as materials.
-3. You MUST ONLY use material classes and specific materials EXACTLY as they appear in the list above.
-4. Identify materials based on both explicit fields and any implied mentions in the product name or description only when they describe the material construction or composition, not decorative finishes or colors.
-5. Distribute the total weight realistically across these materials, applying typical engineering assumptions where needed.
-6. Where materials are not fully specified, apply logical assumptions based on standard industry practices (e.g., assume steel frames for shelving or racking system).
-7. Ensure the total weight of all materials adds up **exactly** to ${weight} kg.
-8. “For each material, provide a brief reasoning (1–2 sentences) explaining why the material was included and how its weight was estimated.”,
-9. If a color field or description contains a term that matches a material name (e.g., "Maple," "Oak"), you MUST treat it as a color only and MUST NOT treat it as a material unless the description explicitly states it is a material or part of the product structure.
-10. Return the result **strictly as a valid JSON array** in the following format:
+Pay close attention to all parts of the product details, including the name, description, and material fields, as they may each indicate distinct materials. Do not interpret color names or color fields as materials.
+You MUST ONLY use material classes and specific materials EXACTLY as they appear in the list above.
+CRITICAL: Use the use case information provided in parentheses to make informed material selections. Choose materials whose use cases (:white_check_mark: suitable for) match the product’s intended function, application context, and environment. Avoid materials where the use cases indicate they are unsuitable (:x: not suitable for) for the product’s intended purpose.
+Identify materials based on explicit material descriptions only when they describe actual material construction, NOT decorative finishes or colors.
+Distribute the total weight realistically across these materials using typical engineering assumptions.
+Where materials are not fully specified, apply logical assumptions based on standard industry practice AND prioritize materials whose use cases align with the product’s function.
+Ensure the total weight of all materials adds up exactly to ${weight} kg.
+For each material, provide a brief reasoning (1–2 sentences) explaining why the material was included and how its weight was estimated.
+Return the result strictly as a valid JSON array in the following format:
 [
-    {
-        "materialClass": "<category>",
-        "specificMaterial": "<material>",
-        "weight": <weight>,
-        "reasoning": "<brief explanation>"
-    }
+  {
+    "materialClass": "<category>",
+    "specificMaterial": "<material>",
+    "weight": <weight>,
+    "reasoning": "<brief explanation including use case relevance>"
+  }
 ]
-
-### **CRITICAL RULES**:
-
-- DO NOT invent new materials or modify existing ones (e.g., do not use "Particleboard" if it's not in the list).
-- For example, if you think a product contains "Particleboard" but it's not in the list, choose the closest match from the list (like "MDF").
-- Every materialClass must be one of these exact categories: ${bomList}
-- You MUST ONLY select materialClass and specificMaterial values EXACTLY as they appear in the list above.
-- Every specificMaterial must appear exactly as listed under its category in the available materials list.
-- DO NOT add descriptive terms like "Solid Oak" - use exactly "Oak" as it appears in the list.
-- If an image is provided, use it to refine material classification.
-- The total weight must match exactly **${weight} kg**.
-- Do **not** include any explanation, extra text, or formatting outside the JSON array.
- If a surface finish or lamination (e.g., melamine foil, powder coating, or plastic wrap) is mentioned, interpret it as a *process*, NOT a material. Do **not** include such coatings in the material breakdown unless the core material it is applied to is listed.
-- For example, if a "melamine-coated particleboard" is described but "Melamine" is not in the list, classify the core only (e.g., MDF if it's the closest match), and **do not** list "Melamine."
-If a surface finish or lamination (e.g., melamine foil, powder coating, plastic wrap) is mentioned, interpret it as a process, NOT a material. Only classify the structural material underneath (e.g., MDF for melamine-coated boards).
-If the product description mentions melamine, melamine-coated, or melamine-faced, you MUST treat this as a surface treatment or process. Do NOT classify this as “Melamine-Formaldehyde.” Use MDF for the core material instead.
-If a material name (e.g., Beech, Oak, Maple) appears only in a color field, tabletop color, or visual styling, you MUST treat it as a color only, NOT a material. Only use that wood type if the description explicitly states it is used in the product’s construction.
-If the product material is listed as polyethylene, and the product is described as soft, flexible, squeezable, or transparent, you MUST select Low-Density Polyethylene (LDPE). Only select High-Density Polyethylene (HDPE) if the product is rigid, structural, or includes features such as handles, closures, or container-like form.
-If the image contradicts or clarifies the product description, the image takes precedence.
-If the image shows a **support item** (e.g., bar, rack, holder) and the text includes terms associated with tools (e.g., knife, spoon), you MUST classify the product according to its function and form as observed in the image.
-
+CRITICAL RULES:
+DO NOT invent new materials or modify existing ones (e.g., do not use "Particleboard" if it’s not in the list).
+Every materialClass and specificMaterial must exactly match those in the provided material list.
+Do NOT add descriptive terms like "Solid Oak" — use exactly "Oak" as it appears in the list.
+PRIORITIZE materials whose use cases match the product’s function and intended application.
+If an image is provided, use it to refine material classification.
+The total weight must match exactly ${weight} kg.
+Do not include any explanation, extra text, or formatting outside the JSON array.
+If polyethylene is described, select LDPE if soft, flexible, squeezable, or transparent; HDPE if rigid or structural.
+If image and text conflict, prioritize what is visually confirmed in the image.
+If the image shows a support structure and the text implies accessories or tools, classify based on product function and form as observed.
+If the description mentions "veneer" (e.g., "birch veneer," "oak veneer"), treat this as a surface finish and classify the core structural material only (e.g., MDF or plywood).
+If the description mentions laminates, melamine-faced panels, or foil finishes, treat these as surface treatments and classify the core material only.
+If powder coating, plating, or paint is mentioned, classify the underlying base material only and ignore the coating as a separate material.
+If a wood species appears as part of a finish or style (e.g., "birch veneer finish," "oak tone"), treat this as aesthetic unless explicitly stated as the material used.
+If a material name appears in a color or style field (e.g., "Oak color," "Maple tone"), do NOT classify this as a material unless clearly stated as structural.
+If the description uses marketing phrases like "look," "effect," "finish," "tone," or "style," treat these as aesthetic descriptors and NOT as materials unless explicitly specified.
+Do NOT allocate weight to surface treatments (e.g., veneers, laminates, coatings, paints) unless they form a substantial layer (e.g., thick glass overlay). Classify the material that forms the bulk structure of the product.
 `;
 
     const messages = [{ type: "text", text: prompt }];
@@ -1105,8 +1192,8 @@ If the image shows a **support item** (e.g., bar, rack, holder) and the text inc
 
     // Validate and adjust material categories
     result.forEach((item) => {
-      // Get all unique material classes from the database
-      const availableMaterialClasses = [...new Set(materialsDatabase.map(material => material.materialClass))];
+      // Get all unique material classes from the enhanced database
+      const availableMaterialClasses = [...new Set(materialsDatabaseEnhanced.map(material => material.materialClass))];
       
       // Check if the material class exists in the database
       if (!availableMaterialClasses.includes(item.materialClass)) {
@@ -1145,7 +1232,7 @@ If the image shows a **support item** (e.g., bar, rack, holder) and the text inc
         // Get all specific materials for this material class
         const availableSpecificMaterials = [
           ...new Set(
-            materialsDatabase
+            materialsDatabaseEnhanced
               .filter(material => material.materialClass === item.materialClass)
               .map(material => material.specificMaterial)
           )
@@ -1229,7 +1316,7 @@ const classifyManufacturingProcess = async (
   bom,
   req
 ) => {
-  const formattedProcesses = formatManufacturingProcesses();
+  const formattedProcesses = formatFilteredManufacturingProcesses(bom);
 
   const formattedBoM = bom
     .map(
