@@ -1440,24 +1440,65 @@ line-height: 25px; /* 156.25% */
 
 .esgnow-processing-toast {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 24px;
+  right: 24px;
   background: #F4F7FF;
   border-radius: 16px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   padding: 16px 24px;
-  width: 320px;
-  z-index: 100;
+  width: 350px;
+  height: 157px;
+  z-index: 9999;
 
-  strong {
-    font-size: 16px;
-    color: #181D27;
+  .toast-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 6px;
   }
 
+  .toast-icon-circle {
+    width: 24px;
+    height: 24px;
+    background-color: #22c55e; // green
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    svg {
+      width: 12px;
+      height: 12px;
+    }
+  }
+  
   .toast-subtext {
     font-size: 14px;
-    color: #717680;
-    margin-top: 4px;
+    color: #666;
+    margin-bottom: 12px;
+  }
+
+  .toast-actions {
+    display: flex;
+    gap: 8px;
+    font-size: 14px;
+    .divider-popup{
+      color: #aaa;
+    border-top: 0px;
+    margin: 0px;
+    }
+    a {
+      color: #0156d2;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
   }
 }
+
