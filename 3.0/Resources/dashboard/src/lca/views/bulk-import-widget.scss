@@ -6,6 +6,10 @@
   transition: none;  // disables awkward reflow animations
   overflow-y: auto;
 }
+.esgnow-bulk-import__modal.modal-container .modal-panel{
+  min-width:98%;
+  min-height: 98%;
+}
 
 
 .esgnow-bulk-import-widget {
@@ -34,12 +38,12 @@
   .esgnow-sample-column {
     padding: 8px 12px;
     color: #717680;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 18px;
     word-wrap: break-word;
     white-space: pre-wrap;
     border-radius: 4px;
-    background-color: #F9FAFB;
+    font-weight: 300;
   
     &.esgnow-with-divider {
       border-left: 1px solid #E0E0E0;
@@ -47,7 +51,7 @@
   }
   
   .esgnow-dropdown-select {
-    width: 100%;
+    width: 85%;
     font-size: 16px;
     font-weight: 500;
     // font-family: 'Satoshi Variable', sans-serif;
@@ -83,7 +87,7 @@
   
   .esgnow-field-mapping-header {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 15% 25% 25% 25%;
     background: #FAFAFA;
     font-weight: 500;
     font-size: 14px;
@@ -95,7 +99,7 @@
   
   .esgnow-field-mapping-row {
     display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: 15% 25% 25% 25%;
     padding: 16px;
     align-items: center;
     border-bottom: 1px solid #F0F0F0;
@@ -115,7 +119,7 @@
   }
   
   .esgnow-field-default {
-
+    width: 85%;
     color: #717680;
     /* text-align: center; */
     border: 1px solid #53586220;
@@ -415,25 +419,47 @@
       font-size: 12px;
     }
   }
-  
+
+
   // Step Content
   .esgnow-bulk-import__step-content {
     margin-bottom: 32px;
+    .review{
+      color: #535862;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 300;
+      line-height: 25px; /* 156.25% */
+    }
+    .fieldMapTitle{
+      overflow: hidden;
+      color: #181D27;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 24px;
+      text-transform: uppercase;
+      border-bottom: 1px solid #E9EAEB;
+      padding-bottom: 14px;
+  }
   }
   
   .esgnow-bulk-import__content-header {
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 40px;
+    margin-top:30px;
   
     p {
-      // color: #181D27;
       color: #424242;
       font-size: 22px;
-      // font-family: "Satoshi Variable" !important;
       font-weight: 500;
-      line-height: 24px;
+      line-height: 32px;
       max-width: 667px;
+      padding-bottom: 10px;
       margin-left: auto;
+      border-bottom: 1px Solid #E9EAEB;
       margin-right: auto;
     }
   }
@@ -484,15 +510,6 @@
   font-weight: 700; /* Bold */
 }
 
-.esgnow-bulk-import__upload-section:hover .esgnow-bulk-import__section-title::after {
-  content: "";
-  display: block;
-  margin-top: 4px;
-  height: 2px;
-  background-color: #E9EAEB; /* or any color that suits your theme */
-  width: 100%;
-}
-
   .esgnow-bulk-import__section-title {
     font-size: 16px;
     font-weight: 400;
@@ -516,7 +533,7 @@
     padding: 40px 32px;
     text-align: center;
     background-color: #ffffff;
-    height: auto;
+    height: 80%;
     width: 100%;
     max-width: 491px;
     min-width: 400px;
@@ -773,7 +790,7 @@
     padding: 8px 12px;
     font-size: 16px;
     font-family: 'Satoshi Variable', sans-serif;
-    font-weight: 500;
+    font-weight: 300;
     color: #0156D2;
     cursor: pointer;
     line-height: 20px;
@@ -803,7 +820,7 @@
     color: white;
     font-size: 16px;
     font-family: 'Satoshi Variable', sans-serif;
-    font-weight: 500;
+    font-weight: 300;
     line-height: 20px;
     display: flex;
     align-items: center;
@@ -1094,16 +1111,23 @@
   .esgnow-bulk-import__mapping-info {
     margin-top: 16px;
     font-size: 14px;
-    padding: 10px 16px;
+    padding: 5px 10px;
     border: 1px solid #e5e7eb;
     border-radius: 6px;
     background-color: #fafafa;
     display: inline-block;
     font-family: 'Satoshi Variable', sans-serif;
+    h3{
+      color: #535862;
+font-size: 14px;
+font-style: normal;
+font-weight: 300;
+line-height: 25px; /* 156.25% */
+    }
   }
   
   .esgnow-bulk-import__file-label {
-    font-weight: 600;
+    font-weight: 300;
     color: #1f2937;
     margin-right: 4px;
   }
@@ -1342,4 +1366,98 @@
   width: 1px;
   height: 24px;
   background-color: #E0E0E0;
+}
+.esgnow-bulk-import__file-pill-container {
+  margin-top: 12px;
+}
+
+.esgnow-bulk-import__file-pill {
+  display: flex;
+  align-items: center;
+  background-color: #E9FBF0;
+  border: 1px solid #B5E3C6;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  position: relative;
+  width: fit-content;
+}
+
+.esgnow-bulk-import__file-pill-label {
+  font-weight: 500;
+  margin-right: 4px;
+}
+
+.esgnow-bulk-import__file-name-link {
+  color: #0073e6;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.esgnow-bulk-import__remove-file {
+  background: none;
+  border: none;
+  color: #D1293D;
+  font-size: 16px;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.esgnow-bulk-import__file-pill-hover {
+  position: relative;
+}
+
+.esgnow-bulk-import__file-pill-hover:hover .esgnow-bulk-import__tooltip-card {
+  display: block;
+}
+
+.esgnow-bulk-import__tooltip-card {
+  display: none;
+  position: absolute;
+  top: 28px;
+  left: 55%;
+  z-index: 10;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 10px 14px;
+  width: 350px;
+  font-size: 12px;
+  white-space: normal;
+}
+
+.esgnow-bulk-import__tooltip-card .esgnow-bulk-import__header-preview {
+  margin-top: 6px;
+  color: #414651;
+    margin: 0 0 0px 0;
+    font-size: 12px;
+    color: #424242;
+    line-height: 18px;
+    font-weight: 300;
+  
+}
+
+
+.esgnow-processing-toast {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  background: #F4F7FF;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px 24px;
+  width: 320px;
+  z-index: 100;
+
+  strong {
+    font-size: 16px;
+    color: #181D27;
+    font-weight: 600;
+  }
+
+  .toast-subtext {
+    font-size: 14px;
+    color: #717680;
+    margin-top: 4px;
+  }
 }

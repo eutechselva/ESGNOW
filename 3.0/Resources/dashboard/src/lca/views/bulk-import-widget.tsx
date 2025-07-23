@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
+import ReactDOM from 'react-dom';
 import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
@@ -34,8 +35,8 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [supplierNameField, setSupplierNameField] = useState('');
 
 
-  const [showSkipped, setShowSkipped] = useState(true);
-  const [showUnmapped, setShowUnmapped] = useState(true);
+  const [showSkipped, setShowSkipped] = useState(false);
+  const [showUnmapped, setShowUnmapped] = useState(false);
   const [showReadyRecords, setShowReadyRecords] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
@@ -45,7 +46,10 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [zipValidationStatus, setZipValidationStatus] = useState<"success" | "warning" | "error" | null>(null);
   const [availableImageFolders, setAvailableImageFolders] = useState<Set<string>>(new Set());
   const [imageFolderCount, setImageFolderCount] = useState<number | null>(null);
-
+  const imagesFileInputRef = useRef(null);
+  const [showPostUploadConfirmation, setShowPostUploadConfirmation] = useState(false);
+  const [showImportProcessingToast, setShowImportProcessingToast] = useState(false);
+  
   const ChevronIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
     <svg
       width="16"
@@ -411,6 +415,25 @@ const handleImagesFileChange = async (event: React.ChangeEvent<HTMLInputElement>
     }
   }
 };
+const handleRemoveDataFile = () =>{
+  setDataFile(null)
+    // Also reset the input element's value to allow re-uploading the same file
+    if (fileInputRef.current) {
+      fileInputRef.current.value = '';
+    }
+}
+
+const handleRemoveImagesFile = () => {
+  setImagesFile(null);
+  setImageFolderCount(null);
+  setZipValidationMessage('');
+  setZipValidationStatus(null);
+  
+  if (imagesFileInputRef.current) {
+    imagesFileInputRef.current.value = '';
+  }
+};
+
   const handleNext = () => {
     if (currentStep === 1) {
       // Validate that we have the necessary data before proceeding
@@ -554,6 +577,7 @@ This folder-based structure ensures proper mapping between products and their im
     setProductSubCategoryField('');
   };
 
+
   const handleBulkImport = async () => {
     if (!dataFile || !uxpContext) {
       setUploadMessage("Missing required data or context for import");
@@ -662,12 +686,9 @@ This folder-based structure ensures proper mapping between products and their im
         // Close modal after successful upload and show post-upload alert
         setTimeout(() => {
           handleModalClose();
-          setShowPostUploadAlert(true);
-          // Auto-hide the alert after 10 seconds
-          setTimeout(() => {
-            setShowPostUploadAlert(false);
-          }, 10000);
+          setShowPostUploadConfirmation(true); // new state
         }, 2000);
+        
       } else {
         const errorMessage = response.error || "Upload failed. Please try again.";
         setUploadMessage(`Upload failed: ${errorMessage}`);
@@ -737,7 +758,6 @@ This folder-based structure ensures proper mapping between products and their im
         return (
           <div className="esgnow-bulk-import__step-content">
             <div className="esgnow-bulk-import__content-header">
-              <p></p>
               <p>Download the sample files and compare it with your import files to ensure you have them perfect for import.</p>
             </div>
 
@@ -774,35 +794,31 @@ This folder-based structure ensures proper mapping between products and their im
                     Download sample file
                   </button>
                   <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
-                  {dataFile && <p className="esgnow-bulk-import__selected-file">Selected: {dataFile.name}</p>}
-                                  {/* Sheet Selection - Only show if multiple sheets */}
-                {sheets.length > 1 && (
-                  <div className="esgnow-bulk-import__sheet-selection">
-                    <label>Select Sheet:</label>
-                    <Select
-                      placeholder="Select a Sheet"
-                      options={[
-                        { value: "", label: "-- Select a sheet --" },
-                        ...sheets.map((sheet) => ({ value: sheet, label: sheet })),
-                      ]}
-                      selected={selectedSheet}
-                      onChange={(newValue: any) => handleSheetChange(newValue)}
-                    />
-                  </div>
-                )}
+
                 
-                {/* Show headers preview if available */}
-                {csvHeaders.length > 0 && (
-                  <div className="esgnow-bulk-import__headers-preview">
-                    <h4>Detected Headers:</h4>
-                    <div className="esgnow-bulk-import__headers-list">
-                      {csvHeaders.map((header, index) => (
-                        <span key={index} className="esgnow-bulk-import__header-tag">{header},</span>
-                      ))}
+                  {dataFile && (
+                    <>
+                    <div className="esgnow-bulk-import__file-pill-container">
+                      <div className="esgnow-bulk-import__file-pill">
+                        <span className="esgnow-bulk-import__file-pill-label">File uploaded:</span>
+                        <div className="esgnow-bulk-import__file-pill-hover">
+                          <span className="esgnow-bulk-import__file-name-link">{dataFile.name}</span>
+                          <div className="esgnow-bulk-import__tooltip-card">
+
+                            <p className="esgnow-bulk-import__header-preview">
+                              {csvHeaders.join(', ')}
+                            </p>
+                          </div>
+                        </div>
+                        <button className="esgnow-bulk-import__remove-file" onClick={handleRemoveDataFile}>
+                          ✕
+                        </button>
+                      </div>
                     </div>
-                    <h4>Found {csvRows.length} data rows</h4>
-                  </div>
-                )}
+                    <p className="esgnow-bulk-import__file-limit">Detected Headers: <span style={{ color: '#D1293D' }}>{csvRows.length} data rows found</span></p>
+                    </>
+                  )}
+
                 </div>
                 
 
@@ -864,7 +880,9 @@ This folder-based structure ensures proper mapping between products and their im
                     accept=".zip"
                     onChange={handleImagesFileChange}
                     style={{ display: 'none' }}
+                    ref={imagesFileInputRef}
                   />
+
                   <button 
                     className="esgnow-bulk-import__browse-btn"
                     onClick={() => document.getElementById('images-file-input')?.click()}
@@ -881,23 +899,36 @@ This folder-based structure ensures proper mapping between products and their im
                   </button>
                   <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
                   {imagesFile && (
-                      <p className="esgnow-bulk-import__selected-file">
-                        Selected: {imagesFile.name}
+                      <>
+                        <div className="esgnow-bulk-import__file-pill-container">
+                          <div className="esgnow-bulk-import__file-pill">
+                            <span className="esgnow-bulk-import__file-pill-label">ZIP uploaded:</span>
+                            <div className="esgnow-bulk-import__file-pill-hover">
+                              <span className="esgnow-bulk-import__file-name-link">{imagesFile.name}</span>
+                            </div>
+                            <button
+                              className="esgnow-bulk-import__remove-file"
+                              onClick={handleRemoveImagesFile}
+                            >
+                              ✕
+                            </button>
+                          </div>
+                        </div>
                         {imageFolderCount !== null && (
-                          <>
-                            <br />
-                            Contains: <strong>{imageFolderCount - 1}</strong> folder{imageFolderCount !== 1 && 's'}
-                          </>
+                          <p className="esgnow-bulk-import__file-limit">
+                            Contains: <strong>{imageFolderCount - 1}</strong> folder{imageFolderCount - 1 !== 1 && 's'}
+                          </p>
                         )}
-                      </p>
+                      </>
                     )}
+
                   
                   {/* ZIP Validation Message */}
-                  {zipValidationMessage && (
+                  {/* {zipValidationMessage && (
                     <div className={`esgnow-bulk-import__zip-validation esgnow-bulk-import__zip-validation--${zipValidationStatus}`}>
                       <span className="esgnow-validation-message">{zipValidationMessage}</span>
                     </div>
-                  )}
+                  )} */}
                 </div>
                 <div className="esgnow-bulk-import__note">
                 <svg
@@ -943,7 +974,7 @@ This folder-based structure ensures proper mapping between products and their im
 
         return (
           <div className="esgnow-bulk-import__step-content">
-            <h3>Field Mapping & Assigning Defaults</h3>
+            <h2 className='fieldMapTitle'>Field Mapping & Assigning Defaults</h2>
             
             {csvHeaders.length === 0 ? (
               <div className="esgnow-bulk-import__no-data">
@@ -955,7 +986,7 @@ This folder-based structure ensures proper mapping between products and their im
                   <span className="esgnow-bulk-import__file-label">File Selected:</span>
                   <span className="esgnow-bulk-import__selected-file"> {dataFile?.name}</span>
                 </div>
-                <h3>Review Auto-mapped Field Labels in Iviva’s ESG Now to that of your imported file headers and let our agentic AI do all the heavy lifting for you: importing and calculating the carbon footprint of all the products.</h3>
+                <h3 className='review'>Review Auto-mapped Field Labels in iviva’s ESG Now to that of your imported file headers and let our agentic AI do all the heavy lifting for you: importing and calculating the carbon footprint of all the products.</h3>
                 <div className="esgnow-field-mapping-table">
                 <div className="esgnow-field-mapping-header">
                   <div>ESG Now Field Labels</div>
@@ -1288,6 +1319,40 @@ This folder-based structure ensures proper mapping between products and their im
         </div>
       )}
 
+        {showPostUploadConfirmation && (
+          <div className="esgnow-alert-overlay">
+            <div className="esgnow-alert-box">
+              <div className="esgnow-alert-icon-frame">
+                <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M21 14V21L25.9065 23.625" stroke="black" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  <path d="M37.3 12.5L36.4 11C35.8 9.86 35.46 9.3 34.9 9.07C34.35 8.85 33.72 9.02 32.46 9.38L30.3 9.98C29.5 10.17 28.68 10.06 27.95 9.68L27.36 9.34C26.73 8.94 26.25 8.35 25.98 7.65L25.4 5.9C25.01 4.75 24.82 4.17 24.36 3.84C23.91 3.51 23.3 3.51 22.08 3.51H20.13C18.91 3.51 18.31 3.51 17.85 3.84C17.4 4.17 17.2 4.75 16.82 5.9L16.23 7.65C15.97 8.35 15.48 8.94 14.85 9.34L14.26 9.68C13.53 10.06 12.69 10.17 11.89 9.98L9.75 9.38C8.5 9.02 7.87 8.85 7.31 9.07C6.76 9.3 6.43 9.86 5.77 11L4.91 12.5C4.3 13.56 3.99 14.09 4.05 14.66C4.11 15.22 4.52 15.68 5.34 16.59L7.15 18.6C7.59 19.17 7.9 20.13 7.9 21.01C7.9 21.88 7.59 22.86 7.15 23.42L5.34 25.44C4.52 26.35 4.11 26.8 4.05 27.37C3.99 27.93 4.3 28.46 4.91 29.53L5.77 31.03C6.43 32.16 6.76 32.73 7.31 32.96C7.87 33.18 8.5 33 9.75 32.65L11.89 32.04C12.69 31.86 13.53 31.96 14.26 32.34L14.85 32.68C15.48 33.08 15.97 33.68 16.23 34.37L16.82 36.12C17.2 37.28 17.4 37.85 17.85 38.18C18.31 38.51 18.91 38.51 20.13 38.51H22.08C23.3 38.51 23.91 38.51 24.36 38.18C24.82 37.85 25.01 37.28 25.4 36.12L25.98 34.37C26.25 33.68 26.73 33.08 27.36 32.68L27.95 32.34C28.68 31.96 29.52 31.86 30.32 32.04L32.46 32.65C33.72 33 34.35 33.18 34.9 32.96C35.46 32.73 35.79 32.16 36.44 31.03L37.3 29.53C37.92 28.46 38.22 27.93 38.16 27.37C38.11 26.8 37.7 26.35 36.88 25.44L35.07 23.42C34.63 22.86 34.32 21.88 34.32 21.01C34.32 20.13 34.63 19.17 35.07 18.6L36.88 16.59C37.7 15.68 38.11 15.22 38.16 14.66C38.22 14.09 37.92 13.56 37.3 12.5Z" stroke="black" strokeWidth="1.5"/>
+                </svg>
+              </div>
+              <div className="esgnow-alert-heading">
+                Product import for carbon footprint computation has been scheduled.
+              </div>
+              <div className="esgnow-alert-description">
+                It’ll take us a few minutes to process the import and compute CO2 footprint. 
+                Worry not, you’ll be notified in-app and via email once it is complete. 
+                You will then be able to review and import the computed data.
+              </div>
+              <button
+                className="esgnow-alert-cta"
+                onClick={() => {
+                  setShowPostUploadConfirmation(false);
+                  setShowImportProcessingToast(true);
+
+                  setTimeout(() => {
+                    setShowImportProcessingToast(false);
+                  }, 10000);
+                }}
+              >
+                Okay, got it!
+              </button>
+            </div>
+          </div>
+        )}
+
 
       {!hideToggleButton && (
         <button 
@@ -1409,6 +1474,19 @@ This folder-based structure ensures proper mapping between products and their im
         {getStepContent()}
 
       </Modal>
+
+      {showImportProcessingToast &&
+        ReactDOM.createPortal(
+          <div className="esgnow-processing-toast">
+            <strong>Import and Computation Running</strong>
+            <div className="toast-subtext">
+              Product import and CO2 emissions calculations are in progress.
+            </div>
+          </div>,
+          document.body
+        )
+      }
+
     </div>
   );
 };
