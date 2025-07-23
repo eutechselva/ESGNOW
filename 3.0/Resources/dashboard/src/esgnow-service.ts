@@ -335,6 +335,65 @@ export async function bulkImageUpload(uxpContext: IContextProvider, payload: any
   );
 }
 
+// Chunk upload functions
+export async function initChunkUpload(uxpContext: IContextProvider, payload: any) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/init`,
+    RequestMethod.POST,
+    {},
+    payload
+  );
+}
+
+export async function uploadChunk(uxpContext: IContextProvider, payload: any) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/chunk`,
+    RequestMethod.POST,
+    {},
+    payload
+  );
+}
+
+export async function completeImageUpload(uxpContext: IContextProvider, payload: any) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/complete-image-upload`,
+    RequestMethod.POST,
+    {},
+    payload
+  );
+}
+
+export async function completeBulkUpload(uxpContext: IContextProvider, payload: any) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/complete-bulk-upload`,
+    RequestMethod.POST,
+    {},
+    payload
+  );
+}
+
+export async function getChunkUploadStatus(uxpContext: IContextProvider, uploadId: string) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/status/${uploadId}`,
+    RequestMethod.GET,
+    {}
+  );
+}
+
+export async function cancelChunkUpload(uxpContext: IContextProvider, uploadId: string) {
+  return executeRequest(
+    uxpContext,
+    `${BaseEndPoint}/products/chunk-upload/${uploadId}`,
+    RequestMethod.DELETE,
+    {}
+  );
+}
+
 export async function triggerAIProcessing(uxpContext: IContextProvider) {
   return executeRequest(
     uxpContext,

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
-import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
+import { bulkUpload, bulkImageUpload, triggerAIProcessing, initChunkUpload, uploadChunk, completeImageUpload } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
 const XLSX = require("xlsx");
@@ -526,6 +526,61 @@ This folder-based structure ensures proper mapping between products and their im
     }
   };
 
+  // Helper function to upload images using chunk upload
+  const uploadImagesWithChunks = async (file: File, uxpContext: IContextProvider, productCount?: number) => {
+    try {
+      const CHUNK_SIZE = 1024 * 1024 * 5; // 5MB chunks
+      const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+      
+      // 1. Initialize chunk upload
+      const initResponse = await initChunkUpload(uxpContext, {
+        filename: file.name,
+        totalSize: file.size,
+        totalChunks,
+        fileHash: '' // Optional
+      });
+      
+      if (!initResponse.data?.uploadId) {
+        throw new Error('Failed to initialize chunk upload');
+      }
+      
+      const uploadId = initResponse.data.uploadId;
+      
+      // 2. Upload chunks sequentially
+      for (let i = 0; i < totalChunks; i++) {
+        const start = i * CHUNK_SIZE;
+        const end = Math.min(start + CHUNK_SIZE, file.size);
+        const chunk = file.slice(start, end);
+        
+        const chunkFormData = new FormData();
+        chunkFormData.append('uploadId', uploadId);
+        chunkFormData.append('chunkIndex', i.toString());
+        chunkFormData.append('chunk', chunk);
+        
+        const chunkResponse = await uploadChunk(uxpContext, chunkFormData);
+        
+        if (!chunkResponse.data) {
+          throw new Error(`Failed to upload chunk ${i + 1}/${totalChunks}`);
+        }
+        
+        // Update progress message
+        const productMsg = productCount ? `Successfully imported ${productCount} products. ` : 'Successfully imported products. ';        setUploadMessage(`${productMsg}Uploading images: ${i + 1}/${totalChunks} chunks...`);
+      }
+      
+      // 3. Complete the image upload
+      const completeResponse = await completeImageUpload(uxpContext, { uploadId });
+      
+      if (!completeResponse.data) {
+        throw new Error('Failed to complete image upload');
+      }
+      
+      return { success: true };
+    } catch (error) {
+      console.error('Chunk upload error:', error);
+      return { success: false, error: error.message };
+    }
+  };
+
   const handleModalClose = () => {
     setIsModalOpen(false);
     // Reset form state when modal closes
@@ -631,18 +686,15 @@ This folder-based structure ensures proper mapping between products and their im
         setUploadMessage(`Successfully imported ${validRecords.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
         setUploadMessageType("success");
         
-        // If images file is provided, upload it after successful data upload
+        // If images file is provided, upload it using chunk upload after successful data upload
         if (imagesFile) {
           try {
-            const imageFormData = new FormData();
-            imageFormData.append("file", imagesFile);
+            const chunkUploadResult = await uploadImagesWithChunks(imagesFile, uxpContext, validRecords.length);
             
-            const imageResponse = await bulkImageUpload(uxpContext, imageFormData);
-            
-            if (imageResponse.data) {
+            if (chunkUploadResult.success) {
               setUploadMessage(`Successfully imported ${validRecords.length} products and uploaded images!`);
             } else {
-              setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+              setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${chunkUploadResult.error || 'Unknown error'}`);
             }
           } catch (imageError) {
             console.error("Image upload error:", imageError);

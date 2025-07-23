@@ -40108,7 +40108,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.addProductToProject = exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.triggerAIProcessing = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.addProductToProject = exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.triggerAIProcessing = exports.cancelChunkUpload = exports.getChunkUploadStatus = exports.completeBulkUpload = exports.completeImageUpload = exports.uploadChunk = exports.initChunkUpload = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
@@ -40311,6 +40311,43 @@ function bulkImageUpload(uxpContext, payload) {
     });
 }
 exports.bulkImageUpload = bulkImageUpload;
+// Chunk upload functions
+function initChunkUpload(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/init`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.initChunkUpload = initChunkUpload;
+function uploadChunk(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/chunk`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.uploadChunk = uploadChunk;
+function completeImageUpload(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/complete-image-upload`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.completeImageUpload = completeImageUpload;
+function completeBulkUpload(uxpContext, payload) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/complete-bulk-upload`, _uxp_1.RequestMethod.POST, {}, payload);
+    });
+}
+exports.completeBulkUpload = completeBulkUpload;
+function getChunkUploadStatus(uxpContext, uploadId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/status/${uploadId}`, _uxp_1.RequestMethod.GET, {});
+    });
+}
+exports.getChunkUploadStatus = getChunkUploadStatus;
+function cancelChunkUpload(uxpContext, uploadId) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return executeRequest(uxpContext, `${BaseEndPoint}/products/chunk-upload/${uploadId}`, _uxp_1.RequestMethod.DELETE, {});
+    });
+}
+exports.cancelChunkUpload = cancelChunkUpload;
 function triggerAIProcessing(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/products/trigger-ai-processing`, _uxp_1.RequestMethod.POST, {}, {});
@@ -41444,6 +41481,52 @@ This folder-based structure ensures proper mapping between products and their im
             URL.revokeObjectURL(url);
         }
     };
+    // Helper function to upload images using chunk upload
+    const uploadImagesWithChunks = (file, uxpContext, productCount) => __awaiter(void 0, void 0, void 0, function* () {
+        var _a;
+        try {
+            const CHUNK_SIZE = 1024 * 1024 * 5; // 5MB chunks
+            const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+            // 1. Initialize chunk upload
+            const initResponse = yield (0, esgnow_service_1.initChunkUpload)(uxpContext, {
+                filename: file.name,
+                totalSize: file.size,
+                totalChunks,
+                fileHash: '' // Optional
+            });
+            if (!((_a = initResponse.data) === null || _a === void 0 ? void 0 : _a.uploadId)) {
+                throw new Error('Failed to initialize chunk upload');
+            }
+            const uploadId = initResponse.data.uploadId;
+            // 2. Upload chunks sequentially
+            for (let i = 0; i < totalChunks; i++) {
+                const start = i * CHUNK_SIZE;
+                const end = Math.min(start + CHUNK_SIZE, file.size);
+                const chunk = file.slice(start, end);
+                const chunkFormData = new FormData();
+                chunkFormData.append('uploadId', uploadId);
+                chunkFormData.append('chunkIndex', i.toString());
+                chunkFormData.append('chunk', chunk);
+                const chunkResponse = yield (0, esgnow_service_1.uploadChunk)(uxpContext, chunkFormData);
+                if (!chunkResponse.data) {
+                    throw new Error(`Failed to upload chunk ${i + 1}/${totalChunks}`);
+                }
+                // Update progress message
+                const productMsg = productCount ? `Successfully imported ${productCount} products. ` : 'Successfully imported products. ';
+                setUploadMessage(`${productMsg}Uploading images: ${i + 1}/${totalChunks} chunks...`);
+            }
+            // 3. Complete the image upload
+            const completeResponse = yield (0, esgnow_service_1.completeImageUpload)(uxpContext, { uploadId });
+            if (!completeResponse.data) {
+                throw new Error('Failed to complete image upload');
+            }
+            return { success: true };
+        }
+        catch (error) {
+            console.error('Chunk upload error:', error);
+            return { success: false, error: error.message };
+        }
+    });
     const handleModalClose = () => {
         setIsModalOpen(false);
         // Reset form state when modal closes
@@ -41537,17 +41620,15 @@ This folder-based structure ensures proper mapping between products and their im
             if (response.data) {
                 setUploadMessage(`Successfully imported ${validRecords.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
                 setUploadMessageType("success");
-                // If images file is provided, upload it after successful data upload
+                // If images file is provided, upload it using chunk upload after successful data upload
                 if (imagesFile) {
                     try {
-                        const imageFormData = new FormData();
-                        imageFormData.append("file", imagesFile);
-                        const imageResponse = yield (0, esgnow_service_1.bulkImageUpload)(uxpContext, imageFormData);
-                        if (imageResponse.data) {
+                        const chunkUploadResult = yield uploadImagesWithChunks(imagesFile, uxpContext, validRecords.length);
+                        if (chunkUploadResult.success) {
                             setUploadMessage(`Successfully imported ${validRecords.length} products and uploaded images!`);
                         }
                         else {
-                            setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+                            setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${chunkUploadResult.error || 'Unknown error'}`);
                         }
                     }
                     catch (imageError) {
