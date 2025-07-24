@@ -41043,13 +41043,9 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const react_1 = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
-const react_dom_1 = __importDefault(__webpack_require__(/*! react-dom */ "react-dom"));
 const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 __webpack_require__(/*! ./bulk-import-widget.scss */ "./src/lca/views/bulk-import-widget.scss");
 const XLSX = __webpack_require__(/*! xlsx */ "./node_modules/xlsx/xlsx.mjs");
@@ -41084,8 +41080,8 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
     const [availableImageFolders, setAvailableImageFolders] = (0, react_1.useState)(new Set());
     const [imageFolderCount, setImageFolderCount] = (0, react_1.useState)(null);
     const imagesFileInputRef = (0, react_1.useRef)(null);
-    const [showPostUploadConfirmation, setShowPostUploadConfirmation] = (0, react_1.useState)(true);
-    const [showImportProcessingToast, setShowImportProcessingToast] = (0, react_1.useState)(true);
+    const [showPostUploadConfirmation, setShowPostUploadConfirmation] = (0, react_1.useState)(false);
+    const [showImportProcessingToast, setShowImportProcessingToast] = (0, react_1.useState)(false);
     // Chunk upload progress states
     const [isChunkUploading, setIsChunkUploading] = (0, react_1.useState)(false);
     const [uploadProgress, setUploadProgress] = (0, react_1.useState)({ current: 0, total: 0 });
@@ -41105,17 +41101,6 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
             document.removeEventListener('open-bulk-import', handleOpenBulkImport);
         };
     }, []);
-    const handleReviewClick = (e) => {
-        e.preventDefault();
-        // Navigate to your review page or tab
-        console.log("Clicked to review");
-    };
-    const handleRemindLater = (e) => {
-        e.preventDefault();
-        // You can hide the toast or reschedule later
-        console.log("Remind me later clicked");
-        setShowImportProcessingToast(false);
-    };
     // Mapping data aligned with microservice expected fields
     const mappingData = [
         {
@@ -42130,22 +42115,9 @@ This folder-based structure ensures proper mapping between products and their im
                         uploadProgress.total,
                         " chunks uploaded"))))),
             getStepContent()),
-        showImportProcessingToast &&
-            react_dom_1.default.createPortal(react_1.default.createElement("div", { className: "esgnow-processing-toast" },
-                react_1.default.createElement("div", { className: "toast-header" },
-                    react_1.default.createElement("span", { className: "toast-title" }, "Import and Computation Complete"),
-                    react_1.default.createElement("span", { className: "toast-icon-circle" },
-                        react_1.default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "10", height: "10", viewBox: "0 0 10 10", fill: "none" },
-                            react_1.default.createElement("g", { clipPath: "url(#clip0_25_2517)" },
-                                react_1.default.createElement("path", { d: "M7.5459 2.0744C7.93528 1.97307 8.34606 2.18116 8.48926 2.56659C8.64173 2.97741 8.43251 3.4344 8.02148 3.5871C7.65676 3.72244 7.23934 4.01598 6.80273 4.4201C6.37225 4.81857 5.95199 5.29689 5.58008 5.76483C4.83648 6.70042 4.31195 7.5602 4.30566 7.5705C4.17972 7.77698 3.96723 7.91356 3.73047 7.94452L3.62695 7.95135H3.61621C3.33749 7.94716 3.07866 7.7967 2.93848 7.55096L2.82422 7.35956C2.45805 6.76875 2.21021 6.6149 2.15137 6.58221C2.13238 6.58002 2.11235 6.57858 2.0918 6.5744C1.95695 6.54695 1.81264 6.47657 1.6875 6.34491C1.5586 6.20923 1.50061 6.05964 1.47656 5.94257C1.4647 5.88478 1.46054 5.83372 1.45996 5.79413C1.45968 5.77449 1.46008 5.7571 1.46094 5.74237C1.46115 5.73879 1.46167 5.73491 1.46191 5.73163C1.46204 5.72979 1.46175 5.72782 1.46191 5.72577C1.46228 5.7211 1.46328 5.71589 1.46387 5.71014C1.46504 5.69866 1.46629 5.6847 1.46875 5.66913C1.47367 5.63804 1.48284 5.59694 1.49707 5.55096C1.52448 5.46257 1.58028 5.33074 1.69922 5.21405L1.79785 5.13397C1.89679 5.06553 1.99552 5.03168 2.06348 5.01483C2.11116 5.00304 2.15299 4.99748 2.18457 4.99432C2.20055 4.99274 2.21497 4.99095 2.22656 4.99042H2.25488L2.3916 5.00018C2.67014 5.03901 3.10411 5.20743 3.60352 5.75604C3.93911 5.27919 4.38383 4.68648 4.89062 4.11444C5.61726 3.29426 6.52876 2.44766 7.46875 2.09882L7.5459 2.0744Z", fill: "white", stroke: "white" })),
-                            react_1.default.createElement("defs", null,
-                                react_1.default.createElement("clipPath", { id: "clip0_25_2517" },
-                                    react_1.default.createElement("rect", { width: "9.41176", height: "9.41176", fill: "white", transform: "translate(0.292969 0.294128)" })))))),
-                react_1.default.createElement("div", { className: "toast-subtext" }, "Product import and CO2 emissions calculations are complete and ready for review."),
-                react_1.default.createElement("div", { className: "toast-actions" },
-                    react_1.default.createElement("a", { href: "#", onClick: handleReviewClick }, "Click to review"),
-                    react_1.default.createElement("span", { className: "divider-popup" }, "|"),
-                    react_1.default.createElement("a", { href: "#", onClick: handleRemindLater }, "Remind me later"))), document.body)));
+        showImportProcessingToast && (react_1.default.createElement("div", { className: "esgnow-processing-toast" },
+            react_1.default.createElement("strong", null, "Import and Computation Running"),
+            react_1.default.createElement("div", { className: "toast-subtext" }, "Product import and CO2 emissions calculations are in progress.")))));
 };
 exports["default"] = BulkImportWidget;
 // Add inline styles for the progress indicators
@@ -48556,17 +48528,6 @@ module.exports = "data:image/svg+xml;base64,PCFET0NUWVBFIHN2ZyBQVUJMSUMgIi0vL1cz
 
 "use strict";
 module.exports = React;
-
-/***/ }),
-
-/***/ "react-dom":
-/*!***************************!*\
-  !*** external "ReactDOM" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = ReactDOM;
 
 /***/ }),
 
