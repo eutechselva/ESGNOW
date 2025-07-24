@@ -16,7 +16,8 @@
       "Bash(npm install:*)",
       "Bash(python3:*)",
       "Bash(rg:*)",
-      "Bash(sed:*)"
+      "Bash(sed:*)",
+      "mcp__ide__getDiagnostics"
     ],
     "deny": []
   },

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
-import { bulkUpload, bulkImageUpload, triggerAIProcessing } from '../../esgnow-service';
+import ReactDOM from 'react-dom';
+import { bulkUpload, bulkImageUpload, triggerAIProcessing, initChunkUpload, uploadChunk, completeImageUpload } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
 const XLSX = require("xlsx");
@@ -49,6 +50,11 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
   const [showPostUploadConfirmation, setShowPostUploadConfirmation] = useState(false);
   const [showImportProcessingToast, setShowImportProcessingToast] = useState(false);
   
+  // Chunk upload progress states
+  const [isChunkUploading, setIsChunkUploading] = useState(false);
+  const [uploadProgress, setUploadProgress] = useState({ current: 0, total: 0 });
+  const [currentUploadPhase, setCurrentUploadPhase] = useState<'data' | 'images' | 'complete'>('data');
+  
   const ChevronIcon: React.FC<{ isOpen: boolean }> = ({ isOpen }) => (
     <svg
       width="16"
@@ -84,6 +90,7 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
       document.removeEventListener('open-bulk-import', handleOpenBulkImport);
     };
   }, []);
+
 
     // Mapping data aligned with microservice expected fields
     const mappingData = [
@@ -548,7 +555,76 @@ This folder-based structure ensures proper mapping between products and their im
     }
   };
 
+  // Helper function to upload images using chunk upload
+  const uploadImagesWithChunks = async (file: File, uxpContext: IContextProvider, productCount?: number) => {
+    try {
+      setIsChunkUploading(true);
+      setCurrentUploadPhase('images');
+      
+      const CHUNK_SIZE = 1024 * 1024 * 5; // 5MB chunks
+      const totalChunks = Math.ceil(file.size / CHUNK_SIZE);
+      setUploadProgress({ current: 0, total: totalChunks });
+      
+      // 1. Initialize chunk upload
+      const initResponse = await initChunkUpload(uxpContext, {
+        filename: file.name,
+        totalSize: file.size,
+        totalChunks,
+        fileHash: '' // Optional
+      });
+      
+      if (!initResponse.data?.uploadId) {
+        throw new Error('Failed to initialize chunk upload');
+      }
+      
+      const uploadId = initResponse.data.uploadId;
+      
+      // 2. Upload chunks sequentially
+      for (let i = 0; i < totalChunks; i++) {
+        const start = i * CHUNK_SIZE;
+        const end = Math.min(start + CHUNK_SIZE, file.size);
+        const chunk = file.slice(start, end);
+        
+        const chunkFormData = new FormData();
+        chunkFormData.append('uploadId', uploadId);
+        chunkFormData.append('chunkIndex', i.toString());
+        chunkFormData.append('chunk', chunk);
+        
+        const chunkResponse = await uploadChunk(uxpContext, chunkFormData);
+        
+        if (!chunkResponse.data) {
+          throw new Error(`Failed to upload chunk ${i + 1}/${totalChunks}`);
+        }
+        
+        // Update progress
+        setUploadProgress({ current: i + 1, total: totalChunks });
+        const productMsg = productCount ? `Successfully imported ${productCount} products. ` : 'Successfully imported products. ';
+        setUploadMessage(`${productMsg}Uploading images: ${i + 1}/${totalChunks} chunks...`);
+      }
+      
+      // 3. Complete the image upload
+      setUploadMessage('Finalizing image upload...');
+      const completeResponse = await completeImageUpload(uxpContext, { uploadId });
+      
+      if (!completeResponse.data) {
+        throw new Error('Failed to complete image upload');
+      }
+      
+      setCurrentUploadPhase('complete');
+      return { success: true };
+    } catch (error) {
+      console.error('Chunk upload error:', error);
+      return { success: false, error: error.message };
+    } finally {
+      setIsChunkUploading(false);
+    }
+  };
+
   const handleModalClose = () => {
+    // Prevent closing if upload is in progress
+    if (isUploading || isChunkUploading) {
+      return;
+    }
     setIsModalOpen(false);
     // Reset form state when modal closes
     setCurrentStep(1);
@@ -565,6 +641,10 @@ This folder-based structure ensures proper mapping between products and their im
     setZipValidationMessage(null);
     setZipValidationStatus(null);
     setAvailableImageFolders(new Set());
+    // Reset chunk upload states
+    setIsChunkUploading(false);
+    setUploadProgress({ current: 0, total: 0 });
+    setCurrentUploadPhase('data');
     // Reset field mappings
     setProductCodeField('');
     setProductNameField('');
@@ -591,6 +671,7 @@ This folder-based structure ensures proper mapping between products and their im
     }
 
     setIsUploading(true);
+    setCurrentUploadPhase('data');
     setUploadMessage("Uploading products...");
     setUploadMessageType(null);
 
@@ -654,18 +735,15 @@ This folder-based structure ensures proper mapping between products and their im
         setUploadMessage(`Successfully imported ${validRecords.length} products! ${imagesFile ? 'Uploading images...' : ''}`);
         setUploadMessageType("success");
         
-        // If images file is provided, upload it after successful data upload
+        // If images file is provided, upload it using chunk upload after successful data upload
         if (imagesFile) {
           try {
-            const imageFormData = new FormData();
-            imageFormData.append("file", imagesFile);
+            const chunkUploadResult = await uploadImagesWithChunks(imagesFile, uxpContext, validRecords.length);
             
-            const imageResponse = await bulkImageUpload(uxpContext, imageFormData);
-            
-            if (imageResponse.data) {
+            if (chunkUploadResult.success) {
               setUploadMessage(`Successfully imported ${validRecords.length} products and uploaded images!`);
             } else {
-              setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${imageResponse.error || 'Unknown error'}`);
+              setUploadMessage(`Successfully imported ${validRecords.length} products, but image upload failed: ${chunkUploadResult.error || 'Unknown error'}`);
             }
           } catch (imageError) {
             console.error("Image upload error:", imageError);
@@ -1375,6 +1453,7 @@ This folder-based structure ensures proper mapping between products and their im
                   title="Previous"
                   className="esgnow-bulk-import__back-btn"
                   onClick={handleBack}
+                  disabled={isUploading || isChunkUploading}
                 />
               )}
               {currentStep < 3 ? (
@@ -1382,6 +1461,7 @@ This folder-based structure ensures proper mapping between products and their im
                   title="Next"
                   onClick={handleNext}
                   className="esgnow-bulk-import__next-btn"
+                  disabled={isUploading || isChunkUploading || (currentStep === 1 && (!dataFile || !imagesFile))}
                   styles={{
                     opacity: currentStep === 1 && (!dataFile || !imagesFile) ? 0.5 : 1,
                     pointerEvents: currentStep === 1 && (!dataFile || !imagesFile) ? "none" : "auto"
@@ -1391,9 +1471,15 @@ This folder-based structure ensures proper mapping between products and their im
               ) : (
                 <Button 
                   className="esgnow-bulk-import__import-btn"
-                  title={isUploading ? "Importing..." : "Proceed to Import"}
+                  title={
+                    isUploading || isChunkUploading ? 
+                      (currentUploadPhase === 'data' ? "Uploading data..." : 
+                       currentUploadPhase === 'images' ? "Uploading images..." : 
+                       "Finalizing...") : 
+                      "Proceed to Import"
+                  }
                   onClick={handleBulkImport}
-                  disabled={!productCodeField || !productNameField || !productDescriptionField || isUploading}
+                  disabled={!productCodeField || !productNameField || !productDescriptionField || isUploading || isChunkUploading}
                 />
               )}
               <div className="esgnow-bulk-import__vertical-separator" />
@@ -1468,6 +1554,38 @@ This folder-based structure ensures proper mapping between products and their im
           </div>
         )} */}
 
+        {/* Upload Progress and Warning */}
+        {(isUploading || isChunkUploading) && (
+          <div className="esgnow-bulk-import__upload-progress">
+            <div className="esgnow-bulk-import__upload-warning">
+              <div className="esgnow-bulk-import__warning-icon">⚠️</div>
+              <div className="esgnow-bulk-import__warning-text">
+                <strong>Upload in progress - Do not close this window!</strong>
+                <br />
+                <span>
+                  {currentUploadPhase === 'data' && 'Uploading product data...'}
+                  {currentUploadPhase === 'images' && `Uploading images: ${uploadProgress.current}/${uploadProgress.total} chunks`}
+                  {currentUploadPhase === 'complete' && 'Finalizing upload...'}
+                </span>
+              </div>
+            </div>
+            
+            {isChunkUploading && uploadProgress.total > 0 && (
+              <div className="esgnow-bulk-import__progress-bar">
+                <div className="esgnow-bulk-import__progress-bar-bg">
+                  <div 
+                    className="esgnow-bulk-import__progress-bar-fill"
+                    style={{ width: `${(uploadProgress.current / uploadProgress.total) * 100}%` }}
+                  />
+                </div>
+                <div className="esgnow-bulk-import__progress-text">
+                  {uploadProgress.current} / {uploadProgress.total} chunks uploaded
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
         {/* Step Content */}
         {getStepContent()}
 
@@ -1486,5 +1604,70 @@ This folder-based structure ensures proper mapping between products and their im
 };
 
 export default BulkImportWidget;
+
+// Add inline styles for the progress indicators
+const progressStyles = `
+.esgnow-bulk-import__upload-progress {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.esgnow-bulk-import__upload-warning {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.esgnow-bulk-import__warning-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.esgnow-bulk-import__warning-text {
+  flex: 1;
+}
+
+.esgnow-bulk-import__warning-text strong {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+.esgnow-bulk-import__progress-bar {
+  margin-top: 12px;
+}
+
+.esgnow-bulk-import__progress-bar-bg {
+  width: 100%;
+  height: 8px;
+  background-color: #e9ecef;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.esgnow-bulk-import__progress-bar-fill {
+  height: 100%;
+  background-color: #28a745;
+  transition: width 0.3s ease;
+}
+
+.esgnow-bulk-import__progress-text {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #6c757d;
+  text-align: center;
+}
+`;
+
+// Inject styles if not already present
+if (typeof document !== 'undefined' && !document.getElementById('esgnow-progress-styles')) {
+  const styleSheet = document.createElement('style');
+  styleSheet.id = 'esgnow-progress-styles';
+  styleSheet.textContent = progressStyles;
+  document.head.appendChild(styleSheet);
+}
 
 

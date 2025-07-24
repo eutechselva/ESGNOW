@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const productController = require('../controllers/product.controller');
 const uploadController = require('../controllers/upload.controller');
+const statusController = require('../controllers/status.controller');
 const { validateAccount } = require('../middlewares/auth.middleware');
 
 // Apply the account validation middleware to all routes
@@ -15,9 +16,20 @@ router.route('/')
 
 // Bulk upload routes (must come before /:id routes to avoid conflicts)
 router.post('/bulk-upload', uploadController.upload.single('file'), uploadController.bulkUploadProducts);
-router.post('/bulk-image-upload', uploadController.upload.single('file'), uploadController.bulkImageUpload);
+// Add timeout middleware for large file uploads
+const timeoutMiddleware = (req, res, next) => {
+  req.setTimeout(300000); // 5 minutes
+  res.setTimeout(300000); // 5 minutes
+  next();
+};
+
+router.post('/bulk-image-upload', timeoutMiddleware, uploadController.upload.single('file'), uploadController.bulkImageUpload);
 router.post('/trigger-ai-processing', uploadController.triggerAIProcessing);
 router.post('/delete-product-by-id', productController.deleteProductByID);
+
+// Status monitoring routes
+router.get('/processing-status', statusController.getProcessingStatus);
+router.get('/status/:productCode', statusController.getProductStatus);
 
 // Product routes with ID
 router.route('/:id')
