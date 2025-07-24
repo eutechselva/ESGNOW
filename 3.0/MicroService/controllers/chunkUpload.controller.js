@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const logger = require('../utils/logger');
 const { HTTP_STATUS, formatResponse } = require('../utils/http');
 const chunkUploadManager = require('../utils/chunkUpload');
+const { getAccount, getOriginUrl } = require('../middlewares/auth.middleware');
 
 // Set up multer for chunk uploads (memory storage for small chunks)
 const chunkStorage = multer.memoryStorage();
@@ -22,7 +23,7 @@ const chunkUpload = multer({
 const initializeChunkUpload = async (req, res) => {
   try {
     const { filename, totalSize, totalChunks, fileHash } = req.body;
-    const account = req.account;
+    const account = getAccount(req);
 
     // Validate required parameters
     if (!filename || !totalSize || !totalChunks) {
@@ -74,7 +75,7 @@ const initializeChunkUpload = async (req, res) => {
 const uploadChunk = async (req, res) => {
   try {
     const { uploadId, chunkIndex } = req.body;
-    const account = req.account;
+    const account = getAccount(req);
 
     // Validate required parameters
     if (!uploadId || chunkIndex === undefined || !req.file) {
@@ -125,7 +126,7 @@ const uploadChunk = async (req, res) => {
 const completeChunkUploadForBulkUpload = async (req, res) => {
   try {
     const { uploadId } = req.body;
-    const account = req.account;
+    const account = getAccount(req);
 
     if (!uploadId) {
       return res.status(HTTP_STATUS.BAD_REQUEST).json(formatResponse(
@@ -151,6 +152,9 @@ const completeChunkUploadForBulkUpload = async (req, res) => {
     // Create a mock req.file object for the existing bulkUploadProducts function
     const mockReq = {
       ...req,
+      headers: req.headers || {}, // Ensure headers exist
+      protocol: req.protocol || 'http',
+      get: req.get || ((headerName) => req.headers && req.headers[headerName.toLowerCase()]),
       file: {
         originalname: assembledFile.filename,
         path: assembledFile.filePath,
@@ -158,6 +162,15 @@ const completeChunkUploadForBulkUpload = async (req, res) => {
         mimetype: getContentType(assembledFile.filename)
       }
     };
+
+    // Debug logging
+    logger.info(`🔍 mockReq headers: ${JSON.stringify(mockReq.headers)}`);
+    const mockAccount = getAccount(mockReq);
+    logger.info(`🔍 Account from mockReq: ${mockAccount}`);
+    
+    if (!mockAccount) {
+      throw new Error('Account header missing in mock request for bulk upload processing');
+    }
 
     // Import and call the existing bulkUploadProducts function
     const { bulkUploadProducts } = require('./upload.controller');
@@ -187,7 +200,7 @@ const completeChunkUploadForBulkUpload = async (req, res) => {
     
     // Clean up on error
     try {
-      await chunkUploadManager.cleanupUpload(uploadId, req.account);
+      await chunkUploadManager.cleanupUpload(uploadId, getAccount(req));
     } catch (cleanupError) {
       logger.error('Error cleaning up after failed bulk upload:', cleanupError);
     }
@@ -207,7 +220,7 @@ const completeChunkUploadForBulkUpload = async (req, res) => {
 const completeChunkUploadForImageUpload = async (req, res) => {
   try {
     const { uploadId } = req.body;
-    const account = req.account;
+    const account = getAccount(req);
 
     if (!uploadId) {
       return res.status(HTTP_STATUS.BAD_REQUEST).json(formatResponse(
@@ -233,6 +246,9 @@ const completeChunkUploadForImageUpload = async (req, res) => {
     // Create a mock req.file object for the existing bulkImageUpload function
     const mockReq = {
       ...req,
+      headers: req.headers || {}, // Ensure headers exist
+      protocol: req.protocol || 'http',
+      get: req.get || ((headerName) => req.headers && req.headers[headerName.toLowerCase()]),
       file: {
         originalname: assembledFile.filename,
         path: assembledFile.filePath,
@@ -240,6 +256,25 @@ const completeChunkUploadForImageUpload = async (req, res) => {
         mimetype: getContentType(assembledFile.filename)
       }
     };
+
+    // Debug logging
+    logger.info(`🔍 mockReq headers for image upload: ${JSON.stringify(mockReq.headers)}`);
+    logger.info(`🔍 mockReq protocol: ${mockReq.protocol}`);
+    logger.info(`🔍 mockReq.get type: ${typeof mockReq.get}`);
+    const mockAccount = getAccount(mockReq);
+    logger.info(`🔍 Account from mockReq for image upload: ${mockAccount}`);
+    
+    // Test getOriginUrl
+    try {
+      const originUrl = getOriginUrl(req);
+      logger.info(`🔍 getOriginUrl result: ${originUrl}`);
+    } catch (error) {
+      logger.error(`🔍 getOriginUrl error: ${error.message}`);
+    }
+    
+    if (!mockAccount) {
+      throw new Error('Account header missing in mock request for image upload processing');
+    }
 
     // Import and call the existing bulkImageUpload function
     const { bulkImageUpload } = require('./upload.controller');
@@ -269,7 +304,7 @@ const completeChunkUploadForImageUpload = async (req, res) => {
     
     // Clean up on error
     try {
-      await chunkUploadManager.cleanupUpload(uploadId, req.account);
+      await chunkUploadManager.cleanupUpload(uploadId, getAccount(req));
     } catch (cleanupError) {
       logger.error('Error cleaning up after failed image upload:', cleanupError);
     }
@@ -289,7 +324,7 @@ const completeChunkUploadForImageUpload = async (req, res) => {
 const getUploadStatus = async (req, res) => {
   try {
     const { uploadId } = req.params;
-    const account = req.account;
+    const account = getAccount(req);
 
     const status = await chunkUploadManager.getUploadStatus(uploadId, account);
 
@@ -334,7 +369,7 @@ const getUploadStatus = async (req, res) => {
 const cancelUpload = async (req, res) => {
   try {
     const { uploadId } = req.params;
-    const account = req.account;
+    const account = getAccount(req);
 
     await chunkUploadManager.cleanupUpload(uploadId, account);
 

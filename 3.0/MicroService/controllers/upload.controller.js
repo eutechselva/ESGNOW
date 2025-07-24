@@ -10,7 +10,7 @@ const logger = require('../utils/logger');
 const { HTTP_STATUS, formatResponse } = require('../utils/http');
 const productService = require('../services/product.service');
 const { retry, generateUUID, addQSToURL } = require('../utils/helpers');
-const { getOriginUrl } = require('../middlewares/auth.middleware');
+const { getOriginUrl, getAccount } = require('../middlewares/auth.middleware');
 const { 
   classifyProduct, 
   classifyBOM, 
@@ -40,6 +40,8 @@ const upload = multer({
  * @param {Object} res - Express response object
  */
 const bulkUploadProducts = async (req, res) => {
+  let responseSent = false;
+  
   try {
     if (!req.file) {
       return res
@@ -194,62 +196,75 @@ const bulkUploadProducts = async (req, res) => {
       ));
     }
 
-    // Process products (create new or update existing)
-    const processedProducts = [];
-    const updateCounts = { created: 0, updated: 0 };
-
-    for (const productData of normalizedProducts) {
-      try {
-        // Check if product with same code already exists
-        const existingProduct = await Product.findOne({ code: productData.code });
-        
-        if (existingProduct) {
-          // Update existing product
-          productData.createdDate = existingProduct.createdDate; // Preserve original creation date
-          productData.aiProcessingStatus = 'pending'; // Mark for AI processing
-          
-          const updatedProduct = await Product.findOneAndUpdate(
-            { code: productData.code },
-            productData,
-            { new: true, runValidators: true }
-          );
-          
-          processedProducts.push(updatedProduct);
-          updateCounts.updated++;
-          logger.info(`Updated existing product: ${productData.code}`);
-        } else {
-          // Create new product
-          productData.aiProcessingStatus = 'pending'; // Mark for AI processing
-          const newProduct = new Product(productData);
-          const savedProduct = await newProduct.save();
-          
-          processedProducts.push(savedProduct);
-          updateCounts.created++;
-          logger.info(`Created new product: ${productData.code}`);
-        }
-      } catch (error) {
-        logger.error(`Error processing product ${productData.code}: ${error.message}`);
-        // Continue with other products
-      }
-    }
-
-    logger.info(`Bulk upload completed: ${updateCounts.created} created, ${updateCounts.updated} updated`);
-
-    // Send response immediately - AI processing will happen after image upload
+    // Send response immediately after validation
     res
       .status(HTTP_STATUS.CREATED)
       .json(formatResponse(true, {
-        products: processedProducts,
-        summary: updateCounts,
-        message: `Successfully processed ${processedProducts.length} products (${updateCounts.created} created, ${updateCounts.updated} updated)`
+        totalProducts: normalizedProducts.length,
+        message: `File processed successfully. Creating ${normalizedProducts.length} products in background.`
       }));
+    responseSent = true;
+
+    // Process products in background after sending response
+    setImmediate(async () => {
+      try {
+        logger.info(`📦 Starting background product processing for ${normalizedProducts.length} products`);
+        
+        const processedProducts = [];
+        const updateCounts = { created: 0, updated: 0 };
+
+        for (const productData of normalizedProducts) {
+          try {
+            // Check if product with same code already exists
+            const existingProduct = await Product.findOne({ code: productData.code });
+            
+            if (existingProduct) {
+              // Update existing product
+              productData.createdDate = existingProduct.createdDate; // Preserve original creation date
+              productData.aiProcessingStatus = 'pending'; // Mark for AI processing
+              
+              const updatedProduct = await Product.findOneAndUpdate(
+                { code: productData.code },
+                productData,
+                { new: true, runValidators: true }
+              );
+              
+              processedProducts.push(updatedProduct);
+              updateCounts.updated++;
+              logger.info(`✅ Updated existing product: ${productData.code}`);
+            } else {
+              // Create new product
+              productData.aiProcessingStatus = 'pending'; // Mark for AI processing
+              const newProduct = new Product(productData);
+              const savedProduct = await newProduct.save();
+              
+              processedProducts.push(savedProduct);
+              updateCounts.created++;
+              logger.info(`✅ Created new product: ${productData.code}`);
+            }
+          } catch (productError) {
+            logger.error(`❌ Error processing product ${productData.code}: ${productError.message}`);
+            // Continue with other products
+          }
+        }
+
+        logger.info(`🎉 Background product processing completed: ${updateCounts.created} created, ${updateCounts.updated} updated`);
+        
+      } catch (backgroundError) {
+        logger.error(`❌ Error in background product processing: ${backgroundError.message}`);
+      }
+    });
   } catch (error) {
     logger.error("Product upload error:", error);
-    res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json(formatResponse(
-      false,
-      null,
-      `Failed to upload products: ${error.message}`
-    ));
+    if (!responseSent) {
+      res.status(HTTP_STATUS.INTERNAL_SERVER_ERROR).json(formatResponse(
+        false,
+        null,
+        `Failed to upload products: ${error.message}`
+      ));
+    } else {
+      logger.error("Error occurred after response was sent - cannot send error response to client");
+    }
   } finally {
     // Clean up uploaded file
     if (req.file && req.file.path && fs.existsSync(req.file.path)) {
@@ -441,6 +456,8 @@ const extractRarFile = async (filePath, outputPath) => {
  * @param {Object} res - Express response object
  */
 const bulkImageUpload = async (req, res) => {
+  let responseSent = false;
+  
   if (!req.file) {
     return res.status(400).json(formatResponse(
       false,
@@ -455,7 +472,7 @@ const bulkImageUpload = async (req, res) => {
   const memUsedMB = (memUsage.heapUsed / (1024 * 1024)).toFixed(2);
   logger.info(`🖼️ Processing image upload: ${req.file.originalname} (${fileSizeMB} MB) - Memory: ${memUsedMB} MB`);
   
-  const account = req.account; // From validateAccount middleware
+  const account = getAccount(req);
   const tempDir = path.join(__dirname, "../temp", account);
   const uploadedFilePath = path.join(tempDir, req.file.originalname);
   let extractionDir;
@@ -486,78 +503,108 @@ const bulkImageUpload = async (req, res) => {
       throw new Error("Unsupported file type. Only ZIP and RAR are allowed.");
     }
 
-    // Process extracted folders
-    const productFolders = fs.readdirSync(extractionDir);
-    for (const productCode of productFolders) {
-      let imageUploadedPaths = [];
-
-      const productPath = path.join(extractionDir, productCode);
-      if (fs.statSync(productPath).isDirectory()) {
-        logger.info(`Processing images for product: ${productCode}`);
-
-        const images = fs
-          .readdirSync(productPath)
-          .filter((file) => /\.(jpg|jpeg|png|gif)$/i.test(file));
-        
-        for (const image of images) {
-          const imagePath = path.join(productPath, image);
-          if (fs.statSync(imagePath).isFile()) {
-            let name = `file-${generateUUID()}${path.extname(imagePath)}`;
-            let hostURL = getOriginUrl(req) || "http://127.0.0.1:5000";
-            let baseUrl = `${hostURL}/uploadcontent/notes/uploads/images/`;
-            let url = addQSToURL(baseUrl, { filename: name });
-
-            await uploadImageToExternalAPI(url, imagePath);
-            let downloadUrl = hostURL + "/content/notes/uploads/images/" + name;
-            imageUploadedPaths.push(downloadUrl);
-
-            await Product.updateOne(
-              { code: productCode },
-              { $push: { images: downloadUrl } }
-            );
-
-            logger.info(`Uploaded: ${downloadUrl}`);
-          }
-        }
-      }
-    }
-
-    // Trigger AI processing for pending products after images are uploaded
-    await processProductAI(req);
-
+    // Send response immediately after extraction
     res.json(formatResponse(
       true,
       [],
-      "Files uploaded and processed successfully"
+      "Files extracted successfully. Image processing started in background."
     ));
+    responseSent = true;
+
+    // Process images in background after sending response
+    setImmediate(async () => {
+      try {
+        logger.info(`🖼️ Starting background image processing for ${fs.readdirSync(extractionDir).length} product folders`);
+        
+        const productFolders = fs.readdirSync(extractionDir);
+        for (const productCode of productFolders) {
+          const productPath = path.join(extractionDir, productCode);
+          if (fs.statSync(productPath).isDirectory()) {
+            logger.info(`📂 Processing images for product: ${productCode}`);
+
+            const images = fs
+              .readdirSync(productPath)
+              .filter((file) => /\.(jpg|jpeg|png|gif)$/i.test(file));
+            
+            for (const image of images) {
+              try {
+                const imagePath = path.join(productPath, image);
+                if (fs.statSync(imagePath).isFile()) {
+                  let name = `file-${generateUUID()}${path.extname(imagePath)}`;
+                  let hostURL = getOriginUrl(req) || "http://127.0.0.1:5000";
+                  let baseUrl = `${hostURL}/uploadcontent/notes/uploads/images/`;
+                  let url = addQSToURL(baseUrl, { filename: name });
+
+                  await uploadImageToExternalAPI(url, imagePath);
+                  let downloadUrl = hostURL + "/content/notes/uploads/images/" + name;
+
+                  await Product.updateOne(
+                    { code: productCode },
+                    { $push: { images: downloadUrl } }
+                  );
+
+                  logger.info(`✅ Uploaded: ${downloadUrl}`);
+                }
+              } catch (imageError) {
+                logger.error(`❌ Failed to process image ${image} for product ${productCode}:`, imageError.message);
+                // Continue with next image
+              }
+            }
+          }
+        }
+
+        // Trigger AI processing after all images are processed
+        // await processProductAI(req);
+        
+        logger.info(`🎉 Background image processing completed`);
+        
+      } catch (backgroundError) {
+        logger.error(`❌ Error in background image processing:`, backgroundError.message);
+      } finally {
+        // Cleanup extraction directory after background processing
+        try {
+          if (fs.existsSync(extractionDir)) {
+            fs.removeSync(extractionDir);
+            logger.info(`🧹 Removed extraction directory after background processing: ${extractionDir}`);
+          }
+        } catch (cleanupError) {
+          logger.error(`❌ Error cleaning up extraction directory: ${cleanupError.message}`);
+        }
+      }
+    });
   } catch (error) {
     logger.error("Error:", error);
-    res.status(500).json(formatResponse(
-      false,
-      null,
-      error.message
-    ));
+    if (!responseSent) {
+      res.status(500).json(formatResponse(
+        false,
+        null,
+        error.message
+      ));
+    } else {
+      logger.error("Error occurred after response was sent - cannot send error response to client");
+    }
   } finally {
     // Cleanup temporary files
     try {
-      // Only attempt cleanup if these variables were created in the try block
-      if (typeof extractionDir !== 'undefined' && fs.existsSync(extractionDir)) {
+      // Only cleanup extraction directory if response wasn't sent (error occurred before background processing)
+      if (!responseSent && typeof extractionDir !== 'undefined' && fs.existsSync(extractionDir)) {
         fs.removeSync(extractionDir);
-        logger.info(`Removed extraction directory: ${extractionDir}`);
+        logger.info(`🧹 Removed extraction directory (error cleanup): ${extractionDir}`);
       }
       
+      // Always clean up uploaded files
       if (typeof uploadedFilePath !== 'undefined' && fs.existsSync(uploadedFilePath)) {
         fs.unlinkSync(uploadedFilePath);
-        logger.info(`Removed uploaded file: ${uploadedFilePath}`);
+        logger.info(`🧹 Removed uploaded file: ${uploadedFilePath}`);
       }
       
       // Also clean up the original multer uploaded file
       if (req.file && req.file.path && fs.existsSync(req.file.path)) {
         fs.unlinkSync(req.file.path);
-        logger.info(`Removed original uploaded file: ${req.file.path}`);
+        logger.info(`🧹 Removed original uploaded file: ${req.file.path}`);
       }
     } catch (cleanupError) {
-      logger.error(`Error during cleanup: ${cleanupError.message}`);
+      logger.error(`❌ Error during cleanup: ${cleanupError.message}`);
     }
   }
 };
