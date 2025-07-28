@@ -61,9 +61,11 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
 
   const handleReviewClick = (e: React.MouseEvent) => {
     e.preventDefault();
-    // Navigate to your review page or tab
-    console.log("Clicked to review");
-    handleToastClose()
+    handleToastClose();
+    setTimeout(() => {
+      window.location.reload();
+      
+    }, 300); // adjust delay in ms as needed
   };
   
 
@@ -867,7 +869,7 @@ This folder-based structure ensures proper mapping between products and their im
                   <div className="esgnow-bulk-import__upload-icon">
                     <DataFileIcon />
                   </div>
-                  <p>Drag and drop your <strong>data file</strong> here in .csv or .xls format</p>
+                  <p>Drag and drop your .csv or .xls format</p>
                   <p className="esgnow-bulk-import__or-text">or</p>
                   <input
                     type="file"
@@ -891,7 +893,7 @@ This folder-based structure ensures proper mapping between products and their im
                   >
                     Download sample file
                   </button>
-                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
+                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 100 MB</p>
 
                 
                   {dataFile && (
@@ -952,7 +954,7 @@ This folder-based structure ensures proper mapping between products and their im
                     strokeLinejoin="round"
                   />
                 </svg>
-                  <strong>Note: You can import upto 5000 records at a time</strong> 
+                  <strong>Note: You can import upto 1000 records at a time</strong> 
                 </div>
               </div>
                         <div className='esgnow-bulk-import__upload-section esgnow-test-center'>
