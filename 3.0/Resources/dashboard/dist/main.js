@@ -41188,8 +41188,13 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
             return;
         const fileName = file.name.toLowerCase();
         if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".csv")) {
-            console.error("Invalid file extension. Please upload a .xlsx or .csv file.");
-            // You can add toast notification here
+            alert("Invalid file format. Please upload a .xlsx or .csv file.");
+            return;
+        }
+        // Check file size (100MB = 104,857,600 bytes)
+        const maxFileSize = 100 * 1024 * 1024; // 100MB
+        if (file.size > maxFileSize) {
+            alert(`File size exceeds 100MB limit. Your file is ${(file.size / (1024 * 1024)).toFixed(2)}MB. Please reduce the file size and try again.`);
             return;
         }
         setDataFile(file);
@@ -41228,6 +41233,16 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
             const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
             const sheetHeaders = jsonData[0];
             const sheetData = XLSX.utils.sheet_to_json(sheet);
+            // Check product count limit (1000 max)
+            if (sheetData.length > 1000) {
+                alert(`Too many products. Maximum allowed is 1000 products, but your file contains ${sheetData.length} products. Please reduce the number of products and try again.`);
+                // Reset file input
+                if (fileInputRef.current) {
+                    fileInputRef.current.value = '';
+                }
+                setDataFile(null);
+                return;
+            }
             // Filter out empty headers
             const filteredHeaders = (sheetHeaders === null || sheetHeaders === void 0 ? void 0 : sheetHeaders.filter((x) => x)) || [];
             setCsvHeaders(filteredHeaders);
@@ -41378,6 +41393,12 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
     const handleImagesFileChange = (event) => __awaiter(void 0, void 0, void 0, function* () {
         if (event.target.files && event.target.files[0]) {
             const zipFile = event.target.files[0];
+            // Check file size (100MB = 104,857,600 bytes)
+            const maxFileSize = 100 * 1024 * 1024; // 100MB
+            if (zipFile.size > maxFileSize) {
+                alert(`ZIP file size exceeds 100MB limit. Your file is ${(zipFile.size / (1024 * 1024)).toFixed(2)}MB. Please reduce the file size and try again.`);
+                return;
+            }
             setImagesFile(zipFile);
             setZipValidationMessage(null);
             setZipValidationStatus(null);
@@ -41494,7 +41515,7 @@ IMPORTANT GUIDELINES:
 1. Create a folder for each product using the EXACT product code from your data file
 2. Place all images for that product inside its folder
 3. Supported formats: PNG, JPG, JPEG, GIF (case-insensitive)
-4. Maximum file size: 25MB for the entire ZIP file
+4. Maximum file size: 100MB for the entire ZIP file
 5. Image dimensions: Recommended 800x600 or higher for best quality
 6. Multiple images per product are supported
 
@@ -41631,6 +41652,13 @@ This folder-based structure ensures proper mapping between products and their im
         handleModalClose();
         setShowUploadConfirmation(true);
         try {
+            // Double-check product count limit before processing
+            if (csvRows.length > 1000) {
+                setUploadMessage(`Too many products. Maximum allowed is 1000 products, but your file contains ${csvRows.length} products.`);
+                setUploadMessageType("error");
+                setIsUploading(false);
+                return;
+            }
             // Filter out invalid rows - only send validated records
             const validRecords = csvRows.filter((row) => {
                 // Check if row has all mandatory fields
@@ -41776,7 +41804,7 @@ This folder-based structure ensures proper mapping between products and their im
                                     react_1.default.createElement(UploadIcon, null),
                                     "Browse File for upload"),
                                 react_1.default.createElement("button", { className: "esgnow-bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('data') }, "Download sample file"),
-                                react_1.default.createElement("p", { className: "esgnow-bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
+                                react_1.default.createElement("p", { className: "esgnow-bulk-import__file-limit" }, "Maximum file size: 100MB | Maximum products: 1000"),
                                 dataFile && (react_1.default.createElement(react_1.default.Fragment, null,
                                     react_1.default.createElement("div", { className: "esgnow-bulk-import__file-pill-container" },
                                         react_1.default.createElement("div", { className: "esgnow-bulk-import__file-pill" },
@@ -41796,7 +41824,7 @@ This folder-based structure ensures proper mapping between products and their im
                                     react_1.default.createElement("path", { d: "M2.20117 9.99998C2.20117 6.26803 2.20117 4.40205 3.42611 3.24268C4.65106 2.08331 6.62258 2.08331 10.5656 2.08331C14.5086 2.08331 16.4802 2.08331 17.7052 3.24268C18.9301 4.40205 18.9301 6.26803 18.9301 9.99998C18.9301 13.7319 18.9301 15.5979 17.7052 16.7573C16.4802 17.9166 14.5086 17.9166 10.5656 17.9166C6.62258 17.9166 4.65106 17.9166 3.42611 16.7573C2.20117 15.5979 2.20117 13.7319 2.20117 9.99998Z", stroke: "#414651", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }),
                                     react_1.default.createElement("path", { d: "M10.5656 13.3333V9.58331", stroke: "#414651", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" }),
                                     react_1.default.createElement("path", { d: "M10.5656 6.67642V6.66809", stroke: "#414651", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round" })),
-                                react_1.default.createElement("strong", null, "Note: You can import upto 5000 records at a time"))),
+                                react_1.default.createElement("strong", null, "Note: You can import up to 1000 products at a time with files up to 100MB"))),
                         react_1.default.createElement("div", { className: 'esgnow-bulk-import__upload-section esgnow-test-center' },
                             react_1.default.createElement("svg", { width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", xmlns: "http://www.w3.org/2000/svg" },
                                 react_1.default.createElement("path", { d: "M2.5 12C2.5 7.52166 2.5 5.28249 3.89124 3.89124C5.28249 2.5 7.52166 2.5 12 2.5C16.4783 2.5 18.7175 2.5 20.1088 3.89124C21.5 5.28249 21.5 7.52166 21.5 12C21.5 16.4783 21.5 18.7175 20.1088 20.1088C18.7175 21.5 16.4783 21.5 12 21.5C7.52166 21.5 5.28249 21.5 3.89124 20.1088C2.5 18.7175 2.5 16.4783 2.5 12Z", stroke: "#414651", "stroke-width": "1.5", "stroke-linejoin": "round" }),
@@ -41816,7 +41844,7 @@ This folder-based structure ensures proper mapping between products and their im
                                     react_1.default.createElement(UploadIcon, null),
                                     "Browse File for upload"),
                                 react_1.default.createElement("button", { className: "esgnow-bulk-import__download-sample-btn", onClick: () => handleDownloadSampleFile('images') }, "Download sample file"),
-                                react_1.default.createElement("p", { className: "esgnow-bulk-import__file-limit" }, "Maximum file size allowed is 25 MB"),
+                                react_1.default.createElement("p", { className: "esgnow-bulk-import__file-limit" }, "Maximum file size: 100MB"),
                                 imagesFile && (react_1.default.createElement(react_1.default.Fragment, null,
                                     react_1.default.createElement("div", { className: "esgnow-bulk-import__file-pill-container" },
                                         react_1.default.createElement("div", { className: "esgnow-bulk-import__file-pill" },

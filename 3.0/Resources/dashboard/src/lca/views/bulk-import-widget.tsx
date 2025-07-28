@@ -183,8 +183,14 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
 
     const fileName = file.name.toLowerCase();
     if (!fileName.endsWith(".xlsx") && !fileName.endsWith(".csv")) {
-      console.error("Invalid file extension. Please upload a .xlsx or .csv file.");
-      // You can add toast notification here
+      alert("Invalid file format. Please upload a .xlsx or .csv file.");
+      return;
+    }
+
+    // Check file size (100MB = 104,857,600 bytes)
+    const maxFileSize = 100 * 1024 * 1024; // 100MB
+    if (file.size > maxFileSize) {
+      alert(`File size exceeds 100MB limit. Your file is ${(file.size / (1024 * 1024)).toFixed(2)}MB. Please reduce the file size and try again.`);
       return;
     }
 
@@ -229,6 +235,17 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
       const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
       const sheetHeaders = jsonData[0] as string[];
       const sheetData = XLSX.utils.sheet_to_json(sheet);
+
+      // Check product count limit (1000 max)
+      if (sheetData.length > 1000) {
+        alert(`Too many products. Maximum allowed is 1000 products, but your file contains ${sheetData.length} products. Please reduce the number of products and try again.`);
+        // Reset file input
+        if (fileInputRef.current) {
+          fileInputRef.current.value = '';
+        }
+        setDataFile(null);
+        return;
+      }
 
       // Filter out empty headers
       const filteredHeaders = sheetHeaders?.filter((x: any) => x) || [];
@@ -415,6 +432,14 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
 const handleImagesFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
   if (event.target.files && event.target.files[0]) {
     const zipFile = event.target.files[0];
+    
+    // Check file size (100MB = 104,857,600 bytes)
+    const maxFileSize = 100 * 1024 * 1024; // 100MB
+    if (zipFile.size > maxFileSize) {
+      alert(`ZIP file size exceeds 100MB limit. Your file is ${(zipFile.size / (1024 * 1024)).toFixed(2)}MB. Please reduce the file size and try again.`);
+      return;
+    }
+    
     setImagesFile(zipFile);
     setZipValidationMessage(null);
     setZipValidationStatus(null);
@@ -545,7 +570,7 @@ IMPORTANT GUIDELINES:
 1. Create a folder for each product using the EXACT product code from your data file
 2. Place all images for that product inside its folder
 3. Supported formats: PNG, JPG, JPEG, GIF (case-insensitive)
-4. Maximum file size: 25MB for the entire ZIP file
+4. Maximum file size: 100MB for the entire ZIP file
 5. Image dimensions: Recommended 800x600 or higher for best quality
 6. Multiple images per product are supported
 
@@ -698,6 +723,14 @@ This folder-based structure ensures proper mapping between products and their im
     handleModalClose()
     setShowUploadConfirmation(true)
     try {
+      // Double-check product count limit before processing
+      if (csvRows.length > 1000) {
+        setUploadMessage(`Too many products. Maximum allowed is 1000 products, but your file contains ${csvRows.length} products.`);
+        setUploadMessageType("error");
+        setIsUploading(false);
+        return;
+      }
+
       // Filter out invalid rows - only send validated records
       const validRecords = csvRows.filter((row) => {
         // Check if row has all mandatory fields
@@ -891,7 +924,7 @@ This folder-based structure ensures proper mapping between products and their im
                   >
                     Download sample file
                   </button>
-                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
+                  <p className="esgnow-bulk-import__file-limit">Maximum file size: 100MB | Maximum products: 1000</p>
 
                 
                   {dataFile && (
@@ -952,7 +985,7 @@ This folder-based structure ensures proper mapping between products and their im
                     strokeLinejoin="round"
                   />
                 </svg>
-                  <strong>Note: You can import upto 5000 records at a time</strong> 
+                  <strong>Note: You can import up to 1000 products at a time with files up to 100MB</strong> 
                 </div>
               </div>
                         <div className='esgnow-bulk-import__upload-section esgnow-test-center'>
@@ -995,7 +1028,7 @@ This folder-based structure ensures proper mapping between products and their im
                   >
                     Download sample file
                   </button>
-                  <p className="esgnow-bulk-import__file-limit">Maximum file size allowed is 25 MB</p>
+                  <p className="esgnow-bulk-import__file-limit">Maximum file size: 100MB</p>
                   {imagesFile && (
                       <>
                         <div className="esgnow-bulk-import__file-pill-container">
