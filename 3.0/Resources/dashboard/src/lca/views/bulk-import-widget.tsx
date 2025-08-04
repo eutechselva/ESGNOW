@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Button, Modal, CRUDComponent, DropDownButton, Select, TableComponent } from 'uxp/components';
 import { IContextProvider } from '@uxp';
 import ReactDOM from 'react-dom';
+import { useHistory } from 'react-router-dom';
 import { bulkUpload, bulkImageUpload, triggerAIProcessing, initChunkUpload, uploadChunk, completeImageUpload } from '../../esgnow-service';
 import './bulk-import-widget.scss';
 
@@ -15,6 +16,7 @@ interface BulkImportWidgetProps {
 }
 
 const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxpContext, hideToggleButton = false }) => {
+  const history = useHistory();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [dataFile, setDataFile] = useState<File | null>(null);
@@ -63,7 +65,8 @@ const BulkImportWidget: React.FC<BulkImportWidgetProps> = ({ className = '', uxp
     e.preventDefault();
     // Navigate to your review page or tab
     console.log("Clicked to review");
-    handleToastClose()
+    handleToastClose();
+    history.push('/Apps/esgnow/dashboard/products');
   };
   
 
@@ -834,18 +837,6 @@ This folder-based structure ensures proper mapping between products and their im
     }
   };
 
-  
-  const getSampleData = (headerName: string) => {
-    if (csvRows.length > 0 && headerName) {
-      const sampleValues = csvRows
-        .slice(0, 3) // Get first 3 rows as sample
-        .map(row => row[headerName])
-        .filter(val => val !== undefined && val !== null && val !== '')
-        .join(', ');
-      return sampleValues || 'No sample data';
-    }
-    return 'No sample data';
-  };
 
   const DataFileIcon = () => (
 <svg width="82" height="82" viewBox="0 0 82 82" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -866,20 +857,6 @@ This folder-based structure ensures proper mapping between products and their im
       <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2"/>
       <polyline points="17,8 12,3 7,8" stroke="currentColor" strokeWidth="2"/>
       <line x1="12" y1="3" x2="12" y2="15" stroke="currentColor" strokeWidth="2"/>
-    </svg>
-  );
-
-  const DownloadIcon = () => (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" strokeWidth="2"/>
-      <polyline points="7,10 12,15 17,10" stroke="currentColor" strokeWidth="2"/>
-      <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" strokeWidth="2"/>
-    </svg>
-  );
-  const DropdownIcon = () => (
-    <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-      <path d="M7.39 3.5L3.70 5.25L7.39 7L11.08 5.25L7.39 3.5Z" 
-            stroke="#181D27" strokeWidth="1.67" fill="none"/>
     </svg>
   );
   

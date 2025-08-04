@@ -58,7 +58,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                 setShowDropdown(false);
             }
         };
-    
+
         document.addEventListener('mousedown', handleClickOutside);
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
@@ -284,57 +284,57 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             >
                                 + Add Product
                             </button>  */}
-                    <div className="action-buttons">
-                    <div className="addproduct-wrapper">
-                        <div className="addproduct-split-button">
-                        <div 
-                            className="addproduct-main"
-                            onClick={handleAddProduct}
-                        >
-                            <span className="addproduct-plus">＋</span>
-                            <span className="addproduct-text">New</span>
-                        </div>
-                        <div 
-                            className="addproduct-dropdown-trigger"
-                            onClick={(e) => {
-                            e.stopPropagation();
-                            setShowDropdown((prev) => !prev);
-                            }}
-                        >
-                            <span className="addproduct-down">▾</span>
-                        </div>
-                        </div>
+                            <div className="action-buttons">
+                                <div className="addproduct-wrapper">
+                                    <div className="addproduct-split-button">
+                                        <div
+                                            className="addproduct-main"
+                                            onClick={handleAddProduct}
+                                        >
+                                            <span className="addproduct-plus">＋</span>
+                                            <span className="addproduct-text">New</span>
+                                        </div>
+                                        <div
+                                            className="addproduct-dropdown-trigger"
+                                            onClick={(e) => {
+                                                e.stopPropagation();
+                                                setShowDropdown((prev) => !prev);
+                                            }}
+                                        >
+                                            <span className="addproduct-down">▾</span>
+                                        </div>
+                                    </div>
 
-                        {showDropdown && (
-                        <div className="dropdown-menu">
-                            <div className="dropdown-item" onClick={handleAddProduct}>
-                            <span className="svg-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                <path d="M8 3.33333V12.6667M3.33333 8H12.6667" stroke="#0156D2" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </span>
-                            Add New Product
-                            </div>
+                                    {showDropdown && (
+                                        <div className="dropdown-menu">
+                                            <div className="dropdown-item" onClick={handleAddProduct}>
+                                                <span className="svg-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
+                                                        <path d="M8 3.33333V12.6667M3.33333 8H12.6667" stroke="#0156D2" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </span>
+                                                Add New Product
+                                            </div>
 
-                            <div className="dropdown-item" onClick={handleBulkImport}>
-                            <span className="svg-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" fill="none" viewBox="0 0 19 16">
-                                <path d="M13.4935 6.00737C13.4988 6.00735 13.5042 6.00734 13.5096 6.00734C15.2902 6.00734 16.7337 7.35293 16.7337 9.01287C16.7337 10.5599 15.4799 11.8339 13.8678 12M13.4935 6.00737C13.5041 5.89737 13.5096 5.78597 13.5096 5.67339C13.5096 3.64463 11.7453 2 9.56896 2C7.50783 2 5.8163 3.47511 5.64297 5.35461M13.4935 6.00737C13.4202 6.76507 13.1002 7.4564 12.6088 8.011M5.64297 5.35461C3.82568 5.51582 2.40421 6.9426 2.40421 8.67887C2.40421 10.2945 3.63494 11.6421 5.27011 11.9515M5.64297 5.35461C5.75606 5.34458 5.87068 5.33945 5.98658 5.33945C6.7932 5.33945 7.53756 5.58796 8.13636 6.00734" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M9.56896 8.66667V14M9.56896 8.66667C9.06728 8.66667 8.12994 9.99621 7.77777 10.3333M9.56896 8.66667C10.0706 8.66667 11.008 9.99621 11.3601 10.3333" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </span>
-                            Bulk Import Products
+                                            <div className="dropdown-item" onClick={handleBulkImport}>
+                                                <span className="svg-icon">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" fill="none" viewBox="0 0 19 16">
+                                                        <path d="M13.4935 6.00737C13.4988 6.00735 13.5042 6.00734 13.5096 6.00734C15.2902 6.00734 16.7337 7.35293 16.7337 9.01287C16.7337 10.5599 15.4799 11.8339 13.8678 12M13.4935 6.00737C13.5041 5.89737 13.5096 5.78597 13.5096 5.67339C13.5096 3.64463 11.7453 2 9.56896 2C7.50783 2 5.8163 3.47511 5.64297 5.35461M13.4935 6.00737C13.4202 6.76507 13.1002 7.4564 12.6088 8.011M5.64297 5.35461C3.82568 5.51582 2.40421 6.9426 2.40421 8.67887C2.40421 10.2945 3.63494 11.6421 5.27011 11.9515M5.64297 5.35461C5.75606 5.34458 5.87068 5.33945 5.98658 5.33945C6.7932 5.33945 7.53756 5.58796 8.13636 6.00734" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                        <path d="M9.56896 8.66667V14M9.56896 8.66667C9.06728 8.66667 8.12994 9.99621 7.77777 10.3333M9.56896 8.66667C10.0706 8.66667 11.008 9.99621 11.3601 10.3333" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+                                                    </svg>
+                                                </span>
+                                                Bulk Import Products
+                                            </div>
+                                        </div>
+                                    )}
+                                </div>
                             </div>
-                        </div>
-                        )}
-                    </div>
-                    </div>
                         </div>
                     </div>
 
                     <div className="esgnow-search-filter-container">
                         <div className="esgnow-search-section">
-                        <div className="esgnow-search-filter-panel-wrapper">
+                            <div className="esgnow-search-filter-panel-wrapper">
                                 <div className="search-field">
                                     <FontAwesomeIcon icon={faSearch} className="search-icon" />
                                     <input
@@ -514,6 +514,23 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                     >
                                         <div className="esgnow-product-card-header">
                                             <div className="esgnow-product-code">{item.code}</div>
+
+                                            {/* AI Processing Status - shown when not completed */}
+                                            {(item.aiProcessingStatus && item.aiProcessingStatus !== 'completed') && (
+                                                <div className="esgnow-ai-status-badge">
+                                                    <div className="esgnow-ai-status-icon">
+                                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M6 1.2V3.6M6 8.4V10.8M10.8 6H8.4M3.6 6H1.2M9.396 2.604L7.944 4.056M4.056 7.944L2.604 9.396M9.396 9.396L7.944 7.944M4.056 4.056L2.604 2.604"
+                                                                stroke="#0156D2"
+                                                                strokeWidth="1.2"
+                                                                strokeLinecap="round"
+                                                                strokeLinejoin="round" />
+                                                        </svg>
+                                                    </div>
+                                                    <span className="esgnow-ai-status-text">AI Processing</span>
+                                                </div>
+                                            )}
+
                                             <div className="esgnow-co2-emission">
                                                 <span className="esgnow-co2-value">{parseFloat(item.co2Emission).toFixed(3)}</span>
                                                 <span className="esgnow-co2-unit">Kg CO₂e</span>
@@ -701,10 +718,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                         }}
                     />
                 </Modal>
-                
+
             )}
-                        {/* Bulk Import Widget - renders its own modal */}
-                        <BulkImportWidget uxpContext={uxpContext} hideToggleButton={true} />
+            {/* Bulk Import Widget - renders its own modal */}
+            <BulkImportWidget uxpContext={uxpContext} hideToggleButton={true} />
         </div>
     );
 };
