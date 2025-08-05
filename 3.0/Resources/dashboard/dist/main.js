@@ -41099,7 +41099,14 @@ const BulkImportWidget = ({ className = '', uxpContext, hideToggleButton = false
         // Navigate to your review page or tab
         console.log("Clicked to review");
         handleToastClose();
-        history.push('/Apps/esgnow/dashboard/products');
+        // Dispatch custom event to trigger refresh
+        const refreshEvent = new CustomEvent('refresh-products');
+        document.dispatchEvent(refreshEvent);
+        // Check current URL and only navigate if not already on products page
+        const currentPath = window.location.pathname;
+        if (currentPath !== '/Apps/esgnow/dashboard/products') {
+            history.push('/Apps/esgnow/dashboard/products');
+        }
     };
     const handleToastClose = () => {
         setShowImportProcessingToast(false);
@@ -45646,6 +45653,16 @@ const ProductDashboardWidget = ({ uxpContext }) => {
         const bulkImportEvent = new CustomEvent('open-bulk-import');
         document.dispatchEvent(bulkImportEvent);
     };
+    // Add this useEffect in ProductDashboardWidget component
+    React.useEffect(() => {
+        const handleRefreshProducts = () => {
+            refreshProducts();
+        };
+        document.addEventListener('refresh-products', handleRefreshProducts);
+        return () => {
+            document.removeEventListener('refresh-products', handleRefreshProducts);
+        };
+    }, []);
     React.useEffect(() => {
         const handleClickOutside = (event) => {
             const target = event.target;

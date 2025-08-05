@@ -48,6 +48,20 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
         const bulkImportEvent = new CustomEvent('open-bulk-import');
         document.dispatchEvent(bulkImportEvent);
     };
+
+    // Add this useEffect in ProductDashboardWidget component
+    React.useEffect(() => {
+        const handleRefreshProducts = () => {
+            refreshProducts();
+        };
+
+        document.addEventListener('refresh-products', handleRefreshProducts);
+
+        return () => {
+            document.removeEventListener('refresh-products', handleRefreshProducts);
+        };
+    }, []);
+
     React.useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             const target = event.target as HTMLElement;
