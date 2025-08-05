@@ -54,6 +54,10 @@
 
         .esgnow-refresh-icon {
           font-size: 16px;
+          
+          &.esgnow-ai-monitoring {
+            animation: spin 2s linear infinite;
+          }
         }
       }
 
@@ -900,6 +904,16 @@
 .esgnow-product-card-header {
   .esgnow-ai-status-badge {
     flex-shrink: 0;
+  }
+}
+
+// Animations
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 

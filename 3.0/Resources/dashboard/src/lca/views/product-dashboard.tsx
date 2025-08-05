@@ -49,18 +49,73 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
         document.dispatchEvent(bulkImportEvent);
     };
 
-    // Add this useEffect in ProductDashboardWidget component
+    // Enhanced event handling with smart polling for AI processing
+    const [isMonitoringAI, setIsMonitoringAI] = React.useState(false);
+
     React.useEffect(() => {
         const handleRefreshProducts = () => {
             refreshProducts();
         };
 
+        const handleStartAIMonitoring = () => {
+            setIsMonitoringAI(true);
+            refreshProducts(); // Initial refresh when AI processing starts
+        };
+
+        const handleStopAIMonitoring = () => {
+            setIsMonitoringAI(false);
+            refreshProducts(); // Final refresh when AI processing completes
+        };
+
         document.addEventListener('refresh-products', handleRefreshProducts);
+        document.addEventListener('start-ai-monitoring', handleStartAIMonitoring);
+        document.addEventListener('stop-ai-monitoring', handleStopAIMonitoring);
 
         return () => {
             document.removeEventListener('refresh-products', handleRefreshProducts);
+            document.removeEventListener('start-ai-monitoring', handleStartAIMonitoring);
+            document.removeEventListener('stop-ai-monitoring', handleStopAIMonitoring);
         };
     }, []);
+
+    // Smart polling during AI processing (only when needed)
+    React.useEffect(() => {
+        let pollInterval: NodeJS.Timeout;
+        
+        if (isMonitoringAI) {
+            pollInterval = setInterval(async () => {
+                try {
+                    const response = await getAllProducts(uxpContext);
+                    const processingProducts = response.data.products.filter(
+                        (product: any) => product.aiProcessingStatus && 
+                        product.aiProcessingStatus !== 'completed' && 
+                        product.aiProcessingStatus !== 'failed'
+                    );
+                    
+                    // Update products to show current processing status
+                    setProducts(response.data.products);
+                    
+                    // Stop monitoring when all processing is complete
+                    if (processingProducts.length === 0) {
+                        setIsMonitoringAI(false);
+                        alerts.show({
+                            title: "AI Processing Complete",
+                            content: "All products have finished processing!"
+                        });
+                        // Dispatch event to notify completion
+                        document.dispatchEvent(new CustomEvent('ai-processing-complete'));
+                    }
+                } catch (error) {
+                    console.error('AI processing monitoring error:', error);
+                    setIsMonitoringAI(false);
+                }
+            }, 5000); // Poll every 5 seconds during AI processing
+        }
+        
+        return () => {
+            if (pollInterval) clearInterval(pollInterval);
+        };
+    }, [isMonitoringAI, uxpContext]);
 
     React.useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -284,11 +339,14 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                             <Button
                                 className="esgnow-refresh-button"
                                 onClick={refreshProducts}
-                                disabled={isLoading}
-                                title="Refresh"
+                                disabled={isLoading || isMonitoringAI}
+                                title={isMonitoringAI ? "Monitoring AI Processing..." : "Refresh"}
                             >
-                                <span className="esgnow-refresh-icon">↻</span>
-                                {isLoading ? "Loading..." : "Refresh"}
+                                <span className={`esgnow-refresh-icon ${isMonitoringAI ? 'esgnow-ai-monitoring' : ''}`}>
+                                    {isMonitoringAI ? '🔄' : '↻'}
+                                </span>
+                                {isLoading ? "Loading..." : 
+                                 isMonitoringAI ? "AI Processing..." : "Refresh"}
                             </Button>
 
                             {/* {canRunCalculator(uxpContext) ?  */}

@@ -826,6 +826,9 @@ This folder-based structure ensures proper mapping between products and their im
           }
         }
 
+        // Start AI processing monitoring after successful import
+        document.dispatchEvent(new CustomEvent('start-ai-monitoring'));
+
         // Close modal after successful upload and show post-upload alert
         // setTimeout(() => {
         //   handleModalClose();
