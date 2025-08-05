@@ -41787,10 +41787,7 @@ This folder-based structure ensures proper mapping between products and their im
                             react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-area" },
                                 react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-icon" },
                                     react_1.default.createElement(DataFileIcon, null)),
-                                react_1.default.createElement("p", null,
-                                    "Drag and drop your ",
-                                    react_1.default.createElement("strong", null, "data file"),
-                                    " here in .csv or .xls format"),
+                                react_1.default.createElement("p", null, "Drag and drop your .csv or .xls format"),
                                 react_1.default.createElement("p", { className: "esgnow-bulk-import__or-text" }, "or"),
                                 react_1.default.createElement("input", { type: "file", id: "data-file-input", accept: ".csv,.xlsx,.xls", onChange: handleDataFileChange, style: { display: 'none' }, ref: fileInputRef }),
                                 react_1.default.createElement("button", { className: "esgnow-bulk-import__browse-btn", onClick: () => { var _a; return (_a = document.getElementById('data-file-input')) === null || _a === void 0 ? void 0 : _a.click(); } },
@@ -43707,7 +43704,7 @@ const HomeDashboard = ({ uxpContext }) => {
                             },
                             { id: 'category', label: 'Main Category' },
                             { id: 'subCategory', label: 'Sub Category' },
-                            { id: 'modifiedDate', label: 'Date Created/Modified' }
+                            { id: 'modifiedDate', label: 'Date Created' }
                         ],
                         defaultPageSize: 10,
                         data: {
