@@ -2,6 +2,7 @@ const axios = require("axios");
 require("dotenv").config();
 
 const productCategories = require("../data/productCategories.json");
+const materialsDatabase = require("../data/materials_database.json");
 const materialsDatabaseEnhanced = require("../data/esgnow.json");
 const manufacturingProcesses = require("../data/manufacturing_ef.json");
 const materialsDatabaseBasic = require("../data/materials_database_basic.json");
@@ -762,6 +763,27 @@ function findClosestMatch(input, validOptions, options = {}) {
     : matchValue;
 }
 
+// Function to format the materials database as a string for the prompt
+const formatBOMList = () => {
+  // Group materials by materialClass
+  const materialsByClass = {};
+
+  materialsDatabase.forEach((material) => {
+    if (!materialsByClass[material.materialClass]) {
+      materialsByClass[material.materialClass] = new Set();
+    }
+    materialsByClass[material.materialClass].add(material.specificMaterial);
+  });
+
+  // Convert to the required format
+  return Object.entries(materialsByClass)
+    .map(
+      ([materialClass, specificMaterials]) =>
+        `- ${materialClass}: ${Array.from(specificMaterials).join(", ")}`
+    )
+    .join("\n");
+};
+
 // Function to format the enhanced materials database with use case information
 const formatEnhancedBOMList = () => {
   // Group materials by materialClass with use case information
@@ -818,9 +840,21 @@ async function classifyProduct(productCode, name, description, imageUrl, req) {
     throw new Error("Product code, name, and description are required.");
   }
 
+  logger.info(`📋 Preparing categories list for prompt`);
+  // Construct categories list for the prompt
+  const categoriesList = Object.entries(productCategories)
+    .map(
+      ([category, subcategories]) =>
+        `${category}:\n  - ${subcategories.join("\n  - ")}`
+    )
+    .join("\n\n");
+
   logger.info(`📝 Building classification prompt`);
 
   const systemPrompt = `You are an expert product classification specialist with deep knowledge of product categories and their functional characteristics. Your task is to classify products into appropriate categories and subcategories based on their description and visual characteristics.
+
+AVAILABLE CATEGORIES AND SUBCATEGORIES:
+${categoriesList}
 
 CLASSIFICATION PRINCIPLES:
 1. You MUST ONLY select a category and subcategory EXACTLY as they appear in the provided list.
@@ -930,9 +964,9 @@ Return the result strictly in this JSON format:
       );
     }
 
-    updateAITokens(req, completion.usage);
+    updateAITokens(req, completion.usage.total_tokens);
     logger.info(
-      `📊 Updated token usage: ${completion.usage} tokens`
+      `📊 Updated token usage: ${completion.usage.total_tokens} tokens`
     );
 
     // Validate the category and subcategory
@@ -1141,7 +1175,7 @@ ${materialsList}
       );
     }
 
-    updateAITokens(req, response.usage);
+    updateAITokens(req, response.usage.total_tokens);
 
     // Validate and adjust material categories
     result.forEach((item) => {
@@ -1270,9 +1304,9 @@ const classifyBOM = async (
       weight,
     });
 
-    if (cacheClassifyBOM.has(keyClassifyBOM)) {
-      return cacheClassifyBOM.get(keyClassifyBOM);
-    }
+    // if (cacheClassifyBOM.has(keyClassifyBOM)) {
+    //   return cacheClassifyBOM.get(keyClassifyBOM);
+    // }
 
     const bomList = formatEnhancedBOMList();
     description = description.replace(";", " ");
@@ -1309,18 +1343,7 @@ RESPONSE FORMAT:
     "weight": <weight>,
     "reasoning": "<brief explanation including use case relevance>"
   }
-]
-
-### **Your Task**:
-1. Analyze the text description and image (if provided) to determine relevant materials. If the image shows materials that are missing from the description, you MUST add them to the BOM and allocate weight using realistic engineering assumptions.
-2. Pay close attention to all parts of the product details, including the name, description, and material fields, as they may each indicate distinct materials. However, do not interpret color names or color fields as materials.
-3. Identify materials based on both explicit fields and any implied mentions in the product name or description only when they describe the material construction or composition, not decorative finishes or colors.
-4. For each material, provide a brief reasoning (1–2 sentences) explaining why the material was included and how its weight was estimated.
-5. If a color field or description contains a term that matches a material name (e.g., "Maple," "Oak"), you MUST treat it as a color only and MUST NOT treat it as a material unless the description explicitly states it is a material or part of the product structure.
-
-
-Return the result **strictly as a valid JSON array** in the specified format. Do **not** include any explanation, extra text, or formatting outside the JSON array.  
-`;
+]`;
 
     const userPrompt = `Analyze the following product to determine its bill of materials composition:
 
@@ -1331,7 +1354,14 @@ Return the result **strictly as a valid JSON array** in the specified format. Do
 - **Total Weight**: ${weight} kg
 
 ### **Your Task**:
-1. Ensure the total weight of all materials adds up **exactly** to ${weight} kg.
+1. Analyze the text description and image (if provided) to determine relevant materials. If the image shows materials that are missing from the description, you MUST add them to the BOM and allocate weight using realistic engineering assumptions.
+2. Pay close attention to all parts of the product details, including the name, description, and material fields, as they may each indicate distinct materials. However, do not interpret color names or color fields as materials.
+3. Identify materials based on both explicit fields and any implied mentions in the product name or description only when they describe the material construction or composition, not decorative finishes or colors.
+4. Ensure the total weight of all materials adds up **exactly** to ${weight} kg.
+5. For each material, provide a brief reasoning (1–2 sentences) explaining why the material was included and how its weight was estimated.
+6. If a color field or description contains a term that matches a material name (e.g., "Maple," "Oak"), you MUST treat it as a color only and MUST NOT treat it as a material unless the description explicitly states it is a material or part of the product structure.
+
+Return the result **strictly as a valid JSON array** in the specified format. Do **not** include any explanation, extra text, or formatting outside the JSON array.
 `;
 
     const messages = [{ type: "text", text: userPrompt }];
@@ -1399,7 +1429,7 @@ Return the result **strictly as a valid JSON array** in the specified format. Do
       );
     }
 
-    updateAITokens(req, response.usage);
+    updateAITokens(req, response.usage.total_tokens);
 
     // Validate and adjust material categories
     result.forEach((item) => {
@@ -1659,6 +1689,23 @@ ${formattedBoM}
 AVAILABLE MANUFACTURING CATEGORIES AND PROCESSES:
 ${formattedProcesses}
 `;
+1. Every material in the BoM MUST be included in the response EXACTLY as provided, without modifications.
+2. You MUST ONLY use the exact materialClass and specificMaterial values from the BoM — DO NOT modify them in any way.
+3. Each material must have at least one manufacturing process.
+4. You MUST ONLY use manufacturing categories and processes from the list above.
+5. You MUST NOT invent new materials, processes, or categories that aren't in the provided list.
+6. The manufacturing processes selected for each material MUST BE RELEVANT to the materialClass — for example:
+   - Metal materials must only be assigned metal-related processes.
+   - Plastic materials must only be assigned plastic-related processes.
+   - Wood materials must only be assigned wood-related processes.
+   - Do NOT assign manufacturing processes from an unrelated category (e.g., don’t assign wood processes to plastic materials).
+7. You must follow industrial and logical manufacturing norms when mapping processes to material classes.
+8. The output MUST be valid JSON only — no comments, no extra text.
+
+Important:
+- Output ONLY a valid JSON object.
+- Ensure strict adherence to the rules and format above.
+`;
 
   try {
     const response = await makeOpenAIRequestWithRetry(async () => {
@@ -1674,7 +1721,7 @@ ${formattedProcesses}
 
     const result = response.choices[0].message.parsed.processes; // Access the 'processes' array
 
-    updateAITokens(req, response.usage);
+    updateAITokens(req, response.usage.total_tokens);
 
     return result;
   } catch (error) {
@@ -1766,7 +1813,7 @@ Important:
 
     const result = response.choices[0].message.parsed.processes;
 
-    updateAITokens(req, response.usage);
+    updateAITokens(req, response.usage.total_tokens);
 
     return result;
   } catch (error) {
@@ -1787,5 +1834,4 @@ module.exports = {
   classifyManufacturingProcess,
   classifyManufacturingProcessBasic,
   findClosestMatch, // Export the findClosestMatch function for use in other files
-  makeOpenAIRequestWithRetry, // Export the retry function for batch processing
 };

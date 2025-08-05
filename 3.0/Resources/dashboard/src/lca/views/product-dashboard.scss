@@ -786,3 +786,132 @@
   align-items: center;
   width: 50%;
 }
+
+// Add this to your bulk-import-widget.scss file
+
+.esgnow-ai-status-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(1, 86, 210, 0.1);
+  border: 1px solid rgba(1, 86, 210, 0.2);
+  border-radius: 12px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #0156D2;
+  line-height: 14px;
+  white-space: nowrap;
+}
+
+.esgnow-ai-status-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    animation: spin 1.5s linear infinite;
+    flex-shrink: 0;
+  }
+}
+
+.esgnow-ai-status-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: #0156D2;
+}
+
+// Animation for the spinning icon
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// Alternative status variations
+.esgnow-ai-status-badge {
+  &.processing {
+    background: rgba(1, 86, 210, 0.1);
+    border-color: rgba(1, 86, 210, 0.2);
+    color: #0156D2;
+    
+    .esgnow-ai-status-icon svg {
+      stroke: #0156D2;
+    }
+  }
+  
+  &.analyzing {
+    background: rgba(247, 144, 9, 0.1);
+    border-color: rgba(247, 144, 9, 0.2);
+    color: #F79009;
+    
+    .esgnow-ai-status-text {
+      color: #F79009;
+    }
+    
+    .esgnow-ai-status-icon svg {
+      stroke: #F79009;
+    }
+  }
+  
+  &.calculating {
+    background: rgba(124, 58, 237, 0.1);
+    border-color: rgba(124, 58, 237, 0.2);
+    color: #7C3AED;
+    
+    .esgnow-ai-status-text {
+      color: #7C3AED;
+    }
+    
+    .esgnow-ai-status-icon svg {
+      stroke: #7C3AED;
+    }
+  }
+  
+  &.pending {
+    background: rgba(107, 114, 128, 0.1);
+    border-color: rgba(107, 114, 128, 0.2);
+    color: #6B7280;
+    
+    .esgnow-ai-status-text {
+      color: #6B7280;
+    }
+    
+    .esgnow-ai-status-icon svg {
+      stroke: #6B7280;
+      animation: pulse 2s infinite; // Different animation for pending
+    }
+  }
+}
+
+// Ensure proper spacing in the product card header
+.esgnow-product-card-header {
+  .esgnow-ai-status-badge {
+    flex-shrink: 0;
+  }
+}
+
+// Mobile responsive adjustments
+@media (max-width: 768px) {
+  .esgnow-ai-status-badge {
+    padding: 3px 6px;
+    font-size: 10px;
+    
+    .esgnow-ai-status-icon svg {
+      width: 10px;
+      height: 10px;
+    }
+  }
+}
