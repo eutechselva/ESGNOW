@@ -378,7 +378,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                                 },
                                 { id: 'category', label: 'Main Category' },
                                 { id: 'subCategory', label: 'Sub Category' },
-                                { id: 'modifiedDate', label: 'Date Created/Modified' }
+                                { id: 'modifiedDate', label: 'Date Created' }
                             ],
                             defaultPageSize: 10,
                             data: {
