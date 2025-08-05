@@ -45690,10 +45690,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     // Stop monitoring when all processing is complete
                     if (processingProducts.length === 0) {
                         setIsMonitoringAI(false);
-                        alerts.show({
-                            title: "AI Processing Complete",
-                            content: "All products have finished processing!"
-                        });
+                        // alerts.show({
+                        //     title: "AI Processing Complete",
+                        //     content: "All products have finished processing!"
+                        // });
                         // Dispatch event to notify completion
                         document.dispatchEvent(new CustomEvent('ai-processing-complete'));
                     }
@@ -45876,7 +45876,7 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                 React.createElement("div", { className: "esgnow-header-left" },
                     React.createElement("h1", { className: "esgnow-dashboard-title" }, "Products")),
                 React.createElement("div", { className: "esgnow-header-right" },
-                    React.createElement(components_1.Button, { className: "esgnow-refresh-button", onClick: refreshProducts, disabled: isLoading || isMonitoringAI, title: isMonitoringAI ? "Monitoring AI Processing..." : "Refresh" },
+                    React.createElement(components_1.Button, { className: "esgnow-refresh-button", onClick: refreshProducts, disabled: isLoading || isMonitoringAI, title: "Refresh" },
                         React.createElement("span", { className: `esgnow-refresh-icon ${isMonitoringAI ? 'esgnow-ai-monitoring' : ''}` }, isMonitoringAI ? '🔄' : '↻'),
                         isLoading ? "Loading..." :
                             isMonitoringAI ? "AI Processing..." : "Refresh"),

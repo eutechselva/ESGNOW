@@ -98,10 +98,10 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                     // Stop monitoring when all processing is complete
                     if (processingProducts.length === 0) {
                         setIsMonitoringAI(false);
-                        alerts.show({
-                            title: "AI Processing Complete",
-                            content: "All products have finished processing!"
-                        });
+                        // alerts.show({
+                        //     title: "AI Processing Complete",
+                        //     content: "All products have finished processing!"
+                        // });
                         // Dispatch event to notify completion
                         document.dispatchEvent(new CustomEvent('ai-processing-complete'));
                     }
@@ -340,7 +340,7 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                 className="esgnow-refresh-button"
                                 onClick={refreshProducts}
                                 disabled={isLoading || isMonitoringAI}
-                                title={isMonitoringAI ? "Monitoring AI Processing..." : "Refresh"}
+                                title={"Refresh"}
                             >
                                 <span className={`esgnow-refresh-icon ${isMonitoringAI ? 'esgnow-ai-monitoring' : ''}`}>
                                     {isMonitoringAI ? '🔄' : '↻'}
