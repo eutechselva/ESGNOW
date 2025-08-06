@@ -374,7 +374,7 @@ const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
                                 { id: 'name', label: 'Product Name' },
                                 {
                                     id: 'co2Emission',
-                                    label: 'Carbon Footprint (KgCO2e)',
+                                    label: 'Carbon Footprint (KgCO₂e)',
                                 },
                                 { id: 'category', label: 'Main Category' },
                                 { id: 'subCategory', label: 'Sub Category' },

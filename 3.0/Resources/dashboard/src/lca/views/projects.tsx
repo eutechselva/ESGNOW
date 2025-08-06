@@ -204,23 +204,23 @@ const Projects: React.FC<IProjectProps> = (props) => {
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
-            label: "Carbon Footprint (KgCO2e)",
-            render: (row: ProjectImpact) => `${row.totalProjectImpact.toFixed(3)} KgCO2e`
+            label: "Carbon Footprint (KgCO₂e)",
+            render: (row: ProjectImpact) => `${row.totalProjectImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalMaterialsImpact",
-            label: "Materials (KgCO2e)",
-            render: (row: ProjectImpact) => `${row.totalMaterialsImpact.toFixed(3)} KgCO2e`
+            label: "Materials (KgCO₂e)",
+            render: (row: ProjectImpact) => `${row.totalMaterialsImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalManufacturingImpact",
-            label: "Manufacturing (KgCO2e)",
-            render: (row: ProjectImpact) => `${row.totalManufacturingImpact.toFixed(3)} KgCO2e`
+            label: "Manufacturing (KgCO₂e)",
+            render: (row: ProjectImpact) => `${row.totalManufacturingImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalTransportationImpact",
-            label: "Transportation (KgCO2e)",
-            render: (row: ProjectImpact) => `${row.totalTransportationImpact.toFixed(3)} KgCO2e`
+            label: "Transportation (KgCO₂e)",
+            render: (row: ProjectImpact) => `${row.totalTransportationImpact.toFixed(3)} KgCO₂e`
         },
     ];
 
