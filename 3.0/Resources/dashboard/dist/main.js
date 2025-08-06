@@ -43702,7 +43702,7 @@ const HomeDashboard = ({ uxpContext }) => {
                             { id: 'name', label: 'Product Name' },
                             {
                                 id: 'co2Emission',
-                                label: 'Carbon Footprint (KgCO2e)',
+                                label: 'Carbon Footprint (KgCO₂e)',
                             },
                             { id: 'category', label: 'Main Category' },
                             { id: 'subCategory', label: 'Sub Category' },
@@ -47800,23 +47800,23 @@ const Projects = (props) => {
         { id: "projectName", label: "Project Name" },
         {
             id: "totalProjectImpact",
-            label: "Carbon Footprint (KgCO2e)",
-            render: (row) => `${row.totalProjectImpact.toFixed(3)} KgCO2e`
+            label: "Carbon Footprint (KgCO₂e)",
+            render: (row) => `${row.totalProjectImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalMaterialsImpact",
-            label: "Materials (KgCO2e)",
-            render: (row) => `${row.totalMaterialsImpact.toFixed(3)} KgCO2e`
+            label: "Materials (KgCO₂e)",
+            render: (row) => `${row.totalMaterialsImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalManufacturingImpact",
-            label: "Manufacturing (KgCO2e)",
-            render: (row) => `${row.totalManufacturingImpact.toFixed(3)} KgCO2e`
+            label: "Manufacturing (KgCO₂e)",
+            render: (row) => `${row.totalManufacturingImpact.toFixed(3)} KgCO₂e`
         },
         {
             id: "totalTransportationImpact",
-            label: "Transportation (KgCO2e)",
-            render: (row) => `${row.totalTransportationImpact.toFixed(3)} KgCO2e`
+            label: "Transportation (KgCO₂e)",
+            render: (row) => `${row.totalTransportationImpact.toFixed(3)} KgCO₂e`
         },
     ];
     if (isLoading) {
