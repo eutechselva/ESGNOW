@@ -42161,11 +42161,7 @@ This folder-based structure ensures proper mapping between products and their im
                             react_1.default.createElement("clipPath", { id: "clip0_25_2517" },
                                 react_1.default.createElement("rect", { width: "9.41176", height: "9.41176", fill: "white", transform: "translate(0.292969 0.294128)" })))))),
                 (uploadMessageType === 'success' || uploadMessageType === 'error') && (react_1.default.createElement("span", { className: "toast-close", onClick: handleToastClose, style: { cursor: 'pointer', marginLeft: 'auto' } }, "\u2715"))),
-            react_1.default.createElement("div", { className: "toast-subtext" }, uploadMessage),
-            (uploadMessageType === 'success' || uploadMessageType === 'error') && (react_1.default.createElement("div", { className: "toast-actions" },
-                react_1.default.createElement("a", { href: "#", onClick: handleReviewClick }, "Click to review"),
-                react_1.default.createElement("span", { className: "divider" }, "|"),
-                react_1.default.createElement("a", { href: "#", onClick: handleToastClose }, "Remind me later")))), document.body)));
+            react_1.default.createElement("div", { className: "toast-subtext" }, uploadMessage)), document.body)));
 };
 exports["default"] = BulkImportWidget;
 // Add inline styles for the progress indicators
@@ -45690,10 +45686,10 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                     // Stop monitoring when all processing is complete
                     if (processingProducts.length === 0) {
                         setIsMonitoringAI(false);
-                        // alerts.show({
-                        //     title: "AI Processing Complete",
-                        //     content: "All products have finished processing!"
-                        // });
+                        alerts.show({
+                            title: "AI Processing Complete",
+                            content: "All products have finished processing!"
+                        });
                         // Dispatch event to notify completion
                         document.dispatchEvent(new CustomEvent('ai-processing-complete'));
                     }

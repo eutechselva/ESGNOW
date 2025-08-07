@@ -1645,13 +1645,13 @@ This folder-based structure ensures proper mapping between products and their im
             {uploadMessage}
           </div>
 
-          {(uploadMessageType === 'success' || uploadMessageType === 'error') && (
+          {/* {(uploadMessageType === 'success' || uploadMessageType === 'error') && (
             <div className="toast-actions">
               <a href="#" onClick={handleReviewClick}>Click to review</a>
               <span className="divider">|</span>
               <a href="#" onClick={handleToastClose}>Remind me later</a>
             </div>
-          )}
+          )} */}
         </div>,
         document.body
       )}
