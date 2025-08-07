@@ -886,14 +886,14 @@ This folder-based structure ensures proper mapping between products and their im
               <div className="esgnow-bulk-import__upload-section">
                 <h3 className="esgnow-bulk-import__section-title">A. Data File</h3>
                 <div
-                    className="esgnow-bulk-import__upload-area"
-                    onDragOver={(e) => e.preventDefault()}
-                    onDrop={(e) => {
-                      e.preventDefault();
-                      const file = e.dataTransfer.files?.[0];
-                      if (file) handleImagesFileChange({ target: { files: [file] } } as any);
-                    }}
-                  >
+                  className="esgnow-bulk-import__upload-area"
+                  onDragOver={(e) => e.preventDefault()}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    const file = e.dataTransfer.files?.[0];
+                    if (file) handleDataFileChange({ target: { files: [file] } } as any);
+                  }}
+                >
                   <div className="esgnow-bulk-import__upload-icon">
                     <DataFileIcon />
                   </div>
@@ -997,14 +997,15 @@ This folder-based structure ensures proper mapping between products and their im
               <div className="esgnow-bulk-import__upload-section">
                 <h3 className="esgnow-bulk-import__section-title">B. Images Zip File</h3>
                 <div
-                  className="esgnow-bulk-import__upload-area"
-                  onDragOver={(e) => e.preventDefault()}
-                  onDrop={(e) => {
-                    e.preventDefault();
-                    const file = e.dataTransfer.files?.[0];
-                    if (file) handleDataFileChange({ target: { files: [file] } } as any);
-                  }}
-                >
+                    className="esgnow-bulk-import__upload-area"
+                    onDragOver={(e) => e.preventDefault()}
+                    onDrop={(e) => {
+                      e.preventDefault();
+                      const file = e.dataTransfer.files?.[0];
+                      if (file) handleImagesFileChange({ target: { files: [file] } } as any);
+                    }}
+                  >
+
 
                   <div className="esgnow-bulk-import__upload-icon">
                     <ImageFileIcon />
