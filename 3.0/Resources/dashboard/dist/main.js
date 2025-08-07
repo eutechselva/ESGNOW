@@ -41786,7 +41786,13 @@ This folder-based structure ensures proper mapping between products and their im
                     react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-sections" },
                         react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-section" },
                             react_1.default.createElement("h3", { className: "esgnow-bulk-import__section-title" }, "A. Data File"),
-                            react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-area" },
+                            react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-area", onDragOver: (e) => e.preventDefault(), onDrop: (e) => {
+                                    var _a;
+                                    e.preventDefault();
+                                    const file = (_a = e.dataTransfer.files) === null || _a === void 0 ? void 0 : _a[0];
+                                    if (file)
+                                        handleImagesFileChange({ target: { files: [file] } });
+                                } },
                                 react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-icon" },
                                     react_1.default.createElement(DataFileIcon, null)),
                                 react_1.default.createElement("p", null, "Drag and drop your .csv or .xls format"),
@@ -41823,7 +41829,13 @@ This folder-based structure ensures proper mapping between products and their im
                                 react_1.default.createElement("path", { d: "M12 8V16M16 12H8", stroke: "#414651", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
                         react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-section" },
                             react_1.default.createElement("h3", { className: "esgnow-bulk-import__section-title" }, "B. Images Zip File"),
-                            react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-area" },
+                            react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-area", onDragOver: (e) => e.preventDefault(), onDrop: (e) => {
+                                    var _a;
+                                    e.preventDefault();
+                                    const file = (_a = e.dataTransfer.files) === null || _a === void 0 ? void 0 : _a[0];
+                                    if (file)
+                                        handleDataFileChange({ target: { files: [file] } });
+                                } },
                                 react_1.default.createElement("div", { className: "esgnow-bulk-import__upload-icon" },
                                     react_1.default.createElement(ImageFileIcon, null)),
                                 react_1.default.createElement("p", null,
