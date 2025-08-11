@@ -145,12 +145,18 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
     // Get unique categories and subcategories
     const categories = React.useMemo(() => {
-        return [...new Set(products.map((item: any) => item.category))].sort();
+        return [...new Set(products.map((item: any) => item.category))]
+            .sort((a, b) => a.localeCompare(b));
     }, [products]);
+    
 
     const subCategories = React.useMemo(() => {
-        return [...new Set(products.map((item: any) => item.subCategory))].filter(Boolean).sort();
-    }, [products]);
+        return [...new Set(
+            products
+                .filter((item: any) => selectedCategory ? item.category === selectedCategory : true)
+                .map((item: any) => item.subCategory)
+        )].sort((a, b) => a.localeCompare(b));
+    }, [products, selectedCategory]);
 
     const countries = React.useMemo(() => {
         return [...new Set(products.map((item: any) => {
