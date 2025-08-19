@@ -145,12 +145,18 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
 
     // Get unique categories and subcategories
     const categories = React.useMemo(() => {
-        return [...new Set(products.map((item: any) => item.category))].sort();
+        return [...new Set(products.map((item: any) => item.category))]
+            .sort((a, b) => a.localeCompare(b));
     }, [products]);
+    
 
     const subCategories = React.useMemo(() => {
-        return [...new Set(products.map((item: any) => item.subCategory))].filter(Boolean).sort();
-    }, [products]);
+        return [...new Set(
+            products
+                .filter((item: any) => selectedCategory ? item.category === selectedCategory : true)
+                .map((item: any) => item.subCategory)
+        )].sort((a, b) => a.localeCompare(b));
+    }, [products, selectedCategory]);
 
     const countries = React.useMemo(() => {
         return [...new Set(products.map((item: any) => {
@@ -453,17 +459,41 @@ const ProductDashboardWidget: React.FC<IWidgetProps> = ({ uxpContext }) => {
                                             </FormField>
 
                                             <FormField className="esgnow-filter-field">
-                                                <Label>Country of Manufacture</Label>
+                                                <Label>
+                                                    <span style={{ fontSize: '12px' }}>Country of Manufacture</span>
+                                                </Label>
                                                 <Select
                                                     selected={selectedCountry}
-                                                    options={countries.map(country => ({ label: country, value: country }))}
+                                                    options={[
+                                                        { label: 'China', value: 'China' },
+                                                        { label: 'Czech Republic', value: 'Czech Republic' },
+                                                        { label: 'France', value: 'France' },
+                                                        { label: 'Global', value: 'RoW' },
+                                                        { label: 'India', value: 'India' },
+                                                        { label: 'Netherlands', value: 'Netherlands' },
+                                                        { label: 'Poland', value: 'Poland' },
+                                                        { label: 'Spain', value: 'Spain' },
+                                                        { label: 'Taiwan', value: 'Taiwan' },
+                                                        { label: 'United Kingdom', value: 'United Kingdom' },
+                                                        { label: 'United States', value: 'United States' },
+                                                        { label: 'Vietnam', value: 'Vietnam' },
+                                                    ]}
                                                     onChange={(value: string) => {
                                                         setSelectedCountry(value);
-                                                        applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, value, sortBy);
+                                                        applyFilters(
+                                                            searchValue,
+                                                            selectedCategory,
+                                                            selectedSubCategory,
+                                                            maxCO2,
+                                                            minCO2,
+                                                            value,
+                                                            sortBy
+                                                        );
                                                     }}
                                                     placeholder="-- All Countries --"
                                                 />
                                             </FormField>
+
 
                                             <FormField className="esgnow-filter-field">
                                                 <Label>Min CO₂ Emission (Kg CO₂e)</Label>
