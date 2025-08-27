@@ -21,7 +21,7 @@ interface ValidationError {
     destinationCountry?: boolean;
     originGateway?: boolean;
     destinationGateway?: boolean;
-    transportMode?: boolean;
+    // Removed transportMode since it's hardcoded
 }
 
 export interface TransportLeg {
@@ -74,7 +74,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         destinationCountry: "",
         originGateway: "",
         destinationGateway: "",
-        transportMode: "",
+        transportMode: "SeaFreight", // Set default to SeaFreight
         transportDistance: 0,
         transportEmission: 0,
         originGateways: [],
@@ -279,7 +279,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     };
-    // Add validation function
+    
+    // Updated validation function - removed transportMode validation
     const validateTransportLegs = (): boolean => {
         const newErrors: ValidationError[] = transportLegs.map(leg => {
             const legErrors: ValidationError = {};
@@ -287,7 +288,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             // Check required fields for all plans
             if (!leg.originCountry) legErrors.originCountry = true;
             if (!leg.destinationCountry) legErrors.destinationCountry = true;
-            if (!leg.transportMode) legErrors.transportMode = true;
+            // Removed transportMode validation since it's hardcoded
 
             // Check additional fields for professional plan
             if (plan === 'professional') {
@@ -303,6 +304,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         // Return true if there are no errors (all fields are valid)
         return newErrors.every(error => Object.keys(error).length === 0);
     };
+    
     const calculateTransportationEmission = async () => {
         try {
             const updatedLegs = [...transportLegs];
@@ -313,7 +315,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 const leg = updatedLegs[i];
                 const payload = {
                     weightKg: totalTransportWeight,
-                    transportMode: leg.transportMode,
+                    transportMode: "SeaFreight", // Hardcoded to SeaFreight
                     transportKm: leg.transportDistance
                 };
 
@@ -336,24 +338,25 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         }
     };
 
-// Update handleNext function to validate before proceeding
-const handleNext = () => {
-    // If we're on the transport selection step (step 1)
-    if (activeStep === 1) {
-        const isValid = validateTransportLegs();
-        if (!isValid) {
-            // If validation fails, don't proceed
-            return;
+    // Update handleNext function to validate before proceeding
+    const handleNext = () => {
+        // If we're on the transport selection step (step 1)
+        if (activeStep === 1) {
+            const isValid = validateTransportLegs();
+            if (!isValid) {
+                // If validation fails, don't proceed
+                return;
+            }
         }
-    }
+        
+        if (activeStep < steps.length - 1) {
+            setActiveStep(activeStep + 1);
+        }
+        if (activeStep === 2) {
+            calculateTransportationEmission();
+        }
+    };
     
-    if (activeStep < steps.length - 1) {
-        setActiveStep(activeStep + 1);
-    }
-    if (activeStep === 2) {
-        calculateTransportationEmission();
-    }
-};
     const handlePrevious = () => {
         if (activeStep > 0) {
             setActiveStep(activeStep - 1);
@@ -444,7 +447,7 @@ const handleNext = () => {
                         destinationCountry: "",
                         originGateway: "",
                         destinationGateway: "",
-                        transportMode: "",
+                        transportMode: "SeaFreight", // Set default to SeaFreight
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
@@ -641,7 +644,7 @@ const handleNext = () => {
                         destinationCountry: "",
                         originGateway: "",
                         destinationGateway: "",
-                        transportMode: "",
+                        transportMode: "SeaFreight", // Set default to SeaFreight
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],

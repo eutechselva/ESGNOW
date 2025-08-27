@@ -19,7 +19,7 @@ interface ValidationError {
     destinationCountry?: boolean;
     originGateway?: boolean;
     destinationGateway?: boolean;
-    transportMode?: boolean;
+    // Removed transportMode from validation since it's hardcoded
 }
 
 interface TransportSelectionStepProps {
@@ -48,7 +48,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
             destinationCountry: "",
             originGateway: "",
             destinationGateway: "",
-            transportMode: "",
+            transportMode: "SeaFreight", // Hardcoded to SeaFreight
             transportDistance: 0,
             transportEmission: 0,
             originGateways: [],
@@ -108,13 +108,13 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                     else {
                         updatedLeg = {
                             ...updatedLeg,
-                            [field]: value,
-                            ...(field === 'transportMode' && { transportEmission: 0 })
+                            [field]: value
                         };
                     }
 
-                    // Calculate distance if all required fields are filled
-                    if (field === 'transportMode' &&
+                    // Calculate distance only when destination gateway is selected (for professional plan)
+                    if (plan === 'professional' && 
+                        field === 'destinationGateway' &&
                         updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
                         setTimeout(() => {
@@ -133,7 +133,10 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                                 console.error('Failed to calculate transport distance:', error);
                             });
                         }, 0);
-                    } else if (field === 'transportMode' &&
+                    } 
+                    // Calculate distance only when destination country is selected (for basic plan)
+                    else if (plan !== 'professional' &&
+                        field === 'destinationCountry' &&
                         updatedLeg.originCountry &&
                         updatedLeg.destinationCountry) {
                         setTimeout(() => {
@@ -168,7 +171,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
             {transportLegs.map((leg, index) => (
                 <div key={leg.id} className="transport-selection-form">
                     <div className="transport-leg-header">
-                        <h3>Transport Leg {index + 1}</h3>
+                        <h3>Transport Leg {index + 1} (Sea Freight)</h3>
                     </div>
 
                     <div className="remove-leg-container">
@@ -208,6 +211,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                             <span className="error-text">Destination country is required</span>
                         )}
                     </FormField>
+                    
                     {plan === 'professional' && (
                         <FormField>
                             <Label><span className="label-text">Origin Gateway</span></Label>
@@ -224,7 +228,6 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         </FormField>
                     )}
 
-
                     {plan === 'professional' && (
                         <FormField>
                             <Label><span className="label-text">Destination Gateway</span></Label>
@@ -240,23 +243,6 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                             )}
                         </FormField>
                     )}
-
-                    <FormField>
-                        <Label><span className="label-text">Transport Mode</span></Label>
-                        <Select
-                            className={`highlighted-select ${errors[index]?.transportMode ? 'error-field' : ''}`}
-                            options={[
-                                { label: "Sea Freight", value: "SeaFreight" },
-                                // Additional transport modes could be added here
-                            ]}
-                            placeholder="Select Transport Mode"
-                            selected={leg.transportMode}
-                            onChange={(value) => updateTransportLeg(leg.id, 'transportMode', value)}
-                        />
-                        {errors[index]?.transportMode && (
-                            <span className="error-text">Transport mode is required</span>
-                        )}
-                    </FormField>
                 </div>
             ))}
 

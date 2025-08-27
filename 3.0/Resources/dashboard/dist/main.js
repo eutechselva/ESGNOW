@@ -43811,7 +43811,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
             destinationCountry: "",
             originGateway: "",
             destinationGateway: "",
-            transportMode: "",
+            transportMode: "SeaFreight",
             transportDistance: 0,
             transportEmission: 0,
             originGateways: [],
@@ -43990,7 +43990,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     });
-    // Add validation function
+    // Updated validation function - removed transportMode validation
     const validateTransportLegs = () => {
         const newErrors = transportLegs.map(leg => {
             const legErrors = {};
@@ -43999,8 +43999,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 legErrors.originCountry = true;
             if (!leg.destinationCountry)
                 legErrors.destinationCountry = true;
-            if (!leg.transportMode)
-                legErrors.transportMode = true;
+            // Removed transportMode validation since it's hardcoded
             // Check additional fields for professional plan
             if (plan === 'professional') {
                 if (!leg.originGateway)
@@ -44023,7 +44022,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 const leg = updatedLegs[i];
                 const payload = {
                     weightKg: totalTransportWeight,
-                    transportMode: leg.transportMode,
+                    transportMode: "SeaFreight",
                     transportKm: leg.transportDistance
                 };
                 const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, payload);
@@ -44100,7 +44099,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         destinationCountry: "",
                         originGateway: "",
                         destinationGateway: "",
-                        transportMode: "",
+                        transportMode: "SeaFreight",
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
@@ -44203,7 +44202,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         destinationCountry: "",
                         originGateway: "",
                         destinationGateway: "",
-                        transportMode: "",
+                        transportMode: "SeaFreight",
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
@@ -44661,7 +44660,7 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                 destinationCountry: "",
                 originGateway: "",
                 destinationGateway: "",
-                transportMode: "",
+                transportMode: "SeaFreight",
                 transportDistance: 0,
                 transportEmission: 0,
                 originGateways: [],
@@ -44705,10 +44704,11 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                             }))) || [], destinationGateway: '', transportEmission: 0 });
                     }
                     else {
-                        updatedLeg = Object.assign(Object.assign(Object.assign({}, updatedLeg), { [field]: value }), (field === 'transportMode' && { transportEmission: 0 }));
+                        updatedLeg = Object.assign(Object.assign({}, updatedLeg), { [field]: value });
                     }
-                    // Calculate distance if all required fields are filled
-                    if (field === 'transportMode' &&
+                    // Calculate distance only when destination gateway is selected (for professional plan)
+                    if (plan === 'professional' &&
+                        field === 'destinationGateway' &&
                         updatedLeg.originGateway &&
                         updatedLeg.destinationGateway) {
                         setTimeout(() => {
@@ -44720,7 +44720,9 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                             });
                         }, 0);
                     }
-                    else if (field === 'transportMode' &&
+                    // Calculate distance only when destination country is selected (for basic plan)
+                    else if (plan !== 'professional' &&
+                        field === 'destinationCountry' &&
                         updatedLeg.originCountry &&
                         updatedLeg.destinationCountry) {
                         setTimeout(() => {
@@ -44741,12 +44743,13 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
     });
     return (React.createElement("div", { className: "transport-selection-container" },
         transportLegs.map((leg, index) => {
-            var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
+            var _a, _b, _c, _d, _e, _f, _g, _h;
             return (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
                 React.createElement("div", { className: "transport-leg-header" },
                     React.createElement("h3", null,
                         "Transport Leg ",
-                        index + 1)),
+                        index + 1,
+                        " (Sea Freight)")),
                 React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.IconButton, { type: "delete", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
@@ -44767,15 +44770,7 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Destination Gateway")),
                     React.createElement(components_1.Select, { className: `highlighted-select ${((_g = errors[index]) === null || _g === void 0 ? void 0 : _g.destinationGateway) ? 'error-field' : ''}`, options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }),
-                    ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required")))),
-                React.createElement(components_1.FormField, null,
-                    React.createElement(components_1.Label, null,
-                        React.createElement("span", { className: "label-text" }, "Transport Mode")),
-                    React.createElement(components_1.Select, { className: `highlighted-select ${((_j = errors[index]) === null || _j === void 0 ? void 0 : _j.transportMode) ? 'error-field' : ''}`, options: [
-                            { label: "Sea Freight", value: "SeaFreight" },
-                            // Additional transport modes could be added here
-                        ], placeholder: "Select Transport Mode", selected: leg.transportMode, onChange: (value) => updateTransportLeg(leg.id, 'transportMode', value) }),
-                    ((_k = errors[index]) === null || _k === void 0 ? void 0 : _k.transportMode) && (React.createElement("span", { className: "error-text" }, "Transport mode is required")))));
+                    ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required"))))));
         }),
         React.createElement("div", { className: "esgnow-add-transport-leg-container" },
             React.createElement(components_1.IconButton, { type: "plus", className: "esgnow-add-transport-leg-button", onClick: addTransportLeg }))));
