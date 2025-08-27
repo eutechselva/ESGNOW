@@ -45715,11 +45715,14 @@ const ProductDashboardWidget = ({ uxpContext }) => {
     const totalPages = Math.ceil(filteredData.length / itemsPerPage);
     // Get unique categories and subcategories
     const categories = React.useMemo(() => {
-        return [...new Set(products.map((item) => item.category))].sort();
+        return [...new Set(products.map((item) => item.category))]
+            .sort((a, b) => a.localeCompare(b));
     }, [products]);
     const subCategories = React.useMemo(() => {
-        return [...new Set(products.map((item) => item.subCategory))].filter(Boolean).sort();
-    }, [products]);
+        return [...new Set(products
+                .filter((item) => selectedCategory ? item.category === selectedCategory : true)
+                .map((item) => item.subCategory))].sort((a, b) => a.localeCompare(b));
+    }, [products, selectedCategory]);
     const countries = React.useMemo(() => {
         return [...new Set(products.map((item) => {
                 if (item.countryOfOrigin === "CN")
@@ -45908,8 +45911,22 @@ const ProductDashboardWidget = ({ uxpContext }) => {
                                                 applyFilters(searchValue, selectedCategory, value, maxCO2, minCO2, selectedCountry, sortBy);
                                             }, placeholder: "-- All Sub Categories --" })),
                                     React.createElement(components_1.FormField, { className: "esgnow-filter-field" },
-                                        React.createElement(components_1.Label, null, "Country of Manufacture"),
-                                        React.createElement(components_1.Select, { selected: selectedCountry, options: countries.map(country => ({ label: country, value: country })), onChange: (value) => {
+                                        React.createElement(components_1.Label, null,
+                                            React.createElement("span", { style: { fontSize: '12px' } }, "Country of Manufacture")),
+                                        React.createElement(components_1.Select, { selected: selectedCountry, options: [
+                                                { label: 'China', value: 'China' },
+                                                { label: 'Czech Republic', value: 'Czech Republic' },
+                                                { label: 'France', value: 'France' },
+                                                { label: 'Global', value: 'RoW' },
+                                                { label: 'India', value: 'India' },
+                                                { label: 'Netherlands', value: 'Netherlands' },
+                                                { label: 'Poland', value: 'Poland' },
+                                                { label: 'Spain', value: 'Spain' },
+                                                { label: 'Taiwan', value: 'Taiwan' },
+                                                { label: 'United Kingdom', value: 'United Kingdom' },
+                                                { label: 'United States', value: 'United States' },
+                                                { label: 'Vietnam', value: 'Vietnam' },
+                                            ], onChange: (value) => {
                                                 setSelectedCountry(value);
                                                 applyFilters(searchValue, selectedCategory, selectedSubCategory, maxCO2, minCO2, value, sortBy);
                                             }, placeholder: "-- All Countries --" })),
