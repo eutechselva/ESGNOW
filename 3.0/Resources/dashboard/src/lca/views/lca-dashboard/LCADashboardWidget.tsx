@@ -35,6 +35,8 @@ export interface TransportLeg {
     transportEmission: number;
     originGateways: any[];
     destinationGateways: any[];
+    warehouseToOriginDistance?: number;
+    destinationToWarehouseDistance?: number;
 }
 
 interface ILCADashboardWidgetProps {
@@ -78,7 +80,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         transportDistance: 0,
         transportEmission: 0,
         originGateways: [],
-        destinationGateways: []
+        destinationGateways: [],
+        warehouseToOriginDistance: 0,
+        destinationToWarehouseDistance: 0
     }]);
 
     // Pagination state
@@ -451,7 +455,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
-                        destinationGateways: []
+                        destinationGateways: [],
+                        warehouseToOriginDistance: 0,
+                        destinationToWarehouseDistance: 0
                     }]);
                     setIsPackagingManual(false);
                     setIsPalletManual(false);
@@ -648,7 +654,9 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
-                        destinationGateways: []
+                        destinationGateways: [],
+                        warehouseToOriginDistance: 0,
+                        destinationToWarehouseDistance: 0
                     }]);
                     setTransportErrors([]);
                     setIsPackagingManual(false);

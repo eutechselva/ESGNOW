@@ -42,6 +42,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     const handleCalculate = () => {
         setShowEmissionSummary(true);
     };
+    
     return (
         <div className="summary-container">
             {/* Product Details */}
@@ -65,6 +66,15 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                 {transportLegs.map((leg, index) => (
                     <div key={leg.id} className="summary-box">
                         <h4>Transport Leg {index + 1}</h4>
+                        
+                        {/* Show warehouse to origin distance for first leg only */}
+                        {index === 0 && leg.warehouseToOriginDistance && leg.warehouseToOriginDistance > 0 && (
+                            <div className="summary-row">
+                                <span>Distance from Warehouse to Origin Port</span>
+                                <span>{leg.warehouseToOriginDistance} Km</span>
+                            </div>
+                        )}
+                        
                         <div className="summary-row">
                             <span>Origin Country</span>
                             <span>{leg.originCountry}</span>
@@ -90,9 +100,19 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                             <span>{leg.transportMode}</span>
                         </div>
                         <div className="summary-row">
-                            <span>Distance</span>
+                            <span>Main Transport Distance</span>
                             <span>{leg.transportDistance} Km</span>
                         </div>
+                        
+                        {/* Show destination to warehouse distance for single leg or last leg only */}
+                        {(transportLegs.length === 1 || index === transportLegs.length - 1) && 
+                         leg.destinationToWarehouseDistance && leg.destinationToWarehouseDistance > 0 && (
+                            <div className="summary-row">
+                                <span>Distance from Destination Port to Warehouse</span>
+                                <span>{leg.destinationToWarehouseDistance} Km</span>
+                            </div>
+                        )}
+                        
                         <div className="summary-row">
                             <span>Carbon Footprint - Transportation</span>
                             <span>{leg.transportEmission.toFixed(3)} Kg CO2e</span>

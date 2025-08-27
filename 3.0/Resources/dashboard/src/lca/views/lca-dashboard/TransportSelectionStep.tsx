@@ -52,7 +52,9 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
             transportDistance: 0,
             transportEmission: 0,
             originGateways: [],
-            destinationGateways: []
+            destinationGateways: [],
+            warehouseToOriginDistance: 0,
+            destinationToWarehouseDistance: 0
         }]);
     };
 
@@ -170,11 +172,8 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
         <div className="transport-selection-container">
             {transportLegs.map((leg, index) => (
                 <div key={leg.id} className="transport-selection-form">
-                    <div className="transport-leg-header">
+                    <div className="transport-leg-header" style={{ gridColumn: '1 / -1' }}>
                         <h3>Transport Leg {index + 1} (Sea Freight)</h3>
-                    </div>
-
-                    <div className="remove-leg-container">
                         {transportLegs.length > 1 && (
                             <IconButton
                                 type="delete"
@@ -184,6 +183,25 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         )}
                     </div>
 
+                    {/* Distance from Warehouse to Origin Port - Only show for first leg - FULL WIDTH */}
+                    {index === 0 && (
+                        <div style={{ gridColumn: '1 / -1' }}>
+                            <FormField>
+                                <Label><span className="label-text">Distance from Warehouse to Origin Port (km)</span></Label>
+                                <input
+                                    type="number"
+                                    className="highlighted-select"
+                                    placeholder="Enter distance in km"
+                                    value={leg.warehouseToOriginDistance || ''}
+                                    onChange={(e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0)}
+                                    min="0"
+                                    step="0.1"
+                                />
+                            </FormField>
+                        </div>
+                    )}
+
+                    {/* Origin Country - LEFT COLUMN */}
                     <FormField>
                         <Label><span className="label-text">Origin Country</span></Label>
                         <Select
@@ -198,21 +216,8 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         )}
                     </FormField>
 
-                    <FormField>
-                        <Label><span className="label-text">Destination Country</span></Label>
-                        <Select
-                            className={`highlighted-select ${errors[index]?.destinationCountry ? 'error-field' : ''}`}
-                            options={[...countries].sort((a, b) => a.label.localeCompare(b.label))}
-                            placeholder="Select Destination Country"
-                            selected={leg.destinationCountry}
-                            onChange={(value) => updateTransportLeg(leg.id, 'destinationCountry', value)}
-                        />
-                        {errors[index]?.destinationCountry && (
-                            <span className="error-text">Destination country is required</span>
-                        )}
-                    </FormField>
-                    
-                    {plan === 'professional' && (
+                    {/* Origin Gateway - RIGHT COLUMN (next to Origin Country) */}
+                    {plan === 'professional' ? (
                         <FormField>
                             <Label><span className="label-text">Origin Gateway</span></Label>
                             <Select
@@ -226,9 +231,27 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                                 <span className="error-text">Origin gateway is required</span>
                             )}
                         </FormField>
+                    ) : (
+                        <div></div> // Empty div to maintain grid structure for basic plan
                     )}
 
-                    {plan === 'professional' && (
+                    {/* Destination Country - LEFT COLUMN */}
+                    <FormField>
+                        <Label><span className="label-text">Destination Country</span></Label>
+                        <Select
+                            className={`highlighted-select ${errors[index]?.destinationCountry ? 'error-field' : ''}`}
+                            options={[...countries].sort((a, b) => a.label.localeCompare(b.label))}
+                            placeholder="Select Destination Country"
+                            selected={leg.destinationCountry}
+                            onChange={(value) => updateTransportLeg(leg.id, 'destinationCountry', value)}
+                        />
+                        {errors[index]?.destinationCountry && (
+                            <span className="error-text">Destination country is required</span>
+                        )}
+                    </FormField>
+
+                    {/* Destination Gateway - RIGHT COLUMN (next to Destination Country) */}
+                    {plan === 'professional' ? (
                         <FormField>
                             <Label><span className="label-text">Destination Gateway</span></Label>
                             <Select
@@ -242,6 +265,26 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                                 <span className="error-text">Destination gateway is required</span>
                             )}
                         </FormField>
+                    ) : (
+                        <div></div> // Empty div to maintain grid structure for basic plan
+                    )}
+
+                    {/* Distance from Destination Port to Warehouse - FULL WIDTH */}
+                    {(transportLegs.length === 1 || index === transportLegs.length - 1) && (
+                        <div style={{ gridColumn: '1 / -1' }}>
+                            <FormField>
+                                <Label><span className="label-text">Distance from Destination Port to Warehouse (km)</span></Label>
+                                <input
+                                    type="number"
+                                    className="highlighted-select"
+                                    placeholder="Enter distance in km"
+                                    value={leg.destinationToWarehouseDistance || ''}
+                                    onChange={(e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0)}
+                                    min="0"
+                                    step="0.1"
+                                />
+                            </FormField>
+                        </div>
                     )}
                 </div>
             ))}

@@ -306,7 +306,7 @@ module.exports = exports;
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.esgnow-add-transport-leg-container {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n}\n\n.esgnow-add-transport-leg-button {\n  margin: 0;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n}\n.esgnow-add-transport-leg-button:hover {\n  background-color: #0056D2;\n}\n\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n  padding-left: 10px;\n}", ""]);
+exports.push([module.id, ".transport-selection-container {\n  padding: 10px;\n}\n\n.transport-selection-form {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 20px;\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  padding: 10px;\n  margin-bottom: 10px;\n}\n\n.transport-leg-header {\n  display: flex;\n  justify-content: space-between;\n  font-weight: bold;\n  font-size: 16px;\n}\n\n.remove-leg-container {\n  display: flex;\n  justify-content: flex-end;\n}\n\n.highlighted-select {\n  border-radius: 4px;\n  padding: 8px;\n  transition: border-color 0.3s ease;\n}\n.highlighted-select:focus {\n  outline: none;\n}\n\n.esgnow-add-transport-leg-container {\n  display: flex;\n  justify-content: flex-end;\n  align-items: flex-end;\n}\n\n.esgnow-add-transport-leg-button {\n  margin: 0;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n}\n.esgnow-add-transport-leg-button:hover {\n  background-color: #0056D2;\n}\n\n.save-button {\n  padding-top: 10px;\n  padding-bottom: 10px;\n  padding-left: 20px;\n  padding-right: 20px;\n  font-size: 13px;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #0056D2;\n  color: #0056D2;\n}\n.save-button:hover {\n  background-color: #0056D2;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.remove-leg-button {\n  float: right;\n  font-size: 13px;\n  margin-right: initial;\n  border-radius: 8px;\n  background-color: rgba(0, 88, 210, 0);\n  border: 2px solid #D7263D;\n  color: #D7263D;\n}\n.remove-leg-button:hover {\n  background-color: #D7263D;\n  color: white;\n  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease-in-out;\n}\n\n.error-text {\n  color: red;\n  font-size: 0.8rem;\n  margin-top: 5px;\n  padding-left: 10px;\n}", ""]);
 // Exports
 module.exports = exports;
 
@@ -43815,7 +43815,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
             transportDistance: 0,
             transportEmission: 0,
             originGateways: [],
-            destinationGateways: []
+            destinationGateways: [],
+            warehouseToOriginDistance: 0,
+            destinationToWarehouseDistance: 0
         }]);
     // Pagination state
     const [currentPage, setCurrentPage] = (0, react_1.useState)(1);
@@ -44103,7 +44105,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
-                        destinationGateways: []
+                        destinationGateways: [],
+                        warehouseToOriginDistance: 0,
+                        destinationToWarehouseDistance: 0
                     }]);
                 setIsPackagingManual(false);
                 setIsPalletManual(false);
@@ -44206,7 +44210,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
                         transportDistance: 0,
                         transportEmission: 0,
                         originGateways: [],
-                        destinationGateways: []
+                        destinationGateways: [],
+                        warehouseToOriginDistance: 0,
+                        destinationToWarehouseDistance: 0
                     }]);
                 setTransportErrors([]);
                 setIsPackagingManual(false);
@@ -44546,6 +44552,11 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                 React.createElement("h4", null,
                     "Transport Leg ",
                     index + 1),
+                index === 0 && leg.warehouseToOriginDistance && leg.warehouseToOriginDistance > 0 && (React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Distance from Warehouse to Origin Port"),
+                    React.createElement("span", null,
+                        leg.warehouseToOriginDistance,
+                        " Km"))),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Origin Country"),
                     React.createElement("span", null, leg.originCountry)),
@@ -44562,10 +44573,16 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                     React.createElement("span", null, "Transport Mode"),
                     React.createElement("span", null, leg.transportMode)),
                 React.createElement("div", { className: "summary-row" },
-                    React.createElement("span", null, "Distance"),
+                    React.createElement("span", null, "Main Transport Distance"),
                     React.createElement("span", null,
                         leg.transportDistance,
                         " Km")),
+                (transportLegs.length === 1 || index === transportLegs.length - 1) &&
+                    leg.destinationToWarehouseDistance && leg.destinationToWarehouseDistance > 0 && (React.createElement("div", { className: "summary-row" },
+                    React.createElement("span", null, "Distance from Destination Port to Warehouse"),
+                    React.createElement("span", null,
+                        leg.destinationToWarehouseDistance,
+                        " Km"))),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Carbon Footprint - Transportation"),
                     React.createElement("span", null,
@@ -44664,7 +44681,9 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                 transportDistance: 0,
                 transportEmission: 0,
                 originGateways: [],
-                destinationGateways: []
+                destinationGateways: [],
+                warehouseToOriginDistance: 0,
+                destinationToWarehouseDistance: 0
             }]);
     };
     const removeTransportLeg = (legId) => {
@@ -44745,32 +44764,44 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
         transportLegs.map((leg, index) => {
             var _a, _b, _c, _d, _e, _f, _g, _h;
             return (React.createElement("div", { key: leg.id, className: "transport-selection-form" },
-                React.createElement("div", { className: "transport-leg-header" },
+                React.createElement("div", { className: "transport-leg-header", style: { gridColumn: '1 / -1' } },
                     React.createElement("h3", null,
                         "Transport Leg ",
                         index + 1,
-                        " (Sea Freight)")),
-                React.createElement("div", { className: "remove-leg-container" }, transportLegs.length > 1 && (React.createElement(components_1.IconButton, { type: "delete", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
+                        " (Sea Freight)"),
+                    transportLegs.length > 1 && (React.createElement(components_1.IconButton, { type: "delete", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
+                index === 0 && (React.createElement("div", { style: { gridColumn: '1 / -1' } },
+                    React.createElement(components_1.FormField, null,
+                        React.createElement(components_1.Label, null,
+                            React.createElement("span", { className: "label-text" }, "Distance from Warehouse to Origin Port (km)")),
+                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.warehouseToOriginDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" })))),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Origin Country")),
                     React.createElement(components_1.Select, { className: `highlighted-select ${((_a = errors[index]) === null || _a === void 0 ? void 0 : _a.originCountry) ? 'error-field' : ''}`, options: [...countries].sort((a, b) => a.label.localeCompare(b.label)), placeholder: "Select Origin Country", selected: leg.originCountry, onChange: (value) => updateTransportLeg(leg.id, 'originCountry', value) }),
                     ((_b = errors[index]) === null || _b === void 0 ? void 0 : _b.originCountry) && (React.createElement("span", { className: "error-text" }, "Origin country is required"))),
+                plan === 'professional' ? (React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Label, null,
+                        React.createElement("span", { className: "label-text" }, "Origin Gateway")),
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_c = errors[index]) === null || _c === void 0 ? void 0 : _c.originGateway) ? 'error-field' : ''}`, options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) }),
+                    ((_d = errors[index]) === null || _d === void 0 ? void 0 : _d.originGateway) && (React.createElement("span", { className: "error-text" }, "Origin gateway is required")))) : (React.createElement("div", null) // Empty div to maintain grid structure for basic plan
+                ),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Destination Country")),
-                    React.createElement(components_1.Select, { className: `highlighted-select ${((_c = errors[index]) === null || _c === void 0 ? void 0 : _c.destinationCountry) ? 'error-field' : ''}`, options: [...countries].sort((a, b) => a.label.localeCompare(b.label)), placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) }),
-                    ((_d = errors[index]) === null || _d === void 0 ? void 0 : _d.destinationCountry) && (React.createElement("span", { className: "error-text" }, "Destination country is required"))),
-                plan === 'professional' && (React.createElement(components_1.FormField, null,
-                    React.createElement(components_1.Label, null,
-                        React.createElement("span", { className: "label-text" }, "Origin Gateway")),
-                    React.createElement(components_1.Select, { className: `highlighted-select ${((_e = errors[index]) === null || _e === void 0 ? void 0 : _e.originGateway) ? 'error-field' : ''}`, options: leg.originGateways, placeholder: "Select Origin Gateway", selected: leg.originGateway, onChange: (value) => updateTransportLeg(leg.id, 'originGateway', value) }),
-                    ((_f = errors[index]) === null || _f === void 0 ? void 0 : _f.originGateway) && (React.createElement("span", { className: "error-text" }, "Origin gateway is required")))),
-                plan === 'professional' && (React.createElement(components_1.FormField, null,
+                    React.createElement(components_1.Select, { className: `highlighted-select ${((_e = errors[index]) === null || _e === void 0 ? void 0 : _e.destinationCountry) ? 'error-field' : ''}`, options: [...countries].sort((a, b) => a.label.localeCompare(b.label)), placeholder: "Select Destination Country", selected: leg.destinationCountry, onChange: (value) => updateTransportLeg(leg.id, 'destinationCountry', value) }),
+                    ((_f = errors[index]) === null || _f === void 0 ? void 0 : _f.destinationCountry) && (React.createElement("span", { className: "error-text" }, "Destination country is required"))),
+                plan === 'professional' ? (React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Destination Gateway")),
                     React.createElement(components_1.Select, { className: `highlighted-select ${((_g = errors[index]) === null || _g === void 0 ? void 0 : _g.destinationGateway) ? 'error-field' : ''}`, options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }),
-                    ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required"))))));
+                    ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required")))) : (React.createElement("div", null) // Empty div to maintain grid structure for basic plan
+                ),
+                (transportLegs.length === 1 || index === transportLegs.length - 1) && (React.createElement("div", { style: { gridColumn: '1 / -1' } },
+                    React.createElement(components_1.FormField, null,
+                        React.createElement(components_1.Label, null,
+                            React.createElement("span", { className: "label-text" }, "Distance from Destination Port to Warehouse (km)")),
+                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.destinationToWarehouseDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" }))))));
         }),
         React.createElement("div", { className: "esgnow-add-transport-leg-container" },
             React.createElement(components_1.IconButton, { type: "plus", className: "esgnow-add-transport-leg-button", onClick: addTransportLeg }))));
