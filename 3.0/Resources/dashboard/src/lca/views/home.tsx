@@ -1,413 +1,545 @@
-import React, { useCallback, useMemo, useState, useEffect } from 'react';
-import { CRUDComponent, Modal, Button, LoadingSpinner, DefaultLoader, useAlert } from 'uxp/components';
-import './home.scss';
-import { getAllProducts, home, getAllProjects } from '../../esgnow-service'; // Import getAllProjects
-import { IContextProvider } from '@uxp';
-import ProductInfoSummary from './product-info-summary';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
-import ProductWizard from './product-wizard';
-import BulkImportWidget from './bulk-import-widget';
-// Import react-tooltip
-import { Tooltip } from 'react-tooltip';
-import 'react-tooltip/dist/react-tooltip.css'; // Import the CSS for styling
-import { canRunCalculator } from '@utils';
-import ESGNowFAQ from './faq';
+import * as React from "react";
+import {
+  WidgetWrapper,
+  TitleBar,
+  Button,
+  useToast,
+  Modal,
+  ActionResponse,
+} from "uxp/components";
+import { useRef, useState } from "react";
+import Papa from "papaparse";
+import { IContextProvider } from "../../uxp";
 
-interface IHomeDashboardWidgetProps {
-    uxpContext: IContextProvider;
+export interface IWidgetProps {
+  uxpContext?: IContextProvider;
+  instanceId?: string;
+  uiProps?: any;
 }
 
-interface DashboardStats {
-    totalProducts: number;
-    totalImpact: number;
-    totalProjects: number;
-    totalCredits: number;
-}
+// Custom Table Component
+const DataTable: React.FC<{
+  data: any[];
+  onEdit: (index: number, newData: any) => void;
+  onDelete: (index: number) => void;
+  onAdd: (newData: any) => void;
+}> = ({ data, onEdit, onDelete, onAdd }) => {
+  const [editingIndex, setEditingIndex] = useState<number | null>(null);
+  const [editData, setEditData] = useState<any>({});
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newData, setNewData] = useState<any>({});
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
 
-const HomeDashboard: React.FC<IHomeDashboardWidgetProps> = ({ uxpContext }) => {
-    // State management
-    const [searchValue, setSearchValue] = useState('');
-    const [isLoading, setIsLoading] = useState(true);
-    const [hasError, setHasError] = useState(false);
-    const [errorMessage, setErrorMessage] = useState('');
+  const columns = data.length > 0 ? Object.keys(data[0]) : [];
+  const totalPages = Math.ceil(data.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const paginatedData = data.slice(startIndex, startIndex + itemsPerPage);
 
-    const [dashboardStats, setDashboardStats] = useState<DashboardStats>({
-        totalProducts: 0,
-        totalImpact: 0,
-        totalProjects: 0,
-        totalCredits: 0
-    });
+  const handleEdit = (index: number) => {
+    const actualIndex = startIndex + index;
+    setEditingIndex(actualIndex);
+    setEditData({ ...data[actualIndex] });
+  };
 
-    const [products, setProducts] = useState<ProductInfoSummary[]>([]);
-    const [plan, setPlan] = useState<string>('');
-    const [showModal, setShowModal] = useState(false);
-    const [showCreateProductModal, setShowCreateProductModal] = useState(false);
-    const [selectedProduct, setSelectedProduct] = useState<ProductInfoSummary | null>(null);
-    const [showTour, setShowTour] = useState(false);
-    const [showCloseWarning, setShowCloseWarning] = React.useState(true);
-    const [showFAQModal, setShowFAQModal] = useState(false);
+  const saveEdit = () => {
+    if (editingIndex !== null) {
+      onEdit(editingIndex, editData);
+      setEditingIndex(null);
+      setEditData({});
+    }
+  };
 
-    const alerts = useAlert();
+  const cancelEdit = () => {
+    setEditingIndex(null);
+    setEditData({});
+  };
 
-        const [showDropdown, setShowDropdown] = useState(false);
+  const handleAdd = () => {
+    const newRecord = columns.reduce((acc, col) => ({ ...acc, [col]: "" }), {});
+    setNewData(newRecord);
+    setShowAddForm(true);
+  };
 
-        const handleAddProduct = () => {
-            setShowDropdown(false);
-            setShowCreateProductModal(true); // This is your existing modal opener
-        };
+  const saveAdd = () => {
+    onAdd(newData);
+    setShowAddForm(false);
+    setNewData({});
+  };
 
-        const handleBulkImport = () => {
-            setShowDropdown(false);
-            // Just trigger the BulkImportWidget - it has its own modal
-            const bulkImportEvent = new CustomEvent('open-bulk-import');
-            document.dispatchEvent(bulkImportEvent);
-        };
-        useEffect(() => {
-            const handleClickOutside = (event: MouseEvent) => {
-                const target = event.target as HTMLElement;
-                if (
-                    !target.closest('.addproduct-wrapper') &&
-                    !target.closest('.dropdown-menu')
-                ) {
-                    setShowDropdown(false);
-                }
-            };
-        
-            document.addEventListener('mousedown', handleClickOutside);
-            return () => {
-                document.removeEventListener('mousedown', handleClickOutside);
-            };
-        }, []);
-        
-    // Search config
-    const searchConfig = useMemo(() => ({
-        enabled: true,
-        placeholder: 'Search products...'
-    }), []);
+  const cancelAdd = () => {
+    setShowAddForm(false);
+    setNewData({});
+  };
 
-    // Fetch dashboard data (combined API calls)
-    useEffect(() => {
-        const fetchDashboardData = async () => {
-            setIsLoading(true);
-            try {
-                // Fetch products, projects and stats in parallel
-                const [productsResponse, statsResponse, projectsResponse] = await Promise.all([
-                    getAllProducts(uxpContext),
-                    home(uxpContext),
-                    getAllProjects(uxpContext,{})
-                ]);
+  return (
+    <div style={{ padding: '16px' }}>
+      <div style={{ 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center', 
+        marginBottom: '16px' 
+      }}>
+        <h3>Uploaded Data ({data.length} records)</h3>
+        <Button title="Add Record" onClick={handleAdd} />
+      </div>
 
-                // Handle products data
-                const productsData = productsResponse.data;
-                setProducts(productsData.products || []);
-                setPlan(productsData.plan?.plan || 'Free');
+      {showAddForm && (
+        <div style={{
+          background: '#f5f5f5',
+          padding: '16px',
+          borderRadius: '8px',
+          marginBottom: '16px'
+        }}>
+          <h4>Add New Record</h4>
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+            gap: '12px',
+            margin: '16px 0'
+          }}>
+            {columns.map((col) => (
+              <div key={col}>
+                <label style={{ display: 'block', marginBottom: '4px', fontWeight: 'bold' }}>
+                  {col}
+                </label>
+                <input
+                  type="text"
+                  value={newData[col] || ""}
+                  onChange={(e) => setNewData({ ...newData, [col]: e.target.value })}
+                  style={{
+                    width: '100%',
+                    padding: '8px',
+                    border: '1px solid #ddd',
+                    borderRadius: '4px'
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <Button title="Save" onClick={saveAdd} />
+            <Button title="Cancel" onClick={cancelAdd} />
+          </div>
+        </div>
+      )}
 
-                // Handle dashboard stats
-                const statsData = statsResponse.data;
-                
-                // Get the actual project count from getAllProjects response
-                const projectsCount = Array.isArray(projectsResponse.data) 
-                    ? projectsResponse.data.length 
-                    : (projectsResponse.data.projects?.length || 0);
-                
-                setDashboardStats({
-                    totalProducts: statsData.totalProducts || 0,
-                    totalImpact: statsData.totalImpact || 0,
-                    totalProjects: projectsCount, // Use the actual project count
-                    totalCredits: statsData.totalCredits || 0
-                });
+      <div style={{
+        overflowX: 'auto',
+        border: '1px solid #ddd',
+        borderRadius: '8px'
+      }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <thead>
+            <tr>
+              {columns.map((col) => (
+                <th key={col} style={{
+                  padding: '12px',
+                  textAlign: 'left',
+                  borderBottom: '1px solid #eee',
+                  background: '#f8f9fa',
+                  fontWeight: 'bold'
+                }}>
+                  {col}
+                </th>
+              ))}
+              <th style={{
+                padding: '12px',
+                textAlign: 'left',
+                borderBottom: '1px solid #eee',
+                background: '#f8f9fa',
+                fontWeight: 'bold'
+              }}>
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {paginatedData.map((row, index) => {
+              const actualIndex = startIndex + index;
+              const isEditing = editingIndex === actualIndex;
+              
+              return (
+                <tr key={actualIndex} style={{ background: isEditing ? '#fff3cd' : 'transparent' }}
+                    onMouseEnter={(e) => !isEditing && (e.currentTarget.style.background = '#f8f9fa')}
+                    onMouseLeave={(e) => !isEditing && (e.currentTarget.style.background = 'transparent')}
+                >
+                  {columns.map((col) => (
+                    <td key={col} style={{
+                      padding: '12px',
+                      textAlign: 'left',
+                      borderBottom: '1px solid #eee'
+                    }}>
+                      {isEditing ? (
+                        <input
+                          type="text"
+                          value={editData[col] || ""}
+                          onChange={(e) => setEditData({ ...editData, [col]: e.target.value })}
+                          style={{
+                            width: '100%',
+                            padding: '4px',
+                            border: '1px solid #ddd',
+                            borderRadius: '4px'
+                          }}
+                        />
+                      ) : (
+                        row[col]
+                      )}
+                    </td>
+                  ))}
+                  <td style={{
+                    padding: '12px',
+                    textAlign: 'left',
+                    borderBottom: '1px solid #eee'
+                  }}>
+                    {isEditing ? (
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button 
+                          onClick={saveEdit}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            background: '#28a745',
+                            color: 'white'
+                          }}
+                        >
+                          Save
+                        </button>
+                        <button 
+                          onClick={cancelEdit}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            background: '#6c757d',
+                            color: 'white'
+                          }}
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    ) : (
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button 
+                          onClick={() => handleEdit(index)}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            background: '#007bff',
+                            color: 'white'
+                          }}
+                        >
+                          Edit
+                        </button>
+                        <button 
+                          onClick={() => onDelete(actualIndex)}
+                          style={{
+                            padding: '4px 8px',
+                            border: 'none',
+                            borderRadius: '4px',
+                            cursor: 'pointer',
+                            fontSize: '12px',
+                            background: '#dc3545',
+                            color: 'white'
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    )}
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
 
-                setHasError(false);
-            } catch (error) {
-                console.error('Failed to fetch dashboard data:', error);
-                setHasError(true);
-                setErrorMessage('Failed to load dashboard data. Please try again later.');
-            } finally {
-                setIsLoading(false);
-            }
-        };
+      {totalPages > 1 && (
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          gap: '16px',
+          marginTop: '16px'
+        }}>
+          <button
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            style={{
+              padding: '8px 12px',
+              border: '1px solid #ddd',
+              background: 'white',
+              borderRadius: '4px',
+              cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
+              opacity: currentPage === 1 ? 0.5 : 1
+            }}
+          >
+            Previous
+          </button>
+          <span>Page {currentPage} of {totalPages}</span>
+          <button
+            onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+            disabled={currentPage === totalPages}
+            style={{
+              padding: '8px 12px',
+              border: '1px solid #ddd',
+              background: 'white',
+              borderRadius: '4px',
+              cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+              opacity: currentPage === totalPages ? 0.5 : 1
+            }}
+          >
+            Next
+          </button>
+        </div>
+      )}
 
-        fetchDashboardData();
-    }, [uxpContext]);
 
-    // Handle search input change
-    const handleSearchChange = (value: string) => {
-        setSearchValue(value);
-    };
+    </div>
+  );
+};
 
-    // Get products for CRUD component
-    const getProducts = useCallback(async (
-        page?: number,
-        pageSize?: number,
-        query?: string,
-        filters?: any
-    ): Promise<{ items: ProductInfoSummary[] }> => {
-        try {
-            const { data, error } = await getAllProducts(uxpContext);
+const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+  const [parsedData, setParsedData] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(false);
+  const [fileName, setFileName] = React.useState<string | null>(null);
+  const [showReviewModal, setShowReviewModal] = React.useState(false);
 
-            if (error) {
-                console.error('Error fetching products:', error);
-                return { items: [] };
-            }
+  const toast = useToast();
 
-            // Format the data
-            const formattedData = data.products.map((product: any) => ({
-                ...product,
-                modifiedDate: product.modifiedDate
-                    ? new Date(product.modifiedDate).toLocaleDateString()
-                    : 'N/A',
-            }));
+  const resetState = () => {
+    setParsedData(null);
+    setFileName(null);
+    setLoading(false);
+  };
 
-            return { items: formattedData };
-        } catch (error) {
-            console.error('Failed to fetch products:', error);
-            return { items: [] };
+  const downloadEmptySheet = () => {
+    // Define the template structure with predefined activities
+    const templateData = [
+      // Header row
+      ["Activity", "Year", "Month", "Value"],
+      
+      // Predefined activity rows with empty values for user input
+      ["Generator Fuel Consumption", "20xx", "Jan", ""],
+      ["Refrigerant Leakages/Refilling", "20xx", "Jan", ""],
+      
+      // Additional empty rows for more data entry
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+      ["", "20xx", "", ""],
+    ];
+  
+    // Convert to CSV format
+    const csvContent = templateData
+      .map(row => row.map(cell => {
+        // Handle cells that might contain commas by wrapping in quotes
+        if (cell.includes(',')) {
+          return `"${cell}"`;
         }
-    }, [uxpContext]);
+        return cell;
+      }).join(','))
+      .join('\n');
+  
+    // Create and download the file
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.setAttribute("download", "Empty_Carbon_Report.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
 
-    // Handle product selection
-    const handleProductSelect = (product: ProductInfoSummary) => {
-        setSelectedProduct(product);
-        setShowModal(true);
+  const parseCSVFile = (file: File) => {
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      const csv = event.target?.result as string;
+      const results = Papa.parse(csv, {
+        header: true,
+        skipEmptyLines: true
+      });
+      
+      if (results.errors.length > 0) {
+        console.error("CSV parsing error:", results.errors);
+        toast.error("Failed to parse CSV file");
+        return;
+      }
+      
+      const jsonData = results.data.map((row: any) => {
+        const cleanedRow: any = {};
+        for (const key in row) {
+          cleanedRow[key] = row[key] ?? "";
+        }
+        return cleanedRow;
+      });
+      setParsedData(jsonData);
+      setFileName(file.name);
     };
+    reader.readAsText(file);
+  };
 
-    if (isLoading) {
-        return (
-            <div className="loading-container">
-                <DefaultLoader></DefaultLoader>
-            </div>
-        );
+  const uploadToLucy = () => {
+    if (!parsedData || !Array.isArray(parsedData)) {
+      toast.error("Parsed data is empty or invalid.");
+      return;
     }
-
-    if (hasError) {
-        return (
-            <div className="error-container">
-                {/* Error state UI */}
-            </div>
-        );
+    setLoading(true);
+    try {
+      props.uxpContext?.executeAction(
+        "carbon_reporting_80rr",
+        "InsertCarbonReport",
+        { CarbonInputData: JSON.stringify(parsedData) }
+      );
+      toast.success("Data uploaded successfully!");
+      resetState();
+    } catch (error: any) {
+      toast.error(`Upload failed: ${error.message || "Unknown error"}`);
+    } finally {
+      setLoading(false);
     }
+  };
 
-    return (
-        <>
-            {/* Product Details Modal */}
-            <Modal
-                title={`Product: ${selectedProduct?.name || 'N/A'}`}
-                show={showModal}
-                onClose={() => setShowModal(false)}
-            >
-                {selectedProduct && (
-                    <ProductInfoSummary
-                        plan={plan}
-                        product={selectedProduct}
-                        onClose={() => setShowModal(false)}
-                        onDelete={() => console.log('Delete not implemented')}
-                        hideHeader={true}
-                        hideDelete={true}
-                        uxpContext={uxpContext}
-                    />
-                )}
-            </Modal>
-            <ProductWizard
-                show={showCreateProductModal}
-                setShowCloseWarning={setShowCloseWarning}
-                onClose={async () => {
-                    if (showCreateProductModal) {
-                        if (showCloseWarning) {
-                            const confirmed = await alerts.confirm({
-                                title: 'Are you sure?',
-                                content: 'Are you sure you want to exit?'
-                            })
-                            confirmed ? setShowCreateProductModal(false) : null
-                        }
-                        else {
-                            setShowCreateProductModal(false)
-                        }
-                    }
-                    else {
-                        setShowCreateProductModal(false)
-                    }
+  // Table event handlers
+  const handleEdit = (index: number, newData: any) => {
+    setParsedData((prev: any[]) => {
+      const updated = [...prev];
+      updated[index] = newData;
+      return updated;
+    });
+  };
+
+  const handleDelete = (index: number) => {
+    setParsedData((prev: any[]) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleAdd = (newData: any) => {
+    setParsedData((prev: any[]) => [...prev, newData]);
+  };
+
+  return (
+    <WidgetWrapper>
+      <TitleBar title="Bulk Data Upload" />
+
+      <div className="upload-controls">
+        <Button title="Download Empty Sheet" onClick={downloadEmptySheet} />
+      </div>
+
+      <div
+        className={`dropzone ${loading ? "disabled" : ""}`}
+        onDragOver={(e) => {
+          e.preventDefault();
+          e.currentTarget.classList.add("highlight");
+        }}
+        onDragLeave={(e) => {
+          e.preventDefault();
+          e.currentTarget.classList.remove("highlight");
+        }}
+        onDrop={(e) => {
+          e.preventDefault();
+          e.currentTarget.classList.remove("highlight");
+          const file = e.dataTransfer.files?.[0];
+          if (file) parseCSVFile(file);
+        }}
+        onClick={() => {
+          if (!loading) fileInputRef.current?.click();
+        }}
+      >
+        {fileName ? (
+          <>
+            <div className="filename-box">
+              <span className="filename">{fileName}</span>
+              <button className="remove-file" onClick={(e) => {
+                e.stopPropagation();
+                resetState();
+              }}>✖</button>
+            </div>
+            <p className="parsed-info">
+              ✅ <strong>{parsedData.length}</strong> rows parsed
+            </p>
+            <div className="action-buttons">
+              <Button
+                title="Review"
+                onClick={() => {
+                  setShowReviewModal(true);
                 }}
-                uxpContext={uxpContext}
-                onProductCreated={() => {
-                    // Refresh the product list after a new product is created
-                    getAllProducts(uxpContext).then(response => {
-                        setProducts(response.data.products);
-                    });
+                disabled={loading}
+              />
+              <Button
+                title="Cancel"
+                onClick={() => {
+                  resetState();
                 }}
+                disabled={loading}
+              />
+            </div>
+          </>
+        ) : (
+          <p className="placeholder-text">
+            Drag & drop a CSV file here,<br />or click to select
+          </p>
+        )}
+      </div>
+
+      <Modal
+        show={showReviewModal}
+        onClose={() => setShowReviewModal(false)}
+        title="Review and Edit CSV Data"
+      >
+        <div className="modal-body">
+          {parsedData && (
+            <DataTable
+              data={parsedData}
+              onEdit={handleEdit}
+              onDelete={handleDelete}
+              onAdd={handleAdd}
             />
-            {/* FAQ Modal */}
-            <Modal
-                title="Frequently Asked Questions"
-                show={showFAQModal}
-                onClose={() => setShowFAQModal(false)}
-                // size="large"
-            >
-                <ESGNowFAQ />
-            </Modal>
+          )}
+          <div className="modal-actions">
+            <Button
+              title="Upload"
+              onClick={() => {
+                uploadToLucy();
+                setShowReviewModal(false);
+              }}
+            />
+            <Button
+              title="Cancel"
+              onClick={() => setShowReviewModal(false)}
+            />
+          </div>
+        </div>
+      </Modal>
 
-            {/* Bulk Import Widget - renders its own modal */}
-            <BulkImportWidget uxpContext={uxpContext} hideToggleButton={true} />
-
-            {/* Main Dashboard */}
-            <div className="dashboard-container">
-                {/* Header */}
-                <div className="dashboard-header">
-                    <div>
-                        <h1 className="dashboard-title">Welcome to ESG NOW!</h1>
-                        <p className="dashboard-subtitle">Helping businesses decarbonise procurement</p>
-                    </div>
-                    {/* 
-                    {canRunCalculator(uxpContext) ? console.log('canRunCalculator true') : console.log('canRunCalculator false')}
-                    { canRunCalculator(uxpContext) ? */}                    
-                    <div className="action-buttons">
-                    <div className="addproduct-wrapper">
-                        <div className="addproduct-split-button">
-                        <div 
-                            className="addproduct-main"
-                            onClick={handleAddProduct}
-                        >
-                            <span className="addproduct-plus">＋</span>
-                            <span className="addproduct-text">New</span>
-                        </div>
-                        <div 
-                            className="addproduct-dropdown-trigger"
-                            onClick={(e) => {
-                            e.stopPropagation();
-                            setShowDropdown((prev) => !prev);
-                            }}
-                        >
-                            <span className="addproduct-down">▾</span>
-                        </div>
-                        </div>
-
-                        {showDropdown && (
-                        <div className="dropdown-menu">
-                            <div className="dropdown-item" onClick={handleAddProduct}>
-                            <span className="svg-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-                                <path d="M8 3.33333V12.6667M3.33333 8H12.6667" stroke="#0156D2" strokeWidth="1.67" strokeLinecap="round" strokeLinejoin="round" />
-                                </svg>
-                            </span>
-                            Add New Product
-                            </div>
-
-                            <div className="dropdown-item" onClick={handleBulkImport}>
-                            <span className="svg-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="16" fill="none" viewBox="0 0 19 16">
-                                <path d="M13.4935 6.00737C13.4988 6.00735 13.5042 6.00734 13.5096 6.00734C15.2902 6.00734 16.7337 7.35293 16.7337 9.01287C16.7337 10.5599 15.4799 11.8339 13.8678 12M13.4935 6.00737C13.5041 5.89737 13.5096 5.78597 13.5096 5.67339C13.5096 3.64463 11.7453 2 9.56896 2C7.50783 2 5.8163 3.47511 5.64297 5.35461M13.4935 6.00737C13.4202 6.76507 13.1002 7.4564 12.6088 8.011M5.64297 5.35461C3.82568 5.51582 2.40421 6.9426 2.40421 8.67887C2.40421 10.2945 3.63494 11.6421 5.27011 11.9515M5.64297 5.35461C5.75606 5.34458 5.87068 5.33945 5.98658 5.33945C6.7932 5.33945 7.53756 5.58796 8.13636 6.00734" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                <path d="M9.56896 8.66667V14M9.56896 8.66667C9.06728 8.66667 8.12994 9.99621 7.77777 10.3333M9.56896 8.66667C10.0706 8.66667 11.008 9.99621 11.3601 10.3333" stroke="#0156D2" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                                </svg>
-                            </span>
-                            Bulk Import Products
-                            </div>
-                        </div>
-                        )}
-                    </div>
-                    </div>
-                </div>
-
-                {/* Stats Cards with Tooltips */}
-                <div className="stats-container">
-                    <div className="stats-cards">
-                        <div className="stat-card products">
-                            <div className="stat-icon">
-                                <FontAwesomeIcon
-                                    icon={faInfoCircle}
-                                    data-tooltip-id="products-tooltip"
-                                    data-tooltip-content="Displays the total number of products successfully added to the platform."
-                                />
-                            </div>
-                            <h2>No. of Products Created</h2>
-                            <p className="stat-number">{dashboardStats.totalProducts}</p>
-                            <span className="stat-label">Products</span>
-                        </div>
-
-                        <div className="stat-card projects">
-                            <div className="stat-icon">
-                                <FontAwesomeIcon
-                                    icon={faInfoCircle}
-                                    data-tooltip-id="projects-tooltip"
-                                    data-tooltip-content="Displays the total number of projects create on the platform."
-                                />
-                            </div>
-                            <h2>No. of Projects Created</h2>
-                            <p className="stat-number">{dashboardStats.totalProjects}</p>
-                            <span className="stat-label">Projects</span>
-                        </div>
-
-                        <div className="stat-card credits">
-                            <div className="stat-icon">
-                                <FontAwesomeIcon
-                                    icon={faInfoCircle}
-                                    data-tooltip-id="credits-tooltip"
-                                    data-tooltip-content="Tracks the number of AI credits used for generating the inputs for carbon footprint calculations."
-                                />
-                            </div>
-                            <h2>No. of AI Credits Consumed</h2>
-                            <p className="stat-number">{dashboardStats.totalCredits}</p>
-                            <span className="stat-label">Credits</span>
-                        </div>
-                    </div>
-
-                    {/* frequently asked question section */}
-                    <div className="faq-section">
-                        <h2>Getting Started</h2>
-                        <p>Get answers to common questions about ESG NOW</p>
-                        <a
-                            onClick={() => setShowFAQModal(true)}
-                            className="esgnow-faq-link"
-                        >
-                            Frequently Asked Questions
-                        </a>
-                    </div>
-
-                </div>
-
-                {/* Recent Products Table */}
-                <div className="recent-products-container">
-                    <CRUDComponent
-                        list={{
-                            title: 'Recent Products',
-                            columns: [
-                                { id: 'code', label: 'Product Code' },
-                                { id: 'name', label: 'Product Name' },
-                                {
-                                    id: 'co2Emission',
-                                    label: 'Carbon Footprint (KgCO₂e)',
-                                },
-                                { id: 'category', label: 'Main Category' },
-                                { id: 'subCategory', label: 'Sub Category' },
-                                { id: 'modifiedDate', label: 'Date Created' }
-                            ],
-                            defaultPageSize: 10,
-                            data: {
-                                getData: getProducts
-                            },
-                            search: searchConfig,
-                            onClickRow: (e, item: ProductInfoSummary) => handleProductSelect(item),
-                            noItemsMessage: "No Products Found"
-                        }}
-                    />
-                </div>
-
-                {/* Dashboard Footer */}
-                <div className="dashboard-footer">
-                    <p>Your current plan: <strong>{plan || 'Free Plan'}</strong></p>                    
-                    {/* <Button
-                        title="Take a Tour"
-                        onClick={() => setShowTour(true)}
-                    /> */}
-
-                </div>
-            </div>
-
-            {/* React-Tooltip components */}
-            <Tooltip id="products-tooltip" place="top" />
-            <Tooltip id="projects-tooltip" place="top" />
-            <Tooltip id="credits-tooltip" place="top" />
-        </>
-    );
+      <input
+        type="file"
+        accept=".csv"
+        style={{ display: "none" }}
+        ref={fileInputRef}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) parseCSVFile(file);
+          e.target.value = "";
+        }}
+      />
+    </WidgetWrapper>
+  );
 };
 
 export default HomeDashboard;
