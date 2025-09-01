@@ -44022,15 +44022,14 @@ const LCADashboardWidget = ({ uxpContext }) => {
             // Call API for each transport leg
             for (let i = 0; i < updatedLegs.length; i++) {
                 const leg = updatedLegs[i];
-                const payload = {
-                    weightKg: totalTransportWeight,
-                    transportMode: "SeaFreight",
-                    transportKm: leg.transportDistance
-                };
+                // Calculate roadFreightKm from warehouse distances
+                const roadFreightKm = (leg.warehouseToOriginDistance || 0) + (leg.destinationToWarehouseDistance || 0);
+                const payload = Object.assign({ weightKg: totalTransportWeight, transportMode: leg.transportMode, transportKm: leg.transportDistance }, (roadFreightKm > 0 && { roadFreightKm }) // Include roadFreightKm if greater than 0
+                );
                 const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, payload);
                 if (response.data) {
                     updatedLegs[i] = Object.assign(Object.assign({}, leg), { transportEmission: response.data.transportEmissions });
-                    totalEmission += response.data.emission;
+                    totalEmission += response.data.transportEmissions;
                 }
                 else if (response.error) {
                     console.error(`Error calculating emission for leg ${i + 1}:`, response.error);

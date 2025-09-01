@@ -283,7 +283,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         setIsEmissionSummaryVisible(true);
         setShowModal(false);
     };
-    
+
     // Updated validation function - removed transportMode validation
     const validateTransportLegs = (): boolean => {
         const newErrors: ValidationError[] = transportLegs.map(leg => {
@@ -308,7 +308,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
         // Return true if there are no errors (all fields are valid)
         return newErrors.every(error => Object.keys(error).length === 0);
     };
-    
+
     const calculateTransportationEmission = async () => {
         try {
             const updatedLegs = [...transportLegs];
@@ -317,10 +317,15 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             // Call API for each transport leg
             for (let i = 0; i < updatedLegs.length; i++) {
                 const leg = updatedLegs[i];
+
+                // Calculate roadFreightKm from warehouse distances
+                const roadFreightKm = (leg.warehouseToOriginDistance || 0) + (leg.destinationToWarehouseDistance || 0);
+
                 const payload = {
                     weightKg: totalTransportWeight,
-                    transportMode: "SeaFreight", // Hardcoded to SeaFreight
-                    transportKm: leg.transportDistance
+                    transportMode: leg.transportMode,
+                    transportKm: leg.transportDistance,
+                    ...(roadFreightKm > 0 && { roadFreightKm }) // Include roadFreightKm if greater than 0
                 };
 
                 const response = await calculateTransportEmission(uxpContext, payload);
@@ -329,7 +334,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                         ...leg,
                         transportEmission: response.data.transportEmissions
                     };
-                    totalEmission += response.data.emission;
+                    totalEmission += response.data.transportEmissions;
                 } else if (response.error) {
                     console.error(`Error calculating emission for leg ${i + 1}:`, response.error);
                 }
@@ -352,7 +357,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                 return;
             }
         }
-        
+
         if (activeStep < steps.length - 1) {
             setActiveStep(activeStep + 1);
         }
@@ -360,7 +365,7 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
             calculateTransportationEmission();
         }
     };
-    
+
     const handlePrevious = () => {
         if (activeStep > 0) {
             setActiveStep(activeStep - 1);
@@ -423,8 +428,8 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
                     plan={plan}
                     onConfirm={handleConfirmCalculate}
                     onCloseAll={() => {
-                      setShowModal(false);
-                      setIsEmissionSummaryVisible(false);
+                        setShowModal(false);
+                        setIsEmissionSummaryVisible(false);
                     }}
                     uxpContext={uxpContext}
                     onPrevious={handlePrevious}
