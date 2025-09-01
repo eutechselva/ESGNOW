@@ -39208,20 +39208,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.addProductToProject = exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.triggerAIProcessing = exports.cancelChunkUpload = exports.getChunkUploadStatus = exports.completeBulkUpload = exports.completeImageUpload = exports.uploadChunk = exports.initChunkUpload = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = void 0;
+exports.addProductToProject = exports.updateLocationData = exports.getLocationData = exports.getAccountPlan = exports.getManufacturingProcesses = exports.getBillOfMaterials = exports.triggerAIProcessing = exports.cancelChunkUpload = exports.getChunkUploadStatus = exports.completeBulkUpload = exports.completeImageUpload = exports.uploadChunk = exports.initChunkUpload = exports.bulkImageUpload = exports.bulkUpload = exports.projectProductMapping = exports.calculateTransportEmission = exports.calculateTransportDistance = exports.classifyManufacturingProcess = exports.deleteProductByID = exports.classifyBOM = exports.getProjectImpacts = exports.createProjectProductMap = exports.createProject = exports.classifyProduct = exports.createProduct = exports.transportDB = exports.productCategories = exports.home = exports.getAllProjects = exports.getAllProducts = exports.uploadCSVFile = void 0;
 const _uxp_1 = __webpack_require__(/*! @uxp */ "./src/uxp.ts");
 const qs_1 = __importDefault(__webpack_require__(/*! qs */ "./node_modules/qs/lib/index.js"));
 const ServiceName = "ESGNOW";
 const BaseEndPoint = "/api";
 // common function to execute micro service and handle errors
-function executeRequest(uxpContext, route, method, params, body, headers) {
+function executeRequest(uxpContext, route, method, params, body, headers, isFileUpload = false) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             // Add more detailed logging for context issue troubleshooting
             console.log(`executeRequest - Context check for route: ${route}`, {
                 hasContext: !!uxpContext,
                 contextType: uxpContext ? typeof uxpContext : 'undefined',
-                hasExecuteComponent: uxpContext ? typeof uxpContext.executeComponent === 'function' : false
+                hasExecuteComponent: uxpContext ? typeof uxpContext.executeComponent === 'function' : false,
+                isFileUpload
             });
             if (!uxpContext) {
                 console.error(`UXP Context is undefined for route: ${route}`);
@@ -39232,6 +39233,10 @@ function executeRequest(uxpContext, route, method, params, body, headers) {
             const additionConfigurations = {
                 paramsSerializer: (params) => qs_1.default.stringify(params, { arrayFormat: "repeat" }),
             };
+            // For file uploads
+            if (isFileUpload) {
+                additionConfigurations.paramsSerializer = undefined;
+            }
             const response = yield (uxpContext === null || uxpContext === void 0 ? void 0 : uxpContext.executeComponent(ServiceName, route, method, params, body, additionalHeaders, additionConfigurations));
             return response;
         }
@@ -39241,6 +39246,37 @@ function executeRequest(uxpContext, route, method, params, body, headers) {
         }
     });
 }
+// Function for uploading CSV files to external carbon reporting service
+function uploadCSVFile(uxpContext, file) {
+    return __awaiter(this, void 0, void 0, function* () {
+        console.log("Starting CSV upload to carbon reporting service...");
+        // Create FormData for file upload
+        const formData = new FormData();
+        formData.append('file', file);
+        // For external service calls, we need to use fetch directly
+        try {
+            if (!uxpContext) {
+                console.error("uploadCSVFile called with undefined context");
+                return { data: null, error: "UXP Context is undefined" };
+            }
+            const response = yield fetch('http://localhost:3000/api/upload/csv', {
+                method: 'POST',
+                body: formData
+            });
+            if (!response.ok) {
+                const errorText = yield response.text();
+                throw new Error(`HTTP ${response.status}: ${errorText}`);
+            }
+            const result = yield response.json();
+            return result;
+        }
+        catch (e) {
+            console.error("File upload failed. Error: ", e);
+            return { data: null, error: e.message || "File upload failed" };
+        }
+    });
+}
+exports.uploadCSVFile = uploadCSVFile;
 function getAllProducts(uxpContext) {
     return __awaiter(this, void 0, void 0, function* () {
         return executeRequest(uxpContext, `${BaseEndPoint}/products`, _uxp_1.RequestMethod.GET, {});
@@ -42419,6 +42455,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -42427,6 +42472,7 @@ const React = __importStar(__webpack_require__(/*! react */ "react"));
 const components_1 = __webpack_require__(/*! uxp/components */ "uxp/components");
 const react_1 = __webpack_require__(/*! react */ "react");
 const papaparse_1 = __importDefault(__webpack_require__(/*! papaparse */ "./node_modules/papaparse/papaparse.min.js"));
+const esgnow_service_1 = __webpack_require__(/*! ../../esgnow-service */ "./src/esgnow-service.ts");
 // Custom Table Component
 const DataTable = ({ data, onEdit, onDelete, onAdd }) => {
     const [editingIndex, setEditingIndex] = (0, react_1.useState)(null);
@@ -42616,11 +42662,13 @@ const HomeDashboard = (props) => {
     const [parsedData, setParsedData] = React.useState(null);
     const [loading, setLoading] = React.useState(false);
     const [fileName, setFileName] = React.useState(null);
+    const [selectedFile, setSelectedFile] = React.useState(null);
     const [showReviewModal, setShowReviewModal] = React.useState(false);
     const toast = (0, components_1.useToast)();
     const resetState = () => {
         setParsedData(null);
         setFileName(null);
+        setSelectedFile(null);
         setLoading(false);
     };
     const downloadEmptySheet = () => {
@@ -42663,6 +42711,8 @@ const HomeDashboard = (props) => {
         document.body.removeChild(link);
     };
     const parseCSVFile = (file) => {
+        // Store the file reference for upload
+        setSelectedFile(file);
         const reader = new FileReader();
         reader.onload = (event) => {
             var _a;
@@ -42689,17 +42739,22 @@ const HomeDashboard = (props) => {
         };
         reader.readAsText(file);
     };
-    const uploadToLucy = () => {
-        var _a;
-        if (!parsedData || !Array.isArray(parsedData)) {
-            toast.error("Parsed data is empty or invalid.");
+    const uploadToLucy = () => __awaiter(void 0, void 0, void 0, function* () {
+        if (!selectedFile) {
+            toast.error("No file selected for upload.");
             return;
         }
         setLoading(true);
         try {
-            (_a = props.uxpContext) === null || _a === void 0 ? void 0 : _a.executeAction("carbon_reporting_80rr", "InsertCarbonReport", { CarbonInputData: JSON.stringify(parsedData) });
-            toast.success("Data uploaded successfully!");
-            resetState();
+            const response = yield (0, esgnow_service_1.uploadCSVFile)(props.uxpContext, selectedFile);
+            if (response && response.message) {
+                toast.success(response.message);
+                resetState();
+            }
+            else {
+                toast.success("Data uploaded successfully!");
+                resetState();
+            }
         }
         catch (error) {
             toast.error(`Upload failed: ${error.message || "Unknown error"}`);
@@ -42707,7 +42762,7 @@ const HomeDashboard = (props) => {
         finally {
             setLoading(false);
         }
-    };
+    });
     // Table event handlers
     const handleEdit = (index, newData) => {
         setParsedData((prev) => {
@@ -42752,9 +42807,9 @@ const HomeDashboard = (props) => {
                     } }, "\u2716")),
             React.createElement("p", { className: "parsed-info" },
                 "\u2705 ",
-                React.createElement("strong", null, parsedData.length),
+                React.createElement("strong", null, (parsedData === null || parsedData === void 0 ? void 0 : parsedData.length) || 0),
                 " rows parsed"),
-            React.createElement("div", { className: "action-buttons" },
+            React.createElement("div", { className: "action-buttons", onClick: (e) => e.stopPropagation() },
                 React.createElement(components_1.Button, { title: "Review", onClick: () => {
                         setShowReviewModal(true);
                     }, disabled: loading }),
@@ -102086,7 +102141,7 @@ module.exports = /*#__PURE__*/JSON.parse('{"__home__":{"page":"/home"},"/home":{
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]}]');
+module.exports = /*#__PURE__*/JSON.parse('[{"id":"home","label":"Home","icon":"fas home","dashboardKey":"home","userRoles":[]},{"id":"products","label":"Bar Chart","icon":"fad box","dashboardKey":"products","userRoles":[]}]');
 
 /***/ }),
 

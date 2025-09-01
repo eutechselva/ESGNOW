@@ -10,6 +10,7 @@ import {
 import { useRef, useState } from "react";
 import Papa from "papaparse";
 import { IContextProvider } from "../../uxp";
+import { uploadCSVFile } from "../../esgnow-service";
 
 export interface IWidgetProps {
   uxpContext?: IContextProvider;
@@ -313,6 +314,7 @@ const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
   const [parsedData, setParsedData] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(false);
   const [fileName, setFileName] = React.useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = React.useState<File | null>(null);
   const [showReviewModal, setShowReviewModal] = React.useState(false);
 
   const toast = useToast();
@@ -320,6 +322,7 @@ const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
   const resetState = () => {
     setParsedData(null);
     setFileName(null);
+    setSelectedFile(null);
     setLoading(false);
   };
 
@@ -368,6 +371,9 @@ const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
   };
 
   const parseCSVFile = (file: File) => {
+    // Store the file reference for upload
+    setSelectedFile(file);
+    
     const reader = new FileReader();
     reader.onload = (event) => {
       const csv = event.target?.result as string;
@@ -395,20 +401,21 @@ const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
     reader.readAsText(file);
   };
 
-  const uploadToLucy = () => {
-    if (!parsedData || !Array.isArray(parsedData)) {
-      toast.error("Parsed data is empty or invalid.");
+  const uploadToLucy = async () => {
+    if (!selectedFile) {
+      toast.error("No file selected for upload.");
       return;
     }
     setLoading(true);
     try {
-      props.uxpContext?.executeAction(
-        "carbon_reporting_80rr",
-        "InsertCarbonReport",
-        { CarbonInputData: JSON.stringify(parsedData) }
-      );
-      toast.success("Data uploaded successfully!");
-      resetState();
+      const response = await uploadCSVFile(props.uxpContext, selectedFile);
+      if (response && response.message) {
+        toast.success(response.message);
+        resetState();
+      } else {
+        toast.success("Data uploaded successfully!");
+        resetState();
+      }
     } catch (error: any) {
       toast.error(`Upload failed: ${error.message || "Unknown error"}`);
     } finally {
@@ -471,9 +478,9 @@ const HomeDashboard: React.FunctionComponent<IWidgetProps> = (props) => {
               }}>✖</button>
             </div>
             <p className="parsed-info">
-              ✅ <strong>{parsedData.length}</strong> rows parsed
+              ✅ <strong>{parsedData?.length || 0}</strong> rows parsed
             </p>
-            <div className="action-buttons">
+            <div className="action-buttons" onClick={(e) => e.stopPropagation()}>
               <Button
                 title="Review"
                 onClick={() => {

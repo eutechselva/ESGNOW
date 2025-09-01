@@ -5,5 +5,12 @@
     "icon": "fas home",
     "dashboardKey": "home",
     "userRoles": []
-  }
+  },
+  {
+      "id": "products",
+      "label": "Bar Chart",
+      "icon": "fad box",
+      "dashboardKey": "products",
+      "userRoles": []
+    }
 ]
