@@ -173,7 +173,7 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
             {transportLegs.map((leg, index) => (
                 <div key={leg.id} className="transport-selection-form">
                     <div className="transport-leg-header" style={{ gridColumn: '1 / -1' }}>
-                        <h3>Transport Leg {index + 1} (Sea Freight)</h3>
+                        <h3>Transport Leg {index + 1}</h3>
                         {transportLegs.length > 1 && (
                             <IconButton
                                 type="delete"
@@ -183,23 +183,21 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         )}
                     </div>
 
-                    {/* Distance from Warehouse to Origin Port - Only show for first leg - FULL WIDTH */}
-                    {index === 0 && (
-                        <div style={{ gridColumn: '1 / -1' }}>
-                            <FormField>
-                                <Label><span className="label-text">Distance from Warehouse to Origin Port (km)</span></Label>
-                                <input
-                                    type="number"
-                                    className="highlighted-select"
-                                    placeholder="Enter distance in km"
-                                    value={leg.warehouseToOriginDistance || ''}
-                                    onChange={(e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0)}
-                                    min="0"
-                                    step="0.1"
-                                />
-                            </FormField>
-                        </div>
-                    )}
+                    {/* Road Distance from Warehouse to Origin Port - FULL WIDTH - NOW IN ALL LEGS */}
+                    <div style={{ gridColumn: '1 / -1' }}>
+                        <FormField>
+                            <Label><span className="label-text">Road Distance from Warehouse to Origin Port (km)</span></Label>
+                            <input
+                                type="number"
+                                className="highlighted-select"
+                                placeholder="Enter distance in km"
+                                value={leg.warehouseToOriginDistance || ''}
+                                onChange={(e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0)}
+                                min="0"
+                                step="0.1"
+                            />
+                        </FormField>
+                    </div>
 
                     {/* Origin Country - LEFT COLUMN */}
                     <FormField>
@@ -269,23 +267,21 @@ const TransportSelectionStep: React.FC<TransportSelectionStepProps> = ({
                         <div></div> // Empty div to maintain grid structure for basic plan
                     )}
 
-                    {/* Distance from Destination Port to Warehouse - FULL WIDTH */}
-                    {(transportLegs.length === 1 || index === transportLegs.length - 1) && (
-                        <div style={{ gridColumn: '1 / -1' }}>
-                            <FormField>
-                                <Label><span className="label-text">Distance from Destination Port to Warehouse (km)</span></Label>
-                                <input
-                                    type="number"
-                                    className="highlighted-select"
-                                    placeholder="Enter distance in km"
-                                    value={leg.destinationToWarehouseDistance || ''}
-                                    onChange={(e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0)}
-                                    min="0"
-                                    step="0.1"
-                                />
-                            </FormField>
-                        </div>
-                    )}
+                    {/* Road Distance from Destination Port to Warehouse - FULL WIDTH - NOW IN ALL LEGS */}
+                    <div style={{ gridColumn: '1 / -1' }}>
+                        <FormField>
+                            <Label><span className="label-text">Road Distance from Destination Port to Warehouse (km)</span></Label>
+                            <input
+                                type="number"
+                                className="highlighted-select"
+                                placeholder="Enter distance in km"
+                                value={leg.destinationToWarehouseDistance || ''}
+                                onChange={(e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0)}
+                                min="0"
+                                step="0.1"
+                            />
+                        </FormField>
+                    </div>
                 </div>
             ))}
 

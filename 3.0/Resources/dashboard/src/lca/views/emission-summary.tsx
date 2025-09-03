@@ -471,6 +471,10 @@ const EmissionSummary: React.FC<{
         checkForExistingProjects();
     }, [uxpContext, contextRef.current]);
 
+    const formatTransportMode = (mode: string): string => {
+    return mode.replace(/([A-Z])/g, ' $1').trim();
+};
+
     // Calculate total value for the display box
     const totalValue = (
         Number(product.co2EmissionRawMaterials || 0) + 
@@ -805,7 +809,7 @@ const EmissionSummary: React.FC<{
                                             : 0;
                                     return (
                                         <tr key={item.id}>
-                                            <td>{item.transportMode || 'Unknown'}</td>
+                                            <td>{formatTransportMode(item.transportMode) || 'Unknown'}</td>
                                             { plan == 'professional' ? 
                                               <td>{item.originCountry || 'Unknown'}</td> : 
                                               <td>{item.originGateway || 'Unknown'}</td>

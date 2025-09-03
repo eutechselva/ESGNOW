@@ -33,6 +33,11 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
     const [transportationEmission, setTransportationEmission] = React.useState("0");
 
+    // Utility function to format transport mode (add spaces before capital letters)
+    const formatTransportMode = (mode: string): string => {
+        return mode.replace(/([A-Z])/g, ' $1').trim();
+    };
+
     // Calculate total transportation emission
     React.useEffect(() => {
         const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
@@ -70,7 +75,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                         {/* Show warehouse to origin distance for first leg only */}
                         {index === 0 && leg.warehouseToOriginDistance && leg.warehouseToOriginDistance > 0 && (
                             <div className="summary-row">
-                                <span>Distance from Warehouse to Origin Port</span>
+                                <span>Road Distance from Warehouse to Origin Port</span>
                                 <span>{leg.warehouseToOriginDistance} Km</span>
                             </div>
                         )}
@@ -97,7 +102,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                         )}
                         <div className="summary-row">
                             <span>Transport Mode</span>
-                            <span>{leg.transportMode}</span>
+                            <span>{formatTransportMode(leg.transportMode)}</span>
                         </div>
                         <div className="summary-row">
                             <span>Main Transport Distance</span>
@@ -108,7 +113,7 @@ const SummaryStep: React.FC<SummaryStepProps> = ({
                         {(transportLegs.length === 1 || index === transportLegs.length - 1) && 
                          leg.destinationToWarehouseDistance && leg.destinationToWarehouseDistance > 0 && (
                             <div className="summary-row">
-                                <span>Distance from Destination Port to Warehouse</span>
+                                <span>Road Distance from Destination Port to Warehouse</span>
                                 <span>{leg.destinationToWarehouseDistance} Km</span>
                             </div>
                         )}

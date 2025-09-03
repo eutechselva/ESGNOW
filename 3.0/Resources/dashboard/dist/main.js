@@ -43006,6 +43006,9 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
         });
         checkForExistingProjects();
     }, [uxpContext, contextRef.current]);
+    const formatTransportMode = (mode) => {
+        return mode.replace(/([A-Z])/g, ' $1').trim();
+    };
     // Calculate total value for the display box
     const totalValue = (Number(product.co2EmissionRawMaterials || 0) +
         Number(product.co2EmissionFromProcesses || 0) +
@@ -43220,7 +43223,7 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                                 ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.id },
-                                react_1.default.createElement("td", null, item.transportMode || 'Unknown'),
+                                react_1.default.createElement("td", null, formatTransportMode(item.transportMode) || 'Unknown'),
                                 plan == 'professional' ?
                                     react_1.default.createElement("td", null, item.originCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.originGateway || 'Unknown'),
@@ -44527,6 +44530,10 @@ const emission_summary_1 = __importDefault(__webpack_require__(/*! ../emission-s
 const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWeight, includePallet, plan, onConfirm, onCloseAll, uxpContext, onPrevious }) => {
     const [showEmissionSummary, setShowEmissionSummary] = React.useState(false);
     const [transportationEmission, setTransportationEmission] = React.useState("0");
+    // Utility function to format transport mode (add spaces before capital letters)
+    const formatTransportMode = (mode) => {
+        return mode.replace(/([A-Z])/g, ' $1').trim();
+    };
     // Calculate total transportation emission
     React.useEffect(() => {
         const totalEmission = transportLegs.reduce((sum, leg) => sum + leg.transportEmission, 0);
@@ -44552,7 +44559,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                     "Transport Leg ",
                     index + 1),
                 index === 0 && leg.warehouseToOriginDistance && leg.warehouseToOriginDistance > 0 && (React.createElement("div", { className: "summary-row" },
-                    React.createElement("span", null, "Distance from Warehouse to Origin Port"),
+                    React.createElement("span", null, "Road Distance from Warehouse to Origin Port"),
                     React.createElement("span", null,
                         leg.warehouseToOriginDistance,
                         " Km"))),
@@ -44570,7 +44577,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                     React.createElement("span", null, leg.destinationGateway))),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Transport Mode"),
-                    React.createElement("span", null, leg.transportMode)),
+                    React.createElement("span", null, formatTransportMode(leg.transportMode))),
                 React.createElement("div", { className: "summary-row" },
                     React.createElement("span", null, "Main Transport Distance"),
                     React.createElement("span", null,
@@ -44578,7 +44585,7 @@ const SummaryStep = ({ selectedProduct, transportLegs, packagingWeight, palletWe
                         " Km")),
                 (transportLegs.length === 1 || index === transportLegs.length - 1) &&
                     leg.destinationToWarehouseDistance && leg.destinationToWarehouseDistance > 0 && (React.createElement("div", { className: "summary-row" },
-                    React.createElement("span", null, "Distance from Destination Port to Warehouse"),
+                    React.createElement("span", null, "Road Distance from Destination Port to Warehouse"),
                     React.createElement("span", null,
                         leg.destinationToWarehouseDistance,
                         " Km"))),
@@ -44766,14 +44773,13 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                 React.createElement("div", { className: "transport-leg-header", style: { gridColumn: '1 / -1' } },
                     React.createElement("h3", null,
                         "Transport Leg ",
-                        index + 1,
-                        " (Sea Freight)"),
+                        index + 1),
                     transportLegs.length > 1 && (React.createElement(components_1.IconButton, { type: "delete", className: "remove-leg-button", onClick: () => removeTransportLeg(leg.id) }))),
-                index === 0 && (React.createElement("div", { style: { gridColumn: '1 / -1' } },
+                React.createElement("div", { style: { gridColumn: '1 / -1' } },
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
-                            React.createElement("span", { className: "label-text" }, "Distance from Warehouse to Origin Port (km)")),
-                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.warehouseToOriginDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" })))),
+                            React.createElement("span", { className: "label-text" }, "Road Distance from Warehouse to Origin Port (km)")),
+                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.warehouseToOriginDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'warehouseToOriginDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" }))),
                 React.createElement(components_1.FormField, null,
                     React.createElement(components_1.Label, null,
                         React.createElement("span", { className: "label-text" }, "Origin Country")),
@@ -44796,11 +44802,11 @@ const TransportSelectionStep = ({ transportLegs, setTransportLegs, countries, tr
                     React.createElement(components_1.Select, { className: `highlighted-select ${((_g = errors[index]) === null || _g === void 0 ? void 0 : _g.destinationGateway) ? 'error-field' : ''}`, options: leg.destinationGateways, placeholder: "Select Destination Gateway", selected: leg.destinationGateway, onChange: (value) => updateTransportLeg(leg.id, 'destinationGateway', value) }),
                     ((_h = errors[index]) === null || _h === void 0 ? void 0 : _h.destinationGateway) && (React.createElement("span", { className: "error-text" }, "Destination gateway is required")))) : (React.createElement("div", null) // Empty div to maintain grid structure for basic plan
                 ),
-                (transportLegs.length === 1 || index === transportLegs.length - 1) && (React.createElement("div", { style: { gridColumn: '1 / -1' } },
+                React.createElement("div", { style: { gridColumn: '1 / -1' } },
                     React.createElement(components_1.FormField, null,
                         React.createElement(components_1.Label, null,
-                            React.createElement("span", { className: "label-text" }, "Distance from Destination Port to Warehouse (km)")),
-                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.destinationToWarehouseDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" }))))));
+                            React.createElement("span", { className: "label-text" }, "Road Distance from Destination Port to Warehouse (km)")),
+                        React.createElement("input", { type: "number", className: "highlighted-select", placeholder: "Enter distance in km", value: leg.destinationToWarehouseDistance || '', onChange: (e) => updateTransportLeg(leg.id, 'destinationToWarehouseDistance', parseFloat(e.target.value) || 0), min: "0", step: "0.1" })))));
         }),
         React.createElement("div", { className: "esgnow-add-transport-leg-container" },
             React.createElement(components_1.IconButton, { type: "plus", className: "esgnow-add-transport-leg-button", onClick: addTransportLeg }))));
