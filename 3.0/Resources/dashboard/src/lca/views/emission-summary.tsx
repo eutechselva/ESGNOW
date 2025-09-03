@@ -779,7 +779,7 @@ const EmissionSummary: React.FC<{
                     <table>
                         <thead>
                             <tr>
-                                <th>Mode</th>
+                                {/* <th>Mode</th> */}
                                 <th>Origin</th>
                                 <th>Destination</th>
                                 <th>Contribution</th>
@@ -809,7 +809,7 @@ const EmissionSummary: React.FC<{
                                             : 0;
                                     return (
                                         <tr key={item.id}>
-                                            <td>{formatTransportMode(item.transportMode) || 'Unknown'}</td>
+                                            {/* <td>{formatTransportMode(item.transportMode) || 'Unknown'}</td> */}
                                             { plan == 'professional' ? 
                                               <td>{item.originCountry || 'Unknown'}</td> : 
                                               <td>{item.originGateway || 'Unknown'}</td>

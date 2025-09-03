@@ -43205,7 +43205,6 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                 react_1.default.createElement("table", null,
                     react_1.default.createElement("thead", null,
                         react_1.default.createElement("tr", null,
-                            react_1.default.createElement("th", null, "Mode"),
                             react_1.default.createElement("th", null, "Origin"),
                             react_1.default.createElement("th", null, "Destination"),
                             react_1.default.createElement("th", null, "Contribution"),
@@ -43223,7 +43222,6 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                                 ? ((item.transportEmission / totalEmissionFactor) * 100).toFixed(3)
                                 : 0;
                             return (react_1.default.createElement("tr", { key: item.id },
-                                react_1.default.createElement("td", null, formatTransportMode(item.transportMode) || 'Unknown'),
                                 plan == 'professional' ?
                                     react_1.default.createElement("td", null, item.originCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.originGateway || 'Unknown'),
