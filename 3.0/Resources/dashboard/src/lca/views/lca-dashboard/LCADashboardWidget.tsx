@@ -37,6 +37,7 @@ export interface TransportLeg {
     destinationGateways: any[];
     warehouseToOriginDistance?: number;
     destinationToWarehouseDistance?: number;
+    roadFreightEmission?:number;
 }
 
 interface ILCADashboardWidgetProps {
@@ -310,42 +311,44 @@ const LCADashboardWidget: React.FC<ILCADashboardWidgetProps> = ({ uxpContext }) 
     };
 
     const calculateTransportationEmission = async () => {
-        try {
-            const updatedLegs = [...transportLegs];
-            let totalEmission = 0;
+    try {
+        const updatedLegs = [...transportLegs];
+        let totalEmission = 0;
 
-            // Call API for each transport leg
-            for (let i = 0; i < updatedLegs.length; i++) {
-                const leg = updatedLegs[i];
+        // Call API for each transport leg
+        for (let i = 0; i < updatedLegs.length; i++) {
+            const leg = updatedLegs[i];
 
-                // Calculate roadFreightKm from warehouse distances
-                const roadFreightKm = (leg.warehouseToOriginDistance || 0) + (leg.destinationToWarehouseDistance || 0);
+            // Calculate roadFreightKm from warehouse distances
+            const roadFreightKm = (leg.warehouseToOriginDistance || 0) + (leg.destinationToWarehouseDistance || 0);
 
-                const payload = {
-                    weightKg: totalTransportWeight,
-                    transportMode: leg.transportMode,
-                    transportKm: leg.transportDistance,
-                    ...(roadFreightKm > 0 && { roadFreightKm }) // Include roadFreightKm if greater than 0
+            const payload = {
+                weightKg: totalTransportWeight,
+                transportMode: leg.transportMode,
+                transportKm: leg.transportDistance,
+                ...(roadFreightKm > 0 && { roadFreightKm }) // Include roadFreightKm if greater than 0
+            };
+
+            const response = await calculateTransportEmission(uxpContext, payload);
+            if (response.data) {
+                updatedLegs[i] = {
+                    ...leg,
+                    transportEmission: response.data.transportEmissions,
+                    // Add roadFreightEmission from the API response
+                    roadFreightEmission: response.data.calculationMetadata?.roadFreightEmission || 0
                 };
-
-                const response = await calculateTransportEmission(uxpContext, payload);
-                if (response.data) {
-                    updatedLegs[i] = {
-                        ...leg,
-                        transportEmission: response.data.transportEmissions
-                    };
-                    totalEmission += response.data.transportEmissions;
-                } else if (response.error) {
-                    console.error(`Error calculating emission for leg ${i + 1}:`, response.error);
-                }
+                totalEmission += response.data.transportEmissions;
+            } else if (response.error) {
+                console.error(`Error calculating emission for leg ${i + 1}:`, response.error);
             }
-
-            setTransportLegs(updatedLegs);
-            setTransportationEmission(totalEmission.toString());
-        } catch (error) {
-            console.error("Error calculating transport emission:", error);
         }
-    };
+        
+        setTransportLegs(updatedLegs);
+        setTransportationEmission(totalEmission.toString());
+    } catch (error) {
+        console.error("Error calculating transport emission:", error);
+    }
+};
 
     // Update handleNext function to validate before proceeding
     const handleNext = () => {

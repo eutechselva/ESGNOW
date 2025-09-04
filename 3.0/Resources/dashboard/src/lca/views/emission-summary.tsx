@@ -779,16 +779,18 @@ const EmissionSummary: React.FC<{
                     <table>
                         <thead>
                             <tr>
-                                {/* <th>Mode</th> */}
+                                
                                 <th>Origin</th>
                                 <th>Destination</th>
-                                <th>Contribution</th>
+                                <th>Sea Freight Contribution</th>
+                                <th>Road Freight Contribution</th>
                                 <th>Percentage</th>
                             </tr>
                         </thead>
                         <tbody>
                             {(() => {
                                 // Use the TransportLeg type from props
+                                debugger;
                                 
                                 // Calculate the total emission factor
                                 const legs: TransportLeg[] = Array.isArray(transportLegs) ? transportLegs : [];
@@ -809,7 +811,7 @@ const EmissionSummary: React.FC<{
                                             : 0;
                                     return (
                                         <tr key={item.id}>
-                                            {/* <td>{formatTransportMode(item.transportMode) || 'Unknown'}</td> */}
+                                             
                                             { plan == 'professional' ? 
                                               <td>{item.originCountry || 'Unknown'}</td> : 
                                               <td>{item.originGateway || 'Unknown'}</td>
@@ -818,7 +820,8 @@ const EmissionSummary: React.FC<{
                                               <td>{item.destinationCountry || 'Unknown'}</td> : 
                                               <td>{item.destinationGateway || 'Unknown'}</td>
                                             } 
-                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(3)} KgCO₂e</td>
+                                            <td>{parseFloat(item.transportEmission.toString() || '0').toFixed(4)} KgCO₂e</td>
+                                            <td>{parseFloat(item.roadFreightEmission.toString() || '0').toFixed(4)} KgCO₂e</td>
                                             <td>{percentage} %</td>
                                         </tr>
                                     );

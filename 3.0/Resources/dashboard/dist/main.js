@@ -43207,10 +43207,12 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                         react_1.default.createElement("tr", null,
                             react_1.default.createElement("th", null, "Origin"),
                             react_1.default.createElement("th", null, "Destination"),
-                            react_1.default.createElement("th", null, "Contribution"),
+                            react_1.default.createElement("th", null, "Sea Freight Contribution"),
+                            react_1.default.createElement("th", null, "Road Freight Contribution"),
                             react_1.default.createElement("th", null, "Percentage"))),
                     react_1.default.createElement("tbody", null, (() => {
                         // Use the TransportLeg type from props
+                        debugger;
                         // Calculate the total emission factor
                         const legs = Array.isArray(transportLegs) ? transportLegs : [];
                         const totalEmissionFactor = legs.reduce((sum, item) => sum + (item.transportEmission || 0), 0);
@@ -43229,7 +43231,10 @@ const EmissionSummary = ({ product, onBack, onCloseModal, transportationEmission
                                     react_1.default.createElement("td", null, item.destinationCountry || 'Unknown') :
                                     react_1.default.createElement("td", null, item.destinationGateway || 'Unknown'),
                                 react_1.default.createElement("td", null,
-                                    parseFloat(item.transportEmission.toString() || '0').toFixed(3),
+                                    parseFloat(item.transportEmission.toString() || '0').toFixed(4),
+                                    " KgCO\u2082e"),
+                                react_1.default.createElement("td", null,
+                                    parseFloat(item.roadFreightEmission.toString() || '0').toFixed(4),
                                     " KgCO\u2082e"),
                                 react_1.default.createElement("td", null,
                                     percentage,
@@ -44017,6 +44022,7 @@ const LCADashboardWidget = ({ uxpContext }) => {
         return newErrors.every(error => Object.keys(error).length === 0);
     };
     const calculateTransportationEmission = () => __awaiter(void 0, void 0, void 0, function* () {
+        var _b;
         try {
             const updatedLegs = [...transportLegs];
             let totalEmission = 0;
@@ -44029,7 +44035,9 @@ const LCADashboardWidget = ({ uxpContext }) => {
                 );
                 const response = yield (0, esgnow_service_1.calculateTransportEmission)(uxpContext, payload);
                 if (response.data) {
-                    updatedLegs[i] = Object.assign(Object.assign({}, leg), { transportEmission: response.data.transportEmissions });
+                    updatedLegs[i] = Object.assign(Object.assign({}, leg), { transportEmission: response.data.transportEmissions, 
+                        // Add roadFreightEmission from the API response
+                        roadFreightEmission: ((_b = response.data.calculationMetadata) === null || _b === void 0 ? void 0 : _b.roadFreightEmission) || 0 });
                     totalEmission += response.data.transportEmissions;
                 }
                 else if (response.error) {

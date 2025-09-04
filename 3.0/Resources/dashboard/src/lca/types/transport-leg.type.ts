@@ -6,4 +6,5 @@ export interface TransportLeg {
     destinationCountry:string;
     destinationGateway: string;
     transportEmission: number;
+    roadFreightEmission?: number;
 }
